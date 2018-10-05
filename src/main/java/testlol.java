@@ -6,6 +6,19 @@ public class testlol {
         System.out.println("안녕하세요 고정리입니다.");
         System.out.println("안녕하세요 고정리입니다.");
         System.out.println("안녕하세요 고정리입니다.");
+        System.out.println("안녕하세요 고정리입니다.");
+        System.out.println("안녕하세요 고정리입니다.");System.out.println("안녕하세요 고정리입니다.");
+        System.out.println("안녕하세요 고정리입니다.");System.out.println("안녕하세요 고정리입니다.");
+        System.out.println("안녕하세요 고정리입니다.");System.out.println("안녕하세요 고정리입니다.");
+        System.out.println("안녕하세요 고정리입니다.");System.out.println("안녕하세요 고정리입니다.");
+        System.out.println("안녕하세요 고정리입니다.");System.out.println("안녕하세요 고정리입니다.");
+        System.out.println("안녕하세요 고정리입니다.");System.out.println("안녕하세요 고정리입니다.");
+        System.out.println("안녕하세요 고정리입니다.");System.out.println("안녕하세요 고정리입니다.");
+        System.out.println("안녕하세요 고정리입니다.");System.out.println("안녕하세요 고정리입니다.");
+        System.out.println("안녕하세요 고정리입니다.");System.out.println("안녕하세요 고정리입니다.");
+        System.out.println("안녕하세요 고정리입니다.");System.out.println("안녕하세요 고정리입니다.");
+        System.out.println("안녕하세요 고정리입니다.");
+        
         
     }
 }
