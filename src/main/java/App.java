@@ -5,7 +5,10 @@ public class App {
     public String getGreeting() {
         return "Hello world.";
     }
-
+    public String 집가자() {
+        return "gogo";
+    }
+    
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
       System.out.println("내가더다 ㄹ미ㅏ얼미ㅏ얼미다ㅓㄹㅁ;ㅣㅏ럼;ㅣㅏㅓㄹ;ㅣ마ㅜㄹ미ㅏ처ㅜㅁ리ㅏ처물차ㅣ.머ㅜ치러미차더ㅜ미차ㅓ둠처ㅗ러뫃러ㅗㅁ륭ㄹ미ㅏㅓ오리마ㅓㄷㄹㅁ러믿두두둠");
