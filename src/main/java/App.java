@@ -10,12 +10,8 @@ public class App {
         
         return "gogo";
     }
-    public String 가자() {
-        return "gogo";
-    }
-    public String 자() {
-        return "gogo";
-    }
+ 
+    
     public String 고등어() {
         return "go등어";
     }
@@ -25,6 +21,7 @@ public class App {
         while(i<=100000) {
             System.out.println(i);
             i++;
+           
             
         }
     }
