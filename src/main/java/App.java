@@ -25,7 +25,7 @@ public class App {
         return "go등어";
     }
     public void 불금(String a , String b) {
-        
+     System.out.println("이번엔나야");   
     }
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
