@@ -12,7 +12,7 @@ public class App {
     }
     public String 가자() {
         System.out.println("오늘 집에 못감");
-        return "gogo";
+        return "gogㅇㅇㅇㅇㅇㅇㅇㅇㅇo";
     }
     public String 자() {
         System.out.println("오늘 집에 못감");
