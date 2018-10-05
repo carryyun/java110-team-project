@@ -7,6 +7,7 @@ public class App {
         return "Hello world.";
     }
     public String 집가자() {
+        
         return "gogo";
     }
     public String 가자() {
