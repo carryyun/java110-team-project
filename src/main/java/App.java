@@ -8,5 +8,9 @@ public class App {
 
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
+        wow();
+    }
+    public static void wow() {
+        System.out.println("WOW");
     }
 }
