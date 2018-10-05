@@ -7,5 +7,4 @@ public class testlol {
         System.out.println("강제충돌나게합시다ㅇㅇㅇㅇ");
         System.out.println("dfskljawkelfjke강제충돌다시가즈아");
          }   
-    }
-
+}
