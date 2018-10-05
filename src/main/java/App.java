@@ -30,7 +30,15 @@ public class App {
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
         System.out.println(new App().add(5,7));
-        System.out.println("나도좀치자!!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.println("나도좀치자!!!!!!!!!!!!! !!!!!!!!!!!!");
+        wow();
+        String s1 = "인생은 ";
+        String s2 =s1.concat("선착순");
+        System.out.println(s2);
+        
+    }
+    public static void wow() {
+        System.out.println("WOW");
         int i=1;
         while(i<=100000) {
             System.out.println(i);
