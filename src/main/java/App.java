@@ -30,12 +30,8 @@ public class App {
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
         System.out.println(new App().add(5,7));
-        System.out.println("나도좀치자!!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.println("나도좀치자!!!!!!!!!!!!!!!!!!!!!!!!!ㄴㄴ");
         int i=1;
-        while(i<=100000) {
-            System.out.println(i);
-            i++;
-        }
         while(i<=100000) {
             System.out.println(i);
             i++;
