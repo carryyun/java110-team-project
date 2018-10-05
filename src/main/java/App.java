@@ -31,6 +31,7 @@ public class App {
         System.out.println(new App().getGreeting());
         int i=1;
 <<<<<<< HEAD
+<<<<<<< HEAD
         while(i<=100000) {
             System.out.println(i);
             i++;
@@ -38,6 +39,14 @@ public class App {
             
         }
 =======
+=======
+        while(i<=100000) {
+            System.out.println(i);
+            i++;
+            App app = new App();
+            app.자();
+        }
+>>>>>>> branch 'master' of https://github.com/carryyun/java110-team-project.git
         System.out.println("수정");
 >>>>>>> branch 'master' of https://github.com/carryyun/java110-team-project.git
     }
