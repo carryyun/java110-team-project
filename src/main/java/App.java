@@ -1,9 +1,10 @@
+
 public class App {
 
     public String getGreeting() {
         return "Hello world.";
     }
-    
+     
     public int add(int a, int b) {
         return a+b;
     }
@@ -38,6 +39,20 @@ public class App {
     }
     public static void wow() {
         System.out.println("WOW");
+        int i=1;
+        while(i<=100000) {
+            System.out.println(i);
+            i++;
         }
+        while(i<=100000) {
+            System.out.println(i);
+            i++;
+            App app = new App();
+            app.자();
+        }
+        System.out.println("수정");
+
     }
     
+   
+}
