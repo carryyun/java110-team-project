@@ -19,6 +19,6 @@ public class App {
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
         int i=1;
-        System.out.println("내가제일빠름");
+        System.out.println("수정");
     }
 }
