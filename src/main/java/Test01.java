@@ -1,7 +1,7 @@
 
 public class Test01 {
 	public static void main(String[] args) {
-		System.out.println("?•ˆ?…•?•˜?„¸?š” ?´?„¸?˜?˜ 5ì¡? ?…?‹ˆ?‹¤.222222");
+		System.out.println("ì•„ ë‚˜ë„ ì˜¬ë¦¬ì ì¢€!!!!!####!!!íˆíˆì˜¬ë ¸ë”°!!!!!!!!!!!!!!");
 	}
 
 }
