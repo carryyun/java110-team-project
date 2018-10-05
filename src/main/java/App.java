@@ -13,10 +13,6 @@ public class App {
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
         int i=1;
-        while(i<=100000) {
-            System.out.println(i);
-            i++;
-            
-        }
+        System.out.println("내가제일빠름");
     }
 }
