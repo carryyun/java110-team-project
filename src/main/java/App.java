@@ -29,10 +29,8 @@ public class App {
     }
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
-<<<<<<< HEAD
         System.out.println(new App().add(5,7));
         System.out.println("나도좀치자!!!!!!!!!!!!!!!!!!!!!!!!!");
-=======
         int i=1;
         while(i<=100000) {
             System.out.println(i);
@@ -46,7 +44,6 @@ public class App {
         }
         System.out.println("수정");
 
->>>>>>> branch 'master' of https://github.com/carryyun/java110-team-project.git
     }
     
    
