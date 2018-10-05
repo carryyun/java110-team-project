@@ -14,7 +14,7 @@ public class App {
         String s1 = "인생은 ";
         String s2 =s1.concat("선착순");
         System.out.println(s2);
-        
+        System.out.println("췍");
     }
     public static void wow() {
         System.out.println("WOW");
