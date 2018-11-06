@@ -18,8 +18,6 @@ if (loginUser == null) {
     String loginType = "학생";
     if (loginUser instanceof Manager) {
         loginType = "매니저";
-    } else if (loginUser instanceof Teacher) {
-        loginType = "강사";
     }
 %>
         <li>[<%=loginType%>]<%=loginUser.getName()%>(<a href='/app/auth/logout'>로그아웃</a>)</li> 
