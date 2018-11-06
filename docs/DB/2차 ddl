@@ -1,0 +1,1112 @@
+-- 멘티
+DROP TABLE IF EXISTS p_mete RESTRICT;
+
+-- 멘토
+DROP TABLE IF EXISTS p_meto RESTRICT;
+
+-- 클래스
+DROP TABLE IF EXISTS p_cls RESTRICT;
+
+-- 멘토자격증
+DROP TABLE IF EXISTS p_meto_licn RESTRICT;
+
+-- 분야(대분류)
+DROP TABLE IF EXISTS p_btag RESTRICT;
+
+-- 멘토분야
+DROP TABLE IF EXISTS p_meto_tag RESTRICT;
+
+-- 멘토활동자료
+DROP TABLE IF EXISTS p_meto_file RESTRICT;
+
+-- 분야(소분류)
+DROP TABLE IF EXISTS p_stag RESTRICT;
+
+-- 클래스소개사진
+DROP TABLE IF EXISTS p_cls_file RESTRICT;
+
+-- 공예품댓글
+DROP TABLE IF EXISTS p_prdt_rip RESTRICT;
+
+-- 공예품질문답변
+DROP TABLE IF EXISTS p_prdt_qna RESTRICT;
+
+-- 공예품
+DROP TABLE IF EXISTS p_prdt RESTRICT;
+
+-- 신고목록
+DROP TABLE IF EXISTS p_rept RESTRICT;
+
+-- 차단
+DROP TABLE IF EXISTS p_block RESTRICT;
+
+-- 알림
+DROP TABLE IF EXISTS p_noti RESTRICT;
+
+-- 인증서
+DROP TABLE IF EXISTS p_cert RESTRICT;
+
+-- 상품주문내역
+DROP TABLE IF EXISTS p_prdt_order RESTRICT;
+
+-- 클래스신청내역
+DROP TABLE IF EXISTS p_cls_order RESTRICT;
+
+-- 수업시간표
+DROP TABLE IF EXISTS p_cls_ttab RESTRICT;
+
+-- 수업질문답변
+DROP TABLE IF EXISTS p_cls_qna RESTRICT;
+
+-- 수업댓글
+DROP TABLE IF EXISTS p_cls_rip RESTRICT;
+
+-- 분야(중분류)
+DROP TABLE IF EXISTS p_mtag RESTRICT;
+
+-- 공예품장바구니
+DROP TABLE IF EXISTS p_prdt_bakt RESTRICT;
+
+-- 클래스장바구니
+DROP TABLE IF EXISTS p_cls_bakt RESTRICT;
+
+-- 찜클래스
+DROP TABLE IF EXISTS p_cls_like RESTRICT;
+
+-- 고객센터QnA
+DROP TABLE IF EXISTS p_cs RESTRICT;
+
+-- 멘티
+CREATE TABLE p_mete (
+    meno     INTEGER      NOT NULL COMMENT '멘티번호', -- 멘티번호
+    name     VARCHAR(50)  NOT NULL COMMENT '이름', -- 이름
+    email    VARCHAR(40)  NOT NULL COMMENT '이메일', -- 이메일
+    pwd      VARCHAR(255) NOT NULL COMMENT '비밀번호', -- 비밀번호
+    nick     VARCHAR(50)  NOT NULL COMMENT '닉네임', -- 닉네임
+    phone    VARCHAR(30)  NOT NULL COMMENT '핸드폰', -- 핸드폰
+    pstno    VARCHAR(10)  NOT NULL COMMENT '우편번호', -- 우편번호
+    bas_addr VARCHAR(255) NOT NULL COMMENT '기본주소', -- 기본주소
+    det_addr VARCHAR(255) NOT NULL COMMENT '상세주소', -- 상세주소
+    phot     VARCHAR(255) NULL     COMMENT '사진', -- 사진
+    sell     CHAR(1)      NOT NULL COMMENT '판매권한', -- 판매권한
+    rgdt     DATE         NOT NULL COMMENT '가입일', -- 가입일
+    stat     CHAR(1)      NOT NULL COMMENT '정지여부', -- 정지여부
+    note     TEXT         NULL     COMMENT '비고' -- 비고
+)
+COMMENT '멘티';
+
+-- 멘티
+ALTER TABLE p_mete
+    ADD CONSTRAINT PK_p_mete -- 멘티 기본키
+        PRIMARY KEY (
+            meno -- 멘티번호
+        );
+
+-- 멘티 유니크 인덱스
+CREATE UNIQUE INDEX UIX_p_mete
+    ON p_mete ( -- 멘티
+        email ASC -- 이메일
+    );
+
+-- 멘티 유니크 인덱스2
+CREATE UNIQUE INDEX UIX_p_mete2
+    ON p_mete ( -- 멘티
+        nick ASC -- 닉네임
+    );
+
+-- 멘티 유니크 인덱스3
+CREATE UNIQUE INDEX UIX_p_mete3
+    ON p_mete ( -- 멘티
+        phone ASC -- 핸드폰
+    );
+
+ALTER TABLE p_mete
+    MODIFY COLUMN meno INTEGER NOT NULL AUTO_INCREMENT COMMENT '멘티번호';
+
+-- 멘토
+CREATE TABLE p_meto (
+    mono   INTEGER      NOT NULL COMMENT '멘토번호', -- 멘토번호
+    carr   INTEGER      NOT NULL COMMENT '경력', -- 경력
+    phot   VARCHAR(255) NOT NULL COMMENT '사진', -- 사진
+    bkname VARCHAR(50)  NOT NULL COMMENT '은행명', -- 은행명
+    bkno   INTEGER      NOT NULL COMMENT '계좌번호', -- 계좌번호
+    stat   CHAR(1)      NOT NULL COMMENT '승인여부' -- 승인여부
+)
+COMMENT '멘토';
+
+-- 멘토
+ALTER TABLE p_meto
+    ADD CONSTRAINT PK_p_meto -- 멘토 기본키
+        PRIMARY KEY (
+            mono -- 멘토번호
+        );
+
+-- 멘토 유니크 인덱스
+CREATE UNIQUE INDEX UIX_p_meto
+    ON p_meto ( -- 멘토
+        bkname ASC, -- 은행명
+        bkno ASC    -- 계좌번호
+    );
+
+ALTER TABLE p_meto
+    MODIFY COLUMN mono INTEGER NOT NULL AUTO_INCREMENT COMMENT '멘토번호';
+
+-- 클래스
+CREATE TABLE p_cls (
+    cno      INTEGER      NOT NULL COMMENT '클래스번호', -- 클래스번호
+    titl     VARCHAR(255) NOT NULL COMMENT '제목', -- 제목
+    conts    TEXT         NOT NULL COMMENT '내용', -- 내용
+    pric     INTEGER      NOT NULL COMMENT '가격', -- 가격
+    rgdt     DATETIME     NOT NULL COMMENT '등록일', -- 등록일
+    time     VARCHAR(255) NOT NULL COMMENT '일수업시간', -- 일수업시간
+    capa     INTEGER      NOT NULL COMMENT '한반모집인원', -- 한반모집인원
+    cfile    VARCHAR(255) NOT NULL COMMENT '사진영상', -- 사진영상
+    tinfo    TEXT         NOT NULL COMMENT '강사소개', -- 강사소개
+    cinfo    TEXT         NOT NULL COMMENT '강의소개', -- 강의소개
+    pstno    VARCHAR(10)  NOT NULL COMMENT '우편번호', -- 우편번호
+    bas_addr VARCHAR(255) NOT NULL COMMENT '기본주소', -- 기본주소
+    det_addr VARCHAR(255) NULL     COMMENT '상세주소', -- 상세주소
+    edt      DATE         NOT NULL COMMENT '마감일', -- 마감일
+    mono     INTEGER      NOT NULL COMMENT '멘토번호', -- 멘토번호
+    mtno     INTEGER      NOT NULL COMMENT '중분류번호' -- 중분류번호
+)
+COMMENT '클래스';
+
+-- 클래스
+ALTER TABLE p_cls
+    ADD CONSTRAINT PK_p_cls -- 클래스 기본키
+        PRIMARY KEY (
+            cno -- 클래스번호
+        );
+
+ALTER TABLE p_cls
+    MODIFY COLUMN cno INTEGER NOT NULL AUTO_INCREMENT COMMENT '클래스번호';
+
+-- 멘토자격증
+CREATE TABLE p_meto_licn (
+    lno   INTEGER      NOT NULL COMMENT '자격증번호', -- 자격증번호
+    lname VARCHAR(50)  NOT NULL COMMENT '자격증이름', -- 자격증이름
+    phot  VARCHAR(255) NOT NULL COMMENT '자격증사진', -- 자격증사진
+    mono  INTEGER      NOT NULL COMMENT '멘토번호' -- 멘토번호
+)
+COMMENT '멘토자격증';
+
+-- 멘토자격증
+ALTER TABLE p_meto_licn
+    ADD CONSTRAINT PK_p_meto_licn -- 멘토자격증 기본키
+        PRIMARY KEY (
+            lno -- 자격증번호
+        );
+
+-- 멘토자격증 유니크 인덱스
+CREATE UNIQUE INDEX UIX_p_meto_licn
+    ON p_meto_licn ( -- 멘토자격증
+        lname ASC, -- 자격증이름
+        mono ASC   -- 멘토번호
+    );
+
+ALTER TABLE p_meto_licn
+    MODIFY COLUMN lno INTEGER NOT NULL AUTO_INCREMENT COMMENT '자격증번호';
+
+-- 분야(대분류)
+CREATE TABLE p_btag (
+    btno   INTEGER     NOT NULL COMMENT '대분류번호', -- 대분류번호
+    btname VARCHAR(50) NOT NULL COMMENT '대분류명' -- 대분류명
+)
+COMMENT '분야(대분류)';
+
+-- 분야(대분류)
+ALTER TABLE p_btag
+    ADD CONSTRAINT PK_p_btag -- 분야(대분류) 기본키
+        PRIMARY KEY (
+            btno -- 대분류번호
+        );
+
+-- 분야(대분류) 유니크 인덱스
+CREATE UNIQUE INDEX UIX_p_btag
+    ON p_btag ( -- 분야(대분류)
+        btname ASC -- 대분류명
+    );
+
+ALTER TABLE p_btag
+    MODIFY COLUMN btno INTEGER NOT NULL AUTO_INCREMENT COMMENT '대분류번호';
+
+-- 멘토분야
+CREATE TABLE p_meto_tag (
+    mono INTEGER NOT NULL COMMENT '멘토번호', -- 멘토번호
+    btno INTEGER NOT NULL COMMENT '대분류번호' -- 대분류번호
+)
+COMMENT '멘토분야';
+
+-- 멘토분야
+ALTER TABLE p_meto_tag
+    ADD CONSTRAINT PK_p_meto_tag -- 멘토분야 기본키
+        PRIMARY KEY (
+            mono, -- 멘토번호
+            btno  -- 대분류번호
+        );
+
+-- 멘토활동자료
+CREATE TABLE p_meto_file (
+    mfno   INTEGER      NOT NULL COMMENT '파일번호', -- 파일번호
+    mfname VARCHAR(255) NOT NULL COMMENT '파일명', -- 파일명
+    mono   INTEGER      NOT NULL COMMENT '멘토번호' -- 멘토번호
+)
+COMMENT '멘토활동자료';
+
+-- 멘토활동자료
+ALTER TABLE p_meto_file
+    ADD CONSTRAINT PK_p_meto_file -- 멘토활동자료 기본키
+        PRIMARY KEY (
+            mfno -- 파일번호
+        );
+
+-- 멘토활동자료 유니크 인덱스
+CREATE UNIQUE INDEX UIX_p_meto_file
+    ON p_meto_file ( -- 멘토활동자료
+        mfname ASC -- 파일명
+    );
+
+ALTER TABLE p_meto_file
+    MODIFY COLUMN mfno INTEGER NOT NULL AUTO_INCREMENT COMMENT '파일번호';
+
+-- 분야(소분류)
+CREATE TABLE p_stag (
+    stno   INTEGER     NOT NULL COMMENT '소분류번호', -- 소분류번호
+    stname VARCHAR(50) NOT NULL COMMENT '소분류명', -- 소분류명
+    mtno   INTEGER     NOT NULL COMMENT '중분류번호' -- 중분류번호
+)
+COMMENT '분야(소분류)';
+
+-- 분야(소분류)
+ALTER TABLE p_stag
+    ADD CONSTRAINT PK_p_stag -- 분야(소분류) 기본키
+        PRIMARY KEY (
+            stno -- 소분류번호
+        );
+
+-- 분야(소분류) 유니크 인덱스
+CREATE UNIQUE INDEX UIX_p_stag
+    ON p_stag ( -- 분야(소분류)
+        stname ASC -- 소분류명
+    );
+
+ALTER TABLE p_stag
+    MODIFY COLUMN stno INTEGER NOT NULL AUTO_INCREMENT COMMENT '소분류번호';
+
+-- 클래스소개사진
+CREATE TABLE p_cls_file (
+    cfno  INTEGER      NOT NULL COMMENT '파일번호', -- 파일번호
+    fname VARCHAR(255) NOT NULL COMMENT '파일명', -- 파일명
+    cno   INTEGER      NOT NULL COMMENT '클래스번호' -- 클래스번호
+)
+COMMENT '클래스소개사진';
+
+-- 클래스소개사진
+ALTER TABLE p_cls_file
+    ADD CONSTRAINT PK_p_cls_file -- 클래스소개사진 기본키
+        PRIMARY KEY (
+            cfno -- 파일번호
+        );
+
+-- 클래스소개사진 유니크 인덱스
+CREATE UNIQUE INDEX UIX_p_cls_file
+    ON p_cls_file ( -- 클래스소개사진
+        fname ASC -- 파일명
+    );
+
+ALTER TABLE p_cls_file
+    MODIFY COLUMN cfno INTEGER NOT NULL AUTO_INCREMENT COMMENT '파일번호';
+
+-- 공예품댓글
+CREATE TABLE p_prdt_rip (
+    rno   INTEGER      NOT NULL COMMENT '댓글번호', -- 댓글번호
+    meno  INTEGER      NOT NULL COMMENT '작성자번호', -- 작성자번호
+    ptno  INTEGER      NOT NULL COMMENT '공예품번호', -- 공예품번호
+    titl  VARCHAR(255) NOT NULL COMMENT '제목', -- 제목
+    conts TEXT         NOT NULL COMMENT '내용', -- 내용
+    star  INTEGER      NOT NULL COMMENT '별점', -- 별점
+    rgdt  DATETIME     NOT NULL COMMENT '등록일', -- 등록일
+    phot  VARCHAR(255) NULL     COMMENT '사진' -- 사진
+)
+COMMENT '공예품댓글';
+
+-- 공예품댓글
+ALTER TABLE p_prdt_rip
+    ADD CONSTRAINT PK_p_prdt_rip -- 공예품댓글 기본키
+        PRIMARY KEY (
+            rno -- 댓글번호
+        );
+
+-- 공예품댓글 유니크 인덱스
+CREATE UNIQUE INDEX UIX_p_prdt_rip
+    ON p_prdt_rip ( -- 공예품댓글
+        ptno ASC, -- 공예품번호
+        meno ASC  -- 작성자번호
+    );
+
+ALTER TABLE p_prdt_rip
+    MODIFY COLUMN rno INTEGER NOT NULL AUTO_INCREMENT COMMENT '댓글번호';
+
+-- 공예품질문답변
+CREATE TABLE p_prdt_qna (
+    qno   INTEGER      NOT NULL COMMENT '질문번호', -- 질문번호
+    meno  INTEGER      NOT NULL COMMENT '질문자번호', -- 질문자번호
+    ptno  INTEGER      NOT NULL COMMENT '공예품번호', -- 공예품번호
+    titl  VARCHAR(255) NOT NULL COMMENT '제목', -- 제목
+    conts TEXT         NOT NULL COMMENT '내용', -- 내용
+    rgdt  DATETIME     NOT NULL COMMENT '질문등록일', -- 질문등록일
+    anser TEXT         NULL     COMMENT '답변', -- 답변
+    rgdt2 DATETIME     NULL     COMMENT '답변등록일' -- 답변등록일
+)
+COMMENT '공예품질문답변';
+
+-- 공예품질문답변
+ALTER TABLE p_prdt_qna
+    ADD CONSTRAINT PK_p_prdt_qna -- 공예품질문답변 기본키
+        PRIMARY KEY (
+            qno -- 질문번호
+        );
+
+ALTER TABLE p_prdt_qna
+    MODIFY COLUMN qno INTEGER NOT NULL AUTO_INCREMENT COMMENT '질문번호';
+
+-- 공예품
+CREATE TABLE p_prdt (
+    ptno  INTEGER      NOT NULL COMMENT '공예품번호', -- 공예품번호
+    titl  VARCHAR(255) NOT NULL COMMENT '제목', -- 제목
+    conts TEXT         NOT NULL COMMENT '내용', -- 내용
+    pric  INTEGER      NOT NULL COMMENT '가격', -- 가격
+    rgdt  DATETIME     NOT NULL COMMENT '등록일', -- 등록일
+    stock INTEGER      NOT NULL COMMENT '재고', -- 재고
+    phot  VARCHAR(255) NOT NULL COMMENT '사진', -- 사진
+    meno  INTEGER      NOT NULL COMMENT '판매자번호', -- 판매자번호
+    ctno  INTEGER      NOT NULL COMMENT '인증서번호', -- 인증서번호
+    stno  INTEGER      NOT NULL COMMENT '소분류번호' -- 소분류번호
+)
+COMMENT '공예품';
+
+-- 공예품
+ALTER TABLE p_prdt
+    ADD CONSTRAINT PK_p_prdt -- 공예품 기본키
+        PRIMARY KEY (
+            ptno -- 공예품번호
+        );
+
+ALTER TABLE p_prdt
+    MODIFY COLUMN ptno INTEGER NOT NULL AUTO_INCREMENT COMMENT '공예품번호';
+
+-- 신고목록
+CREATE TABLE p_rept (
+    rtno  INTEGER      NOT NULL COMMENT '신고번호', -- 신고번호
+    titl  VARCHAR(255) NOT NULL COMMENT '제목', -- 제목
+    conts TEXT         NOT NULL COMMENT '내용', -- 내용
+    url   VARCHAR(255) NOT NULL COMMENT 'URL', -- URL
+    type  VARCHAR(20)  NOT NULL COMMENT '신고유형', -- 신고유형
+    rtdt  DATETIME     NOT NULL COMMENT '신고날짜', -- 신고날짜
+    meno2 INTEGER      NOT NULL COMMENT '피신고자번호', -- 피신고자번호
+    meno  INTEGER      NOT NULL COMMENT '신고자번호' -- 신고자번호
+)
+COMMENT '신고목록';
+
+-- 신고목록
+ALTER TABLE p_rept
+    ADD CONSTRAINT PK_p_rept -- 신고목록 기본키
+        PRIMARY KEY (
+            rtno -- 신고번호
+        );
+
+ALTER TABLE p_rept
+    MODIFY COLUMN rtno INTEGER NOT NULL AUTO_INCREMENT COMMENT '신고번호';
+
+-- 차단
+CREATE TABLE p_block (
+    mono INTEGER NOT NULL COMMENT '멘토번호', -- 멘토번호
+    meno INTEGER NOT NULL COMMENT '멘티번호', -- 멘티번호
+    resn TEXT    NULL     COMMENT '사유', -- 사유
+    rgdt DATE    NOT NULL COMMENT '등록일' -- 등록일
+)
+COMMENT '차단';
+
+-- 차단
+ALTER TABLE p_block
+    ADD CONSTRAINT PK_p_block -- 차단 기본키
+        PRIMARY KEY (
+            mono, -- 멘토번호
+            meno  -- 멘티번호
+        );
+
+-- 알림
+CREATE TABLE p_noti (
+    nino INTEGER      NOT NULL COMMENT '알림번호', -- 알림번호
+    type VARCHAR(20)  NOT NULL COMMENT '알림유형', -- 알림유형
+    url  VARCHAR(255) NOT NULL COMMENT 'url', -- url
+    meno INTEGER      NOT NULL COMMENT '멘티번호' -- 멘티번호
+)
+COMMENT '알림';
+
+-- 알림
+ALTER TABLE p_noti
+    ADD CONSTRAINT PK_p_noti -- 알림 기본키
+        PRIMARY KEY (
+            nino -- 알림번호
+        );
+
+ALTER TABLE p_noti
+    MODIFY COLUMN nino INTEGER NOT NULL AUTO_INCREMENT COMMENT '알림번호';
+
+-- 인증서
+CREATE TABLE p_cert (
+    ctno INTEGER     NOT NULL COMMENT '인증서번호', -- 인증서번호
+    cno  INTEGER     NOT NULL COMMENT '클래스번호', -- 클래스번호
+    meno INTEGER     NOT NULL COMMENT '멘티번호', -- 멘티번호
+    type VARCHAR(50) NOT NULL COMMENT '증서유형', -- 증서유형
+    cnt  INTEGER     NOT NULL COMMENT '발급횟수', -- 발급횟수
+    edt  DATE        NOT NULL COMMENT '사용가능기한', -- 사용가능기한
+    ctdt DATE        NOT NULL COMMENT '발급일' -- 발급일
+)
+COMMENT '인증서';
+
+-- 인증서
+ALTER TABLE p_cert
+    ADD CONSTRAINT PK_p_cert -- 인증서 기본키
+        PRIMARY KEY (
+            ctno -- 인증서번호
+        );
+
+ALTER TABLE p_cert
+    MODIFY COLUMN ctno INTEGER NOT NULL AUTO_INCREMENT COMMENT '인증서번호';
+
+-- 상품주문내역
+CREATE TABLE p_prdt_order (
+    ono       INTEGER     NOT NULL COMMENT '주문번호', -- 주문번호
+    meno      INTEGER     NOT NULL COMMENT '주문자번호', -- 주문자번호
+    ptno      INTEGER     NOT NULL COMMENT '공예품번호', -- 공예품번호
+    cnt       INTEGER     NOT NULL COMMENT '수량', -- 수량
+    tot_pric  INTEGER     NOT NULL COMMENT '총금액', -- 총금액
+    payopt    VARCHAR(50) NOT NULL COMMENT '결제방법', -- 결제방법
+    paydt     DATETIME    NOT NULL COMMENT '결제날짜', -- 결제날짜
+    parc_name VARCHAR(50) NULL     COMMENT '택배사', -- 택배사
+    parc_no   INTEGER     NULL     COMMENT '송장번호' -- 송장번호
+)
+COMMENT '상품주문내역';
+
+-- 상품주문내역
+ALTER TABLE p_prdt_order
+    ADD CONSTRAINT PK_p_prdt_order -- 상품주문내역 기본키
+        PRIMARY KEY (
+            ono -- 주문번호
+        );
+
+ALTER TABLE p_prdt_order
+    MODIFY COLUMN ono INTEGER NOT NULL AUTO_INCREMENT COMMENT '주문번호';
+
+-- 클래스신청내역
+CREATE TABLE p_cls_order (
+    ono      INTEGER     NOT NULL COMMENT '신청번호', -- 신청번호
+    meno     INTEGER     NOT NULL COMMENT '멘티번호', -- 멘티번호
+    time     INTEGER     NOT NULL COMMENT '시간', -- 시간
+    tot_pric INTEGER     NOT NULL COMMENT '총금액', -- 총금액
+    payopt   VARCHAR(50) NOT NULL COMMENT '결제방법', -- 결제방법
+    paydt    DATETIME    NOT NULL COMMENT '결제날짜', -- 결제날짜
+    ctno     INTEGER     NOT NULL COMMENT '수업일정번호' -- 수업일정번호
+)
+COMMENT '클래스신청내역';
+
+-- 클래스신청내역
+ALTER TABLE p_cls_order
+    ADD CONSTRAINT PK_p_cls_order -- 클래스신청내역 기본키
+        PRIMARY KEY (
+            ono -- 신청번호
+        );
+
+ALTER TABLE p_cls_order
+    MODIFY COLUMN ono INTEGER NOT NULL AUTO_INCREMENT COMMENT '신청번호';
+
+-- 수업시간표
+CREATE TABLE p_cls_ttab (
+    ctno  INTEGER  NOT NULL COMMENT '수업일정번호', -- 수업일정번호
+    cno   INTEGER  NOT NULL COMMENT '클래스번호', -- 클래스번호
+    date  DATE     NOT NULL COMMENT '날짜', -- 날짜
+    stime DATETIME NOT NULL COMMENT '시작시각', -- 시작시각
+    capa  INTEGER  NOT NULL COMMENT '잔여모집인원' -- 잔여모집인원
+)
+COMMENT '수업시간표';
+
+-- 수업시간표
+ALTER TABLE p_cls_ttab
+    ADD CONSTRAINT PK_p_cls_ttab -- 수업시간표 기본키
+        PRIMARY KEY (
+            ctno -- 수업일정번호
+        );
+
+-- 수업시간표 유니크 인덱스
+CREATE UNIQUE INDEX UIX_p_cls_ttab
+    ON p_cls_ttab ( -- 수업시간표
+        cno ASC,   -- 클래스번호
+        stime ASC, -- 시작시각
+        date ASC   -- 날짜
+    );
+
+ALTER TABLE p_cls_ttab
+    MODIFY COLUMN ctno INTEGER NOT NULL AUTO_INCREMENT COMMENT '수업일정번호';
+
+-- 수업질문답변
+CREATE TABLE p_cls_qna (
+    qno   INTEGER      NOT NULL COMMENT '질문번호', -- 질문번호
+    meno  INTEGER      NOT NULL COMMENT '질문자번호', -- 질문자번호
+    cno   INTEGER      NOT NULL COMMENT '클래스번호', -- 클래스번호
+    titl  VARCHAR(255) NOT NULL COMMENT '제목', -- 제목
+    conts TEXT         NOT NULL COMMENT '내용', -- 내용
+    rgdt  DATETIME     NOT NULL COMMENT '질문등록일', -- 질문등록일
+    anser TEXT         NULL     COMMENT '답변', -- 답변
+    rgdt2 DATETIME     NULL     COMMENT '답변등록일' -- 답변등록일
+)
+COMMENT '수업질문답변';
+
+-- 수업질문답변
+ALTER TABLE p_cls_qna
+    ADD CONSTRAINT PK_p_cls_qna -- 수업질문답변 기본키
+        PRIMARY KEY (
+            qno -- 질문번호
+        );
+
+ALTER TABLE p_cls_qna
+    MODIFY COLUMN qno INTEGER NOT NULL AUTO_INCREMENT COMMENT '질문번호';
+
+-- 수업댓글
+CREATE TABLE p_cls_rip (
+    rno   INTEGER      NOT NULL COMMENT '댓글번호', -- 댓글번호
+    meno  INTEGER      NOT NULL COMMENT '작성자번호', -- 작성자번호
+    cno   INTEGER      NOT NULL COMMENT '클래스번호', -- 클래스번호
+    titl  VARCHAR(255) NOT NULL COMMENT '제목', -- 제목
+    conts TEXT         NOT NULL COMMENT '내용', -- 내용
+    star  INTEGER      NOT NULL COMMENT '평점', -- 평점
+    phot  VARCHAR(255) NULL     COMMENT '사진', -- 사진
+    rgdt  DATETIME     NOT NULL COMMENT '등록일' -- 등록일
+)
+COMMENT '수업댓글';
+
+-- 수업댓글
+ALTER TABLE p_cls_rip
+    ADD CONSTRAINT PK_p_cls_rip -- 수업댓글 기본키
+        PRIMARY KEY (
+            rno -- 댓글번호
+        );
+
+-- 수업댓글 유니크 인덱스
+CREATE UNIQUE INDEX UIX_p_cls_rip
+    ON p_cls_rip ( -- 수업댓글
+        cno ASC,  -- 클래스번호
+        meno ASC  -- 작성자번호
+    );
+
+ALTER TABLE p_cls_rip
+    MODIFY COLUMN rno INTEGER NOT NULL AUTO_INCREMENT COMMENT '댓글번호';
+
+-- 분야(중분류)
+CREATE TABLE p_mtag (
+    mtno   INTEGER     NOT NULL COMMENT '중분류번호', -- 중분류번호
+    mtname VARCHAR(50) NOT NULL COMMENT '중분류명', -- 중분류명
+    btno   INTEGER     NOT NULL COMMENT '대분류번호' -- 대분류번호
+)
+COMMENT '분야(중분류)';
+
+-- 분야(중분류)
+ALTER TABLE p_mtag
+    ADD CONSTRAINT PK_p_mtag -- 분야(중분류) 기본키
+        PRIMARY KEY (
+            mtno -- 중분류번호
+        );
+
+-- 분야(중분류) 유니크 인덱스
+CREATE UNIQUE INDEX UIX_p_mtag
+    ON p_mtag ( -- 분야(중분류)
+        mtname ASC -- 중분류명
+    );
+
+ALTER TABLE p_mtag
+    MODIFY COLUMN mtno INTEGER NOT NULL AUTO_INCREMENT COMMENT '중분류번호';
+
+-- 공예품장바구니
+CREATE TABLE p_prdt_bakt (
+    pbno INTEGER NOT NULL COMMENT '장바구니번호', -- 장바구니번호
+    ptno INTEGER NOT NULL COMMENT '공예품번호', -- 공예품번호
+    meno INTEGER NOT NULL COMMENT '멘티번호' -- 멘티번호
+)
+COMMENT '공예품장바구니';
+
+-- 공예품장바구니
+ALTER TABLE p_prdt_bakt
+    ADD CONSTRAINT PK_p_prdt_bakt -- 공예품장바구니 기본키
+        PRIMARY KEY (
+            pbno -- 장바구니번호
+        );
+
+ALTER TABLE p_prdt_bakt
+    MODIFY COLUMN pbno INTEGER NOT NULL AUTO_INCREMENT COMMENT '장바구니번호';
+
+-- 클래스장바구니
+CREATE TABLE p_cls_bakt (
+    COL  <데이터 타입 없음> NOT NULL COMMENT '장바구니번호', -- 장바구니번호
+    meno INTEGER            NOT NULL COMMENT '멘티번호', -- 멘티번호
+    ctno INTEGER            NOT NULL COMMENT '수업일정번호' -- 수업일정번호
+)
+COMMENT '클래스장바구니';
+
+-- 클래스장바구니
+ALTER TABLE p_cls_bakt
+    ADD CONSTRAINT PK_p_cls_bakt -- 클래스장바구니 기본키
+        PRIMARY KEY (
+            COL -- 장바구니번호
+        );
+
+ALTER TABLE p_cls_bakt
+    MODIFY COLUMN COL <데이터 타입 없음> NOT NULL AUTO_INCREMENT COMMENT '장바구니번호';
+
+-- 찜클래스
+CREATE TABLE p_cls_like (
+    clno INTEGER NOT NULL COMMENT '찜번호', -- 찜번호
+    meno INTEGER NOT NULL COMMENT '멘티번호', -- 멘티번호
+    cno  INTEGER NOT NULL COMMENT '클래스번호' -- 클래스번호
+)
+COMMENT '찜클래스';
+
+-- 찜클래스
+ALTER TABLE p_cls_like
+    ADD CONSTRAINT PK_p_cls_like -- 찜클래스 기본키
+        PRIMARY KEY (
+            clno -- 찜번호
+        );
+
+-- 찜클래스 유니크 인덱스
+CREATE UNIQUE INDEX UIX_p_cls_like
+    ON p_cls_like ( -- 찜클래스
+        cno ASC,  -- 클래스번호
+        meno ASC  -- 멘티번호
+    );
+
+ALTER TABLE p_cls_like
+    MODIFY COLUMN clno INTEGER NOT NULL AUTO_INCREMENT COMMENT '찜번호';
+
+-- 고객센터QnA
+CREATE TABLE p_cs (
+    csno  INTEGER      NOT NULL COMMENT '문의번호', -- 문의번호
+    meno  INTEGER      NOT NULL COMMENT '멘티번호', -- 멘티번호
+    titl  VARCHAR(255) NOT NULL COMMENT '제목', -- 제목
+    conts TEXT         NOT NULL COMMENT '내용', -- 내용
+    rgdt  DATETIME     NOT NULL COMMENT '질문등록일', -- 질문등록일
+    anser TEXT         NULL     COMMENT '답변', -- 답변
+    rgdt2 DATETIME     NULL     COMMENT '답변등록일' -- 답변등록일
+)
+COMMENT '고객센터QnA';
+
+-- 고객센터QnA
+ALTER TABLE p_cs
+    ADD CONSTRAINT PK_p_cs -- 고객센터QnA 기본키
+        PRIMARY KEY (
+            csno -- 문의번호
+        );
+
+ALTER TABLE p_cs
+    MODIFY COLUMN csno INTEGER NOT NULL AUTO_INCREMENT COMMENT '문의번호';
+
+-- 멘토
+ALTER TABLE p_meto
+    ADD CONSTRAINT FK_p_mete_TO_p_meto -- 멘티 -> 멘토
+        FOREIGN KEY (
+            mono -- 멘토번호
+        )
+        REFERENCES p_mete ( -- 멘티
+            meno -- 멘티번호
+        );
+
+-- 클래스
+ALTER TABLE p_cls
+    ADD CONSTRAINT FK_p_meto_TO_p_cls -- 멘토 -> 클래스
+        FOREIGN KEY (
+            mono -- 멘토번호
+        )
+        REFERENCES p_meto ( -- 멘토
+            mono -- 멘토번호
+        );
+
+-- 클래스
+ALTER TABLE p_cls
+    ADD CONSTRAINT FK_p_mtag_TO_p_cls -- 분야(중분류) -> 클래스
+        FOREIGN KEY (
+            mtno -- 중분류번호
+        )
+        REFERENCES p_mtag ( -- 분야(중분류)
+            mtno -- 중분류번호
+        );
+
+-- 멘토자격증
+ALTER TABLE p_meto_licn
+    ADD CONSTRAINT FK_p_meto_TO_p_meto_licn -- 멘토 -> 멘토자격증
+        FOREIGN KEY (
+            mono -- 멘토번호
+        )
+        REFERENCES p_meto ( -- 멘토
+            mono -- 멘토번호
+        );
+
+-- 멘토분야
+ALTER TABLE p_meto_tag
+    ADD CONSTRAINT FK_p_meto_TO_p_meto_tag -- 멘토 -> 멘토분야
+        FOREIGN KEY (
+            mono -- 멘토번호
+        )
+        REFERENCES p_meto ( -- 멘토
+            mono -- 멘토번호
+        );
+
+-- 멘토분야
+ALTER TABLE p_meto_tag
+    ADD CONSTRAINT FK_p_btag_TO_p_meto_tag -- 분야(대분류) -> 멘토분야
+        FOREIGN KEY (
+            btno -- 대분류번호
+        )
+        REFERENCES p_btag ( -- 분야(대분류)
+            btno -- 대분류번호
+        );
+
+-- 멘토활동자료
+ALTER TABLE p_meto_file
+    ADD CONSTRAINT FK_p_meto_TO_p_meto_file -- 멘토 -> 멘토활동자료
+        FOREIGN KEY (
+            mono -- 멘토번호
+        )
+        REFERENCES p_meto ( -- 멘토
+            mono -- 멘토번호
+        );
+
+-- 분야(소분류)
+ALTER TABLE p_stag
+    ADD CONSTRAINT FK_p_mtag_TO_p_stag -- 분야(중분류) -> 분야(소분류)
+        FOREIGN KEY (
+            mtno -- 중분류번호
+        )
+        REFERENCES p_mtag ( -- 분야(중분류)
+            mtno -- 중분류번호
+        );
+
+-- 클래스소개사진
+ALTER TABLE p_cls_file
+    ADD CONSTRAINT FK_p_cls_TO_p_cls_file -- 클래스 -> 클래스소개사진
+        FOREIGN KEY (
+            cno -- 클래스번호
+        )
+        REFERENCES p_cls ( -- 클래스
+            cno -- 클래스번호
+        );
+
+-- 공예품댓글
+ALTER TABLE p_prdt_rip
+    ADD CONSTRAINT FK_p_mete_TO_p_prdt_rip -- 멘티 -> 공예품댓글
+        FOREIGN KEY (
+            meno -- 작성자번호
+        )
+        REFERENCES p_mete ( -- 멘티
+            meno -- 멘티번호
+        );
+
+-- 공예품댓글
+ALTER TABLE p_prdt_rip
+    ADD CONSTRAINT FK_p_prdt_TO_p_prdt_rip -- 공예품 -> 공예품댓글
+        FOREIGN KEY (
+            ptno -- 공예품번호
+        )
+        REFERENCES p_prdt ( -- 공예품
+            ptno -- 공예품번호
+        );
+
+-- 공예품질문답변
+ALTER TABLE p_prdt_qna
+    ADD CONSTRAINT FK_p_mete_TO_p_prdt_qna -- 멘티 -> 공예품질문답변
+        FOREIGN KEY (
+            meno -- 질문자번호
+        )
+        REFERENCES p_mete ( -- 멘티
+            meno -- 멘티번호
+        );
+
+-- 공예품질문답변
+ALTER TABLE p_prdt_qna
+    ADD CONSTRAINT FK_p_prdt_TO_p_prdt_qna -- 공예품 -> 공예품질문답변
+        FOREIGN KEY (
+            ptno -- 공예품번호
+        )
+        REFERENCES p_prdt ( -- 공예품
+            ptno -- 공예품번호
+        );
+
+-- 공예품
+ALTER TABLE p_prdt
+    ADD CONSTRAINT FK_p_mete_TO_p_prdt -- 멘티 -> 공예품
+        FOREIGN KEY (
+            meno -- 판매자번호
+        )
+        REFERENCES p_mete ( -- 멘티
+            meno -- 멘티번호
+        );
+
+-- 공예품
+ALTER TABLE p_prdt
+    ADD CONSTRAINT FK_p_cert_TO_p_prdt -- 인증서 -> 공예품
+        FOREIGN KEY (
+            ctno -- 인증서번호
+        )
+        REFERENCES p_cert ( -- 인증서
+            ctno -- 인증서번호
+        );
+
+-- 공예품
+ALTER TABLE p_prdt
+    ADD CONSTRAINT FK_p_stag_TO_p_prdt -- 분야(소분류) -> 공예품
+        FOREIGN KEY (
+            stno -- 소분류번호
+        )
+        REFERENCES p_stag ( -- 분야(소분류)
+            stno -- 소분류번호
+        );
+
+-- 신고목록
+ALTER TABLE p_rept
+    ADD CONSTRAINT FK_p_mete_TO_p_rept -- 멘티 -> 신고목록
+        FOREIGN KEY (
+            meno -- 신고자번호
+        )
+        REFERENCES p_mete ( -- 멘티
+            meno -- 멘티번호
+        );
+
+-- 신고목록
+ALTER TABLE p_rept
+    ADD CONSTRAINT FK_p_mete_TO_p_rept2 -- 멘티 -> 신고목록2
+        FOREIGN KEY (
+            meno2 -- 피신고자번호
+        )
+        REFERENCES p_mete ( -- 멘티
+            meno -- 멘티번호
+        );
+
+-- 차단
+ALTER TABLE p_block
+    ADD CONSTRAINT FK_p_meto_TO_p_block -- 멘토 -> 차단
+        FOREIGN KEY (
+            mono -- 멘토번호
+        )
+        REFERENCES p_meto ( -- 멘토
+            mono -- 멘토번호
+        );
+
+-- 차단
+ALTER TABLE p_block
+    ADD CONSTRAINT FK_p_mete_TO_p_block -- 멘티 -> 차단
+        FOREIGN KEY (
+            meno -- 멘티번호
+        )
+        REFERENCES p_mete ( -- 멘티
+            meno -- 멘티번호
+        );
+
+-- 알림
+ALTER TABLE p_noti
+    ADD CONSTRAINT FK_p_mete_TO_p_noti -- 멘티 -> 알림
+        FOREIGN KEY (
+            meno -- 멘티번호
+        )
+        REFERENCES p_mete ( -- 멘티
+            meno -- 멘티번호
+        );
+
+-- 인증서
+ALTER TABLE p_cert
+    ADD CONSTRAINT FK_p_cls_TO_p_cert -- 클래스 -> 인증서
+        FOREIGN KEY (
+            cno -- 클래스번호
+        )
+        REFERENCES p_cls ( -- 클래스
+            cno -- 클래스번호
+        );
+
+-- 인증서
+ALTER TABLE p_cert
+    ADD CONSTRAINT FK_p_mete_TO_p_cert -- 멘티 -> 인증서
+        FOREIGN KEY (
+            meno -- 멘티번호
+        )
+        REFERENCES p_mete ( -- 멘티
+            meno -- 멘티번호
+        );
+
+-- 상품주문내역
+ALTER TABLE p_prdt_order
+    ADD CONSTRAINT FK_p_mete_TO_p_prdt_order -- 멘티 -> 상품주문내역
+        FOREIGN KEY (
+            meno -- 주문자번호
+        )
+        REFERENCES p_mete ( -- 멘티
+            meno -- 멘티번호
+        );
+
+-- 상품주문내역
+ALTER TABLE p_prdt_order
+    ADD CONSTRAINT FK_p_prdt_TO_p_prdt_order -- 공예품 -> 상품주문내역
+        FOREIGN KEY (
+            ptno -- 공예품번호
+        )
+        REFERENCES p_prdt ( -- 공예품
+            ptno -- 공예품번호
+        );
+
+-- 클래스신청내역
+ALTER TABLE p_cls_order
+    ADD CONSTRAINT FK_p_mete_TO_p_cls_order -- 멘티 -> 클래스신청내역
+        FOREIGN KEY (
+            meno -- 멘티번호
+        )
+        REFERENCES p_mete ( -- 멘티
+            meno -- 멘티번호
+        );
+
+-- 클래스신청내역
+ALTER TABLE p_cls_order
+    ADD CONSTRAINT FK_p_cls_ttab_TO_p_cls_order -- 수업시간표 -> 클래스신청내역
+        FOREIGN KEY (
+            ctno -- 수업일정번호
+        )
+        REFERENCES p_cls_ttab ( -- 수업시간표
+            ctno -- 수업일정번호
+        );
+
+-- 수업시간표
+ALTER TABLE p_cls_ttab
+    ADD CONSTRAINT FK_p_cls_TO_p_cls_ttab -- 클래스 -> 수업시간표
+        FOREIGN KEY (
+            cno -- 클래스번호
+        )
+        REFERENCES p_cls ( -- 클래스
+            cno -- 클래스번호
+        );
+
+-- 수업질문답변
+ALTER TABLE p_cls_qna
+    ADD CONSTRAINT FK_p_mete_TO_p_cls_qna -- 멘티 -> 수업질문답변
+        FOREIGN KEY (
+            meno -- 질문자번호
+        )
+        REFERENCES p_mete ( -- 멘티
+            meno -- 멘티번호
+        );
+
+-- 수업질문답변
+ALTER TABLE p_cls_qna
+    ADD CONSTRAINT FK_p_cls_TO_p_cls_qna -- 클래스 -> 수업질문답변
+        FOREIGN KEY (
+            cno -- 클래스번호
+        )
+        REFERENCES p_cls ( -- 클래스
+            cno -- 클래스번호
+        );
+
+-- 수업댓글
+ALTER TABLE p_cls_rip
+    ADD CONSTRAINT FK_p_mete_TO_p_cls_rip -- 멘티 -> 수업댓글
+        FOREIGN KEY (
+            meno -- 작성자번호
+        )
+        REFERENCES p_mete ( -- 멘티
+            meno -- 멘티번호
+        );
+
+-- 수업댓글
+ALTER TABLE p_cls_rip
+    ADD CONSTRAINT FK_p_cls_TO_p_cls_rip -- 클래스 -> 수업댓글
+        FOREIGN KEY (
+            cno -- 클래스번호
+        )
+        REFERENCES p_cls ( -- 클래스
+            cno -- 클래스번호
+        );
+
+-- 분야(중분류)
+ALTER TABLE p_mtag
+    ADD CONSTRAINT FK_p_btag_TO_p_mtag -- 분야(대분류) -> 분야(중분류)
+        FOREIGN KEY (
+            btno -- 대분류번호
+        )
+        REFERENCES p_btag ( -- 분야(대분류)
+            btno -- 대분류번호
+        );
+
+-- 공예품장바구니
+ALTER TABLE p_prdt_bakt
+    ADD CONSTRAINT FK_p_prdt_TO_p_prdt_bakt -- 공예품 -> 공예품장바구니
+        FOREIGN KEY (
+            ptno -- 공예품번호
+        )
+        REFERENCES p_prdt ( -- 공예품
+            ptno -- 공예품번호
+        );
+
+-- 공예품장바구니
+ALTER TABLE p_prdt_bakt
+    ADD CONSTRAINT FK_p_mete_TO_p_prdt_bakt -- 멘티 -> 공예품장바구니
+        FOREIGN KEY (
+            meno -- 멘티번호
+        )
+        REFERENCES p_mete ( -- 멘티
+            meno -- 멘티번호
+        );
+
+-- 클래스장바구니
+ALTER TABLE p_cls_bakt
+    ADD CONSTRAINT FK_p_mete_TO_p_cls_bakt -- 멘티 -> 클래스장바구니
+        FOREIGN KEY (
+            meno -- 멘티번호
+        )
+        REFERENCES p_mete ( -- 멘티
+            meno -- 멘티번호
+        );
+
+-- 클래스장바구니
+ALTER TABLE p_cls_bakt
+    ADD CONSTRAINT FK_p_cls_ttab_TO_p_cls_bakt -- 수업시간표 -> 클래스장바구니
+        FOREIGN KEY (
+            ctno -- 수업일정번호
+        )
+        REFERENCES p_cls_ttab ( -- 수업시간표
+            ctno -- 수업일정번호
+        );
+
+-- 찜클래스
+ALTER TABLE p_cls_like
+    ADD CONSTRAINT FK_p_mete_TO_p_cls_like -- 멘티 -> 찜클래스
+        FOREIGN KEY (
+            meno -- 멘티번호
+        )
+        REFERENCES p_mete ( -- 멘티
+            meno -- 멘티번호
+        );
+
+-- 찜클래스
+ALTER TABLE p_cls_like
+    ADD CONSTRAINT FK_p_cls_TO_p_cls_like -- 클래스 -> 찜클래스
+        FOREIGN KEY (
+            cno -- 클래스번호
+        )
+        REFERENCES p_cls ( -- 클래스
+            cno -- 클래스번호
+        );
+
+-- 고객센터QnA
+ALTER TABLE p_cs
+    ADD CONSTRAINT FK_p_mete_TO_p_cs -- 멘티 -> 고객센터QnA
+        FOREIGN KEY (
+            meno -- 멘티번호
+        )
+        REFERENCES p_mete ( -- 멘티
+            meno -- 멘티번호
+        );

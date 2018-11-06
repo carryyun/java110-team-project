@@ -56,7 +56,6 @@ th {
 
 
 <script type="text/javascript">
-
 function autoLogin(accessToken) {
     var type = document.querySelector("input[name='type']:checked").value;
     location.href = "fblogin?type=" + type + 
@@ -92,7 +91,6 @@ window.fbAsyncInit = function() {
   js.src = "https://connect.facebook.net/en_US/sdk.js";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
-
 </script>
 
 </body>
