@@ -21,6 +21,7 @@ Release/
 *.zip
 *.tar.gz
 *.rar
+**security.properties
 hs_err_pid*
 
 !build.gradle
