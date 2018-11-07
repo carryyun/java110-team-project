@@ -1,4 +1,3 @@
-<%@page import="bitcamp.java110.cms.domain.Teacher"%>
 <%@page import="bitcamp.java110.cms.domain.Manager"%>
 <%@page import="bitcamp.java110.cms.domain.Member"%>
 <%@ page language="java" 
@@ -24,8 +23,6 @@ if (loginUser == null) {
 <%
 }
 %>    
-        <li><a href='/app/student/list'>학생관리</a></li>
-        <li><a href='/app/teacher/list'>강사관리</a></li>
         <li><a href='/app/manager/list'>매니저관리</a></li>
     </ul>
 </header>

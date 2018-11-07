@@ -20,18 +20,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 // 스프링 IoC 컨테이너에게 이 클래스가 컨테이너를 위한 설정 정보를 담고 있는 
 // 클래스라는 것을 알려주기 위해 다음 애노테이션을 추가한다.
 @Configuration
-
-/*
-@ComponentScan(
-        basePackages="bitcamp.java110.cms",
-        excludeFilters=@Filter(
-                type=FilterType.REGEX,
-                pattern="bitcamp.java110.cms.web.*"
-        ))
- */
-@PropertySource("classpath:/bitcamp/java110/cms/conf/jdbc.properties")
+@PropertySource("classpath:/bitcamp/java110/cms/conf/security.properties")
 @MapperScan("bitcamp.java110.cms.dao")
-
 // 트랜잭션 관리자를 활성화하려면 다음 애노테이션을 붙여야 한다.
 @EnableTransactionManagement
 public class AppConfig {

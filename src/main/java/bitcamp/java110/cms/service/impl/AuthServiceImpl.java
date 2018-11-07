@@ -1,18 +1,21 @@
 package bitcamp.java110.cms.service.impl;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import bitcamp.java110.cms.dao.ManagerDao;
 import bitcamp.java110.cms.dao.MemberDao;
-import bitcamp.java110.cms.dao.StudentDao;
-import bitcamp.java110.cms.dao.TeacherDao;
+import bitcamp.java110.cms.dao.MenteeDao;
 import bitcamp.java110.cms.domain.Manager;
 import bitcamp.java110.cms.domain.Member;
-import bitcamp.java110.cms.domain.Student;
-import bitcamp.java110.cms.domain.Teacher;
+import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.service.AuthService;
 
 @Service
@@ -20,6 +23,8 @@ public class AuthServiceImpl implements AuthService {
 
     @Autowired MemberDao memberDao;
     @Autowired ManagerDao managerDao;
+    
+    @Autowired MenteeDao menteeDao;
   
 
     @Override
@@ -96,6 +101,72 @@ public class AuthServiceImpl implements AuthService {
         return newbie;
     }
     
+    @Override
+    public Mentee getNaverMember(String accessToken) {
+      String header = "Bearer " + accessToken; // Bearer 다음에 공백 추가
+      String fileurl="";
+      String name="";
+      String nickname="";
+      String email="";
+      
+      try {
+        String apiURL = "https://openapi.naver.com/v1/nid/me";
+        URL url = new URL(apiURL);
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestMethod("GET");
+        con.setRequestProperty("Authorization", header);
+        int responseCode = con.getResponseCode();
+        BufferedReader br;
+        if (responseCode == 200) { // 정상 호출
+          br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+        } else { // 에러 발생
+          br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+        }
+        String inputLine;
+        String str="";
+        while ((inputLine = br.readLine()) != null) {
+          str+=inputLine;
+        }
+        br.close();
+        System.out.println("str=" + str);
+        
+        ObjectMapper mapper = new ObjectMapper();
+        
+        Map<String,Object> map = mapper.readValue(str, Map.class);
+        System.out.println("response : " + map.get("response").toString());
+        map = (Map<String,Object>) map.get("response");
+        
+        name = (String) map.get("name");
+        nickname = (String) map.get("nickname");
+        email = (String) map.get("email");
+        fileurl=map.get("profile_image").toString();
+        
+        System.out.println("name="+name);
+        System.out.println("nickname="+nickname);
+        System.out.println("email="+email);
+        System.out.println("fileurl="+fileurl);
+        
+        Mentee m = new Mentee();
+        m.setName(name);
+        m.setNick(nickname);
+        m.setEmail(email);
+        m.setPhot(fileurl);
+        
+        // 임시
+        m.setPwd("1111");
+        m.setPhone("1111-22223");
+        
+        menteeDao.insert(m);
+        
+        return m;
+        
+      } catch (Exception e) {
+        System.out.println(e);
+      }
+      
+      return null;
+    }
+    
     private Member createMember(
         String memberType, String name, String email, String password) {
       Member member = null;
@@ -110,6 +181,8 @@ public class AuthServiceImpl implements AuthService {
       
       return member;
     }
+
+    
     
 }
 

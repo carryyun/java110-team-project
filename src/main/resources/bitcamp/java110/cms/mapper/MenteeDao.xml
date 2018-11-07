@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- MemberDao 클래스가 사용할 SQL이 들어 있는 파일 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.java110.cms.dao.MenteeDao">
+
+    <insert id="insert" parameterType="mentee"
+            useGeneratedKeys="true" keyColumn="meno" keyProperty="no">
+        insert into p_mete(name,email,pwd,nick,phone,phot,sell,rgdt,stat)
+        values(#{name},#{email},#{pwd},#{nick},#{phone},#{phot},'N',now(),'N')
+    </insert> 
+    
+    <delete id="delete" parameterType="int">
+        delete from p1_memb 
+        where mno=#{value}
+    </delete>
+    
+</mapper>
+
+
+
+
+
+
+
+
+
