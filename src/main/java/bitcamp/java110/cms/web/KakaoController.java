@@ -1,5 +1,7 @@
 package bitcamp.java110.cms.web;
 
+import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -70,33 +72,6 @@ public class KakaoController {
         return "redirect:form";
     }
     
-    @RequestMapping("fblogin")
-    public String fblogin(
-            String accessToken,
-            String type,
-            HttpSession session) {
-        
-        try {
-          Member loginUser = authService.getFacebookMember(accessToken, type);
-          
-          // 회원 정보를 세션에 보관한다.
-          session.setAttribute("loginUser", loginUser);
-          String redirectUrl = null;
-          
-          switch (type) {
-          case "manager":
-              redirectUrl = "../manager/list";
-              break; 
-          }
-          return "redirect:" + redirectUrl;
-          
-        } catch (Exception e) {
-            e.printStackTrace();
-            session.invalidate();
-            return "redirect:form";
-        }
-
-    }
     
     @RequestMapping("kakao")
     public void kakao(
@@ -107,10 +82,18 @@ public class KakaoController {
             HttpSession session) {
 //      authService.getNaverMember(accessToken);
       
+      Map<String, String> map = new HashMap<>();
+      
+      map.put("email", email);
+      map.put("profile_image", profile_image);
+      map.put("nickname", nickname);
+      
       System.out.println(email);
       System.out.println(id);
       System.out.println(profile_image);
       System.out.println(nickname);
+      
+      authService.getKakaoMember(map);
 //      return "redirect:../auth/form";
     }
     
