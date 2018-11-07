@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import bitcamp.java110.cms.domain.Member;
+import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.service.AuthService;
 
 @Controller
@@ -73,21 +74,18 @@ public class AuthController {
     @RequestMapping("fblogin")
     public String fblogin(
             String accessToken,
-            String type,
             HttpSession session) {
         
         try {
-          Member loginUser = authService.getFacebookMember(accessToken, type);
+//          Mentee loginUser = authService.getFacebookMember(accessToken);
+          authService.getFacebookMember(accessToken);
           
           // 회원 정보를 세션에 보관한다.
-          session.setAttribute("loginUser", loginUser);
+//          session.setAttribute("loginUser", loginUser);
           String redirectUrl = null;
-          
-          switch (type) {
-          case "manager":
-              redirectUrl = "../manager/list";
-              break; 
-          }
+
+//          redirectUrl = "../manager/list";
+          redirectUrl = "../auth/form";
           return "redirect:" + redirectUrl;
           
         } catch (Exception e) {
