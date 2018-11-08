@@ -12,11 +12,13 @@ import bitcamp.java110.cms.domain.ClassFile;
 import bitcamp.java110.cms.domain.Cs;
 import bitcamp.java110.cms.domain.Member;
 import bitcamp.java110.cms.domain.MentorFile;
+import bitcamp.java110.cms.domain.MentorLicense;
 import bitcamp.java110.cms.domain.Notice;
 import bitcamp.java110.cms.service.AuthService;
 import bitcamp.java110.cms.service.ClassFileService;
 import bitcamp.java110.cms.service.CsService;
 import bitcamp.java110.cms.service.MentorFileService;
+import bitcamp.java110.cms.service.MentorLicenseService;
 import bitcamp.java110.cms.service.NoticeService;
 
 @Controller
@@ -28,21 +30,33 @@ public class KakaoController {
     CsService csService;
     ClassFileService cfileService;
     MentorFileService mfileService;
+    MentorLicenseService mlicnService;
     
     public KakaoController(AuthService authService
         ,NoticeService noticeService
         ,CsService csService
         ,ClassFileService cfileService
-        ,MentorFileService mfileService) {
+        ,MentorFileService mfileService
+        ,MentorLicenseService mlicnService) {
         this.authService = authService;
         this.noticeService = noticeService;
         this.csService = csService;
         this.cfileService = cfileService;
         this.mfileService = mfileService;
+        this.mlicnService = mlicnService;
     }
 
     @GetMapping("form")
     public void form() {
+    }
+    
+    @GetMapping("mlicn")
+    public void mlicn() {
+      List<MentorLicense> ml = mlicnService.list(3, 10);
+      System.out.println(ml);
+      for(MentorLicense mlicn: ml) {
+        System.out.println(mlicn.getLno());
+      }
     }
     
     @GetMapping("noti")
