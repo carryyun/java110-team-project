@@ -70,33 +70,7 @@ public class KakaoController {
         return "redirect:form";
     }
     
-    @RequestMapping("fblogin")
-    public String fblogin(
-            String accessToken,
-            String type,
-            HttpSession session) {
-        
-        try {
-          Member loginUser = authService.getFacebookMember(accessToken, type);
-          
-          // 회원 정보를 세션에 보관한다.
-          session.setAttribute("loginUser", loginUser);
-          String redirectUrl = null;
-          
-          switch (type) {
-          case "manager":
-              redirectUrl = "../manager/list";
-              break; 
-          }
-          return "redirect:" + redirectUrl;
-          
-        } catch (Exception e) {
-            e.printStackTrace();
-            session.invalidate();
-            return "redirect:form";
-        }
-
-    }
+    
     
     @RequestMapping("kakao")
     public void kakao(
