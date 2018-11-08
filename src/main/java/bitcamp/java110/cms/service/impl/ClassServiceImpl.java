@@ -17,11 +17,10 @@ public class ClassServiceImpl implements ClassService{
   
   @Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
   @Override
-  public int classadd(Classes classes) {
+  public void classadd(Classes classes) {
     
     classDao.classinsert(classes);
     
-    return 1;
   }
 
   @Override

@@ -13,7 +13,7 @@ public class Classes extends Mentor{
   private String tinfo;
   private String cinfo;
   private Date edt;
-  // 중분류번호 상속 받아야됨
+  private int mtno;
 
   public int getCno() {
     return cno;
@@ -68,5 +68,11 @@ public class Classes extends Mentor{
   }
   public void setEdt(Date edt) {
     this.edt = edt;
+  }
+  public int getMtno() {
+    return mtno;
+  }
+  public void setMtno(int mtno) {
+    this.mtno = mtno;
   }
 }
