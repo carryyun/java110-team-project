@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- MemberDao 클래스가 사용할 SQL이 들어 있는 파일 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.java110.cms.dao.ClasslikeDao">
+
+    <resultMap type="Classlike" id="classlikeMap">
+        <id column="clno" property="no"/>
+        <result column="meno"  property="meno"/>
+        <result column="cno"    property="cno"/>
+    </resultMap>
+    
+
+    <select id="likelist" resultMap="classlikeMap" parameterType="map">
+    	select 
+    		clno,meno,cno
+    	from
+    		p_cls_like
+    </select>
+
+	<insert id="likeinsert" parameterType="Classlike">
+		insert 
+			into p_cls_like(clno,meno,cno)
+		values
+			(#{clno},#{meno},#{cno})
+	</insert>
+	
+	<delete id="likedelete" parameterType="Classlike">
+		delete 
+			from p_cls_like
+		where
+			clno = #{clno}
+	</delete>
+    
+</mapper>
+
+
+
+
+
+
+
+
+

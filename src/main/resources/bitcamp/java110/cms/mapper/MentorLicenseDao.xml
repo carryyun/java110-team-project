@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- MentorLicense 클래스가 사용할 SQL이 들어 있는 파일 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.java110.cms.dao.MentorLicenseDao">
+
+    <resultMap type="MentorLicense" id="mlicnMap">
+        <id column="lno" property="lno"/>
+        <result column="lname" property="lname"/>
+        <result column="phot" property="phot"/>
+        <result column="mono" property="mono"/>
+    </resultMap>
+    
+    <sql id="select1">
+        select lno, lname, phot, mono
+        from p_meto_licn       
+    </sql>
+    
+    <select id="findAll" resultMap="mlicnMap">
+        <include refid="select1"/>
+        order by
+            lno asc
+    </select>
+    
+    <select id="findByNo" resultMap="mlicnMap" parameterType="int">
+        <include refid="select1"></include>
+        where
+            mono=#{value}
+    </select>
+    
+    <insert id="insert" parameterType="MentorLicense" useGeneratedKeys="true" keyColumn="lno" keyProperty="no">
+            insert into p_meto_licn(lname, phot, mono) 
+            values(#{lname}, #{phot}, 3)
+            <!-- mono에 임의로 값을 3로 넣었기 때문에 나중에 변경해 주어야 함  -->
+    </insert>
+    
+    <delete id="delete" parameterType="int">
+        delete from p_meto_licn
+        where lno=#{value}
+    </delete>
+</mapper>

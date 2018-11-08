@@ -5,5 +5,5 @@ import bitcamp.java110.cms.domain.Classes;
 
 public interface ClassService {
   //void classadd(Classes classes);
-  List<Classes> classlist(int pageNo,int pageSize);
+  List<Classes> classlist(int pageSize);
 }

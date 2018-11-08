@@ -22,10 +22,9 @@ public class ClassServiceImpl implements ClassService{
   }*/
 
   @Override
-  public List<Classes> classlist(int pageNo,int pageSize){
+  public List<Classes> classlist(int pageSize){
     HashMap<String, Object> params = new HashMap<>();
-    params.put("pagaNo", pageNo);
-    params.put("pageSize", pageSize);
+    params.put("size", pageSize);
     
     
     return classDao.findAll(params);

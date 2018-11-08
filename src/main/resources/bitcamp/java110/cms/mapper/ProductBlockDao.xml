@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- BigTagDao 클래스가 사용할 SQL이 들어 있는 파일 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.java110.cms.dao.ProductBlockDao">
+
+    <resultMap type="productBlock" id="productBlockMap">
+        <id column="mono"        property="mono"/>
+        <id column="meno"        property="meno"/>
+        <result column="resn"   property="resn"/>
+        <result column="rgdt"   property="rgdt"/>
+        
+    </resultMap>
+    
+    <select id="findAll" resultMap="productBlockMap">
+        select
+            mono,
+            meno,
+            resn,
+            rgdt
+        from 
+            p_block
+        order by 
+            mono asc
+    </select>
+
+    <select id="findAllByMono" 
+            resultMap="productBlockMap" parameterType="Map">
+        select
+            mono,
+            meno,
+            resn,
+            rgdt
+        from
+            p_block
+        where 
+            mono=#{mentoNo}
+    </select>
+    
+    <select id="findAllByMeno" 
+            resultMap="productBlockMap" parameterType="Map">
+        select
+            mono,
+            meno,
+            resn,
+            rgdt
+        from
+            p_block
+        where 
+            meno=#{menteeNo}
+    </select>
+    
+    
+    
+
+</mapper>
