@@ -49,7 +49,7 @@
     
     <delete id="delete" parameterType="int">
         delete from p_cs
-        where csno=#{}
+        where csno=#{value}
     </delete>
 
 </mapper>
