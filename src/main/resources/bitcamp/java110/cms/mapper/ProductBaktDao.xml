@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- BigTagDao 클래스가 사용할 SQL이 들어 있는 파일 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.java110.cms.dao.ProductBaktDao">
+
+    <resultMap type="productBakt" id="productBaktMap">
+        <id column="pbno"        property="no"/>
+        <result column="ptno"   property="ptno"/>
+        <result column="meno"   property="meno"/>
+    </resultMap>
+    
+    <select id="findAll" resultMap="productBaktMap">
+        select
+            pbno,
+            ptno,
+            meno
+        from 
+            p_prdt_bakt
+        order by 
+            pbno asc
+    </select>
+
+    <select id="findByNo" 
+            resultMap="productBaktMap" parameterType="int">
+        select
+            pbno,
+            ptno,
+            meno
+        from
+            p_prdt_bakt
+        where 
+            pbno=#{value}
+    </select>
+    
+    <select id="findAllByMeno" 
+            resultMap="productBaktMap" parameterType="Map">
+        select
+            pbno,
+            ptno,
+            meno
+        from
+            p_prdt_bakt
+        where 
+            meno=#{mentno}
+    </select>
+    
+    
+    <select id="findAllByPtno" 
+            resultMap="productBaktMap" parameterType="Map">
+        select
+            pbno,
+            ptno,
+            meno
+        from
+            p_prdt_bakt
+        where 
+            ptno=#{productno}
+    </select>
+
+</mapper>

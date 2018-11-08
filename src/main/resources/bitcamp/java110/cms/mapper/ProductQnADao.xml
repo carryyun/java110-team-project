@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- BigTagDao 클래스가 사용할 SQL이 들어 있는 파일 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.java110.cms.dao.ProductQnADao">
+
+    <resultMap type="productQnA" id="productQnAMap">
+        <id column="qno"        property="no"/>
+        <result column="meno"   property="meno"/>
+        <result column="ptno"   property="ptno"/>
+        <result column="titl"   property="titl"/>
+        <result column="conts"   property="conts"/>
+        <result column="rgdt"   property="rgdt"/>
+        <result column="anser"   property="anser"/>
+        <result column="rgdt2"   property="rgdt2"/>
+    </resultMap>
+    
+    <select id="findAll" resultMap="productQnAMap">
+        select
+            qno,
+            meno,
+            ptno,
+            titl,
+            conts,
+            rgdt,
+            anser,
+            rgdt2
+        from 
+            p_prdt_qna
+        order by 
+            qno asc
+    </select>
+
+    <select id="findByNo" 
+            resultMap="productQnAMap" parameterType="int">
+        select
+            qno,
+            meno,
+            ptno,
+            titl,
+            conts,
+            rgdt,
+            anser,
+            rgdt2
+        from
+            p_prdt_qna
+        where 
+            qno=#{value}
+    </select>
+    
+    <select id="findAllByMeno" 
+            resultMap="productQnAMap" parameterType="Map">
+        select
+            qno,
+            meno,
+            ptno,
+            titl,
+            conts,
+            rgdt,
+            anser,
+            rgdt2
+        from
+            p_prdt_qna
+        where 
+            meno=#{mentno}
+    </select>
+    
+    
+    <select id="findAllByPtno" 
+            resultMap="productQnAMap" parameterType="Map">
+        select
+            qno,
+            meno,
+            ptno,
+            titl,
+            conts,
+            rgdt,
+            anser,
+            rgdt2
+        from
+            p_prdt_qna
+        where 
+            ptno=#{productno}
+    </select>
+
+</mapper>
