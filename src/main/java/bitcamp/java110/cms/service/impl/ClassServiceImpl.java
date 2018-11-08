@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 import bitcamp.java110.cms.dao.ClassDao;
 import bitcamp.java110.cms.domain.Classes;
 import bitcamp.java110.cms.service.ClassService;

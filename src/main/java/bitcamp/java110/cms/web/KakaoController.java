@@ -13,11 +13,13 @@ import bitcamp.java110.cms.domain.Cs;
 import bitcamp.java110.cms.domain.Member;
 import bitcamp.java110.cms.domain.MentorFile;
 import bitcamp.java110.cms.domain.Notice;
+import bitcamp.java110.cms.domain.ProductTimetable;
 import bitcamp.java110.cms.service.AuthService;
 import bitcamp.java110.cms.service.ClassFileService;
 import bitcamp.java110.cms.service.CsService;
 import bitcamp.java110.cms.service.MentorFileService;
 import bitcamp.java110.cms.service.NoticeService;
+import bitcamp.java110.cms.service.ProductTimetableService;
 
 @Controller
 @RequestMapping("/kakao")
@@ -28,21 +30,41 @@ public class KakaoController {
     CsService csService;
     ClassFileService cfileService;
     MentorFileService mfileService;
+    ProductTimetableService productTimetableService;
+
     
     public KakaoController(AuthService authService
         ,NoticeService noticeService
         ,CsService csService
         ,ClassFileService cfileService
-        ,MentorFileService mfileService) {
+        ,MentorFileService mfileService,
+        ProductTimetableService productTimetableService) {
         this.authService = authService;
         this.noticeService = noticeService;
         this.csService = csService;
         this.cfileService = cfileService;
         this.mfileService = mfileService;
+        this.productTimetableService=productTimetableService;
     }
+    
+       
+              
+
 
     @GetMapping("form")
     public void form() {
+    }
+    
+    @GetMapping("timetable")
+    public void timetable() {
+      List<ProductTimetable> pt = productTimetableService.list(1, 5);
+      System.out.println(pt);
+      for(ProductTimetable productTimetable: pt) {
+        System.out.println(productTimetable.getNo());
+        System.out.println(productTimetable.getCno());
+        
+      }
+      
     }
     
     @GetMapping("noti")
