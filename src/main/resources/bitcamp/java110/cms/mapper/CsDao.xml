@@ -7,6 +7,7 @@
     
     <resultMap type="Cs" id="csMap">
         <id column="csno" property="no"/>
+        <result column="meno" property="meno"/>
         <result column="titl" property="titl"/>
         <result column="conts" property="conts"/>
         <result column="rgdt" property="rgdt"/>
@@ -16,28 +17,29 @@
     
     <sql id="select1">
         select 
-            c.csno,
-            c.titl, 
-            c.conts, 
-            c.rgdt, 
-            c.anser, 
-            c.rgdt2
+            csno,
+            meno,
+            titl, 
+            conts, 
+            rgdt, 
+            anser, 
+            rgdt2
         from 
-            p_cs c
+            p_cs
     
     </sql>
     
     <select id="findAll" resultMap="csMap">
        <include refid="select1"/>
        order by
-            c.csno asc
+            csno asc
        
     </select>
     
     <select id="findByNo" resultMap="csMap" parameterType="int">
         <include refid="select1"/>
         where
-            c.meno=#{value}
+            meno=#{value}
     </select>
     
     <insert id="insert" parameterType="Cs" useGeneratedKeys="true" keyColumn="csno" keyProperty="no">
@@ -49,7 +51,7 @@
     
     <delete id="delete" parameterType="int">
         delete from p_cs
-        where csno=#{}
+        where csno=#{value}
     </delete>
 
 </mapper>

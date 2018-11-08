@@ -1,8 +1,9 @@
 package bitcamp.java110.cms.domain;
 
+// 대분류
 public class BigTag {
-  int no;
-  String btname;
+  private int no;
+  private String name;
 
 
   public int getNo() {
@@ -13,12 +14,12 @@ public class BigTag {
     this.no = no;
   }
 
-  public String getBtname() {
-    return btname;
+  public String getName() {
+    return name;
   }
 
-  public void setBtname(String btname) {
-    this.btname = btname;
+  public void setName(String name) {
+    this.name = name;
   }
 
 

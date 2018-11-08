@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- BigTagDao 클래스가 사용할 SQL이 들어 있는 파일 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.java110.cms.dao.MiddleTagDao">
+
+    <resultMap type="middletag" id="middletagMap">
+        <id column="mtno"        property="no"/>
+        <result column="mtname"   property="name"/>
+        <result column="btno"   property="btno"/>
+    </resultMap>
+    
+    <select id="findAll" resultMap="middletagMap">
+        select
+            mtno,
+            mtname,
+            btno
+        from 
+            p_mtag 
+        order by 
+            mtno asc
+    </select>
+
+    <select id="findByName" 
+            resultMap="middletagMap" parameterType="string">
+        select
+            mtno,
+            mtname
+        from 
+            p_mtag 
+        where 
+            mtname=#{value}
+    </select>
+    
+    <select id="findByNo" 
+            resultMap="middletagMap" parameterType="int">
+        select
+            mtno,
+            mtname,
+            btno
+        from
+            p_mtag
+        where 
+            mtno=#{value}
+    </select>
+    
+    <select id="findAllByBtno" 
+            resultMap="middletagMap" parameterType="Map">
+        select
+            mtno,
+            mtname,
+            btno
+        from
+            p_mtag
+        where 
+            btno=#{bigno}
+        order by 
+            mtno asc
+    </select>
+    
+</mapper>
