@@ -2,24 +2,36 @@ package bitcamp.java110.cms.domain;
 
 import java.sql.Date;
 
-public class Classes extends Mentor{
+public class Classes {
   
-  private int cno;
+  private int no;
   private String titl;
   private String conts;
+  private int pric;
+  private Date rgdt;
   private String time;
-  private String capa;
+  private int capa;
   private String cfile;
   private String tinfo;
   private String cinfo;
+  private String pstno;
+  private String basAddr;
+  private String detAddr;
   private Date edt;
+  private int mono;
   private int mtno;
 
-  public int getCno() {
-    return cno;
+  public Date getRgdt() {
+    return rgdt;
   }
-  public void setCno(int cno) {
-    this.cno = cno;
+  public void setRgdt(Date rgdt) {
+    this.rgdt = rgdt;
+  }
+  public int getNo() {
+    return no;
+  }
+  public void setNo(int no) {
+    this.no = no;
   }
   public String getTitl() {
     return titl;
@@ -39,10 +51,10 @@ public class Classes extends Mentor{
   public void setTime(String time) {
     this.time = time;
   }
-  public String getCapa() {
+  public int getCapa() {
     return capa;
   }
-  public void setCapa(String capa) {
+  public void setCapa(int capa) {
     this.capa = capa;
   }
   public String getCfile() {
@@ -74,5 +86,35 @@ public class Classes extends Mentor{
   }
   public void setMtno(int mtno) {
     this.mtno = mtno;
+  }
+  public int getPric() {
+    return pric;
+  }
+  public void setPric(int pric) {
+    this.pric = pric;
+  }
+  public String getPstno() {
+    return pstno;
+  }
+  public void setPstno(String pstno) {
+    this.pstno = pstno;
+  }
+  public String getBasAddr() {
+    return basAddr;
+  }
+  public void setBas_addr(String basAddr) {
+    this.basAddr = basAddr;
+  }
+  public String getDetAddr() {
+    return detAddr;
+  }
+  public void setDetAddr(String detAddr) {
+    this.detAddr = detAddr;
+  }
+  public int getMono() {
+    return mono;
+  }
+  public void setMono(int mono) {
+    this.mono = mono;
   }
 }

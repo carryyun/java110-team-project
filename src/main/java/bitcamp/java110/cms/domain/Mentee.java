@@ -2,7 +2,7 @@ package bitcamp.java110.cms.domain;
 
 import java.sql.Date;
 
-public class Mentee   {
+public class Mentee {
   private int no;
   private String name;
   private String email;
