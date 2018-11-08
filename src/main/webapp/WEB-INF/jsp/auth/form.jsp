@@ -58,16 +58,14 @@ th {
 
 <script type="text/javascript">
 function autoLogin(accessToken) {
-    var type = document.querySelector("input[name='type']:checked").value;
-    location.href = "fblogin?type=" + type + 
-            "&accessToken=" + accessToken;
+    location.href = "fblogin?"+ 
+            "accessToken=" + accessToken;
 }
 
 function checkLoginState() {
     FB.getLoginStatus(function(response) { 
         if (response.status === 'connected') {
             autoLogin(response.authResponse.accessToken);
-        
         } else {
             alert("Facebook 로그인 실패!");
         }
@@ -77,7 +75,7 @@ function checkLoginState() {
 window.fbAsyncInit = function() {
   console.log("window.fbAsyncInit() 호출됨!");
   FB.init({
-    appId      : '254057878617352', // 개발자가 등록한 앱 ID
+    appId      : '253109695386842', // 개발자가 등록한 앱 ID
     cookie     : true,  
     xfbml      : true,  
     version    : 'v3.2' 

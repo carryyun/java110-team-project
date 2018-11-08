@@ -8,16 +8,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import bitcamp.java110.cms.domain.Member;
-import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.service.AuthService;
 
 @Controller
-@RequestMapping("/auth")
-public class AuthController {
+@RequestMapping("/kakao")
+public class KakaoController {
 
     AuthService authService;
     
-    public AuthController(AuthService authService) {
+    public KakaoController(AuthService authService) {
         this.authService = authService;
     }
 
@@ -70,31 +69,25 @@ public class AuthController {
         session.invalidate();
         return "redirect:form";
     }
-    
-    @RequestMapping("fblogin")
-    public String fblogin(
-            String accessToken,
-            HttpSession session) {
-        
-        try {
-//          Mentee loginUser = authService.getFacebookMember(accessToken);
-          authService.getFacebookMember(accessToken);
-          
-          // 회원 정보를 세션에 보관한다.
-//          session.setAttribute("loginUser", loginUser);
-          String redirectUrl = null;
 
-//          redirectUrl = "../manager/list";
-          redirectUrl = "../auth/form";
-          return "redirect:" + redirectUrl;
-          
-        } catch (Exception e) {
-            e.printStackTrace();
-            session.invalidate();
-            return "redirect:form";
-        }
+    @RequestMapping("kakao")
+    public void kakao(
+        String email,
+        String id,
+        String profile_image,
+        String nickname,
+            HttpSession session) {
+//      authService.getNaverMember(accessToken);
+      
+      System.out.println(email);
+      System.out.println(id);
+      System.out.println(profile_image);
+      System.out.println(nickname);
+//      return "redirect:../auth/form";
     }
- 
+    
+    
+    
 }
 
 
