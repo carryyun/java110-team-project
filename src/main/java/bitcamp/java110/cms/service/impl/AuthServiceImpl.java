@@ -20,25 +20,28 @@ import bitcamp.java110.cms.service.AuthService;
 @Service
 public class AuthServiceImpl implements AuthService {
 
-  @Autowired MemberDao memberDao;
-  @Autowired ManagerDao managerDao;
-  @Autowired MenteeDao menteeDao;
+    @Autowired MemberDao memberDao;
+    @Autowired ManagerDao managerDao;
+    
+    @Autowired MenteeDao menteeDao;
+    
 
+    @Override
+    public Member getMember(
+            String email, String password, String memberType) {
+        
+        HashMap<String,Object> params = new HashMap<>();
+        params.put("email", email);
+        params.put("password", password);
+        
+        if (memberType.equals("manager")) {
+            return managerDao.findByEmailPassword(params);
+        } else {
+            return null;
+        }
 
-  @Override
-  public Member getMember(
-      String email, String password, String memberType) {
-
-    HashMap<String,Object> params = new HashMap<>();
-    params.put("email", email);
-    params.put("password", password);
-
-    if (memberType.equals("manager")) {
-      return managerDao.findByEmailPassword(params);
-    } else {
-      return null;
     }
-  }
+  
 
   @Override
   public Mentee getFacebookMember(
