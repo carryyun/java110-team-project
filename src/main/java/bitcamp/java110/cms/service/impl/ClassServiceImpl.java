@@ -15,13 +15,13 @@ public class ClassServiceImpl implements ClassService{
 
   @Autowired ClassDao classDao;
   
-  @Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
+  /*@Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
   @Override
   public void classadd(Classes classes) {
     
     classDao.classinsert(classes);
     
-  }
+  }*/
 
   @Override
   public List<Classes> classlist(int pageNo,int pageSize){
