@@ -160,6 +160,49 @@ public class AuthServiceImpl implements AuthService {
     return null;
   }
 
+  @Override
+  public Mentee getKakaoMember(Map<String, String> map) {
+    
+    String fileurl="";
+    String name="";
+    String nickname="";
+    String email="";
+
+    try {
+      name = (String) map.get("nickname"); // kakaotalk 정보제공에 이름이 없어서 임시로 닉네임 대체 
+      nickname = (String) map.get("nickname");
+      email = (String) map.get("email");
+      fileurl=map.get("profile_image").toString();
+
+      System.out.println("name="+name);
+      System.out.println("nickname="+nickname);
+      System.out.println("email="+email);
+      System.out.println("fileurl="+fileurl);
+
+      Mentee m = new Mentee();
+      m.setName(name);
+      m.setNick(nickname);
+      m.setEmail(email);
+      m.setPhot(fileurl);
+
+      // 임시
+      m.setPwd("1111");
+      m.setPhone("1111-22224");
+
+      menteeDao.insert(m);
+
+      return m;
+
+    } catch (Exception e) {
+      System.out.println(e);
+    }
+
+    return null;
+    
+    
+  }
+
+
 }
 
 

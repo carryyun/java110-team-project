@@ -69,9 +69,7 @@ public class KakaoController {
         session.invalidate();
         return "redirect:form";
     }
-    
-    
-    
+
     @RequestMapping("kakao")
     public void kakao(
         String email,
