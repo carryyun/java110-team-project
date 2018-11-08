@@ -3,6 +3,7 @@ package bitcamp.java110.cms.domain;
 import java.sql.Date;
 
 // 멘티
+
 public class Mentee {
   private int no;
   private String name;

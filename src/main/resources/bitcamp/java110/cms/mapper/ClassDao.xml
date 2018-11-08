@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- MemberDao 클래스가 사용할 SQL이 들어 있는 파일 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.java110.cms.dao.ClassDao">
+
+    <resultMap type="Classes" id="classMap">
+        <id column="cno" property="no"/>
+        <result column="titl"  property="titl"/>
+        <result column="conts"    property="conts"/>
+        <result column="time"   property="time"/>
+        <result column="capa"  property="capa"/>
+        <result column="cfile"  property="cfile"/>
+        <result column="tinfo"    property="tinfo"/>
+        <result column="cinfo"   property="cinfo"/>
+        <result column="edt"  property="edt"/>
+    </resultMap>
+    
+    <sql id="select1">
+    	select 
+			ps.cno,ps.titl,ps.pric,ps.bas_addr,pg.mtno,pe.meno
+		from
+			p_cls as ps inner join p_mete as pe 
+				on ps.mono = pe.meno
+			inner join p_mtag as pg 
+				on ps.mtno = pg.mtno
+    </sql>
+
+    <select id="findAll" resultMap="classMap" parameterType="map">
+        <include refid="select1"></include>
+		order by
+			cno asc;
+    </select>
+
+	<select id="findBytag" resultMap="classMap" parameterType="int">
+		<include refid="select1"></include>
+		where pg.mtno = #{mtno}
+	</select>
+	
+	<select id ="findByba" resultMap="classMap" parameterType="String">
+		<include refid="select1"></include>
+		where bas_addr = #{bas_addr}
+	</select>
+    
+    <insert id="classinsert" parameterType="Classes">
+        insert 
+        	into p_cls(titl,conts,pric,rgdt,time,capa,cfile
+        	,tinfo,cinfo,pstno,bas_addr,det_addr,edt)
+        values
+        	(#{titl},#{conts},#{pric},#{rgdt},#{time},#{capa}
+        	,#{cfile},#{tinfo},#{cinfo},#{pstno},#{bas_addr}
+        	,#{det_addr},#{edt})
+    </insert> 
+    
+</mapper>
+
+
+
+
+
+
+
+
+

@@ -1,5 +1,6 @@
 package bitcamp.java110.cms.web;
 
+import java.util.List;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -7,21 +8,47 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import bitcamp.java110.cms.domain.Cs;
 import bitcamp.java110.cms.domain.Member;
+import bitcamp.java110.cms.domain.Notice;
 import bitcamp.java110.cms.service.AuthService;
+import bitcamp.java110.cms.service.CsService;
+import bitcamp.java110.cms.service.NoticeService;
 
 @Controller
 @RequestMapping("/kakao")
 public class KakaoController {
 
     AuthService authService;
+    NoticeService noticeService;
+    CsService csService;
     
-    public KakaoController(AuthService authService) {
+    public KakaoController(AuthService authService
+        ,NoticeService noticeService
+        ,CsService csService) {
         this.authService = authService;
+        this.noticeService = noticeService;
+        this.csService = csService;
     }
 
     @GetMapping("form")
     public void form() {
+    }
+    
+    @GetMapping("noti")
+    public void noti() {
+      List<Notice> n = noticeService.list(3, 10);
+      System.out.println(n);
+      for(Notice notis: n) {
+        System.out.println(notis.getUrl());
+      }
+      
+    }
+    
+    @GetMapping("cs")
+    public void cs() {
+      List<Cs> cs = csService.list(3, 10);
+      System.out.println(cs);
     }
     
     @PostMapping("login")
