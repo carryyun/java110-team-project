@@ -4,12 +4,19 @@ import java.sql.Date;
 
 public class Cs {
   private int no;
+  private int meno;
   private String titl;
   private String conts;
   private Date rgdt;
   private String anser;
   private Date rgdt2;
   
+  public int getMeno() {
+    return meno;
+  }
+  public void setMeno(int meno) {
+    this.meno = meno;
+  }
   public int getNo() {
     return no;
   }
