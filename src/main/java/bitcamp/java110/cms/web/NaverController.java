@@ -7,8 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import bitcamp.java110.cms.domain.BigTag;
+import bitcamp.java110.cms.domain.MiddleTag;
 import bitcamp.java110.cms.service.AuthService;
 import bitcamp.java110.cms.service.BigTagService;
+import bitcamp.java110.cms.service.MiddleTagService;
 
 @Controller
 @RequestMapping("/naver")
@@ -16,18 +18,42 @@ public class NaverController {
 
   AuthService authService;
   BigTagService bigtagService;
-
-  public NaverController(AuthService authService, BigTagService bigtagService) {
+  MiddleTagService middletagService;
+  
+  public NaverController(
+      AuthService authService,
+      BigTagService bigtagService, 
+      MiddleTagService middletagService) {
     this.authService = authService;
     this.bigtagService = bigtagService;
+    this.middletagService = middletagService;
   }
+  
 
+  
   @GetMapping("Tag")
   public void Tag() {
     BigTag b = bigtagService.get(1);
-    List<BigTag> b2= bigtagService.list(3,5);
-    System.out.println(b.getNo());
-    System.out.println(b.getBtname());
+    
+    System.out.println("대분류 번호: "+b.getNo());
+    System.out.println("대분류 이름: "+b.getName());
+    
+    MiddleTag m = middletagService.get(1);
+    System.out.println("중분류 번호: "+m.getNo());
+    System.out.println("중분류 번호: "+m.getName());
+    System.out.println("중분류 번호: "+m.getBtno());
+    System.out.println("중분류에서 대분류 번호찾기: "+m.getBtno()); 
+    System.out.println("----------------------");
+    
+    List<MiddleTag> m2= middletagService.listBtno(3, 5, 2);
+    System.out.println(m2.get(0).getNo());
+    System.out.println(m2.get(0).getName());
+    System.out.println(m2.get(0).getBtno());
+
+    System.out.println(m2.get(1).getNo());
+    System.out.println(m2.get(1).getName());
+    System.out.println(m2.get(1).getBtno());
+
   }
 
 

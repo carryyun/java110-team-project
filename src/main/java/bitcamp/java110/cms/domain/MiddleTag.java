@@ -1,10 +1,10 @@
 package bitcamp.java110.cms.domain;
 
-// 대분류
-public class BigTag {
+// 중분류
+public class MiddleTag {
   private int no;
   private String name;
-
+  private int btno; // BigTag의 no이다.
 
   public int getNo() {
     return no;
@@ -21,6 +21,15 @@ public class BigTag {
   public void setName(String name) {
     this.name = name;
   }
+
+  public int getBtno() {
+    return btno;
+  }
+
+  public void setBtno(int btno) {
+    this.btno = btno;
+  }
+
 
 
 }

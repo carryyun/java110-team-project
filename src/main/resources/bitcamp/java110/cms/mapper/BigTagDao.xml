@@ -8,7 +8,7 @@
 
     <resultMap type="bigtag" id="bigtagMap">
         <id column="btno"        property="no"/>
-        <result column="btname"   property="btname"/>
+        <result column="btname"   property="name"/>
     </resultMap>
     
     <select id="findAll" resultMap="bigtagMap">
