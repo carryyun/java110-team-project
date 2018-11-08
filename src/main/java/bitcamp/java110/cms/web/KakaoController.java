@@ -14,12 +14,14 @@ import bitcamp.java110.cms.domain.Member;
 import bitcamp.java110.cms.domain.MentorFile;
 import bitcamp.java110.cms.domain.Notice;
 import bitcamp.java110.cms.domain.ProductTimetable;
+import bitcamp.java110.cms.domain.Report;
 import bitcamp.java110.cms.service.AuthService;
 import bitcamp.java110.cms.service.ClassFileService;
 import bitcamp.java110.cms.service.CsService;
 import bitcamp.java110.cms.service.MentorFileService;
 import bitcamp.java110.cms.service.NoticeService;
 import bitcamp.java110.cms.service.ProductTimetableService;
+import bitcamp.java110.cms.service.ReportService;
 
 @Controller
 @RequestMapping("/kakao")
@@ -31,20 +33,23 @@ public class KakaoController {
     ClassFileService cfileService;
     MentorFileService mfileService;
     ProductTimetableService productTimetableService;
-
+    ReportService reportService;
+    
     
     public KakaoController(AuthService authService
         ,NoticeService noticeService
         ,CsService csService
         ,ClassFileService cfileService
-        ,MentorFileService mfileService,
-        ProductTimetableService productTimetableService) {
+        ,MentorFileService mfileService
+        ,ProductTimetableService productTimetableService
+        ,ReportService reportService) {
         this.authService = authService;
         this.noticeService = noticeService;
         this.csService = csService;
         this.cfileService = cfileService;
         this.mfileService = mfileService;
         this.productTimetableService=productTimetableService;
+        this.reportService=reportService;   
     }
     
        
@@ -62,6 +67,21 @@ public class KakaoController {
       for(ProductTimetable productTimetable: pt) {
         System.out.println(productTimetable.getNo());
         System.out.println(productTimetable.getCno());
+        
+      }
+      
+    }
+    
+    @GetMapping("report")
+    public void report() {
+      List<Report> r = reportService.list(1, 5);
+      System.out.println(r);
+      for(Report report: r) {
+        System.out.println(report.getNo());
+        System.out.println(report.getTitl());
+        System.out.println(report.getConts());
+        System.out.println(report.getMeno2());
+        System.out.println(report.getMeno());
         
       }
       
