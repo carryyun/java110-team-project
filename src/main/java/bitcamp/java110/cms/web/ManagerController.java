@@ -31,6 +31,8 @@ public class ManagerController {
         this.sc = sc;
     }
 
+
+    
     @GetMapping("list")
     public void list(
             @RequestParam(defaultValue="1") int pageNo,

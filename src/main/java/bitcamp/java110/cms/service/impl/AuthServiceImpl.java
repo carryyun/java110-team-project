@@ -25,7 +25,7 @@ public class AuthServiceImpl implements AuthService {
     @Autowired ManagerDao managerDao;
     
     @Autowired MenteeDao menteeDao;
-  
+    
 
     @Override
     public Member getMember(
