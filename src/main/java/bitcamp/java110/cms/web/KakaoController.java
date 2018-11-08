@@ -8,9 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import bitcamp.java110.cms.domain.Cs;
 import bitcamp.java110.cms.domain.Member;
 import bitcamp.java110.cms.domain.Notice;
 import bitcamp.java110.cms.service.AuthService;
+import bitcamp.java110.cms.service.CsService;
 import bitcamp.java110.cms.service.NoticeService;
 
 @Controller
@@ -19,11 +21,14 @@ public class KakaoController {
 
     AuthService authService;
     NoticeService noticeService;
+    CsService csService;
     
     public KakaoController(AuthService authService
-        ,NoticeService noticeService) {
+        ,NoticeService noticeService
+        ,CsService csService) {
         this.authService = authService;
         this.noticeService = noticeService;
+        this.csService = csService;
     }
 
     @GetMapping("form")
@@ -38,6 +43,12 @@ public class KakaoController {
         System.out.println(notis.getUrl());
       }
       
+    }
+    
+    @GetMapping("cs")
+    public void cs() {
+      List<Cs> cs = csService.list(3, 10);
+      System.out.println(cs);
     }
     
     @PostMapping("login")

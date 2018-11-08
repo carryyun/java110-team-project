@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- QnaDao 클래스가 사용할 SQL이 들어 있는 파일 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.java110.cms.dao.CsDao">
+    
+    <resultMap type="Cs" id="csMap">
+        <id column="csno" property="no"/>
+        <result column="titl" property="titl"/>
+        <result column="conts" property="conts"/>
+        <result column="rgdt" property="rgdt"/>
+        <result column="anser" property="anser"/>
+        <result column="rgdt2" property="rgdt2"/>
+    </resultMap>
+    
+    <sql id="select1">
+        select 
+            c.csno,
+            c.titl, 
+            c.conts, 
+            c.rgdt, 
+            c.anser, 
+            c.rgdt2
+        from 
+            p_cs c
+    
+    </sql>
+    
+    <select id="findAll" resultMap="csMap">
+       <include refid="select1"/>
+       order by
+            c.csno asc
+       
+    </select>
+    
+    <select id="findByNo" resultMap="csMap" parameterType="int">
+        <include refid="select1"/>
+        where
+            c.meno=#{value}
+    </select>
+    
+    <insert id="insert" parameterType="Cs" useGeneratedKeys="true" keyColumn="csno" keyProperty="no">
+    <!-- parameter Type: domain명, useGeneratedKeys:자동증가, keyColumn: db 컬럼명, keyproperty: domain에 이름  -->
+            insert into p_cs(meno, titl, conts, rgdt, anser, rgdt2) 
+            values(5, #{titl}, #{conts}, now(), #{anser}, now())
+    <!-- meno에 임의로 값을 5로 넣었기 때문에 나중에 변경해 주어야 함  -->
+    </insert>
+    
+    <delete id="delete" parameterType="int">
+        delete from p_cs
+        where csno=#{}
+    </delete>
+
+</mapper>
