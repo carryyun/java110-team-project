@@ -14,12 +14,14 @@ import bitcamp.java110.cms.domain.Member;
 import bitcamp.java110.cms.domain.MentorFile;
 import bitcamp.java110.cms.domain.MentorLicense;
 import bitcamp.java110.cms.domain.Notice;
+import bitcamp.java110.cms.domain.ProductTimetable;
 import bitcamp.java110.cms.service.AuthService;
 import bitcamp.java110.cms.service.ClassFileService;
 import bitcamp.java110.cms.service.CsService;
 import bitcamp.java110.cms.service.MentorFileService;
 import bitcamp.java110.cms.service.MentorLicenseService;
 import bitcamp.java110.cms.service.NoticeService;
+import bitcamp.java110.cms.service.ProductTimetableService;
 
 @Controller
 @RequestMapping("/kakao")
@@ -30,26 +32,45 @@ public class KakaoController {
     CsService csService;
     ClassFileService cfileService;
     MentorFileService mfileService;
+<<<<<<< HEAD
     MentorLicenseService mlicnService;
+=======
+    ProductTimetableService productTimetableService;
+
+>>>>>>> 4d17d757d2bc9173828cb235851c69da079f5449
     
     public KakaoController(AuthService authService
         ,NoticeService noticeService
         ,CsService csService
         ,ClassFileService cfileService
+<<<<<<< HEAD
         ,MentorFileService mfileService
         ,MentorLicenseService mlicnService) {
+=======
+        ,MentorFileService mfileService,
+        ProductTimetableService productTimetableService) {
+>>>>>>> 4d17d757d2bc9173828cb235851c69da079f5449
         this.authService = authService;
         this.noticeService = noticeService;
         this.csService = csService;
         this.cfileService = cfileService;
         this.mfileService = mfileService;
+<<<<<<< HEAD
         this.mlicnService = mlicnService;
+=======
+        this.productTimetableService=productTimetableService;
+>>>>>>> 4d17d757d2bc9173828cb235851c69da079f5449
     }
+    
+       
+              
+
 
     @GetMapping("form")
     public void form() {
     }
     
+<<<<<<< HEAD
     @GetMapping("mlicn")
     public void mlicn() {
       List<MentorLicense> ml = mlicnService.list(3, 10);
@@ -57,6 +78,18 @@ public class KakaoController {
       for(MentorLicense mlicn: ml) {
         System.out.println(mlicn.getLno());
       }
+=======
+    @GetMapping("timetable")
+    public void timetable() {
+      List<ProductTimetable> pt = productTimetableService.list(1, 5);
+      System.out.println(pt);
+      for(ProductTimetable productTimetable: pt) {
+        System.out.println(productTimetable.getNo());
+        System.out.println(productTimetable.getCno());
+        
+      }
+      
+>>>>>>> 4d17d757d2bc9173828cb235851c69da079f5449
     }
     
     @GetMapping("noti")

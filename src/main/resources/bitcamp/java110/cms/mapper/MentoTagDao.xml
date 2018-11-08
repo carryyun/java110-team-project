@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- BigTagDao 클래스가 사용할 SQL이 들어 있는 파일 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.java110.cms.dao.MentoTagDao">
+
+    <resultMap type="mentoTag" id="mentoTagMap">
+        <id column="mono"        property="mono"/>
+        <id column="btno"        property="btno"/>
+        
+    </resultMap>
+    
+    <select id="findAll" resultMap="mentoTagMap">
+        select
+            mono,
+            btno
+        from 
+            p_meto_tag
+        order by 
+            mono asc
+    </select>
+
+    <select id="findAllByMono" 
+            resultMap="mentoTagMap" parameterType="Map">
+        select
+            mono,
+            btno
+        from 
+            p_meto_tag
+        where 
+            mono=#{mentoNo}
+    </select>
+    
+    <select id="findAllByBtno" 
+            resultMap="mentoTagMap" parameterType="Map">
+        select
+            mono,
+            btno
+        from 
+            p_meto_tag
+        where 
+            btno=#{bigtagNo}
+    </select>
+    
+    
+    
+
+</mapper>
