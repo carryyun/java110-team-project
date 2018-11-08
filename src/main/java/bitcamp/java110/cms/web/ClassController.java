@@ -6,11 +6,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import bitcamp.java110.cms.domain.Classbakt;
 import bitcamp.java110.cms.domain.Classes;
 import bitcamp.java110.cms.domain.Classlike;
 import bitcamp.java110.cms.domain.Classorder;
 import bitcamp.java110.cms.domain.Classqna;
 import bitcamp.java110.cms.service.ClassService;
+import bitcamp.java110.cms.service.ClassbaktService;
 import bitcamp.java110.cms.service.ClasslikeService;
 import bitcamp.java110.cms.service.ClassorderService;
 import bitcamp.java110.cms.service.ClassqnaService;
@@ -23,15 +25,18 @@ public class ClassController {
   ClassqnaService classqnaService;
   ClassorderService classorderService;
   ClasslikeService classlikeService;
+  ClassbaktService classbaktService;
   ServletContext sc;
   
   public ClassController(
       ClassService classService,ClassqnaService classqnaService,
-      ClassorderService classorderService,ClasslikeService classlikeService) {
+      ClassorderService classorderService,ClasslikeService classlikeService
+      ,ClassbaktService classbaktService) {
     this.classService = classService;
     this.classqnaService = classqnaService;
-    this.classorderService=classorderService;
-    this.classlikeService=classlikeService;
+    this.classorderService = classorderService;
+    this.classlikeService = classlikeService;
+    this.classbaktService = classbaktService;
   }
 
   @GetMapping("findAll")
@@ -198,4 +203,34 @@ public class ClassController {
   }
   
   ////////////////////////p_cls_like 찜클래스///////////////////////
+  
+  @PostMapping("baktinsert")
+  public int baktinsert(Classbakt classbakt) {
+   
+    classbaktService.baktadd(classbakt);
+    
+    return 1;
+  }
+  
+  @PostMapping("baktdelete")
+  public int baktdelete(Classbakt classbakt) {
+    
+    classbaktService.baktsub(classbakt);
+    
+    return 1;
+  }
+  
+  @GetMapping("baktlist")
+  public List<Classbakt> baktlist(){
+    
+    List<Classbakt> clist = classbaktService.baktlist(5);
+    
+    for(Classbakt c : clist) {
+      System.out.println(c.getNo());
+      System.out.println(c.getMeno());
+      System.out.println(c.getCtno());
+    }
+    
+    return null;
+  }
 }

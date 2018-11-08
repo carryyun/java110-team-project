@@ -1,15 +1,15 @@
 package bitcamp.java110.cms.domain;
 
 public class Classbakt {
-  private int cbno;
+  private int no;
   private int meno;
   private int ctno;
   
-  public int getCbno() {
-    return cbno;
+  public int getNo() {
+    return no;
   }
-  public void setCbno(int cbno) {
-    this.cbno = cbno;
+  public void setNo(int no) {
+    this.no = no;
   }
   public int getMeno() {
     return meno;
