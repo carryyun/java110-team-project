@@ -136,6 +136,30 @@ public class TestController {
     System.out.println("소분류번호: " + prod.getStno());
     
     
+    Product p=new Product();
+    
+    // 상품(공예품) insert Test용
+  /*p.setTitl("건무룩");
+    p.setConts("건희님이 시무룩하다");
+    p.setPric(10000);
+    p.setStock(3);
+    p.setPhot("http://naver.com");
+    p.setMeno(5);
+    p.setCtno(1);
+    p.setStno(1);
+    
+    productService.add(p);*/
+    
+    // 상품(공예품) update Test용
+    /*p.setNo(3);
+    p.setTitl("건희찡222222");
+    p.setConts("건희님이 덜 시무룩하다222222");
+    p.setPric(100);
+    //p.setMeno(6); << 이거 어차피 수정해도 판매자 번호여서 수정 불가함
+    
+    productService.update(p);*/
+    
+    
     // 상품 주문 내역 출력
     System.out.println("--------상품주문내역--------");
     ProductOrder prodOrder = productOrderService.get(1);
@@ -161,6 +185,28 @@ public class TestController {
     System.out.println("등록일: "+ prodRep.getRgdt());
     System.out.println("사진: "+ prodRep.getPhot());
     
+    // 공예품 댓글 insert Test용
+    ProductRep pdr=new ProductRep();
+      /*pdr.setMeno(5);
+      pdr.setPtno(2);
+      pdr.setTitl("이 상품 어때요?");
+      pdr.setConts("괜찮아요? 많이 놀랐쬬?");
+      pdr.setStar(5);
+      
+      productRepService.add(pdr);*/
+      
+      // 공예품댓글 update Test용
+      /*pdr.setNo(8);
+      pdr.setTitl("왜자꾸에러나고난리야");
+      pdr.setConts("짜증나");
+      pdr.setStar(5);
+      pdr.setPhot("뒤지겠네");
+      
+      productRepService.update(pdr);*/
+    
+    
+   
+    
     // 공예품 질문 답변 출력
     System.out.println("--------공예품QnA--------");
     ProductQnA prodQnA = productQnAService.get(1);
@@ -172,6 +218,33 @@ public class TestController {
     System.out.println("질문등록일: "+ prodQnA.getRgdt());
     System.out.println("답변: "+ prodQnA.getAnser());
     System.out.println("답변등록일: "+ prodQnA.getRgdt2());
+    
+    // 공예품 질문답변 insert Test용
+    ProductQnA pdQnA=new ProductQnA();
+    /*pdQnA.setNo(5);
+    pdQnA.setMeno(7);
+    pdQnA.setPtno(2);
+    pdQnA.setTitl("샘 오취리?");
+    pdQnA.setConts("안녕하쉐요");
+    
+    productQnAService.add(pdQnA);*/
+    
+    
+    // 공예품댓글 update Test용
+   /* pdQnA.setNo(3);
+    pdQnA.setTitl("영록이 개패고싶다");
+    pdQnA.setConts("ㅇㅈ?");
+    
+    productQnAService.update(pdQnA);*/
+    
+    // 공예품댓글 update2 Test용
+    /*pdQnA.setNo(7);
+    pdQnA.setAnser("영록이 개패고싶다");
+    
+    productQnAService.updateAnser(pdQnA);*/
+    
+ 
+   
     
     // 공예품 장바구니 출력
     System.out.println("--------공예품장바구니--------");
@@ -223,6 +296,21 @@ public class TestController {
       System.out.println("========================");
     }
     
+    // 공예품 댓글 insert Test용
+    ProductBlock pdBlock=new ProductBlock();
+      /*pdBlock.setMeno(5);
+      pdBlock.setMono(5);
+      pdBlock.setResn("영록이ㅅrlㄲl가 저한테 욕했어요 ㅠㅠ");
+
+      productBlockService.add(pdBlock);*/
+      
+      // 공예품댓글 update Test용
+      /*pdBlock.setMeno(5);
+      pdBlock.setMono(5);
+      pdBlock.setResn("영록이ㅅrlㄲl가 저한테 욕했어요 차단부탁드립니다.");
+      
+      productBlockService.update(pdBlock);*/
+    
     // 멘토분야 출력
     System.out.println("--------멘토분야--------");
     List<MentoTag> mentoTag = mentoTagService.list(3, 5);
@@ -232,6 +320,17 @@ public class TestController {
       System.out.println("========================");
     }
     
+  
+    // 멘토분야 insert Test용
+    /*MentoTag mentTag=new MentoTag();
+    mentTag.setMono(2);
+    mentTag.setBtno(4);
+
+
+    mentoTagService.delete(2);
+    
+    mentoTagService.add(mentTag);*/
+   
   }
 
 }

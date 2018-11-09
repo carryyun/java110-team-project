@@ -10,18 +10,12 @@ import bitcamp.java110.cms.dao.ClassFileDao;
 import bitcamp.java110.cms.domain.ClassFile;
 import bitcamp.java110.cms.service.ClassFileService;
 
-//@Service
+@Service
 public class ClassFileServiceImpl implements ClassFileService {
   
   @Autowired ClassFileDao cfileDao;
-  @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
   
-
-  @Override
-  public void add(ClassFile cfile) {
-   cfileDao.insert(cfile);
-    
-  }
+  @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 
   @Override
   public List<ClassFile> list(int pageNo, int pageSize) {
@@ -44,6 +38,16 @@ public class ClassFileServiceImpl implements ClassFileService {
     }
    cfileDao.delete(no);
     
+  }
+
+  @Override
+  public int add(ClassFile cfile) {
+    return cfileDao.insert(cfile);
+  }
+
+  @Override
+  public int update(ClassFile cfile) {
+    return cfileDao.update(cfile);
   }
 
 }

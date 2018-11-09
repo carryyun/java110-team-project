@@ -9,5 +9,6 @@ public interface ClassFileDao {
   int insert(ClassFile cfile);
   ClassFile findByNo(int no);
   int delete(int no);
+  int update(ClassFile cfile);
 
 }

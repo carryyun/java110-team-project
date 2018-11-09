@@ -9,5 +9,6 @@ public interface MentorFileDao {
   int insert(MentorFile mfile);
   MentorFile findByNo(int no);
   int delete(int no);
+  int update(MentorFile mfile);
 
 }

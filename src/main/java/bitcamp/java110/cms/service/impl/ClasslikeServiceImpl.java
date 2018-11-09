@@ -10,11 +10,10 @@ import bitcamp.java110.cms.dao.ClasslikeDao;
 import bitcamp.java110.cms.domain.Classlike;
 import bitcamp.java110.cms.service.ClasslikeService;
 
-//@Service
+@Service
 public class ClasslikeServiceImpl implements ClasslikeService {
 
   @Autowired ClasslikeDao classlikeDao;
-  @Autowired 
   
   @Override
   public List<Classlike> classlikelist(int pageSize) {

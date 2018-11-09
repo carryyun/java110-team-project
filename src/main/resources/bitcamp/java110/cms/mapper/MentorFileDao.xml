@@ -6,7 +6,7 @@
 <mapper namespace="bitcamp.java110.cms.dao.MentorFileDao">
 
     <resultMap type="MentorFile" id="mfileMap">
-        <id column="mfno" property="mfno" />
+        <id column="mfno" property="no" />
         <result column="mfname" property="mfname" />
         <result column="mono" property="mono" />
     </resultMap>
@@ -40,7 +40,17 @@
 
     <delete id="delete" parameterType="int">
         delete from p_meto_file
-        where mfno=#{mfno}
+        where mfno=#{no}
     </delete>
+    
+    <update id="update" parameterType="MentorFile">
+        update p_meto_file
+        
+        <set>
+            <if test="mfname!=null">mfname=#{mfname},</if>
+        </set>
+        
+        where mfno=#{no}
+    </update>
 
 </mapper>

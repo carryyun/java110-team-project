@@ -1,15 +1,15 @@
 package bitcamp.java110.cms.domain;
 
 public class MentorFile {
-  private int mfno;
+  private int no;
   private String mfname;
   private int mono;
   
-  public int getMfno() {
-    return mfno;
+  public int getNo() {
+    return no;
   }
-  public void setMfno(int mfno) {
-    this.mfno = mfno;
+  public void setNo(int no) {
+    this.no = no;
   }
   public String getMfname() {
     return mfname;
@@ -23,5 +23,7 @@ public class MentorFile {
   public void setMono(int mono) {
     this.mono = mono;
   }
+  
+
   
 }

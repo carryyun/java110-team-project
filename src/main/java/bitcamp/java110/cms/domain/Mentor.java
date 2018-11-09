@@ -1,9 +1,10 @@
 package bitcamp.java110.cms.domain;
 
-public class Mentor{
+public class Mentor extends Mentee{
   
   private int carr;
   private char stat;
+  
   
   public char getStat() {
     return stat;

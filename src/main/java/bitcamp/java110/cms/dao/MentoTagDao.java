@@ -15,5 +15,11 @@ public interface MentoTagDao {
   // 대분류번호 조회
   List<MentoTag> findAllByBtno(Map<String,Object> params); 
   
+  // 삽입
+  int insert(MentoTag mentoTag);
+  
+  // 삭제
+  int delete(int no);
+  
   
 }

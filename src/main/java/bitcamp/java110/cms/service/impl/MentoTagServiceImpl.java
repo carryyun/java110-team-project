@@ -13,7 +13,9 @@ import bitcamp.java110.cms.service.MentoTagService;
 @Service
 public class MentoTagServiceImpl implements MentoTagService {
 
-  @Autowired MentoTagDao mentoTagDao;
+  @Autowired
+  MentoTagDao mentoTagDao;
+
   @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 
   @Override
@@ -27,7 +29,7 @@ public class MentoTagServiceImpl implements MentoTagService {
 
   }
 
-  
+
   @Override
   public List<MentoTag> listByMono(int pageNo, int pageSize, int mono) {
     HashMap<String, Object> params = new HashMap<>();
@@ -37,7 +39,7 @@ public class MentoTagServiceImpl implements MentoTagService {
 
     return mentoTagDao.findAllByMono(params);
   }
-  
+
   @Override
   public List<MentoTag> listByBtno(int pageNo, int pageSize, int btno) {
     HashMap<String, Object> params = new HashMap<>();
@@ -47,6 +49,22 @@ public class MentoTagServiceImpl implements MentoTagService {
 
     return mentoTagDao.findAllByBtno(params);
   }
+
+
+  @Override
+  public int add(MentoTag mentoTag) {
+    return mentoTagDao.insert(mentoTag);
+  }
+
+  @Transactional
+  @Override
+  public void delete(int no) {
+
+    if (mentoTagDao.delete(no) == 0) {
+      throw new RuntimeException("해당 번호의 데이터가 없습니다.");
+    }
+  }
+
 
 
 }

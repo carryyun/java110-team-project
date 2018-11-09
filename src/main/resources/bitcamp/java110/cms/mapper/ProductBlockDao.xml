@@ -54,5 +54,26 @@
     
     
     
+    <insert id="insert" parameterType="productBlock" keyProperty="no">
+        insert into p_block(mono,meno,resn,rgdt)
+        values(#{mono},#{meno},#{resn},now())
+    </insert> 
+    
+    
+    
+    <update id="update" parameterType="productBlock">
+    update p_block
+    
+    <set> 
+        <if test="resn!=null"> resn= #{resn}</if>
+    </set>
+        where
+            mono=#{mono}
+            and
+            meno=#{meno}
+            
+    </update>
+    
+    
 
 </mapper>

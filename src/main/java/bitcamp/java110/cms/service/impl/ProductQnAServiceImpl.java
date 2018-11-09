@@ -55,5 +55,20 @@ public class ProductQnAServiceImpl implements ProductQnAService {
     return productQnADao.findAllByPtno(params);
   }
 
+  @Override
+  public int add(ProductQnA productQnA) {
+    return productQnADao.insert(productQnA);
+  }
+
+  @Override
+  public int update(ProductQnA productQnA) {
+    return productQnADao.update(productQnA);
+  }
+
+  @Override
+  public int updateAnser(ProductQnA productQnA) {
+    return productQnADao.updateAnser(productQnA);
+  }
+
 
 }

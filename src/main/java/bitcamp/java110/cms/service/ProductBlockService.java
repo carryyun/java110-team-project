@@ -13,6 +13,10 @@ public interface ProductBlockService {
   // 멘티 번호로 조회
   List<ProductBlock> listByMeno(int pageNo, int pageSize, int meno);
   
-  
+  // 입력(추가)
+  int add(ProductBlock productBlock);
+
+  // 갱신
+  int update(ProductBlock productBlock);
  
 }

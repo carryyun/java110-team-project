@@ -9,5 +9,6 @@ public interface MentorLicenseDao {
   int insert(MentorLicense mlicn);
   MentorLicense findByNo(int no);
   int delete(int no);
+  int update(MentorLicense mlicn);
 
 }
