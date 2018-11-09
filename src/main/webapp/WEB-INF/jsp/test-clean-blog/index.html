@@ -32,7 +32,7 @@
   <body>
 
     <!-- Navigation -->
-    <div id="row">
+    <div id="row" class="mainheader">
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
         <a class="navbar-brand" href="index.html">하루</a>
@@ -43,7 +43,10 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto" style="margin-left: 1px">
             <li class="nav-item">
+             <div id="row">
+              <img src="../../../img/julme.PNG" alt="singup">
               <a class="nav-link" href="index.html">로그인</a>
+                </div>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="about.html">장바구니</a>
@@ -60,9 +63,9 @@
 
     <!-- Page Header -->
     <header class="masthead">
-      <!-- <%@include file="headerNav.html" %> jsp-->
       
     </header>
+    <!-- 카테고리 nav (스크립트로 임시 inclue) -->
     <div id="headerNav"></div>
 
     <!-- Main Content -->
@@ -286,30 +289,7 @@
     <script>
       $(document).ready(function(){
          $("#headerNav").load("headerNav.html")
-          
       });
-        onload=new function(){
-            var nav = document.getElementById("headerNav");
-            console.log(nav);
-            var submenu=new Array();
-      var sub_tmps=document.getElementById("menusubs").getElementsByTagName("ul");
-      for (var i=0, len=sub_tmps.length; i<len; i++) {
-         if (sub_tmps[i].className=="localNav"){
-            submenu.push(sub_tmps[i]);
-         }
-      }
-      var menu_tmps=document.getElementById("mainUl").getElementsByTagName("a");
-      for (var i=0, len=menu_tmps.length; i<len; i++) {
-         if (menu_tmps[i].className=="nav-link") {
-            menu_tmps[i].onmouseover=function() {
-               for (var j=0, sublen=submenu.length; j<sublen; j++)
-                  submenu[j].style.display="none";
-               document.getElementById(this.id+"_sub").style.display="block";
-            }
-            menu_tmps[i].onfocus=menu_tmps[i].onmouseover;
-         }
-      }
-        }
 </script> 
   </body>
 

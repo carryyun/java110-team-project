@@ -15,21 +15,21 @@ import bitcamp.java110.cms.service.ClassService;
 import bitcamp.java110.cms.service.ClassbaktService;
 import bitcamp.java110.cms.service.ClasslikeService;
 import bitcamp.java110.cms.service.ClassorderService;
-import bitcamp.java110.cms.service.ClassqnaService;
+import bitcamp.java110.cms.service.ClassQnaService;
 
 @Controller
 @RequestMapping("/class")
 public class ClassController {
 
   ClassService classService;
-  ClassqnaService classqnaService;
+  ClassQnaService classqnaService;
   ClassorderService classorderService;
   ClasslikeService classlikeService;
   ClassbaktService classbaktService;
   ServletContext sc;
   
   public ClassController(
-      ClassService classService,ClassqnaService classqnaService,
+      ClassService classService,ClassQnaService classqnaService,
       ClassorderService classorderService,ClasslikeService classlikeService
       ,ClassbaktService classbaktService) {
     this.classService = classService;

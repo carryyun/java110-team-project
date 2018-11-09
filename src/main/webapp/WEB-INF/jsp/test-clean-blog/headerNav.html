@@ -95,8 +95,7 @@
     
     <!-- 카테고리 서브메뉴 -->
     <script>
-
-   onload=function() {
+        $(document).ready(function(){
       var submenu=new Array();
       var sub_tmps=document.getElementById("menusubs").getElementsByTagName("ul");
       for (var i=0, len=sub_tmps.length; i<len; i++) {
@@ -115,6 +114,9 @@
             menu_tmps[i].onfocus=menu_tmps[i].onmouseover;
          }
       }
+        });
+   onload=function() {
+      
    }
 
 </script>

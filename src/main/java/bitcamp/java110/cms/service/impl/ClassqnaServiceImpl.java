@@ -8,10 +8,10 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import bitcamp.java110.cms.dao.ClassqnaDao;
 import bitcamp.java110.cms.domain.Classqna;
-import bitcamp.java110.cms.service.ClassqnaService;
+import bitcamp.java110.cms.service.ClassQnaService;
 
 @Service
-public class ClassqnaServiceImpl implements ClassqnaService{
+public class ClassqnaServiceImpl implements ClassQnaService{
   
   @Autowired ClassqnaDao classqnaDao;
   
