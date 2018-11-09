@@ -6,7 +6,7 @@
 <mapper namespace="bitcamp.java110.cms.dao.MentorLicenseDao">
 
     <resultMap type="MentorLicense" id="mlicnMap">
-        <id column="lno" property="lno"/>
+        <id column="lno" property="no"/>
         <result column="lname" property="lname"/>
         <result column="phot" property="phot"/>
         <result column="mono" property="mono"/>
@@ -39,4 +39,16 @@
         delete from p_meto_licn
         where lno=#{value}
     </delete>
+    
+    <update id="update" parameterType="MentorLicense">
+        update p_meto_licn
+        
+        <set>
+            <if test="lname != null">lname=#{lname},</if>
+            <if test="phot != null">phot=#{phot}</if>
+        </set>
+        
+        where
+            lno=#{no}
+    </update>
 </mapper>

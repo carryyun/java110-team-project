@@ -70,11 +70,30 @@ public class KakaoController {
     
     @GetMapping("mlicn")
     public void mlicn() {
-      List<MentorLicense> ml = mlicnService.list(1,5);
-      System.out.println(ml);
-      for(MentorLicense mlicn: ml) {
-        System.out.println(ml.get(2));
-      }
+      // select test
+//      List<MentorLicense> ml = mlicnService.list(1,5);
+//      System.out.println(ml);
+//      for(MentorLicense mlicn: ml) {
+//        System.out.println(ml.get(2));
+//      }
+      
+      // insert test
+//      MentorLicense m = new MentorLicense();
+//      
+//      m.setLname("name1");
+//      m.setPhot("phot1");
+//      m.setMono(3);
+//      
+//      mlicnService.add(m);
+      
+      // update test
+      MentorLicense m = new MentorLicense();
+      
+      m.setNo(7);
+      m.setLname("name2");
+      m.setPhot("phot2");
+      
+      mlicnService.update(m);
     }
 
     @GetMapping("timetable")
