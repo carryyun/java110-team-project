@@ -22,13 +22,6 @@
         	p_cls_order
         	
     </select>
-
-    <insert id="orderinsert" parameterType="int">
-        insert 
-        	into p_cls_qna()
-        values
-        	(#{},)
-    </insert> 
     
 </mapper>
 

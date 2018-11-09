@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import bitcamp.java110.cms.domain.ClassFile;
 import bitcamp.java110.cms.domain.Cs;
 import bitcamp.java110.cms.domain.Member;
 import bitcamp.java110.cms.domain.MentorFile;
@@ -17,7 +16,6 @@ import bitcamp.java110.cms.domain.Notice;
 import bitcamp.java110.cms.domain.ProductTimetable;
 import bitcamp.java110.cms.domain.Report;
 import bitcamp.java110.cms.service.AuthService;
-import bitcamp.java110.cms.service.ClassFileService;
 import bitcamp.java110.cms.service.CsService;
 import bitcamp.java110.cms.service.MentorFileService;
 import bitcamp.java110.cms.service.MentorLicenseService;
@@ -32,7 +30,7 @@ public class KakaoController {
     AuthService authService;
     NoticeService noticeService;
     CsService csService;
-    ClassFileService cfileService;
+//    ClassFileService cfileService;
     MentorFileService mfileService;
     MentorLicenseService mlicnService;
     ProductTimetableService productTimetableService;
@@ -43,7 +41,7 @@ public class KakaoController {
         AuthService authService
         ,NoticeService noticeService
         ,CsService csService
-        ,ClassFileService cfileService
+//        ,ClassFileService cfileService
         ,MentorFileService mfileService
         ,ReportService reportService
         ,MentorLicenseService mlicnService
@@ -51,7 +49,7 @@ public class KakaoController {
         this.authService = authService;
         this.noticeService = noticeService;
         this.csService = csService;
-        this.cfileService = cfileService;
+//        this.cfileService = cfileService;
         this.mfileService = mfileService;
         this.mlicnService = mlicnService;
         this.productTimetableService=productTimetableService;
@@ -125,11 +123,11 @@ public class KakaoController {
     
     @GetMapping("cfile")
     public void cfile() {
-      List<ClassFile> cfile = cfileService.list(3, 10);
-      System.out.println(cfile);
-      for(ClassFile classfile: cfile) {
-        System.out.println(classfile.getFname());
-      }
+//      List<ClassFile> cfile = cfileService.list(3, 10);
+//      System.out.println(cfile);
+//      for(ClassFile classfile: cfile) {
+//        System.out.println(classfile.getFname());
+//      }
     }
     
     @PostMapping("login")

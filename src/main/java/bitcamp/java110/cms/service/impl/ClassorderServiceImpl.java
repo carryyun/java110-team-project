@@ -10,7 +10,7 @@ import bitcamp.java110.cms.dao.ClassorderDao;
 import bitcamp.java110.cms.domain.Classorder;
 import bitcamp.java110.cms.service.ClassorderService;
 
-@Service
+//@Service
 public class ClassorderServiceImpl implements ClassorderService{
 
   @Autowired ClassorderDao classorderDao;
