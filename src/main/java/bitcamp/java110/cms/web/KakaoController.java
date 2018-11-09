@@ -15,8 +15,8 @@ import bitcamp.java110.cms.domain.MentorFile;
 import bitcamp.java110.cms.domain.MentorLicense;
 import bitcamp.java110.cms.domain.Notice;
 import bitcamp.java110.cms.domain.ProductCert;
-import bitcamp.java110.cms.domain.ProductTimetable;
 import bitcamp.java110.cms.domain.Report;
+import bitcamp.java110.cms.domain.Timetable;
 import bitcamp.java110.cms.service.AuthService;
 import bitcamp.java110.cms.service.ClassFileService;
 import bitcamp.java110.cms.service.CsService;
@@ -24,8 +24,8 @@ import bitcamp.java110.cms.service.MentorFileService;
 import bitcamp.java110.cms.service.MentorLicenseService;
 import bitcamp.java110.cms.service.NoticeService;
 import bitcamp.java110.cms.service.ProductCertService;
-import bitcamp.java110.cms.service.ProductTimetableService;
 import bitcamp.java110.cms.service.ReportService;
+import bitcamp.java110.cms.service.TimetableService;
 
 @Controller
 @RequestMapping("/kakao")
@@ -37,7 +37,7 @@ public class KakaoController {
     ClassFileService cfileService;
     MentorFileService mfileService;
     MentorLicenseService mlicnService;
-    ProductTimetableService productTimetableService;
+    TimetableService timetableService;
     ReportService reportService;
     ProductCertService prctService;
 
@@ -49,7 +49,7 @@ public class KakaoController {
         ,ClassFileService cfileService
         ,MentorFileService mfileService
         ,MentorLicenseService mlicnService
-        ,ProductTimetableService productTimetableService
+        ,TimetableService timetableService
         ,ReportService reportService
         ,ProductCertService prctService) {
 
@@ -59,7 +59,7 @@ public class KakaoController {
         this.cfileService = cfileService;
         this.mfileService = mfileService;
         this.mlicnService = mlicnService;
-        this.productTimetableService=productTimetableService;
+        this.timetableService=timetableService;
         this.reportService=reportService;
         this.prctService=prctService;
 
@@ -103,11 +103,11 @@ public class KakaoController {
 
     @GetMapping("timetable")
     public void timetable() {
-      List<ProductTimetable> pt = productTimetableService.list(1, 5);
+      List<Timetable> pt = timetableService.list(1, 5);
       System.out.println(pt);
-      for(ProductTimetable productTimetable: pt) {
-        System.out.println(productTimetable.getNo());
-        System.out.println(productTimetable.getCno());
+      for(Timetable timetable: pt) {
+        System.out.println(timetable.getNo());
+        System.out.println(timetable.getCno());
         
       }
     }

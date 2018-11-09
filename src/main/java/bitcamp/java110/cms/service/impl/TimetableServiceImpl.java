@@ -6,21 +6,21 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import bitcamp.java110.cms.dao.ProductTimetableDao;
-import bitcamp.java110.cms.domain.ProductTimetable;
-import bitcamp.java110.cms.service.ProductTimetableService;
+import bitcamp.java110.cms.dao.TimetableDao;
+import bitcamp.java110.cms.domain.Timetable;
+import bitcamp.java110.cms.service.TimetableService;
 
 @Service
-public class ProductTimetableServiceImpl implements ProductTimetableService {
+public class TimetableServiceImpl implements TimetableService {
 
-  @Autowired ProductTimetableDao productTimetableDao;
+  @Autowired TimetableDao timetableDao;
   
   @Transactional(
           rollbackFor=Exception.class)
   @Override
-  public void add(ProductTimetable productTimetable) {
+  public void add(Timetable timetable) {
  
-    productTimetableDao.insert(productTimetable);
+    timetableDao.insert(timetable);
     
       
       /*if (productTimetable.getCtno() != null) {
@@ -34,26 +34,26 @@ public class ProductTimetableServiceImpl implements ProductTimetableService {
   }
   
   @Override
-  public List<ProductTimetable> list(int pageNo, int pageSize) {
+  public List<Timetable> list(int pageNo, int pageSize) {
       HashMap<String,Object> params = new HashMap<>();
       params.put("rowNo", (pageNo - 1) * pageSize);
       params.put("size", pageSize);
       
-      return productTimetableDao.findAll(params);
+      return timetableDao.findAll(params);
   }
   
   @Override
-  public ProductTimetable get(int no) {
-      return productTimetableDao.findByCtno(no);
+  public Timetable get(int no) {
+      return timetableDao.findByCtno(no);
   }
   
   @Transactional
   @Override
   public void delete(int no) {
-      if (productTimetableDao.delete(no) == 0) {
+      if (timetableDao.delete(no) == 0) {
           throw new RuntimeException("해당 번호의 데이터가 없습니다.");
       }
-      productTimetableDao.delete(no);
-      productTimetableDao.delete(no);
+      timetableDao.delete(no);
+      timetableDao.delete(no);
   }
 }

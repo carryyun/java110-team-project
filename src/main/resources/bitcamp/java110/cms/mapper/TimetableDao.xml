@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- ProductTimetableDao 클래스가 사용할 SQL이 들어 있는 파일 -->
+<!-- TimetableDao 클래스가 사용할 SQL이 들어 있는 파일 -->
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="bitcamp.java110.cms.dao.ProductTimetableDao">
+<mapper namespace="bitcamp.java110.cms.dao.TimetableDao">
 
-	<resultMap type="productTimetable" id="productTimetableMap">
+	<resultMap type="timetable" id="timetableMap">
 		<id column="ctno" property="no" />
 		<result column="cno" property="cno" />
 		<result column="date" property="date" />
@@ -29,7 +29,7 @@
 
 	</sql>
 
-	<select id="findAll" resultMap="productTimetableMap" parameterType="map">
+	<select id="findAll" resultMap="timetableMap" parameterType="map">
 		<include refid="select1"></include>
 
 		
@@ -38,13 +38,13 @@
 		ctno asc
 	</select>
 
-	<select id="findByCtno" resultMap="productTimetableMap"	parameterType="int">
+	<select id="findByCtno" resultMap="timetableMap"	parameterType="int">
 		<include refid="select1"></include>
 		where
 		ctno=#{value}
 	</select>
 
-	<select id="findByCno" resultMap="productTimetableMap"	parameterType="int">
+	<select id="findByCno" resultMap="timetableMap"	parameterType="int">
 		<include refid="select1"></include>
 		where
 		cno=#{value}
