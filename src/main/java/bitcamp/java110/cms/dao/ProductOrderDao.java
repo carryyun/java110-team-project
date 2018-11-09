@@ -14,5 +14,10 @@ public interface ProductOrderDao {
   
   List<ProductOrder> findAllByPtno(Map<String,Object> params); // 공예품번호
   
+  /*int insert(ProductOrder productOrder);
+  
+  int update(ProductOrder productOrder);*/
+  
+  
   
 }

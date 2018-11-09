@@ -6,7 +6,7 @@ import bitcamp.java110.cms.domain.Mentee;
 
 public interface MenteeDao {
   int insert(Mentee mentee);
-
+  
   int delete(int no);
 
   List<Mentee> findAll(Map<String, Object> params); // 전체조회

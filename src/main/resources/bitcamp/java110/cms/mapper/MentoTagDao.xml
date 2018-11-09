@@ -46,5 +46,16 @@
     
     
     
-
+   <insert id="insert" parameterType="MentoTag" keyProperty="no">
+        insert into p_meto_tag(mono,btno)
+        values(#{mono},#{btno})
+    </insert> 
+    
+    <delete id="delete">
+    delete from p_meto_tag
+    where mono=#{mono}
+    
+    </delete>
+    
+    
 </mapper>

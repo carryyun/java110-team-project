@@ -6,13 +6,26 @@ import bitcamp.java110.cms.domain.ProductQnA;
 
 public interface ProductQnADao {
   
-  List<ProductQnA> findAll(Map<String,Object> params); // 전체조회
+  // 전체조회
+  List<ProductQnA> findAll(Map<String,Object> params); 
 
+  // 질문번호 조회
   ProductQnA findByNo(int no); // 질문번호 조회
   
-  List<ProductQnA> findAllByMeno(Map<String,Object> params); // 질문자번호 조회
+  // 질문자번호 조회
+  List<ProductQnA> findAllByMeno(Map<String,Object> params); 
   
-  List<ProductQnA> findAllByPtno(Map<String,Object> params); // 공예품번호 조회
+  // 공예품번호 조회
+  List<ProductQnA> findAllByPtno(Map<String,Object> params); 
+  
+  // 삽입
+  int insert(ProductQnA productQnA);
+  
+  // 갱신
+  int update(ProductQnA productQnA);
+  
+  // 답변 갱신
+ int updateAnser(ProductQnA productQnA);
   
   
 }
