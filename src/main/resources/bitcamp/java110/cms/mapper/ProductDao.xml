@@ -95,4 +95,30 @@
             stno=#{smallno}
     </select>
     
+    <insert id="insert" parameterType="product"
+            useGeneratedKeys="true" keyColumn="ptno" keyProperty="no">
+            
+        insert into p_prdt(titl,conts,pric,rgdt,stock,phot,meno,ctno,stno)
+        values(#{titl},#{conts},#{pric},now(),#{stock},#{phot},#{meno},#{ctno},#{stno})
+    </insert> 
+    
+    <update id="update" parameterType="product">
+    
+    update p_prdt
+    
+    <set> 
+        <if test="titl!=null">titl= #{titl},</if>
+        <if test="conts!=null">conts=#{conts},</if>
+        <if test="pric!=null">pric= #{pric},</if>
+        <if test="stock>0">stock= #{stock},</if>
+        <if test="phot!=null">phot= #{phot},</if>
+        <if test="ctno>0">ctno= #{ctno},</if>
+        <if test="stno>0">stno= #{stno},</if>
+        
+    </set>
+	    where
+	        ptno=#{no}
+    </update>
+         
+    
 </mapper>

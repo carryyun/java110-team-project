@@ -13,4 +13,9 @@ public interface ProductDao {
   List<Product> findAllByMeno(Map<String,Object> params); // 판매자 번호
   
   List<Product> findAllByStno(Map<String,Object> params); // 소분류 번호
+
+  int insert(Product product);
+
+  int update(Product product);
+
 }
