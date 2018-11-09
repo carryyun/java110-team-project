@@ -1,5 +1,6 @@
 package bitcamp.java110.cms.web;
 
+import java.sql.Date;
 import java.util.List;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -103,14 +104,41 @@ public class KakaoController {
 
     @GetMapping("timetable")
     public void timetable() {
-      List<Timetable> pt = timetableService.list(1, 5);
-      System.out.println(pt);
-      for(Timetable timetable: pt) {
+      List<Timetable> t = timetableService.list(1, 4);
+      System.out.println(t);
+
+    
+      for(Timetable timetable: t) {
         System.out.println(timetable.getNo());
         System.out.println(timetable.getCno());
-        
+        System.out.println(timetable.getDate());
+        System.out.println(timetable.getStime());
+        System.out.println(timetable.getCapa());
       }
-    }
+      
+        //insert
+        
+        Timetable tt=new Timetable();
+        
+     /*   
+         
+        tt.setCno(2);
+        tt.setCapa(3);
+        
+        timetableService.add(tt);
+      */
+        //update
+        tt.setNo(4);
+        tt.setCno(7);
+       tt.setCapa(3);
+    
+        
+        timetableService.update(tt);
+      
+      }
+    
+      
+    
     
     @GetMapping("prct")
     public void prct() {
@@ -148,7 +176,7 @@ public class KakaoController {
 //        System.out.println(report.getConts());
 //        System.out.println(report.getMeno2());
 //        System.out.println(report.getMeno());
-        
+//      }
         //insert
         
         Report rpt=new Report();

@@ -10,5 +10,5 @@ public interface TimetableDao {
   List<Timetable> findAll(Map<String,Object> params);
   Timetable findByCtno(int no);
   Timetable findByCno(int no);
-  int delete(int no);
+  int update(Timetable timetable);
 }
