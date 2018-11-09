@@ -14,6 +14,7 @@ import bitcamp.java110.cms.domain.Member;
 import bitcamp.java110.cms.domain.MentorFile;
 import bitcamp.java110.cms.domain.MentorLicense;
 import bitcamp.java110.cms.domain.Notice;
+import bitcamp.java110.cms.domain.ProductCert;
 import bitcamp.java110.cms.domain.ProductTimetable;
 import bitcamp.java110.cms.domain.Report;
 import bitcamp.java110.cms.service.AuthService;
@@ -22,6 +23,7 @@ import bitcamp.java110.cms.service.CsService;
 import bitcamp.java110.cms.service.MentorFileService;
 import bitcamp.java110.cms.service.MentorLicenseService;
 import bitcamp.java110.cms.service.NoticeService;
+import bitcamp.java110.cms.service.ProductCertService;
 import bitcamp.java110.cms.service.ProductTimetableService;
 import bitcamp.java110.cms.service.ReportService;
 
@@ -37,6 +39,7 @@ public class KakaoController {
     MentorLicenseService mlicnService;
     ProductTimetableService productTimetableService;
     ReportService reportService;
+    ProductCertService prctService;
 
 
     public KakaoController(
@@ -47,7 +50,8 @@ public class KakaoController {
         ,MentorFileService mfileService
         ,MentorLicenseService mlicnService
         ,ProductTimetableService productTimetableService
-        ,ReportService reportService) {
+        ,ReportService reportService
+        ,ProductCertService prctService) {
 
         this.authService = authService;
         this.noticeService = noticeService;
@@ -57,6 +61,7 @@ public class KakaoController {
         this.mlicnService = mlicnService;
         this.productTimetableService=productTimetableService;
         this.reportService=reportService;
+        this.prctService=prctService;
 
     }
     
@@ -105,6 +110,30 @@ public class KakaoController {
         System.out.println(productTimetable.getCno());
         
       }
+    }
+    
+    @GetMapping("prct")
+    public void prct() {
+      
+      // insert test
+//      ProductCert p = new ProductCert();
+//      
+//      p.setCno(2);
+//      p.setMeno(3);
+//      p.setType("test1");
+//      p.setCnt(1);
+//      
+//      prctService.add(p);
+      
+      // update test
+      ProductCert p = new ProductCert();
+      
+      p.setNo(6);
+      p.setCno(5);
+      p.setMeno(3);
+      p.setType("test3");
+      
+      prctService.update(p);
     }
     
     @GetMapping("report")

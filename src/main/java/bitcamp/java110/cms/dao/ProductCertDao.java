@@ -16,7 +16,10 @@ public interface ProductCertDao {
   List<ProductCert> findAllByCno(Map<String,Object> params);
   
   // 멘티번호 조회
-  List<ProductCert> findAllByMeno(Map<String,Object> params); 
+  List<ProductCert> findAllByMeno(Map<String,Object> params);
+  
+  int insert(ProductCert prct);
+  int update(ProductCert prct);
   
   
 }

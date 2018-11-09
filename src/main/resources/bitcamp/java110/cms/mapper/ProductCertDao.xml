@@ -79,6 +79,27 @@
             meno=#{mentno}
     </select>
     
+    <insert id="insert" parameterType="ProductCert" useGeneratedKeys="true" keyColumn="ctno" keyProperty="no">
+        insert into p_cert(cno, meno, type, cnt, edt, ctdt)
+        values(#{cno}, #{meno}, #{type}, #{cnt}, now(), now());
+    </insert>
+    
+    <update id="update" parameterType="ProductCert">
+        update p_cert
+        
+            <set>
+                <if test="cno!=null"> cno=#{cno},</if>
+                <if test="meno!=null">meno=#{meno},</if>
+                <if test="type!=null">type=#{type},</if>
+                <if test="cnt > 0">cnt=#{cnt}</if>
+                <!-- int는 값이 없을때 0이 된다. 따라서 cnt는 0보다 크게 한다  -->
+            </set>
+            
+            where
+                ctno=#{no}
+    </update>
+    
+    
     
     
 
