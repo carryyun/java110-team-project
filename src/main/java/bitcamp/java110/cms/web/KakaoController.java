@@ -130,11 +130,29 @@ public class KakaoController {
     
     @GetMapping("mfile")
     public void mfile() {
-      List<MentorFile> mf = mfileService.list(3, 10);
-      System.out.println(mf);
-      for(MentorFile m:mf) {
-        System.out.println(m.getMfno());
-      }
+      // select test
+//      List<MentorFile> mf = mfileService.list(3, 10);
+//      System.out.println(mf);
+//      for(MentorFile m:mf) {
+//        System.out.println(m.getNo());
+//      }
+      
+      // insert test
+//      MentorFile m = new MentorFile();
+//      
+//      m.setMfname("name");
+//      m.setMono(4);
+//      
+//      mfileService.add(m);
+      
+      // update test
+      MentorFile m = new MentorFile();
+      
+      m.setNo(7);
+      m.setMfname("name1");
+      
+      mfileService.update(m);
+      
       
     }
     
