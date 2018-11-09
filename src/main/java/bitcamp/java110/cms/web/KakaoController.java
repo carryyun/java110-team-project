@@ -138,18 +138,43 @@ public class KakaoController {
     
     @GetMapping("report")
     public void report() {
-      List<Report> r = reportService.list(1, 5);
-      System.out.println(r);
-      for(Report report: r) {
-        System.out.println(report.getNo());
-        System.out.println(report.getTitl());
-        System.out.println(report.getConts());
-        System.out.println(report.getMeno2());
-        System.out.println(report.getMeno());
+      List<Report> r = reportService.list(1, 4);
+      
+      // 조회
+//      System.out.println(r);
+//      for(Report report: r) {
+//        System.out.println(report.getNo());
+//        System.out.println(report.getTitl());
+//        System.out.println(report.getConts());
+//        System.out.println(report.getMeno2());
+//        System.out.println(report.getMeno());
+        
+        //insert
+        
+        Report rpt=new Report();
+        
+     /*   
+        rpt.setTitl("제목은101");
+        rpt.setConts("내용도101");
+        rpt.setUrl("http://bitcamp.com");
+        rpt.setType("불량학생");
+        rpt.setMeno2(1);
+        rpt.setMeno(2);
+        
+        reportService.add(rpt);
+      */
+        //update
+       
+        rpt.setNo(3);
+        rpt.setTitl("제목은일공일");
+        rpt.setConts("바꿔버렷");
+        rpt.setType("착한학생");
+        
+        reportService.update(rpt);
         
       }
       
-    }
+  
     
     @GetMapping("noti")
     public void noti() {

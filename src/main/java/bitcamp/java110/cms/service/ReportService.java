@@ -7,9 +7,9 @@ public interface ReportService {
   
   
   
-  void add(Report Report);
+  void add(Report report);
   List<Report> list(int pageNo, int pageSize);
   Report get(int no);
-  void delete(int no);
+  void update(Report report);
 
 }

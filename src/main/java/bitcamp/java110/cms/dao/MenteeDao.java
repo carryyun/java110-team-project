@@ -19,15 +19,3 @@ public interface MenteeDao {
 
   List<Mentee> findAllByPhone(Map<String, Object> params); // 핸드폰
 }
-
-
-//SELECT
-//me.meno,
-//me.name,
-//mo.carr
-//FROM
-//p_mete me
-//JOIN p_meto mo
-//WHERE
-//me.meno=1 AND
-//me.meno = mo.mono;

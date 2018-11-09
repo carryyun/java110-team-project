@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- BigTagDao 클래스가 사용할 SQL이 들어 있는 파일 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.java110.cms.dao.ClassRepDao">
+
+    <resultMap type="classrep" id="classrepMap">
+        <id column="rno"        property="no"/>
+        <result column="meno"   property="meno"/>
+        <result column="cno"   property="cno"/>
+        <result column="titl"   property="titl"/>
+        <result column="conts"   property="conts"/>
+        <result column="star"   property="star"/>
+        <result column="phot"   property="phot"/>
+        <result column="rgdt"   property="rgdt"/>
+        
+    </resultMap>
+    
+    <select id="findAll" resultMap="classrepMap" >
+        select 
+        	titl,
+        	conts,
+        	star,
+        	phot,
+        	rgdt
+        from p_cls_rip
+    </select>
+
+    <insert id="repinsert" useGeneratedKeys="true" keyColumn="rno" keyProperty="no" parameterType="classrep">
+        insert into 
+        	p_cls_rep
+	        	(meno,
+	        	cno,
+	        	titl,
+	        	conts,
+	        	star,
+	        	phot,
+	        	rgdt) 
+        	values
+        		(#{meno}
+        		,#{cno}
+        		,#{titl}
+        		,#{conts}
+        		,#{star}
+        		,#{phot}
+        		,now())
+    </insert>
+    
+    <delete id="ripdelete"  parameterType="int">
+        delete
+          from p_cls_rep
+	     where 
+    			rno=#{value}
+    </delete>
+    
+     <update id="repchange"  parameterType="int">
+        update p_cls_rep
+           set titl=#{titl},
+           	   conts=#{conts},
+           	   star=#{star},
+           	   phot=#{phot}
+         where rno=#{value}
+    </update>
+    
+    
+</mapper>
