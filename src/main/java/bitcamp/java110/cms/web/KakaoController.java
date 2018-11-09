@@ -43,9 +43,10 @@ public class KakaoController {
         ,CsService csService
 //        ,ClassFileService cfileService
         ,MentorFileService mfileService
-        ,ReportService reportService
         ,MentorLicenseService mlicnService
-        ,ProductTimetableService productTimetableService) {
+        ,ProductTimetableService productTimetableService
+        ,ReportService reportService) {
+
         this.authService = authService;
         this.noticeService = noticeService;
         this.csService = csService;
@@ -54,6 +55,7 @@ public class KakaoController {
         this.mlicnService = mlicnService;
         this.productTimetableService=productTimetableService;
         this.reportService=reportService;
+
     }
     
        
@@ -66,12 +68,13 @@ public class KakaoController {
     
     @GetMapping("mlicn")
     public void mlicn() {
-      List<MentorLicense> ml = mlicnService.list(3, 10);
+      List<MentorLicense> ml = mlicnService.list(1,5);
       System.out.println(ml);
       for(MentorLicense mlicn: ml) {
-        System.out.println(mlicn.getLno());
+        System.out.println(ml.get(2));
       }
     }
+
     @GetMapping("timetable")
     public void timetable() {
       List<ProductTimetable> pt = productTimetableService.list(1, 5);
