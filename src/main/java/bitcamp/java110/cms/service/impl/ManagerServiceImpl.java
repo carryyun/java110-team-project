@@ -45,7 +45,7 @@ public class ManagerServiceImpl implements ManagerService {
             params.put("no", manager.getNo());
             params.put("photo", manager.getPhoto());
             
-            photoDao.insert(params);
+            
         }
     }
     

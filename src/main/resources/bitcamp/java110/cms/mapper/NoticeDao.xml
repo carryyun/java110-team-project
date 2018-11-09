@@ -4,20 +4,54 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace ="bitcamp.java110.cms.dao.NoticeDao">
-  
-    <resultMap type="Notice" id="NoticeMap">
-        <id column="nino" property="no"/>
-        <result column="type" property="type"/>
-        <result column="url" property="url"/>
+<mapper namespace="bitcamp.java110.cms.dao.NoticeDao">
+
+    <resultMap type="Notice" id="notiMap">
+        <id column="nino" property="no" />
+        <result column="type" property="type" />
+        <result column="url" property="url" />
+        <result column="meno" property="meno" />
     </resultMap>
-    
-    <select id="findAll" resultMap="NoticeMap">
-        select n.nino, n.type, n.url
-        from p_mete m join p_noti n
-        on m.meno = n.meno
-        order by n.nino asc;
-    
+
+    <sql id="select1">
+        select
+        n.nino,
+        n.type,
+        n.url,
+        n.meno
+        from
+        p_noti n
+    </sql>
+
+    <select id="findAll" resultMap="notiMap">
+        <include refid="select1" />
+        order by
+        n.nino asc;
     </select>
-  
-  </mapper>
+
+    <select id="findByNo" resultMap="notiMap" parameterType="int">
+        <include refid="select1" />
+        where
+        nino=#{value}
+    </select>
+
+    <insert id="insert" parameterType="Notice"
+        useGeneratedKeys="true" keyColumn="nino" keyProperty="no">
+        insert into p_noti(type, url, meno)
+        values(#{type},#{url},5);
+        <!-- meno에 임의로 값을 5로 넣었기 때문에 나중에 변경해 주어야 함 -->
+    </insert>
+
+    <update id="update" parameterType="Notice">
+        update p_noti
+
+        <set>
+            <if test="type!=null">type=#{type},</if>
+            <if test="url!=null">url=#{url},</if>
+        </set>
+
+        where
+        nino=#{no}
+    </update>
+
+</mapper>

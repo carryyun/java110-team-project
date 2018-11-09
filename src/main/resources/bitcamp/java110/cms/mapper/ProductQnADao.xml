@@ -84,5 +84,34 @@
         where 
             ptno=#{productno}
     </select>
-
+    
+  
+    <insert id="insert" parameterType="productQnA"
+            useGeneratedKeys="true" keyColumn="qno" keyProperty="no">
+        insert into p_prdt_qna(meno,ptno,titl,conts,rgdt)
+        values(#{meno},#{ptno},#{titl},#{conts},now())
+    </insert> 
+    
+    
+    <update id="update" parameterType="productQnA">
+    update p_prdt_qna
+    
+    <set> 
+        <if test="titl!=null"> titl= #{titl},</if>
+        <if test="conts!=null"> conts=#{conts}</if>
+    </set>
+        where
+            qno=#{no}
+    </update>
+    
+    <update id="updateAnser" parameterType="productQnA">
+    update p_prdt_qna
+    
+    <set> 
+        <if test="anser!=null"> anser= #{anser},</if>
+        rgdt2=now()
+    </set>
+        where
+            qno=#{no}
+    </update>
 </mapper>

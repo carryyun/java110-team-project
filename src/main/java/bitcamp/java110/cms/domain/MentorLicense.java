@@ -2,17 +2,16 @@ package bitcamp.java110.cms.domain;
 
 public class MentorLicense {
   
-  private int lno;
+  private int no;
   private String lname;
   private String phot;
   private int mono;
   
-  
-  public int getLno() {
-    return lno;
+  public int getNo() {
+    return no;
   }
-  public void setLno(int lno) {
-    this.lno = lno;
+  public void setNo(int no) {
+    this.no = no;
   }
   public String getLname() {
     return lname;
@@ -33,6 +32,4 @@ public class MentorLicense {
     this.mono = mono;
   }
   
-  
-
 }

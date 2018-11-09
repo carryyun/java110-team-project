@@ -89,5 +89,28 @@
         where 
             ptno=#{productno}
     </select>
+    
+  <!--   // insert
+    <insert id="insert" parameterType="productOrder"
+            useGeneratedKeys="true" keyColumn="ono" keyProperty="no">
+        insert into p_prdt_order(meno,ptno,cnt,tot_pric,payopt,paydt,parc_name,parc_no)
+        values(#{meno},#{ptno},#{cnt},#{tot_pric},#{payopt},now(),#{parc_name},#{parc_no})
+    </insert> 
+    
+    // update
+    <update id="update" parameterType="productOrder">
+    update p_prdt_order
+    <set> 
+        <if test="titl!=null">titl= #{titl},</if>
+        <if test="conts!=null">conts=#{conts},</if>
+        <if test="pric!=null">pric= #{pric},</if>
+        <if test="stock>0">stock= #{stock},</if>
+        <if test="phot!=null">phot= #{phot},</if>
+        <if test="ctno>0">ctno= #{ctno},</if>
+        <if test="stno>0">stno= #{stno},</if>
+    </set>
+        where
+            ptno=#{no}
+    </update> -->
 
 </mapper>

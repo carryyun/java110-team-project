@@ -12,53 +12,83 @@
 		<result column="conts" property="conts" />
 		<result column="url" property="url" />
 		<result column="type" property="type" />
-        <result column="rtdt" property="rtdt" />
-        <result column="meno2" property="meno2" />
-        <result column="meno" property="meno" />
+		<result column="rtdt" property="rtdt" />
+		<result column="meno2" property="meno2" />
+		<result column="meno" property="meno" />
 
 	</resultMap>
 
 	<sql id="select1">
-	SELECT
-	rtno,
-	titl,
-	conts,
-	url,
-	type,
-	rtdt,
-	meno2,
-	meno
-	FROM
-	p_rept
-
+		SELECT
+		rtno,
+		titl,
+		conts,
+		url,
+		type,
+		rtdt,
+		meno2,
+		meno
+		FROM
+		p_rept
 	</sql>
 
 	<select id="findAll" resultMap="reportMap" parameterType="map">
 		<include refid="select1"></include>
 
-		
+
 		order by
 		rtno asc
 	</select>
 
-	<select id="findByRtno" resultMap="reportMap"	parameterType="int">
+	<select id="findByNo" resultMap="reportMap"
+		parameterType="int">
 		<include refid="select1"></include>
 		where
 		rtno=#{value}
 	</select>
 
-	<select id="findByMeno2" resultMap="reportMap"	parameterType="int">
+	<select id="findByMeno2" resultMap="reportMap"
+		parameterType="int">
 		<include refid="select1"></include>
 		where
 		meno2=#{value}
 	</select>
-	
-	<select id="findByMeno" resultMap="reportMap"   parameterType="int">
-        <include refid="select1"></include>
-        where
-        meno=#{value}
-    </select>
+
+	<select id="findByMeno" resultMap="reportMap"
+		parameterType="int">
+		<include refid="select1"></include>
+		where
+		meno=#{value}
+	</select>
+
+	<insert id="insert" parameterType="report"
+		useGeneratedKeys="true" keyColumn="rtno" keyProperty="no">
+
+		INSERT INTO
+		p_rept(titl, conts, url, type, rtdt, meno2, meno)
+		VALUES(#{titl},#{conts},#{url},#{type},now(),#{meno},#{meno2})
+
+	</insert>
 
 
+    
+    
+	<update id="update" parameterType="report">
+
+		update p_rept
+
+		<set>
+			
+			<if test="titl!=null">titl= #{titl},</if>
+			<if test="conts!=null">conts= #{conts},</if>
+			<if test="url!=null">url= #{url},</if>
+			<if test="type!=null">type= #{type},</if>
+			<if test="meno>0">meno= #{meno2},</if>
+			<if test="meno2>0">meno2= #{meno2},</if>
+
+		</set>
+		where
+		rtno=#{no}
+	</update>
 
 </mapper>

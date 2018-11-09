@@ -17,8 +17,8 @@ public class CsServiceImpl implements CsService {
   @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
   
   @Override
-  public void add(Cs cs) {
-    csDao.insert(cs);
+  public int add(Cs cs) {
+    return csDao.insert(cs);
     
   }
 
@@ -44,6 +44,12 @@ public class CsServiceImpl implements CsService {
     }
     csDao.delete(no);
     
+  }
+
+
+  @Override
+  public int update(Cs cs) {
+    return csDao.update(cs);
   }
 
 }

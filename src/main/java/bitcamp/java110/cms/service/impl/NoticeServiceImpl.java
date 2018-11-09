@@ -13,7 +13,7 @@ import bitcamp.java110.cms.service.NoticeService;
 @Service
 public class NoticeServiceImpl implements NoticeService{
   
-  @Autowired NoticeDao noticeDao;
+  @Autowired NoticeDao notiDao;
   @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 
   @Override
@@ -23,7 +23,19 @@ public class NoticeServiceImpl implements NoticeService{
     params.put("rowNo", (pageNo - 1) * pageSize);
     params.put("size", pageSize);
     
-    return noticeDao.findAll(params);
+    return notiDao.findAll(params);
+  }
+  @Override
+  public int add(Notice noti) {
+    return notiDao.insert(noti);
+  }
+  @Override
+  public Notice get(int no) {
+    return notiDao.findByNo(no);
+  }
+  @Override
+  public int update(Notice noti) {
+    return notiDao.update(noti);
   }
   
   

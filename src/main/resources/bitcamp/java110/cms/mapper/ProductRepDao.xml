@@ -84,5 +84,29 @@
         where 
             ptno=#{productno}
     </select>
+    
+    
+    <insert id="insert" parameterType="productRep"
+            useGeneratedKeys="true" keyColumn="rno" keyProperty="no">
+        insert into p_prdt_rep(meno,ptno,titl,conts,star,rgdt,phot)
+        values(#{meno},#{ptno},#{titl},#{conts},#{star},now(),#{phot})
+    </insert> 
+    
+    <update id="update" parameterType="productRep">
+    update p_prdt_rep
+    
+    <set> 
+        <if test="titl!=null"> titl= #{titl},</if>
+        <if test="conts!=null"> conts=#{conts},</if>
+        <if test="star>0"> star= #{star},</if><!-- star - 1단위/1점 부터  -->
+        <if test="phot!=null">phot=#{phot}</if>
+        
+        
+    </set>
+        where
+            rno=#{no}
+    </update>
+    
+   
 
 </mapper>
