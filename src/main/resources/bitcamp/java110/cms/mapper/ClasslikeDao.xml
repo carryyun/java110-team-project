@@ -19,8 +19,8 @@
     		p_cls_like
     </select>
 
-	<insert id="likeinsert" parameterType="Classlike"
-	useGeneratedKeys="true" keyColumn="clno" keyProperty="no">
+	<insert id="likeinsert" parameterType="Classlike" 
+            useGeneratedKeys="true" keyColumn="clno" keyProperty="no">
 		insert 
 			into p_cls_like(meno,cno)
 		values

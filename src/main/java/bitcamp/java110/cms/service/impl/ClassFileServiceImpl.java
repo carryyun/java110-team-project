@@ -14,9 +14,8 @@ import bitcamp.java110.cms.service.ClassFileService;
 public class ClassFileServiceImpl implements ClassFileService {
   
   @Autowired ClassFileDao cfileDao;
-  @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
   
-
+  @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
   @Override
   public void add(ClassFile cfile) {
    cfileDao.insert(cfile);

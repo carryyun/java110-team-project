@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import bitcamp.java110.cms.dao.ClassqnaDao;
 import bitcamp.java110.cms.domain.Classqna;
 import bitcamp.java110.cms.service.ClassqnaService;
-
 @Service
 public class ClassqnaServiceImpl implements ClassqnaService{
   
