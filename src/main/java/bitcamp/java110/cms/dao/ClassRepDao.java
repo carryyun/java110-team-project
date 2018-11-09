@@ -8,5 +8,5 @@ public interface ClassRepDao {
   List<ClassRep> findAll(Map<String,Object> params);
   int ripInsert(ClassRep classRip);
   int ripDelete(int no);
-  int ripChange(int no);
+  int ripChange(int no); // update
 }
