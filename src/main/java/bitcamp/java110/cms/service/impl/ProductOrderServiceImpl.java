@@ -55,5 +55,10 @@ public class ProductOrderServiceImpl implements ProductOrderService {
     return productOrderDao.findAllByPtno(params);
   }
 
+  @Override
+  public int add(ProductOrder productOrder) {
+    return productOrderDao.insert(productOrder);
+  }
+
 
 }

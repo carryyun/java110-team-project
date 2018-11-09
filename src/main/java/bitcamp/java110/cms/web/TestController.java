@@ -80,7 +80,7 @@ public class TestController {
 
 
 
-  @GetMapping("Tag")
+  @RequestMapping("Tag")
   public void Tag() {
     
     // 대분류 출력
@@ -172,6 +172,18 @@ public class TestController {
     System.out.println("결제날짜: "+ prodOrder.getPaydt());
     System.out.println("택배사: "+ prodOrder.getParc_name());
     System.out.println("송장번호: "+ prodOrder.getParc_no());
+    
+    ProductOrder prodAdd=new ProductOrder();
+    // 상품 주문 내역 insert Test용
+      
+      prodAdd.setMeno(20);
+      prodAdd.setPtno(5);
+      prodAdd.setCnt(1);
+      prodAdd.setTot_pric(0);
+      prodAdd.setPayopt("현금결제");
+      
+      productOrderService.add(prodAdd);
+    
     
     // 공예품 댓글 출력
     System.out.println("--------공예품댓글--------");
