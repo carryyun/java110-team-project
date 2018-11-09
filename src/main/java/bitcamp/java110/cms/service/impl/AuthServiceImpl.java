@@ -91,7 +91,6 @@ public class AuthServiceImpl implements AuthService {
     mentee.setPwd("1111");
     mentee.setPhone("12345-12345");
     mentee.setNick("테스트11");
-    
     menteeDao.insert(mentee);
 
     return mentee;
