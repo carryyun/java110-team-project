@@ -232,6 +232,30 @@ public class TestController {
       System.out.println("========================");
     }
     
+    // insert 
+    Product p=new Product();
+  /*  p.setTitl("건무룩");
+    p.setConts("건희님이 시무룩하다");
+    p.setPric(10000);
+    p.setStock(3);
+    p.setPhot("http://naver.com");
+    p.setMeno(5);
+    p.setCtno(1);
+    p.setStno(1);
+    
+    productService.add(p);*/
+    
+    // update
+    p.setNo(3);
+    p.setTitl("건희찡222222");
+    p.setConts("건희님이 덜 시무룩하다222222");
+    p.setPric(100);
+    //p.setMeno(6); << 이거 어차피 수정해도 판매자 번호여서 수정 불가함
+    
+    productService.update(p);
+    
+    
+    
   }
 
 }
