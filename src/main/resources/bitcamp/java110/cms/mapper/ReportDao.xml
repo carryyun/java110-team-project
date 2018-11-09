@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- reportDao 클래스가 사용할 SQL이 들어 있는 파일 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.java110.cms.dao.ReportDao">
+
+	<resultMap type="report" id="reportMap">
+		<id column="rtno" property="no" />
+		<result column="titl" property="titl" />
+		<result column="conts" property="conts" />
+		<result column="url" property="url" />
+		<result column="type" property="type" />
+        <result column="rtdt" property="rtdt" />
+        <result column="meno2" property="meno2" />
+        <result column="meno" property="meno" />
+
+	</resultMap>
+
+	<sql id="select1">
+	SELECT
+	rtno,
+	titl,
+	conts,
+	url,
+	type,
+	rtdt,
+	meno2,
+	meno
+	FROM
+	p_rept
+
+	</sql>
+
+	<select id="findAll" resultMap="reportMap" parameterType="map">
+		<include refid="select1"></include>
+
+		
+		order by
+		rtno asc
+	</select>
+
+	<select id="findByRtno" resultMap="reportMap"	parameterType="int">
+		<include refid="select1"></include>
+		where
+		rtno=#{value}
+	</select>
+
+	<select id="findByMeno2" resultMap="reportMap"	parameterType="int">
+		<include refid="select1"></include>
+		where
+		meno2=#{value}
+	</select>
+	
+	<select id="findByMeno" resultMap="reportMap"   parameterType="int">
+        <include refid="select1"></include>
+        where
+        meno=#{value}
+    </select>
+
+
+
+</mapper>

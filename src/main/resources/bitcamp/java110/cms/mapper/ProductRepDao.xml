@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- BigTagDao 클래스가 사용할 SQL이 들어 있는 파일 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.java110.cms.dao.ProductRepDao">
+
+    <resultMap type="productRep" id="productRepMap">
+        <id column="rno"        property="no"/>
+        <result column="meno"   property="meno"/>
+        <result column="ptno"   property="ptno"/>
+        <result column="titl"   property="titl"/>
+        <result column="conts"   property="conts"/>
+        <result column="star"   property="star"/>
+        <result column="rgdt"   property="rgdt"/>
+        <result column="phot"   property="phot"/>
+    </resultMap>
+    
+    <select id="findAll" resultMap="productRepMap">
+        select
+            rno,
+            meno,
+            ptno,
+            titl,
+            conts,
+            star,
+            rgdt,
+            phot
+        from 
+            p_prdt_rep
+        order by 
+            rno asc
+    </select>
+
+    <select id="findByNo" 
+            resultMap="productRepMap" parameterType="int">
+        select
+            rno,
+            meno,
+            ptno,
+            titl,
+            conts,
+            star,
+            rgdt,
+            phot
+        from
+            p_prdt_rep
+        where 
+            rno=#{value}
+    </select>
+    
+    <select id="findAllByMeno" 
+            resultMap="productRepMap" parameterType="Map">
+        select
+            rno,
+            meno,
+            ptno,
+            titl,
+            conts,
+            star,
+            rgdt,
+            phot
+        from
+            p_prdt_rep
+        where 
+            meno=#{mentno}
+    </select>
+    
+    
+    <select id="findAllByPtno" 
+            resultMap="productRepMap" parameterType="Map">
+        select
+            rno,
+            meno,
+            ptno,
+            titl,
+            conts,
+            star,
+            rgdt,
+            phot
+        from
+            p_prdt_rep
+        where 
+            ptno=#{productno}
+    </select>
+
+</mapper>

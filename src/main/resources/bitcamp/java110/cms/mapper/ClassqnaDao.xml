@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- MemberDao 클래스가 사용할 SQL이 들어 있는 파일 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.java110.cms.dao.ClassqnaDao">
+
+    <resultMap type="Classqna" id="ClassqnaMap">
+        <id 	column="qno" 	property="no"/>
+        <result column="meno"   property="meno"/>
+        <result column="cno"    property="cno"/>
+        <result column="titl"   property="titl"/>
+        <result column="conts"  property="conts"/>
+        <result column="rgdt"  	property="rgdt"/>
+        <result column="anser"  property="anser"/>
+        <result column="rgdt2"  property="rgdt2"/>
+    </resultMap>
+    
+    <select id="qnalist" resultMap="ClassqnaMap" parameterType="map">
+        select
+        	qno,meno,cno,titl,conts,rgdt,anser,rgdt2
+        from
+        	p_cls_qna as pcq inner join p_mete as pe
+        		on pcq.meno = pe.meno
+        	inner join p_cls as ps
+        		on pcq.cno = ps.cno
+        order by qno  asc;
+    </select>
+
+    <insert id="quainsert" parameterType="int">
+        insert 
+        	into p_cls_qna()
+        values
+        	(#{},)
+    </insert> 
+    
+    <insert id="ansinsert" parameterType="int">
+        insert 
+        	into 
+        values
+        	(#{},)
+    </insert> 
+    
+</mapper>
+
+
+
+
+
+
+
+
+

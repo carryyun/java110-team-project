@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ClassFile 클래스가 사용할 SQL이 들어 있는 파일 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="bitcamp.java110.cms.dao.ClassFileDao">
+    
+    <resultMap type="ClassFile" id="cfileMap">
+        <id column="cfno" property="cfno"/>
+        <result column="cno" property="cno"/>
+        <result column="fname" property="fname"/>
+    </resultMap>
+    
+    <sql id="select1">
+        select 
+            cfno, fname
+        from 
+            p_cls_file        
+    </sql>
+    
+    <select id="findAll" resultMap="cfileMap">
+        <include refid="select1"/>
+        order by
+            cfno asc
+    </select>
+    
+    <select id="findByNo" resultMap="cfileMap" parameterType="int">
+        <include refid="select1"/>
+        where
+            cno=#{value}
+    </select>
+    
+    <insert id="insert" parameterType="ClassFile" useGeneratedKeys="true" keyColumn="cfno" keyProperty="no">
+        insert into p_cls_file(fname, cno)
+        values(#{fname},3)
+        <!-- cno에 임의로 값을 3 넣었기 때문에 나중에 변경해 주어야 함  -->
+    </insert>
+    
+    <delete id="delete" parameterType="int">
+        delete from p_cls_file
+        where cfno=#{cfno}
+    </delete>
+    
+  </mapper>
