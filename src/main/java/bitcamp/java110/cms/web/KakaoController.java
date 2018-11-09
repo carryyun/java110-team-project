@@ -103,11 +103,26 @@ public class KakaoController {
     
     @GetMapping("noti")
     public void noti() {
-      List<Notice> n = noticeService.list(3, 10);
-      System.out.println(n);
-      for(Notice notis: n) {
-        System.out.println(notis.getUrl());
-      }
+      // select test
+//      List<Notice> n = noticeService.list(3, 10);
+//      System.out.println(n);
+//      for(Notice notis: n) {
+//        System.out.println(notis.getNo());
+//      }
+      
+      // insert test
+//      Notice n = new Notice();
+//      n.setType("type1");
+//      n.setUrl("url1");
+//      
+//      noticeService.add(n);
+      
+      Notice n = new Notice();
+      n.setNo(9);
+      n.setType("변경1");
+      n.setUrl("url변경1");
+      
+     noticeService.update(n);
       
     }
     
@@ -115,6 +130,9 @@ public class KakaoController {
     public void mfile() {
       List<MentorFile> mf = mfileService.list(3, 10);
       System.out.println(mf);
+      for(MentorFile m:mf) {
+        System.out.println(m.getMfno());
+      }
       
     }
     
