@@ -6,17 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import bitcamp.java110.cms.dao.ClassorderDao;
-import bitcamp.java110.cms.domain.Classorder;
-import bitcamp.java110.cms.service.ClassorderService;
+import bitcamp.java110.cms.dao.ClassOrderDao;
+import bitcamp.java110.cms.domain.ClassOrder;
+import bitcamp.java110.cms.service.ClassOrderService;
 
 @Service
-public class ClassorderServiceImpl implements ClassorderService{
+public class ClassOrderServiceImpl implements ClassOrderService{
 
-  @Autowired ClassorderDao classorderDao;
+  @Autowired ClassOrderDao classorderDao;
 
   @Override
-  public List<Classorder> corderlist(int pageSize) {
+  public List<ClassOrder> corderlist(int pageSize) {
     
     HashMap<String, Object> params = new HashMap<>();
     params.put("size", pageSize);
@@ -26,7 +26,7 @@ public class ClassorderServiceImpl implements ClassorderService{
   
   @Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
   @Override
-  public void orderadd(Classorder classorder) {
+  public void orderadd(ClassOrder classorder) {
     classorderDao.orderinsert(classorder);
   }
 }
