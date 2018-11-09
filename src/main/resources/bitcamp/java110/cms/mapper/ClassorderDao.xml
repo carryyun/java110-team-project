@@ -22,6 +22,14 @@
         	p_cls_order
         	
     </select>
+
+    <insert id="orderinsert" parameterType="int"
+    useGeneratedKeys="true" keyColumn="ono" keyProperty="no">
+        insert 
+        	into p_cls_qna(meno,time,tot_pric,payopt,paydt,ctno)
+        values
+        	(#{meno},#{time},#{tot_pric},#{payopt},#{paydt},#{ctno})
+    </insert>
     
 </mapper>
 

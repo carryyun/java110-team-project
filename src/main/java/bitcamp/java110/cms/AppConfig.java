@@ -1,7 +1,8 @@
 package bitcamp.java110.cms;
 
+import java.util.HashMap;
+import java.util.Map;
 import javax.sql.DataSource;
-
 import org.apache.commons.dbcp.BasicDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -27,10 +28,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class AppConfig {
 
   @Autowired
-  Environment env;
+  Environment env; 
 
   public AppConfig() {
     System.out.println("AppConfig() 호출됨!");
+
   }
 
   @Bean(destroyMethod="close")

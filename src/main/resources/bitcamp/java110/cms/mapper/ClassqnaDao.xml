@@ -26,6 +26,22 @@
         		on pcq.cno = ps.cno
         order by qno  asc;
     </select>
+
+    <insert id="quainsert" parameterType="int"
+    useGeneratedKeys="true" keyColumn="qno" keyProperty="no">
+        insert 
+        	into p_cls_qna(meno,cno,titl,conts,rgdt)
+        values
+        	(#{meno},#{cno},#{titl},#{conts},#{rgdt})
+    </insert> 
+    
+    <insert id="ansinsert" parameterType="int"
+    useGeneratedKeys="true" keyColumn="qno" keyProperty="no">
+        insert 
+        	into p_cls_qna(meno,cno,titl,conts,rgdt,anser,rgdt2)
+        values
+        	(#{meno},#{cno},#{titl},#{conts},#{rgdt},#{anser},#{rgdt2})
+    </insert>
     
 </mapper>
 

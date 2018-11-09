@@ -43,14 +43,15 @@
 		where bas_addr = #{bas_addr}
 	</select>
     
-    <insert id="classinsert" parameterType="Classes">
+    <insert id="classinsert" parameterType="Classes"
+    useGeneratedKeys="true" keyColumn="cno" keyProperty="no">
         insert 
         	into p_cls(titl,conts,pric,rgdt,time,capa,cfile
-        	,tinfo,cinfo,pstno,bas_addr,det_addr,edt)
+        	,tinfo,cinfo,pstno,bas_addr,det_addr,edt,mono,mtno)
         values
-        	(#{titl},#{conts},#{pric},#{rgdt},#{time},#{capa}
+        	(#{titl},#{conts},#{pric},now(),#{time},#{capa}
         	,#{cfile},#{tinfo},#{cinfo},#{pstno},#{bas_addr}
-        	,#{det_addr},#{edt})
+        	,#{det_addr},now(),#{mono},#{mtno})
     </insert> 
     
 </mapper>

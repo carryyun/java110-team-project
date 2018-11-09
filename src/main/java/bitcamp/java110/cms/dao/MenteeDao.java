@@ -1,3 +1,4 @@
+
 package bitcamp.java110.cms.dao;
 
 import java.util.List;
@@ -6,7 +7,7 @@ import bitcamp.java110.cms.domain.Mentee;
 
 public interface MenteeDao {
   int insert(Mentee mentee);
-  
+
   int delete(int no);
 
   List<Mentee> findAll(Map<String, Object> params); // 전체조회
@@ -19,15 +20,3 @@ public interface MenteeDao {
 
   List<Mentee> findAllByPhone(Map<String, Object> params); // 핸드폰
 }
-
-
-//SELECT
-//me.meno,
-//me.name,
-//mo.carr
-//FROM
-//p_mete me
-//JOIN p_meto mo
-//WHERE
-//me.meno=1 AND
-//me.meno = mo.mono;

@@ -54,5 +54,15 @@ public class ProductCertServiceImpl implements ProductCertService {
     return productCertDao.findAllByMeno(params);
   }
 
+  @Override
+  public int add(ProductCert prct) {
+    return productCertDao.insert(prct);
+  }
+
+  @Override
+  public int update(ProductCert prct) {
+    return productCertDao.update(prct);
+  }
+
 
 }

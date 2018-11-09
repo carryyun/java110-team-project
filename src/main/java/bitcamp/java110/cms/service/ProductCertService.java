@@ -16,6 +16,7 @@ public interface ProductCertService {
   // 멘티 번호로 조회
   List<ProductCert> listByMeno(int pageNo, int pageSize, int meno);
   
+  int add(ProductCert prct);
+  int update(ProductCert prct);
   
- 
 }

@@ -10,7 +10,7 @@ import bitcamp.java110.cms.dao.ClassbaktDao;
 import bitcamp.java110.cms.domain.Classbakt;
 import bitcamp.java110.cms.service.ClassbaktService;
 
-//@Service
+@Service
 public class ClassbaktServiceImpl implements ClassbaktService {
 
   @Autowired ClassbaktDao classbaktDao;

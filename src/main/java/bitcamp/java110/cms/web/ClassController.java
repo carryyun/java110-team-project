@@ -52,27 +52,12 @@ public class ClassController {
     }
   }
 
-  /*@GetMapping("form")
-  public void form() {
+  @PostMapping("classinsert")
+  public int classinsert(Classes c) {
+    System.out.println("classinsert 호출");
     
-  }*/
-  
-  /*@PostMapping("classinsert")
-  public String classinsert(Classes classes, MultipartFile file1) {
-    System.out.println("classinsert 삽입 전");
-    if (file1.getSize() > 0) {
-      String filename = UUID.randomUUID().toString();
-      try {
-        file1.transferTo(new File(sc.getRealPath("/classphoto/" + filename)));
-      } catch (IllegalStateException | IOException e) {
-        e.printStackTrace();
-      }
-      classes.setPhot(filename);
-    }
-    classService.classadd(classes);
-    System.out.println("classinsert 삽입 후");
-    return "redirect:list";
-  }*/
+    return classService.classadd(c);
+  }
   
   @GetMapping("findBytag")
   public Classes findBytag() {
