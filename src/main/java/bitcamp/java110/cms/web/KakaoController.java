@@ -38,25 +38,17 @@ public class KakaoController {
     ProductTimetableService productTimetableService;
     ReportService reportService;
 
-<<<<<<< HEAD
-=======
 
->>>>>>> a05e906b7a6b70dad5a1875472557c19d3ebb90f
     public KakaoController(
         AuthService authService
         ,NoticeService noticeService
         ,CsService csService
         ,ClassFileService cfileService
         ,MentorFileService mfileService
-<<<<<<< HEAD
         ,MentorLicenseService mlicnService
-        ,ProductTimetableService productTimetableService) {
- 
-=======
-        ,ReportService reportService
-        ,MentorLicenseService mlicnService
-        ,ProductTimetableService productTimetableService) {
->>>>>>> a05e906b7a6b70dad5a1875472557c19d3ebb90f
+        ,ProductTimetableService productTimetableService
+        ,ReportService reportService) {
+
         this.authService = authService;
         this.noticeService = noticeService;
         this.csService = csService;
@@ -64,10 +56,8 @@ public class KakaoController {
         this.mfileService = mfileService;
         this.mlicnService = mlicnService;
         this.productTimetableService=productTimetableService;
-<<<<<<< HEAD
-=======
         this.reportService=reportService;
->>>>>>> a05e906b7a6b70dad5a1875472557c19d3ebb90f
+
     }
     
        
@@ -86,11 +76,7 @@ public class KakaoController {
         System.out.println(ml.get(2));
       }
     }
-<<<<<<< HEAD
-    
 
-=======
->>>>>>> a05e906b7a6b70dad5a1875472557c19d3ebb90f
     @GetMapping("timetable")
     public void timetable() {
       List<ProductTimetable> pt = productTimetableService.list(1, 5);
