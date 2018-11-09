@@ -12,6 +12,7 @@ public class ClassqnaServiceImpl implements ClassqnaService{
   
   @Autowired ClassqnaDao classqnaDao;
   
+  @Override
   public void qnaadd(Classqna classqna) {
     
   }

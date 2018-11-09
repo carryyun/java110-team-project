@@ -9,13 +9,17 @@ public interface MenteeDao {
 
   int delete(int no);
 
-  List<Mentee> findAll(Map<String, Object> params); // 전체조회
-
   Mentee findByNo(int no); // 멘티 번호
+
+  Mentee getMentee();
+  
+  List<Mentee> findAll(Map<String, Object> params); // 전체조회
 
   List<Mentee> findAllByEmail(Map<String, Object> params); // 이메일
 
   List<Mentee> findAllByNick(Map<String, Object> params); // 닉네임
 
   List<Mentee> findAllByPhone(Map<String, Object> params); // 핸드폰
+  
+  
 }
