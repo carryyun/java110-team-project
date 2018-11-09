@@ -2,7 +2,7 @@ package bitcamp.java110.cms.domain;
 
 import java.sql.Date;
 
-public class Classqna {
+public class ClassQna {
 
   private int no;
   private int meno;

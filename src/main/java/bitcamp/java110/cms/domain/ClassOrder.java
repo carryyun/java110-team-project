@@ -2,7 +2,7 @@ package bitcamp.java110.cms.domain;
 
 import java.sql.Date;
 
-public class Classorder {
+public class ClassOrder {
   
   private int no;
   private int meno;
