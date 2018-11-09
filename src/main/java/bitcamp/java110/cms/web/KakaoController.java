@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import bitcamp.java110.cms.domain.ClassFile;
 import bitcamp.java110.cms.domain.Cs;
 import bitcamp.java110.cms.domain.Member;
 import bitcamp.java110.cms.domain.MentorFile;
@@ -16,6 +17,7 @@ import bitcamp.java110.cms.domain.Notice;
 import bitcamp.java110.cms.domain.ProductTimetable;
 import bitcamp.java110.cms.domain.Report;
 import bitcamp.java110.cms.service.AuthService;
+import bitcamp.java110.cms.service.ClassFileService;
 import bitcamp.java110.cms.service.CsService;
 import bitcamp.java110.cms.service.MentorFileService;
 import bitcamp.java110.cms.service.MentorLicenseService;
@@ -30,7 +32,7 @@ public class KakaoController {
     AuthService authService;
     NoticeService noticeService;
     CsService csService;
-//    ClassFileService cfileService;
+    ClassFileService cfileService;
     MentorFileService mfileService;
     MentorLicenseService mlicnService;
     ProductTimetableService productTimetableService;
@@ -41,7 +43,7 @@ public class KakaoController {
         AuthService authService
         ,NoticeService noticeService
         ,CsService csService
-//        ,ClassFileService cfileService
+        ,ClassFileService cfileService
         ,MentorFileService mfileService
         ,MentorLicenseService mlicnService
         ,ProductTimetableService productTimetableService
@@ -50,7 +52,7 @@ public class KakaoController {
         this.authService = authService;
         this.noticeService = noticeService;
         this.csService = csService;
-//        this.cfileService = cfileService;
+        this.cfileService = cfileService;
         this.mfileService = mfileService;
         this.mlicnService = mlicnService;
         this.productTimetableService=productTimetableService;
@@ -68,11 +70,30 @@ public class KakaoController {
     
     @GetMapping("mlicn")
     public void mlicn() {
-      List<MentorLicense> ml = mlicnService.list(1,5);
-      System.out.println(ml);
-      for(MentorLicense mlicn: ml) {
-        System.out.println(ml.get(2));
-      }
+      // select test
+//      List<MentorLicense> ml = mlicnService.list(1,5);
+//      System.out.println(ml);
+//      for(MentorLicense mlicn: ml) {
+//        System.out.println(ml.get(2));
+//      }
+      
+      // insert test
+//      MentorLicense m = new MentorLicense();
+//      
+//      m.setLname("name1");
+//      m.setPhot("phot1");
+//      m.setMono(3);
+//      
+//      mlicnService.add(m);
+      
+      // update test
+      MentorLicense m = new MentorLicense();
+      
+      m.setNo(7);
+      m.setLname("name2");
+      m.setPhot("phot2");
+      
+      mlicnService.update(m);
     }
 
     @GetMapping("timetable")
@@ -128,34 +149,109 @@ public class KakaoController {
     
     @GetMapping("noti")
     public void noti() {
-      List<Notice> n = noticeService.list(3, 10);
-      System.out.println(n);
-      for(Notice notis: n) {
-        System.out.println(notis.getUrl());
-      }
+      // select test
+//      List<Notice> n = noticeService.list(3, 10);
+//      System.out.println(n);
+//      for(Notice notis: n) {
+//        System.out.println(notis.getNo());
+//      }
+      
+      // insert test
+//      Notice n = new Notice();
+//      n.setType("type1");
+//      n.setUrl("url1");
+//      
+//      noticeService.add(n);
+      
+      Notice n = new Notice();
+      n.setNo(9);
+      n.setType("변경1");
+      n.setUrl("url변경1");
+      
+     noticeService.update(n);
       
     }
     
     @GetMapping("mfile")
     public void mfile() {
-      List<MentorFile> mf = mfileService.list(3, 10);
-      System.out.println(mf);
+      // select test
+//      List<MentorFile> mf = mfileService.list(3, 10);
+//      System.out.println(mf);
+//      for(MentorFile m:mf) {
+//        System.out.println(m.getNo());
+//      }
+      
+      // insert test
+//      MentorFile m = new MentorFile();
+//      
+//      m.setMfname("name");
+//      m.setMono(4);
+//      
+//      mfileService.add(m);
+      
+      // update test
+      MentorFile m = new MentorFile();
+      
+      m.setNo(7);
+      m.setMfname("name1");
+      
+      mfileService.update(m);
+      
       
     }
     
     @GetMapping("cs")
     public void cs() {
-      List<Cs> cs = csService.list(3, 10);
-      System.out.println(cs);
+      // select test
+//      List<Cs> cs = csService.list(3, 10);
+//      System.out.println(cs);
+//      for(Cs c: cs) {
+//        System.out.println("질문번호: "+c.getNo());
+//      }
+      
+      //insert test
+//      Cs cs = new Cs();
+//      cs.setConts("cont1");
+//      cs.setAnser("anser1");
+//      cs.setMeno(3);
+//      cs.setTitl("titl1");
+//      
+//      csService.add(cs);
+      
+      //update test
+      Cs c = new Cs();
+      c.setNo(6);
+      c.setAnser("test1");
+      c.setTitl("test1");
+      c.setConts("conts");
+      
+      csService.update(c);
     }
     
     @GetMapping("cfile")
     public void cfile() {
+      // select test
 //      List<ClassFile> cfile = cfileService.list(3, 10);
 //      System.out.println(cfile);
 //      for(ClassFile classfile: cfile) {
 //        System.out.println(classfile.getFname());
 //      }
+      
+      // insert test
+//      ClassFile c = new ClassFile();
+//      
+//      c.setFname("test1");
+//      c.setCno(4);
+//      
+//      cfileService.add(c);
+      
+      // update test
+      ClassFile c = new ClassFile();
+      
+      c.setNo(7);
+      c.setFname("test2");
+      
+      cfileService.update(c);
     }
     
     @PostMapping("login")

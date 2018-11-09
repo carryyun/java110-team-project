@@ -6,7 +6,7 @@
   <mapper namespace="bitcamp.java110.cms.dao.ClassFileDao">
     
     <resultMap type="ClassFile" id="cfileMap">
-        <id column="cfno" property="cfno"/>
+        <id column="cfno" property="no"/>
         <result column="cno" property="cno"/>
         <result column="fname" property="fname"/>
     </resultMap>
@@ -40,5 +40,15 @@
         delete from p_cls_file
         where cfno=#{cfno}
     </delete>
+    
+    <update id="update" parameterType="ClassFile">
+        update p_cls_file
+        
+        <set>
+            <if test="fname!=null">fname=#{fname}</if>
+        </set>
+         where
+            cfno=#{no}
+    </update>
     
   </mapper>

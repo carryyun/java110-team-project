@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- BigTagDao 클래스가 사용할 SQL이 들어 있는 파일 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.java110.cms.dao.MentorDao">
+
+    <resultMap type="mentor" id="mentorMap">
+        <id column="mono"       property="no"/>
+        <result column="carr"   property="carr"/>
+        <result column="stat"   property="stat"/>
+        
+    </resultMap>
+    
+    <select id="findAll" resultMap="mentorMap" >
+        select 
+        	mono,
+        	bas_addr,
+        	note,
+        	carr
+          from p_meto mto left outer join p_mete mte 
+          	on mte.meno = mto.mono;
+    </select>
+
+    <insert id="insert" parameterType="mentor">
+        insert into 
+        		p_meto
+        	 values
+        		(#{no}
+        		,#{carr}
+        		,#{stat})
+    </insert>
+    
+    
+    
+</mapper>

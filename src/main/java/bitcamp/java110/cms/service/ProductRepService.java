@@ -10,6 +10,7 @@ public interface ProductRepService {
   // 댓글 번호로 조회
   ProductRep get(int no); 
   
+  
   // 작성자 번호로 조회
   List<ProductRep> listByMeno(int pageNo, int pageSize, int meno);
   

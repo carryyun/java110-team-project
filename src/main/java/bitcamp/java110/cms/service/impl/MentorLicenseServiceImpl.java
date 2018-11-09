@@ -17,12 +17,6 @@ public class MentorLicenseServiceImpl implements MentorLicenseService {
   @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 
   @Override
-  public void add(MentorLicense mlicn) {
-    mlicnDao.insert(mlicn);
-    
-  }
-
-  @Override
   public List<MentorLicense> list(int pageNo, int pageSize) {
     HashMap<String, Object> params = new HashMap<>();
     params.put("rowNo", (pageNo-1) * pageSize);
@@ -43,6 +37,16 @@ public class MentorLicenseServiceImpl implements MentorLicenseService {
     }
     mlicnDao.delete(no);
     
+  }
+
+  @Override
+  public int add(MentorLicense mlicn) {
+    return mlicnDao.insert(mlicn);
+  }
+
+  @Override
+  public int update(MentorLicense mlicn) {
+    return mlicnDao.update(mlicn);
   }
 
 }

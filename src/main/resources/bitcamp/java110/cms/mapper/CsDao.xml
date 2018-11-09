@@ -53,5 +53,18 @@
         delete from p_cs
         where csno=#{value}
     </delete>
+    <update id="update" parameterType="Cs">
+    update p_cs
+    
+        <set>
+            <if test="titl!=null">titl=#{titl},</if>
+            <if test="conts!=null">conts=#{conts},</if>
+            <if test="anser!=null">anser=#{anser},</if>
+            <if test="rgdt2!=null">rgdt2=#{rgdt2}</if>
+        </set>
+        
+            where
+                csno=#{no}
+    </update>
 
 </mapper>

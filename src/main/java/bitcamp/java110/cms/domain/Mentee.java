@@ -5,22 +5,22 @@ import java.sql.Date;
 // 멘티
 
 public class Mentee {
-  private int no;
-  private String name;
-  private String email;
-  private String pwd;
-  private String nick;
-  private String phone;
-  private String pstno;
-  private String bas_addr;
-  private String det_addr;
-  private String phot;
-  private char sell;
-  private String bkname;
-  private int bkno;
-  private Date rgdt;
-  private char stat;
-  private String note;
+  protected int no;
+  protected String name;
+  protected String email;
+  protected String pwd;
+  protected String nick;
+  protected String phone;
+  protected String pstno;
+  protected String bas_addr;
+  protected String det_addr;
+  protected String phot;
+  protected char sell;
+  protected String bkname;
+  protected int bkno;
+  protected Date rgdt;
+  protected char stat;
+  protected String note;
 
   public int getNo() {
     return no;

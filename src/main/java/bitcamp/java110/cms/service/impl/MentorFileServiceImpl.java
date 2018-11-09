@@ -17,12 +17,6 @@ public class MentorFileServiceImpl implements MentorFileService{
   @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 
   @Override
-  public void add(MentorFile mfile) {
-    mfileDao.insert(mfile);
-    
-  }
-
-  @Override
   public List<MentorFile> list(int pageNo, int pageSize) {
     HashMap<String, Object> params = new HashMap<>();
     params.put("rowNo", (pageNo-1) * pageSize);
@@ -43,6 +37,16 @@ public class MentorFileServiceImpl implements MentorFileService{
     }
    mfileDao.delete(no);
     
+  }
+
+  @Override
+  public int add(MentorFile mfile) {
+    return mfileDao.insert(mfile);
+  }
+
+  @Override
+  public int update(MentorFile mfile) {
+    return mfileDao.update(mfile);
   }
 
 }
