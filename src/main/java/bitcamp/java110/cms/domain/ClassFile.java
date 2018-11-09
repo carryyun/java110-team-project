@@ -1,15 +1,15 @@
 package bitcamp.java110.cms.domain;
 
 public class ClassFile {
-  private int cfno;
+  private int no;
   private int cno;
   private String fname;
   
-  public int getCfno() {
-    return cfno;
+  public int getNo() {
+    return no;
   }
-  public void setCfno(int cfno) {
-    this.cfno = cfno;
+  public void setNo(int no) {
+    this.no = no;
   }
   public int getCno() {
     return cno;
@@ -23,5 +23,7 @@ public class ClassFile {
   public void setFname(String fname) {
     this.fname = fname;
   }
+ 
+  
 
 }
