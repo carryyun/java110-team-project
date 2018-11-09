@@ -6,9 +6,9 @@ import bitcamp.java110.cms.domain.Report;
 
 public interface ReportDao {
 
-  int insert(Report Report);
+  
   List<Report> findAll(Map<String,Object> params);
-  Report findByCtno(int no);
+  Report findByNo(int no);
 //  Report findByTitl(String titl);
 //  Report findByConts(String conts);
 //  Report findByUrl(String url);
@@ -16,5 +16,6 @@ public interface ReportDao {
 //  Report findByRtdt(Date rtdt);
   Report findByMeno(int no);
   Report findByMeno2(int no);
-  int delete(int no);
+  int insert(Report report);
+  int update(Report report);
 }
