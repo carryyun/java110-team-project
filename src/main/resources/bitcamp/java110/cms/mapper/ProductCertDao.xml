@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- BigTagDao 클래스가 사용할 SQL이 들어 있는 파일 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.java110.cms.dao.ProductCertDao">
+
+    <resultMap type="productCert" id="productCertMap">
+        <id column="ctno"        property="no"/>
+        <result column="cno"   property="cno"/>
+        <result column="meno"   property="meno"/>
+        <result column="type"   property="type"/>
+        <result column="cnt"   property="cnt"/>
+        <result column="edt"   property="edt"/>
+        <result column="ctdt"   property="ctdt"/>
+    </resultMap>
+    
+    <select id="findAll" resultMap="productCertMap">
+        select
+            ctno,
+            cno,
+            meno,
+            type,
+            cnt,
+            edt,
+            ctdt
+        from 
+            p_cert
+        order by 
+            ctno asc
+    </select>
+
+    <select id="findByNo" 
+            resultMap="productCertMap" parameterType="int">
+        select
+            ctno,
+            cno,
+            meno,
+            type,
+            cnt,
+            edt,
+            ctdt
+        from
+            p_cert
+        where 
+            ctno=#{value}
+    </select>
+    
+    <select id="findAllByCno" 
+            resultMap="productCertMap" parameterType="Map">
+        select
+            ctno,
+            cno,
+            meno,
+            type,
+            cnt,
+            edt,
+            ctdt
+        from
+            p_cert
+        where 
+            cno=#{classno}
+    </select>
+    
+    <select id="findAllByMeno" 
+            resultMap="productCertMap" parameterType="Map">
+        select
+            ctno,
+            cno,
+            meno,
+            type,
+            cnt,
+            edt,
+            ctdt
+        from
+            p_cert
+        where 
+            meno=#{mentno}
+    </select>
+    
+    
+    
+
+</mapper>

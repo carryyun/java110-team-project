@@ -26,6 +26,7 @@
   <body>
 
     <!-- Navigation -->
+    <div id="row">
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
         <a class="navbar-brand" href="index.html">하루</a>
@@ -48,68 +49,108 @@
         </div>
       </div>
     </nav>
+    </div>
+    
 
     <!-- Page Header -->
-    <header class="masthead" style="background-image: url('img/home-bg.jpg')">
-      <div class="overlay"></div>
-      <div class="container">
+    <header class="masthead">
+      
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+    <div class="container">
         <div class="row">
-          <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="col-lg-12 col-md-10 mx-auto">
+<hr style="border: 0; height: 2px;background: #ccc;">
             <div class="site-heading">
-             
+
+                <div class="row">
               <ul>
+               <h2>카테고리</h2>
                 <li><a href="#">의류</a></li>
                 <li><a href="#">생활용품</a></li>
                 <li><a href="#">장식용품</a></li>
                 <li><a href="#">가구</a></li>
                 <li><a href="#">기타</a></li>
               </ul>
-              
-              <span class="subheading">
-<!-- 오늘의 핫 아이템(카르셀) -->       
-<div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">    
+<!-- 오늘의 핫 아이템(카르셀) -->    
+<div class="col-lg-9 col-md-6 mx-auto">
+
+<h2>오늘의 핫 아이템</h2>
+<div id="TodayItem" class="carousel slide my-4" data-ride="carousel">
+
 <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    <li data-target="#TodayItem" data-slide-to="0" class="active"></li>
+    <li data-target="#TodayItem" data-slide-to="1"></li>
+    <li data-target="#TodayItem" data-slide-to="2"></li>
 </ol>
 <div class="carousel-inner" role="listbox">
     <div class="carousel-item active">
+      <div class="col-lg-12 mx-5"  style="padding-left: 2px">
+       <div class="test">
         <img class="d-block img-fluid" src="../../../img/product/900x350/julme.PNG" alt="First slide">
+       </div>
+       <div class="test">
+        <img class="d-block img-fluid" src="../../../img/product/900x350/julme.PNG" alt="Second slide">
+        </div>
+        <div class="test">
+        <img class="d-block img-fluid" src="../../../img/product/900x350/julme.PNG" alt="Third slide">
+       </div>
+       </div>
     </div>
     <div class="carousel-item">
-        <img class="d-block img-fluid" src="../../../img/product/900x350/julme2.PNG" alt="Second slide">
+      <div class="col-lg-12 mx-5"  style="padding-left: 2px">
+       <div class="test">
+        <img class="d-block img-fluid" src="../../../img/product/900x350/julme.PNG" alt="First slide">
+       </div>
+       <div class="test">
+        <img class="d-block img-fluid" src="../../../img/product/900x350/julme.PNG" alt="Second slide">
+        </div>
+        <div class="test">
+        <img class="d-block img-fluid" src="../../../img/product/900x350/julme.PNG" alt="Third slide">
+       </div>
+       </div>
     </div>
     <div class="carousel-item">
-        <img class="d-block img-fluid" src="../../../img/product/900x350/tokki.PNG" alt="Third slide">
+      <div class="col-lg-12 mx-5"  style="padding-left: 2px">
+       <div class="test">
+        <img class="d-block img-fluid" src="../../../img/product/900x350/julme.PNG" alt="First slide">
+       </div>
+       <div class="test">
+        <img class="d-block img-fluid" src="../../../img/product/900x350/julme.PNG" alt="Second slide">
+        </div>
+        <div class="test">
+        <img class="d-block img-fluid" src="../../../img/product/900x350/julme.PNG" alt="Third slide">
+       </div>
+       </div>
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    
+    <a class="carousel-control-prev" href="#TodayItem" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
     </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <a class="carousel-control-next" href="#TodayItem" role="button" data-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
     </a>
 </div>
 </div>
-                  
-              </span>
+</div>
+             </div>
             </div>
           </div>
         </div>
+        <hr style="border: 0; height: 2px;background: #ccc;">
       </div>
-    </header>
-
-    <!-- Main Content -->
-    <div class="container">
-      <div class="row">
+    
+    
+   <!--   <div class="row"> -->
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="post-preview">
             <a href="post.html">
 <div class="row">
-
-<div class="col-lg-6 col-md-6 mb-4">
+<div class="col-lg-4 col-md-6 mb-4">
   <div class="card h-100">
     <a href="#"><img class="card-img-top" src="../../../img/product/700x400/julme.PNG" alt=""></a>
     <div class="card-body">
@@ -117,7 +158,7 @@
         <a href="#">절미1</a>
       </h4>
       <h5>1,000 ￦</h5>
-      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+      <p class="card-text">Lorem ipsum dolor sit amet, consectetur!</p>
     </div>
     <div class="card-footer">
       <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
@@ -125,7 +166,7 @@
   </div>
 </div>
 
-<div class="col-lg-6 col-md-6 mb-4">
+<div class="col-lg-4 col-md-6 mb-4">
   <div class="card h-100">
     <a href="#"><img class="card-img-top" src="../../../img/product/700x400/julme.PNG" alt=""></a>
     <div class="card-body">
@@ -133,7 +174,7 @@
         <a href="#">절미1</a>
       </h4>
       <h5>1,000 ￦</h5>
-      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+      <p class="card-text">Lorem ipsum dolor sit amet, consectetur!</p>
     </div>
     <div class="card-footer">
       <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
@@ -141,7 +182,7 @@
   </div>
 </div>
 
-<div class="col-lg-6 col-md-6 mb-4">
+<div class="col-lg-4 col-md-6 mb-4">
   <div class="card h-100">
     <a href="#"><img class="card-img-top" src="../../../img/product/700x400/julme.PNG" alt=""></a>
     <div class="card-body">
@@ -149,7 +190,7 @@
         <a href="#">절미1</a>
       </h4>
       <h5>1,000 ￦</h5>
-      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+      <p class="card-text">Lorem ipsum dolor sit amet consectetur!</p>
     </div>
     <div class="card-footer">
       <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
@@ -163,14 +204,13 @@
               
           </div>
           <hr>
-          
-          <hr>
+
           <!-- Pager -->
           <div class="clearfix">
             <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
           </div>
         </div>
-      </div>
+   <!--   </div> -->
     </div>
 
     <hr>
@@ -222,3 +262,39 @@
   </body>
 
 </html>
+
+
+
+
+<!--메인 카르셀
+    <div class="col-lg-12 col-md-7 mx-auto">  
+<div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">    
+<ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+</ol>
+<div class="carousel-inner" role="listbox">
+    <div class="carousel-item active">
+        <img class="d-block img-fluid" src="../../../img/product/900x350/julme.PNG" alt="First slide">
+    </div>
+    <div class="carousel-item">
+        <img class="d-block img-fluid" src="../../../img/product/900x350/julme2.PNG" alt="Second slide">
+    </div>
+    <div class="carousel-item">
+        <img class="d-block img-fluid" src="../../../img/product/900x350/tokki.PNG" alt="Third slide">
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+</div>
+</div>
+
+
+-->

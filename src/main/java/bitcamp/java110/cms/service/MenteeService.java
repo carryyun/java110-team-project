@@ -24,4 +24,5 @@ public interface MenteeService {
   
   void delete(int no);
   
+  
 }

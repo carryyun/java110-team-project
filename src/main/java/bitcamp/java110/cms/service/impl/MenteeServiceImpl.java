@@ -69,6 +69,7 @@ public class MenteeServiceImpl implements MenteeService {
 
   @Override
   public void add(Mentee mentee) {
+
     menteeDao.insert(mentee);
 
   }
@@ -80,6 +81,7 @@ public class MenteeServiceImpl implements MenteeService {
       throw new RuntimeException("해당 번호의 데이터가 없습니다.");
     }
     menteeDao.delete(no);
+
   }
 
 }

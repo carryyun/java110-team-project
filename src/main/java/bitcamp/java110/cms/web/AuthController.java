@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import bitcamp.java110.cms.domain.Member;
-import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.service.AuthService;
 
 @Controller

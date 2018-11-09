@@ -9,5 +9,6 @@ public interface CsDao {
   List<Cs> findAll(Map<String,Object> params);
   Cs findByNo(int no);
   int delete(int no);
+  int update(Cs cs);
 
 }
