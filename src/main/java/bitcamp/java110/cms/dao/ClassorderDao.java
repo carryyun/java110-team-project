@@ -5,6 +5,7 @@ import java.util.Map;
 import bitcamp.java110.cms.domain.Classorder;
 
 public interface ClassorderDao {
-  int orderinsert(Classorder classorder);
   List<Classorder> orderlist(Map<String,Object> params);
+  int orderinsert(Classorder classorder);
+  //int orderupdate
 }

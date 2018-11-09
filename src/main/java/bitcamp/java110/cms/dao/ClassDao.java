@@ -6,7 +6,8 @@ import bitcamp.java110.cms.domain.Classes;
 
 public interface ClassDao {
   List<Classes> findAll(Map<String, Object> params);
-  int classinsert(Classes c);
+  int classinsert(Classes classes);
+  int classupdate(Classes classes);
   Classes findBytag(int tag);
   Classes findByba(String ba);
   Classes findByday(String day);

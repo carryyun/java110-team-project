@@ -17,7 +17,7 @@
     
     <select id="orderlist" resultMap="ClassorderMap" parameterType="map">
         select
-        	ono,meno,time,tot_pric,payout,paydt,ctno
+        	meno,time,tot_pric,payopt,paydt,ctno
         from
         	p_cls_order
         	
