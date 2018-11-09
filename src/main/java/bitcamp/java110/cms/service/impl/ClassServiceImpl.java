@@ -20,29 +20,17 @@ public class ClassServiceImpl implements ClassService{
   @Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
   public int classadd(Classes classes) {
     
-    Classes c = get(5);
-    
-    c.setTitl("고정지");
-    c.setConts("고정지");
-    c.setPric(111);
-    //c.setrgdt("now()");
-    c.setTime("고정지");
-    c.setCapa(5);
-    c.setCfile("고정지");
-    c.setTinfo("고정지");
-    c.setCinfo("고정지");
-    c.setPstno("고정지");
-    c.setBas_addr("고정지");
-    c.setDetAddr("고정지");
-    //c.setEdt("고정지");
-    c.setMono(4);
-    c.setMtno(4);
-    
-    
-    return classDao.classinsert(c);
+    return classDao.classinsert(classes);
     
   }
 
+  @Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
+  @Override
+  public int classupdate(Classes classes) {
+    
+    return classDao.classupdate(classes);
+  }
+  
   @Override
   public List<Classes> classlist(int pageSize){
     HashMap<String, Object> params = new HashMap<>();
@@ -57,5 +45,7 @@ public class ClassServiceImpl implements ClassService{
     
     return classDao.findByNo(no);
   }
+
+  
   
 }

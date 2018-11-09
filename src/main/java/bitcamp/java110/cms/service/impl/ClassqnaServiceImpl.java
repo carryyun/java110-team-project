@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import bitcamp.java110.cms.dao.ClassqnaDao;
 import bitcamp.java110.cms.domain.Classqna;
 import bitcamp.java110.cms.service.ClassqnaService;
+
 @Service
 public class ClassqnaServiceImpl implements ClassqnaService{
   
@@ -16,14 +17,23 @@ public class ClassqnaServiceImpl implements ClassqnaService{
   
   @Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
   @Override
-  public void qnaadd(Classqna classqna) {
-    classqnaDao.quainsert(classqna);
+  public int qnaadd(Classqna classqna) {
+    
+    return classqnaDao.qnainsert(classqna);
   }
   
   @Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
   @Override
-  public void ansadd(Classqna classqna) {
-    classqnaDao.ansinsert(classqna);
+  public int qnaupdate(Classqna classqna) {
+    
+    return classqnaDao.qnaupdate(classqna);
+  }
+  
+  @Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
+  @Override
+  public int ansupdate(Classqna classqna) {
+    
+    return classqnaDao.ansupdate(classqna);
   }
   
   @Override
@@ -34,4 +44,7 @@ public class ClassqnaServiceImpl implements ClassqnaService{
     
     return classqnaDao.qnalist(params);
   }
+
+  
 }
+

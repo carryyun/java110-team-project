@@ -14,14 +14,22 @@
 
     <select id="likelist" resultMap="classlikeMap" parameterType="map">
     	select 
-    		clno,meno,cno
+    		ps.titl,ps.conts,ps.pric,ps.bas_addr,pe.name
     	from
-    		p_cls_like
+    		p_cls_like as pce 
+    		inner join p_cls as ps
+    			on pce.cno = ps.cno
+    		inner join p_meto as po
+    			on ps.mono = po.mono
+    		inner join p_mete as pe
+    			on po.mono = pe.meno
+    	where
+    		pce.memo = #{meno} and po.stat = 'Y'nd 
     </select>
 
 	<insert id="likeinsert" parameterType="Classlike" 
             useGeneratedKeys="true" keyColumn="clno" keyProperty="no">
-		insert 
+		insert
 			into p_cls_like(meno,cno)
 		values
 			(#{meno},#{cno})
@@ -31,7 +39,7 @@
 		delete 
 			from p_cls_like
 		where
-			clno = #{clno}
+			clno = #{no}
 	</delete>
     
 </mapper>
