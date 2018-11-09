@@ -2,7 +2,7 @@ package bitcamp.java110.cms.domain;
 
 import java.sql.Date;
 
-public class ProductTimetable {
+public class Timetable {
   
   private int no;
   private int cno;

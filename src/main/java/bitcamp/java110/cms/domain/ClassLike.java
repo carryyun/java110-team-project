@@ -1,9 +1,9 @@
 package bitcamp.java110.cms.domain;
 
-public class Classbakt {
+public class ClassLike {
   private int no;
   private int meno;
-  private int ctno;
+  private int cno;
   
   public int getNo() {
     return no;
@@ -17,10 +17,10 @@ public class Classbakt {
   public void setMeno(int meno) {
     this.meno = meno;
   }
-  public int getCtno() {
-    return ctno;
+  public int getCno() {
+    return cno;
   }
-  public void setCtno(int ctno) {
-    this.ctno = ctno;
+  public void setCno(int cno) {
+    this.cno = cno;
   }
 }

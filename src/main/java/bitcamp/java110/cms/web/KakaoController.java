@@ -1,5 +1,6 @@
 package bitcamp.java110.cms.web;
 
+import java.sql.Date;
 import java.util.List;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -15,8 +16,8 @@ import bitcamp.java110.cms.domain.MentorFile;
 import bitcamp.java110.cms.domain.MentorLicense;
 import bitcamp.java110.cms.domain.Notice;
 import bitcamp.java110.cms.domain.ProductCert;
-import bitcamp.java110.cms.domain.ProductTimetable;
 import bitcamp.java110.cms.domain.Report;
+import bitcamp.java110.cms.domain.Timetable;
 import bitcamp.java110.cms.service.AuthService;
 import bitcamp.java110.cms.service.ClassFileService;
 import bitcamp.java110.cms.service.CsService;
@@ -24,8 +25,8 @@ import bitcamp.java110.cms.service.MentorFileService;
 import bitcamp.java110.cms.service.MentorLicenseService;
 import bitcamp.java110.cms.service.NoticeService;
 import bitcamp.java110.cms.service.ProductCertService;
-import bitcamp.java110.cms.service.ProductTimetableService;
 import bitcamp.java110.cms.service.ReportService;
+import bitcamp.java110.cms.service.TimetableService;
 
 @Controller
 @RequestMapping("/kakao")
@@ -37,7 +38,7 @@ public class KakaoController {
     ClassFileService cfileService;
     MentorFileService mfileService;
     MentorLicenseService mlicnService;
-    ProductTimetableService productTimetableService;
+    TimetableService timetableService;
     ReportService reportService;
     ProductCertService prctService;
 
@@ -49,7 +50,7 @@ public class KakaoController {
         ,ClassFileService cfileService
         ,MentorFileService mfileService
         ,MentorLicenseService mlicnService
-        ,ProductTimetableService productTimetableService
+        ,TimetableService timetableService
         ,ReportService reportService
         ,ProductCertService prctService) {
 
@@ -59,7 +60,7 @@ public class KakaoController {
         this.cfileService = cfileService;
         this.mfileService = mfileService;
         this.mlicnService = mlicnService;
-        this.productTimetableService=productTimetableService;
+        this.timetableService=timetableService;
         this.reportService=reportService;
         this.prctService=prctService;
 
@@ -103,14 +104,41 @@ public class KakaoController {
 
     @GetMapping("timetable")
     public void timetable() {
-      List<ProductTimetable> pt = productTimetableService.list(1, 5);
-      System.out.println(pt);
-      for(ProductTimetable productTimetable: pt) {
-        System.out.println(productTimetable.getNo());
-        System.out.println(productTimetable.getCno());
-        
+      List<Timetable> t = timetableService.list(1, 4);
+      System.out.println(t);
+
+    
+      for(Timetable timetable: t) {
+        System.out.println(timetable.getNo());
+        System.out.println(timetable.getCno());
+        System.out.println(timetable.getDate());
+        System.out.println(timetable.getStime());
+        System.out.println(timetable.getCapa());
       }
-    }
+      
+        //insert
+        
+        Timetable tt=new Timetable();
+        
+     /*   
+         
+        tt.setCno(2);
+        tt.setCapa(3);
+        
+        timetableService.add(tt);
+      */
+        //update
+        tt.setNo(4);
+        tt.setCno(7);
+       tt.setCapa(3);
+    
+        
+        timetableService.update(tt);
+      
+      }
+    
+      
+    
     
     @GetMapping("prct")
     public void prct() {
@@ -148,7 +176,7 @@ public class KakaoController {
 //        System.out.println(report.getConts());
 //        System.out.println(report.getMeno2());
 //        System.out.println(report.getMeno());
-        
+//      }
         //insert
         
         Report rpt=new Report();
