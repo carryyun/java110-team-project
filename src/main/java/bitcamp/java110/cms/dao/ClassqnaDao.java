@@ -6,6 +6,7 @@ import bitcamp.java110.cms.domain.Classqna;
 
 public interface ClassqnaDao {
   List<Classqna> qnalist(Map<String, Object> params);
-  int quainsert(Classqna classqna);
-  int ansinsert(Classqna classqna);
+  int qnainsert(Classqna classqna);
+  int qnaupdate(Classqna classqna);
+  int ansupdate(Classqna classqna);
 }

@@ -17,8 +17,8 @@ import bitcamp.java110.cms.service.ClasslikeService;
 import bitcamp.java110.cms.service.ClassorderService;
 import bitcamp.java110.cms.service.ClassqnaService;
 
-//@Controller
-//@RequestMapping("/class")
+@Controller
+@RequestMapping("/class")
 public class ClassController {
 
   ClassService classService;
@@ -52,11 +52,51 @@ public class ClassController {
     }
   }
 
-  @PostMapping("classinsert")
-  public int classinsert(Classes c) {
-    System.out.println("classinsert 호출");
+  @RequestMapping("classinsert")
+  public void classinsert(Classes c) {
     
-    return classService.classadd(c);
+    c.setNo(6);
+    c.setTitl("고정지");
+    c.setConts("고정지");
+    c.setPric(111);
+    //c.setrgdt("now()");
+    c.setTime("고정지");
+    c.setCapa(5);
+    c.setCfile("고정지");
+    c.setTinfo("고정지");
+    c.setCinfo("고정지");
+    c.setPstno("고정지");
+    c.setBasAddr("고정지");
+    c.setDetAddr("고정지");
+    //c.setEdt("고정지");
+    c.setMono(4);
+    c.setMtno(4);
+    
+    classService.classadd(c);
+  }
+  
+  @RequestMapping("classupdate")
+  public void classupdate(Classes c) {
+    System.out.println("classupdate 호출");
+    
+    c.setNo(6);
+    c.setTitl("고정지");
+    c.setConts("안녕하세요 저는 둠칫둠칫");
+    c.setPric(111);
+    //c.setrgdt("now()");
+    c.setTime("고정지");
+    c.setCapa(10);
+    c.setCfile("naver");
+    c.setTinfo("고정지");
+    c.setCinfo("안녕하ㅔ요");
+    c.setPstno("고정지");
+    c.setBasAddr("고정지");
+    c.setDetAddr("고정지");
+    //c.setEdt("고정지");
+    c.setMono(3);
+    c.setMtno(3);
+    
+    classService.classupdate(c);
   }
   
   @GetMapping("findBytag")
@@ -113,20 +153,38 @@ public class ClassController {
     }
   }
   
-  @PostMapping("quainsert")
-  public int quainsert(Classqna classqna) {
+  @RequestMapping("qnainsert")
+  public void qnainsert(Classqna classqna) {
+    
+    classqna.setNo(7);
+    classqna.setMeno(5);
+    classqna.setCno(7);
+    classqna.setTitl("호에에엣?");
+    classqna.setConts("히이이ㅣ이엣?");
     
     classqnaService.qnaadd(classqna);
-    
-    return 1;
   }
   
-  @PostMapping("ansinsert")
-  public int ansinsert(Classqna classqna) {
+  @RequestMapping("qnaupdate")
+  public void qnaupdate(Classqna classqna) {
     
-    classqnaService.ansadd(classqna);
+    classqna.setNo(5);
+    //classqna.setMeno(7);
+    //classqna.setCno(cno);
+    classqna.setTitl("고정은씨는 이 글을 보시오!!");
+    classqna.setConts("응 넌 낚였어");
     
-    return 1;
+    classqnaService.qnaupdate(classqna);
+  }
+  
+  @RequestMapping("ansupdate")
+  public void ansupdate(Classqna classqna) {
+    
+    classqna.setNo(6);
+    classqna.setAnser("손님..;; 손님이 더 이상해요!!!");
+    
+    classqnaService.ansupdate(classqna);
+    
   }
   
   ///////////////// p_cls_qna 수업질문답변//////////////////
@@ -171,20 +229,23 @@ public class ClassController {
     return null;
   }
   
-  @PostMapping("likeinsert")
-  public int likeinsert(Classlike classlike) {
+  @RequestMapping("likeinsert")
+  public void likeinsert(Classlike classlike) {
+    
+    classlike.setNo(6);
+    classlike.setCno(6);
+    classlike.setMeno(6);
     
     classlikeService.likeadd(classlike);
     
-    return 1;
   }
   
-  @PostMapping("likedelete")
-  public int likedelete(Classlike classlike) {
+  @RequestMapping("likedelete")
+  public void likedelete(Classlike classlike) {
+    
+    classlike.setNo(4);
     
     classlikeService.likesub(classlike);
-    
-    return 1;
   }
   
   ////////////////////////p_cls_like 찜클래스///////////////////////
