@@ -27,21 +27,36 @@
         order by qno  asc;
     </select>
 
-    <insert id="quainsert" parameterType="int"
+    <insert id="qnainsert" parameterType="Classqna"
     useGeneratedKeys="true" keyColumn="qno" keyProperty="no">
         insert 
         	into p_cls_qna(meno,cno,titl,conts,rgdt)
         values
-        	(#{meno},#{cno},#{titl},#{conts},#{rgdt})
+        	(#{meno},#{cno},#{titl},#{conts},now())
     </insert> 
     
-    <insert id="ansinsert" parameterType="int"
-    useGeneratedKeys="true" keyColumn="qno" keyProperty="no">
-        insert 
-        	into p_cls_qna(meno,cno,titl,conts,rgdt,anser,rgdt2)
-        values
-        	(#{meno},#{cno},#{titl},#{conts},#{rgdt},#{anser},#{rgdt2})
-    </insert>
+    <update id="qnaupdate" parameterType="Classqna">
+    	update p_cls_qna
+    		<set>
+    			<if test="meno > 0">meno = #{meno},</if>
+    			<if test="cno > 0">cno = #{cno},</if>
+    			<if test="titl != null">titl = #{titl},</if>
+    			<if test="conts != null">conts = #{conts},</if>
+    			<if test="rgdt != null">rgdt = #{rgdt},</if>
+    		</set>
+    	where
+    		qno = #{no}
+    </update>
+    
+    <update id="ansupdate" parameterType="Classqna">
+        update p_cls_qna
+    		<set>
+    			<if test="anser != null">anser = #{anser},</if>
+    			rgdt2 = now()
+    		</set>
+    	where
+    		qno = #{no}
+    </update>
     
 </mapper>
 

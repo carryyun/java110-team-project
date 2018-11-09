@@ -5,7 +5,8 @@ import bitcamp.java110.cms.domain.Classqna;
 
 public interface ClassqnaService {
   
-  void qnaadd(Classqna classqna);
-  void ansadd(Classqna classqna);
+  int qnaadd(Classqna classqna);
+  int qnaupdate(Classqna classqna);
+  int ansupdate(Classqna classqna);
   List<Classqna> classqnalist(int pageSize);
 }
