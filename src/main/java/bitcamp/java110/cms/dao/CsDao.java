@@ -5,9 +5,10 @@ import java.util.Map;
 import bitcamp.java110.cms.domain.Cs;
 
 public interface CsDao {
-  int insert(Cs csg);
+  int insert(Cs cs);
   List<Cs> findAll(Map<String,Object> params);
   Cs findByNo(int no);
   int delete(int no);
+  int update(Cs cs);
 
 }

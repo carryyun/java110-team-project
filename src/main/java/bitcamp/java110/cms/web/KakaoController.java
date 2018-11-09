@@ -120,8 +120,30 @@ public class KakaoController {
     
     @GetMapping("cs")
     public void cs() {
-      List<Cs> cs = csService.list(3, 10);
-      System.out.println(cs);
+      // select test
+//      List<Cs> cs = csService.list(3, 10);
+//      System.out.println(cs);
+//      for(Cs c: cs) {
+//        System.out.println("질문번호: "+c.getNo());
+//      }
+      
+      //insert test
+//      Cs cs = new Cs();
+//      cs.setConts("cont1");
+//      cs.setAnser("anser1");
+//      cs.setMeno(3);
+//      cs.setTitl("titl1");
+//      
+//      csService.add(cs);
+      
+      //update test
+      Cs c = new Cs();
+      c.setNo(6);
+      c.setAnser("test1");
+      c.setTitl("test1");
+      c.setConts("conts");
+      
+      csService.update(c);
     }
     
     @GetMapping("cfile")
