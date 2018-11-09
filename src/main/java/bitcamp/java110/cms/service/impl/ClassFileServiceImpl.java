@@ -10,7 +10,7 @@ import bitcamp.java110.cms.dao.ClassFileDao;
 import bitcamp.java110.cms.domain.ClassFile;
 import bitcamp.java110.cms.service.ClassFileService;
 
-@Service
+//@Service
 public class ClassFileServiceImpl implements ClassFileService {
   
   @Autowired ClassFileDao cfileDao;

@@ -26,20 +26,6 @@
         		on pcq.cno = ps.cno
         order by qno  asc;
     </select>
-
-    <insert id="quainsert" parameterType="int">
-        insert 
-        	into p_cls_qna()
-        values
-        	(#{},)
-    </insert> 
-    
-    <insert id="ansinsert" parameterType="int">
-        insert 
-        	into 
-        values
-        	(#{},)
-    </insert> 
     
 </mapper>
 

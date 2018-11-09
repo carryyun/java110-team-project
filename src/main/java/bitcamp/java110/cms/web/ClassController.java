@@ -17,8 +17,8 @@ import bitcamp.java110.cms.service.ClasslikeService;
 import bitcamp.java110.cms.service.ClassorderService;
 import bitcamp.java110.cms.service.ClassqnaService;
 
-@Controller
-@RequestMapping("/class")
+//@Controller
+//@RequestMapping("/class")
 public class ClassController {
 
   ClassService classService;
