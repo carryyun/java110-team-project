@@ -187,8 +187,8 @@ public class TestController {
     
     // 공예품 댓글 insert Test용
     ProductRep pdr=new ProductRep();
-     /* pdr.setMeno(5);
-      pdr.setPtno(5);
+      /*pdr.setMeno(5);
+      pdr.setPtno(2);
       pdr.setTitl("이 상품 어때요?");
       pdr.setConts("괜찮아요? 많이 놀랐쬬?");
       pdr.setStar(5);
@@ -196,11 +196,11 @@ public class TestController {
       productRepService.add(pdr);*/
       
       // 공예품댓글 update Test용
-      /*pdr.setNo(3);
-      pdr.setTitl("영록이 개패고싶다");
-      pdr.setConts("ㅇㅈ?");
+      /*pdr.setNo(8);
+      pdr.setTitl("왜자꾸에러나고난리야");
+      pdr.setConts("짜증나");
       pdr.setStar(5);
-      pdr.setPhot("ㅇ ㅇㅈ");
+      pdr.setPhot("뒤지겠네");
       
       productRepService.update(pdr);*/
     
@@ -230,7 +230,6 @@ public class TestController {
     productQnAService.add(pdQnA);*/
     
     
-    // 이거 마저 수정하면된다!!!!!ㅇㅋㄷㅋ???!!!가즈앗!!!!!!!!
     // 공예품댓글 update Test용
    /* pdQnA.setNo(3);
     pdQnA.setTitl("영록이 개패고싶다");
@@ -239,10 +238,10 @@ public class TestController {
     productQnAService.update(pdQnA);*/
     
     // 공예품댓글 update2 Test용
-    pdQnA.setNo(7);
+    /*pdQnA.setNo(7);
     pdQnA.setAnser("영록이 개패고싶다");
     
-    productQnAService.updateAnser(pdQnA);
+    productQnAService.updateAnser(pdQnA);*/
     
  
    
@@ -306,11 +305,11 @@ public class TestController {
       productBlockService.add(pdBlock);*/
       
       // 공예품댓글 update Test용
-      pdBlock.setMeno(5);
+      /*pdBlock.setMeno(5);
       pdBlock.setMono(5);
       pdBlock.setResn("영록이ㅅrlㄲl가 저한테 욕했어요 차단부탁드립니다.");
       
-      productBlockService.update(pdBlock);
+      productBlockService.update(pdBlock);*/
     
     // 멘토분야 출력
     System.out.println("--------멘토분야--------");
@@ -323,14 +322,14 @@ public class TestController {
     
   
     // 멘토분야 insert Test용
-    MentoTag mentTag=new MentoTag();
+    /*MentoTag mentTag=new MentoTag();
     mentTag.setMono(2);
     mentTag.setBtno(4);
 
 
     mentoTagService.delete(2);
     
-    mentoTagService.add(mentTag);
+    mentoTagService.add(mentTag);*/
    
   }
 
