@@ -83,7 +83,7 @@
 			<if test="conts!=null">conts= #{conts},</if>
 			<if test="url!=null">url= #{url},</if>
 			<if test="type!=null">type= #{type},</if>
-			<if test="meno>0">meno= #{meno2},</if>
+			<if test="meno>0">meno= #{meno},</if>
 			<if test="meno2>0">meno2= #{meno2},</if>
 
 		</set>

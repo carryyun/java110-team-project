@@ -6,15 +6,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import bitcamp.java110.cms.domain.Classbakt;
+import bitcamp.java110.cms.domain.ClassBakt;
 import bitcamp.java110.cms.domain.Classes;
-import bitcamp.java110.cms.domain.Classlike;
-import bitcamp.java110.cms.domain.Classorder;
-import bitcamp.java110.cms.domain.Classqna;
+import bitcamp.java110.cms.domain.ClassLike;
+import bitcamp.java110.cms.domain.ClassOrder;
+import bitcamp.java110.cms.domain.ClassQna;
 import bitcamp.java110.cms.service.ClassService;
+<<<<<<< HEAD
 import bitcamp.java110.cms.service.ClassbaktService;
 import bitcamp.java110.cms.service.ClasslikeService;
 import bitcamp.java110.cms.service.ClassorderService;
+=======
+import bitcamp.java110.cms.service.ClassBaktService;
+import bitcamp.java110.cms.service.ClassLikeService;
+import bitcamp.java110.cms.service.ClassOrderService;
+>>>>>>> 886ea542745fc0c9862d4bcfe93cd47007489f28
 import bitcamp.java110.cms.service.ClassQnaService;
 
 @Controller
@@ -23,15 +29,15 @@ public class ClassController {
 
   ClassService classService;
   ClassQnaService classqnaService;
-  ClassorderService classorderService;
-  ClasslikeService classlikeService;
-  ClassbaktService classbaktService;
+  ClassOrderService classorderService;
+  ClassLikeService classlikeService;
+  ClassBaktService classbaktService;
   ServletContext sc;
   
   public ClassController(
       ClassService classService,ClassQnaService classqnaService,
-      ClassorderService classorderService,ClasslikeService classlikeService
-      ,ClassbaktService classbaktService) {
+      ClassOrderService classorderService,ClassLikeService classlikeService
+      ,ClassBaktService classbaktService) {
     this.classService = classService;
     this.classqnaService = classqnaService;
     this.classorderService = classorderService;
@@ -141,10 +147,10 @@ public class ClassController {
   @GetMapping("qnalist")
   public void qnalist() {
     
-    List<Classqna> clist= classqnaService.classqnalist(5);
+    List<ClassQna> clist= classqnaService.classqnalist(5);
     
 
-    for(Classqna c : clist) {
+    for(ClassQna c : clist) {
 
       System.out.println(c.getNo());
       System.out.println(c.getTitl());
@@ -154,7 +160,7 @@ public class ClassController {
   }
   
   @RequestMapping("qnainsert")
-  public void qnainsert(Classqna classqna) {
+  public void qnainsert(ClassQna classqna) {
     
     classqna.setNo(7);
     classqna.setMeno(5);
@@ -166,7 +172,7 @@ public class ClassController {
   }
   
   @RequestMapping("qnaupdate")
-  public void qnaupdate(Classqna classqna) {
+  public void qnaupdate(ClassQna classqna) {
     
     classqna.setNo(5);
     //classqna.setMeno(7);
@@ -178,7 +184,7 @@ public class ClassController {
   }
   
   @RequestMapping("ansupdate")
-  public void ansupdate(Classqna classqna) {
+  public void ansupdate(ClassQna classqna) {
     
     classqna.setNo(6);
     classqna.setAnser("손님..;; 손님이 더 이상해요!!!");
@@ -189,7 +195,7 @@ public class ClassController {
   
   ///////////////// p_cls_qna 수업질문답변//////////////////
   @PostMapping("orderinsert")
-  public int orderinsert(Classorder classorder) {
+  public int orderinsert(ClassOrder classorder) {
     
     classorderService.orderadd(classorder);
     
@@ -197,11 +203,11 @@ public class ClassController {
   }
   
   @GetMapping("orderlist")
-  public List<Classorder> orderlist() {
+  public List<ClassOrder> orderlist() {
     
-    List<Classorder> clist = classorderService.corderlist(5);
+    List<ClassOrder> clist = classorderService.corderlist(5);
     
-    for(Classorder c : clist) {
+    for(ClassOrder c : clist) {
       System.out.println(c.getNo());
       System.out.println(c.getMeno());
       System.out.println(c.getTime());
@@ -217,11 +223,11 @@ public class ClassController {
   ///////////////// p_cls_order 클래스 신청내역///////////////////////
   
   @GetMapping("likelist")
-  public List<Classlike> likelist() {
+  public List<ClassLike> likelist() {
     
-    List<Classlike> clist = classlikeService.classlikelist(5);
+    List<ClassLike> clist = classlikeService.classlikelist(5);
     
-    for(Classlike c : clist) {
+    for(ClassLike c : clist) {
       System.out.println(c.getNo());
       System.out.println(c.getMeno());
       System.out.println(c.getCno());
@@ -230,7 +236,7 @@ public class ClassController {
   }
   
   @RequestMapping("likeinsert")
-  public void likeinsert(Classlike classlike) {
+  public void likeinsert(ClassLike classlike) {
     
     classlike.setNo(6);
     classlike.setCno(6);
@@ -241,7 +247,7 @@ public class ClassController {
   }
   
   @RequestMapping("likedelete")
-  public void likedelete(Classlike classlike) {
+  public void likedelete(ClassLike classlike) {
     
     classlike.setNo(4);
     
@@ -251,7 +257,7 @@ public class ClassController {
   ////////////////////////p_cls_like 찜클래스///////////////////////
   
   @PostMapping("baktinsert")
-  public int baktinsert(Classbakt classbakt) {
+  public int baktinsert(ClassBakt classbakt) {
    
     classbaktService.baktadd(classbakt);
     
@@ -259,7 +265,7 @@ public class ClassController {
   }
   
   @PostMapping("baktdelete")
-  public int baktdelete(Classbakt classbakt) {
+  public int baktdelete(ClassBakt classbakt) {
     
     classbaktService.baktsub(classbakt);
     
@@ -267,11 +273,11 @@ public class ClassController {
   }
   
   @GetMapping("baktlist")
-  public List<Classbakt> baktlist(){
+  public List<ClassBakt> baktlist(){
     
-    List<Classbakt> clist = classbaktService.baktlist(5);
+    List<ClassBakt> clist = classbaktService.baktlist(5);
     
-    for(Classbakt c : clist) {
+    for(ClassBakt c : clist) {
       System.out.println(c.getNo());
       System.out.println(c.getMeno());
       System.out.println(c.getCtno());

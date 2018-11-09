@@ -14,5 +14,7 @@ public interface ProductBaktDao {
   
   List<ProductBakt> findAllByMeno(Map<String,Object> params); // 멘티번호
   
+  int insert(ProductBakt productBakt);
+  int update(ProductBakt productBakt);
   
 }

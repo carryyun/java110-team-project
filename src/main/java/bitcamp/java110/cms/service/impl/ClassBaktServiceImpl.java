@@ -6,32 +6,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import bitcamp.java110.cms.dao.ClasslikeDao;
-import bitcamp.java110.cms.domain.Classlike;
-import bitcamp.java110.cms.service.ClasslikeService;
+import bitcamp.java110.cms.dao.ClassBaktDao;
+import bitcamp.java110.cms.domain.ClassBakt;
+import bitcamp.java110.cms.service.ClassBaktService;
 
 @Service
-public class ClasslikeServiceImpl implements ClasslikeService {
+public class ClassBaktServiceImpl implements ClassBaktService {
 
-  @Autowired ClasslikeDao classlikeDao;
+  @Autowired ClassBaktDao classbaktDao;
   
   @Override
-  public List<Classlike> classlikelist(int pageSize) {
+  public List<ClassBakt> baktlist(int pageSize) {
+    
     HashMap<String, Object> params = new HashMap<>();
     params.put("size", pageSize);
     
-    return classlikeDao.likelist(params);
+    return classbaktDao.baktlist(params);
   }
 
   @Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
   @Override
-  public void likeadd(Classlike classlike) {
-    classlikeDao.likeinsert(classlike);
+  public void baktadd(ClassBakt classbakt) {
+    classbaktDao.baktinsert(classbakt);
   }
 
   @Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
   @Override
-  public void likesub(Classlike classlike) {
-    classlikeDao.likedelete(classlike);
+  public void baktsub(ClassBakt classbakt) {
+    classbaktDao.baktdelete(classbakt);
   }
+
 }
