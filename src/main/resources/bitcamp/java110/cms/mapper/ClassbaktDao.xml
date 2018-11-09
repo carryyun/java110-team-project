@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- MemberDao 클래스가 사용할 SQL이 들어 있는 파일 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.java110.cms.dao.ClassbaktDao">
+
+    <resultMap type="Classbakt" id="classbaktMap">
+        <id column="cbno" property="no"/>
+        <result column="meno"  property="meno"/>
+        <result column="cno"    property="cno"/>
+    </resultMap>
+    
+
+    <select id="baktlist" resultMap="classbaktMap" parameterType="map">
+    	select 
+    		cbno,meno,cno
+    	from
+    		p_cls_like
+    </select>
+
+	<insert id="baktinsert" parameterType="Classbakt">
+		insert 
+			into p_cls_like(cbno,meno,cno)
+		values
+			(#{cbno},#{meno},#{cno})
+	</insert>
+	
+	<delete id="baktdelete" parameterType="Classbakt">
+		delete 
+			from p_cls_like
+		where
+			cbno = #{cbno}
+	</delete>
+    
+</mapper>
+
+
+
+
+
+
+
+
+
