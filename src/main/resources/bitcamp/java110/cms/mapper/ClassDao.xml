@@ -43,7 +43,8 @@
 		where bas_addr = #{bas_addr}
 	</select>
     
-    <insert id="classinsert" parameterType="Classes">
+    <insert id="classinsert" parameterType="Classes"
+    useGeneratedKeys="true" keyColumn="cno" keyProperty="no">
         insert 
         	into p_cls(titl,conts,pric,rgdt,time,capa,cfile
         	,tinfo,cinfo,pstno,bas_addr,det_addr,edt)

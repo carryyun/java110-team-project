@@ -19,11 +19,12 @@
     		p_cls_like
     </select>
 
-	<insert id="baktinsert" parameterType="Classbakt">
+	<insert id="baktinsert" parameterType="Classbakt"
+	useGeneratedKeys="true" keyColumn="cbno" keyProperty="no">
 		insert 
-			into p_cls_like(cbno,meno,cno)
+			into p_cls_like(meno,cno)
 		values
-			(#{cbno},#{meno},#{cno})
+			(#{meno},#{cno})
 	</insert>
 	
 	<delete id="baktdelete" parameterType="Classbakt">
