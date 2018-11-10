@@ -69,9 +69,7 @@ public class MenteeServiceImpl implements MenteeService {
 
   @Override
   public void add(Mentee mentee) {
-
     menteeDao.insert(mentee);
-
   }
 
   @Transactional
