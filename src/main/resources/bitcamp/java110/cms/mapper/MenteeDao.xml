@@ -183,7 +183,8 @@
             bkno,
             rgdt,
             stat,
-            note
+            note,
+            mtstat
         from 
             p_mete mte
         where

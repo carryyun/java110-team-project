@@ -28,12 +28,10 @@ public class AuthServiceImpl implements AuthService {
 
     @Override 
     public Mentee getMentee(
-            String email, String pwd) {
+            String email, String pwd ) {
         HashMap<String,Object> params = new HashMap<>();
         params.put("email", email);
         params.put("pwd", pwd);
-        Mentee m = menteeDao.findByEmailPassword(params);
-            System.out.println(m);
         return menteeDao.findByEmailPassword(params);
     }
   

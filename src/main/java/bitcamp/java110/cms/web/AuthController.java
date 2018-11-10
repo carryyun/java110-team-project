@@ -1,6 +1,5 @@
 package bitcamp.java110.cms.web;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -47,19 +46,11 @@ public class AuthController {
             cookie.setMaxAge(0);
             response.addCookie(cookie);
         }
-        
         Mentee loginUser = authService.getMentee(email, pwd);
-        System.out.println(loginUser.getEmail());
-        System.out.println(loginUser.getPwd());
-        //System.out.println(loginUser.getBas_addr());
-        //System.out.println(loginUser.getMtstat());
-        System.out.println("여기는?");
-        
         if (loginUser != null) {
             // 회원 정보를 세션에 보관한다.
             session.setAttribute("loginUser", loginUser);
             String redirectUrl = null;
-            System.out.println("요까지");
             if(loginUser.getMtstat() == 'Y') {
               System.out.println("멘토로그인성공");
               redirectUrl = "form";
