@@ -18,6 +18,9 @@
     <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href="/css/clean-blog.css" rel="stylesheet">
+    <link href="/css/category.css" rel="stylesheet">
+    
     <!-- ===============필수포함=============== -->
     
 
@@ -27,7 +30,9 @@
 
   <body>
 
-    <!-- Navigation -->
+    
+    <div class="container col-lg-10 mx-auto">
+        <!-- top -->
     <div id="row" class="mainheader">
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
@@ -40,7 +45,7 @@
           <ul class="navbar-nav ml-auto" style="margin-left: 1px">
             <li class="nav-item">
              <div id="row">
-              <img src="../../../img/julme.PNG" alt="singup">
+              <img src="/upload/img/julme.PNG" alt="singup">
               <a class="nav-link" href="index.html">로그인</a>
                 </div>
             </li>
@@ -55,21 +60,27 @@
       </div>
     </nav>
     </div>
+    </div>
+    
     
 
     <!-- Page Header -->
     <header class="masthead">
       
     </header>
+    
+    
     <!-- 카테고리 nav (스크립트로 임시 inclue) -->
+    <div class="container col-lg-10 mx-auto">
     <div id="headerNav"></div>
+    </div>
     <%-- <%@inclue file="headerNav.jsp"%> --%>
 
     <!-- Main Content -->
     <div class="row">
     <div class="container">
         <div class="row">
-          <div class="col-lg-12 col-md-10 mx-auto">
+          <div class="col-lg-10 col-md-10 mx-auto">
             <div class="site-heading">
                 <div class="row">
               <ul>
@@ -81,6 +92,7 @@
                 <li><a href="#">기타</a></li>
               </ul>
 <!-- 오늘의 핫 아이템(카르셀) -->    
+<div class="container">
 <div class="col-lg-9 col-md-6 mx-auto">
 
 <h2>오늘의 핫 아이템</h2>
@@ -93,41 +105,41 @@
 </ol>
 <div class="carousel-inner" role="listbox">
     <div class="carousel-item active">
-      <div class="col-lg-12 mx-5"  style="padding-left: 90px">
+      <div class="col-lg-9 mx-auto"  style="padding-left: 0px">
        <div class="test">
-        <img class="d-block img-fluid" src="/img/product/900x350/julme.PNG" alt="First slide">
+        <img class="d-block img-fluid" src="/upload/img/product/900x350/julme.PNG" alt="First slide">
        </div>
        <div class="test">
-        <img class="d-block img-fluid" src="/img/product/900x350/julme.PNG" alt="Second slide">
+        <img class="d-block img-fluid" src="/upload/img/product/900x350/julme.PNG" alt="Second slide">
         </div>
         <div class="test">
-        <img class="d-block img-fluid" src="../../../img/product/900x350/julme.PNG" alt="Third slide">
+        <img class="d-block img-fluid" src="/upload/img/product/900x350/julme.PNG" alt="Third slide">
        </div>
        </div>
     </div>
     <div class="carousel-item">
-      <div class="col-lg-12 mx-5"  style="padding-left: 90px">
+      <div class="col-lg-9 mx-auto"  style="padding-left: 0px">
        <div class="test">
-        <img class="d-block img-fluid" src="../../../img/product/900x350/julme.PNG" alt="First slide">
+        <img class="d-block img-fluid" src="/upload/img/product/900x350/julme.PNG" alt="First slide">
        </div>
        <div class="test">
-        <img class="d-block img-fluid" src="../../../img/product/900x350/julme.PNG" alt="Second slide">
+        <img class="d-block img-fluid" src="/upload/img/product/900x350/julme.PNG" alt="Second slide">
         </div>
         <div class="test">
-        <img class="d-block img-fluid" src="../../../img/product/900x350/julme.PNG" alt="Third slide">
+        <img class="d-block img-fluid" src="/upload/img/product/900x350/julme.PNG" alt="Third slide">
        </div>
        </div>
     </div>
     <div class="carousel-item">
-      <div class="col-lg-12 mx-5"  style="padding-left: 90px">
+      <div class="col-lg-9 mx-auto"  style="padding-left: 0px">
        <div class="test">
-        <img class="d-block img-fluid" src="../../../img/product/900x350/julme.PNG" alt="First slide">
+        <img class="d-block img-fluid" src="/upload/img/product/900x350/julme.PNG" alt="First slide">
        </div>
        <div class="test">
-        <img class="d-block img-fluid" src="../../../img/product/900x350/julme.PNG" alt="Second slide">
+        <img class="d-block img-fluid" src="/upload/img/product/900x350/julme.PNG" alt="Second slide">
         </div>
         <div class="test">
-        <img class="d-block img-fluid" src="../../../img/product/900x350/julme.PNG" alt="Third slide">
+        <img class="d-block img-fluid" src="/upload/img/product/900x350/julme.PNG" alt="Third slide">
        </div>
        </div>
     </div>
@@ -143,6 +155,7 @@
 </div>
 </div>
 </div>
+</div>
              </div>
             </div>
           </div>
@@ -152,13 +165,13 @@
     
     
    <!--   <div class="row"> -->
-        <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="col-lg-10 col-md-10 mx-auto">
           <div class="post-preview">
             <a href="post.html">
 <div class="row">
 <div class="col-lg-4 col-md-6 mb-4">
   <div class="card h-100">
-    <a href="#"><img class="card-img-top" src="../../../img/product/700x400/julme.PNG" alt=""></a>
+    <a href="#"><img class="card-img-top" src="/upload/img/product/700x400/julme.PNG" alt=""></a>
     <div class="card-body">
       <h4 class="card-title">
         <a href="#">절미1</a>
@@ -174,7 +187,7 @@
 
 <div class="col-lg-4 col-md-6 mb-4">
   <div class="card h-100">
-    <a href="#"><img class="card-img-top" src="../../../img/product/700x400/julme.PNG" alt=""></a>
+    <a href="#"><img class="card-img-top" src="/upload/img/product/700x400/julme.PNG" alt=""></a>
     <div class="card-body">
       <h4 class="card-title">
         <a href="#">절미1</a>
@@ -190,7 +203,7 @@
 
 <div class="col-lg-4 col-md-6 mb-4">
   <div class="card h-100">
-    <a href="#"><img class="card-img-top" src="../../../img/product/700x400/julme.PNG" alt=""></a>
+    <a href="#"><img class="card-img-top" src="/upload/img/product/700x400/julme.PNG" alt=""></a>
     <div class="card-body">
       <h4 class="card-title">
         <a href="#">절미1</a>
@@ -206,7 +219,7 @@
 
 <div class="col-lg-4 col-md-6 mb-4">
   <div class="card h-100">
-    <a href="#"><img class="card-img-top" src="../../../img/product/700x400/julme.PNG" alt=""></a>
+    <a href="#"><img class="card-img-top" src="/upload/img/product/700x400/julme.PNG" alt=""></a>
     <div class="card-body">
       <h4 class="card-title">
         <a href="#">절미1</a>

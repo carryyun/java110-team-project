@@ -13,36 +13,6 @@
     height: 50px;
 }
 
-/* 카테고리 서브메뉴 관련 */
-div.menusubs{
-    text-align: center;
-    margin-bottom: 20px;
-}
-div.menusubs .localNav {
-    display: none;
-	border-top: 2px solid #6e6e6e;
-    border-bottom: 2px solid #6e6e6e;
-    z-index: 1;
-    margin: 0 auto;
-    padding: 0px;
-    min-width: 300px;
-    max-width: 500px;
-    width: auto;
-}
-
-div.menusubs .localNav li {
-   display: inline;
-   width:50px;
-}
-.localNav ul, .localNav li {
-   list-style: none;
-   padding: 10px 5px;
-
-}
-div.menusubs ul{
-    font-family: 'Noto Sans KR', sans-serif;
-}
-
 /* hr 관련 */
 hr.Fhr{
     border: 0; 
@@ -88,50 +58,7 @@ ul{
     display: inline-block;
     
 }
-/* 카르셀 카테고리 관련 */
-nav.navbar{
-    padding: 0;
-}
-#categoryNav > .navbar-nav > li.nav-item > a {
-  font-size: 30px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: #6e6e6e;
-  font-family: 'Noto Sans KR', sans-serif;
-}
-#categoryNav > .navbar-nav > li.nav-item > a:hover{
-  font-size: 35px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-family: 'Noto Sans KR', sans-serif;
-  color: #cce5ee;
-  background-color: #6e6e6e;
-}
-#categoryNav > .navbar-nav > li.nav-item > a#menu01 {
-  font-size: 35px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: #6e6e6e;
-  font-family: 'Noto Sans KR', sans-serif;
-}
-#categoryNav > .navbar-nav > li.nav-item > a#menu01:hover{
-  font-size: 35px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-family: 'Noto Sans KR', sans-serif;
-  color: #cce5ee;
-  background-color: #6e6e6e;
-}
-ul.navbar-nav{
-    float: left;
-}
-nav.navbar{
-    background-color: #cceeee;
-}
+
 
 /* 카르셀 화살표 관련*/
 .carousel-control-prev, .carousel-control-next{
