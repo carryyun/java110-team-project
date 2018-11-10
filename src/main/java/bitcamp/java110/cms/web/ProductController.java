@@ -18,8 +18,8 @@ public class ProductController {
   }
   
   
-  @GetMapping("Prdt")
-  public void Prdt() {
+  @GetMapping("prdt")
+  public void prdt() {
   }
   
   @RequestMapping("P")
