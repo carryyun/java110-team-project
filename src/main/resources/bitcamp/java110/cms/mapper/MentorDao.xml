@@ -9,7 +9,7 @@
     <resultMap type="mentor" id="mentorMap">
         <id column="mono"       property="no"/>
         <result column="carr"   property="carr"/>
-        <result column="stat"   property="stat"/>
+        <result column="mtstat"   property="mtstat"/>
         
     </resultMap>
     
@@ -29,7 +29,7 @@
         	 values
         		(#{no}
         		,#{carr}
-        		,#{stat})
+        		,#{mtstat})
     </insert>
     
     

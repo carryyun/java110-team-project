@@ -9,6 +9,7 @@ public class Mentee {
   protected String name;
   protected String email;
   protected String pwd;
+  protected String pwd2;
   protected String nick;
   protected String phone;
   protected String pstno;
@@ -21,6 +22,15 @@ public class Mentee {
   protected Date rgdt;
   protected char stat;
   protected String note;
+
+  
+  public String getPwd2() {
+    return pwd2;
+  }
+
+  public void setPwd2(String pwd2) {
+    this.pwd2 = pwd2;
+  }
 
   public int getNo() {
     return no;
