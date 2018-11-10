@@ -153,8 +153,8 @@
     
     <insert id="insert" parameterType="mentee"
             useGeneratedKeys="true" keyColumn="meno" keyProperty="no">
-        insert into p_mete(name,email,pwd,nick,phone,phot,sell,rgdt,stat)
-        values(#{name},#{email},#{pwd},#{nick},#{phone},#{phot},'N',now(),'N')
+        insert into p_mete(name,email,pwd,nick,rgdt)
+        values(#{name},#{email},#{pwd},#{nick},now())
     </insert> 
     
     <delete id="delete" parameterType="int">

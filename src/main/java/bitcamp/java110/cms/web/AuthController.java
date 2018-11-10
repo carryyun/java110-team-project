@@ -19,7 +19,7 @@ public class AuthController {
     public AuthController(AuthService authService) {
         this.authService = authService;
     }
-
+    
     @GetMapping("form")
     public void form() {
     }
