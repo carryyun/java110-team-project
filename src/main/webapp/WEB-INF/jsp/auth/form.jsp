@@ -34,7 +34,7 @@
 <!-- 네이버 --> -->
 <%
     String clientId = "TnNcED7klJ8X7xSS3nja";//애플리케이션 클라이언트 아이디값";
-    String redirectURI = URLEncoder.encode("http://localhost:8080/app/auth/callback", "UTF-8");
+    String redirectURI = URLEncoder.encode("http://localhost:8888/app/auth/callback", "UTF-8");
     SecureRandom random = new SecureRandom();
     String state = new BigInteger(130, random).toString();
     String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";

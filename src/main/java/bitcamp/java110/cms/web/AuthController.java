@@ -95,6 +95,14 @@ public class AuthController {
             return "redirect:form";
         }
     }
+    @RequestMapping("naver")
+    public String naver(String accessToken, HttpSession session) {
+      authService.getNaverMember(accessToken);
+
+      return "redirect:../auth/form";
+    }
+    @GetMapping("callback")
+    public void callback(String access_token, HttpSession session) {}
  
 }
 
