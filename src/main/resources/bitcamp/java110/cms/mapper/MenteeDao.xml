@@ -24,6 +24,7 @@
         <result column="rgdt"   property="rgdt"/>
         <result column="stat"   property="stat"/>
         <result column="note"   property="note"/>
+        <result column="mtstat"   property="mtstat"/>
     </resultMap>
     
     <select id="findAll" resultMap="menteeMap">
@@ -43,7 +44,8 @@
             bkno,
             rgdt,
             stat,
-            note
+            note,
+            mtstat
         from 
             p_mete
         order by 
@@ -161,5 +163,6 @@
         delete from p1_memb 
         where mno=#{value}
     </delete>
-
+    
+    
 </mapper>

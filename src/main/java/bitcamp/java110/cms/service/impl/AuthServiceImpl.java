@@ -11,34 +11,28 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import bitcamp.java110.cms.dao.ManagerDao;
-import bitcamp.java110.cms.dao.MemberDao;
 import bitcamp.java110.cms.dao.MenteeDao;
-import bitcamp.java110.cms.domain.Member;
+import bitcamp.java110.cms.dao.MentorDao;
 import bitcamp.java110.cms.domain.Mentee;
+import bitcamp.java110.cms.domain.Mentor;
 import bitcamp.java110.cms.service.AuthService;
 
 @Service
 public class AuthServiceImpl implements AuthService {
 
-    @Autowired MemberDao memberDao;
+    @Autowired MentorDao mentorDao;
     @Autowired ManagerDao managerDao;
     @Autowired MenteeDao menteeDao;
     
+    
 
-    @Override
-    public Member getMember(
-            String email, String password, String memberType) {
-        
+    @Override 
+    public Mentee getMentee(
+            String email, String pwd) {
         HashMap<String,Object> params = new HashMap<>();
         params.put("email", email);
-        params.put("password", password);
-        
-        if (memberType.equals("manager")) {
-            return managerDao.findByEmailPassword(params);
-        } else {
-            return null;
-        }
-
+        params.put("pwd", pwd);
+        return mentorDao.findByEmailPassword(params);
     }
   
 

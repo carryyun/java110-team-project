@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import bitcamp.java110.cms.domain.Member;
+import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.service.AuthService;
 
 @Controller
@@ -44,7 +44,7 @@ public class FacebookController {
       response.addCookie(cookie);
     }
 
-    Member loginUser = authService.getMember(email, password, type);
+    Mentee loginUser = authService.getMentee(email, password);
 
     if (loginUser != null) {
       // 회원 정보를 세션에 보관한다.

@@ -2,6 +2,7 @@ package bitcamp.java110.cms.dao;
 
 import java.util.List;
 import java.util.Map;
+import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.Mentor;
 
 public interface MentorDao {
@@ -10,8 +11,8 @@ public interface MentorDao {
   int delete(int no);
 
   Mentor findByNo(int no); // 멘티 번호
-
-  Mentor getMentee();
+  // 로그인을 체크하기위해 필요한 메소드 
+  Mentee findByEmailPassword(Map<String,Object> params);
   
   List<Mentor> findAll(Map<String, Object> params); // 전체조회
 

@@ -2,7 +2,6 @@ package bitcamp.java110.cms.web;
 
 import java.util.List;
 import javax.servlet.ServletContext;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +16,8 @@ import bitcamp.java110.cms.service.ClassOrderService;
 import bitcamp.java110.cms.service.ClassQnaService;
 import bitcamp.java110.cms.service.ClassService;
 
-@Controller
-@RequestMapping("/class")
+//@Controller
+//@RequestMapping("/class")
 public class ClassController {
 
   ClassService classService;

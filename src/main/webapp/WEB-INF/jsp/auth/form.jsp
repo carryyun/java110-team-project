@@ -1,3 +1,8 @@
+<%@ page language="java" 
+    contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"
+    trimDirectiveWhitespaces="true"%>
+
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -15,8 +20,7 @@
     <!--Fontawesome CDN-->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
-	<!--Custom styles-->
-	<link rel="stylesheet" type="text/css" href="Sign_In.css">
+	<link rel="stylesheet" type="text/css" href="/css/form.css">
 </head>
 <body>
 <div class="container">
@@ -31,25 +35,26 @@
 				</div>
 			</div>
 			<div class="card-body">
-				<form>
+				<form action='login' method="post" >
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
-						<input type="text" class="form-control" placeholder="useremail">
+						<input type="email" name="email" value='${cookie.email.value}' 
+						class="form-control" placeholder="useremail">
 						
 					</div>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-key"></i></span>
 						</div>
-						<input type="password" class="form-control" placeholder="password">
+						<input type="password" name="pwd" class="form-control" placeholder="password">
 					</div>
 					<div class="row align-items-center remember">
-						<input type="checkbox">이메일 저장
+						<input type="checkbox" name="save">이메일 저장
 					</div>
-					<div class="form-group">
-						<input type="submit" value="Login" class="btn float-right login_btn">
+					<div id="login" class="form-group">
+						<input type="submit" value="login" class="btn float-right login_btn">
 					</div>
 				</form>
 			</div>
@@ -69,3 +74,4 @@
 </div>
 </body>
 </html>
+
