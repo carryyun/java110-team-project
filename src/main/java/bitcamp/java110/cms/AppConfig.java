@@ -1,7 +1,5 @@
 package bitcamp.java110.cms;
 
-import java.util.HashMap;
-import java.util.Map;
 import javax.sql.DataSource;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;

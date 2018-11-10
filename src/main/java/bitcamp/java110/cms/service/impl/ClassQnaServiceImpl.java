@@ -12,7 +12,7 @@ import bitcamp.java110.cms.service.ClassQnaService;
 
 @Service
 public class ClassQnaServiceImpl implements ClassQnaService{
-  
+
   @Autowired ClassQnaDao classqnaDao;
   
   @Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
