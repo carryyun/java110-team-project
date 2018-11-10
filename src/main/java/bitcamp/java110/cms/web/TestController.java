@@ -176,13 +176,13 @@ public class TestController {
     ProductOrder prodAdd=new ProductOrder();
     // 상품 주문 내역 insert Test용
       
-      prodAdd.setMeno(20);
+      /*prodAdd.setMeno(20);
       prodAdd.setPtno(5);
       prodAdd.setCnt(1);
       prodAdd.setTot_pric(0);
       prodAdd.setPayopt("현금결제");
       
-      productOrderService.add(prodAdd);
+      productOrderService.add(prodAdd);*/
     
     
     // 공예품 댓글 출력
