@@ -13,13 +13,14 @@ public class ProductController {
 
   public ProductController(
       ProductService productService) {
-    System.out.println("1");
     this.productService = productService;
   }
   
-  
   @GetMapping("prdt")
   public void prdt() {
+  }
+  @GetMapping("headerNav")
+  public void headerNav() {
   }
   
   @RequestMapping("P")
