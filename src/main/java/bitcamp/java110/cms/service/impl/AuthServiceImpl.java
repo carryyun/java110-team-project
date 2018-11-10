@@ -32,7 +32,9 @@ public class AuthServiceImpl implements AuthService {
         HashMap<String,Object> params = new HashMap<>();
         params.put("email", email);
         params.put("pwd", pwd);
-        return mentorDao.findByEmailPassword(params);
+        Mentee m = menteeDao.findByEmailPassword(params);
+            System.out.println(m);
+        return menteeDao.findByEmailPassword(params);
     }
   
 

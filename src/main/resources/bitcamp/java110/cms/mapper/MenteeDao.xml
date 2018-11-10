@@ -165,4 +165,29 @@
     </delete>
     
     
+    
+    <select id="findByEmailPassword" 
+            resultMap="menteeMap" parameterType="map">
+        select 
+            meno,
+            name,
+            email,
+            nick,
+            phone,
+            pstno,
+            bas_addr,
+            det_addr,
+            phot,
+            sell,
+            bkname,
+            bkno,
+            rgdt,
+            stat,
+            note
+        from 
+            p_mete mte
+        where
+            mte.email=#{email} and mte.pwd=#{pwd}
+            <!-- mte.email=#{email} and mte.pwd=password(#{pwd}) -->
+    </select> 
 </mapper>

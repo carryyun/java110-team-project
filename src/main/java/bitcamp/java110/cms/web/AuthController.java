@@ -33,7 +33,9 @@ public class AuthController {
             String save,
             HttpServletResponse response,
             HttpSession session) {
-        
+      System.out.println(email);
+      System.out.println(pwd);
+      System.out.println(save);
         
         if (save != null) {// 이메일 저장하기를 체크했다면,
             Cookie cookie = new Cookie("email", email);
