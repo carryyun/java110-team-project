@@ -2,7 +2,6 @@ package bitcamp.java110.cms.service;
 
 import java.util.Map;
 import bitcamp.java110.cms.domain.Mentee;
-import bitcamp.java110.cms.domain.Mentor;
 
 public interface AuthService {
     Mentee getMentee(String email, String pwd);
