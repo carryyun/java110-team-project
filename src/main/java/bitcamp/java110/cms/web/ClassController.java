@@ -7,21 +7,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import bitcamp.java110.cms.domain.ClassBakt;
-import bitcamp.java110.cms.domain.Classes;
 import bitcamp.java110.cms.domain.ClassLike;
 import bitcamp.java110.cms.domain.ClassOrder;
 import bitcamp.java110.cms.domain.ClassQna;
-import bitcamp.java110.cms.service.ClassService;
-<<<<<<< HEAD
-import bitcamp.java110.cms.service.ClassbaktService;
-import bitcamp.java110.cms.service.ClasslikeService;
-import bitcamp.java110.cms.service.ClassorderService;
-=======
+import bitcamp.java110.cms.domain.Classes;
 import bitcamp.java110.cms.service.ClassBaktService;
 import bitcamp.java110.cms.service.ClassLikeService;
 import bitcamp.java110.cms.service.ClassOrderService;
->>>>>>> 886ea542745fc0c9862d4bcfe93cd47007489f28
 import bitcamp.java110.cms.service.ClassQnaService;
+import bitcamp.java110.cms.service.ClassService;
 
 @Controller
 @RequestMapping("/class")
