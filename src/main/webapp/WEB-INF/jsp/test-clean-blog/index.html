@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
   <head>
 
@@ -13,6 +13,9 @@
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
+   
+    <!-- 폰트 추가 -->
+    <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
@@ -20,13 +23,16 @@
 
     <!-- Custom styles for this template -->
     <link href="css/clean-blog.css" rel="stylesheet">
+    
+
+ 
 
   </head>
 
   <body>
 
     <!-- Navigation -->
-    <div id="row">
+    <div id="row" class="mainheader">
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
         <a class="navbar-brand" href="index.html">하루</a>
@@ -35,9 +41,12 @@
           <i class="fas fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
+          <ul class="navbar-nav ml-auto" style="margin-left: 1px">
             <li class="nav-item">
+             <div id="row">
+              <img src="../../../img/julme.PNG" alt="singup">
               <a class="nav-link" href="index.html">로그인</a>
+                </div>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="about.html">장바구니</a>
@@ -56,15 +65,15 @@
     <header class="masthead">
       
     </header>
+    <!-- 카테고리 nav (스크립트로 임시 inclue) -->
+    <div id="headerNav"></div>
 
     <!-- Main Content -->
-    <div class="container">
+    <div class="row">
     <div class="container">
         <div class="row">
           <div class="col-lg-12 col-md-10 mx-auto">
-<hr style="border: 0; height: 2px;background: #ccc;">
             <div class="site-heading">
-
                 <div class="row">
               <ul>
                <h2>카테고리</h2>
@@ -87,7 +96,7 @@
 </ol>
 <div class="carousel-inner" role="listbox">
     <div class="carousel-item active">
-      <div class="col-lg-12 mx-5"  style="padding-left: 2px">
+      <div class="col-lg-12 mx-5"  style="padding-left: 90px">
        <div class="test">
         <img class="d-block img-fluid" src="../../../img/product/900x350/julme.PNG" alt="First slide">
        </div>
@@ -100,7 +109,7 @@
        </div>
     </div>
     <div class="carousel-item">
-      <div class="col-lg-12 mx-5"  style="padding-left: 2px">
+      <div class="col-lg-12 mx-5"  style="padding-left: 90px">
        <div class="test">
         <img class="d-block img-fluid" src="../../../img/product/900x350/julme.PNG" alt="First slide">
        </div>
@@ -113,7 +122,7 @@
        </div>
     </div>
     <div class="carousel-item">
-      <div class="col-lg-12 mx-5"  style="padding-left: 2px">
+      <div class="col-lg-12 mx-5"  style="padding-left: 90px">
        <div class="test">
         <img class="d-block img-fluid" src="../../../img/product/900x350/julme.PNG" alt="First slide">
        </div>
@@ -141,7 +150,7 @@
             </div>
           </div>
         </div>
-        <hr style="border: 0; height: 2px;background: #ccc;">
+        <hr class="FhrBotMargin">
       </div>
     
     
@@ -198,7 +207,21 @@
   </div>
 </div>
 
-
+<div class="col-lg-4 col-md-6 mb-4">
+  <div class="card h-100">
+    <a href="#"><img class="card-img-top" src="../../../img/product/700x400/julme.PNG" alt=""></a>
+    <div class="card-body">
+      <h4 class="card-title">
+        <a href="#">절미1</a>
+      </h4>
+      <h5>1,000 ￦</h5>
+      <p class="card-text">Lorem ipsum dolor sit amet, consectetur!</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+    </div>
+  </div>
+</div>
 
 </div>
               
@@ -258,7 +281,16 @@
 
     <!-- Custom scripts for this template -->
     <script src="js/clean-blog.min.js"></script>
-
+    
+    <!-- ??? -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    
+    
+    <script>
+      $(document).ready(function(){
+         $("#headerNav").load("headerNav.html")
+      });
+</script> 
   </body>
 
 </html>

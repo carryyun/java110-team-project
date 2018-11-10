@@ -102,7 +102,7 @@ public class Classes {
   public String getBasAddr() {
     return basAddr;
   }
-  public void setBas_addr(String basAddr) {
+  public void setBasAddr(String basAddr) {
     this.basAddr = basAddr;
   }
   public String getDetAddr() {

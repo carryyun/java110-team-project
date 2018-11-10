@@ -3,6 +3,7 @@ package bitcamp.java110.cms.domain;
 import java.sql.Date;
 
 public class ClassRep {
+  
   private int no;
   private int meno;
   private int cno;
@@ -11,7 +12,6 @@ public class ClassRep {
   private int star;
   private String phot;
   private Date rgdt;
-  
   public int getNo() {
     return no;
   }
@@ -60,8 +60,6 @@ public class ClassRep {
   public void setRgdt(Date rgdt) {
     this.rgdt = rgdt;
   }
-  
-  
   
 
 }

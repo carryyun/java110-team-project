@@ -13,7 +13,9 @@ import bitcamp.java110.cms.service.ProductRepService;
 @Service
 public class ProductRepServiceImpl implements ProductRepService {
 
-  @Autowired ProductRepDao productRepDao;
+  @Autowired
+  ProductRepDao productRepDao;
+
   @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 
   @Override
@@ -33,7 +35,7 @@ public class ProductRepServiceImpl implements ProductRepService {
     return productRepDao.findByNo(no);
   }
 
-  
+
   @Override
   public List<ProductRep> listByMeno(int pageNo, int pageSize, int meno) {
     HashMap<String, Object> params = new HashMap<>();
@@ -55,5 +57,14 @@ public class ProductRepServiceImpl implements ProductRepService {
     return productRepDao.findAllByPtno(params);
   }
 
+  @Override
+  public int add(ProductRep productRep) {
+    return productRepDao.insert(productRep);
+  }
+
+  @Override
+  public int update(ProductRep productRep) {
+    return productRepDao.update(productRep);
+  }
 
 }

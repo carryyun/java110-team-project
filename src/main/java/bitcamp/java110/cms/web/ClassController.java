@@ -6,32 +6,32 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import bitcamp.java110.cms.domain.Classbakt;
+import bitcamp.java110.cms.domain.ClassBakt;
+import bitcamp.java110.cms.domain.ClassLike;
+import bitcamp.java110.cms.domain.ClassOrder;
+import bitcamp.java110.cms.domain.ClassQna;
 import bitcamp.java110.cms.domain.Classes;
-import bitcamp.java110.cms.domain.Classlike;
-import bitcamp.java110.cms.domain.Classorder;
-import bitcamp.java110.cms.domain.Classqna;
+import bitcamp.java110.cms.service.ClassBaktService;
+import bitcamp.java110.cms.service.ClassLikeService;
+import bitcamp.java110.cms.service.ClassOrderService;
+import bitcamp.java110.cms.service.ClassQnaService;
 import bitcamp.java110.cms.service.ClassService;
-import bitcamp.java110.cms.service.ClassbaktService;
-import bitcamp.java110.cms.service.ClasslikeService;
-import bitcamp.java110.cms.service.ClassorderService;
-import bitcamp.java110.cms.service.ClassqnaService;
 
-//@Controller
-//@RequestMapping("/class")
+@Controller
+@RequestMapping("/class")
 public class ClassController {
 
   ClassService classService;
-  ClassqnaService classqnaService;
-  ClassorderService classorderService;
-  ClasslikeService classlikeService;
-  ClassbaktService classbaktService;
+  ClassQnaService classqnaService;
+  ClassOrderService classorderService;
+  ClassLikeService classlikeService;
+  ClassBaktService classbaktService;
   ServletContext sc;
   
   public ClassController(
-      ClassService classService,ClassqnaService classqnaService,
-      ClassorderService classorderService,ClasslikeService classlikeService
-      ,ClassbaktService classbaktService) {
+      ClassService classService,ClassQnaService classqnaService,
+      ClassOrderService classorderService,ClassLikeService classlikeService
+      ,ClassBaktService classbaktService) {
     this.classService = classService;
     this.classqnaService = classqnaService;
     this.classorderService = classorderService;
@@ -52,11 +52,51 @@ public class ClassController {
     }
   }
 
-  @PostMapping("classinsert")
-  public int classinsert(Classes c) {
-    System.out.println("classinsert 호출");
+  @RequestMapping("classinsert")
+  public void classinsert(Classes c) {
     
-    return classService.classadd(c);
+    c.setNo(6);
+    c.setTitl("고정지");
+    c.setConts("고정지");
+    c.setPric(111);
+    //c.setrgdt("now()");
+    c.setTime("고정지");
+    c.setCapa(5);
+    c.setCfile("고정지");
+    c.setTinfo("고정지");
+    c.setCinfo("고정지");
+    c.setPstno("고정지");
+    c.setBasAddr("고정지");
+    c.setDetAddr("고정지");
+    //c.setEdt("고정지");
+    c.setMono(4);
+    c.setMtno(4);
+    
+    classService.classadd(c);
+  }
+  
+  @RequestMapping("classupdate")
+  public void classupdate(Classes c) {
+    System.out.println("classupdate 호출");
+    
+    c.setNo(6);
+    c.setTitl("고정지");
+    c.setConts("안녕하세요 저는 둠칫둠칫");
+    c.setPric(111);
+    //c.setrgdt("now()");
+    c.setTime("고정지");
+    c.setCapa(10);
+    c.setCfile("naver");
+    c.setTinfo("고정지");
+    c.setCinfo("안녕하ㅔ요");
+    c.setPstno("고정지");
+    c.setBasAddr("고정지");
+    c.setDetAddr("고정지");
+    //c.setEdt("고정지");
+    c.setMono(3);
+    c.setMtno(3);
+    
+    classService.classupdate(c);
   }
   
   @GetMapping("findBytag")
@@ -101,10 +141,10 @@ public class ClassController {
   @GetMapping("qnalist")
   public void qnalist() {
     
-    List<Classqna> clist= classqnaService.classqnalist(5);
+    List<ClassQna> clist= classqnaService.classqnalist(5);
     
 
-    for(Classqna c : clist) {
+    for(ClassQna c : clist) {
 
       System.out.println(c.getNo());
       System.out.println(c.getTitl());
@@ -113,25 +153,43 @@ public class ClassController {
     }
   }
   
-  @PostMapping("quainsert")
-  public int quainsert(Classqna classqna) {
+  @RequestMapping("qnainsert")
+  public void qnainsert(ClassQna classqna) {
+    
+    classqna.setNo(7);
+    classqna.setMeno(5);
+    classqna.setCno(7);
+    classqna.setTitl("호에에엣?");
+    classqna.setConts("히이이ㅣ이엣?");
     
     classqnaService.qnaadd(classqna);
-    
-    return 1;
   }
   
-  @PostMapping("ansinsert")
-  public int ansinsert(Classqna classqna) {
+  @RequestMapping("qnaupdate")
+  public void qnaupdate(ClassQna classqna) {
     
-    classqnaService.ansadd(classqna);
+    classqna.setNo(5);
+    //classqna.setMeno(7);
+    //classqna.setCno(cno);
+    classqna.setTitl("고정은씨는 이 글을 보시오!!");
+    classqna.setConts("응 넌 낚였어");
     
-    return 1;
+    classqnaService.qnaupdate(classqna);
+  }
+  
+  @RequestMapping("ansupdate")
+  public void ansupdate(ClassQna classqna) {
+    
+    classqna.setNo(6);
+    classqna.setAnser("손님..;; 손님이 더 이상해요!!!");
+    
+    classqnaService.ansupdate(classqna);
+    
   }
   
   ///////////////// p_cls_qna 수업질문답변//////////////////
   @PostMapping("orderinsert")
-  public int orderinsert(Classorder classorder) {
+  public int orderinsert(ClassOrder classorder) {
     
     classorderService.orderadd(classorder);
     
@@ -139,11 +197,11 @@ public class ClassController {
   }
   
   @GetMapping("orderlist")
-  public List<Classorder> orderlist() {
+  public List<ClassOrder> orderlist() {
     
-    List<Classorder> clist = classorderService.corderlist(5);
+    List<ClassOrder> clist = classorderService.corderlist(5);
     
-    for(Classorder c : clist) {
+    for(ClassOrder c : clist) {
       System.out.println(c.getNo());
       System.out.println(c.getMeno());
       System.out.println(c.getTime());
@@ -159,11 +217,11 @@ public class ClassController {
   ///////////////// p_cls_order 클래스 신청내역///////////////////////
   
   @GetMapping("likelist")
-  public List<Classlike> likelist() {
+  public List<ClassLike> likelist() {
     
-    List<Classlike> clist = classlikeService.classlikelist(5);
+    List<ClassLike> clist = classlikeService.classlikelist(5);
     
-    for(Classlike c : clist) {
+    for(ClassLike c : clist) {
       System.out.println(c.getNo());
       System.out.println(c.getMeno());
       System.out.println(c.getCno());
@@ -171,26 +229,29 @@ public class ClassController {
     return null;
   }
   
-  @PostMapping("likeinsert")
-  public int likeinsert(Classlike classlike) {
+  @RequestMapping("likeinsert")
+  public void likeinsert(ClassLike classlike) {
+    
+    classlike.setNo(6);
+    classlike.setCno(6);
+    classlike.setMeno(6);
     
     classlikeService.likeadd(classlike);
     
-    return 1;
   }
   
-  @PostMapping("likedelete")
-  public int likedelete(Classlike classlike) {
+  @RequestMapping("likedelete")
+  public void likedelete(ClassLike classlike) {
+    
+    classlike.setNo(4);
     
     classlikeService.likesub(classlike);
-    
-    return 1;
   }
   
   ////////////////////////p_cls_like 찜클래스///////////////////////
   
   @PostMapping("baktinsert")
-  public int baktinsert(Classbakt classbakt) {
+  public int baktinsert(ClassBakt classbakt) {
    
     classbaktService.baktadd(classbakt);
     
@@ -198,7 +259,7 @@ public class ClassController {
   }
   
   @PostMapping("baktdelete")
-  public int baktdelete(Classbakt classbakt) {
+  public int baktdelete(ClassBakt classbakt) {
     
     classbaktService.baktsub(classbakt);
     
@@ -206,11 +267,11 @@ public class ClassController {
   }
   
   @GetMapping("baktlist")
-  public List<Classbakt> baktlist(){
+  public List<ClassBakt> baktlist(){
     
-    List<Classbakt> clist = classbaktService.baktlist(5);
+    List<ClassBakt> clist = classbaktService.baktlist(5);
     
-    for(Classbakt c : clist) {
+    for(ClassBakt c : clist) {
       System.out.println(c.getNo());
       System.out.println(c.getMeno());
       System.out.println(c.getCtno());

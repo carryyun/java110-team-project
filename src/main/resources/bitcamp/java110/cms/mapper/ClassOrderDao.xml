@@ -3,9 +3,9 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="bitcamp.java110.cms.dao.ClassorderDao">
+<mapper namespace="bitcamp.java110.cms.dao.ClassOrderDao">
 
-    <resultMap type="Classorder" id="ClassorderMap">
+    <resultMap type="ClassOrder" id="ClassorderMap">
         <id 	column="ono" 		property="no"/>
         <result column="meno"   	property="meno"/>
         <result column="time"    	property="time"/>
@@ -17,7 +17,7 @@
     
     <select id="orderlist" resultMap="ClassorderMap" parameterType="map">
         select
-        	ono,meno,time,tot_pric,payout,paydt,ctno
+        	meno,time,tot_pric,payopt,paydt,ctno
         from
         	p_cls_order
         	
@@ -26,9 +26,9 @@
     <insert id="orderinsert" parameterType="int"
     useGeneratedKeys="true" keyColumn="ono" keyProperty="no">
         insert 
-        	into p_cls_qna(meno,time,tot_pric,payopt,paydt,ctno)
+        	into p_cls_order(meno,time,tot_pric,payopt,paydt,ctno)
         values
-        	(#{meno},#{time},#{tot_pric},#{payopt},#{paydt},#{ctno})
+        	(#{meno},#{time},#{tot_pric},#{payopt},now(),#{ctno})
     </insert>
     
 </mapper>

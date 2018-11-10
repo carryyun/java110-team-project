@@ -15,5 +15,7 @@ public interface ProductBlockDao {
   // 멘티번호 조회
   List<ProductBlock> findAllByMeno(Map<String,Object> params); 
   
+  int insert(ProductBlock productBlock);
   
+  int update(ProductBlock productBlock);
 }

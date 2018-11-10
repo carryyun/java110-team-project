@@ -9,12 +9,19 @@
         <id column="cno" property="no"/>
         <result column="titl"  property="titl"/>
         <result column="conts"    property="conts"/>
+        <result column="pric"   property="pric"/>
+        <result column="rgdt"   property="rgdt"/>
         <result column="time"   property="time"/>
         <result column="capa"  property="capa"/>
         <result column="cfile"  property="cfile"/>
         <result column="tinfo"    property="tinfo"/>
         <result column="cinfo"   property="cinfo"/>
+        <result column="pstno"   property="pstno"/>
+        <result column="bas_addr"   property="basAddr"/>
+        <result column="det_addr"   property="detAddr"/>
         <result column="edt"  property="edt"/>
+        <result column="mono"  property="mono"/>
+        <result column="mtno"  property="mtno"/>
     </resultMap>
     
     <sql id="select1">
@@ -50,9 +57,32 @@
         	,tinfo,cinfo,pstno,bas_addr,det_addr,edt,mono,mtno)
         values
         	(#{titl},#{conts},#{pric},now(),#{time},#{capa}
-        	,#{cfile},#{tinfo},#{cinfo},#{pstno},#{bas_addr}
-        	,#{det_addr},now(),#{mono},#{mtno})
+        	,#{cfile},#{tinfo},#{cinfo},#{pstno},#{basAddr}
+        	,#{detAddr},now(),#{mono},#{mtno})
     </insert> 
+    
+    <update id="classupdate" parameterType="Classes">
+    	update p_cls
+    		<set>
+    			<if test="titl != null">titl = #{titl},</if>
+    			<if test="conts != null">conts = #{conts},</if>
+    			<if test="pric > 0">pric = #{pric},</if>
+    			<if test="rgdt != null">rgdt = now(),</if>
+    			<if test="time != null">time = #{time},</if>
+    			<if test="capa > 0">capa = #{capa},</if>
+    			<if test="cfile != null">cfile = #{cfile},</if>
+    			<if test="tinfo != null">tinfo = #{tinfo},</if>
+    			<if test="cinfo != null">cinfo = #{cinfo},</if>
+    			<if test="pstno != null">pstno = #{pstno},</if>
+    			<if test="basAddr != null">bas_addr = #{basAddr},</if>
+    			<if test="detAddr != null">det_addr = #{detAddr},</if>
+    			<if test="edt != null">edt = now(),</if>
+    			<if test="mono > 0">mono = #{mono},</if>
+    			<if test="mtno > 0">mtno = #{mtno}</if>
+    		</set>
+    	where 
+    		cno = #{no}
+    </update>
     
 </mapper>
 

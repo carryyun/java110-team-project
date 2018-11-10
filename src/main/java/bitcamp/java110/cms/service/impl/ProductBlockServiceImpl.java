@@ -49,4 +49,18 @@ public class ProductBlockServiceImpl implements ProductBlockService {
   }
 
 
+  @Override
+  public int add(ProductBlock productBlock) {
+
+    return productBlockDao.insert(productBlock);
+  }
+
+
+  @Override
+  public int update(ProductBlock productBlock) {
+
+    return productBlockDao.update(productBlock);
+  }
+
+
 }

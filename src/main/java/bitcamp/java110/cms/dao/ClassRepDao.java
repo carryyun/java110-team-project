@@ -5,8 +5,8 @@ import java.util.Map;
 import bitcamp.java110.cms.domain.ClassRep;
 
 public interface ClassRepDao {
-  List<ClassRep> findAll(Map<String,Object> params);
-  int ripInsert(ClassRep classRip);
-  int ripDelete(int no);
-  int ripChange(int no);
+  List<ClassRep> findAll();
+//  int repInsert(ClassRep classRep);
+//  int repDelete(int no);
+//  int repChange(int no); // update
 }

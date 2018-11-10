@@ -3,9 +3,9 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="bitcamp.java110.cms.dao.ClasslikeDao">
+<mapper namespace="bitcamp.java110.cms.dao.ClassLikeDao">
 
-    <resultMap type="Classlike" id="classlikeMap">
+    <resultMap type="ClassLike" id="classlikeMap">
         <id column="clno" property="no"/>
         <result column="meno"  property="meno"/>
         <result column="cno"    property="cno"/>
@@ -14,24 +14,32 @@
 
     <select id="likelist" resultMap="classlikeMap" parameterType="map">
     	select 
-    		clno,meno,cno
+    		ps.titl,ps.conts,ps.pric,ps.bas_addr,pe.name
     	from
-    		p_cls_like
+    		p_cls_like as pce 
+    		inner join p_cls as ps
+    			on pce.cno = ps.cno
+    		inner join p_meto as po
+    			on ps.mono = po.mono
+    		inner join p_mete as pe
+    			on po.mono = pe.meno
+    	where
+    		pce.memo = #{meno} and po.stat = 'Y'nd 
     </select>
 
-	<insert id="likeinsert" parameterType="Classlike" 
+	<insert id="likeinsert" parameterType="ClassLike" 
             useGeneratedKeys="true" keyColumn="clno" keyProperty="no">
-		insert 
+		insert
 			into p_cls_like(meno,cno)
 		values
 			(#{meno},#{cno})
 	</insert>
 	
-	<delete id="likedelete" parameterType="Classlike">
+	<delete id="likedelete" parameterType="ClassLike">
 		delete 
 			from p_cls_like
 		where
-			clno = #{clno}
+			clno = #{no}
 	</delete>
     
 </mapper>

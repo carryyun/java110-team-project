@@ -13,6 +13,10 @@ public interface MentoTagService {
   // 대분류 번호로 조회
   List<MentoTag> listByBtno(int pageNo, int pageSize, int btno);
   
-  
+  // 입력(추가)
+  int add(MentoTag mentoTag);
  
+  // 삭제
+  void delete(int no);
+  
 }

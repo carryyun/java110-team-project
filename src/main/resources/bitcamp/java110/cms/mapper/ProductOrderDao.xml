@@ -89,5 +89,13 @@
         where 
             ptno=#{productno}
     </select>
+    
+    <!-- insert -->
+    <insert id="insert" parameterType="productOrder"
+            useGeneratedKeys="true" keyColumn="ono" keyProperty="no">
+        insert into p_prdt_order(meno,ptno,cnt,tot_pric,payopt,paydt,parc_name,parc_no)
+        values(#{meno},#{ptno},#{cnt},#{tot_pric},#{payopt},now(),#{parc_name},#{parc_no})
+    </insert> 
+    
 
 </mapper>
