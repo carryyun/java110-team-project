@@ -1,4 +1,4 @@
-
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
 
@@ -9,19 +9,22 @@
 
     <title>Clean Blog - Start Bootstrap Theme</title>
 
+    <!-- ===============필수포함=============== -->
     <!-- Bootstrap core CSS -->
-    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
    
     <!-- 폰트 추가 -->
     <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
     <!-- Custom fonts for this template -->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
-    <!-- Custom styles for this template -->
-    <link href="../../../css/clean-blog.css" rel="stylesheet">
+    <!-- ===============필수포함=============== -->
+
+    <!-- Custom styles -->
+    <link href="/css/clean-blog.css" rel="stylesheet">
     
 
  
@@ -66,6 +69,7 @@
     </header>
     <!-- 카테고리 nav (스크립트로 임시 inclue) -->
     <div id="headerNav"></div>
+    <%-- <%@inclue file="headerNav.jsp"%> --%>
 
     <!-- Main Content -->
     <div class="row">
@@ -274,16 +278,16 @@
       </div>
     </footer>
 
+    <!-- ===============필수포함=============== -->
     <!-- Bootstrap core JavaScript -->
-    <script src="../../../vendor/jquery/jquery.min.js"></script>
-    <script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+    <!-- ===============필수포함=============== -->
+    
     <!-- Custom scripts for this template -->
-    <script src="../../js/clean-blog.js"></script>
-    
-    <!-- ??? -->
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    
+    <script src="/js/clean-blog.js"></script>
+
     <script>
       $(document).ready(function(){
          $("#headerNav").load("headerNav.html")
