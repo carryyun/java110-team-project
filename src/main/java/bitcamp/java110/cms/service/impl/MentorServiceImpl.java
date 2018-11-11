@@ -22,7 +22,7 @@ public class MentorServiceImpl implements MentorService {
   public int add(Mentor mentor) {
     mentor.setNo(6);
     mentor.setCarr(3);
-    mentor.setStat('Y');
+    mentor.setMtstat('Y');
     mentorDao.insert(mentor);
     return 0;
   }

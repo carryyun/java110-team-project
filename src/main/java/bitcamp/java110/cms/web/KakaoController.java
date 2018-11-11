@@ -1,6 +1,5 @@
 package bitcamp.java110.cms.web;
 
-import java.sql.Date;
 import java.util.List;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import bitcamp.java110.cms.domain.ClassFile;
 import bitcamp.java110.cms.domain.Cs;
-import bitcamp.java110.cms.domain.Member;
+import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.MentorFile;
 import bitcamp.java110.cms.domain.MentorLicense;
 import bitcamp.java110.cms.domain.Notice;
@@ -331,7 +330,7 @@ public class KakaoController {
             response.addCookie(cookie);
         }
         
-        Member loginUser = authService.getMember(email, password, type);
+        Mentee loginUser = authService.getMentee(email, password);
         
         if (loginUser != null) {
             // 회원 정보를 세션에 보관한다.

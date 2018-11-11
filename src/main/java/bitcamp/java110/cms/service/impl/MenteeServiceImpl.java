@@ -28,7 +28,6 @@ public class MenteeServiceImpl implements MenteeService {
     return menteeDao.findAll(params);
 
   }
-
   @Override
   public Mentee get(int no) {
 
@@ -69,9 +68,7 @@ public class MenteeServiceImpl implements MenteeService {
 
   @Override
   public void add(Mentee mentee) {
-
     menteeDao.insert(mentee);
-
   }
 
   @Transactional

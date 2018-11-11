@@ -8,9 +8,22 @@
 
     <resultMap type="mentor" id="mentorMap">
         <id column="mono"       property="no"/>
-        <result column="carr"   property="carr"/>
+        <result column="name"   property="name"/>
+        <result column="email"   property="email"/>
+        <result column="nick"   property="nick"/>
+        <result column="phone"   property="phone"/>
+        <result column="pstno"   property="pstno"/>
+        <result column="bas_addr"   property="bas_addr"/>
+        <result column="det_addr"   property="det_addr"/>
+        <result column="phot"   property="phot"/>
+        <result column="sell"   property="sell"/>
+        <result column="bkname"   property="bkname"/>
+        <result column="bkno"   property="bkno"/>
+        <result column="rgdt"   property="rgdt"/>
         <result column="stat"   property="stat"/>
-        
+        <result column="note"   property="note"/>
+        <result column="mtstat"   property="mtstat"/>
+        <result column="carr"   property="carr"/>
     </resultMap>
     
     <select id="findAll" resultMap="mentorMap" >
@@ -27,10 +40,37 @@
         insert into 
         		p_meto
         	 values
-        		(#{no}
-        		,#{carr}
-        		,#{stat})
+        		(#{carr})
     </insert>
+    
+      
+    <select id="findByEmailPassword" 
+            resultMap="mentorMap" parameterType="map">
+        select 
+            mono,
+            name,
+            email,
+            nick,
+            phone,
+            pstno,
+            bas_addr,
+            det_addr,
+            phot,
+            sell,
+            bkname,
+            bkno,
+            rgdt,
+            stat,
+            note,
+            mtstat,
+            carr
+        from 
+            p_meto mto
+            left outer join p_mete mte on mto.mono = mte.meno
+        where
+            mte.email=#{email} and mte.pwd=password(#{pwd})
+    </select> 
+    
     
     
     

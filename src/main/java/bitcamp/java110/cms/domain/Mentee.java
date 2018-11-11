@@ -21,6 +21,7 @@ public class Mentee {
   protected Date rgdt;
   protected char stat;
   protected String note;
+  protected char mtstat;
 
   public int getNo() {
     return no;
@@ -149,6 +150,15 @@ public class Mentee {
   public void setNote(String note) {
     this.note = note;
   }
+
+  public char getMtstat() {
+    return mtstat;
+  }
+
+  public void setMtstat(char mtstat) {
+    this.mtstat = mtstat;
+  }
+  
 
 
 }

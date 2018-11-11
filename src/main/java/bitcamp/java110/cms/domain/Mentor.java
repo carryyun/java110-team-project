@@ -2,16 +2,8 @@ package bitcamp.java110.cms.domain;
 
 public class Mentor extends Mentee{
   
-  private int carr;
-  private char stat;
+  protected int carr;
   
-  
-  public char getStat() {
-    return stat;
-  }
-  public void setStat(char stat) {
-    this.stat = stat;
-  }
   public int getCarr() {
     return carr;
   }

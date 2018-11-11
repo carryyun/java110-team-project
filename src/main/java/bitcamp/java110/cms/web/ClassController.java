@@ -20,8 +20,10 @@ import bitcamp.java110.cms.service.ClassOrderService;
 import bitcamp.java110.cms.service.ClassQnaService;
 import bitcamp.java110.cms.service.ClassService;
 
-@Controller
-@RequestMapping("/class")
+
+
+//@Controller
+//@RequestMapping("/class")
 public class ClassController {
 
   ClassService classService;
@@ -34,27 +36,19 @@ public class ClassController {
   public ClassController(
       ClassService classService,ClassQnaService classqnaService,
       ClassOrderService classorderService,ClassLikeService classlikeService
-      ,ClassBaktService classbaktService,ServletContext sc) {
+      ,ClassBaktService classbaktService) {
     this.classService = classService;
     this.classqnaService = classqnaService;
     this.classorderService = classorderService;
     this.classlikeService = classlikeService;
     this.classbaktService = classbaktService;
-    this.sc=sc;
   }
 
-  @RequestMapping(value = "/findAll",method = RequestMethod.POST)
-  public void findAll(
-      @RequestParam(defaultValue="3") int pageSize,
-      Model model) {
+  @GetMapping("findAll")
+  public void findAll() {
     System.out.println("findAll 호출");
-    
-    if (pageSize < 3 || pageSize > 10)
-      pageSize = 3;
-    
     List<Classes> clist= classService.classlist(5);
     
-    model.addAttribute("findAll", clist);
 
     for(Classes c : clist) {
 
@@ -63,15 +57,10 @@ public class ClassController {
     }
   }
 
-  @GetMapping("form")
-  public void form() {
+  @RequestMapping("classinsert")
+  public void classinsert(Classes c) {
     
-  }
-  
-  @RequestMapping(value = "/classinsert",method = RequestMethod.POST)
-  public String classinsert(Classes c) {
-    
-    c.setNo(8);
+    c.setNo(6);
     c.setTitl("고정지");
     c.setConts("고정지");
     c.setPric(111);
@@ -88,11 +77,7 @@ public class ClassController {
     c.setMono(4);
     c.setMtno(4);
     
-    
-    
     classService.classadd(c);
-    
-    return "redirect:findAll";
   }
   
   @RequestMapping("classupdate")

@@ -2,70 +2,111 @@
     contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     trimDirectiveWhitespaces="true"%>
+<%@ page import="java.net.URLEncoder" %>
+<%@ page import="java.security.SecureRandom" %>
+<%@ page import="java.math.BigInteger" %>
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset='UTF-8'>
-<title>로그인</title>
-<link rel='stylesheet' href='/css/common.css'>
-<style>
-th {
-    text-align: right;
-}
-</style>
+	<meta charset="utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
+	<title>Login Page</title>
+   <!--Made with love by Mutiullah Samim -->
+   
+	<!--Bootsrap 4 CDN-->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+    <!--Fontawesome CDN-->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+	<link rel="stylesheet" type="text/css" href="/css/form.css">
+	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 </head>
 <body>
 
-<jsp:include page="../header.jsp"></jsp:include>
-
-<h1>로그인</h1>
-
-<form action='login' method='post'>
-<table>
-<tr>
-    <th></th>
-    <td>
-        <input type='radio' name='type' value='manager' checked>매니저
-        <input type='radio' name='type' value='member'>강사
-    </td>
-</tr>
-<tr>
-    <th>이메일</th>
-    <td><input type='email' name='email' value='${cookie.email.value}'></td>
-</tr>
-<tr>
-    <th>암호</th>
-    <td><input type='password' name='password'></td>
-</tr>
-<tr>
-    <th></th>
-    <td><input type='checkbox' name='save'>이메일 저장</td>
-</tr>
-<tr>
-    <th></th>
-    <td>
-        <button>로그인</button>
-        <fb:login-button scope="public_profile,email" 
-            onlogin="checkLoginState();"></fb:login-button>
-            
-    </td>
-</tr>
-</table>
-</form>
-
-<jsp:include page="../footer.jsp"/>
-
-
+<!-- 네이버 --> -->
+<%
+    String clientId = "TnNcED7klJ8X7xSS3nja";//애플리케이션 클라이언트 아이디값";
+    String redirectURI = URLEncoder.encode("http://localhost:8888/app/auth/callback", "UTF-8");
+    SecureRandom random = new SecureRandom();
+    String state = new BigInteger(130, random).toString();
+    String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
+    apiURL += "&client_id=" + clientId;
+    apiURL += "&redirect_uri=" + redirectURI;
+    apiURL += "&state=" + state;
+    session.setAttribute("state", state);
+ %>
+ 
+<div class="container">
+	<div class="d-flex justify-content-center h-100">
+		<div class="card">
+			<div class="card-header">
+				<h3>로그인</h3>
+				<div class="d-flex justify-content-end social_icon">
+        				<fb:login-button scope="public_profile,email" 
+            				onlogin="checkLoginState();"></fb:login-button>
+					<a id="kakao-login-btn"></a>
+					<a href="<%=apiURL%>"><img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
+				</div>
+			</div>
+			<div class="card-body">
+				<form action='login' method="post" >
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
+						</div>
+						<input type="email" name="email" value='${cookie.email.value}' 
+						class="form-control" placeholder="useremail">
+						
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-key"></i></span>
+						</div>
+						<input type="password" name="pwd" class="form-control" placeholder="password">
+					</div>
+					<div class="row align-items-center remember">
+						<input type="checkbox" name="save">이메일 저장
+					</div>
+					<div id="login" class="form-group">
+						<input type="submit" value="login" class="btn float-right login_btn">
+					</div>
+				</form>
+			</div>
+			<div class="card-footer">
+				<div class="d-flex justify-content-center links">
+					<a href="#">회원 가입</a>
+				</div>
+				<div class="d-flex justify-content-center">
+					<a href="#">이메일 찾기</a>
+				</div>
+				<div class="d-flex justify-content-center">
+					<a href="#">비밀번호 찾기</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+ <!-- 페이스북 -->
 <script type="text/javascript">
 function autoLogin(accessToken) {
-    location.href = "fblogin?"+ 
-            "accessToken=" + accessToken;
+    var type = document.querySelector("input[name='type']:checked").value;
+    location.href = "fblogin?type=" + type + 
+            "&accessToken=" + accessToken;
 }
 
 function checkLoginState() {
     FB.getLoginStatus(function(response) { 
         if (response.status === 'connected') {
             autoLogin(response.authResponse.accessToken);
+        
         } else {
             alert("Facebook 로그인 실패!");
         }
@@ -90,18 +131,46 @@ window.fbAsyncInit = function() {
   js.src = "https://connect.facebook.net/en_US/sdk.js";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
+
+<!-- 카카오톡 -->
+var email = "";
+
+// 사용할 앱의 JavaScript 키를 설정해 주세요.
+Kakao.init('84669683f5618779917565387337bb61');
+// 카카오 로그인 버튼을 생성합니다.
+Kakao.Auth.createLoginButton({
+  container: '#kakao-login-btn',
+  success: function(authObj) {
+    // 로그인 성공시, API를 호출합니다.
+    Kakao.API.request({
+      url: '/v1/user/me',
+      success: function(res) {
+        console.log(JSON.stringify(res.kaccount_email));
+        email = JSON.stringify(res.kaccount_email);
+        console.log(JSON.stringify(res.id));
+        console.log(JSON.stringify(res.properties.profile_image));
+        console.log(JSON.stringify(res.properties.nickname));
+        
+            location.href = "kakao?email=" + JSON.stringify(res.kaccount_email) +
+                    "&id=" + JSON.stringify(res.id) +
+                    "&profile_image=" + JSON.stringify(res.properties.profile_image) +
+                    "&nickname=" + JSON.stringify(res.properties.nickname);
+      },
+      fail: function(error) {
+        alert(JSON.stringify(error));
+      }
+    });
+  },
+  fail: function(err) {
+    alert(JSON.stringify(err));
+  }
+});
+
+
+console.log(email);
 </script>
+
 
 </body>
 </html>
 
-
-
-
-
-
-
-
-
-
-    
