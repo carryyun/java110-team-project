@@ -2,6 +2,8 @@
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
+
+
 <!DOCTYPE html><html lang='en' class=''>
 <head>
 <script src='//production-assets.codepen.io/assets/editor/live/console_runner-079c09a0e3b9ff743e39ee2d5637b9216b3545af0de366d4b9aad9dc87e26bfd.js'></script><script src='//production-assets.codepen.io/assets/editor/live/events_runner-73716630c22bbc8cff4bd0f07b135f00a0bdc5d14629260c3ec49e5606f98fdd.js'></script><script src='//production-assets.codepen.io/assets/editor/live/css_live_reload_init-2c0dc5167d60a5af3ee189d570b1835129687ea2a61bee3513dee3a50c115a77.js'></script>
@@ -12,88 +14,8 @@
 <link rel="canonical" href="https://codepen.io/nelsonleite/pen/RaGwba?depth=everything&order=popularity&page=4&q=product&show_forks=false" />
 <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
-    <style>
-        *{
-            margin: 0 auto;
-        }
-        #ClassSearchBoard{ 
-            /* 클래스 상세검색*/
-            width: 1100px;
-            height: 330px;
-            margin: 10px;
-            border-top: 2px solid silver;
-            border-bottom: 2px solid silver;
-            transform:translate(40%)
-        }
-        #ClassCategory{
-            /* 클래스 카테고리 검색 */
-            float: left;
-            margin: 0 auto;
-        }
-        #day{
-            /* 클래스 날짜 검색 */
-            margin: 0 auto;
-            position:absolute; 
-            left:40%; 
-            transform:translate(-30%)
-
-        }
-        #checkmap{
-            /* 클래스 지도 검색 */
-            margin: 0 auto;
-            float: right;
-        }
-        #classSearchbut1{
-            /* 클래스 검색 버튼 */
-            position: 
-            float: right;
-        }
-        li{
-            list-style-type: none;
-        }
-        .week{
-            /* 요일 표시 */
-            width: 20px;
-            height: 20px;
-            margin-left: 10px;
-            margin-top: 5px;
-            width: 20px; height: 20px;
-            border: 1px solid aqua;
-            border-radius: 50%;
-        }
-        #Result{
-            /* 검색결과 와 클래스개강 */
-            width: 1100px;
-            height: 50px;
-        }
-        #ClassSearchResult{
-            /* 검색결과 */
-            float: left;
-        }
-        #ClassRigist{
-            /* 클래스개강 */
-            float: right;
-        }
-        img{
-            /* 클래스 소개사진 */
-            width: 200px;
-            height: 200px;
-        }
-        .mentor{
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-        }
-        #map,#detailmap{
-            /* 지도 사진 */
-            width: 200px; height: 200px;
-        }
-        #classSearchbut1{
-            
-        }
-    </style>
-    <style class="cp-pen-styles">
-        .product-description {
+<style class="cp-pen-styles">
+    .product-description {
   transform: translate3d(0, 0, 0);
   transform-style: preserve-3d;
   perspective: 1000;
@@ -331,61 +253,13 @@ hr {
 .product-description .color-list__item--purple {
   background-color: #673AB7;
 }
-    </style>
-</head>
-<body>
-    <div id="ClassSearchBoard">
-      <div id="ClassCategory">
-       <h2>카테고리-대분류</h2>
-        <ul>
-            <li>카테고리-중분류</li>
-            <li>카테고리-중분류</li>
-        </ul>
-      </div>
-      <div id="day">
-        <h2>날짜</h2>
-         <div id="butcheck1">
-          <button><strong>원데이</strong></button>
-          <button><strong>전체</strong></button>
-         </div>
-         <div id="weekcheck">
-          <div>
-           <button class="week">월</button> <button class="week">화</button> <button class="week">수</button> <button class="week">목</button> 
-          </div>
-          <div>
-           <button class="week">금</button> <button class="week">토</button> <button class="week">일</button>
-          </div>
-         </div>
-      </div>
-      <div id="checkmap">
-          <h2>지역</h2>
-          <img id="map" src="../img/map1.png" alt="지도1">
-          <img id="detailmap" src="../img/detailmap.png" alt="지도2">
-          <button id="classSearchbut1"><h2>검색</h2></button>
-      </div>
-    </div>
-    <div id="Result">
-       <div id="ClassSearchResult"> 검색결과 > 999개 </div>
-       <button id="ClassRigist"><h4>클래스 개강</h4></button>
-    </div>
-    <!--<div id="ClassList">
-       <span id="MentorClass">
-           <img id="Class1" src="../img/Class.jpg" alt="클래스소개사진1"><br>
-           <span>비트캠프와 아이들</span> <br>
-           <span><small>30000</small></span><br>
-           <span><small>별점</small></span><span><small>기본 주소</small></span>
-           <img class="mentor" src="../img/mentor1.jpg" alt="멘토소개사진1">
-       </span>
-       <span id="MentorClass">
-           <img id="Class1" src="../img/Class.jpg" alt="클래스소개사진1"><br>
-           <span>비트캠프와 아이들</span> <br>
-           <span><small>30000</small></span><br>
-           <span><small>별점</small></span><span><small>기본 주소</small></span>
-           <img class="mentor" src="../img/mentor1.jpg" alt="멘토소개사진1">
-       </span>
-    </div>-->
-    <!-- 여기 아래부터 bootstrap -->
-    <div class="container">
+</style></head><body>
+<!--
+Inspired in this dribbble
+https://dribbble.com/shots/986548-Product-Catalog
+-->
+
+<div class="container">
 	<div class="row">
 
 		<div class="col-xs-12 col-sm-6 col-md-4">
@@ -395,24 +269,59 @@ hr {
 					<div class="image-liquid image-holder--original" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/2/24/Blue_Tshirt.jpg')">
 					</div>
 				</div>
+
 				<div class="product-description">
-					<!-- 제목 -->
+					<!-- title -->
 					<h1 class="product-description__title">
-						<a href="#">자바를 배우자</a>
+						<a href="#">						
+							Adidas Originals
+							</a>
 					</h1>
-					<!-- 분류명 , 가격 -->
+
+					<!-- category and price -->
 					<div class="row">
 						<div class="col-xs-12 col-sm-8 product-description__category secondary-text">
-							컴퓨터 - 자바
+							Men's running shirt
 						</div>
-						<div class="col-xs-12 col-sm-4 product-description__price">30000원</div>
+						<div class="col-xs-12 col-sm-4 product-description__price">
+							€ 499
+						</div>
 					</div>
+
+					<!-- divider -->
 					<hr />
-					<!-- 멘토 이름 -->
-					<div class="sizes-wrapper"><b>멘토 - 고정은</b></div>
-					<!-- 주소 -->
-					<div class="color-wrapper"><b>기본 주소</b></div>
+
+					<!-- sizes -->
+					<div class="sizes-wrapper">
+						<b>Sizes</b>
+						<br />
+						<span class="secondary-text text-uppercase">
+							<ul class="list-inline">
+								<li>xs,</li>								
+								<li>s,</li>								
+								<li>sm,</li>								
+								<li>m,</li>
+								<li>l,</li>								
+								<li>xl,</li>								
+								<li>xxl</li>								
+							</ul>
+						</span>
+					</div>
+
+					<!-- colors -->
+					<div class="color-wrapper">
+						<b>Colors</b>
+						<br />
+						<ul class="list-inline color-list">
+							<li class="color-list__item color-list__item--red"></li>
+							<li class="color-list__item color-list__item--blue"></li>
+							<li class="color-list__item color-list__item--green"></li>
+							<li class="color-list__item color-list__item--orange"></li>
+							<li class="color-list__item color-list__item--purple"></li>
+						</ul>
+					</div>
 				</div>
+
 			</article>
 		</div>
 		
@@ -425,23 +334,57 @@ hr {
 				</div>
 
 				<div class="product-description">
-					<!-- 제목 -->
+					<!-- title -->
 					<h1 class="product-description__title">
-						<a href="#">자바를 배우자</a>
+						<a href="#">						
+							Adidas Originals
+							</a>
 					</h1>
-					<!-- 분류명 , 가격 -->
+
+					<!-- category and price -->
 					<div class="row">
-						<div class="col-xs-12 col-sm-8 product-description__category secondary-text">
-							컴퓨터 - 자바
+						<div class="col-sm-8 product-description__category secondary-text">
+							Men's running shirt
 						</div>
-						<div class="col-xs-12 col-sm-4 product-description__price">30000원</div>
+						<div class="col-sm-4 product-description__price text-right">
+							€ 499
+						</div>
 					</div>
+
+					<!-- divider -->
 					<hr />
-					<!-- 멘토 이름 -->
-					<div class="sizes-wrapper"><b>멘토 - 고정은</b></div>
-					<!-- 주소 -->
-					<div class="color-wrapper"><b>기본 주소</b></div>
+
+					<!-- sizes -->
+					<div class="sizes-wrapper">
+						<b>Sizes</b>
+						<br />
+						<span class="secondary-text text-uppercase">
+							<ul class="list-inline">
+								<li>xs,</li>								
+								<li>s,</li>								
+								<li>sm,</li>								
+								<li>m,</li>
+								<li>l,</li>								
+								<li>xl,</li>								
+								<li>xxl</li>								
+							</ul>
+						</span>
+					</div>
+
+					<!-- colors -->
+					<div class="color-wrapper">
+						<b>Colors</b>
+						<br />
+						<ul class="list-inline color-list">
+							<li class="color-list__item color-list__item--red"></li>
+							<li class="color-list__item color-list__item--blue"></li>
+							<li class="color-list__item color-list__item--green"></li>
+							<li class="color-list__item color-list__item--orange"></li>
+							<li class="color-list__item color-list__item--purple"></li>
+						</ul>
+					</div>
 				</div>
+
 			</article>
 		</div>
 		
@@ -454,24 +397,57 @@ hr {
 				</div>
 
 				<div class="product-description">
-					<!-- 제목 -->
+					<!-- title -->
 					<h1 class="product-description__title">
-						<a href="#">자바를 배우자</a>
+						<a href="#">						
+							Adidas Originals
+							</a>
 					</h1>
 
-					<!-- 분류명 , 가격 -->
+					<!-- category and price -->
 					<div class="row">
-						<div class="col-xs-12 col-sm-8 product-description__category secondary-text">
-							컴퓨터 - 자바
+						<div class="col-sm-8 product-description__category secondary-text">
+							Men's running shirt
 						</div>
-						<div class="col-xs-12 col-sm-4 product-description__price">30000원</div>
+						<div class="col-sm-4 product-description__price text-right">
+							€ 499
+						</div>
 					</div>
+
+					<!-- divider -->
 					<hr />
-					<!-- 멘토 이름 -->
-					<div class="sizes-wrapper"><b>멘토 - 고정은</b></div>
-					<!-- 주소 -->
-					<div class="color-wrapper"><b>기본 주소</b></div>
+
+					<!-- sizes -->
+					<div class="sizes-wrapper">
+						<b>Sizes</b>
+						<br />
+						<span class="secondary-text text-uppercase">
+							<ul class="list-inline">
+								<li>xs,</li>								
+								<li>s,</li>								
+								<li>sm,</li>								
+								<li>m,</li>
+								<li>l,</li>								
+								<li>xl,</li>								
+								<li>xxl</li>								
+							</ul>
+						</span>
+					</div>
+
+					<!-- colors -->
+					<div class="color-wrapper">
+						<b>Colors</b>
+						<br />
+						<ul class="list-inline color-list">
+							<li class="color-list__item color-list__item--red"></li>
+							<li class="color-list__item color-list__item--blue"></li>
+							<li class="color-list__item color-list__item--green"></li>
+							<li class="color-list__item color-list__item--orange"></li>
+							<li class="color-list__item color-list__item--purple"></li>
+						</ul>
+					</div>
 				</div>
+
 			</article>
 		</div>
 		
@@ -482,28 +458,64 @@ hr {
 					<div class="image-liquid image-holder--original" style="background-image: url('http://www.publicdomainpictures.net/pictures/20000/nahled/red-shoes-isolated.jpg')">
 					</div>
 				</div>
+
 				<div class="product-description">
-					<!-- 제목 -->
+					<!-- title -->
 					<h1 class="product-description__title">
-						<a href="#">자바를 배우자</a>
+						<a href="#">						
+							Adidas Originals
+							</a>
 					</h1>
 
-					<!-- 분류명 , 가격 -->
+					<!-- category and price -->
 					<div class="row">
-						<div class="col-xs-12 col-sm-8 product-description__category secondary-text">
-							컴퓨터 - 자바
+						<div class="col-sm-8 product-description__category secondary-text">
+							Men's running shirt
 						</div>
-						<div class="col-xs-12 col-sm-4 product-description__price">30000원</div>
+						<div class="col-sm-4 product-description__price text-right">
+							€ 499
+						</div>
 					</div>
+
+					<!-- divider -->
 					<hr />
-					<!-- 멘토 이름 -->
-					<div class="sizes-wrapper"><b>멘토 - 고정은</b></div>
-					<!-- 주소 -->
-					<div class="color-wrapper"><b>기본 주소</b></div>
+
+					<!-- sizes -->
+					<div class="sizes-wrapper">
+						<b>Sizes</b>
+						<br />
+						<span class="secondary-text text-uppercase">
+							<ul class="list-inline">
+								<li>xs,</li>								
+								<li>s,</li>								
+								<li>sm,</li>								
+								<li>m,</li>
+								<li>l,</li>								
+								<li>xl,</li>								
+								<li>xxl</li>								
+							</ul>
+						</span>
+					</div>
+
+					<!-- colors -->
+					<div class="color-wrapper">
+						<b>Colors</b>
+						<br />
+						<ul class="list-inline color-list">
+							<li class="color-list__item color-list__item--red"></li>
+							<li class="color-list__item color-list__item--blue"></li>
+							<li class="color-list__item color-list__item--green"></li>
+							<li class="color-list__item color-list__item--orange"></li>
+							<li class="color-list__item color-list__item--purple"></li>
+						</ul>
+					</div>
 				</div>
+
 			</article>
 		</div>
+
 	</div>
 </div>
+
 </body>
 </html>

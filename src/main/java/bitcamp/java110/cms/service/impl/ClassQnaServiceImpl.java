@@ -8,6 +8,7 @@ import bitcamp.java110.cms.dao.ClassQnaDao;
 import bitcamp.java110.cms.domain.ClassQna;
 import bitcamp.java110.cms.service.ClassQnaService;
 
+
 @Service
 public class ClassQnaServiceImpl implements ClassQnaService{
 

@@ -20,7 +20,7 @@ th {
 
 <h1>클래스 추가</h1>
 
-<form action='add' method='post' enctype="multipart/form-data">
+<form action='/classinsert' method='post' enctype="multipart/form-data">
 <table>
 <tbody>
 <tr>
