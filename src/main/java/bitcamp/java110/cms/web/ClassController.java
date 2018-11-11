@@ -3,12 +3,9 @@ package bitcamp.java110.cms.web;
 import java.util.List;
 import javax.servlet.ServletContext;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import bitcamp.java110.cms.domain.ClassBakt;
 import bitcamp.java110.cms.domain.ClassLike;
 import bitcamp.java110.cms.domain.ClassOrder;
@@ -20,10 +17,8 @@ import bitcamp.java110.cms.service.ClassOrderService;
 import bitcamp.java110.cms.service.ClassQnaService;
 import bitcamp.java110.cms.service.ClassService;
 
-
-
-//@Controller
-//@RequestMapping("/class")
+@Controller
+@RequestMapping("/class")
 public class ClassController {
 
   ClassService classService;
@@ -44,7 +39,12 @@ public class ClassController {
     this.classbaktService = classbaktService;
   }
 
-  @GetMapping("findAll")
+  @GetMapping("form") 
+  public void form() {
+    
+  }
+  
+  @PostMapping("findAll")
   public void findAll() {
     System.out.println("findAll 호출");
     List<Classes> clist= classService.classlist(5);
