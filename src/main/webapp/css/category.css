@@ -1,17 +1,24 @@
 /* 카테고리 nav 관련 */
 nav.navbar{
     padding: 0;
+    z-index: 9;
+}
+#categoryNav > .navbar-nav{
+  /* 카테고리 세로정렬 ? */
 }
 #categoryNav > .navbar-nav > li.nav-item > a {
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 800;
   letter-spacing: 1px;
   text-transform: uppercase;
   color: #6e6e6e;
   font-family: 'Noto Sans KR', sans-serif;
+  
+  text-align: center;
+  min-width: 136px;
 }
 #categoryNav > .navbar-nav > li.nav-item > a:hover{
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 800;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -20,7 +27,7 @@ nav.navbar{
   background-color: #6e6e6e;
 }
 #categoryNav > .navbar-nav > li.nav-item > a#menu01 {
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 800;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -28,7 +35,7 @@ nav.navbar{
   font-family: 'Noto Sans KR', sans-serif;
 }
 #categoryNav > .navbar-nav > li.nav-item > a#menu01:hover{
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 800;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -46,16 +53,24 @@ nav.navbar{
 
 /* 카테고리 서브메뉴 관련 */
 div.menusubs{
+    position: relative;
+    width: 100%;
+    z-index: 10;
     text-align: center;
-    margin-bottom: 20px;
+    margin-top: 0px;
+    /* margin-bottom: 20px; */
 }
 div.menusubs .localNav {
+    position: absolute;
     display: none;
-    background-color: #6e6e6e;
-    z-index: 1;
-    margin: 0 auto;
-    padding: 0px;
-    width: 962px;
+    background-color: white;
+    border-bottom: 2px solid #6e6e6e;
+    border-left: 2px solid #6e6e6e;
+    border-right: 2px solid #6e6e6e;
+    margin-left:-15px;
+    /* margin: 0 auto; */
+    width: 939px;
+    height: 60px;
 }
 
 div.menusubs .localNav li {
@@ -71,17 +86,3 @@ div.menusubs ul{
     font-family: 'Noto Sans KR', sans-serif;
 }
 
-
-
-/* 기타 */
-::-moz-selection {
-  color: #fff;
-  background: #0085A1;
-  text-shadow: none;
-}
-
-::selection {
-  color: #fff;
-  background: #0085A1;
-  text-shadow: none;
-}

@@ -1,4 +1,8 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page import="bitcamp.java110.cms.domain.BigTag"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"
+    trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <html>
 <head>
 
@@ -19,7 +23,7 @@
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href="/css/clean-blog.css" rel="stylesheet">
-    <link href="/css/category.css" rel="stylesheet">
+    <!-- <link href="/css/category.css" rel="stylesheet"> -->
     
     <!-- ===============필수포함=============== -->
     
@@ -29,42 +33,18 @@
   </head>
 
   <body>
-
-    
+    <div id="wrap">
+    <div class="container mx-auto">
+    <!-- Header (스크립트로 임시 inclue) -->
+    <div id="row">
     <div class="container col-lg-10 mx-auto">
-        <!-- top -->
-    <div id="row" class="mainheader">
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-      <div class="container">
-        <a class="navbar-brand" href="index.html">하루</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menu
-          <i class="fas fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto" style="margin-left: 1px">
-            <li class="nav-item">
-             <div id="row">
-              <img src="/upload/img/julme.PNG" alt="singup">
-              <a class="nav-link" href="index.html">로그인</a>
-                </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="about.html">장바구니</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="post.html">찜클래스</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <!-- <div id="headerMain"></div> -->
+    <jsp:include page="headerMain.jsp"></jsp:include>
     </div>
     </div>
-    
-    
-
-    <!-- Page Header -->
+     
+         
+    <!-- Page Header ?????-->
     <header class="masthead">
       
     </header>
@@ -72,27 +52,25 @@
     
     <!-- 카테고리 nav (스크립트로 임시 inclue) -->
     <div class="container col-lg-10 mx-auto">
-    <div id="headerNav"></div>
+    <jsp:include page="headerNav.jsp"></jsp:include>
+    <!-- <div id="headerNav"></div> -->
     </div>
-    <%-- <%@inclue file="headerNav.jsp"%> --%>
 
     <!-- Main Content -->
     <div class="row">
-    <div class="container">
+    <div class="container col-lg-10 mt-3">
         <div class="row">
-          <div class="col-lg-10 col-md-10 mx-auto">
-            <div class="site-heading">
+          <!-- <div class="col-lg-10 col-md-10 mx-3"> -->
+            <!-- <div class="site-heading"> -->
                 <div class="row">
               <ul>
                <h2>카테고리</h2>
-                <li><a href="#">의류</a></li>
-                <li><a href="#">생활용품</a></li>
-                <li><a href="#">장식용품</a></li>
-                <li><a href="#">가구</a></li>
-                <li><a href="#">기타</a></li>
+               <c:forEach  items="${list}" var="m">
+                    <li><a href="#">${m.name}</a></li>
+                </c:forEach>
               </ul>
 <!-- 오늘의 핫 아이템(카르셀) -->    
-<div class="container">
+<!-- <div class="col-lg-7"> -->
 <div class="col-lg-9 col-md-6 mx-auto">
 
 <h2>오늘의 핫 아이템</h2>
@@ -105,7 +83,7 @@
 </ol>
 <div class="carousel-inner" role="listbox">
     <div class="carousel-item active">
-      <div class="col-lg-9 mx-auto"  style="padding-left: 0px">
+      <div class="col-lg-auto px-5 mx-2" >
        <div class="test">
         <img class="d-block img-fluid" src="/upload/img/product/900x350/julme.PNG" alt="First slide">
        </div>
@@ -118,7 +96,7 @@
        </div>
     </div>
     <div class="carousel-item">
-      <div class="col-lg-9 mx-auto"  style="padding-left: 0px">
+      <div class="col-lg-auto mx-auto"  >
        <div class="test">
         <img class="d-block img-fluid" src="/upload/img/product/900x350/julme.PNG" alt="First slide">
        </div>
@@ -131,7 +109,7 @@
        </div>
     </div>
     <div class="carousel-item">
-      <div class="col-lg-9 mx-auto"  style="padding-left: 0px">
+      <div class="col-lg-auto mx-auto" >
        <div class="test">
         <img class="d-block img-fluid" src="/upload/img/product/900x350/julme.PNG" alt="First slide">
        </div>
@@ -155,10 +133,10 @@
 </div>
 </div>
 </div>
-</div>
+<!-- </div> -->
              </div>
-            </div>
-          </div>
+            <!-- </div> -->
+          <!-- </div> -->
         </div>
         <hr class="FhrBotMargin">
       </div>
@@ -284,7 +262,8 @@
         </div>
       </div>
     </footer>
-
+    </div>
+</div>
 <!-- ===============필수포함=============== -->
 <!-- Bootstrap core JavaScript -->
 <script src="/vendor/jquery/jquery.min.js"></script>
@@ -296,7 +275,8 @@
 
     <script>
       $(document).ready(function(){
-         $("#headerNav").load("headerNav.html")
+          $("#headerMain").load("headerMain.html")
+          $("#headerNav").load("headerNav.html")
       });
 </script> 
   </body>

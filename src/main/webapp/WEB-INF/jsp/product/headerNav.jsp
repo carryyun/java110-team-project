@@ -1,4 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 
 <html>
   <head>
@@ -30,7 +31,7 @@
         <i class="fas fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="categoryNav">
-          <ul class="navbar-nav ml-auto mr-auto" id="mainUl">
+          <ul class="navbar-nav mx-auto" id="mainUl">
             <li class="nav-item">
               <a class="nav-link" href="index.html" id="menu01">인기수업</a>
             </li>
@@ -65,7 +66,8 @@
         </div>
       </div>
     </nav>
-    <hr class="FhrBotMargin">
+    <hr class="Fhr">
+    <div class="container">  <!-- style="margin-top:-20px" -->
     <div id="menusubs" class="menusubs">
     <ul id="menu01_sub" class="localNav"> 
         <li><a href="#">메뉴1_1</a></li>
@@ -88,6 +90,7 @@
         <li><a href="#">메뉴4_3</a></li> 
     </ul>
     </div>
+    </div>
     
 
     <!-- Bootstrap core JavaScript -->
@@ -99,6 +102,7 @@
     
     <!-- 카테고리 서브메뉴 -->
     <script>
+    var timeset=1;
         $(document).ready(function(){
       var submenu=new Array();
       var sub_tmps=document.getElementById("menusubs").getElementsByTagName("ul");
@@ -111,11 +115,39 @@
       for (var i=0, len=menu_tmps.length; i<len; i++) {
          if (menu_tmps[i].className=="nav-link") {
             menu_tmps[i].onmouseover=function() {
+                clearTimeout(timeset);
                for (var j=0, sublen=submenu.length; j<sublen; j++)
                   submenu[j].style.display="none";
                document.getElementById(this.id+"_sub").style.display="block";
             }
-            menu_tmps[i].onfocus=menu_tmps[i].onmouseover;
+            menu_tmps[i].onmouseout=function() {
+                clearTimeout(timeset);
+                timeset= setTimeout(function() {
+                    for (var j=0, sublen=submenu.length; j<sublen; j++)
+                        submenu[j].style.display="none";
+                  }, 3000);
+            }
+            
+            menu_tmps[i].onfocus= menu_tmps[i].onmouseover;
+            menu_tmps[i].onfocusout= menu_tmps[i].onmouseout;
+            
+            // 카테고리 서브메뉴 마우스오버 & 마우스아웃 처리
+            for (var k=0, klen=submenu.length; k<klen; k++) {
+                submenu[k].onmouseover=function(){
+                    clearTimeout(timeset);
+                    
+                }
+                submenu[k].onmouseout=function(){
+                    clearTimeout(timeset);
+                    for (var j=0, sublen=submenu.length; j<sublen; j++)
+                        submenu[j].style.display="none";
+                }
+                submenu[k].onfocus= submenu[k].onmouseover;
+                submenu[k].onfocusout= submenu[k].onmouseout;
+            }
+            
+            
+
          }
       }
         });
