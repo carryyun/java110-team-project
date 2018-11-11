@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
   <head>
     <meta charset="utf-8">
@@ -14,72 +14,52 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
     <!-- Custom fonts for this template -->
     <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-<!--
-    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
--->
+
     <!-- Custom styles for this template -->
     <link href="/css/category.css" rel="stylesheet">
     
     </head>
     <!-- Category Navigation -->
       <hr class="Fhr">
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg" style="width: 1110px">
       <div class="container">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#categoryNav" aria-controls="categoryNav" aria-expanded="false" aria-label="Toggle navigation">
-        Menu
-        <i class="fas fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="categoryNav">
-          <ul class="navbar-nav mx-auto" id="mainUl">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html" id="menu01">인기수업</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="about.html" id="menu02">디자인</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="post.html" id="menu03">음악</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="index.html" id="menu04">뷰티</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="about.html">프로그래밍</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="post.html">취미</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">프리마켓</a>
-            </li>
+        <div class="navbar-nav" id="categoryNav">
+          <ul class="navbar-nav mx-auto" id="mainUl" style="width: 1110px">
+            <c:forEach  items="${list}" var="list" varStatus="i">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html" id="menu0${i.count}">${list.name}</a>
+              </li>
+            </c:forEach>
           </ul>
         </div>
       </div>
     </nav>
     <hr class="Fhr">
-    <div class="container">  <!-- style="margin-top:-20px" -->
+    
+    
+    
+    <div class="container">
     <div id="menusubs" class="menusubs">
-    <ul id="menu01_sub" class="localNav"> 
-        <li><a href="#">메뉴1_1</a></li>
-        <li><a href="#">메뉴1_2</a></li> 
-        <li><a href="#">메뉴1_3</a></li> 
+    <c:forEach  items="${list}" var="list" varStatus="i">
+    
+    <ul id="menu0${i.count}_sub" class="localNav"> 
+    
+              <c:forEach  items="${list2}" varStatus="j">
+              
+                 <c:if test="${list.no == list2[j.index].bigTag.no}">
+                 <li>
+                 <a href="#">
+                     ${list2[j.index].name}
+                 </a>
+                 </li>
+                 </c:if>
+              </c:forEach>
+              
     </ul>
-    <ul id="menu02_sub" class="localNav"> 
-        <li><a href="#">메뉴2_1</a></li>
-        <li><a href="#">메뉴2_2</a></li> 
-        <li><a href="#">메뉴2_3</a></li> 
-    </ul>
-    <ul id="menu03_sub" class="localNav"> 
-        <li><a href="#">메뉴3_1</a></li>
-        <li><a href="#">메뉴3_2</a></li> 
-        <li><a href="#">메뉴3_3</a></li> 
-    </ul>
-    <ul id="menu04_sub" class="localNav"> 
-        <li><a href="#">메뉴4_1</a></li>
-        <li><a href="#">메뉴4_2</a></li> 
-        <li><a href="#">메뉴4_3</a></li> 
-    </ul>
+    </c:forEach>
+    
+
+
     </div>
     </div>
     
@@ -124,17 +104,20 @@
             
             // 카테고리 서브메뉴 마우스오버 & 마우스아웃 처리
             for (var k=0, klen=submenu.length; k<klen; k++) {
-                submenu[k].onmouseover=function(){
+                submenu[k].onmouseenter=function(){
                     clearTimeout(timeset);
                     
                 }
-                submenu[k].onmouseout=function(){
+                submenu[k].onmouseleave=function(){
                     clearTimeout(timeset);
                     for (var j=0, sublen=submenu.length; j<sublen; j++)
                         submenu[j].style.display="none";
                 }
-                submenu[k].onfocus= submenu[k].onmouseover;
-                submenu[k].onfocusout= submenu[k].onmouseout;
+                
+                submenu[k].onfocus= submenu[k].onmouseenter;
+                submenu[k].onfocusout= submenu[k].onmouseleave;
+                
+
             }
             
             

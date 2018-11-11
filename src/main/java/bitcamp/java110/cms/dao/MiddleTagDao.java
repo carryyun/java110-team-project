@@ -5,7 +5,7 @@ import java.util.Map;
 import bitcamp.java110.cms.domain.MiddleTag;
 
 public interface MiddleTagDao {
-  List<MiddleTag> findAll(Map<String,Object> params); // 전체조회
+  List<MiddleTag> findAll(); // 전체조회
 
   MiddleTag findByName(String name); // 중분류명
  

@@ -40,10 +40,10 @@
 
   <body>
     <div id="wrap">
-    <div class="container mx-auto">
+    <div class="container mx-auto px-0">
     <!-- Header (스크립트로 임시 inclue) -->
     <div id="row">
-    <div class="container col-lg-10 mx-auto">
+    <div class="container col-lg-12 mx-auto">
     <!-- <div id="headerMain"></div> -->
     <jsp:include page="headerMain.jsp"></jsp:include>
     </div>
@@ -57,13 +57,13 @@
     
     
     <!-- 카테고리 nav (스크립트로 임시 inclue) -->
-    <div class="container col-lg-10 mx-auto">
+    <div class="container col-lg-12 mx-auto">
     <jsp:include page="headerNav.jsp"></jsp:include>
     <!-- <div id="headerNav"></div> -->
     </div>
 
     <!-- Main Content -->
-<div class="container col-lg-10">
+<div class="container col-lg-12">
     <div class="row">
     <div class="col-lg-3">
         <div class="col">
@@ -79,7 +79,7 @@
 	<div class="col-lg-9 mx-auto">
 	
 	<h2>오늘의 핫 아이템</h2>
-	<div id="TodayItem" class="carousel slide my-4" data-ride="carousel">
+	<div id="TodayItem" class="carousel slide my-4 text-center" data-ride="carousel">
 	
 	<ol class="carousel-indicators">
 	    <li data-target="#TodayItem" data-slide-to="0" class="active"></li>
@@ -88,7 +88,7 @@
 	</ol>
 	<div class="carousel-inner" role="listbox">
 	    <div class="carousel-item active">
-	      <div class="col-lg-auto px-5 mx-auto">
+	      <div class="col-lg-auto col-md-3 px-5 mx-auto">
 	       <div class="test">
 	        <img class="d-block img-fluid" src="/upload/img/product/900x350/julme.PNG" alt="First slide">
 	       </div>
@@ -149,7 +149,7 @@
    <!--   <div class="row"> -->
        
        
-        <div class="col-lg-10 col-md-10 mx-auto">
+        <div class="col-lg-12 mx-auto">
           <div class="post-preview">
             <a href="post.html">
 <div class="row">
@@ -161,7 +161,8 @@
 			<article class="card-wrapper">
 				<div class="image-holder">
 					<a href="#" class="image-holder__link"></a>
-					<div class="image-liquid image-holder--original" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/2/24/Blue_Tshirt.jpg')">
+					<div class="image-liquid image-holder--original">
+					<a href="#"><img alt="1" src="/upload/img/julme.PNG" style="width: 100%; height: 100%"></a>
 					</div>
 				</div>
 				<div class="product-description">
@@ -275,69 +276,6 @@
 	</div>
 </div>
 
-<!--<div class="col-lg-4 col-md-6 mb-4">
-  <div class="card h-100">
-    <a href="#"><img class="card-img-top" src="/upload/img/product/700x400/julme.PNG" alt=""></a>
-    <div class="card-body">
-      <h4 class="card-title">
-        <a href="#">절미1</a>
-      </h4>
-      <h5>1,000 ￦</h5>
-      <p class="card-text">Lorem ipsum dolor sit amet, consectetur!</p>
-    </div>
-    <div class="card-footer">
-      <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-    </div>
-  </div>
-</div>
-
-<div class="col-lg-4 col-md-6 mb-4">
-  <div class="card h-100">
-    <a href="#"><img class="card-img-top" src="/upload/img/product/700x400/julme.PNG" alt=""></a>
-    <div class="card-body">
-      <h4 class="card-title">
-        <a href="#">절미1</a>
-      </h4>
-      <h5>1,000 ￦</h5>
-      <p class="card-text">Lorem ipsum dolor sit amet, consectetur!</p>
-    </div>
-    <div class="card-footer">
-      <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-    </div>
-  </div>
-</div>
-
-<div class="col-lg-4 col-md-6 mb-4">
-  <div class="card h-100">
-    <a href="#"><img class="card-img-top" src="/upload/img/product/700x400/julme.PNG" alt=""></a>
-    <div class="card-body">
-      <h4 class="card-title">
-        <a href="#">절미1</a>
-      </h4>
-      <h5>1,000 ￦</h5>
-      <p class="card-text">Lorem ipsum dolor sit amet consectetur!</p>
-    </div>
-    <div class="card-footer">
-      <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-    </div>
-  </div>
-</div>
-
-<div class="col-lg-4 col-md-6 mb-4">
-  <div class="card h-100">
-    <a href="#"><img class="card-img-top" src="/upload/img/product/700x400/julme.PNG" alt=""></a>
-    <div class="card-body">
-      <h4 class="card-title">
-        <a href="#">절미1</a>
-      </h4>
-      <h5>1,000 ￦</h5>
-      <p class="card-text">Lorem ipsum dolor sit amet, consectetur!</p>
-    </div>
-    <div class="card-footer">
-      <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-    </div>
-  </div>
-</div>-->
 
 </div>
               
@@ -399,9 +337,7 @@
 <!-- js 추가 -->
 <script src="/js/clean-blog.js"></script>
 
-<script src='//production-assets.codepen.io/assets/editor/live/console_runner-079c09a0e3b9ff743e39ee2d5637b9216b3545af0de366d4b9aad9dc87e26bfd.js'></script>
-<script src='//production-assets.codepen.io/assets/editor/live/events_runner-73716630c22bbc8cff4bd0f07b135f00a0bdc5d14629260c3ec49e5606f98fdd.js'></script>
-<script src='//production-assets.codepen.io/assets/editor/live/css_live_reload_init-2c0dc5167d60a5af3ee189d570b1835129687ea2a61bee3513dee3a50c115a77.js'></script>
+
 <!-- ===============필수포함=============== -->
 
     <script>
