@@ -6,21 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-<<<<<<< HEAD:src/main/java/bitcamp/java110/cms/service/impl/ClassqnaServiceImpl.java
-import bitcamp.java110.cms.dao.ClassqnaDao;
-import bitcamp.java110.cms.domain.Classqna;
-import bitcamp.java110.cms.service.ClassQnaService;
-
-@Service
-public class ClassqnaServiceImpl implements ClassQnaService{
-=======
 import bitcamp.java110.cms.dao.ClassQnaDao;
 import bitcamp.java110.cms.domain.ClassQna;
 import bitcamp.java110.cms.service.ClassQnaService;
 
 @Service
 public class ClassQnaServiceImpl implements ClassQnaService{
->>>>>>> 886ea542745fc0c9862d4bcfe93cd47007489f28:src/main/java/bitcamp/java110/cms/service/impl/ClassQnaServiceImpl.java
   
   @Autowired ClassQnaDao classqnaDao;
   

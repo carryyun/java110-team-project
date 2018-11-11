@@ -3,9 +3,12 @@ package bitcamp.java110.cms.web;
 import java.util.List;
 import javax.servlet.ServletContext;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import bitcamp.java110.cms.domain.ClassBakt;
 import bitcamp.java110.cms.domain.ClassLike;
 import bitcamp.java110.cms.domain.ClassOrder;
@@ -31,19 +34,27 @@ public class ClassController {
   public ClassController(
       ClassService classService,ClassQnaService classqnaService,
       ClassOrderService classorderService,ClassLikeService classlikeService
-      ,ClassBaktService classbaktService) {
+      ,ClassBaktService classbaktService,ServletContext sc) {
     this.classService = classService;
     this.classqnaService = classqnaService;
     this.classorderService = classorderService;
     this.classlikeService = classlikeService;
     this.classbaktService = classbaktService;
+    this.sc=sc;
   }
 
-  @GetMapping("findAll")
-  public void findAll() {
+  @RequestMapping(value = "/findAll",method = RequestMethod.POST)
+  public void findAll(
+      @RequestParam(defaultValue="3") int pageSize,
+      Model model) {
     System.out.println("findAll 호출");
+    
+    if (pageSize < 3 || pageSize > 10)
+      pageSize = 3;
+    
     List<Classes> clist= classService.classlist(5);
     
+    model.addAttribute("findAll", clist);
 
     for(Classes c : clist) {
 
@@ -52,10 +63,15 @@ public class ClassController {
     }
   }
 
-  @RequestMapping("classinsert")
-  public void classinsert(Classes c) {
+  @GetMapping("form")
+  public void form() {
     
-    c.setNo(6);
+  }
+  
+  @RequestMapping(value = "/classinsert",method = RequestMethod.POST)
+  public String classinsert(Classes c) {
+    
+    c.setNo(8);
     c.setTitl("고정지");
     c.setConts("고정지");
     c.setPric(111);
@@ -72,7 +88,11 @@ public class ClassController {
     c.setMono(4);
     c.setMtno(4);
     
+    
+    
     classService.classadd(c);
+    
+    return "redirect:findAll";
   }
   
   @RequestMapping("classupdate")
