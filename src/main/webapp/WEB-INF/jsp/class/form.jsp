@@ -1,6 +1,7 @@
 <%@page import="bitcamp.java110.cms.domain.BigTag"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
+	pageEncoding="UTF-8" 
+	trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
@@ -45,7 +46,7 @@
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
 <!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script> -->
-<!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 <script type="text/javascript"
 	src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=HI1wEsrM0W8lMjEjZYfu&submodules=geocoder"></script>
@@ -57,27 +58,30 @@
 
 	<!-- js 추가 -->
 	<script src="/js/clean-blog.js"></script>
+	
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!-- <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script> -->
+
 </head>
 
-<body>
+
+<body style="background-color: #F2F4F7">
 	<div id="wrap">
 		<div class="container mx-auto px-0">
 			<!-- Header (스크립트로 임시 inclue) -->
-			<%-- <div id="row">
+			<div id="row">
     <div class="container col-lg-12 mx-auto">
     <!-- <div id="headerMain"></div> -->
-    <jsp:include page="headerMain.jsp"></jsp:include>
+    <jsp:include page="../header.jsp"></jsp:include>
     </div>
-    </div> --%>
-
-
+    </div>
 			<!-- Page Header ?????-->
 			<header class="masthead"> </header>
 
 
 			<!-- 카테고리 nav (스크립트로 임시 inclue) -->
 			<div class="container col-lg-12 mx-auto">
-    <jsp:include page="headerNav.jsp"></jsp:include>
+    <jsp:include page="../product/headerNav.jsp"></jsp:include>
     <!-- <div id="headerNav"></div> -->
     </div>
 
@@ -98,36 +102,85 @@
 					<div class="col-lg-9">
 
 						<div id="day-select">
-							<span><h2>날짜</h2></span> <span>원데이</span> <input type="radio"
-								name="day"> <span>전체</span> <input type="radio"
-								name="day" checked>
+							<span><h2>기간</h2></span> 
+						    <!-- <div class="btn-group">
+						    <label class="btn btn-default">
+					            <input type="radio" name="testrad" value="0">
+					            <span>원데이</span>
+					        </label>
+					        <label class="btn btn-default">
+					            <input type="radio" name="testrad" value="1" checked>
+					            <span>전체</span>
+					        </label>
+					        </div> -->
+					    <div class="box">
+					        <label>
+						        <input type="radio" name="like" checked="">
+						        <span class="yes">원데이</span>
+						    </label>
+						    <label>
+						        <input type="radio" name="like">
+						        <span class="no">전체</span>
+						    </label>
+						</div>
+						</div><br><br>
+						<div> <h2>요일 선택</h2> <br>
+						<div>
+							<label for="default1" class="btn btn-default1">
+							<strong style="font-size: 16px">월</strong> 
+							<input type="checkbox" id="default1" class="badgebox"><span
+								class="badge">&check;</span>
+							</label> 
+								
+							<label for="default2" class="btn btn-default2">
+							<strong style="font-size: 16px">화</strong> 
+							<input type="checkbox" id="default2" class="badgebox"><span 
+								class="badge">&check;</span>
+							</label>
+							
+							<label for="default3" class="btn btn-default3">
+							<strong style="font-size: 16px">수 </strong>
+							<input type="checkbox" id="default3" class="badgebox"><span
+								class="badge">&check;</span>
+							</label> 
+							
+							<label for="default4" class="btn btn-default4">
+							<strong style="font-size: 16px">목</strong> 
+							<input type="checkbox" id="default4" class="badgebox"><span 
+								class="badge">&check;</span>
+							</label>
+							
+							<br> 
+							
+							<label for="default5" class="btn btn-default5">
+							<strong style="font-size: 16px">금</strong>
+							<input type="checkbox" id="default5" class="badgebox"><span
+								class="badge">&check;</span>
+							</label> 
+							
+							<label for="default6" class="btn btn-default6">
+							<strong style="font-size: 16px">토</strong> 
+							<input type="checkbox" id="default6" class="badgebox"><span
+								class="badge">&check;</span>
+							</label> 
+							
+							<label for="default7" class="btn btn-default7">
+							<strong style="font-size: 16px">일 </strong>
+							<input type="checkbox" id="default7" class="badgebox"><span 
+								class="badge">&check;</span>
+							</label>
+						</div>
 						</div>
 						<div>
-							<label for="default1" class="btn btn-default1">월 <input
-								type="checkbox" id="default1" class="badgebox"><span
-								class="badge">&check;</span></label> <label for="default2"
-								class="btn btn-default2">화 <input type="checkbox"
-								id="default2" class="badgebox"><span class="badge">&check;</span></label>
-							<label for="default3" class="btn btn-default3">수 <input
-								type="checkbox" id="default3" class="badgebox"><span
-								class="badge">&check;</span></label> <label for="default4"
-								class="btn btn-default4">목 <input type="checkbox"
-								id="default4" class="badgebox"><span class="badge">&check;</span></label>
-							<br> <label for="default5" class="btn btn-default5">금
-								<input type="checkbox" id="default5" class="badgebox"><span
-								class="badge">&check;</span>
-							</label> <label for="default6" class="btn btn-default6">토 <input
-								type="checkbox" id="default6" class="badgebox"><span
-								class="badge">&check;</span></label> <label for="default7"
-								class="btn btn-default7">일 <input type="checkbox"
-								id="default7" class="badgebox"><span class="badge">&check;</span></label>
-						</div>
 						<div class="Search-Map">
 							<div class="col-lg-auto col-md-6 px-12 mx-auto">
-								<h2>지도</h2>
+								<h2>지역</h2>
+								<div>
 								<div id="navermap" style="width: 400px; height: 200px;"></div>
+								</div>
 							</div>
 							<button id="ClassSearchBut1">검색</button>
+						</div>
 						</div>
 					</div>
 
@@ -139,13 +192,15 @@
 
 
 				<!--   <div class="row"> -->
-				<span id="Result"> <span
-					class="col-lg-auto col-md-3 px-5 mx-auto"> <span
-						id="ClassSearchResult">검색결과 > 999개
+				<span id="Result">
+				 <span
+					class="col-lg-auto col-md-3 px-5 mx-auto"> 
+					<span id="ClassSearchResult">검색결과 > 999개
+					</span> </span> </span>
 			</div>
 			<span class="container col-lg-12">
 				<button id="ClassRigist">클래스 개강</button>
-			</span> </span> </span>
+			</span> 
 			<div class="col-lg-12 mx-auto">
 				<div class="post-preview">
 					<a href="post.html"> <!-- <div class="row"> -->
@@ -342,7 +397,7 @@
 	
 	<script>
       var map = new naver.maps.Map('navermap');
-      var myaddress = '불정로 6';// 도로명 주소나 지번 주소만 가능 (건물명 불가!!!!)
+      var myaddress = '야탑동';// 도로명 주소나 지번 주소만 가능 (건물명 불가!!!!)
       naver.maps.Service.geocode({address: myaddress}, function(status, response) {
           if (status !== naver.maps.Service.Status.OK) {
               return alert(myaddress + '의 검색 결과가 없거나 기타 네트워크 에러');
