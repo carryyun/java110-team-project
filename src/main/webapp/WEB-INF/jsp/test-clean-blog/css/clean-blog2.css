@@ -1,94 +1,109 @@
 /*!
- * Start Bootstrap - Clean Blog v5.0.1 (https://startbootstrap.com/template-overviews/clean-blog)
+ * Start Bootstrap - Clean Blog2 v5.0.1 (https://startbootstrap.com/template-overviews/clean-blog)
  * Copyright 2013-2018 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-clean-blog/blob/master/LICENSE)
  */
 
 /* 메인헤더 관련 */
-/* .mainheader{
+.mainheader{
     text-align: center;
-} */
-/* .mainheader img{
+}
+.mainheader img{
     width: 50px;
     height: 50px;
-} */
-
-/* 내용관련 */
-
-/* '카테고리' 텍스트 */
-.site-heading li a{
-    font-family: 'Noto Sans KR', sans-serif;
-    margin-left: 30px;
 }
+
+/* 카테고리 서브메뉴 관련 */
+/*
+    div.menusubs
+    div.menusubs .localNav
+    div.menusubs .localNav li
+    .localNav ul, .localNav li
+    div.menusubs ul
+
+*/
+
 
 /* hr 관련 */
-hr.Fhr{
-    border: 0; 
-    height: 2px;
-    background: #6e6e6e; 
-    width: 100%; 
-    margin: 0 auto;
-}
+/*
+    hr.Fhr
+    hr.Hhr
+*/
+
 hr.FhrBotMargin{
     border: 0; 
     height: 2px;
-    background: #6e6e6e; 
+    background: #ccc; 
     width: 100%; 
     margin: 0 0 5px 0;
 }
-hr.Hhr{
-    border: 0; 
-    height: 2px;
-    background: #6e6e6e; 
-    width: 90%; 
-    margin: 0 auto;
-}
 /*-------------------------- */
-.card-text{
-    margin: 0;
-    font-size: 14px;
-}
+
+/*
+    .card-text
+    .site-heading li a
+    .test
+    .test img
+
+*/
 
 ul{
     list-style: none;
 }
-.test{
-    display: inline-block;
-    border: 3px solid silver;
+
+/* 카르셀 카테고리 관련 */
+nav.navbar{
+    padding: 0;
 }
-.test img{
-    width: 180px;
-    height: 150px;
-    display: inline-block;
-    
+
+/*
+    참고로 #categoryNav 없는데 걍 혹시몰라숴 뒀음
+*/
+
+#categoryNav > .navbar-nav > li.nav-item > a {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #6e6e6e;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+#categoryNav > .navbar-nav > li.nav-item > a:hover{
+  font-size: 35px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #cce5ee;
+  background-color: #6e6e6e;
+}
+#categoryNav > .navbar-nav > li.nav-item > a#menu01 {
+  font-size: 35px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #6e6e6e;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+#categoryNav > .navbar-nav > li.nav-item > a#menu01:hover{
+  font-size: 35px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #cce5ee;
+  background-color: #6e6e6e;
+}
+ul.navbar-nav{
+    float: left;
+}
+nav.navbar{
+    background-color: #cceeee;
 }
 
 /* 카르셀 화살표 관련*/
-.carousel-control-prev, .carousel-control-next{
-    color: black;
-    width: 30px;
-}
 
-.carousel-control-prev-icon, .carousel-control-next-icon {
-    height: 50px;
-    width: 50px;
-    outline: black;
-    background-color: #dddddd;
-    background-size: 100%, 100%;
-    border-radius: 50%;
-}
 
-::-moz-selection {
-  color: #fff;
-  background: #0085A1;
-  text-shadow: none;
-}
-
-::selection {
-  color: #fff;
-  background: #0085A1;
-  text-shadow: none;
-}
 /*--------------------------*/
 
 body {
@@ -138,45 +153,25 @@ blockquote {
   margin-top: 60px;
 }
 
-.caption {
-  font-size: 14px;
-  font-style: italic;
-  display: block;
-  margin: 0;
-  padding: 10px;
-  text-align: center;
-  border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 5px;
-}
+/*
+    ::-moz-selection
+    ::selection
+    img::-moz-selection
+    img::selection
+    img::-moz-selection
+*/
 
-img::-moz-selection {
-  color: #fff;
-  background: transparent;
-}
 
-img::selection {
-  color: #fff;
-  background: transparent;
-}
-
-img::-moz-selection {
-  color: #fff;
-  background: transparent;
-}
 
 #mainNav {
-  position: relative;
+  position: absolute;
   border-bottom: 1px solid #e9ecef;
   background-color: white;
   font-family: 'Noto Sans KR', sans-serif;
 }
-#mainNav img{
-  width: 50px;
-  height: 50px;
-}
 
 #mainNav .navbar-brand {
-  font-size: 50px;
+  font-size: 80px;
   font-weight: 800;
   color: #343a40;
 }
@@ -218,20 +213,17 @@ img::-moz-selection {
   }
 }
 
-/* 헤더 스크롤 다운시 따라오는 css */
 @media only screen and (min-width: 992px) {
   #mainNav {
-/*     -webkit-transition: background-color 0.2s;
+    -webkit-transition: background-color 0.2s;
     transition: background-color 0.2s;
-    Force Hardware Acceleration in WebKit
+    /* Force Hardware Acceleration in WebKit */
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
-    -webkit-backface-visibility: hidden; */
+    -webkit-backface-visibility: hidden;
   }
-  
   #mainNav.is-fixed {
     /* when the user scrolls down, we hide the header right above the viewport */
-/*
     position: fixed;
     top: -67px;
     -webkit-transition: -webkit-transform 0.2s;
@@ -240,12 +232,6 @@ img::-moz-selection {
     transition: transform 0.2s, -webkit-transform 0.2s;
     border-bottom: 1px solid white;
     background-color: rgba(255, 255, 255, 0.9);
-*/
-  }
-    #mainNav.is-visible {
-    /* if the user changes the scrolling direction, we show the header */
-/*     -webkit-transform: translate3d(0, 100%, 0);
-    transform: translate3d(0, 100%, 0); */
   }
   #mainNav.is-fixed .navbar-brand {
     color: #212529;
@@ -259,10 +245,15 @@ img::-moz-selection {
   #mainNav.is-fixed .navbar-nav > li.nav-item > a:focus, #mainNav.is-fixed .navbar-nav > li.nav-item > a:hover {
     color: #0085A1;
   }
+  #mainNav.is-visible {
+    /* if the user changes the scrolling direction, we show the header */
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
 }
 
 header.masthead {
-  /* margin-bottom: 100px; */
+  margin-bottom: 130px;
   background: no-repeat center center;
   background-attachment: scroll;
   position: ab;
@@ -402,66 +393,50 @@ header.masthead .post-heading .meta a {
   }
 }
 
-.floating-label-form-group {
-  font-size: 14px;
-  position: relative;
-  margin-bottom: 0;
-  padding-bottom: 0.5em;
-  border-bottom: 1px solid #dee2e6;
+
+
+/* 상품 상세정보 사진 크기 */
+#prod_img{
+    height: 500px;
+    width: 500px;
 }
 
-.floating-label-form-group input,
-.floating-label-form-group textarea {
-  font-size: 1.5em;
-  position: relative;
-  z-index: 1;
-  padding: 0;
-  resize: none;
-  border: none;
-  border-radius: 0;
-  background: none;
-  -webkit-box-shadow: none !important;
-  box-shadow: none !important;
-  font-family: 'Noto Sans KR', sans-serif;
+/*
+18.11.10 상품 상세보기 부트스트랩
+.gallery-wrap .img-big-wrap img
+.gallery-wrap .img-small-wrap .item-gallery
+.gallery-wrap .img-small-wrap 
+.gallery-wrap .img-small-wrap img 
+*/
+.gallery-wrap .img-big-wrap img {
+    height: 450px;
+    width: auto;
+    display: inline-block;
+    cursor: zoom-in;
 }
 
-.floating-label-form-group input::-webkit-input-placeholder,
-.floating-label-form-group textarea::-webkit-input-placeholder {
-  color: #868e96;
-  font-family: 'Noto Sans KR', sans-serif;
+
+.gallery-wrap .img-small-wrap .item-gallery {
+    width: 60px;
+    height: 60px;
+    border: 1px solid #ddd;
+    margin: 7px 2px;
+    display: inline-block;
+    overflow: hidden;
 }
 
-.floating-label-form-group label {
-  font-size: 0.85em;
-  line-height: 1.764705882em;
-  position: relative;
-  z-index: 0;
-  top: 2em;
-  display: block;
-  margin: 0;
-  -webkit-transition: top 0.3s ease, opacity 0.3s ease;
-  transition: top 0.3s ease, opacity 0.3s ease;
-  vertical-align: middle;
-  vertical-align: baseline;
-  opacity: 0;
+.gallery-wrap .img-small-wrap {
+    text-align: center;
+}
+.gallery-wrap .img-small-wrap img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: zoom-in;
 }
 
-.floating-label-form-group .help-block {
-  margin: 15px 0;
-}
 
-.floating-label-form-group-with-value label {
-  top: 0;
-  opacity: 1;
-}
-
-.floating-label-form-group-with-focus label {
-  color: #0085A1;
-}
-
-form .form-group:first-child .floating-label-form-group {
-  border-top: 1px solid #dee2e6;
-}
 
 footer {
   padding: 50px 0 65px;
@@ -478,28 +453,9 @@ footer .copyright {
   text-align: center;
 }
 
-.btn {
-  font-size: 14px;
-  font-weight: 800;
-  padding: 15px 25px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  border-radius: 0;
-  font-family: 'Noto Sans KR', sans-serif;
-}
-
-.btn-primary {
-  background-color: #0085A1;
-  border-color: #0085A1;
-}
-
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
-  color: #fff;
-  background-color: #00657b !important;
-  border-color: #00657b !important;
-}
-
-.btn-lg {
-  font-size: 16px;
-  padding: 25px 35px;
-}
+/*
+    .btn
+    .btn-primary
+    .btn-primary:hover, .btn-primary:focus, .btn-primary:active
+    .btn-lg
+*/
