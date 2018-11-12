@@ -24,6 +24,7 @@
         <result column="rgdt"   property="rgdt"/>
         <result column="stat"   property="stat"/>
         <result column="note"   property="note"/>
+        <result column="mtstat"   property="mtstat"/>
     </resultMap>
     
     <select id="findAll" resultMap="menteeMap">
@@ -43,7 +44,8 @@
             bkno,
             rgdt,
             stat,
-            note
+            note,
+            mtstat
         from 
             p_mete
         order by 
@@ -161,5 +163,32 @@
         delete from p1_memb 
         where mno=#{value}
     </delete>
-
+    
+    
+    
+    <select id="findByEmailPassword" 
+            resultMap="menteeMap" parameterType="map">
+        select 
+            meno,
+            name,
+            email,
+            nick,
+            phone,
+            pstno,
+            bas_addr,
+            det_addr,
+            phot,
+            sell,
+            bkname,
+            bkno,
+            rgdt,
+            stat,
+            note,
+            mtstat
+        from 
+            p_mete mte
+        where
+            mte.email=#{email} and mte.pwd=#{pwd}
+            <!-- mte.email=#{email} and mte.pwd=password(#{pwd}) -->
+    </select> 
 </mapper>

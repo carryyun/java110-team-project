@@ -1,10 +1,12 @@
 package bitcamp.java110.cms.web;
 
+import java.util.List;
 import javax.servlet.ServletContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import bitcamp.java110.cms.domain.Mentee;
+import bitcamp.java110.cms.domain.Mentor;
 import bitcamp.java110.cms.service.MenteeService;
 
 @Controller
@@ -26,11 +28,20 @@ public class MenteeController {
     mentee.setName("김영록");
     mentee.setNick("annnnn");
     mentee.setPwd("1111");
-    mentee.setPwd2("1111");
-    if(mentee.getPwd().equalsIgnoreCase(mentee.getPwd2())) {
     menteeService.add(mentee);
     }
+  
+  @GetMapping("findAll")
+  public void findAll() {
+    System.out.println("findAll 호출");
+    List<Mentee> mlist= menteeService.list(3, 3);
+    for(Mentee m : mlist) {
+      System.out.println(m.getNo());
+      System.out.println(m.getBas_addr());
+      System.out.println(m.getNote());
+    }
   }
+  
   
 }
 

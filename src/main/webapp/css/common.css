@@ -1,59 +1,23 @@
 @charset "UTF-8";
-
-header {
-    overflow: hidden;
-    padding: 0px;
+/* hr 관련 */
+hr.Fhr{
+    border: 0; 
+    height: 2px;
+    background: #ccc; 
+    width: 100%; 
+    margin: 0 auto;
 }
-
-header > h1 {
-    margin: 0px;
-    float: left;
-    background: url('http://bitcamp.co.kr/img/logo2.jpg') no-repeat -25px 50%;
-    background-size: contain; 
-    height: 0;
-    padding-top: 40px;
-    overflow: hidden;
+hr.FhrBotMargin{
+    border: 0; 
+    height: 2px;
+    background: #ccc; 
+    width: 100%; 
+    margin: 0 0 5px 0;
 }
-
-header ul {
-    float: right;
+hr.Hhr{
+    border: 0; 
+    height: 2px;
+    background: #ccc; 
+    width: 90%; 
+    margin: 0 auto;
 }
-
-header li {
-    list-style: none;
-    display: inline-block;
-    margin: 0px 5px;
-}
-
-footer {
-    background-color: navy;
-    color: white;
-}
-
-footer > p {
-    padding: 10px;
-	text-align: center;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

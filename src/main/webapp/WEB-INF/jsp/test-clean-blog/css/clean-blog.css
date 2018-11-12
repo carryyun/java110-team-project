@@ -5,63 +5,41 @@
  */
 
 /* 메인헤더 관련 */
-.mainheader{
+/* .mainheader{
     text-align: center;
-}
-.mainheader img{
+} */
+/* .mainheader img{
     width: 50px;
     height: 50px;
-}
+} */
 
-/* 카테고리 서브메뉴 관련 */
-div.menusubs{
-    text-align: center;
-    margin-bottom: 20px;
-}
-div.menusubs .localNav {
-    display: none;
-   border-top: 2px solid #6e6e6e;
-    border-bottom: 2px solid #6e6e6e;
-    z-index: 1;
-    margin: 0 auto;
-    padding: 0px;
-    min-width: 300px;
-    max-width: 500px;
-    width: auto;
-}
+/* 내용관련 */
 
-div.menusubs .localNav li {
-   display: inline;
-   width:50px;
-}
-.localNav ul, .localNav li {
-   list-style: none;
-   padding: 10px 5px;
-
-}
-div.menusubs ul{
+/* '카테고리' 텍스트 */
+.site-heading li a{
     font-family: 'Noto Sans KR', sans-serif;
+    margin-left: 30px;
 }
 
 /* hr 관련 */
 hr.Fhr{
     border: 0; 
     height: 2px;
-    background: #ccc; 
+    background: #6e6e6e; 
     width: 100%; 
     margin: 0 auto;
 }
 hr.FhrBotMargin{
     border: 0; 
     height: 2px;
-    background: #ccc; 
+    background: #6e6e6e; 
     width: 100%; 
     margin: 0 0 5px 0;
 }
 hr.Hhr{
     border: 0; 
     height: 2px;
-    background: #ccc; 
+    background: #6e6e6e; 
     width: 90%; 
     margin: 0 auto;
 }
@@ -74,10 +52,6 @@ hr.Hhr{
 ul{
     list-style: none;
 }
-.site-heading li a{
-    font-family: 'Noto Sans KR', sans-serif;
-    margin-left: 30px;
-}
 .test{
     display: inline-block;
     border: 3px solid silver;
@@ -88,63 +62,32 @@ ul{
     display: inline-block;
     
 }
-/* 카르셀 카테고리 관련 */
-nav.navbar{
-    padding: 0;
-}
-#categoryNav > .navbar-nav > li.nav-item > a {
-  font-size: 30px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: #6e6e6e;
-  font-family: 'Noto Sans KR', sans-serif;
-}
-#categoryNav > .navbar-nav > li.nav-item > a:hover{
-  font-size: 35px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-family: 'Noto Sans KR', sans-serif;
-  color: #cce5ee;
-  background-color: #6e6e6e;
-}
-#categoryNav > .navbar-nav > li.nav-item > a#menu01 {
-  font-size: 35px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: #6e6e6e;
-  font-family: 'Noto Sans KR', sans-serif;
-}
-#categoryNav > .navbar-nav > li.nav-item > a#menu01:hover{
-  font-size: 35px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-family: 'Noto Sans KR', sans-serif;
-  color: #cce5ee;
-  background-color: #6e6e6e;
-}
-ul.navbar-nav{
-    float: left;
-}
-nav.navbar{
-    background-color: #cceeee;
-}
 
 /* 카르셀 화살표 관련*/
 .carousel-control-prev, .carousel-control-next{
-    width: 50px;
+    color: black;
+    width: 30px;
 }
 
 .carousel-control-prev-icon, .carousel-control-next-icon {
     height: 50px;
     width: 50px;
     outline: black;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: #dddddd;
     background-size: 100%, 100%;
     border-radius: 50%;
+}
+
+::-moz-selection {
+  color: #fff;
+  background: #0085A1;
+  text-shadow: none;
+}
+
+::selection {
+  color: #fff;
+  background: #0085A1;
+  text-shadow: none;
 }
 /*--------------------------*/
 
@@ -206,18 +149,6 @@ blockquote {
   border-bottom-left-radius: 5px;
 }
 
-::-moz-selection {
-  color: #fff;
-  background: #0085A1;
-  text-shadow: none;
-}
-
-::selection {
-  color: #fff;
-  background: #0085A1;
-  text-shadow: none;
-}
-
 img::-moz-selection {
   color: #fff;
   background: transparent;
@@ -234,14 +165,18 @@ img::-moz-selection {
 }
 
 #mainNav {
-  position: absolute;
+  position: relative;
   border-bottom: 1px solid #e9ecef;
   background-color: white;
   font-family: 'Noto Sans KR', sans-serif;
 }
+#mainNav img{
+  width: 50px;
+  height: 50px;
+}
 
 #mainNav .navbar-brand {
-  font-size: 80px;
+  font-size: 50px;
   font-weight: 800;
   color: #343a40;
 }
@@ -283,17 +218,20 @@ img::-moz-selection {
   }
 }
 
+/* 헤더 스크롤 다운시 따라오는 css */
 @media only screen and (min-width: 992px) {
   #mainNav {
-    -webkit-transition: background-color 0.2s;
+/*     -webkit-transition: background-color 0.2s;
     transition: background-color 0.2s;
-    /* Force Hardware Acceleration in WebKit */
+    Force Hardware Acceleration in WebKit
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
-    -webkit-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden; */
   }
+  
   #mainNav.is-fixed {
     /* when the user scrolls down, we hide the header right above the viewport */
+/*
     position: fixed;
     top: -67px;
     -webkit-transition: -webkit-transform 0.2s;
@@ -302,6 +240,12 @@ img::-moz-selection {
     transition: transform 0.2s, -webkit-transform 0.2s;
     border-bottom: 1px solid white;
     background-color: rgba(255, 255, 255, 0.9);
+*/
+  }
+    #mainNav.is-visible {
+    /* if the user changes the scrolling direction, we show the header */
+/*     -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0); */
   }
   #mainNav.is-fixed .navbar-brand {
     color: #212529;
@@ -315,15 +259,10 @@ img::-moz-selection {
   #mainNav.is-fixed .navbar-nav > li.nav-item > a:focus, #mainNav.is-fixed .navbar-nav > li.nav-item > a:hover {
     color: #0085A1;
   }
-  #mainNav.is-visible {
-    /* if the user changes the scrolling direction, we show the header */
-    -webkit-transform: translate3d(0, 100%, 0);
-    transform: translate3d(0, 100%, 0);
-  }
 }
 
 header.masthead {
-  margin-bottom: 130px;
+  /* margin-bottom: 100px; */
   background: no-repeat center center;
   background-attachment: scroll;
   position: ab;

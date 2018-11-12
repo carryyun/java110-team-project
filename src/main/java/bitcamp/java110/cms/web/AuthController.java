@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import bitcamp.java110.cms.domain.Member;
+import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.service.AuthService;
 
 @Controller
@@ -26,16 +26,18 @@ public class AuthController {
     
     @PostMapping("login")
     public String login(
-            String type,
             String email,
-            String password,
+            String pwd,
             String save,
             HttpServletResponse response,
             HttpSession session) {
+      System.out.println(email);
+      System.out.println(pwd);
+      System.out.println(save);
         
         if (save != null) {// 이메일 저장하기를 체크했다면,
             Cookie cookie = new Cookie("email", email);
-            cookie.setMaxAge(60 * 60 * 24 * 15);
+            cookie.setMaxAge(60 * 60 * 24 * 30);
             response.addCookie(cookie);
             
         } else {// 이메일을 저장하고 싶지 않다면,
@@ -43,18 +45,17 @@ public class AuthController {
             cookie.setMaxAge(0);
             response.addCookie(cookie);
         }
-        
-        Member loginUser = authService.getMember(email, password, type);
-        
+        Mentee loginUser = authService.getMentee(email, pwd);
         if (loginUser != null) {
             // 회원 정보를 세션에 보관한다.
             session.setAttribute("loginUser", loginUser);
             String redirectUrl = null;
-            
-            switch (type) {
-            case "manager":
-                redirectUrl = "../manager/list";
-                break; 
+            if(loginUser.getMtstat() == 'Y') {
+              System.out.println("멘토로그인성공");
+              redirectUrl = "form";
+            } else {
+              System.out.println("멘티로그인성공");
+              redirectUrl = "form";
             }
             return "redirect:" + redirectUrl;
             
@@ -93,6 +94,14 @@ public class AuthController {
             return "redirect:form";
         }
     }
+    @RequestMapping("naver")
+    public String naver(String accessToken, HttpSession session) {
+      authService.getNaverMember(accessToken);
+
+      return "redirect:../auth/form";
+    }
+    @GetMapping("callback")
+    public void callback(String access_token, HttpSession session) {}
  
 }
 

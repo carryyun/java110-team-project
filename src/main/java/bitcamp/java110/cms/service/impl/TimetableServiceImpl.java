@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import bitcamp.java110.cms.dao.TimetableDao;
-import bitcamp.java110.cms.domain.Report;
 import bitcamp.java110.cms.domain.Timetable;
 import bitcamp.java110.cms.service.TimetableService;
 
