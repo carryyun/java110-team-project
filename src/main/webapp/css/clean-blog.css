@@ -66,7 +66,7 @@ ul{
 /* 카르셀 화살표 관련*/
 .carousel-control-prev, .carousel-control-next{
     color: black;
-    width: 50px;
+    width: 30px;
 }
 
 .carousel-control-prev-icon, .carousel-control-next-icon {
