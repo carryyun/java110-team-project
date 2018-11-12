@@ -9,7 +9,6 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
 
 <!DOCTYPE html>
 <html>
@@ -22,10 +21,8 @@
    
 	<!--Bootsrap 4 CDN-->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    
     <!--Fontawesome CDN-->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
 	<link rel="stylesheet" type="text/css" href="/css/form.css">
 	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 </head>
@@ -44,7 +41,7 @@
     session.setAttribute("state", state);
  %>
  
-<div class="container">
+<div class="container">``
 	<div class="d-flex justify-content-center h-100">
 		<div class="card">
 			<div class="card-header">
@@ -52,8 +49,10 @@
 				<div class="d-flex justify-content-end social_icon">
         				<fb:login-button scope="public_profile,email" 
             				onlogin="checkLoginState();"></fb:login-button>
-					<a id="kakao-login-btn"></a>
-					<a href="<%=apiURL%>"><img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
+					<a id="custom-login-btn" href="javascript:loginWithKakao()">
+					<img src="/upload/img/kakao_login_btn_small.png" height="22" width="62"/>
+					</a>
+					<a href="<%=apiURL%>"><img width="62"height="22" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
 				</div>
 			</div>
 			<div class="card-body">
@@ -138,19 +137,14 @@ var email = "";
 // 사용할 앱의 JavaScript 키를 설정해 주세요.
 Kakao.init('84669683f5618779917565387337bb61');
 // 카카오 로그인 버튼을 생성합니다.
-Kakao.Auth.createLoginButton({
-  container: '#kakao-login-btn',
-  success: function(authObj) {
+function loginWithKakao(){
+	Kakao.Auth.login({
     // 로그인 성공시, API를 호출합니다.
-    Kakao.API.request({
-      url: '/v1/user/me',
-      success: function(res) {
-        console.log(JSON.stringify(res.kaccount_email));
+    success: function(authObj) {
+    	  Kakao.API.request({
+    	url: '/v1/user/me',
+    	success: function(res) {
         email = JSON.stringify(res.kaccount_email);
-        console.log(JSON.stringify(res.id));
-        console.log(JSON.stringify(res.properties.profile_image));
-        console.log(JSON.stringify(res.properties.nickname));
-        
             location.href = "kakao?email=" + JSON.stringify(res.kaccount_email) +
                     "&id=" + JSON.stringify(res.id) +
                     "&profile_image=" + JSON.stringify(res.properties.profile_image) +
@@ -160,17 +154,11 @@ Kakao.Auth.createLoginButton({
         alert(JSON.stringify(error));
       }
     });
-  },
-  fail: function(err) {
-    alert(JSON.stringify(err));
-  }
-});
-
-
-console.log(email);
+    }
+	});
+}
 </script>
 
 
 </body>
 </html>
-
