@@ -220,33 +220,7 @@ img::-moz-selection {
 
 /* 헤더 스크롤 다운시 따라오는 css */
 @media only screen and (min-width: 992px) {
-  #mainNav {
-/*     -webkit-transition: background-color 0.2s;
-    transition: background-color 0.2s;
-    Force Hardware Acceleration in WebKit
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-    -webkit-backface-visibility: hidden; */
-  }
-  
-  #mainNav.is-fixed {
-    /* when the user scrolls down, we hide the header right above the viewport */
-/*
-    position: fixed;
-    top: -67px;
-    -webkit-transition: -webkit-transform 0.2s;
-    transition: -webkit-transform 0.2s;
-    transition: transform 0.2s;
-    transition: transform 0.2s, -webkit-transform 0.2s;
-    border-bottom: 1px solid white;
-    background-color: rgba(255, 255, 255, 0.9);
-*/
-  }
-    #mainNav.is-visible {
-    /* if the user changes the scrolling direction, we show the header */
-/*     -webkit-transform: translate3d(0, 100%, 0);
-    transform: translate3d(0, 100%, 0); */
-  }
+
   #mainNav.is-fixed .navbar-brand {
     color: #212529;
   }

@@ -17,7 +17,6 @@ table, th, td {
 </head>
 <body>
 
-<jsp:include page="../header.jsp"></jsp:include>
 
 <h1>클래스목록</h1>
 <p><a href='form'>추가</a></p>
