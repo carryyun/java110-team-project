@@ -5,7 +5,7 @@ import bitcamp.java110.cms.domain.MiddleTag;
 
 public interface MiddleTagService {
  
-  List<MiddleTag> list(int pageNo, int pageSize); 
+  List<MiddleTag> list(); 
   
   MiddleTag get(int no);
   

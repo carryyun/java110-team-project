@@ -5,6 +5,18 @@ public class MiddleTag {
   private int no;
   private String name;
   private int btno; // BigTag의 no이다.
+  
+  private BigTag bigTag;
+
+  
+  
+  public BigTag getBigTag() {
+    return bigTag;
+  }
+
+  public void setBigTag(BigTag bigTag) {
+    this.bigTag = bigTag;
+  }
 
   public int getNo() {
     return no;

@@ -25,9 +25,9 @@
       <div class="container">
         <div class="navbar-nav" id="categoryNav">
           <ul class="navbar-nav mx-auto" id="mainUl" style="width: 1110px">
-            <c:forEach  items="${list2}" var="m" varStatus="i">
+            <c:forEach  items="${list}" var="list" varStatus="i">
               <li class="nav-item">
-                <a class="nav-link" href="index.html" id="menu0${i.count}">${m.name}</a>
+                <a class="nav-link" href="index.html" id="menu0${i.count}">${list.name}</a>
               </li>
             </c:forEach>
           </ul>
@@ -40,26 +40,26 @@
     
     <div class="container">
     <div id="menusubs" class="menusubs">
-    <ul id="menu01_sub" class="localNav"> 
-        <li><a href="#">메뉴1_1</a></li>
-        <li><a href="#">메뉴1_2</a></li> 
-        <li><a href="#">메뉴1_3</a></li> 
+    <c:forEach  items="${list}" var="list" varStatus="i">
+    
+    <ul id="menu0${i.count}_sub" class="localNav"> 
+    
+              <c:forEach  items="${list2}" varStatus="j">
+              
+                 <c:if test="${list.no == list2[j.index].bigTag.no}">
+                 <li>
+                 <a href="#">
+                     ${list2[j.index].name}
+                 </a>
+                 </li>
+                 </c:if>
+              </c:forEach>
+              
     </ul>
-    <ul id="menu02_sub" class="localNav"> 
-        <li><a href="#">메뉴2_1</a></li>
-        <li><a href="#">메뉴2_2</a></li> 
-        <li><a href="#">메뉴2_3</a></li> 
-    </ul>
-    <ul id="menu03_sub" class="localNav"> 
-        <li><a href="#">메뉴3_1</a></li>
-        <li><a href="#">메뉴3_2</a></li> 
-        <li><a href="#">메뉴3_3</a></li> 
-    </ul>
-    <ul id="menu04_sub" class="localNav"> 
-        <li><a href="#">메뉴4_1</a></li>
-        <li><a href="#">메뉴4_2</a></li> 
-        <li><a href="#">메뉴4_3</a></li> 
-    </ul>
+    </c:forEach>
+    
+
+
     </div>
     </div>
     
