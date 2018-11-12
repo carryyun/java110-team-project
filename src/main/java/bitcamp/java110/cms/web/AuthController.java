@@ -64,6 +64,7 @@ public class AuthController {
     @GetMapping("logout")
     public String logout(HttpSession session) {
         session.invalidate();
+        System.out.println("log out!");
         return "redirect:form";
     }
     
@@ -98,6 +99,7 @@ public class AuthController {
     }
     @GetMapping("callback")
     public void callback(String access_token, HttpSession session) {}
+  
  
 }
 

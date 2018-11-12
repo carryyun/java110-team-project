@@ -13,18 +13,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8"/>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
-	<title>Login Page</title>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
+    <title>Login Page</title>
    <!--Made with love by Mutiullah Samim -->
    
-	<!--Bootsrap 4 CDN-->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!--Bootsrap 4 CDN-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <!--Fontawesome CDN-->
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="/css/form.css">
-	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/form.css">
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 </head>
 <body>
 
@@ -42,57 +42,65 @@
  %>
  
 <div class="container">``
-	<div class="d-flex justify-content-center h-100">
-		<div class="card">
-			<div class="card-header">
-				<h3>로그인</h3>
-				<div class="d-flex justify-content-end social_icon">
-        				<fb:login-button scope="public_profile,email" 
-            				onlogin="checkLoginState();"></fb:login-button>
-					<a id="custom-login-btn" href="javascript:loginWithKakao()">
-					<img src="/upload/img/kakao_login_btn_small.png" height="22" width="62"/>
-					</a>
-					<a href="<%=apiURL%>"><img width="62"height="22" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
-				</div>
-			</div>
-			<div class="card-body">
-				<form action='login' method="post" >
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-user"></i></span>
-						</div>
-						<input type="email" name="email" value='${cookie.email.value}' 
-						class="form-control" placeholder="useremail">
-						
-					</div>
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-key"></i></span>
-						</div>
-						<input type="password" name="pwd" class="form-control" placeholder="password">
-					</div>
-					<div class="row align-items-center remember">
-						<input type="checkbox" name="save">이메일 저장
-					</div>
-					<div id="login" class="form-group">
-						<input type="submit" value="login" class="btn float-right login_btn">
-					</div>
-				</form>
-			</div>
-			<div class="card-footer">
-				<div class="d-flex justify-content-center links">
-					<a href="#">회원 가입</a>
-				</div>
-				<div class="d-flex justify-content-center">
-					<a href="#">이메일 찾기</a>
-				</div>
-				<div class="d-flex justify-content-center">
-					<a href="#">비밀번호 찾기</a>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="d-flex justify-content-center h-100">
+        <div class="card">
+            <div class="card-header">
+                <h3>로그인</h3>
+                <div class="d-flex justify-content-end social_icon">
+                        <fb:login-button scope="public_profile,email" 
+                            onlogin="checkLoginState();"></fb:login-button>
+                    <a id="custom-login-btn" href="javascript:loginWithKakao()">
+                    <img src="/upload/img/kakao_login_btn_small.png" height="22" width="62"/>
+                    </a>
+                    <a href="<%=apiURL%>"><img width="62"height="22" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
+                </div>
+            </div>
+            <div class="card-body">
+                <form action='login' method="post" >
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input type="email" name="email" value='${cookie.email.value}' 
+                        class="form-control" placeholder="useremail">
+                        
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        <input type="password" name="pwd" class="form-control" placeholder="password">
+                    </div>
+                    <div class="row align-items-center remember">
+                        <input type="checkbox" name="save">이메일 저장
+                    </div>
+                    <div id="login" class="form-group">
+                        <input type="submit" value="login" class="btn float-right login_btn">
+                    </div>
+                 
+                 <!--    카카오 토큰 아웃 -->
+                 
+                 <input type="button" onclick="button1_click();"></input>
+                    
+                </form>
+            </div>
+            <div class="card-footer">
+                <div class="d-flex justify-content-center links">
+                    <a href="#">회원 가입</a>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <a href="#">이메일 찾기</a>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <a href="#">비밀번호 찾기</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+
  <!-- 페이스북 -->
 <script type="text/javascript">
 function autoLogin(accessToken) {
@@ -138,12 +146,12 @@ var email = "";
 Kakao.init('84669683f5618779917565387337bb61');
 // 카카오 로그인 버튼을 생성합니다.
 function loginWithKakao(){
-	Kakao.Auth.login({
+    Kakao.Auth.loginForm({
     // 로그인 성공시, API를 호출합니다.
     success: function(authObj) {
-    	  Kakao.API.request({
-    	url: '/v1/user/me',
-    	success: function(res) {
+          Kakao.API.request({
+        url: '/v1/user/me',
+        success: function(res) {
         email = JSON.stringify(res.kaccount_email);
             location.href = "kakao?email=" + JSON.stringify(res.kaccount_email) +
                     "&id=" + JSON.stringify(res.id) +
@@ -155,10 +163,32 @@ function loginWithKakao(){
       }
     });
     }
-	});
+    });
+    
+    
+    
+    
+}
+
+/*  카카오 토큰아웃 ... 무의미.. */
+function button1_click() {
+  
+    
+    Kakao.Auth.logout(function() { console.log("logged out."); });
 }
 </script>
 
 
+<script>
+
+
+
+
+
+
+
+</script>
+
+ <!-- Kakao.Auth.logout(function () {  alert("카카오로그아웃");}); -->
 </body>
 </html>
