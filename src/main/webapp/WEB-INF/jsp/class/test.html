@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <style>
+        .btn-group label
+{
+  padding-left: 40px;
+}
+    input[type="radio"]:empty
+    {
+      display: none;
+    }
+
+    input[type="radio"] ~ span:before
+    {
+      position: absolute;
+      display: block;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      content: '';
+      width: 2.5em;
+      background: #D1D3D4;
+    }
+
+    input[type="radio"]:before
+    {
+      content: '\2714';
+      text-indent: .9em;
+      color: #C2C2C2;
+    }
+
+    input[type="radio"]:checked ~ span:before
+    {
+      content: '\2714';
+      text-indent: .3em;
+      color: #fff;
+      background-color: #5cb85c;
+      line-height: 2.5em;
+    }
+    </style>
+</head>
+<body>
+        <div class="row">
+            <label class="btn btn-default">
+	            <input type="radio" name="testrad" value="0">
+	            <span>One Value</span>
+	        </label>
+	        <label class="btn btn-default">
+	            <input type="radio" name="testrad" value="1">
+	            <span>Two Value</span>
+	        </label>
+	        <label class="btn btn-default">
+	            <input type="radio" name="testrad" value="2">
+	            <span>Three Value</span>
+	        </label>
+        </div>
+</body>
+</html>

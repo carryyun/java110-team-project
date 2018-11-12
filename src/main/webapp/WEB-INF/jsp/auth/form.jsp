@@ -165,7 +165,7 @@ function loginWithKakao(){
 }
 </script>
 <script>
-</script>
+</script> 
  <!-- Kakao.Auth.logout(function () {  alert("카카오로그아웃");}); -->
 </body>
 </html>
