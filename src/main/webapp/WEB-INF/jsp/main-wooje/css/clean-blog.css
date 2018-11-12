@@ -295,7 +295,7 @@ img::-moz-selection {
   #mainNav.is-fixed {
     /* when the user scrolls down, we hide the header right above the viewport */
     position: fixed;
-    top: -67px;
+    top: -20px;
     -webkit-transition: -webkit-transform 0.2s;
     transition: -webkit-transform 0.2s;
     transition: transform 0.2s;
@@ -531,10 +531,11 @@ form .form-group:first-child .floating-label-form-group {
 }
 
 #myFooter .footer-copyright {
-    background-color: #333333;
+/*    background-color: #333333;*/
     padding-top: 3px;
     padding-bottom: 3px;
     text-align: center;
+
 }
 
 #myFooter .row {
