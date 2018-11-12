@@ -24,7 +24,7 @@
           <i class="fas fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto" style="margin-left: 1px">
+          <ul class="navbar-nav ml-auto mr-0">
             <li class="nav-item">
              <div id="row">
                <a class="nav-link" href="index.html">

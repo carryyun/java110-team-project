@@ -15,7 +15,8 @@ nav.navbar{
   font-family: 'Noto Sans KR', sans-serif;
   
   text-align: center;
-  min-width: 136px;
+  
+  min-width: 120px;
 }
 #categoryNav > .navbar-nav > li.nav-item > a:hover{
   font-size: 20px;
@@ -25,6 +26,8 @@ nav.navbar{
   font-family: 'Noto Sans KR', sans-serif;
   color: #cce5ee;
   background-color: #6e6e6e;
+  
+  min-width: 120px;
 }
 #categoryNav > .navbar-nav > li.nav-item > a#menu01 {
   font-size: 20px;
@@ -33,6 +36,8 @@ nav.navbar{
   text-transform: uppercase;
   color: #6e6e6e;
   font-family: 'Noto Sans KR', sans-serif;
+  
+  min-width: 120px;
 }
 #categoryNav > .navbar-nav > li.nav-item > a#menu01:hover{
   font-size: 20px;
@@ -42,6 +47,8 @@ nav.navbar{
   font-family: 'Noto Sans KR', sans-serif;
   color: #cce5ee;
   background-color: #6e6e6e;
+  
+  min-width: 120px;
 }
 ul.navbar-nav{
     float: left;
@@ -69,7 +76,7 @@ div.menusubs .localNav {
     border-right: 2px solid #6e6e6e;
     margin-left:-15px;
     /* margin: 0 auto; */
-    width: 939px;
+    width: 895px;
     height: 60px;
 }
 

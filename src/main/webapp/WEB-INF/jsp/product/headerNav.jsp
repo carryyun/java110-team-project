@@ -51,15 +51,6 @@
               <a class="nav-link" href="post.html">취미</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="index.html">외국어</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="about.html">운동</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="post.html">실무역량</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="index.html">프리마켓</a>
             </li>
           </ul>
