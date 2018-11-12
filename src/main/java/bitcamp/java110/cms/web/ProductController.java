@@ -31,11 +31,13 @@ public class ProductController {
   @GetMapping("prdt")
   public void prdt(Model model) {
     List<BigTag> list = bigTagService.list();
-    for(BigTag b : list) {
+/*    for(BigTag b : list) {
       System.out.print(b.getNo() + ":");
       System.out.println(b.getName());
-    }
+    }*/
     model.addAttribute("list",list);
+    model.addAttribute("list2",list);
+    
   }
 
   
