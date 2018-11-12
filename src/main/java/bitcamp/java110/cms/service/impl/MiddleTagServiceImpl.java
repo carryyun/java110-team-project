@@ -20,13 +20,9 @@ public class MiddleTagServiceImpl implements MiddleTagService {
   @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 
   @Override
-  public List<MiddleTag> list(int pageNo, int pageSize) {
+  public List<MiddleTag> list() {
 
-    HashMap<String, Object> params = new HashMap<>();
-    params.put("rowNo", (pageNo - 1) * pageSize);
-    params.put("size", pageSize);
-
-    return middletagDao.findAll(params);
+    return middletagDao.findAll();
 
   }
 

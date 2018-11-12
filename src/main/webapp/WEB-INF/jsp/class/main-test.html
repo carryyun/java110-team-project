@@ -9,88 +9,48 @@
 <script src='//production-assets.codepen.io/assets/editor/live/css_live_reload_init-2c0dc5167d60a5af3ee189d570b1835129687ea2a61bee3513dee3a50c115a77.js'></script>
 <meta charset='UTF-8'>
 <meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" type="image/x-icon" href="//production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" />
 <link rel="mask-icon" type="" href="//production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" />
 <link rel="canonical" href="https://codepen.io/nelsonleite/pen/RaGwba?depth=everything&order=popularity&page=4&q=product&show_forks=false" />
 <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=HI1wEsrM0W8lMjEjZYfu&submodules=geocoder"></script>
     <style>
         *{
             margin: 0 auto;
         }
-        #ClassSearchBoard{ 
-            /* 클래스 상세검색*/
+        .ClassSearchForm{
             width: 1100px;
             height: 330px;
             margin: 10px;
             border-top: 2px solid silver;
             border-bottom: 2px solid silver;
-            transform:translate(40%)
+            /*transform:translateY(30%)*/
         }
-        #ClassCategory{
-            /* 클래스 카테고리 검색 */
-            float: left;
-            margin: 0 auto;
-        }
-        #day{
-            /* 클래스 날짜 검색 */
-            margin: 0 auto;
-            position:absolute; 
-            left:40%; 
-            transform:translate(-30%)
-
-        }
-        #checkmap{
-            /* 클래스 지도 검색 */
-            margin: 0 auto;
-            float: right;
-        }
-        #classSearchbut1{
-            /* 클래스 검색 버튼 */
-            float: right;
-        }
-        li{
+        ul{
             list-style-type: none;
         }
-        .week{
-            /* 요일 표시 */
-            width: 20px;
-            height: 20px;
-            margin-left: 10px;
-            margin-top: 5px;
-            width: 20px; height: 20px;
-            border: 1px solid aqua;
-            border-radius: 50%;
+        #navermap {
+            /* 네이버 지도 api */
+	        
         }
-        #Result{
-            /* 검색결과 와 클래스개강 */
-            width: 1100px;
-            height: 50px;
-        }
-        #ClassSearchResult{
-            /* 검색결과 */
+        .category-select{
             float: left;
         }
-        #ClassRigist{
-            /* 클래스개강 */
+        .when-select{
+            top: 20%;
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, -120%);
+            
+        }
+        .check-map{
+            position: inherit;
             float: right;
         }
-        img{
-            /* 클래스 소개사진 */
-            width: 200px;
-            height: 200px;
-        }
-        .mentor{
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-        }
-        #map,#detailmap{
-            /* 지도 사진 */
-            width: 200px; height: 200px;
-        }
-        #classSearchbut1{
-            
+        #map1{
+            height: 250px;
         }
     </style>
     <style class="cp-pen-styles">
@@ -111,7 +71,8 @@ body {
 }
 
 img {
-  max-width: 100%;
+  width: 300px;
+    height: 300px;
 }
 
 hr {
@@ -227,8 +188,8 @@ hr {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 80%;
+  height: 80%;
   z-index: 15;
 }
 .image-holder .image-holder--original {
@@ -335,60 +296,45 @@ hr {
     </style>
 </head>
 <body>
-    <div id="ClassSearcBoard">
-      <div id="ClassCategory">
-       <h2>카테고리-대분류</h2>
-        <ul>
-            <li>카테고리-중분류</li>
-            <li>카테고리-중분류</li>
-        </ul>
-      </div>
-      <div id="day">
-        <h2>날짜</h2>
-         <div id="butcheck1">
-          <button><strong>원데이</strong></button>
-          <button><strong>전체</strong></button>
-         </div>
-         <div id="weekcheck">
-          <div>
-           <button class="week">월</button> <button class="week">화</button> <button class="week">수</button> <button class="week">목</button> 
-          </div>
-          <div>
-           <button class="week">금</button> <button class="week">토</button> <button class="week">일</button>
-          </div>
-         </div>
-      </div>
-      <div id="checkmap">
-          <h2>지역</h2>
-          <img id="map" src="../img/map1.png" alt="지도1">
-          <img id="detailmap" src="../img/detailmap.png" alt="지도2">
-          <button id="classSearchbut1"><h2>검색</h2></button>
-      </div>
-    </div>
-    <div id="Result">
-       <div id="ClassSearchResult"> 검색결과 > 999개 </div>
-       <button id="ClassRigist"><h4>클래스 개강</h4></button>
-    </div>
-    <!--<div id="ClassList">
-       <span id="MentorClass">
-           <img id="Class1" src="../img/Class.jpg" alt="클래스소개사진1"><br>
-           <span>비트캠프와 아이들</span> <br>
-           <span><small>30000</small></span><br>
-           <span><small>별점</small></span><span><small>기본 주소</small></span>
-           <img class="mentor" src="../img/mentor1.jpg" alt="멘토소개사진1">
-       </span>
-       <span id="MentorClass">
-           <img id="Class1" src="../img/Class.jpg" alt="클래스소개사진1"><br>
-           <span>비트캠프와 아이들</span> <br>
-           <span><small>30000</small></span><br>
-           <span><small>별점</small></span><span><small>기본 주소</small></span>
-           <img class="mentor" src="../img/mentor1.jpg" alt="멘토소개사진1">
-       </span>
-    </div>-->
-    <!-- 여기 아래부터 bootstrap -->
+   
     <div class="container">
 	<div class="row">
-
+<div id="ClassSerach">
+    <div class="ClassSearchForm">
+       <div class="col-lg-3 mx-auto">
+        <div class="category-select">
+           <h3>카테고리-대분류</h3>
+            <ul>
+                <li>중분류</li>
+                <li>중분류</li>
+                <li>중분류</li>
+                <li>중분류</li>
+            </ul>
+        </div>
+        </div>
+        <div class="col-lg-10-12 mx-auto">
+        <div class="when-select">
+            <div id="day">
+                <h3>날짜</h3>
+                <span>원데이</span>
+                <input type="radio" name="day" >
+                <span>전체</span>
+                <input type="radio" name="day" checked>
+            </div>
+            <br>
+            <div id="day-select">
+            <button>월</button><button>화</button><button>수</button><button>목</button>
+            <button>금</button><button>토</button><button>일</button>
+            </div>
+        </div>
+        </div>
+        <div class="check-map">
+            <h3>지역</h3>
+            <!--<div id="navermap" style="width:300px;height:200px;"></div>-->
+            <img id="map1" src="img/map1.png">
+       </div>
+    </div>
+    </div>
 		<div class="col-xs-12 col-sm-6 col-md-4">
 			<article class="card-wrapper">
 				<div class="image-holder">
@@ -506,39 +452,5 @@ hr {
 		</div>
 	</div>
 </div>
-
-<script>
-      var map = new naver.maps.Map('navermap');
-      var myaddress = '불정로 6';// 도로명 주소나 지번 주소만 가능 (건물명 불가!!!!)
-      naver.maps.Service.geocode({address: myaddress}, function(status, response) {
-          if (status !== naver.maps.Service.Status.OK) {
-              return alert(myaddress + '의 검색 결과가 없거나 기타 네트워크 에러');
-          }
-          var result = response.result;
-          // 검색 결과 갯수: result.total
-          // 첫번째 결과 결과 주소: result.items[0].address
-          // 첫번째 검색 결과 좌표: result.items[0].point.y, result.items[0].point.x
-          var myaddr = new naver.maps.Point(result.items[0].point.x, result.items[0].point.y);
-          map.setCenter(myaddr); // 검색된 좌표로 지도 이동
-          // 마커 표시
-          var marker = new naver.maps.Marker({
-            position: myaddr,
-            map: map
-          });
-          // 마커 클릭 이벤트 처리
-          naver.maps.Event.addListener(marker, "click", function(e) {
-            if (infowindow.getMap()) {
-                infowindow.close();
-            } else {
-                infowindow.open(map, marker);
-            }
-          });
-          // 마크 클릭시 인포윈도우 오픈
-          var infowindow = new naver.maps.InfoWindow({
-              content: '<h4> [네이버 개발자센터]</h4><a href="https://developers.naver.com" target="_blank"><img src="https://developers.naver.com/inc/devcenter/images/nd_img.png"></a>'
-          });
-      });
-      </script>
-
-</body>
+    </body>
 </html>
