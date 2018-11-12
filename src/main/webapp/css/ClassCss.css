@@ -4,94 +4,42 @@
 	margin: 0 auto;
 }
 
-#ClassSearchBoard {
-	/* 클래스 상세검색*/
-	width: 100%;
+.ClassSearchForm {
+	width: 1100px;
 	height: 330px;
 	margin: 10px;
 	border-top: 2px solid silver;
 	border-bottom: 2px solid silver;
-	transform: translate(40%)
+	/*transform:translateY(30%)*/
 }
 
-#ClassCategory {
-	/* 클래스 카테고리 검색 */
-	float: left;
-	margin: 0 auto;
-}
-
-#day {
-	/* 클래스 날짜 검색 */
-	margin: 0 auto;
-	position: absolute;
-	left: 40%;
-	transform: translate(-30%)
-}
-
-#checkmap {
-	/* 클래스 지도 검색 */
-	margin: 0 auto;
-	float: right;
-}
-
-#classSearchbut1 {
-	/* 클래스 검색 버튼 */
-	position: float: right;
-}
-
-li {
+ul {
 	list-style-type: none;
 }
 
-.week {
-	/* 요일 표시 */
-	width: 20px;
-	height: 20px;
-	margin-left: 10px;
-	margin-top: 5px;
-	width: 20px;
-	height: 20px;
-	border: 1px solid aqua;
-	border-radius: 50%;
+#navermap {
+	/* 네이버 지도 api */
+	
 }
 
-#Result {
-	/* 검색결과 와 클래스개강 */
-	width: 1100px;
-	height: 50px;
-}
-
-#ClassSearchResult {
-	/* 검색결과 */
+.category-select {
 	float: left;
 }
 
-#ClassRigist {
-	/* 클래스개강 */
+.when-select {
+	top: 20%;
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, -120%);
+}
+
+.check-map {
+	position: inherit;
 	float: right;
 }
 
-img {
-	/* 클래스 소개사진 */
-	width: 200px;
-	height: 200px;
-}
-
-.mentor {
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-}
-
-#map, #detailmap {
-	/* 지도 사진 */
-	width: 200px;
-	height: 200px;
-}
-
-#navermap {
-	width: 200px;
-	height : 200px;
+#map1 {
+	height: 250px;
 }
 
 .product-description {
@@ -99,6 +47,14 @@ img {
 	transform-style: preserve-3d;
 	perspective: 1000;
 	backface-visibility: hidden;
+}
+
+.btn span.glyphicon {
+	opacity: 0;
+}
+
+.btn.active span.glyphicon {
+	opacity: 1;
 }
 
 body {
@@ -111,7 +67,8 @@ body {
 }
 
 img {
-	max-width: 100%;
+	width: 300px;
+	height: 300px;
 }
 
 hr {
@@ -240,8 +197,8 @@ hr {
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 100%;
-	height: 100%;
+	width: 80%;
+	height: 80%;
 	z-index: 15;
 }
 

@@ -10,15 +10,21 @@
         <id column="mtno"        property="no"/>
         <result column="mtname"   property="name"/>
         <result column="btno"   property="btno"/>
+        <result column="btno"   property="bigTag.no"/>
+        <result column="btname"   property="bigTag.name"/>
     </resultMap>
     
     <select id="findAll" resultMap="middletagMap">
         select
-            mtno,
-            mtname,
-            btno
+            p.mtno,
+            p.mtname,
+            p.btno,
+            b.btno,
+            b.btname
         from 
-            p_mtag 
+            p_mtag p, p_btag b
+        where
+            p.btno=b.btno
         order by 
             mtno asc
     </select>

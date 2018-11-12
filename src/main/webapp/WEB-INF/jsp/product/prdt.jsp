@@ -88,7 +88,7 @@
 	</ol>
 	<div class="carousel-inner" role="listbox">
 	    <div class="carousel-item active">
-	      <div class="col-lg-auto px-5 mx-auto">
+	      <div class="col-lg-auto col-md-3 px-5 mx-auto">
 	       <div class="test">
 	        <img class="d-block img-fluid" src="/upload/img/product/900x350/julme.PNG" alt="First slide">
 	       </div>

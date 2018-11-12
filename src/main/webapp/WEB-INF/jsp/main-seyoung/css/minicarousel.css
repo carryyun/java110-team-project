@@ -1,0 +1,45 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.minicarousel .carousel-inner{
+    float: right;
+    position: relative;
+    
+    
+}
+
+.blog .carousel-indicators {
+	left: 0;
+	top: auto;
+    bottom: -40px;
+
+}
+
+/* The colour of the indicators */
+.blog .carousel-indicators li {
+    background: #a3a3a3;
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+}
+
+.blog .carousel-indicators .active {
+background: #707070;
+}
+
+.minicarousel .ontainer .row{
+    border: 1px solid black;
+    position: relative;
+    float: right;
+    top: 20px;
+    width:50%;
+    background-color: lightyellow;
+    padding: 10px;
+    border-radius: 10px;
+    
+}
+
+
+
