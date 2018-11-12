@@ -1,322 +1,372 @@
-@charset "UTF-8";
 
-* {
-	margin: 0 auto;
+        *{
+            margin: 0 auto;
+        }
+        #ClassSearchBoard{ 
+            /* 클래스 상세검색*/
+            width: 1100px;
+            height: 330px;
+            margin: 10px;
+            border-top: 2px solid silver;
+            border-bottom: 2px solid silver;
+            transform:translate(40%)
+        }
+        #ClassCategory{
+            /* 클래스 카테고리 검색 */
+            float: left;
+            margin: 0 auto;
+        }
+        #day{
+            /* 클래스 날짜 검색 */
+            position:absolute; 
+            left:40%; 
+            transform:translate(-30%)
+        }
+        #checkmap{
+            /* 클래스 지도 검색 */
+            float: right;
+        }	
+        #classSearchbut1{
+            /* 클래스 검색 버튼 */
+            position: 
+            float: right;
+        }
+        .select-day{
+        	/* 날짜 선택 */
+        	display: inline-block;
+        	width: 30px;
+    		height: 30px;
+    		border-radius: 150px; /* 레이어 반크기만큼 반경을 잡기*/    
+    		vertical-align: middle;
+    		color: black;
+    		font-weight: bold;
+    		text-align: center;
+        }
+        /* .select-day : checked{
+        	display: none;
+        } */
+        /* .btn span.fa-check {    			
+	opacity: 0;				
+}
+.btn.active span.fa-check {				
+	opacity: 1;				
+} */
+/* Hiding the checkbox, but allowing it to be focused */
+.badgebox
+{
+    opacity: 0;
 }
 
-.ClassSearchForm {
-	width: 1100px;
-	height: 330px;
-	margin: 10px;
-	border-top: 2px solid silver;
-	border-bottom: 2px solid silver;
-	/*transform:translateY(30%)*/
+.badgebox + .badge
+{
+    /* Move the check mark away when unchecked */
+    text-indent: -999999px;
+    /* Makes the badge's width stay the same checked and unchecked */
+    width: 27px;
 }
 
-ul {
-	list-style-type: none;
+.badgebox:focus + .badge
+{
+    /* Set something to make the badge looks focused */
+    /* This really depends on the application, in my case it was: */
+    
+    /* Adding a light border */
+    box-shadow: inset 0px 0px 5px;
+    /* Taking the difference out of the padding */
 }
 
-#navermap {
-	/* 네이버 지도 api */
-	
+.badgebox:checked + .badge
+{
+    /* Move the check mark back when checked */
+	text-indent: 0;
 }
+        li{
+            list-style-type: none;
+        }
+        .week{
+            /* 요일 표시 */
+            width: 20px;
+            height: 20px;
+            margin-left: 10px;
+            margin-top: 5px;
+            width: 20px; height: 20px;
+            border: 1px solid aqua;
+            border-radius: 50%;
+        }
+        #Result{
+            /* 검색결과 와 클래스개강 */
+            width: 1100px;
+            height: 50px;
+        }
+        #ClassSearchResult{
+            /* 검색결과 */
+            float: left;
+        }
+        #ClassRigist{
+            /* 클래스개강 */
+            transform: translatey(-60%);
+            float: right;
+        }
+        .Search-Map{
+        	/* transform: translateY(-40%); */
+            float: right;
+            margin-top: -155px;
+            margin-bottom : 10px;
+        }
+        #ClassSearchBut1{
+        	float:right;
+        	transform: translateY(950%);
+        }
+        img{
+            /* 클래스 소개사진 */
+            width: 200px;
+            height: 200px;
+        }
+        .mentor{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+        #map,#detailmap{
+            /* 지도 사진 */
+            width: 200px; height: 200px;
+        }
+        #classSearchbut1{
+            
+        }
 
-.category-select {
-	float: left;
-}
-
-.when-select {
-	top: 20%;
-	position: absolute;
-	left: 50%;
-	transform: translate(-50%, -120%);
-}
-
-.check-map {
-	position: inherit;
-	float: right;
-}
-
-#map1 {
-	height: 250px;
-}
-
-.product-description {
-	transform: translate3d(0, 0, 0);
-	transform-style: preserve-3d;
-	perspective: 1000;
-	backface-visibility: hidden;
-}
-
-.btn span.glyphicon {
-	opacity: 0;
-}
-
-.btn.active span.glyphicon {
-	opacity: 1;
+        .product-description {
+  transform: translate3d(0, 0, 0);
+  transform-style: preserve-3d;
+  perspective: 1000;
+  backface-visibility: hidden;
 }
 
 body {
-	color: #212121;
-}
-
-.container {
-	padding-top: 25px;
-	padding-bottom: 25px;
+  color: #212121;
 }
 
 img {
-	width: 300px;
-	height: 300px;
+  max-width: 100%;
+  max-width: 100%;
 }
 
 hr {
-	border-color: #e5e5e5;
-	margin: 15px 0;
+  border-color: #e5e5e5;
+  margin: 15px 0;
 }
 
 .secondary-text {
-	color: #b6b6b6;
+  color: #b6b6b6;
 }
 
 .list-inline {
-	margin: 0;
+  margin: 0;
 }
-
 .list-inline li {
-	padding: 0;
+  padding: 0;
 }
 
 .card-wrapper {
-	position: relative;
-	width: 100%;
-	height: 390px;
-	border: 1px solid #e5e5e5;
-	border-bottom-width: 2px;
-	overflow: hidden;
-	margin-bottom: 30px;
+  position: relative;
+  width: 100%;
+  height: 390px;
+  border: 1px solid #e5e5e5;
+  border-bottom-width: 2px;
+  overflow: hidden;
+  margin-bottom: 30px;
 }
-
 .card-wrapper:after {
-	content: "";
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	opacity: 0;
-	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-	transition: opacity 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transition: opacity 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
-
 .card-wrapper:hover:after {
-	opacity: 1;
+  opacity: 1;
 }
-
 .card-wrapper:hover .image-holder:before {
-	opacity: .75;
+  opacity: .75;
 }
-
 .card-wrapper:hover .image-holder:after {
-	opacity: 1;
-	transform: translate(-50%, -50%);
+  opacity: 1;
+  transform: translate(-50%, -50%);
 }
-
 .card-wrapper:hover .image-holder--original {
-	transform: translateY(-15px);
+  transform: translateY(-15px);
 }
-
 .card-wrapper:hover .product-description {
-	height: 205px;
+  height: 205px;
 }
-
-@media ( min-width : 768px) {
-	.card-wrapper:hover .product-description {
-		height: 185px;
-	}
+@media (min-width: 768px) {
+  .card-wrapper:hover .product-description {
+    height: 185px;
+  }
 }
 
 .image-holder {
-	display: block;
-	position: relative;
-	width: 100%;
-	height: 310px;
-	background-color: #ffffff;
-	z-index: 1;
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 310px;
+  background-color: #ffffff;
+  z-index: 1;
 }
-
-@media ( min-width : 768px) {
-	.image-holder {
-		height: 325px;
-	}
+@media (min-width: 768px) {
+  .image-holder {
+    height: 325px;
+  }
 }
-
 .image-holder:before {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: #4CAF50;
-	opacity: 0;
-	z-index: 5;
-	transition: opacity 0.6s;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #4CAF50;
+  opacity: 0;
+  z-index: 5;
+  transition: opacity 0.6s;
 }
-
 .image-holder:after {
-	content: '+';
-	font-family: 'Raleway', sans-serif;
-	font-size: 70px;
-	color: #4CAF50;
-	text-align: center;
-	position: absolute;
-	top: 92.5px;
-	left: 50%;
-	width: 75px;
-	height: 75px;
-	line-height: 75px;
-	background-color: #ffffff;
-	opacity: 0;
-	border-radius: 50%;
-	z-index: 10;
-	transform: translate(-50%, 100%);
-	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-	transition: all 0.4s ease-out;
+  content: '+';
+  font-family: 'Raleway', sans-serif;
+  font-size: 70px;
+  color: #4CAF50;
+  text-align: center;
+  position: absolute;
+  top: 92.5px;
+  left: 50%;
+  width: 75px;
+  height: 75px;
+  line-height: 75px;
+  background-color: #ffffff;
+  opacity: 0;
+  border-radius: 50%;
+  z-index: 10;
+  transform: translate(-50%, 100%);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s ease-out;
 }
-
-@media ( min-width : 768px) {
-	.image-holder:after {
-		top: 107.5px;
-	}
+@media (min-width: 768px) {
+  .image-holder:after {
+    top: 107.5px;
+  }
 }
-
 .image-holder .image-holder__link {
-	display: block;
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 80%;
-	height: 80%;
-	z-index: 15;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 15;
 }
-
 .image-holder .image-holder--original {
-	transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .image-liquid {
-	width: 100%;
-	height: 325px;
-	background-size: cover;
-	background-position: center center;
+  width: 100%;
+  height: 325px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 .product-description {
-	position: absolute;
-	left: 0;
-	bottom: 0;
-	width: 100%;
-	height: 80px;
-	padding: 10px 15px;
-	overflow: hidden;
-	background-color: #fafafa;
-	border-top: 1px solid #e5e5e5;
-	transition: height 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-	z-index: 2;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 80px;
+  padding: 10px 15px;
+  overflow: hidden;
+  background-color: #fafafa;
+  border-top: 1px solid #e5e5e5;
+  transition: height 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  z-index: 2;
 }
-
-@media ( min-width : 768px) {
-	.product-description {
-		height: 65px;
-	}
+@media (min-width: 768px) {
+  .product-description {
+    height: 65px;
+  }
 }
-
 .product-description p {
-	margin: 0 0 5px;
+  margin: 0 0 5px;
 }
-
 .product-description .product-description__title {
-	font-family: 'Raleway', sans-serif;
-	position: relative;
-	white-space: nowrap;
-	overflow: hidden;
-	margin: 0;
-	font-size: 18px;
-	line-height: 1.25;
+  font-family: 'Raleway', sans-serif;
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.25;
 }
-
 .product-description .product-description__title:after {
-	content: '';
-	width: 60px;
-	height: 100%;
-	position: absolute;
-	top: 0;
-	right: 0;
-	background: linear-gradient(to right, rgba(255, 255, 255, 0), #fafafa);
+  content: '';
+  width: 60px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), #fafafa);
 }
-
 .product-description .product-description__title a {
-	text-decoration: none;
-	color: inherit;
+  text-decoration: none;
+  color: inherit;
 }
-
 .product-description .product-description__category {
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-
 .product-description .product-description__price {
-	color: #4CAF50;
-	text-align: left;
-	font-weight: bold;
-	letter-spacing: 0.06em;
+  color: #4CAF50;
+  text-align: left;
+  font-weight: bold;
+  letter-spacing: 0.06em;
 }
-
-@media ( min-width : 768px) {
-	.product-description .product-description__price {
-		text-align: right;
-	}
+@media (min-width: 768px) {
+  .product-description .product-description__price {
+    text-align: right;
+  }
 }
-
 .product-description .sizes-wrapper {
-	margin-bottom: 15px;
+  margin-bottom: 15px;
 }
-
 .product-description .color-list {
-	font-size: 0;
+  font-size: 0;
 }
-
 .product-description .color-list__item {
-	width: 25px;
-	height: 10px;
-	position: relative;
-	z-index: 1;
-	transition: all .2s;
+  width: 25px;
+  height: 10px;
+  position: relative;
+  z-index: 1;
+  transition: all .2s;
 }
-
 .product-description .color-list__item:hover {
-	width: 40px;
+  width: 40px;
 }
-
 .product-description .color-list__item--red {
-	background-color: #F44336;
+  background-color: #F44336;
 }
-
 .product-description .color-list__item--blue {
-	background-color: #448AFF;
+  background-color: #448AFF;
 }
-
 .product-description .color-list__item--green {
-	background-color: #CDDC39;
+  background-color: #CDDC39;
 }
-
 .product-description .color-list__item--orange {
-	background-color: #FF9800;
+  background-color: #FF9800;
 }
-
 .product-description .color-list__item--purple {
-	background-color: #673AB7;
+  background-color: #673AB7;
 }
