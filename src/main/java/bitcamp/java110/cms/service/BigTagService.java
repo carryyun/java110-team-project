@@ -5,7 +5,7 @@ import bitcamp.java110.cms.domain.BigTag;
 
 public interface BigTagService {
  
-  List<BigTag> list(int pageNo, int pageSize); 
+  List<BigTag> list(); 
   
   BigTag get(int no);
   
