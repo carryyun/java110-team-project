@@ -437,6 +437,45 @@ header.masthead .post-heading .meta a {
 }
 
 
+.under-navbar-nav{
+    background-color:dimgrey;
+    float: left;
+    height: 50px;
+    width: 100%;
+   /* text-align: center;*/
+    
+    
+}
+
+
+.under-nav-item a{
+    color: white;
+}
+
+.under-navbar-nav li {
+    display: inline-block;
+}
+
+.detail_info{
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0px;
+    border-radius: .25rem;
+}
+
+#testt{
+    width:100%;
+    style="position=absolute; 
+    top: 985px"
+    
+}
 
 footer {
   padding: 50px 0 65px;
