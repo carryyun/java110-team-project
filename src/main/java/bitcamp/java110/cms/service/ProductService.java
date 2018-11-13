@@ -5,7 +5,7 @@ import bitcamp.java110.cms.domain.Product;
 
 public interface ProductService {
  
-  List<Product> list(int pageNo, int pageSize); 
+  List<Product> list(); 
   
   Product get(int no); // 공예품 번호로 조회
   

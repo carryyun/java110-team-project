@@ -19,13 +19,9 @@ public class ProductServiceImpl implements ProductService {
   @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 
   @Override
-  public List<Product> list(int pageNo, int pageSize) {
+  public List<Product> list() {
 
-    HashMap<String, Object> params = new HashMap<>();
-    params.put("rowNo", (pageNo - 1) * pageSize);
-    params.put("size", pageSize);
-
-    return productDao.findAll(params);
+    return productDao.findAll_list();
 
   }
 

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- MemberDao 클래스가 사용할 SQL이 들어 있는 파일 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.java110.cms.dao.CertDao">
+
+    <resultMap type="Cert" id="certMap">
+        <id column="ctno" property="no"/>
+        <result column="cno"  property="cno"/>
+        <result column="meno"    property="meno"/>
+        <result column="type"   property="type"/>
+        <result column="cnt"   property="cnt"/>
+        <result column="edt"   property="edt"/>
+        <result column="ctdt"   property="ctdt"/>
+    </resultMap>
+    
+    <sql id="select1">
+    	select 
+            p.ctno,
+            p.cno,
+            p.meno,
+            p.type,
+            p.cnt,
+            p.edt,
+            p.ctdt
+        from
+            p_cert p
+    </sql>
+
+    <select id="findAll" resultMap="certMap">
+        <include refid="select1"></include>
+		order by
+			cno asc;
+    </select>
+
+	<select id="findByno" resultMap="certMap" parameterType="int">
+		<include refid="select1"></include>
+		where ctno = #{ctno}
+	</select>
+
+    
+</mapper>
+
+
+
+
+
+
+
+
+
