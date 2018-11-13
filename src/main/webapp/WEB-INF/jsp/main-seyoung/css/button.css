@@ -1,0 +1,60 @@
+*{
+    margin:0;
+    padding: 0;
+}
+
+.button_base{
+    position: relative;
+    float: right;
+    margin:0;
+    padding: 0;
+    border: 1px solid black;
+    margin-top: -25px;
+    margin-left: -100px;
+    margin-bottom: 20px;
+}
+
+
+.preserve-3d {
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+}
+
+@media screen and (max-width: 1260px) {
+    .back {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 840px) {
+    .back {
+        width: 100%;
+    }
+}
+
+.back .button_base {
+    border: 1px solid black;
+    float: right;
+    font-size: 18px;
+    position: relative;
+    top: 50%;
+    left: 90%;
+    margin-top: -25px;
+    margin-left: -100px;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-user-select: none;
+    cursor: default;
+}
+
+.button_base:hover {
+    cursor: pointer;
+}
+.b01_simple_rollover:hover {
+    color: #ffffff;
+    background-color: #000000;
+}

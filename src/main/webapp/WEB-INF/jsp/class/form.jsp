@@ -1,206 +1,346 @@
-<%@ page language="java" 
-    contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"
-    trimDirectiveWhitespaces="true"%>
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-<!DOCTYPE html><html lang='en' class=''>
+<%@page import="bitcamp.java110.cms.domain.BigTag"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<html>
 <head>
-<script src='//production-assets.codepen.io/assets/editor/live/console_runner-079c09a0e3b9ff743e39ee2d5637b9216b3545af0de366d4b9aad9dc87e26bfd.js'></script><script src='//production-assets.codepen.io/assets/editor/live/events_runner-73716630c22bbc8cff4bd0f07b135f00a0bdc5d14629260c3ec49e5606f98fdd.js'></script><script src='//production-assets.codepen.io/assets/editor/live/css_live_reload_init-2c0dc5167d60a5af3ee189d570b1835129687ea2a61bee3513dee3a50c115a77.js'></script>
-<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=HI1wEsrM0W8lMjEjZYfu&submodules=geocoder"></script>
-<meta charset='UTF-8'>
-<meta name="robots" content="noindex">
-<link rel="shortcut icon" type="image/x-icon" href="//production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" />
-<link rel="mask-icon" type="" href="//production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" />
-<link rel="canonical" href="https://codepen.io/nelsonleite/pen/RaGwba?depth=everything&order=popularity&page=4&q=product&show_forks=false" />
-<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
-<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
-<link rel='stylesheet' type="text/css" href="/css/ClassCss.css">
 
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>Clean Blog - Start Bootstrap Theme</title>
+
+<!-- ===============필수포함=============== -->
+<!-- Bootstrap core CSS -->
+<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- 폰트 추가 -->
+<link href="https://fonts.googleapis.com/css?family=Jua"
+	rel="stylesheet">
+<link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+	type="text/css">
+<link
+	href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic'
+	rel='stylesheet' type='text/css'>
+<link
+	href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+	rel='stylesheet' type='text/css'>
+
+<link href="/css/ClassCss.css" rel="stylesheet">
+<link href="/css/clean-blog.css" rel="stylesheet">
+<!-- <link href="/css/category.css" rel="stylesheet"> -->
+
+<link rel="shortcut icon" type="image/x-icon"
+	href="//production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" />
+<link rel="mask-icon" type=""
+	href="//production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg"
+	color="#111" />
+<link rel="canonical"
+	href="https://codepen.io/nelsonleite/pen/RaGwba?depth=everything&order=popularity&page=4&q=product&show_forks=false" />
+
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script> -->
+<!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
+
+<script type="text/javascript"
+	src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=HI1wEsrM0W8lMjEjZYfu&submodules=geocoder"></script>
+<!-- ===============필수포함=============== -->
+<!-- ===============필수포함=============== -->
+	<!-- Bootstrap core JavaScript -->
+	<script src="/vendor/jquery/jquery.min.js"></script>
+	<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<!-- js 추가 -->
+	<script src="/js/clean-blog.js"></script>
 </head>
+
 <body>
-
-<%
-	
-%>
-
-<form action='/findAll' method='post' enctype="multipart/form-data">
-<div id="ClassSearchBoard">
-      <div id="ClassCategory">
-       <h2>카테고리-대분류</h2>
-        <ul>
-            <li>카테고리-중분류</li>
-            <li>카테고리-중분류</li>
-        </ul>
-      </div>
-      <div id="day">
-        <h2>날짜</h2>
-         <div id="butcheck1">
-          <button><strong>원데이</strong></button>
-          <button><strong>전체</strong></button>
-         </div>
-         <div id="weekcheck">
-          <div>
-           <button class="week">월</button> <button class="week">화</button> <button class="week">수</button> <button class="week">목</button> 
-          </div>
-          <div>
-           <button class="week">금</button> <button class="week">토</button> <button class="week">일</button>
-          </div>
-         </div>
-      </div>
-      <div id="checkmap">
-          <h2>지역</h2>
-          <div id="navermap" style="width:100%;height:200px;"></div>
-          <!-- <img id="map" src="/img/map1.png" alt="지도1">
-          <img id="detailmap" src="/img/detailmap.png" alt="지도2"> -->
-      </div>
-          <button id="classSearchbut1"><h2>검색</h2></button>
+	<div id="wrap">
+		<div class="container mx-auto px-0">
+			<!-- Header (스크립트로 임시 inclue) -->
+			<%-- <div id="row">
+    <div class="container col-lg-12 mx-auto">
+    <!-- <div id="headerMain"></div> -->
+    <jsp:include page="headerMain.jsp"></jsp:include>
     </div>
-    <div id="Result">
-       <div id="ClassSearchResult"> 검색결과 > 999개 </div>
-       <button id="ClassRigist"><h4>클래스 개강</h4></button>
+    </div> --%>
+
+
+			<!-- Page Header ?????-->
+			<header class="masthead"> </header>
+
+
+			<!-- 카테고리 nav (스크립트로 임시 inclue) -->
+			<div class="container col-lg-12 mx-auto">
+    <jsp:include page="headerNav.jsp"></jsp:include>
+    <!-- <div id="headerNav"></div> -->
     </div>
-    <!--<div id="ClassList">
-       <span id="MentorClass">
-           <img id="Class1" src="../img/Class.jpg" alt="클래스소개사진1"><br>
-           <span>비트캠프와 아이들</span> <br>
-           <span><small>30000</small></span><br>
-           <span><small>별점</small></span><span><small>기본 주소</small></span>
-           <img class="mentor" src="../img/mentor1.jpg" alt="멘토소개사진1">
-       </span>
-       <span id="MentorClass">
-           <img id="Class1" src="../img/Class.jpg" alt="클래스소개사진1"><br>
-           <span>비트캠프와 아이들</span> <br>
-           <span><small>30000</small></span><br>
-           <span><small>별점</small></span><span><small>기본 주소</small></span>
-           <img class="mentor" src="../img/mentor1.jpg" alt="멘토소개사진1">
-       </span>
-    </div>-->
-    <!-- 여기 아래부터 bootstrap -->
-    <div class="container">
-	<div class="row">
 
-		<div class="col-xs-12 col-sm-6 col-md-4">
-			<article class="card-wrapper">
-				<div class="image-holder">
-					<a href="#" class="image-holder__link"></a>
-					<div class="image-liquid image-holder--original" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/2/24/Blue_Tshirt.jpg')">
-					</div>
-				</div>
-				<div class="product-description">
-					<!-- 제목 -->
-					<h1 class="product-description__title">
-						<a href="#">자바를 배우자</a>
-					</h1>
-					<!-- 분류명 , 가격 -->
-					<div class="row">
-						<div class="col-xs-12 col-sm-8 product-description__category secondary-text">
-							컴퓨터 - 자바
+			<!-- Main Content -->
+			<div class="container col-lg-12">
+				<div class="row">
+					<div class="col-lg-3">
+						<div class="col">
+							<h2>카테고리</h2>
+							<ul>
+								<c:forEach items="${list}" var="m">
+									<li><a href="#">${m.name}</a></li>
+								</c:forEach>
+							</ul>
 						</div>
-						<div class="col-xs-12 col-sm-4 product-description__price">30000원</div>
 					</div>
-					<hr />
-					<!-- 멘토 이름 -->
-					<div class="sizes-wrapper"><b>멘토 - 고정은</b></div>
-					<!-- 주소 -->
-					<div class="color-wrapper"><b>기본 주소</b></div>
-				</div>
-			</article>
-		</div>
-		
-		<div class="col-xs-12 col-sm-6 col-md-4">
-			<article class="card-wrapper">
-				<div class="image-holder">
-					<a href="#" class="image-holder__link"></a>
-					<div class="image-liquid image-holder--original" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Jeans_BW_2_(3213391837).jpg/543px-Jeans_BW_2_(3213391837).jpg')">
-					</div>
-				</div>
+					<!-- 오늘의 핫 아이템(카르셀) -->
+					<div class="col-lg-9">
 
-				<div class="product-description">
-					<!-- 제목 -->
-					<h1 class="product-description__title">
-						<a href="#">자바를 배우자</a>
-					</h1>
-					<!-- 분류명 , 가격 -->
-					<div class="row">
-						<div class="col-xs-12 col-sm-8 product-description__category secondary-text">
-							컴퓨터 - 자바
+						<div id="day-select">
+							<span><h2>날짜</h2></span> <span>원데이</span> <input type="radio"
+								name="day"> <span>전체</span> <input type="radio"
+								name="day" checked>
 						</div>
-						<div class="col-xs-12 col-sm-4 product-description__price">30000원</div>
-					</div>
-					<hr />
-					<!-- 멘토 이름 -->
-					<div class="sizes-wrapper"><b>멘토 - 고정은</b></div>
-					<!-- 주소 -->
-					<div class="color-wrapper"><b>기본 주소</b></div>
-				</div>
-			</article>
-		</div>
-		
-		<div class="col-xs-12 col-sm-6 col-md-4">
-			<article class="card-wrapper">
-				<div class="image-holder">
-					<a href="#" class="image-holder__link"></a>
-					<div class="image-liquid image-holder--original" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/b8/Columbia_Sportswear_Jacket.jpg')">
-					</div>
-				</div>
-
-				<div class="product-description">
-					<!-- 제목 -->
-					<h1 class="product-description__title">
-						<a href="#">자바를 배우자</a>
-					</h1>
-
-					<!-- 분류명 , 가격 -->
-					<div class="row">
-						<div class="col-xs-12 col-sm-8 product-description__category secondary-text">
-							컴퓨터 - 자바
+						<div>
+							<label for="default1" class="btn btn-default1">월 <input
+								type="checkbox" id="default1" class="badgebox"><span
+								class="badge">&check;</span></label> <label for="default2"
+								class="btn btn-default2">화 <input type="checkbox"
+								id="default2" class="badgebox"><span class="badge">&check;</span></label>
+							<label for="default3" class="btn btn-default3">수 <input
+								type="checkbox" id="default3" class="badgebox"><span
+								class="badge">&check;</span></label> <label for="default4"
+								class="btn btn-default4">목 <input type="checkbox"
+								id="default4" class="badgebox"><span class="badge">&check;</span></label>
+							<br> <label for="default5" class="btn btn-default5">금
+								<input type="checkbox" id="default5" class="badgebox"><span
+								class="badge">&check;</span>
+							</label> <label for="default6" class="btn btn-default6">토 <input
+								type="checkbox" id="default6" class="badgebox"><span
+								class="badge">&check;</span></label> <label for="default7"
+								class="btn btn-default7">일 <input type="checkbox"
+								id="default7" class="badgebox"><span class="badge">&check;</span></label>
 						</div>
-						<div class="col-xs-12 col-sm-4 product-description__price">30000원</div>
-					</div>
-					<hr />
-					<!-- 멘토 이름 -->
-					<div class="sizes-wrapper"><b>멘토 - 고정은</b></div>
-					<!-- 주소 -->
-					<div class="color-wrapper"><b>기본 주소</b></div>
-				</div>
-			</article>
-		</div>
-		
-		<div class="col-xs-12 col-sm-6 col-md-4">
-			<article class="card-wrapper">
-				<div class="image-holder">
-					<a href="#" class="image-holder__link"></a>
-					<div class="image-liquid image-holder--original" style="background-image: url('http://www.publicdomainpictures.net/pictures/20000/nahled/red-shoes-isolated.jpg')">
-					</div>
-				</div>
-				<div class="product-description">
-					<!-- 제목 -->
-					<h1 class="product-description__title">
-						<a href="#">자바를 배우자</a>
-					</h1>
-
-					<!-- 분류명 , 가격 -->
-					<div class="row">
-						<div class="col-xs-12 col-sm-8 product-description__category secondary-text">
-							컴퓨터 - 자바
+						<div class="Search-Map">
+							<div class="col-lg-auto col-md-6 px-12 mx-auto">
+								<h2>지도</h2>
+								<div id="navermap" style="width: 400px; height: 200px;"></div>
+							</div>
+							<button id="ClassSearchBut1">검색</button>
 						</div>
-						<div class="col-xs-12 col-sm-4 product-description__price">30000원</div>
 					</div>
-					<hr />
-					<!-- 멘토 이름 -->
-					<div class="sizes-wrapper"><b>멘토 - 고정은</b></div>
-					<!-- 주소 -->
-					<div class="color-wrapper"><b>기본 주소</b></div>
+
+
+
+					<!--   </div> -->
+					<hr class="FhrBotMargin">
 				</div>
-			</article>
+
+
+				<!--   <div class="row"> -->
+				<span id="Result"> <span
+					class="col-lg-auto col-md-3 px-5 mx-auto"> <span
+						id="ClassSearchResult">검색결과 > 999개
+			</div>
+			<span class="container col-lg-12">
+				<button id="ClassRigist">클래스 개강</button>
+			</span> </span> </span>
+			<div class="col-lg-12 mx-auto">
+				<div class="post-preview">
+					<a href="post.html"> <!-- <div class="row"> -->
+
+						<div class="container">
+							<div class="row">
+
+								<div class="col-lg-4">
+									<article class="card-wrapper">
+										<div class="image-holder">
+											<a href="#" class="image-holder__link"></a>
+											<div class="image-liquid image-holder--original">
+												<a href="#"><img alt="1" src="/upload/img/julme.PNG"
+													style="width: 100%; height: 100%"></a>
+											</div>
+										</div>
+										<div class="product-description">
+											<!-- 제목 -->
+											<h1 class="product-description__title">
+												<a href="#">자바를 배우자</a>
+											</h1>
+											<!-- 분류명 , 가격 -->
+											<div class="row">
+												<div
+													class="col-lg-12 product-description__category secondary-text">
+													컴퓨터 - 자바</div>
+												<div class="col-lg-12 product-description__price">30000원</div>
+											</div>
+											<hr />
+											<!-- 멘토 이름 -->
+											<div class="sizes-wrapper">
+												<b>멘토 - 고정은</b>
+											</div>
+											<!-- 주소 -->
+											<div class="color-wrapper">
+												<b>기본 주소</b>
+											</div>
+										</div>
+									</article>
+								</div>
+
+								<div class="col-lg-4">
+									<article class="card-wrapper">
+										<div class="image-holder">
+											<a href="#" class="image-holder__link"></a>
+											<div class="image-liquid image-holder--original"
+												style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Jeans_BW_2_(3213391837).jpg/543px-Jeans_BW_2_(3213391837).jpg')">
+											</div>
+										</div>
+
+										<div class="product-description">
+											<!-- 제목 -->
+											<h1 class="product-description__title">
+												<a href="#">자바를 배우자</a>
+											</h1>
+											<!-- 분류명 , 가격 -->
+											<div class="row">
+												<div
+													class="col-lg-12 product-description__category secondary-text">
+													컴퓨터 - 자바</div>
+												<div class="col-lg-12 product-description__price">30000원</div>
+											</div>
+											<hr />
+											<!-- 멘토 이름 -->
+											<div class="sizes-wrapper">
+												<b>멘토 - 고정은</b>
+											</div>
+											<!-- 주소 -->
+											<div class="color-wrapper">
+												<b>기본 주소</b>
+											</div>
+										</div>
+									</article>
+								</div>
+
+								<div class="col-lg-4">
+									<article class="card-wrapper">
+										<div class="image-holder">
+											<a href="#" class="image-holder__link"></a>
+											<div class="image-liquid image-holder--original"
+												style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/b8/Columbia_Sportswear_Jacket.jpg')">
+											</div>
+										</div>
+
+										<div class="product-description">
+											<!-- 제목 -->
+											<h1 class="product-description__title">
+												<a href="#">자바를 배우자</a>
+											</h1>
+
+											<!-- 분류명 , 가격 -->
+											<div class="row">
+												<div
+													class="col-lg-12 product-description__category secondary-text">
+													컴퓨터 - 자바</div>
+												<div class="col-lg-12 product-description__price">30000원</div>
+											</div>
+											<hr />
+											<!-- 멘토 이름 -->
+											<div class="sizes-wrapper">
+												<b>멘토 - 고정은</b>
+											</div>
+											<!-- 주소 -->
+											<div class="color-wrapper">
+												<b>기본 주소</b>
+											</div>
+										</div>
+									</article>
+								</div>
+
+								<div class="col-lg-4">
+									<article class="card-wrapper">
+										<div class="image-holder">
+											<a href="#" class="image-holder__link"></a>
+											<div class="image-liquid image-holder--original"
+												style="background-image: url('http://www.publicdomainpictures.net/pictures/20000/nahled/red-shoes-isolated.jpg')">
+											</div>
+										</div>
+										<div class="product-description">
+											<!-- 제목 -->
+											<h1 class="product-description__title">
+												<a href="#">자바를 배우자</a>
+											</h1>
+
+											<!-- 분류명 , 가격 -->
+											<div class="row">
+												<div
+													class="col-lg-12 product-description__category secondary-text">
+													컴퓨터 - 자바</div>
+												<div class="col-lg-12 product-description__price">30000원</div>
+											</div>
+											<hr />
+											<!-- 멘토 이름 -->
+											<div class="sizes-wrapper">
+												<b>멘토 - 고정은</b>
+											</div>
+											<!-- 주소 -->
+											<div class="color-wrapper">
+												<b>기본 주소</b>
+											</div>
+										</div>
+									</article>
+								</div>
+							</div>
+						</div>
+				</div>
+
+			</div>
+			<hr>
+
+			<!-- Pager -->
+			<div class="clearfix">
+				<a class="btn btn-primary float-right" href="#">Older Posts
+					&rarr;</a>
+			</div>
 		</div>
 	</div>
-</div>
-</form>
-<script>
+
+	<hr>
+
+	<!-- Footer -->
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-md-10 mx-auto">
+					<ul class="list-inline text-center">
+						<li class="list-inline-item"><a href="#"> <span
+								class="fa-stack fa-lg"> <i
+									class="fas fa-circle fa-stack-2x"></i> <i
+									class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+							</span>
+						</a></li>
+						<li class="list-inline-item"><a href="#"> <span
+								class="fa-stack fa-lg"> <i
+									class="fas fa-circle fa-stack-2x"></i> <i
+									class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+							</span>
+						</a></li>
+						<li class="list-inline-item"><a href="#"> <span
+								class="fa-stack fa-lg"> <i
+									class="fas fa-circle fa-stack-2x"></i> <i
+									class="fab fa-github fa-stack-1x fa-inverse"></i>
+							</span>
+						</a></li>
+					</ul>
+					<p class="copyright text-muted">Copyright &copy; Your Website
+						2018</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	</div>
+	</div>
+	
+	<script>
       var map = new naver.maps.Map('navermap');
       var myaddress = '불정로 6';// 도로명 주소나 지번 주소만 가능 (건물명 불가!!!!)
       naver.maps.Service.geocode({address: myaddress}, function(status, response) {
@@ -232,9 +372,6 @@
           });
       });
       </script>
-
 </body>
+
 </html>
-
-
-    
