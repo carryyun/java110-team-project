@@ -21,7 +21,29 @@
     margin-left: 30px;
 }
 
-
+/* hr 관련 */
+hr.Fhr{
+    border: 0; 
+    height: 2px;
+    background: #6e6e6e; 
+    width: 100%; 
+    margin: 0 auto;
+}
+hr.FhrBotMargin{
+    border: 0; 
+    height: 2px;
+    background: #6e6e6e; 
+    width: 100%; 
+    margin: 0 0 5px 0;
+}
+hr.Hhr{
+    border: 0; 
+    height: 2px;
+    background: #6e6e6e; 
+    width: 90%; 
+    margin: 0 auto;
+}
+/*-------------------------- */
 .card-text{
     margin: 0;
     font-size: 14px;
@@ -44,7 +66,7 @@ ul{
 /* 카르셀 화살표 관련*/
 .carousel-control-prev, .carousel-control-next{
     color: black;
-    width: 30px;
+    width: 40px;
 }
 
 .carousel-control-prev-icon, .carousel-control-next-icon {
@@ -69,21 +91,6 @@ ul{
 }
 /*--------------------------*/
 
-body {
-  font-size: 20px;
-  color: #212529;
-  font-family: 'Noto Sans KR', sans-serif;
-}
-
-p {
-  line-height: 1.5;
-  margin: 30px 0;
-}
-
-p a {
-  text-decoration: underline;
-}
-
 h1,
 h2,
 h3,
@@ -93,16 +100,6 @@ h6 {
     color: black;
   font-weight: 800;
   font-family: 'Noto Sans KR', sans-serif;
-}
-
-a {
-  color: #212529;
-  -webkit-transition: all 0.2s;
-  transition: all 0.2s;
-}
-
-a:focus, a:hover {
-  color: #0085A1;
 }
 
 blockquote {
@@ -198,7 +195,33 @@ img::-moz-selection {
 
 /* 헤더 스크롤 다운시 따라오는 css */
 @media only screen and (min-width: 992px) {
-
+  #mainNav {
+/*     -webkit-transition: background-color 0.2s;
+    transition: background-color 0.2s;
+    Force Hardware Acceleration in WebKit
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-backface-visibility: hidden; */
+  }
+  
+  #mainNav.is-fixed {
+    /* when the user scrolls down, we hide the header right above the viewport */
+/*
+    position: fixed;
+    top: -67px;
+    -webkit-transition: -webkit-transform 0.2s;
+    transition: -webkit-transform 0.2s;
+    transition: transform 0.2s;
+    transition: transform 0.2s, -webkit-transform 0.2s;
+    border-bottom: 1px solid white;
+    background-color: rgba(255, 255, 255, 0.9);
+*/
+  }
+    #mainNav.is-visible {
+    /* if the user changes the scrolling direction, we show the header */
+/*     -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0); */
+  }
   #mainNav.is-fixed .navbar-brand {
     color: #212529;
   }

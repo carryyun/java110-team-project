@@ -29,12 +29,7 @@
     <link href="/css/multi.css" rel="stylesheet">
     <link href="/css/owl.carousel.css" rel="stylesheet">
     <link href="/css/owl.theme.default.css" rel="stylesheet">
-    <link href="/css/owl.carousel.css" rel="stylesheet">
-    
-    <link rel="shortcut icon" type="image/x-icon" href="//production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" />
-    <link rel="mask-icon" type="" href="//production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" />
-    <link rel="canonical" href="https://codepen.io/nelsonleite/pen/RaGwba?depth=everything&order=popularity&page=4&q=product&show_forks=false" />
-    
+ 
     <!-- ===============필수포함=============== -->
     
 
@@ -43,15 +38,18 @@
   </head>
 
   <body>
-    <div id="wrap">
-    <div class="container mx-auto px-0">
+    <div id="wrap" style="background-color: #f2f4f7">
+    <div class="col" style="position:absolute; height: 95px; background-color: white">
+    
+    </div>
+    
+    <div class="container" style="background-color: white">
     <!-- Header (스크립트로 임시 inclue) -->
-    <div id="row">
-    <div class="container col-lg-12 mx-auto">
-    <!-- <div id="headerMain"></div> -->
-    <jsp:include page="headerMain.jsp"></jsp:include>
-    </div>
-    </div>
+    <div class="row">
+        <div class="col-lg-12">
+        <%-- <jsp:include page="../header.jsp"></jsp:include> --%>
+        <jsp:include page="headerMain.jsp"></jsp:include>
+        </div>
      
          
     <!-- Page Header ?????-->
@@ -61,13 +59,13 @@
     
     
     <!-- 카테고리 nav (스크립트로 임시 inclue) -->
-    <div class="container col-lg-12 mx-auto mb-3">
+    <div class="col mb-3">
     <jsp:include page="headerNav.jsp"></jsp:include>
     <!-- <div id="headerNav"></div> -->
     </div>
 
     <!-- Main Content -->
-<div class="container col-lg-12">
+<div class="container col-lg-12" style="background-color: #white">
     <div class="row">
     <div class="col-lg-3">
         <div class="col">
@@ -85,7 +83,7 @@
 	<div class="row">
 	<div class="col">
 	    <h2>오늘의 핫 아이템</h2>
-        <div id="owl-hotItem" class="owl-carousel col-lg-10">
+        <div id="owl-hotItem" class="owl-carousel col-lg-10 mx-auto">
             
         </div>
         <div class="owl-btns">
@@ -121,15 +119,14 @@
 				<div class="product-description">
 					<!-- 제목 -->
 					<h1 class="product-description__title">
-						<a href="#"></a>
+						<a href="#">${pl.titl}</a>
 					</h1>
 					<!-- 분류명 , 가격 -->
 					<div class="row">
 						<div class="col-lg-12 product-description__category secondary-text">
 							${pl.middleTagName} - ${pl.smalltag.name}<br>
 						</div>
-						<div class="col-lg-12 title-wrapper">${pl.titl}</div>
-						<div class="col-lg-12 product-description__price">${pl.pric}</div>
+						<div class="col-lg-12 product-description__price">${pl.pric} 원</div>
 					</div>
 					<hr />
 					<!-- 멘토 이름 -->
@@ -163,38 +160,11 @@
     <footer>
       <div class="container">
         <div class="row">
-          <div class="col-lg-8 col-md-10 mx-auto">
-            <ul class="list-inline text-center">
-              <li class="list-inline-item">
-                <a href="#">
-                  <span class="fa-stack fa-lg">
-                    <i class="fas fa-circle fa-stack-2x"></i>
-                    <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <span class="fa-stack fa-lg">
-                    <i class="fas fa-circle fa-stack-2x"></i>
-                    <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <span class="fa-stack fa-lg">
-                    <i class="fas fa-circle fa-stack-2x"></i>
-                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-            </ul>
-            <p class="copyright text-muted">Copyright &copy; Your Website 2018</p>
-          </div>
+          
         </div>
       </div>
     </footer>
+    
     </div>
 </div>
 <!-- ===============필수포함=============== -->
@@ -276,9 +246,6 @@
             }
             owl.html(content);
         }
-
-        
-        
 
        });
       $(".cusnext").click(function() {

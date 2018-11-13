@@ -20,11 +20,10 @@
     
     </head>
     <!-- Category Navigation -->
-      <hr class="Fhr">
-    <nav class="navbar navbar-expand-lg" style="width: 1110px">
-      <div class="container">
+    <hr class="Fhr">
+    <nav class="navbar navbar-expand-lg">
         <div class="navbar-nav" id="categoryNav">
-          <ul class="navbar-nav mx-auto" id="mainUl" style="width: 1110px">
+          <ul class="navbar-nav mx-auto" id="mainUl">
             <c:forEach  items="${list}" var="list" varStatus="i">
               <li class="nav-item">
                 <a class="nav-link" href="index.html" id="menu0${i.count}">${list.name}</a>
@@ -32,17 +31,14 @@
             </c:forEach>
           </ul>
         </div>
-      </div>
     </nav>
     <hr class="Fhr">
     
-    
-    
-    <div class="container">
+    <div class="col px-0">
     <div id="menusubs" class="menusubs">
     <c:forEach  items="${list}" var="list" varStatus="i">
     
-    <ul id="menu0${i.count}_sub" class="localNav"> 
+    <ul id="menu0${i.count}_sub" class="localNav col"> 
     
               <c:forEach  items="${list2}" varStatus="j">
               
@@ -53,11 +49,11 @@
                  </a>
                  </li>
                  </c:if>
+                 
               </c:forEach>
               
     </ul>
     </c:forEach>
-    
 
 
     </div>
@@ -68,9 +64,7 @@
     <script src="/vendor/jquery/jquery.min.js"></script>
     <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Custom scripts for this template -->
-    <script src="/js/clean-blog.min.js"></script>
-    
+
     <!-- 카테고리 서브메뉴 -->
     <script>
     var timeset=1;
@@ -78,9 +72,9 @@
       var submenu=new Array();
       var sub_tmps=document.getElementById("menusubs").getElementsByTagName("ul");
       for (var i=0, len=sub_tmps.length; i<len; i++) {
-         if (sub_tmps[i].className=="localNav"){
+         /* if (sub_tmps[i].className=="localNav"){ */
             submenu.push(sub_tmps[i]);
-         }
+         /* } */
       }
       var menu_tmps=document.getElementById("mainUl").getElementsByTagName("a");
       for (var i=0, len=menu_tmps.length; i<len; i++) {
@@ -98,7 +92,6 @@
                         submenu[j].style.display="none";
                   }, 3000);
             }
-            
             menu_tmps[i].onfocus= menu_tmps[i].onmouseover;
             menu_tmps[i].onfocusout= menu_tmps[i].onmouseout;
             
@@ -106,22 +99,15 @@
             for (var k=0, klen=submenu.length; k<klen; k++) {
                 submenu[k].onmouseenter=function(){
                     clearTimeout(timeset);
-                    
                 }
                 submenu[k].onmouseleave=function(){
                     clearTimeout(timeset);
                     for (var j=0, sublen=submenu.length; j<sublen; j++)
                         submenu[j].style.display="none";
                 }
-                
                 submenu[k].onfocus= submenu[k].onmouseenter;
                 submenu[k].onfocusout= submenu[k].onmouseleave;
-                
-
             }
-            
-            
-
          }
       }
         });

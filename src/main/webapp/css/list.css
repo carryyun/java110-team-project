@@ -1,98 +1,7 @@
-
-        *{
-            margin: 0 auto;
-        }
-        #ClassSearchBoard{ 
-            /* 클래스 상세검색*/
-            width: 1100px;
-            height: 330px;
-            margin: 10px;
-            border-top: 2px solid silver;
-            border-bottom: 2px solid silver;
-            transform:translate(40%)
-        }
-        #ClassCategory{
-            /* 클래스 카테고리 검색 */
-            float: left;
-            margin: 0 auto;
-        }
-        #day{
-            /* 클래스 날짜 검색 */
-            margin: 0 auto;
-            position:absolute; 
-            left:40%; 
-            transform:translate(-30%)
-
-        }
-        #checkmap{
-            /* 클래스 지도 검색 */
-            margin: 0 auto;
-            float: right;
-        }
-        #classSearchbut1{
-            /* 클래스 검색 버튼 */
-            position: 
-            float: right;
-        }
-        li{
-            list-style-type: none;
-        }
-        .week{
-            /* 요일 표시 */
-            width: 20px;
-            height: 20px;
-            margin-left: 10px;
-            margin-top: 5px;
-            width: 20px; height: 20px;
-            border: 1px solid aqua;
-            border-radius: 50%;
-        }
-        #Result{
-            /* 검색결과 와 클래스개강 */
-            width: 1100px;
-            height: 50px;
-        }
-        #ClassSearchResult{
-            /* 검색결과 */
-            float: left;
-        }
-        #ClassRigist{
-            /* 클래스개강 */
-            float: right;
-        }
-        img{
-            /* 클래스 소개사진 */
-            width: 200px;
-            height: 200px;
-        }
-        .mentor{
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-        }
-        #map,#detailmap{
-            /* 지도 사진 */
-            width: 200px; height: 200px;
-        }
-        #classSearchbut1{
-            
-        }
-
-        .product-description {
-  transform: translate3d(0, 0, 0);
-  transform-style: preserve-3d;
-  perspective: 1000;
-  backface-visibility: hidden;
-}
-
-body {
-  color: #212121;
-}
-
-img {
+/* img {
   max-width: 100%;
   max-width: 100%;
-}
+} */
 
 hr {
   border-color: #e5e5e5;
@@ -238,7 +147,7 @@ hr {
 }
 @media (min-width: 768px) {
   .product-description {
-    height: 65px;
+    height: 85px;
   }
 }
 .product-description p {
