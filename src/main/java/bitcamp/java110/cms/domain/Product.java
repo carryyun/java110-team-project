@@ -14,6 +14,47 @@ public class Product {
   private int meno; // 판매자번호
   private int ctno; // 인증서번호
   private int stno; // 소분류번호
+  
+  private Mentee mentee;
+  private Cert cert;
+  private SmallTag smalltag;
+  
+  private String middleTagName;
+  
+
+  
+  
+  public String getMiddleTagName() {
+    return middleTagName;
+  }
+
+  public void setMiddleTagName(String middleTagName) {
+    this.middleTagName = middleTagName;
+  }
+
+  public Cert getCert() {
+    return cert;
+  }
+
+  public void setCert(Cert cert) {
+    this.cert = cert;
+  }
+
+  public SmallTag getSmalltag() {
+    return smalltag;
+  }
+
+  public void setSmalltag(SmallTag smalltag) {
+    this.smalltag = smalltag;
+  }
+
+  public Mentee getMentee() {
+    return mentee;
+  }
+
+  public void setMentee(Mentee mentee) {
+    this.mentee = mentee;
+  }
 
   public int getNo() {
     return no;

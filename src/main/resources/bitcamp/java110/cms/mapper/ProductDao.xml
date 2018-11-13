@@ -17,24 +17,85 @@
         <result column="meno"   property="meno"/>
         <result column="ctno"   property="ctno"/>
         <result column="stno"   property="stno"/>
+        
+        <result column="meno"   property="mentee.no"/>
+        <result column="name"   property="mentee.name"/>
+        
+        <result column="ctno"   property="cert.no"/>
+        <result column="type"   property="cert.type"/>
+        
+        <result column="stno"   property="smalltag.no"/>
+        <result column="stname"   property="smalltag.name"/>
+        <result column="mtno"   property="smalltag.mtno"/>
+        
+        <result column="mtname"   property="middleTagName"/>
     </resultMap>
     
-    <select id="findAll" resultMap="productMap">
-        select
-            ptno,
-            titl,
-            conts,
-            pric,
-            rgdt,
-            stock,
-            phot,
-            meno,
-            ctno,
-            stno
+<!--             select
+            p.ptno,
+            p.titl,
+            p.conts,
+            p.pric,
+            p.rgdt,
+            p.stock,
+            p.phot,
+            p.meno,
+            p.ctno,
+            p.stno,
+            mete.meno,
+            mete.name,
+            cert.ctno,
+            cert.titl,
+            stag.stno,
+            stag.stname,
+            stag.mtno
         from 
-            p_prdt 
+            p_prdt p
+            join p_mete mete
+            join p_cert cert
+            join p_stag stag
+            JOIN p_mtag mtag
+        ON
+            p.meno=mete.meno AND
+            p.ctno=cert.ctno AND
+            p.stno=stag.stno AND
+            stag.mtno = mtag.mtno
         order by 
-            ptno asc
+            ptno DESC -->
+    
+    <select id="findAll_list" resultMap="productMap">
+        select
+    p.ptno,
+    p.titl,
+    p.conts,
+    p.pric,
+    p.rgdt,
+    p.stock,
+    p.phot,
+    p.meno,
+    p.ctno,
+    p.stno,
+    mete.meno,
+    mete.name,
+    cert.ctno,
+    cert.type,
+    stag.stno,
+    stag.stname,
+    stag.mtno,
+    mtag.mtname
+from 
+    p_prdt p
+    join p_mete mete
+    join p_cert cert
+    join p_stag stag
+    JOIN p_mtag mtag
+ON
+    p.meno=mete.meno AND
+    p.ctno=cert.ctno AND
+    p.stno=stag.stno AND
+    stag.mtno = mtag.mtno
+order by 
+    ptno DESC
     </select>
 
     <select id="findByNo" 

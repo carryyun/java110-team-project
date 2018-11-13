@@ -7,7 +7,7 @@ import bitcamp.java110.cms.domain.Product;
 public interface ProductDao {
   
   // 전체조회
-  List<Product> findAll(Map<String,Object> params); 
+  List<Product> findAll_list(); 
 
   // 공예품 번호 조회
   Product findByNo(int no); 

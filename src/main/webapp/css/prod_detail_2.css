@@ -5,6 +5,7 @@
  */
 
 /* 메인헤더 관련 */
+
 .mainheader{
     text-align: center;
 }
@@ -201,7 +202,7 @@ blockquote {
     color: black;
   }
   #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
-    color: rgba(0, 130, 140, 0.7);
+    color: Lo
   }
   #mainNav .navbar-nav > li.nav-item a {
     padding: 10px 20px;
@@ -210,29 +211,12 @@ blockquote {
   }
   #mainNav .navbar-nav > li.nav-item a:focus, #mainNav .navbar-nav > li.nav-item a:hover {
     color: rgba(0, 130, 140, 0.7);
+      /*color: #0384BD;*/
   }
 }
 
 @media only screen and (min-width: 992px) {
-  #mainNav {
-    -webkit-transition: background-color 0.2s;
-    transition: background-color 0.2s;
-    /* Force Hardware Acceleration in WebKit */
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-    -webkit-backface-visibility: hidden;
-  }
-  #mainNav.is-fixed {
-    /* when the user scrolls down, we hide the header right above the viewport */
-    position: fixed;
-    top: -67px;
-    -webkit-transition: -webkit-transform 0.2s;
-    transition: -webkit-transform 0.2s;
-    transition: transform 0.2s;
-    transition: transform 0.2s, -webkit-transform 0.2s;
-    border-bottom: 1px solid white;
-    background-color: rgba(255, 255, 255, 0.9);
-  }
+  
   #mainNav.is-fixed .navbar-brand {
     color: #212529;
   }
@@ -245,11 +229,7 @@ blockquote {
   #mainNav.is-fixed .navbar-nav > li.nav-item > a:focus, #mainNav.is-fixed .navbar-nav > li.nav-item > a:hover {
     color: #0085A1;
   }
-  #mainNav.is-visible {
-    /* if the user changes the scrolling direction, we show the header */
-    -webkit-transform: translate3d(0, 100%, 0);
-    transform: translate3d(0, 100%, 0);
-  }
+
 }
 
 header.masthead {
@@ -395,10 +375,42 @@ header.masthead .post-heading .meta a {
 
 
 
+/*ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd*/
+
+.glyphicon-lg{font-size:3em}
+.blockquote-box{border-right:5px solid #E6E6E6;margin-bottom:25px}
+.blockquote-box .square{width:100px;min-height:50px;margin-right:22px;text-align:center!important;background-color:#E6E6E6;padding:20px 0}
+.blockquote-box.blockquote-primary{border-color:#357EBD}
+.blockquote-box.blockquote-primary .square{background-color:#428BCA;color:#FFF}
+.blockquote-box.blockquote-success{border-color:#4CAE4C}
+.blockquote-box.blockquote-success .square{background-color:#5CB85C;color:#FFF}
+.blockquote-box.blockquote-info{border-color:#46B8DA}
+.blockquote-box.blockquote-info .square{background-color:#5BC0DE;color:#FFF}
+.blockquote-box.blockquote-warning{border-color:#EEA236}
+.blockquote-box.blockquote-warning .square{background-color:#F0AD4E;color:#FFF}
+.blockquote-box.blockquote-danger{border-color:#D43F3A}
+.blockquote-box.blockquote-danger .square{background-color:#D9534F;color:#FFF}
+
+
+
+/*ㅇㅇㅇ222222ㅇㅇㅇㅇㅇㅇ*/
+
+
+.glyphicon { margin-right:5px; }
+.rating .glyphicon {font-size: 22px;}
+.rating-num { margin-top:0px;font-size: 54px; }
+.progress { margin-bottom: 5px; }
+.progress-bar { text-align: left;  }
+.rating-desc .col-md-3 {padding-right: 0px; }
+.sr-only { margin-left: 5px;overflow: visible;clip: auto; }
+
+/*ㅇㅇㅇㅇ2222ㅇㅇㅇㅇ*/
+
 /* 상품 상세정보 사진 크기 */
 #prod_img{
-    height: 500px;
-    width: 500px;
+    height: 480px;
+    width: 470px;
+    margin-top : 50px;
 }
 
 /*
@@ -436,6 +448,57 @@ header.masthead .post-heading .meta a {
     cursor: zoom-in;
 }
 
+
+.under-navbar-nav{
+    background-color:dimgrey;
+/*    float: left;*/
+    height: 50px;
+/*    width: 100%;*/
+    margin-bottom: 0px;
+   /* text-align: center;*/
+    
+    
+}
+
+
+.under-nav-item a{
+    color: white;
+    
+}
+
+.under-navbar-nav li {
+    display: inline-block;
+}
+
+.detail_info{
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0px;
+    border-radius: .25rem;
+    margin-top:80px;
+}
+
+#testt{
+    width:100%;
+    position : absolute;
+    z-index: 11;
+    padding: 0;
+    /*position=absolute; 
+    top: 985px;*/
+}
+
+#circle{
+    border-radius: 50%;
+    width:80px;
+    height: 80px;
+}
 
 
 footer {

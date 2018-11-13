@@ -66,7 +66,7 @@ ul{
 /* 카르셀 화살표 관련*/
 .carousel-control-prev, .carousel-control-next{
     color: black;
-    width: 30px;
+    width: 40px;
 }
 
 .carousel-control-prev-icon, .carousel-control-next-icon {
@@ -91,21 +91,6 @@ ul{
 }
 /*--------------------------*/
 
-body {
-  font-size: 20px;
-  color: #212529;
-  font-family: 'Noto Sans KR', sans-serif;
-}
-
-p {
-  line-height: 1.5;
-  margin: 30px 0;
-}
-
-p a {
-  text-decoration: underline;
-}
-
 h1,
 h2,
 h3,
@@ -115,16 +100,6 @@ h6 {
     color: black;
   font-weight: 800;
   font-family: 'Noto Sans KR', sans-serif;
-}
-
-a {
-  color: #212529;
-  -webkit-transition: all 0.2s;
-  transition: all 0.2s;
-}
-
-a:focus, a:hover {
-  color: #0085A1;
 }
 
 blockquote {

@@ -25,12 +25,11 @@
     
     <link href="/css/list.css" rel="stylesheet">
     <link href="/css/clean-blog.css" rel="stylesheet">
-    <!-- <link href="/css/category.css" rel="stylesheet"> -->
-    
-    <link rel="shortcut icon" type="image/x-icon" href="//production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" />
-    <link rel="mask-icon" type="" href="//production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" />
-    <link rel="canonical" href="https://codepen.io/nelsonleite/pen/RaGwba?depth=everything&order=popularity&page=4&q=product&show_forks=false" />
-    
+    <link href="/css/common.css" rel="stylesheet">
+    <link href="/css/multi.css" rel="stylesheet">
+    <link href="/css/owl.carousel.css" rel="stylesheet">
+    <link href="/css/owl.theme.default.css" rel="stylesheet">
+ 
     <!-- ===============필수포함=============== -->
     
 
@@ -39,15 +38,18 @@
   </head>
 
   <body>
-    <div id="wrap">
-    <div class="container mx-auto px-0">
+    <div id="wrap" style="background-color: #f2f4f7">
+    <div class="col" style="position:absolute; height: 95px; background-color: white">
+    
+    </div>
+    
+    <div class="container" style="background-color: white">
     <!-- Header (스크립트로 임시 inclue) -->
-    <div id="row">
-    <div class="container col-lg-12 mx-auto">
-    <!-- <div id="headerMain"></div> -->
-    <jsp:include page="headerMain.jsp"></jsp:include>
-    </div>
-    </div>
+    <div class="row">
+        <div class="col-lg-12">
+        <%-- <jsp:include page="../header.jsp"></jsp:include> --%>
+        <jsp:include page="headerMain.jsp"></jsp:include>
+        </div>
      
          
     <!-- Page Header ?????-->
@@ -57,13 +59,13 @@
     
     
     <!-- 카테고리 nav (스크립트로 임시 inclue) -->
-    <div class="container col-lg-12 mx-auto">
+    <div class="col mb-3">
     <jsp:include page="headerNav.jsp"></jsp:include>
     <!-- <div id="headerNav"></div> -->
     </div>
 
     <!-- Main Content -->
-<div class="container col-lg-12">
+<div class="container col-lg-12" style="background-color: #white">
     <div class="row">
     <div class="col-lg-3">
         <div class="col">
@@ -75,79 +77,26 @@
               </ul>
         </div>
     </div>
-	<!-- 오늘의 핫 아이템(카르셀) -->    
-	<div class="col-lg-9 mx-auto">
+	<!-- 오늘의 핫 아이템(카르셀) -->
 	
-	<h2>오늘의 핫 아이템</h2>
-	<div id="TodayItem" class="carousel slide my-4 text-center" data-ride="carousel">
-	
-	<ol class="carousel-indicators">
-	    <li data-target="#TodayItem" data-slide-to="0" class="active"></li>
-	    <li data-target="#TodayItem" data-slide-to="1"></li>
-	    <li data-target="#TodayItem" data-slide-to="2"></li>
-	</ol>
-	<div class="carousel-inner" role="listbox">
-	    <div class="carousel-item active">
-	      <div class="col-lg-auto col-md-3 px-5 mx-auto">
-	       <div class="test">
-	        <img class="d-block img-fluid" src="/upload/img/product/900x350/julme.PNG" alt="First slide">
-	       </div>
-	       <div class="test">
-	        <img class="d-block img-fluid" src="/upload/img/product/900x350/julme.PNG" alt="Second slide">
-	        </div>
-	        <div class="test">
-	        <img class="d-block img-fluid" src="/upload/img/product/900x350/julme.PNG" alt="Third slide">
-	       </div>
-	       </div>
-	    </div>
-	    <div class="carousel-item">
-	      <div class="col-lg-auto px-5 mx-auto"  >
-	       <div class="test">
-	        <img class="d-block img-fluid" src="/upload/img/product/900x350/julme.PNG" alt="First slide">
-	       </div>
-	       <div class="test">
-	        <img class="d-block img-fluid" src="/upload/img/product/900x350/julme.PNG" alt="Second slide">
-	        </div>
-	        <div class="test">
-	        <img class="d-block img-fluid" src="/upload/img/product/900x350/julme.PNG" alt="Third slide">
-	       </div>
-	       </div>
-	    </div>
-	    <div class="carousel-item">
-	      <div class="col-lg-auto px-5 mx-auto" >
-	       <div class="test">
-	        <img class="d-block img-fluid" src="/upload/img/product/900x350/julme.PNG" alt="First slide">
-	       </div>
-	       <div class="test">
-	        <img class="d-block img-fluid" src="/upload/img/product/900x350/julme.PNG" alt="Second slide">
-	        </div>
-	        <div class="test">
-	        <img class="d-block img-fluid" src="/upload/img/product/900x350/julme.PNG" alt="Third slide">
-	       </div>
-	       </div>
-	    </div>
-	    
-	    <a class="carousel-control-prev" href="#TodayItem" role="button" data-slide="prev">
-	        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-	        <span class="sr-only">Previous</span>
-	    </a>
-	    <a class="carousel-control-next" href="#TodayItem" role="button" data-slide="next">
-	        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-	        <span class="sr-only">Next</span>
-	    </a>
-	</div>
-	</div>
-	</div>
+	<div class="col-lg-9">
+	<div class="row">
+	<div class="col">
+	    <h2>오늘의 핫 아이템</h2>
+        <div id="owl-hotItem" class="owl-carousel col-lg-10 mx-auto">
+            
+        </div>
+        <div class="owl-btns">
+            <div class="cusnext">></div>
+            <div class="cusprev"><</div>
+        </div>
+        </div>
+    </div>
+    </div>
 
-             </div>
-
-      <!--   </div> -->
-        <hr class="FhrBotMargin">
+        <hr class="FhrMargin">
 </div>
     
-    
-   <!--   <div class="row"> -->
-       
        
         <div class="col-lg-12 mx-auto">
           <div class="post-preview">
@@ -157,122 +106,38 @@
 <div class="container">
 	<div class="row">
 
+        <c:forEach  items="${product_list}" var="pl" varStatus="i">
+        
 		<div class="col-lg-4">
 			<article class="card-wrapper">
 				<div class="image-holder">
 					<a href="#" class="image-holder__link"></a>
 					<div class="image-liquid image-holder--original">
-					<a href="#"><img alt="1" src="/upload/img/julme.PNG" style="width: 100%; height: 100%"></a>
+					<a href="#"><img alt="${i.count}" src="/upload/img/julme.PNG" style="width: 100%; height: 100%"></a>
 					</div>
 				</div>
 				<div class="product-description">
 					<!-- 제목 -->
 					<h1 class="product-description__title">
-						<a href="#">자바를 배우자</a>
+						<a href="#">${pl.titl}</a>
 					</h1>
 					<!-- 분류명 , 가격 -->
 					<div class="row">
 						<div class="col-lg-12 product-description__category secondary-text">
-							컴퓨터 - 자바
+							${pl.middleTagName} - ${pl.smalltag.name}<br>
 						</div>
-						<div class="col-lg-12 product-description__price">30000원</div>
+						<div class="col-lg-12 product-description__price">${pl.pric} 원</div>
 					</div>
 					<hr />
 					<!-- 멘토 이름 -->
-					<div class="sizes-wrapper"><b>멘토 - 고정은</b></div>
+					<div class="sizes-wrapper"><b>판매자 - ${pl.mentee.name}</b></div>
 					<!-- 주소 -->
 					<div class="color-wrapper"><b>기본 주소</b></div>
 				</div>
 			</article>
 		</div>
-		
-		<div class="col-lg-4">
-			<article class="card-wrapper">
-				<div class="image-holder">
-					<a href="#" class="image-holder__link"></a>
-					<div class="image-liquid image-holder--original" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Jeans_BW_2_(3213391837).jpg/543px-Jeans_BW_2_(3213391837).jpg')">
-					</div>
-				</div>
 
-				<div class="product-description">
-					<!-- 제목 -->
-					<h1 class="product-description__title">
-						<a href="#">자바를 배우자</a>
-					</h1>
-					<!-- 분류명 , 가격 -->
-					<div class="row">
-						<div class="col-lg-12 product-description__category secondary-text">
-							컴퓨터 - 자바
-						</div>
-						<div class="col-lg-12 product-description__price">30000원</div>
-					</div>
-					<hr />
-					<!-- 멘토 이름 -->
-					<div class="sizes-wrapper"><b>멘토 - 고정은</b></div>
-					<!-- 주소 -->
-					<div class="color-wrapper"><b>기본 주소</b></div>
-				</div>
-			</article>
-		</div>
-		
-		<div class="col-lg-4">
-			<article class="card-wrapper">
-				<div class="image-holder">
-					<a href="#" class="image-holder__link"></a>
-					<div class="image-liquid image-holder--original" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/b8/Columbia_Sportswear_Jacket.jpg')">
-					</div>
-				</div>
-
-				<div class="product-description">
-					<!-- 제목 -->
-					<h1 class="product-description__title">
-						<a href="#">자바를 배우자</a>
-					</h1>
-
-					<!-- 분류명 , 가격 -->
-					<div class="row">
-						<div class="col-lg-12 product-description__category secondary-text">
-							컴퓨터 - 자바
-						</div>
-						<div class="col-lg-12 product-description__price">30000원</div>
-					</div>
-					<hr />
-					<!-- 멘토 이름 -->
-					<div class="sizes-wrapper"><b>멘토 - 고정은</b></div>
-					<!-- 주소 -->
-					<div class="color-wrapper"><b>기본 주소</b></div>
-				</div>
-			</article>
-		</div>
-		
-		<div class="col-lg-4">
-			<article class="card-wrapper">
-				<div class="image-holder">
-					<a href="#" class="image-holder__link"></a>
-					<div class="image-liquid image-holder--original" style="background-image: url('http://www.publicdomainpictures.net/pictures/20000/nahled/red-shoes-isolated.jpg')">
-					</div>
-				</div>
-				<div class="product-description">
-					<!-- 제목 -->
-					<h1 class="product-description__title">
-						<a href="#">자바를 배우자</a>
-					</h1>
-
-					<!-- 분류명 , 가격 -->
-					<div class="row">
-						<div class="col-lg-12 product-description__category secondary-text">
-							컴퓨터 - 자바
-						</div>
-						<div class="col-lg-12 product-description__price">30000원</div>
-					</div>
-					<hr />
-					<!-- 멘토 이름 -->
-					<div class="sizes-wrapper"><b>멘토 - 고정은</b></div>
-					<!-- 주소 -->
-					<div class="color-wrapper"><b>기본 주소</b></div>
-				</div>
-			</article>
-		</div>
+    </c:forEach>
 	</div>
 </div>
 
@@ -295,38 +160,11 @@
     <footer>
       <div class="container">
         <div class="row">
-          <div class="col-lg-8 col-md-10 mx-auto">
-            <ul class="list-inline text-center">
-              <li class="list-inline-item">
-                <a href="#">
-                  <span class="fa-stack fa-lg">
-                    <i class="fas fa-circle fa-stack-2x"></i>
-                    <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <span class="fa-stack fa-lg">
-                    <i class="fas fa-circle fa-stack-2x"></i>
-                    <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <span class="fa-stack fa-lg">
-                    <i class="fas fa-circle fa-stack-2x"></i>
-                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-            </ul>
-            <p class="copyright text-muted">Copyright &copy; Your Website 2018</p>
-          </div>
+          
         </div>
       </div>
     </footer>
+    
     </div>
 </div>
 <!-- ===============필수포함=============== -->
@@ -336,16 +174,90 @@
 
 <!-- js 추가 -->
 <script src="/js/clean-blog.js"></script>
+<script src="/js/owl.carousel.js"></script>
 
 
 <!-- ===============필수포함=============== -->
 
     <script>
+    var owl = $("#owl-hotItem");
       $(document).ready(function(){
-          $("#headerMain").load("headerMain.html")
+/*           $("#headerMain").load("headerMain.html")
           $("#headerNav").load("headerNav.html")
+           */
+           
+          
+          var data = {
+                  "items" : [
+                {
+                  "img": "/upload/img/julme.PNG",
+                  "txt" : "h2",
+                  "alt" : "Owl Image 1"
+                },
+                {
+                  "img": "/upload/img/julme.PNG",
+                  "txt" : "h2",
+                  "alt" : "Owl Image 1"
+                },
+                {
+                  "img": "/upload/img/julme.PNG",
+                  "txt" : "h2",
+                  "alt" : "Owl Image 1"
+                },
+                {
+                  "img": "/upload/img/julme.PNG",
+                  "txt" : "h2",
+                  "alt" : "Owl Image 1"
+                },
+                {
+                  "img": "/upload/img/julme.PNG",
+                  "txt" : "h2",
+                  "alt" : "Owl Image 1"
+                }
+                  ]
+                };
+        owl.owlCarousel({
+          nav:false,
+          loop:true,
+          items:3,
+          margin:10,
+          jsonPath : 'json/customData.json',
+          jsonSuccess : customDataSuccess(data),
+          
+        });
+
+        function customDataSuccess(data) {
+            var content = "";
+            var style=
+                "cursor:pointer;" + 
+                "background-color:weat;" +
+                "text-align:center;"
+            for ( var i in data["items"]) {
+             
+             var img = data["items"][i].img;
+             var txt = data["items"][i].txt;
+             var alt = data["items"][i].alt;
+             content += "<div class='col' id='owl-col'>"
+             content += "<div class='row' id='owl-row'>"
+             content += "<img id='owl-img' src=\"" +img+ "\" alt=\"" +alt+ "\">"
+             content += "<div class='col' id='owl-col2'>" + txt + "</div>"
+             content += "</div>"
+             content += "</div>"
+            }
+            owl.html(content);
+        }
+
+       });
+      $(".cusnext").click(function() {
+          owl.trigger('next.owl.carousel');
+          console.log("123");
       });
-</script> 
+
+      $(".cusprev").click(function() {
+          owl.trigger('prev.owl.carousel');
+      });
+      
+       </script> 
   </body>
 
 </html>

@@ -77,10 +77,6 @@
                     <div id="login" class="form-group">
                         <input type="submit" value="login" class="btn float-right login_btn">
                     </div>
-                 
-                 <!--    카카오 토큰 아웃 -->
-                 
-                 <input type="button" onclick="button1_click();"></input>
                     
                 </form>
             </div>
@@ -166,29 +162,10 @@ function loginWithKakao(){
     });
     
     
-    
-    
-}
-
-/*  카카오 토큰아웃 ... 무의미.. */
-function button1_click() {
-  
-    
-    Kakao.Auth.logout(function() { console.log("logged out."); });
 }
 </script>
-
-
 <script>
-
-
-
-
-
-
-
-</script>
-
+</script> 
  <!-- Kakao.Auth.logout(function () {  alert("카카오로그아웃");}); -->
 </body>
 </html>

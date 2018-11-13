@@ -12,7 +12,6 @@
 </head>
 <body>
 
-<jsp:include page="header.jsp"></jsp:include>
 
 <%
 String message = (String)request.getAttribute("message");
