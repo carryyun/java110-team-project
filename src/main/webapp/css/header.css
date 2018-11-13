@@ -1,7 +1,7 @@
 
 .top-bar {
     padding: 10px 0;
-    background: #191919;
+    background: #ffffff;
     border-bottom: 1px solid #222;
     line-height: 28px;
 }
@@ -30,7 +30,7 @@ ul.social-share li a {
     text-decoration:none;
     display: inline-block;
     color: #fff;
-    background: #404040;
+    background: #0384BD;
     width: 60px;
     height: 30px;
     line-height: 25px;
@@ -41,7 +41,7 @@ ul.social-share li a {
 
 
 ul.social-share li a:hover {
-    background: aqua;
+    background: #0384BD;
     color: #fff;
 }
 

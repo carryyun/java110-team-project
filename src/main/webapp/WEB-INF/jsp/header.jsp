@@ -17,19 +17,14 @@
     <link href="/css/bootstrap.min.css" type="text/css" rel="stylesheet">
     <link href="/css/font-awesome.min.css" type="text/css" rel="stylesheet">
     <link href="/css/animate.min.css" type="text/css" rel="stylesheet">
-    <link href="/css/prettyPhoto.css" type="text/css" rel="stylesheet">
-    <link href="/css/owl.carousel.min.css" type="text/css" rel="stylesheet">
     <link href="/css/icomoon.css" type="text/css" rel="stylesheet">
     <link href="/css/header.css" type="text/css" rel="stylesheet">
-    <link href="/css/responsive.css" type="text/css" rel="stylesheet">
-    <link href="/css/font-awesome.css" type="text/css" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
     <![endif]-->
     <link rel="shortcut icon" href="images/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/apple-touch-icon-72-precomposed.png">
 </head>
 <!--/head-->
@@ -40,7 +35,7 @@
                 <div class="row">
                     <div class="col-sm-6 col-xs-12">
                         <div class="top-number">
-                            <p><i class="fa fa-phone-square" ><img src="/upload/images/logo.png" width="150px" height="80px"></i></p>
+                            <p><i class="fa fa-phone-square" ><img src="/upload/images/logo.png" width="70px" height="50px"></i></p>
                         </div>
                     </div>
                     <div class="col-sm-6 col-xs-12">

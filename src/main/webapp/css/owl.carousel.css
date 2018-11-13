@@ -6,15 +6,7 @@
 /*
 * 추가부분
 */
-/* .owl-carousel .item {
-    height: 10rem;
-    background: #4DC7A0;
-    padding: 1rem;
-}
-.owl-btns{
-  display: table;
-  margin: 30px auto;
-} */
+
 .cusNext, .cusPrev{
   cursor:pointer;
   font-size: 50px;
@@ -79,13 +71,16 @@
     -ms-transform: translate3d(0, 0, 0); }
   .owl-carousel .owl-item {
     position: relative;
+    /* max-height: 250px; */
     min-height: 1px;
     float: left;
     -webkit-backface-visibility: hidden;
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none; }
   .owl-carousel .owl-item img {
+    cursor:pointer;
     display: block;
+    height: 200px;
     width: 100%; }
   .owl-carousel .owl-nav.disabled,
   .owl-carousel .owl-dots.disabled {
