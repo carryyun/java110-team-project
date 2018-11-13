@@ -101,16 +101,6 @@
 
 						<div id="day-select">
 							<span><h2>기간</h2></span> 
-						    <!-- <div class="btn-group">
-						    <label class="btn btn-default">
-					            <input type="radio" name="testrad" value="0">
-					            <span>원데이</span>
-					        </label>
-					        <label class="btn btn-default">
-					            <input type="radio" name="testrad" value="1" checked>
-					            <span>전체</span>
-					        </label>
-					        </div> -->
 					    <div class="box">
 					        <label>
 						        <input type="radio" name="like" checked="">

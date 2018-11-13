@@ -77,29 +77,13 @@
             meno=#{value}
     </select>
     
-    <select id="findAllByEmail" 
-            resultMap="menteeMap" parameterType="Map">
+    <select id="findAllByEmail" parameterType="String">
         select
-            meno,
-            name,
-            email,
-            pwd,
-            nick,
-            phone,
-            pstno,
-            bas_addr,
-            det_addr,
-            phot,
-            sell,
-            bkname,
-            bkno,
-            rgdt,
-            stat,
-            note
+            email
         from
             p_mete
         where 
-            email=#{paramEmail}
+            email=#{email}
     </select>
     
     
@@ -153,7 +137,7 @@
             phone=#{paramPhone}
     </select>
     
-    <insert id="insert" parameterType="mentee"
+    <insert id="signup" parameterType="mentee"
             useGeneratedKeys="true" keyColumn="meno" keyProperty="no">
         insert into p_mete(name,email,pwd,nick,rgdt)
         values(#{name},#{email},#{pwd},#{nick},now())
