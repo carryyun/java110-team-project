@@ -1,0 +1,498 @@
+/*!
+ * Start Bootstrap - Clean Blog2 v5.0.1 (https://startbootstrap.com/template-overviews/clean-blog)
+ * Copyright 2013-2018 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-clean-blog/blob/master/LICENSE)
+ */
+
+/* 메인헤더 관련 */
+.mainheader{
+    text-align: center;
+}
+.mainheader img{
+    width: 50px;
+    height: 50px;
+}
+
+/* 카테고리 서브메뉴 관련 */
+/*
+    div.menusubs
+    div.menusubs .localNav
+    div.menusubs .localNav li
+    .localNav ul, .localNav li
+    div.menusubs ul
+
+*/
+
+body{
+    background-color:antiquewhite;
+}
+.container{
+    background-color: white;
+}
+
+/* hr 관련 */
+/*
+    hr.Fhr
+    hr.Hhr
+*/
+
+hr.FhrBotMargin{
+    border: 0; 
+    height: 2px;
+    background: #ccc; 
+    width: 100%; 
+    margin: 0 0 5px 0;
+}
+/*-------------------------- */
+
+/*
+    .card-text
+    .site-heading li a
+    .test
+    .test img
+
+*/
+
+ul{
+    list-style: none;
+}
+
+/* 카르셀 카테고리 관련 */
+nav.navbar{
+    padding: 0;
+}
+
+/*
+    참고로 #categoryNav 없는데 걍 혹시몰라숴 뒀음
+*/
+
+#categoryNav > .navbar-nav > li.nav-item > a {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #6e6e6e;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+#categoryNav > .navbar-nav > li.nav-item > a:hover{
+  font-size: 35px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #cce5ee;
+  background-color: #6e6e6e;
+}
+#categoryNav > .navbar-nav > li.nav-item > a#menu01 {
+  font-size: 35px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #6e6e6e;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+#categoryNav > .navbar-nav > li.nav-item > a#menu01:hover{
+  font-size: 35px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #cce5ee;
+  background-color: #6e6e6e;
+}
+ul.navbar-nav{
+    float: left;
+}
+nav.navbar{
+    background-color: #cceeee;
+}
+
+/* 카르셀 화살표 관련*/
+
+
+/*--------------------------*/
+
+body {
+  font-size: 20px;
+  color: #212529;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+p {
+  line-height: 1.5;
+  margin: 30px 0;
+}
+
+p a {
+  text-decoration: underline;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: black;
+  font-weight: 800;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+a {
+  color: #212529;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+a:focus, a:hover {
+  color: #0085A1;
+}
+
+blockquote {
+  font-style: italic;
+  color: #868e96;
+}
+
+.section-heading {
+  font-size: 36px;
+  font-weight: 700;
+  margin-top: 60px;
+}
+
+/*
+    ::-moz-selection
+    ::selection
+    img::-moz-selection
+    img::selection
+    img::-moz-selection
+*/
+
+
+
+#mainNav {
+  position: absolute;
+  border-bottom: 1px solid #e9ecef;
+  background-color: white;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+#mainNav .navbar-brand {
+  font-size: 80px;
+  font-weight: 800;
+  color: #343a40;
+}
+
+#mainNav .navbar-toggler {
+  font-size: 20px;
+  font-weight: 800;
+  padding: 13px;
+  text-transform: uppercase;
+  color: #343a40;
+}
+
+#mainNav .navbar-nav > li.nav-item > a {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+@media only screen and (min-width: 992px) {
+  #mainNav {
+    border-bottom: 1px solid transparent;
+    background: transparent;
+  }
+  #mainNav .navbar-brand {
+    padding: 10px 20px;
+    color: black;
+  }
+  #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
+    color: rgba(0, 130, 140, 0.7);
+  }
+  #mainNav .navbar-nav > li.nav-item a {
+    padding: 10px 20px;
+    color: black;
+    font-weight: 900;
+  }
+  #mainNav .navbar-nav > li.nav-item a:focus, #mainNav .navbar-nav > li.nav-item a:hover {
+    color: rgba(0, 130, 140, 0.7);
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  
+  #mainNav.is-fixed .navbar-brand {
+    color: #212529;
+  }
+  #mainNav.is-fixed .navbar-brand:focus, #mainNav.is-fixed .navbar-brand:hover {
+    color: #0085A1;
+  }
+  #mainNav.is-fixed .navbar-nav > li.nav-item > a {
+    color: #212529;
+  }
+  #mainNav.is-fixed .navbar-nav > li.nav-item > a:focus, #mainNav.is-fixed .navbar-nav > li.nav-item > a:hover {
+    color: #0085A1;
+  }
+
+}
+
+header.masthead {
+  margin-bottom: 130px;
+  background: no-repeat center center;
+  background-attachment: scroll;
+  position: ab;
+  background-size: cover;
+}
+
+header.masthead .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20%;
+  width: 100%;
+  
+  opacity: 0.2;
+}
+
+header.masthead .page-heading,
+header.masthead .post-heading,
+header.masthead .site-heading {
+  padding: 200px 0 150px;
+  color: white;
+}
+
+@media only screen and (min-width: 768px) {
+  header.masthead .page-heading,
+  header.masthead .post-heading,
+  header.masthead .site-heading {
+    padding: 200px 0;
+  }
+}
+
+header.masthead .page-heading,
+header.masthead .site-heading {
+  text-align: left;
+}
+
+header.masthead .page-heading h1,
+header.masthead .site-heading h1 {
+  font-size: 50px;
+  margin-top: 0;
+}
+
+header.masthead .page-heading .subheading,
+header.masthead .site-heading .subheading {
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1.1;
+  display: block;
+  margin: 10px 0 0;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+@media only screen and (min-width: 768px) {
+  header.masthead .page-heading h1,
+  header.masthead .site-heading h1 {
+    font-size: 80px;
+  }
+}
+
+header.masthead .post-heading h1 {
+  font-size: 35px;
+}
+
+header.masthead .post-heading .meta,
+header.masthead .post-heading .subheading {
+  line-height: 1.1;
+  display: block;
+}
+
+header.masthead .post-heading .subheading {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 10px 0 30px;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+header.masthead .post-heading .meta {
+  font-size: 20px;
+  font-weight: 300;
+  font-style: italic;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+header.masthead .post-heading .meta a {
+  color: black;
+}
+
+@media only screen and (min-width: 768px) {
+  header.masthead .post-heading h1 {
+    font-size: 55px;
+  }
+  header.masthead .post-heading .subheading {
+    font-size: 30px;
+  }
+}
+
+.post-preview > a {
+  color: #212529;
+}
+
+.post-preview > a:focus, .post-previce> a:hover {
+  text-decoration: none;
+  color: #0085A1;
+}
+
+.post-preview > a > .post-title {
+  font-size: 30px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.post-preview > a > .post-subtitle {
+  font-weight: 300;
+  margin: 0 0 10px;
+}
+
+.post-preview > .post-meta {
+  font-size: 18px;
+  font-style: italic;
+  margin-top: 0;
+  color: #868e96;
+}
+
+.post-preview > .post-meta > a {
+  text-decoration: none;
+  color: #212529;
+}
+
+.post-preview > .post-meta > a:focus, .post-preview > .post-meta > a:hover {
+  text-decoration: underline;
+  color: #0085A1;
+}
+
+@media only screen and (min-width: 768px) {
+  .post-preview > a > .post-title {
+    font-size: 36px;
+  }
+}
+
+
+
+/* 상품 상세정보 사진 크기 */
+#prod_img{
+    height: 500px;
+    width: 500px;
+}
+
+/*
+18.11.10 상품 상세보기 부트스트랩
+.gallery-wrap .img-big-wrap img
+.gallery-wrap .img-small-wrap .item-gallery
+.gallery-wrap .img-small-wrap 
+.gallery-wrap .img-small-wrap img 
+*/
+.gallery-wrap .img-big-wrap img {
+    height: 450px;
+    width: auto;
+    display: inline-block;
+    cursor: zoom-in;
+}
+
+
+.gallery-wrap .img-small-wrap .item-gallery {
+    width: 60px;
+    height: 60px;
+    border: 1px solid #ddd;
+    margin: 7px 2px;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.gallery-wrap .img-small-wrap {
+    text-align: center;
+}
+.gallery-wrap .img-small-wrap img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: zoom-in;
+}
+
+
+.under-navbar-nav{
+    background-color:dimgrey;
+/*    float: left;*/
+    height: 45px;
+    /*width: 100%;*/
+    margin-bottom: 0px;
+   /* text-align: center;*/
+    
+    
+}
+
+
+.nav-link h4{
+    color: white;
+    
+}
+/*밑줄 왜안돼?!!!!!!!!!!!웨않되??!!!!!!!!*/
+/*a.hover .nav-link h4 {
+    text-decoration: underline;
+}*/
+
+
+.under-navbar-nav li {
+    display: inline-block;
+}
+
+.detail_info{
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0px;
+    border-radius: .25rem;
+    margin-top:80px;
+}
+
+#testt{
+    width:100%;
+    position : absolute;
+    z-index: 11;
+    padding: 0;
+    /*position=absolute; 
+    top: 985px;*/
+    
+    
+}
+
+
+
+footer {
+  padding: 50px 0 65px;
+}
+
+footer .list-inline {
+  margin: 0;
+  padding: 0;
+}
+
+footer .copyright {
+  font-size: 14px;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+/*
+    .btn
+    .btn-primary
+    .btn-primary:hover, .btn-primary:focus, .btn-primary:active
+    .btn-lg
+*/
