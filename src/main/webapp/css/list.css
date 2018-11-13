@@ -282,6 +282,9 @@ hr {
     text-align: right;
   }
 }
+.product-description .title-wrapper {
+  margin-bottom: 0px;
+}
 .product-description .sizes-wrapper {
   margin-bottom: 15px;
 }
