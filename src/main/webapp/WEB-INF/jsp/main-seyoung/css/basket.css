@@ -1,0 +1,30 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.media-object{
+    position: relative;
+    right: 10%;
+}
+
+.pay2> td{
+    border-top:none;
+}
+
+.pay3 .pay3-1{
+    border-top:none;
+}
+
+.pay4> td{
+    border-top:none;
+}
+span > i >.fas{
+    left:10%;
+}
+
+
+
+
+
+
