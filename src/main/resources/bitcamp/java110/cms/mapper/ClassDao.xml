@@ -68,6 +68,30 @@
 		order by
 			cno asc;
     </select>
+    
+    <select id="findByptno" resultMap="classMap" parameterType="int">
+    	select
+			ps.cno,
+			ps.titl,
+			ps.pric,
+			pe.name,
+			ps.bas_addr,
+			pg.mtname,
+			ps.cfile,
+			ps.star
+		from
+			p_cert as pct inner join p_prdt as ppt
+				on ppt.ctno = pct.ctno
+			inner join p_cls as ps
+				on ps.cno = pct.cno
+			p_mtag as pg inner join p_cls as ps
+				on ps.mtno = pg.mtno
+			inner join p_meto as po 
+				on po.mono = ps.mono
+			inner join p_mete as pe
+				on po.mono = pe.meno
+		where ppt.ptno = #{ptno}
+    </select>
 
 	<select id="findBytag" resultMap="classMap" parameterType="int">
 		<include refid="select1"></include>
