@@ -30,7 +30,6 @@ public class AuthFilter implements Filter {
         String pathInfo = httpRequest.getPathInfo();
         //System.out.println(pathInfo); // => /manager/add
         
-        
         if (pathInfo.endsWith("add") ||
                 pathInfo.endsWith("delete")) {
             
@@ -42,7 +41,6 @@ public class AuthFilter implements Filter {
                 return;
             }
         }
-        
         chain.doFilter(request, response);
     }
 }

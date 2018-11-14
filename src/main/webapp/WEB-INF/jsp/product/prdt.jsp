@@ -179,7 +179,8 @@
 
 <!-- ===============필수포함=============== -->
 
-    <script>
+   
+    
     var owl = $("#owl-hotItem");
       $(document).ready(function(){
 /*           $("#headerMain").load("headerMain.html")

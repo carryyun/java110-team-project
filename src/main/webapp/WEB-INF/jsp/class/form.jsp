@@ -75,13 +75,9 @@
     <jsp:include page="../header.jsp"></jsp:include>
     </div>
     </div>
-			<!-- Page Header ?????-->
-			<header class="masthead"> </header>
-
-
 			<!-- 카테고리 nav (스크립트로 임시 inclue) -->
 			<div class="container col-lg-12 mx-auto">
-    <jsp:include page="../product/headerNav.jsp"></jsp:include>
+    <jsp:include page="../headerNav.jsp"></jsp:include>
     <!-- <div id="headerNav"></div> -->
     </div>
 
