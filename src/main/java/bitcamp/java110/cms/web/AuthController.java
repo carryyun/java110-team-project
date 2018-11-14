@@ -24,6 +24,13 @@ public class AuthController {
     public void form() {
     }
     
+    @GetMapping("header")
+    public void header() {
+      
+    }
+    
+    
+    
     @PostMapping("login")
     public String login(
             String email,
