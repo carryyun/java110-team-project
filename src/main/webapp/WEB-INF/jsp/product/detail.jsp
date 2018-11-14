@@ -169,12 +169,12 @@
 							style="border-bottom: 0.3px solid rgba(0, 0, 0, 0.5)">
 							<div class="col-lg-1 text-center">
 
-								<img src='${product.mentee.phot}' alt="singup" id="circle">
+								<img src='${product.mentee.phot}' alt="signup" id="circle">
                                 
 								${product.mentee.nick}
 							</div>
 							<div class="col-lg-11 media-body">${product.classes.titl}</div>
-                            <div class="col-lg-11 media-body"><img src='${product.classes.cfile}' alt="singup" id="circle"></div>
+                            <div class="col-lg-11 media-body"><img src='${product.classes.cfile}' alt="signup" id="square"></div>
                             
 
 						</div>

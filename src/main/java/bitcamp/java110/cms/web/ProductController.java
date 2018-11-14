@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import bitcamp.java110.cms.domain.BigTag;
-import bitcamp.java110.cms.domain.MiddleTag;
 import bitcamp.java110.cms.domain.Product;
 import bitcamp.java110.cms.domain.ProductPopul;
 import bitcamp.java110.cms.domain.ProductRep;
@@ -31,8 +29,12 @@ public class ProductController {
   ProductRepService productRepSerivce;
   ServletContext sc;
 
-  public ProductController(ProductService productService, BigTagService bigTagService,
-      MiddleTagService middleTagService, ProductPopulService productPopulService,
+  public ProductController(
+      ProductService productService, 
+      BigTagService bigTagService,
+      MiddleTagService middleTagService, 
+      ProductPopulService productPopulService,
+      ProductRepService productRepSerivce,
       ServletContext sc) {
     this.productService = productService;
     this.bigTagService = bigTagService;
@@ -44,9 +46,7 @@ public class ProductController {
 
   @GetMapping("prdt")
   public void prdt(Model model) {
-    List<BigTag> BTlist = bigTagService.list();
-    List<MiddleTag> MTlist = middleTagService.list();
-    List<Product> product_list = productService.list();
+    List<Product> productList = productService.list();
 
     List<ProductPopul> pp_list = productPopulService.list();
     List<Product> pp_product = new ArrayList<>();
@@ -54,7 +54,10 @@ public class ProductController {
     for (ProductPopul p : pp_list) {
       pp_product.add(p.getProduct());
     }
-
+    
+    for(Product ppp:productList) {
+      System.out.println(ppp.getPhot());
+    }
 
     ObjectMapper mapper = new ObjectMapper();
     String jsonText = "";
@@ -62,17 +65,13 @@ public class ProductController {
 
       jsonText = mapper.writeValueAsString(pp_product);
       model.addAttribute("pp_list", jsonText);
-      System.out.println(jsonText);
-
     } catch (JsonProcessingException e) {
       System.out.println(e.getMessage());
     }
     /*
      * model.addAttribute("BTlist",BTlist); model.addAttribute("MTlist",MTlist);
      */
-    model.addAttribute("product_list", product_list);
-    model.addAttribute("pp_list", jsonText);
-
+    model.addAttribute("productList", productList);
   }
 
   @GetMapping("test")
