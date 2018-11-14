@@ -83,7 +83,7 @@
 	<div class="row">
 	<div class="col">
 	    <h2>오늘의 핫 아이템</h2>
-        <div id="owl-hotItem" class="owl-carousel col-lg-10 mx-auto">
+        <div id="owl-hotItem" class="owl-carousel col-lg-10 text-center">
             
         </div>
         <div class="owl-btns">
@@ -157,15 +157,16 @@
     <hr>
 
     <!-- Footer -->
-    <footer>
-      <div class="container">
-        <div class="row">
-          
-        </div>
-      </div>
-    </footer>
+
     
     </div>
+    </div>
+    
+        <footer>
+      <div class="col px-0">
+          <jsp:include page="../footer.jsp"></jsp:include>
+      </div>
+    </footer>
 </div>
 <!-- ===============필수포함=============== -->
 <!-- Bootstrap core JavaScript -->
