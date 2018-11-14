@@ -27,9 +27,18 @@
 }
 
 #owl-col2{
+  padding : 5px 15px;
+  height:40px;
   cursor:pointer;
   background-color:weat;
-  text-align:center;
+  text-align:left;
+}
+
+#owl-col3{
+  color:green;
+  cursor:pointer;
+  background-color:weat;
+  text-align:right;
 }
 
 
@@ -40,15 +49,13 @@
   display: none;
   width: 100%;
   -webkit-tap-highlight-color: transparent;
-  /* position relative and z-index fix webkit rendering fonts issue */
   position: relative;
   z-index: 1; }
   .owl-carousel .owl-stage {
     position: relative;
     -ms-touch-action: pan-Y;
     touch-action: manipulation;
-    -moz-backface-visibility: hidden;
-    /* fix firefox animation glitch */ }
+    -moz-backface-visibility: hidden; }
   .owl-carousel .owl-stage:after {
     content: ".";
     display: block;

@@ -1,5 +1,12 @@
 @charset "UTF-8";
 /* hr 관련 */
+hr.SmallMarginHr{
+    margin: 4px !important;
+}
+hr.MiddleMarginHr{
+    margin: 10px !important;
+}
+
 hr.Fhr{
     border: 0; 
     height: 2px;
