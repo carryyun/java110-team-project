@@ -75,8 +75,6 @@
     <jsp:include page="../header.jsp"></jsp:include>
     </div>
     </div>
-			<!-- Page Header ?????-->
-			<header class="masthead"> </header>
 
 
 			<!-- 카테고리 nav (스크립트로 임시 inclue) -->
