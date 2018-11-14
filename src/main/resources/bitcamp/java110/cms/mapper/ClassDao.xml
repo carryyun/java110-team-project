@@ -6,22 +6,31 @@
 <mapper namespace="bitcamp.java110.cms.dao.ClassDao">
 
     <resultMap type="Classes" id="classMap">
-        <id column="cno" property="no"/>
-        <result column="titl"  property="titl"/>
-        <result column="conts"    property="conts"/>
-        <result column="pric"   property="pric"/>
-        <result column="rgdt"   property="rgdt"/>
-        <result column="time"   property="time"/>
-        <result column="capa"  property="capa"/>
-        <result column="cfile"  property="cfile"/>
-        <result column="tinfo"    property="tinfo"/>
-        <result column="cinfo"   property="cinfo"/>
-        <result column="pstno"   property="pstno"/>
+        <id 	column="cno" 		property="no"/>
+        <result column="titl"  		property="titl"/>
+        <result column="conts"    	property="conts"/>
+        <result column="pric"   	property="pric"/>
+        <result column="rgdt"   	property="rgdt"/>
+        <result column="time"   	property="time"/>
+        <result column="capa"  		property="capa"/>
+        <result column="cfile"  	property="cfile"/>
+        <result column="tinfo"    	property="tinfo"/>
+        <result column="cinfo"   	property="cinfo"/>
+        <result column="pstno"   	property="pstno"/>
         <result column="bas_addr"   property="basAddr"/>
         <result column="det_addr"   property="detAddr"/>
-        <result column="edt"  property="edt"/>
-        <result column="mono"  property="mono"/>
-        <result column="mtno"  property="mtno"/>
+        <result column="edt"  		property="edt"/>
+        <result column="mono"  		property="mono"/>
+        <result column="mtno"  		property="mtno"/>
+        <result column="star"		property="star"/>
+        
+        <result column="meno"		property="mentee.no"/>
+        <result column="name"  		property="mentee.name"/>
+        
+        <result column="mtno"		property="middleTag.mtno"/>
+        <result column="mtname"		property="middleTag.name"/>
+        
+        <result column="fname"		property="classFile.fname"/>
     </resultMap>
     
     <sql id="select1">
@@ -33,7 +42,27 @@
 			inner join p_mtag as pg 
 				on ps.mtno = pg.mtno
     </sql>
-
+	<select id="findAllList" resultMap="classMap">
+		SELECT 
+			ps.cno,
+			ps.titl,
+			ps.pric,
+			pe.name,
+			ps.bas_addr,
+			pg.mtname,
+			ps.cfile,
+		    ps.star
+		FROM
+			p_mtag as pg inner join p_cls as ps
+				on ps.mtno = pg.mtno
+			inner join p_meto as po 
+				on po.mono = ps.mono
+			inner join p_mete as pe
+				on po.mono = pe.meno
+		order by ps.cno desc
+	</select>
+	
+	
     <select id="findAll" resultMap="classMap" parameterType="map">
         <include refid="select1"></include>
 		order by
