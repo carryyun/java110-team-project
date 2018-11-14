@@ -75,9 +75,11 @@
     <jsp:include page="../header.jsp"></jsp:include>
     </div>
     </div>
+
+
 			<!-- 카테고리 nav (스크립트로 임시 inclue) -->
 			<div class="container col-lg-12 mx-auto">
-    <jsp:include page="../headerNav.jsp"></jsp:include>
+    <jsp:include page="../product/headerNav.jsp"></jsp:include>
     <!-- <div id="headerNav"></div> -->
     </div>
 
@@ -99,16 +101,6 @@
 
 						<div id="day-select">
 							<span><h2>기간</h2></span> 
-						    <!-- <div class="btn-group">
-						    <label class="btn btn-default">
-					            <input type="radio" name="testrad" value="0">
-					            <span>원데이</span>
-					        </label>
-					        <label class="btn btn-default">
-					            <input type="radio" name="testrad" value="1" checked>
-					            <span>전체</span>
-					        </label>
-					        </div> -->
 					    <div class="box">
 					        <label>
 						        <input type="radio" name="like" checked="">
