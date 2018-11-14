@@ -177,9 +177,8 @@ order by
         <if test="stno>0">stno= #{stno},</if>
         
     </set>
-	    where
-	        ptno=#{no}
+        where
+            ptno=#{no}
     </update>
-         
     
 </mapper>

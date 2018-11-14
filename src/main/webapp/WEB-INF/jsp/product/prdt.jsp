@@ -47,8 +47,8 @@
     <!-- Header (스크립트로 임시 inclue) -->
     <div class="row">
         <div class="col-lg-12">
-        <%-- <jsp:include page="../header.jsp"></jsp:include> --%>
-        <jsp:include page="headerMain.jsp"></jsp:include>
+        <jsp:include page="../header.jsp"></jsp:include>
+        <%-- <jsp:include page="headerMain.jsp"></jsp:include> --%>
         </div>
      
          
@@ -182,11 +182,6 @@
     <script>
     var owl = $("#owl-hotItem");
       $(document).ready(function(){
-/*           $("#headerMain").load("headerMain.html")
-          $("#headerNav").load("headerNav.html")
-           */
-           
-          
           var data = {
                   "items" : [
                 {
