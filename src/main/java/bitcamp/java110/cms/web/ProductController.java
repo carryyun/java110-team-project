@@ -1,5 +1,6 @@
 package bitcamp.java110.cms.web;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletContext;
 import org.springframework.stereotype.Controller;
@@ -45,22 +46,18 @@ public class ProductController {
     List<BigTag> list = bigTagService.list();
     List<MiddleTag> list2 = middleTagService.list();
     List<Product> product_list = productService.list();
-    List<ProductPopul> pp_list = productPopulService.list();
     
+    List<ProductPopul> pp_list = productPopulService.list();
+    List<Product> pp_product=new ArrayList<>();
     for (ProductPopul p: pp_list ) {
-      System.out.println(p.getNo());
-      System.out.println(p.getPtno());
-      System.out.println(p.getProduct().getTitl());
-      System.out.println(p.getProduct().getPric());
-      System.out.println(p.getProduct().getPhot());
+      pp_product.add(p.getProduct());
     }
     
     ObjectMapper mapper = new ObjectMapper();
-    String jsonText;
+    String jsonText="";
     try {
-      jsonText = mapper.writeValueAsString( list );
-      model.addAttribute("pp_list", pp_list );
-      System.out.println(jsonText);
+      jsonText = mapper.writeValueAsString( pp_product );
+      model.addAttribute("pp_list", jsonText );
     } catch (JsonProcessingException e) {
       System.out.println(e.getMessage());
     }
@@ -69,6 +66,7 @@ public class ProductController {
     model.addAttribute("list",list);
     model.addAttribute("list2",list2);
     model.addAttribute("product_list",product_list);
+    model.addAttribute("pp_list",jsonText);
     
   }
 

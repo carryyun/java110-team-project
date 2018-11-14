@@ -23,12 +23,12 @@
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     
+    <link href="/css/owl.carousel.css" rel="stylesheet">
+    <link href="/css/owl.theme.default.css" rel="stylesheet">
     <link href="/css/list.css" rel="stylesheet">
     <link href="/css/clean-blog.css" rel="stylesheet">
     <link href="/css/common.css" rel="stylesheet">
-    <link href="/css/multi.css" rel="stylesheet">
-    <link href="/css/owl.carousel.css" rel="stylesheet">
-    <link href="/css/owl.theme.default.css" rel="stylesheet">
+    
  
     <!-- ===============필수포함=============== -->
     
@@ -38,8 +38,8 @@
   </head>
 
   <body>
-    <div id="wrap" style="background-color: #f2f4f7">
-    <div class="col" style="position:absolute; height: 95px; background-color: white">
+    <div id="wrap" style="background-color: #fff">
+    <div class="col" style="position:absolute; height: 105px; background-color: white">
     
     </div>
     
@@ -47,8 +47,8 @@
     <!-- Header (스크립트로 임시 inclue) -->
     <div class="row">
         <div class="col-lg-12">
-        <jsp:include page="../header.jsp"></jsp:include>
-        <%-- <jsp:include page="headerMain.jsp"></jsp:include> --%>
+        <%-- <jsp:include page="../header.jsp"></jsp:include> --%>
+        <jsp:include page="headerMain.jsp"></jsp:include>
         </div>
      
          
@@ -83,7 +83,7 @@
 	<div class="row">
 	<div class="col">
 	    <h2>오늘의 핫 아이템</h2>
-        <div id="owl-hotItem" class="owl-carousel col-lg-10 text-center">
+        <div id="owl-hotItem" class="owl-carousel col-lg-10 mt-2"  style="margin:0 auto">
             
         </div>
         <div class="owl-btns">
@@ -104,8 +104,11 @@
 <div class="row">
 
 <div class="container">
+          <div class="clearfix">
+            <a class="btn btn-primary float-right mb-3" href="#">상품 등록 </a>
+          </div>
 	<div class="row">
-
+        
         <c:forEach  items="${product_list}" var="pl" varStatus="i">
         
 		<div class="col-lg-4">
@@ -113,7 +116,7 @@
 				<div class="image-holder">
 					<a href="#" class="image-holder__link"></a>
 					<div class="image-liquid image-holder--original">
-					<a href="#"><img alt="${i.count}" src="/upload/img/julme.PNG" style="width: 100%; height: 100%"></a>
+					<a href="#"><img alt="${i.count}" src="${pl.phot}" style="width: 100%; height: 100%"></a>
 					</div>
 				</div>
 				<div class="product-description">
@@ -128,7 +131,7 @@
 						</div>
 						<div class="col-lg-12 product-description__price">${pl.pric} 원</div>
 					</div>
-					<hr />
+                    <hr class="NoMarginHr">
 					<!-- 멘토 이름 -->
 					<div class="sizes-wrapper"><b>판매자 - ${pl.mentee.name}</b></div>
 					<!-- 주소 -->
@@ -147,10 +150,7 @@
           </div>
           <hr>
 
-          <!-- Pager -->
-          <div class="clearfix">
-            <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
-          </div>
+          
         </div>
     </div>
 
@@ -183,35 +183,9 @@
     <script>
     var owl = $("#owl-hotItem");
       $(document).ready(function(){
-          var data = {
-                  "items" : [
-                {
-                  "img": "/upload/img/julme.PNG",
-                  "txt" : "h2",
-                  "alt" : "Owl Image 1"
-                },
-                {
-                  "img": "/upload/img/julme.PNG",
-                  "txt" : "h2",
-                  "alt" : "Owl Image 1"
-                },
-                {
-                  "img": "/upload/img/julme.PNG",
-                  "txt" : "h2",
-                  "alt" : "Owl Image 1"
-                },
-                {
-                  "img": "/upload/img/julme.PNG",
-                  "txt" : "h2",
-                  "alt" : "Owl Image 1"
-                },
-                {
-                  "img": "/upload/img/julme.PNG",
-                  "txt" : "h2",
-                  "alt" : "Owl Image 1"
-                }
-                  ]
-                };
+          
+          var data = { "items" : ${pp_list} };
+          console.log(data);
         owl.owlCarousel({
           nav:false,
           loop:true,
@@ -230,13 +204,14 @@
                 "text-align:center;"
             for ( var i in data["items"]) {
              
-             var img = data["items"][i].img;
-             var txt = data["items"][i].txt;
-             var alt = data["items"][i].alt;
+             var phot = data["items"][i].phot;
+             var titl = data["items"][i].titl;
+             var pric = data["items"][i].pric;
              content += "<div class='col' id='owl-col'>"
              content += "<div class='row' id='owl-row'>"
-             content += "<img id='owl-img' src=\"" +img+ "\" alt=\"" +alt+ "\">"
-             content += "<div class='col' id='owl-col2'>" + txt + "</div>"
+             content += "<img id='owl-img' src=\"" +phot+ "\" alt=\"" +titl+ "\">"
+             content += "<div class='col-lg-12' id='owl-col2'>" + titl + "</div>"
+             content += "<div class='col-lg-12' id='owl-col3'>" + pric + "￦</div>"
              content += "</div>"
              content += "</div>"
             }
@@ -246,7 +221,6 @@
        });
       $(".cusnext").click(function() {
           owl.trigger('next.owl.carousel');
-          console.log("123");
       });
 
       $(".cusprev").click(function() {

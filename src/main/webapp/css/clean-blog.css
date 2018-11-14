@@ -5,13 +5,6 @@
  */
 
 /* 메인헤더 관련 */
-/* .mainheader{
-    text-align: center;
-} */
-/* .mainheader img{
-    width: 50px;
-    height: 50px;
-} */
 
 /* 내용관련 */
 
@@ -21,32 +14,15 @@
     margin-left: 30px;
 }
 
-/* hr 관련 */
-hr.Fhr{
-    border: 0; 
-    height: 2px;
-    background: #6e6e6e; 
-    width: 100%; 
-    margin: 0 auto;
+#footerCss{
+ padding:0;
 }
-hr.FhrBotMargin{
-    border: 0; 
-    height: 2px;
-    background: #6e6e6e; 
-    width: 100%; 
-    margin: 0 0 5px 0;
-}
-hr.Hhr{
-    border: 0; 
-    height: 2px;
-    background: #6e6e6e; 
-    width: 90%; 
-    margin: 0 auto;
-}
+
 /*-------------------------- */
 .card-text{
     margin: 0;
     font-size: 14px;
+    
 }
 
 ul{
@@ -141,7 +117,6 @@ img::-moz-selection {
 
 #mainNav {
   position: relative;
-  border-bottom: 1px solid #e9ecef;
   background-color: white;
   font-family: 'Noto Sans KR', sans-serif;
 }
@@ -439,7 +414,7 @@ form .form-group:first-child .floating-label-form-group {
 }
 
 footer {
-  padding: 50px 0 65px;
+  padding: 50px 0 0px;
 }
 
 footer .list-inline {
@@ -454,9 +429,8 @@ footer .copyright {
 }
 
 .btn {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 800;
-  padding: 15px 25px;
   letter-spacing: 1px;
   text-transform: uppercase;
   border-radius: 0;
@@ -466,6 +440,7 @@ footer .copyright {
 .btn-primary {
   background-color: #0085A1;
   border-color: #0085A1;
+    padding: 5px 15px;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {

@@ -21,6 +21,7 @@
     </head>
     <!-- Category Navigation -->
     <hr class="Fhr">
+    <center>
     <nav class="navbar navbar-expand-lg">
         <div class="navbar-nav" id="categoryNav">
           <ul class="navbar-nav mx-auto" id="mainUl">
@@ -32,6 +33,7 @@
           </ul>
         </div>
     </nav>
+    </center>
     <hr class="Fhr">
     
     <div class="col px-0">
