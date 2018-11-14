@@ -71,6 +71,10 @@ public class ProductController {
     model.addAttribute("product_list",product_list);
     
   }
+  @GetMapping("detail")
+  public void detail(Model model) {
+    
+  }
 
   
   @RequestMapping("P")
