@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="bitcamp.java110.cms.domain.Classes"%>
 <%@page import="bitcamp.java110.cms.domain.BigTag"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" 
@@ -32,7 +34,6 @@
 
 <link href="/css/ClassCss.css" rel="stylesheet">
 <link href="/css/clean-blog.css" rel="stylesheet">
-<!-- <link href="/css/category.css" rel="stylesheet"> -->
 
 <link rel="shortcut icon" type="image/x-icon"
 	href="//production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" />
@@ -195,147 +196,64 @@
 
 						<div class="container">
 							<div class="row">
-
+							<c:forEach items="${clslist}" var="c">
 								<div class="col-lg-4">
 									<article class="card-wrapper">
 										<div class="image-holder">
 											<a href="#" class="image-holder__link"></a>
 											<div class="image-liquid image-holder--original">
-												<a href="#"><img alt="1" src="/upload/img/julme.PNG"
+												<a href="#"><img class="classimg" alt="1" src="${c.cfile }"
 													style="width: 100%; height: 100%"></a>
 											</div>
 										</div>
 										<div class="product-description">
 											<!-- 제목 -->
 											<h1 class="product-description__title">
-												<a href="#">자바를 배우자</a>
+												<a href="#">${c.titl}</a>
 											</h1>
 											<!-- 분류명 , 가격 -->
 											<div class="row">
-												<div
-													class="col-lg-12 product-description__category secondary-text">
-													컴퓨터 - 자바</div>
-												<div class="col-lg-12 product-description__price">30000원</div>
+												<div class="col-lg-12 product-description__category secondary-text">
+													${c.middleTag.name }</div>
+												<div class="col-lg-12 product-description__price">${c.pric }원</div>
 											</div>
 											<hr />
 											<!-- 멘토 이름 -->
 											<div class="sizes-wrapper">
-												<b>멘토 - 고정은</b>
+												<b>멘토-${c.mentee.name }</b>
 											</div>
 											<!-- 주소 -->
 											<div class="color-wrapper">
-												<b>기본 주소</b>
+												<b>${c.basAddr }</b>
+											</div>
+											<div class="color-wrapper">
+												<b>
+												<c:set var="starint" value="${c.star}"/>
+												<strong>별점:</strong>
+												<%
+												int star = (int) pageContext.getAttribute("starint");
+												for(int i=0; i<5;i++){
+												  if(i<star){
+												%>
+												<img class="starimg" alt="star-on-big" src="/upload/img/raty/star-on-big.png"
+												style="width:20px; height:20px;">
+												<%}else{
+                                  					%>
+                                  				<img class="starimg" alt="star-off-big" src="/upload/img/raty/star-off-big.png"
+                                  				style="width:20px; height:20px;">
+                                  				<%
+                                						}
+                                					}
+                                				%>
+												</b>
 											</div>
 										</div>
 									</article>
 								</div>
-
-								<div class="col-lg-4">
-									<article class="card-wrapper">
-										<div class="image-holder">
-											<a href="#" class="image-holder__link"></a>
-											<div class="image-liquid image-holder--original"
-												style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Jeans_BW_2_(3213391837).jpg/543px-Jeans_BW_2_(3213391837).jpg')">
-											</div>
-										</div>
-
-										<div class="product-description">
-											<!-- 제목 -->
-											<h1 class="product-description__title">
-												<a href="#">자바를 배우자</a>
-											</h1>
-											<!-- 분류명 , 가격 -->
-											<div class="row">
-												<div
-													class="col-lg-12 product-description__category secondary-text">
-													컴퓨터 - 자바</div>
-												<div class="col-lg-12 product-description__price">30000원</div>
-											</div>
-											<hr />
-											<!-- 멘토 이름 -->
-											<div class="sizes-wrapper">
-												<b>멘토 - 고정은</b>
-											</div>
-											<!-- 주소 -->
-											<div class="color-wrapper">
-												<b>기본 주소</b>
-											</div>
-										</div>
-									</article>
-								</div>
-
-								<div class="col-lg-4">
-									<article class="card-wrapper">
-										<div class="image-holder">
-											<a href="#" class="image-holder__link"></a>
-											<div class="image-liquid image-holder--original"
-												style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/b8/Columbia_Sportswear_Jacket.jpg')">
-											</div>
-										</div>
-
-										<div class="product-description">
-											<!-- 제목 -->
-											<h1 class="product-description__title">
-												<a href="#">자바를 배우자</a>
-											</h1>
-
-											<!-- 분류명 , 가격 -->
-											<div class="row">
-												<div
-													class="col-lg-12 product-description__category secondary-text">
-													컴퓨터 - 자바</div>
-												<div class="col-lg-12 product-description__price">30000원</div>
-											</div>
-											<hr />
-											<!-- 멘토 이름 -->
-											<div class="sizes-wrapper">
-												<b>멘토 - 고정은</b>
-											</div>
-											<!-- 주소 -->
-											<div class="color-wrapper">
-												<b>기본 주소</b>
-											</div>
-										</div>
-									</article>
-								</div>
-
-								<div class="col-lg-4">
-									<article class="card-wrapper">
-										<div class="image-holder">
-											<a href="#" class="image-holder__link"></a>
-											<div class="image-liquid image-holder--original"
-												style="background-image: url('http://www.publicdomainpictures.net/pictures/20000/nahled/red-shoes-isolated.jpg')">
-											</div>
-										</div>
-										<div class="product-description">
-											<!-- 제목 -->
-											<h1 class="product-description__title">
-												<a href="#">자바를 배우자</a>
-											</h1>
-
-											<!-- 분류명 , 가격 -->
-											<div class="row">
-												<div
-													class="col-lg-12 product-description__category secondary-text">
-													컴퓨터 - 자바</div>
-												<div class="col-lg-12 product-description__price">30000원</div>
-											</div>
-											<hr />
-											<!-- 멘토 이름 -->
-											<div class="sizes-wrapper">
-												<b>멘토 - 고정은</b>
-											</div>
-											<!-- 주소 -->
-											<div class="color-wrapper">
-												<b>기본 주소</b>
-											</div>
-										</div>
-									</article>
-								</div>
+							</c:forEach>
 							</div>
 						</div>
 				</div>
-
 			</div>
 			<hr>
 
