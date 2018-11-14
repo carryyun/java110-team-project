@@ -60,7 +60,7 @@
     
     <!-- 카테고리 nav (스크립트로 임시 inclue) -->
     <div class="col mb-3">
-    <jsp:include page="headerNav.jsp"></jsp:include>
+    <jsp:include page="../headerNav.jsp"></jsp:include>
     <!-- <div id="headerNav"></div> -->
     </div>
 
