@@ -27,7 +27,7 @@
     src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 <%-- 만든 css --%>
-<link rel="stylesheet" href="css/main-menu.css">
+<link rel="stylesheet" href="/css/main-menu.css">
 
 </head>
 <body>
