@@ -1,0 +1,98 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>BBS List</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- style css-->
+    <link href="css/classlist/classlist.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="colorlib-narrow-content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
+                    <div class="col-md-12">
+                        <div class="about-desc">
+
+                            <h2 class="colorlib-heading">수강목록</h2>
+                            <hr color="black">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="container">
+                    <div align="right">
+                        <!-- Login 검증 -->
+                        <!-- jstl의 if문은 else가 없어서 따로 검증해야함. -->
+                        <c:if test="${id != null}">
+                            <!--<%-- <%@include file="loginOk.jsp" %> --%>-->
+                        </c:if>
+                        <c:if test="${id == null}">
+                            <!--        <%-- <%@include file="login.jsp" %> --%>-->
+                        </c:if>
+                    </div>
+
+
+
+
+                    <div>
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th width="10%">No.</th>
+                                    <th width="50%">강의명</th>
+                                    <th width="10%">강사명</th>
+                                    <th width="20%">가격</th>
+                                    <th width="10%">수강상태</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach var="article" items="${articles}" varStatus="status">
+                                    <tr>
+                                        <td>
+                                            <!--${article.articleNumber}-->
+                                        </td>
+                                        <td id="title">
+                                            <c:if test="${article.depth > 0}">
+                                                &nbsp;&nbsp;
+                                            </c:if>
+                                            <a href="/bbs/content.bbs?articleNumber=${article.articleNumber}&pageNum=${pageNum}">
+                                                <!--${article.title}--></a>
+                                            <!-- <c:if test="${article.hit >= 20}">
+                  <span class="hit">hit!</span>
+                </c:if> -->
+                                        </td>
+                                        <td>
+                                            <!--${article.id}-->
+                                        </td>
+                                        <td>
+                                            <!--${article.writeDate}-->
+                                        </td>
+                                        <td>
+                                            <!--${article.hit}-->
+                                        </td>
+                                    <tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+
+                        <!-- Paging 처리 -->
+                        <div id="paging">
+                            <!--        ${pageCode}-->
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

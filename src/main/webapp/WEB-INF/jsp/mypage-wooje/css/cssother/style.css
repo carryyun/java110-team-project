@@ -11,8 +11,21 @@
 *	Edit this section
 *
 * ======================================================= */
+
+
+* {
+    font-family: 굴림;
+}
+
+.colorlib-heading {
+    font-family: 굴림;
+}
+
+
+
+
 body {
-  font-family: "Quicksand", Arial, sans-serif;
+  font-family: '굴림';
   font-weight: 400;
   font-size: 15px;
   line-height: 1.8;
@@ -39,6 +52,8 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Playfair Display", Georgia, serif;
   font-weight: 400;
   margin: 0 0 30px 0; }
+
+
 
 figure {
   margin-bottom: 2.5em;
@@ -397,6 +412,8 @@ body.offcanvas {
       padding-top: 5em;
       padding-bottom: 8em; } }
 
+
+
 .author-img {
   background-size: cover;
   background-position: center center;
@@ -404,8 +421,8 @@ body.offcanvas {
   position: relative; }
 
 .colorlib-heading {
-  font-size: 18px;
-  margin-bottom: 4em;
+  font-size: 22px;
+/*  margin-bottom: 4em;*/
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 5px;
@@ -613,7 +630,14 @@ body.offcanvas {
   filter: alpha(opacity=40);
   font-size: 16px; }
 
+.pwtxt{
+     text-align: left;font-size:  15px; font-weight:bold; margin: 30px 0px 30px 25px;
+}
+.clstxt{
+    text-align: left;font-size:  15px; font-weight:bold; margin: 30px 0px 15px 25px;
+}
 .services {
+  height: 280px;
   margin-bottom: 30px;
   padding: 1.5em;
   -webkit-box-shadow: 0px 0px 56px -8px rgba(0, 0, 0, 0.17);
@@ -630,8 +654,21 @@ body.offcanvas {
       color: #2c98f0; }
   .services h3 {
     font-family: "Quicksand", Arial, sans-serif;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 500; }
+
+.align-center{  
+    text-align: center;
+    display: inline-block;
+}
+.services h3.h3set{
+/*    margin-left: 20px;*/
+    
+}
+.services .btnset{
+    margin-top: 20px;
+    
+}
   .services.color-2 {
     border-bottom: 2px solid #ec5453; }
     .services.color-2 .icon2 i {
@@ -653,6 +690,17 @@ body.offcanvas {
   margin-bottom: 80px;
   position: relative;
   z-index: 0; }
+.author-img {
+    width: 100px;
+    height: 100px;
+/*
+    margin-left: 30px;
+    margin-bottom: 30px;
+*/
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    border-radius: 50%; }
   @media screen and (max-width: 768px) {
     .services {
       margin-bottom: 4em; } }
