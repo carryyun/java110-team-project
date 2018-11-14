@@ -17,6 +17,12 @@ public class ClassRepServiceImpl implements ClassRepService{
 
       return classRepDao.findAll();
   }
+
+  @Override
+  public List<ClassRep> listbycno(int cno) {
+    
+    return classRepDao.findbycno(cno);
+  }
   
   
 
