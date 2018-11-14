@@ -1,6 +1,7 @@
 package bitcamp.java110.cms.service;
 
 import java.util.List;
+import org.springframework.ui.Model;
 import bitcamp.java110.cms.domain.Mentee;
 
 public interface MenteeService {
@@ -12,7 +13,7 @@ public interface MenteeService {
   Mentee get(int no); 
   
   // 이메일로 조회
-  List<Mentee> listByEmail(int pageNo, int pageSize, String email); 
+  List<Mentee> listByEmail(String email,Model model); 
   
   // 닉네임으로 조회
   List<Mentee> listByNick(int pageNo, int pageSize, String nick);

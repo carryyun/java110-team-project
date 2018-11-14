@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import bitcamp.java110.cms.dao.MenteeDao;
 import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.service.MenteeService;
@@ -36,13 +37,8 @@ public class MenteeServiceImpl implements MenteeService {
 
 
   @Override
-  public List<Mentee> listByEmail(int pageNo, int pageSize, String email) {
-    HashMap<String, Object> params = new HashMap<>();
-    params.put("rowNo", (pageNo - 1) * pageSize);
-    params.put("size", pageSize);
-    params.put("paramEmail", email);
-
-    return menteeDao.findAllByEmail(params);
+  public List<Mentee> listByEmail(String email,Model model) {
+    return menteeDao.findAllByEmail(email);
   }
 
 
@@ -68,7 +64,7 @@ public class MenteeServiceImpl implements MenteeService {
 
   @Override
   public void add(Mentee mentee) {
-    menteeDao.insert(mentee);
+    menteeDao.signup(mentee);
   }
 
   @Transactional
