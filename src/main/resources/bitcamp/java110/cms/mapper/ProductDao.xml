@@ -29,6 +29,8 @@
         <result column="mtno"   property="smalltag.mtno"/>
         
         <result column="mtname"   property="middleTagName"/>
+        <result column="deli" property="deli"/>
+        <result column="star" property="star"/>
     </resultMap>
 
     
@@ -38,6 +40,8 @@
     p.titl,
     p.conts,
     p.pric,
+    p.deli,
+    p.star,
     p.rgdt,
     p.stock,
     p.phot,
@@ -74,6 +78,8 @@ order by
             titl,
             conts,
             pric,
+            deli,
+            star,
             rgdt,
             stock,
             phot,
@@ -93,6 +99,8 @@ order by
             titl,
             conts,
             pric,
+            deli,
+            star,
             rgdt,
             stock,
             phot,
@@ -113,6 +121,8 @@ order by
             titl,
             conts,
             pric,
+            deli,
+            star,
             rgdt,
             stock,
             phot,
@@ -128,8 +138,8 @@ order by
     <insert id="insert" parameterType="product"
             useGeneratedKeys="true" keyColumn="ptno" keyProperty="no">
             
-        insert into p_prdt(titl,conts,pric,rgdt,stock,phot,meno,ctno,stno)
-        values(#{titl},#{conts},#{pric},now(),#{stock},#{phot},#{meno},#{ctno},#{stno})
+        insert into p_prdt(titl,conts,pric,rgdt,stock,phot,meno,ctno,stno,deli,star)
+        values(#{titl},#{conts},#{pric},now(),#{stock},#{phot},#{meno},#{ctno},#{stno},#{deli},#{star})
     </insert> 
     
     <update id="update" parameterType="product">
@@ -140,6 +150,8 @@ order by
         <if test="titl!=null">titl= #{titl},</if>
         <if test="conts!=null">conts=#{conts},</if>
         <if test="pric!=null">pric= #{pric},</if>
+        <if test="deli!=null">deli= #{deli},</if>
+        <if test="star>0">star= #{star},</if>
         <if test="stock>0">stock= #{stock},</if>
         <if test="phot!=null">phot= #{phot},</if>
         <if test="ctno>0">ctno= #{ctno},</if>
