@@ -84,7 +84,7 @@
 				on ppt.ctno = pct.ctno
 			inner join p_cls as ps
 				on ps.cno = pct.cno
-			p_mtag as pg inner join p_cls as ps
+			inner join p_mtag as pg 
 				on ps.mtno = pg.mtno
 			inner join p_meto as po 
 				on po.mono = ps.mono
@@ -92,6 +92,26 @@
 				on po.mono = pe.meno
 		where ppt.ptno = #{ptno}
     </select>
+
+	<select id="findByCno" resultMap="classMap" parameterType="int">
+		select
+			titl,
+			conts,
+			pric,
+			rgdt,
+			time,
+			capa,
+			tinfo,
+			cinfo,
+			pstno,
+			bas_addr,
+			det_addr,
+			edt			
+		from
+			p_cls
+		where
+			cno =  #{no}
+	</select>
 
 	<select id="findBytag" resultMap="classMap" parameterType="int">
 		<include refid="select1"></include>

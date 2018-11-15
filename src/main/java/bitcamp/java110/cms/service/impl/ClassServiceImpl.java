@@ -38,9 +38,9 @@ public class ClassServiceImpl implements ClassService{
 
   
   @Override
-  public Classes get(int no) {
+  public Classes findAllBycno(int cno) {
     
-    return classDao.findByCno(no);
+    return classDao.findByCno(cno);
   }
 
 

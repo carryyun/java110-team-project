@@ -1,3 +1,4 @@
+<%@page import="bitcamp.java110.cms.domain.Classes"%>
 <%@page import="bitcamp.java110.cms.domain.Product"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -46,7 +47,7 @@
         <div class="row">
 
 
-            <h2>상품 상세보기</h2>
+            <h2>클래스 상세보기</h2>
             <hr class="FhrBotMargin">
 
             <div class="col-lg-12 col-md-12 text-center">
@@ -68,20 +69,20 @@
                     <aside class="col-lg-7">
                         <article class="card-body p-5">
                             <div class="text-left">
-                                <h2 class="title mb-3">${product.titl}</h2>
+                                <h2 class="title mb-3">${detailclass.titl}</h2>
                                 <br>
                                 <dl class="param param-feature">
                                     <dt>
                                         <h4>가격</h4>
                                     </dt>
-                                    <dd>${product.pric}원</dd>
+                                    <dd>${detailclass.pric}원</dd>
                                 </dl>
 
                                 <dl class="param param-feature">
                                     <dt>
-                                        <h4>택배비</h4>
+                                        <h4>수업시간</h4>
                                     </dt>
-                                    <dd>${product.deli}원</dd>
+                                    <dd>${detailclass.time}시간</dd>
                                 </dl>
 
 
@@ -91,9 +92,9 @@
 
                                         <dl class="param param-inline">
                                             <dt>
-                                                <h4>남은수량</h4>
+                                                <h4>모집인원</h4>
                                             </dt>
-                                            <dd>${product.stock}개</dd>
+                                            <dd>${detailclass.capa}명</dd>
                                         </dl>
                                         <!-- item-property .// -->
                                     </div>
@@ -120,15 +121,6 @@
                                         </dl>
                                         <!-- item-property .// -->
                                     </div>
-                                    <!-- col.// -->
-                                    <div class="col-lg-9 align-middle">
-                                        <p class="price-detail-wrap mt-5">
-                                            <span class="price h3 text-warning"> <span
-                                                class="currency">총 합계 : </span><span class="num">200,000원</span>
-                                            </span>
-                                        </p>
-                                        <!-- price-detail-wrap .// -->
-                                    </div>
                                 </div>
                                 <!-- row.// -->
 
@@ -137,9 +129,9 @@
                                 <!---->
                                 <hr>
                                 <a href="#" class="btn btn-lg btn-primary text-uppercase">
-                                    구매하기 </a> <a href="#"
+                                    수업 신청하기 </a> <a href="#"
                                     class="btn btn-lg btn-outline-primary text-uppercase"> <i
-                                    class="fas fa-shopping-cart"></i> 장바구니
+                                    class="fas fa-shopping-cart"></i> 찜클래스
                                 </a>
                             </div>
                         </article>
@@ -163,7 +155,7 @@
             <div class="row">
                 <div class="col-lg-12">
 
-                    <c:forEach items="${list}" var="r" varStatus="i">
+                    <c:forEach items="${clsreqlist}" var="r">
                         <div class="media"
                             style="border-bottom: 0.3px solid rgba(0, 0, 0, 0.5)">
                             <div class="col-lg-1 text-center">
@@ -240,7 +232,7 @@
                 <div class="detail_info">
                     <hr class="Fhr" id="prod_detail">
                     <h3>상세정보</h3>
-                    ${product.conts}
+                    ${detailclass.conts}
                 </div>
                 <!-- <div class="detail_info"> -->
 
@@ -257,9 +249,9 @@
                 <div class="detail_info">   
                     <div class="row" style="margin: 0 auto">    
                         <div class="col text-center">   
-                            <h1 class="rating-num">${product.star}</h1> 
+                            <h1 class="rating-num">${detailclass.star}</h1> 
                             <div class="rating col">    
-                                <% Product p = (Product)request.getAttribute("product"); 
+                                <% Classes p = (Classes)request.getAttribute("detailclass"); 
                                 for( int i=0;i<5;i++){
                                   if(i<p.getStar()){
                                 %> 
@@ -292,10 +284,10 @@
                                             <fieldset>
                                                 <!-- Message body -->
                                                 <div class="form-group">
-                                                    <label class="col-md-3 control-label" for="message">상품평</label>
+                                                    <label class="col-md-3 control-label" for="message">클래스 후기</label>
                                                     <div class="col-md-9">
                                                         <textarea class="form-control" id="message" name="message"
-                                                            placeholder="상품평을 등록해주세요." rows="5"></textarea>
+                                                            placeholder="클래스 후기를 등록해주세요." rows="5"></textarea>
                                                     </div>
                                                 </div>
 
@@ -330,14 +322,14 @@
                     </div>
 
                     <hr>
-                    <c:forEach items="${list}" var="r" varStatus="i">
+                    <c:forEach items="${clsreqlist}" var="r">
                         <div class="media"
                             style="border-bottom: 0.3px solid rgba(0, 0, 0, 0.5)">
                             <div class="col-lg-1 text-center">
 
                                 <img src='${r.mentee.phot}' alt="singup" id="circle">
 
-                                ${r.mentee.nick}
+                                ddd${r.mentee.nick}
 
                             </div>
                             <div class="col-lg-11 media-body">${r.conts}</div>

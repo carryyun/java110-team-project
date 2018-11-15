@@ -163,10 +163,14 @@ public class ClassController {
   }
   
   @RequestMapping("findByCno")
-  public void findByCno(Model model, int no) {
-    List<ClassRep> clsdetail = classrepService.listbycno(no);
+  public void findByCno(Model model,int no) {
+    List<ClassRep> clsreqlist = classrepService.listbycno(no);
     
-    model.addAttribute("clsdetaillist",clsdetail);
+    Classes detailclass = classService.findAllBycno(no);
+    
+    model.addAttribute("clsreqlist",clsreqlist);
+    model.addAttribute("detailclass",detailclass);
+    
   }
   
   @RequestMapping("findByptno")
