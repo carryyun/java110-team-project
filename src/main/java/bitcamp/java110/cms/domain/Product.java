@@ -24,21 +24,14 @@ public class Product {
   private Cert cert;
   private SmallTag smalltag;
   private String middleTagName;
-<<<<<<< HEAD
-  
-=======
 
->>>>>>> 8a7e6d1ef4de8931e6c6c4b4e9236d54d74f8340
   public ClassRep getClassRep() {
     return classRep;
   }
 
   public void setClassRep(ClassRep classRep) {
     this.classRep = classRep;
-<<<<<<< HEAD
-=======
 
->>>>>>> 8a7e6d1ef4de8931e6c6c4b4e9236d54d74f8340
   }
 
   public String getMiddleTagName() {
