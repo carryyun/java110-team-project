@@ -29,8 +29,12 @@ public class ProductController {
   ProductRepService productRepSerivce;
   ServletContext sc;
 
-  public ProductController(ProductService productService, BigTagService bigTagService,
-      MiddleTagService middleTagService, ProductPopulService productPopulService,
+  public ProductController(
+      ProductService productService, 
+      BigTagService bigTagService,
+      MiddleTagService middleTagService, 
+      ProductPopulService productPopulService,
+      ProductRepService productRepSerivce,
       ServletContext sc) {
     this.productService = productService;
     this.bigTagService = bigTagService;
