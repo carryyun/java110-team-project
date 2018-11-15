@@ -51,7 +51,7 @@ public class ClassServiceImpl implements ClassService{
   }
 
   @Override
-  public List<Classes> findbyptno(int ptno) {
+  public Classes findbyptno(int ptno) {
     
     return classDao.findByptno(ptno);
   }

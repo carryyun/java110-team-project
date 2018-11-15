@@ -175,7 +175,7 @@ public class ClassController {
   
   @RequestMapping("findByptno")
   public void findByptno(Model model,int no) {
-    List<Classes> prdtcls = classService.findbyptno(no);
+    Classes prdtcls = classService.findbyptno(no);
     
     model.addAttribute("prdtcls",prdtcls);
   }
