@@ -39,7 +39,7 @@
 							<label for="name"> 이름 </label>
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-				                    <input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name"/>
+				                    <input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name" max=20/>
 							</div>
 						</div>
 
@@ -47,25 +47,23 @@
 							<label for="email">이메일</label>
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" id="useremail" placeholder="Enter your Email"/>
+									<input type="text" class="form-control" id="useremail" oninput="checkemail()" placeholder="Enter your Email"/>
 							</div>
-							<input type="button" id="emailcheck" value="중복체크" onclick="checkemail()"/>
 						</div>
 
 						<div class="form-group">
 							<label for="username">닉네임</label>
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" id="usernick" name="username" placeholder="Enter your Username"/>
+									<input type="text" class="form-control" id="usernick" oninput="checknick()" placeholder="Enter your Username"/>
 								</div>
-							<input id="niccheck" type="button" name="niccheck" value="중복체크" >
 						</div>
 
 						<div class="form-group">
 							<label for="password">비밀번호</label>
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" name="pwd" placeholder="Enter your Password"/>
+									<input type="password" class="form-control" id="pass" oninput="checkPwd()" placeholder="Enter your Password"/>
 								</div>
 						</div>
 
@@ -73,13 +71,12 @@
 							<label for="confirm">비밀번호 확인</label>
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" name="confirm" placeholder="Confirm your Password"/>
+									<input type="password" class="form-control" id="repwd" oninput="checkPwd()" placeholder="Confirm your Password"/>
 								</div>
 						</div>
                         <div class="selecct-but">
-				            <input id="signupbtn" type="button" name="signup" value="회원 등록 완료"
-				            	onclick="location.href='../auth/form.jsp'";>
-				            <button id="backbtn" type="submit">뒤로 가기</button>
+				            <button type="submit" class="signupbtn" disabled="disabled" oninput="signupCheck()">Sign Up</button>
+				            <button id="backbtn" onclick="location.href='../auth/form.jsp'">Go Home</button>
 						</div>
 					</form>
 				</div><!--main-center"-->
@@ -90,16 +87,113 @@
 
 <script>
 var idCheck = 0;
-var nickCheck = 0;	
 var pwdCheck = 0;
-function checkemail(){
-    console.log($("#useremail").val());
-    if($("#useremail").val() == ${checkemail} ){
-        alert("ㅇㅇ");
-    } else {
-        alert("ㄴㄴ");
+var nickCheck = 0;
+
+function checknick(){
+	var inputed2 = $("#usernick").val();
+	console.log(inputed2);
+	$.ajax({
+		data : {
+			nick : inputed2
+		},
+		url : "checknick.do",
+		success : function(data){
+			console.log(data);
+			if(inputed2=="" && data == '0'){
+				$(".signupbtn").prop("disabled", true);
+                $(".signupbtn").css("background-color", "#aaaaaa");
+				$("#usernick").css("background-color", "#BEF781");
+				nickCheck = 0;
+			}else if(data =='0'){
+				$("#usernick").css("background-color", "#BEF781");
+				nickCheck = 1;
+				if(idCheck==1 && pwdCheck == 1 && nickCheck == 1) {
+                    $(".signupbtn").prop("disabled", false);
+                    $(".signupbtn").css("background-color", "#4CAF50");
+                    signupCheck();
+                } 
+			}else if(data =='1'){
+				$(".signupbtn").prop("disabled", true);
+                $(".signupbtn").css("background-color", "#aaaaaa");
+				$("#usernick").css("background-color", "#FA5858");
+				nickCheck = 0;
+			}
+			
+		}
+	});
+}
+
+function checkemail() {
+    var inputed = $("#useremail").val();
+    $.ajax({
+        data : {
+            email : inputed,
+        },
+        url : "checkemail.do",
+        success : function(data) {
+            if(inputed=="" && data=='0') {
+                $(".signupbtn").prop("disabled", true);
+                $(".signupbtn").css("background-color", "#aaaaaa");
+                $("#useremail").css("background-color", "#BEF781");
+                idCheck = 0;
+            } else if (data == '0') {
+                $("#useremail").css("background-color", "#BEF781");
+                idCheck = 1;
+                if(idCheck==1 && pwdCheck == 1 && nickCheck == 1) {
+                    $(".signupbtn").prop("disabled", false);
+                    $(".signupbtn").css("background-color", "#4CAF50");
+                    signupCheck();
+                } 
+            } else if (data == '1') {
+                $(".signupbtn").prop("disabled", true);
+                $(".signupbtn").css("background-color", "#aaaaaa");
+                $("#useremail").css("background-color", "#FA5858");
+                idCheck = 0;
+            } 
+        }
+    });
+}
+
+function checkPwd() {
+    var inputed = $('#pass').val();
+    var reinputed = $('#repwd').val();
+    if(reinputed=="" && (inputed != reinputed || inputed == reinputed)){
+        $(".signupbtn").prop("disabled", true);
+        $(".signupbtn").css("background-color", "#aaaaaa");
+        $("#repwd").css("background-color", "#FFCECE");
+    }
+    else if (inputed == reinputed) {
+        $("#repwd").css("background-color", "#B0F6AC");
+        pwdCheck = 1;
+        if(idCheck==1 && pwdCheck == 1 && nickCheck ==1) {
+            $(".signupbtn").prop("disabled", false);
+            $(".signupbtn").css("background-color", "#4CAF50");
+            signupCheck();
+        }
+    } else if (inputed != reinputed) {
+        pwdCheck = 0;
+        $(".signupbtn").prop("disabled", true);
+        $(".signupbtn").css("background-color", "#aaaaaa");
+        $("#repwd").css("background-color", "#FFCECE");
+        
     }
 }
+
+//닉네임과 이메일 입력하지 않았을 경우 가입버튼 비활성화
+function signupCheck() {
+    var nickname = $("#nickname").val();
+    var email = $("#email").val();
+    var pwd = $("#pass").val();
+    var repwd = $("#repwd").val();
+    var name = $("#name").val();
+    if(nickname=="" || email=="" || name=="" || pwd=="" || repwd=="") {
+        $(".signupbtn").prop("disabled", true);
+        $(".signupbtn").css("background-color", "#aaaaaa");
+    } else {
+    }
+}
+
 
 
 </script>

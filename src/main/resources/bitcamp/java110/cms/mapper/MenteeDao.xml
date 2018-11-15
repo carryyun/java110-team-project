@@ -27,6 +27,20 @@
         <result column="mtstat"   property="mtstat"/>
     </resultMap>
     
+    <select id="checkemail"
+    parameterType="Mentee"
+    resultType="java.lang.Integer">
+    SELECT COUNT(*)
+    FROM p_mete p WHERE p.email=#{email}
+	</select>
+	
+	<select id="checknick"
+    parameterType="Mentee"
+    resultType="java.lang.Integer">
+    SELECT COUNT(*)
+    FROM p_mete p WHERE p.nick=#{nick}
+	</select>
+    
     <select id="findAll" resultMap="menteeMap">
         select
             meno,
