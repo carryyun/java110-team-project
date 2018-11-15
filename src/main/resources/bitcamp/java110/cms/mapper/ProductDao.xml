@@ -48,7 +48,7 @@
     p.star,
     p.rgdt,
     p.stock,
-    p.phot,
+    p.phot as pp,
     p.meno,
     p.ctno,
     p.stno,
@@ -68,7 +68,6 @@ from
     join p_cert cert
     join p_stag stag
     JOIN p_mtag mtag
-    join p_cls pcls
 ON
     p.meno=mete.meno AND
     p.ctno=cert.ctno AND
@@ -119,7 +118,7 @@ ON
     stag.mtno = mtag.mtno AND
     pcls.cno= cert.cno 
 where
-            ptno=#{value}
+    ptno=#{value}
     </select>
     
     <select id="findAllByMeno" 
