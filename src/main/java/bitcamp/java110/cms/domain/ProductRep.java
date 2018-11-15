@@ -13,6 +13,17 @@ public class ProductRep {
   private int star; // 별점
   private Date rgdt; // 등록일
   private String phot; // 사진
+  private Mentee mentee;
+
+
+
+  public Mentee getMentee() {
+    return mentee;
+  }
+
+  public void setMentee(Mentee mentee) {
+    this.mentee = mentee;
+  }
 
   public int getNo() {
     return no;

@@ -20,7 +20,13 @@ public class Classes {
   private Date edt;
   private int mono;
   private int mtno;
-
+  private int star;
+  
+  private Mentee mentee;
+  private MiddleTag middleTag;
+  private Mentor mentor;
+  private ClassFile classFile;
+  
   public Date getRgdt() {
     return rgdt;
   }
@@ -116,5 +122,35 @@ public class Classes {
   }
   public void setMono(int mono) {
     this.mono = mono;
+  }
+  public Mentee getMentee() {
+    return mentee;
+  }
+  public void setMentee(Mentee mentee) {
+    this.mentee = mentee;
+  }
+  public MiddleTag getMiddleTag() {
+    return middleTag;
+  }
+  public void setMiddleTag(MiddleTag middleTag) {
+    this.middleTag = middleTag;
+  }
+  public Mentor getMentor() {
+    return mentor;
+  }
+  public void setMentor(Mentor mentor) {
+    this.mentor = mentor;
+  }
+  public ClassFile getClassFile() {
+    return classFile;
+  }
+  public void setClassFile(ClassFile classFile) {
+    this.classFile = classFile;
+  }
+  public int getStar() {
+    return star;
+  }
+  public void setStar(int star) {
+    this.star = star;
   }
 }

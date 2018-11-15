@@ -6,107 +6,109 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bitcamp.java110.cms.dao.ProductRepDao">
 
-    <resultMap type="productRep" id="productRepMap">
-        <id column="rno"        property="no"/>
-        <result column="meno"   property="meno"/>
-        <result column="ptno"   property="ptno"/>
-        <result column="titl"   property="titl"/>
-        <result column="conts"   property="conts"/>
-        <result column="star"   property="star"/>
-        <result column="rgdt"   property="rgdt"/>
-        <result column="phot"   property="phot"/>
-    </resultMap>
-    
-    <select id="findAll" resultMap="productRepMap">
-        select
-            rno,
-            meno,
-            ptno,
-            titl,
-            conts,
-            star,
-            rgdt,
-            phot
-        from 
-            p_prdt_rep
-        order by 
-            rno asc
-    </select>
+	<resultMap type="productRep" id="productRepMap">
+		<id column="rno" property="no" />
+		<result column="conts" property="conts" />
+		<result column="rgdt" property="rgdt" />
+		<result column="pp" property="phot" />
+		<result column="ptno" property="ptno" />
 
-    <select id="findByNo" 
-            resultMap="productRepMap" parameterType="int">
-        select
-            rno,
-            meno,
-            ptno,
-            titl,
-            conts,
-            star,
-            rgdt,
-            phot
-        from
-            p_prdt_rep
-        where 
-            rno=#{value}
-    </select>
-    
-    <select id="findAllByMeno" 
-            resultMap="productRepMap" parameterType="Map">
-        select
-            rno,
-            meno,
-            ptno,
-            titl,
-            conts,
-            star,
-            rgdt,
-            phot
-        from
-            p_prdt_rep
-        where 
-            meno=#{mentno}
-    </select>
-    
-    
-    <select id="findAllByPtno" 
-            resultMap="productRepMap" parameterType="Map">
-        select
-            rno,
-            meno,
-            ptno,
-            titl,
-            conts,
-            star,
-            rgdt,
-            phot
-        from
-            p_prdt_rep
-        where 
-            ptno=#{productno}
-    </select>
-    
-    
-    <insert id="insert" parameterType="productRep"
-            useGeneratedKeys="true" keyColumn="rno" keyProperty="no">
-        insert into p_prdt_rep(meno,ptno,titl,conts,star,rgdt,phot)
-        values(#{meno},#{ptno},#{titl},#{conts},#{star},now(),#{phot})
-    </insert> 
-    
-    <update id="update" parameterType="productRep">
-    update p_prdt_rep
-    
-    <set> 
-        <if test="titl!=null"> titl= #{titl},</if>
-        <if test="conts!=null"> conts=#{conts},</if>
-        <if test="star>0"> star= #{star},</if><!-- star - 1단위/1점 부터  -->
-        <if test="phot!=null">phot=#{phot}</if>
-        
-        
-    </set>
-        where
-            rno=#{no}
-    </update>
-    
-   
+		<result column="nick" property="mentee.nick" />
+		<result column="mp" property="mentee.phot" />
+
+	</resultMap>
+
+	<select id="findAllByPtno" resultMap="productRepMap"
+		parameterType="int">
+		SELECT
+		pr.rno,
+		pr.conts,
+		pr.rgdt,
+		pr.phot as pp,
+		mete.nick,
+		mete.phot as mp
+		FROM p_prdt_rep pr
+		join p_mete mete
+		on
+		pr.meno = mete.meno and
+		pr.ptno = #{value}
+	</select>
+
+
+
+
+	<select id="findAll" resultMap="productRepMap">
+		select
+		rno,
+		meno,
+		ptno,
+		titl,
+		conts,
+		star,
+		rgdt,
+		phot
+		from
+		p_prdt_rep
+		order by
+		rno asc
+	</select>
+
+	<select id="findByNo" resultMap="productRepMap"
+		parameterType="int">
+		select
+		rno,
+		meno,
+		ptno,
+		titl,
+		conts,
+		star,
+		rgdt,
+		phot
+		from
+		p_prdt_rep
+		where
+		rno=#{value}
+	</select>
+
+	<select id="findAllByMeno" resultMap="productRepMap"
+		parameterType="Map">
+		select
+		rno,
+		meno,
+		ptno,
+		titl,
+		conts,
+		star,
+		rgdt,
+		phot
+		from
+		p_prdt_rep
+		where
+		meno=#{mentno}
+	</select>
+
+
+	<insert id="insert" parameterType="productRep"
+		useGeneratedKeys="true" keyColumn="rno" keyProperty="no">
+		insert into p_prdt_rep(meno,ptno,titl,conts,star,rgdt,phot)
+		values(#{meno},#{ptno},#{titl},#{conts},#{star},now(),#{phot})
+	</insert>
+
+	<update id="update" parameterType="productRep">
+		update p_prdt_rep
+
+		<set>
+			<if test="titl!=null"> titl= #{titl},</if>
+			<if test="conts!=null"> conts=#{conts},</if>
+			<if test="star>0"> star= #{star},</if><!-- star - 1단위/1점 부터 -->
+			<if test="phot!=null">phot=#{phot}</if>
+
+
+		</set>
+		where
+		rno=#{no}
+	</update>
+
+
 
 </mapper>

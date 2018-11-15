@@ -1,6 +1,5 @@
 package bitcamp.java110.cms.service.impl;
 
-import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,20 +31,23 @@ public class ClassServiceImpl implements ClassService{
   }
   
   @Override
-  public List<Classes> classlist(int pageSize){
-    HashMap<String, Object> params = new HashMap<>();
-    params.put("size", pageSize);
-    
-    
-    return classDao.findAll(params);
-  }
+  public List<Classes> list(){
 
-  @Override
-  public Classes get(int no) {
-    
-    return classDao.findByNo(no);
+    return classDao.findAllList();
   }
 
   
+  @Override
+  public Classes get(int no) {
+    
+    return classDao.findByCno(no);
+  }
+
+
+  @Override
+  public List<Classes> classlist(int no) {
+    // TODO Auto-generated method stub
+    return null;
+  }
   
 }
