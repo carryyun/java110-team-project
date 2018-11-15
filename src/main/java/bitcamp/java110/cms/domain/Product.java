@@ -14,39 +14,22 @@ public class Product {
   private int meno; // 판매자번호
   private int ctno; // 인증서번호
   private int stno; // 소분류번호
-<<<<<<< HEAD
-  private int star; // 별점
-  
-=======
+
   private int deli; // 택배비
   private int star; // 별점
 
->>>>>>> 722fdaa1d50ff13ed27443aa8029f125b44a9023
   private Mentee mentee;
   private ClassRep classRep;
   private Cert cert;
   private SmallTag smalltag;
   private String middleTagName;
-
-<<<<<<< HEAD
   
-  
-  public int getStar() {
-    return star;
-  }
-
-  public void setStar(int star) {
-    this.star = star;
-=======
-
-
   public ClassRep getClassRep() {
     return classRep;
   }
 
   public void setClassRep(ClassRep classRep) {
     this.classRep = classRep;
->>>>>>> 722fdaa1d50ff13ed27443aa8029f125b44a9023
   }
 
   public String getMiddleTagName() {
