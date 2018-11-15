@@ -19,6 +19,11 @@ public class ProductRepServiceImpl implements ProductRepService {
   @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 
   @Override
+  public List<ProductRep> listByPtno(int ptno) {
+    return productRepDao.findAllByPtno(ptno);
+  }
+  
+  @Override
   public List<ProductRep> list(int pageNo, int pageSize) {
 
     HashMap<String, Object> params = new HashMap<>();
@@ -28,13 +33,6 @@ public class ProductRepServiceImpl implements ProductRepService {
     return productRepDao.findAll(params);
 
   }
-
-  @Override
-  public ProductRep get(int no) {
-
-    return productRepDao.findByNo(no);
-  }
-
 
   @Override
   public List<ProductRep> listByMeno(int pageNo, int pageSize, int meno) {
@@ -47,15 +45,7 @@ public class ProductRepServiceImpl implements ProductRepService {
   }
 
 
-  @Override
-  public List<ProductRep> listByPtno(int pageNo, int pageSize, int ptno) {
-    HashMap<String, Object> params = new HashMap<>();
-    params.put("rowNo", (pageNo - 1) * pageSize);
-    params.put("size", pageSize);
-    params.put("productno", ptno);
-
-    return productRepDao.findAllByPtno(params);
-  }
+ 
 
   @Override
   public int add(ProductRep productRep) {
@@ -65,6 +55,12 @@ public class ProductRepServiceImpl implements ProductRepService {
   @Override
   public int update(ProductRep productRep) {
     return productRepDao.update(productRep);
+  }
+
+  @Override
+  public ProductRep get(int no) {
+    // TODO Auto-generated method stub
+    return null;
   }
 
 }
