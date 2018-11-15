@@ -13,15 +13,6 @@ public class AuthInterceptor implements HandlerInterceptor {
   @Autowired BigTagDao bigTagDao;
   @Autowired MiddleTagDao middleTagDao;
   
-/*  public AuthInterceptor(
-      BigTagService bigTagService,
-      MiddleTagService middleTagService
-      ) {
-    this.bigTagService=bigTagService;
-    this.middleTagService=middleTagService;
-    System.out.println("auto");
-  }*/
-  
   @Override
   public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
     ModelAndView modelAndView) throws Exception {

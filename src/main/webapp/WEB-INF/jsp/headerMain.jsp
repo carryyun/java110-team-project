@@ -28,21 +28,21 @@
             <li class="nav-item">
              <div id="row">
                <a class="nav-link" href="index.html">
-              <img src="/upload/img/julme.PNG" alt="singup"><br>로그인
+              <img src="/upload/img/julme.png" alt="singup"><br>로그인
                </a>
              </div>
             </li>
             <li class="nav-item">
             <div id="row">
               <a class="nav-link" href="about.html">
-              <img src="/upload/img/julme.PNG" alt="basket"><br>장바구니
+              <img src="/upload/img/julme.png" alt="basket"><br>장바구니
               </a>
               </div>
             </li>
             <li class="nav-item">
             <div id="row">
               <a class="nav-link" href="post.html">
-              <img src="/upload/img/julme.PNG" alt="like"><br>찜클래스
+              <img src="/upload/img/julme.png" alt="like"><br>찜클래스
               </a>
               </div>
             </li>
