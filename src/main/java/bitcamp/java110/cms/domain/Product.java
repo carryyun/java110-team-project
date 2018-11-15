@@ -2,7 +2,7 @@ package bitcamp.java110.cms.domain;
 
 import java.sql.Date;
 
-//공예품
+// 공예품
 public class Product {
   private int no; // 공예품번호
   private String titl; // 제목
@@ -14,16 +14,26 @@ public class Product {
   private int meno; // 판매자번호
   private int ctno; // 인증서번호
   private int stno; // 소분류번호
-  
+
+  private int deli; // 택배비
+  private int star; // 별점
+  private Classes classes; // 클래스정보
+
   private Mentee mentee;
+  private ClassRep classRep;
   private Cert cert;
   private SmallTag smalltag;
-  
   private String middleTagName;
-  
 
-  
-  
+  public ClassRep getClassRep() {
+    return classRep;
+  }
+
+  public void setClassRep(ClassRep classRep) {
+    this.classRep = classRep;
+
+  }
+
   public String getMiddleTagName() {
     return middleTagName;
   }
@@ -134,6 +144,30 @@ public class Product {
 
   public void setStno(int stno) {
     this.stno = stno;
+  }
+
+  public int getDeli() {
+    return deli;
+  }
+
+  public void setDeli(int deli) {
+    this.deli = deli;
+  }
+
+  public int getStar() {
+    return star;
+  }
+
+  public void setStar(int star) {
+    this.star = star;
+  }
+
+  public Classes getClasses() {
+    return classes;
+  }
+
+  public void setClasses(Classes classes) {
+    this.classes = classes;
   }
 
 

@@ -11,8 +11,11 @@ public interface MenteeService {
   // 멘티 번호로 조회
   Mentee get(int no); 
   
-  // 이메일로 조회
-  List<Mentee> listByEmail(int pageNo, int pageSize, String email); 
+  // 회원 가입시 이메일중복 체크
+  int checkByEmail(Mentee mentee); 
+  
+  // 회원 가입시 닉네임중복 체크
+  int checkByNick(Mentee mentee);
   
   // 닉네임으로 조회
   List<Mentee> listByNick(int pageNo, int pageSize, String nick);

@@ -35,14 +35,16 @@ public class MenteeServiceImpl implements MenteeService {
   }
 
 
+  // 회원가입시 이메일 중복체크에 필요한메소드
   @Override
-  public List<Mentee> listByEmail(int pageNo, int pageSize, String email) {
-    HashMap<String, Object> params = new HashMap<>();
-    params.put("rowNo", (pageNo - 1) * pageSize);
-    params.put("size", pageSize);
-    params.put("paramEmail", email);
-
-    return menteeDao.findAllByEmail(params);
+  public int checkByEmail(Mentee mentee) {
+    return menteeDao.checkemail(mentee);
+  }
+  
+  // 회원가입시 닉네임 중복체크에 필요한메소드
+  @Override
+  public int checkByNick(Mentee mentee) {
+    return menteeDao.checknick(mentee);
   }
 
 
@@ -68,7 +70,7 @@ public class MenteeServiceImpl implements MenteeService {
 
   @Override
   public void add(Mentee mentee) {
-    menteeDao.insert(mentee);
+    menteeDao.signup(mentee);
   }
 
   @Transactional

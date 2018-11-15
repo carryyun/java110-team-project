@@ -1,3 +1,6 @@
+
+     
+     
         *{
             margin: 0 auto;
         }
@@ -71,7 +74,6 @@
 	text-indent: 0;
 }
 /* radio */
-
 .box label {
     position:relative;
     cursor:pointer;
@@ -80,6 +82,7 @@
     display:none;
 }
 .box label span {
+	text-align: center;
     position:relative;
     display:inline-block;
     margin: 0;
@@ -123,7 +126,7 @@
     border-color:#62ff00;
     box-shadow: inset 0 0 10px #62ff00; */
     color : white;
-    background-color : pink;
+    background-color : aquamarine;
 }
 
 .box label input:checked ~ span.yes:before,
@@ -136,12 +139,15 @@
     border-color:#ff0000;
     box-shadow: inset 0 0 10px #ff0000; */
     color : white;
-    background-color : pink;
+    background-color : aquamarine;
 }
 
 .box label input:checked ~ span.no:before,
 .box label input:checked ~ span.no:after {
     /* background:#ff0000; */
+}
+.no{
+	margin-left:-2px;
 }
 /* radio */
         ul,li{
@@ -184,11 +190,18 @@
         	float:right;
         	transform: translateY(950%);
         }
-        img{
+        img.classimg{
             /* 클래스 소개사진 */
             width: 200px;
             height: 200px;
         }
+        
+	     img.starimg{
+	     /* 별 이미지 */
+	     	width: 20px;
+	     	height: 20px;
+	     }
+        
         .mentor{
             width: 50px;
             height: 50px;
@@ -213,10 +226,10 @@ body {
   backgroud-color: #E5EDF8 ;
   
 }
-img {
+/* img {
   max-width: 100%;
   max-width: 100%;
-}
+} */
 
 hr {
   border-color: #e5e5e5;
