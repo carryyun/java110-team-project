@@ -49,5 +49,11 @@ public class ClassServiceImpl implements ClassService{
     // TODO Auto-generated method stub
     return null;
   }
+
+  @Override
+  public List<Classes> findbyptno(int ptno) {
+    
+    return classDao.findByptno(ptno);
+  }
   
 }

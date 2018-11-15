@@ -12,6 +12,10 @@ public class ClassRep {
   private int star;
   private String phot;
   private Date rgdt;
+  
+  private Classes classes;
+  private Mentee mentee;
+  
   public int getNo() {
     return no;
   }
@@ -59,6 +63,18 @@ public class ClassRep {
   }
   public void setRgdt(Date rgdt) {
     this.rgdt = rgdt;
+  }
+  public Classes getClasses() {
+    return classes;
+  }
+  public void setClasses(Classes classes) {
+    this.classes = classes;
+  }
+  public Mentee getMentee() {
+    return mentee;
+  }
+  public void setMentee(Mentee mentee) {
+    this.mentee = mentee;
   }
   
 

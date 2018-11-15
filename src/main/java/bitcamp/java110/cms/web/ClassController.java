@@ -11,11 +11,13 @@ import bitcamp.java110.cms.domain.ClassBakt;
 import bitcamp.java110.cms.domain.ClassLike;
 import bitcamp.java110.cms.domain.ClassOrder;
 import bitcamp.java110.cms.domain.ClassQna;
+import bitcamp.java110.cms.domain.ClassRep;
 import bitcamp.java110.cms.domain.Classes;
 import bitcamp.java110.cms.service.ClassBaktService;
 import bitcamp.java110.cms.service.ClassLikeService;
 import bitcamp.java110.cms.service.ClassOrderService;
 import bitcamp.java110.cms.service.ClassQnaService;
+import bitcamp.java110.cms.service.ClassRepService;
 import bitcamp.java110.cms.service.ClassService;
 import bitcamp.java110.cms.service.MenteeService;
 
@@ -28,6 +30,7 @@ public class ClassController {
   ClassOrderService classorderService;
   ClassLikeService classlikeService;
   ClassBaktService classbaktService;
+  ClassRepService classrepService;
   MenteeService menteeService;
   ServletContext sc;
   
@@ -35,6 +38,7 @@ public class ClassController {
       ClassService classService,ClassQnaService classqnaService,
       ClassOrderService classorderService,ClassLikeService classlikeService
       ,ClassBaktService classbaktService,MenteeService menteeService,
+      ClassRepService classrepService,
       ServletContext sc) {
     this.classService = classService;
     this.classqnaService = classqnaService;
@@ -42,6 +46,7 @@ public class ClassController {
     this.classlikeService = classlikeService;
     this.classbaktService = classbaktService;
     this.menteeService = menteeService;
+    this.classrepService= classrepService;
     this.sc = sc;
   }
 
@@ -157,15 +162,19 @@ public class ClassController {
     model.addAttribute("clslist", clslist);
   }
   
-  @RequestMapping("classdetail")
-  public void classlist(Model model, int no) {
-    /*//<Classes> clsdetail = classService.
+  @RequestMapping("findByCno")
+  public void findByCno(Model model, int no) {
+    List<ClassRep> clsdetail = classrepService.listbycno(no);
     
-    model.addAttribute("class",classService.get(no));
-    
-    model.addAttribute("clsdetaillist",clsdetail);*/
+    model.addAttribute("clsdetaillist",clsdetail);
   }
   
+  @RequestMapping("findByptno")
+  public void findByptno(Model model,int no) {
+    List<Classes> prdtcls = classService.findbyptno(no);
+    
+    model.addAttribute("prdtcls",prdtcls);
+  }
   
   ////////////////////여기까지 p_cls 클래스////////////////////////
   

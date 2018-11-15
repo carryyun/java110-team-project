@@ -9,6 +9,6 @@ public interface ClassRepService {
 //  int repDelete(ClassRep classRep);
 //  int repChange(ClassRep classRep);
   List<ClassRep> repList();
-  
+  List<ClassRep> listbycno(int cno);
   
 }
