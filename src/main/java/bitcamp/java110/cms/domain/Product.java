@@ -17,19 +17,28 @@ public class Product {
 
   private int deli; // 택배비
   private int star; // 별점
+  private Classes classes; // 클래스정보
 
   private Mentee mentee;
   private ClassRep classRep;
   private Cert cert;
   private SmallTag smalltag;
   private String middleTagName;
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> 8a7e6d1ef4de8931e6c6c4b4e9236d54d74f8340
   public ClassRep getClassRep() {
     return classRep;
   }
 
   public void setClassRep(ClassRep classRep) {
     this.classRep = classRep;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8a7e6d1ef4de8931e6c6c4b4e9236d54d74f8340
   }
 
   public String getMiddleTagName() {
@@ -160,7 +169,14 @@ public class Product {
     this.star = star;
   }
 
-  
+  public Classes getClasses() {
+    return classes;
+  }
+
+  public void setClasses(Classes classes) {
+    this.classes = classes;
+  }
+
 
 
 }

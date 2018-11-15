@@ -31,11 +31,8 @@ public class ProductController {
   ProductRepService productRepSerivce;
   ServletContext sc;
 
-  public ProductController(
-      ProductService productService,
-      BigTagService bigTagService,
-      MiddleTagService middleTagService,
-      ProductPopulService productPopulService,
+  public ProductController(ProductService productService, BigTagService bigTagService,
+      MiddleTagService middleTagService, ProductPopulService productPopulService,
       ServletContext sc) {
     this.productService = productService;
     this.bigTagService = bigTagService;
@@ -50,53 +47,55 @@ public class ProductController {
     List<BigTag> BTlist = bigTagService.list();
     List<MiddleTag> MTlist = middleTagService.list();
     List<Product> product_list = productService.list();
-    
-    List<ProductPopul> pp_list = productPopulService.list();
-    List<Product> pp_product=new ArrayList<>();
 
-    for (ProductPopul p: pp_list ) {
+    List<ProductPopul> pp_list = productPopulService.list();
+    List<Product> pp_product = new ArrayList<>();
+
+    for (ProductPopul p : pp_list) {
       pp_product.add(p.getProduct());
     }
 
+
     ObjectMapper mapper = new ObjectMapper();
-    String jsonText="";
+    String jsonText = "";
     try {
 
-      jsonText = mapper.writeValueAsString( pp_product );
-      model.addAttribute("pp_list", jsonText );
+      jsonText = mapper.writeValueAsString(pp_product);
+      model.addAttribute("pp_list", jsonText);
       System.out.println(jsonText);
 
     } catch (JsonProcessingException e) {
       System.out.println(e.getMessage());
     }
-/*    model.addAttribute("BTlist",BTlist);
-    model.addAttribute("MTlist",MTlist);*/
-    model.addAttribute("product_list",product_list);
-    model.addAttribute("pp_list",jsonText);
-    
+    /*
+     * model.addAttribute("BTlist",BTlist); model.addAttribute("MTlist",MTlist);
+     */
+    model.addAttribute("product_list", product_list);
+    model.addAttribute("pp_list", jsonText);
+
   }
 
   @GetMapping("test")
   public void test() {
-    
+
   }
 
 
   @GetMapping("detail")
   public void detail(Model model) {
 
-    List<ProductRep> list = productRepSerivce.listByPtno(2);
+    List<ProductRep> replyList = productRepSerivce.listByPtno(2);
     /*
      * for(ProductRep p : list) { System.out.println(p.getConts());
      * System.out.println(p.getMentee().getNick()); System.out.println(p.getMentee().getPhot()); }
      */
-    System.out.println(productService.get(1).getStar());
+
 
     model.addAttribute("product", productService.get(1));
     // product - 웹에서 쓸 이름(아무거나 써도됨)
-    model.addAttribute("list", list);
+    model.addAttribute("replyList", replyList);
   }
-  
+
   @RequestMapping("P")
   public String P() {
     return "redirect:../product/prdt";
