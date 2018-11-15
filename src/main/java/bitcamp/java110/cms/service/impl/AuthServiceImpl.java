@@ -84,7 +84,7 @@ public class AuthServiceImpl implements AuthService {
     mentee.setPwd("1111");
     mentee.setPhone("12345-12345");
     mentee.setNick("테스트11");
-    menteeDao.insert(mentee);
+    menteeDao.signup(mentee);
 
     return mentee;
   }
@@ -144,7 +144,7 @@ public class AuthServiceImpl implements AuthService {
       m.setPwd("1111");
       m.setPhone("1111-22223");
 
-      menteeDao.insert(m);
+      menteeDao.signup(m);
 
       return m;
 
@@ -184,7 +184,7 @@ public class AuthServiceImpl implements AuthService {
       m.setPwd("1111");
       m.setPhone("1111-22224");
 
-      menteeDao.insert(m);
+      menteeDao.signup(m);
 
       return m;
 

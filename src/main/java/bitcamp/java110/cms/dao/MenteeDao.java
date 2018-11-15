@@ -6,7 +6,7 @@ import java.util.Map;
 import bitcamp.java110.cms.domain.Mentee;
 
 public interface MenteeDao {
-  int insert(Mentee mentee);
+  int signup(Mentee mentee);
 
   int delete(int no);
 
@@ -14,7 +14,7 @@ public interface MenteeDao {
 
   Mentee findByNo(int no); // 멘티 번호
 
-  List<Mentee> findAllByEmail(Map<String, Object> params); // 이메일
+  List<Mentee> findAllByEmail(String email); // 이메일
 
   List<Mentee> findAllByNick(Map<String, Object> params); // 닉네임
 
