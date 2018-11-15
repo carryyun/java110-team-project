@@ -3,6 +3,10 @@ nav.navbar{
     padding: 0;
     z-index: 9;
 }
+#categoryNav{
+  /* 카테고리 가로정렬 ? */
+  margin: 0 auto;
+}
 #categoryNav > .navbar-nav{
   /* 카테고리 세로정렬 ? */
   display: flex;

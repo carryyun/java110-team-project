@@ -621,7 +621,7 @@ footer .copyright {
 }
 
 /* navbar*/
-#main-nav {
+/* #main-nav {
     margin-top: 0.5%;
     margin-bottom: 0.5%;
 }
@@ -719,7 +719,7 @@ a.nav-link {
     animation-delay: 3.0s;
 }
 
-/* Animation */
+Animation
 
 @keyframes fadeInUp {
     from {
@@ -758,4 +758,4 @@ a.nav-link {
     opacity: 0;
     animation-name: fadeInUp;
     -webkit-animation-name: fadeInUp;
-}
+} */

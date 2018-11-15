@@ -34,6 +34,7 @@ public class ProductController {
       MiddleTagService middleTagService,
       ProductPopulService productPopulService,
       ServletContext sc) {
+    System.out.println("controller");
     this.productService = productService;
     this.bigTagService = bigTagService;
     this.middleTagService=middleTagService;
@@ -43,12 +44,15 @@ public class ProductController {
   
   @GetMapping("prdt")
   public void prdt(Model model) {
-    List<BigTag> list = bigTagService.list();
-    List<MiddleTag> list2 = middleTagService.list();
+    List<BigTag> BTlist = bigTagService.list();
+    List<MiddleTag> MTlist = middleTagService.list();
     List<Product> product_list = productService.list();
     
     List<ProductPopul> pp_list = productPopulService.list();
     List<Product> pp_product=new ArrayList<>();
+    
+
+    
     for (ProductPopul p: pp_list ) {
       pp_product.add(p.getProduct());
     }
@@ -63,13 +67,17 @@ public class ProductController {
     }
     
 
-    model.addAttribute("list",list);
-    model.addAttribute("list2",list2);
+/*    model.addAttribute("BTlist",BTlist);
+    model.addAttribute("MTlist",MTlist);*/
     model.addAttribute("product_list",product_list);
     model.addAttribute("pp_list",jsonText);
     
   }
 
+  @GetMapping("test")
+  public void test() {
+    
+  }
   
   @RequestMapping("P")
   public String P() {

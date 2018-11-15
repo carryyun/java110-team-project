@@ -21,33 +21,33 @@
     </head>
     <!-- Category Navigation -->
     <hr class="Fhr">
-    <center>
+    
     <nav class="navbar navbar-expand-lg">
         <div class="navbar-nav" id="categoryNav">
-          <ul class="navbar-nav mx-auto" id="mainUl">
-            <c:forEach  items="${list}" var="list" varStatus="i">
-              <li class="nav-item">
-                <a class="nav-link" href="index.html" id="menu0${i.count}">${list.name}</a>
+          <ul class="navbar-nav" id="mainUl" style="float: left;">
+            <c:forEach  items="${BTlist}" var="bt" varStatus="i">
+              <li class="nav-item" style="margin:0 auto;display: inline-block;">
+                <a class="nav-link" href="index.html" id="menu0${i.count}">${bt.name}</a>
               </li>
             </c:forEach>
           </ul>
         </div>
     </nav>
-    </center>
+    
     <hr class="Fhr">
     
     <div class="col px-0">
     <div id="menusubs" class="menusubs">
-    <c:forEach  items="${list}" var="list" varStatus="i">
+    <c:forEach  items="${BTlist}" var="bt" varStatus="i">
     
     <ul id="menu0${i.count}_sub" class="localNav col"> 
     
-              <c:forEach  items="${list2}" varStatus="j">
+              <c:forEach  items="${MTlist}" varStatus="j">
               
-                 <c:if test="${list.no == list2[j.index].bigTag.no}">
+                 <c:if test="${bt.no == MTlist[j.index].bigTag.no}">
                  <li>
                  <a href="#">
-                     ${list2[j.index].name}
+                     ${MTlist[j.index].name}
                  </a>
                  </li>
                  </c:if>

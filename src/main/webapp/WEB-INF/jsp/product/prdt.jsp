@@ -40,15 +40,14 @@
   <body>
     <div id="wrap" style="background-color: #fff">
     <div class="col" style="position:absolute; height: 105px; background-color: white">
-    
+    <!-- 헤더 배경색 적용 -->
     </div>
     
     <div class="container" style="background-color: white">
-    <!-- Header (스크립트로 임시 inclue) -->
-    <div class="row">
+	    <!-- Header (스크립트로 임시 inclue) -->
+	    <div class="row">
         <div class="col-lg-12">
-        <%-- <jsp:include page="../header.jsp"></jsp:include> --%>
-        <jsp:include page="headerMain.jsp"></jsp:include>
+        <jsp:include page="../headerMain.jsp"></jsp:include>
         </div>
      
          
@@ -58,11 +57,10 @@
     </header>
     
     
-    <!-- 카테고리 nav (스크립트로 임시 inclue) -->
-    <div class="col mb-3">
-    <jsp:include page="headerNav.jsp"></jsp:include>
-    <!-- <div id="headerNav"></div> -->
-    </div>
+	    <!-- 카테고리 nav (스크립트로 임시 inclue) -->
+	    <div class="col-lg-12">
+	    <jsp:include page="../headerNav.jsp"></jsp:include>
+	    </div>
 
     <!-- Main Content -->
 <div class="container col-lg-12" style="background-color: #white">
@@ -71,8 +69,8 @@
         <div class="col">
         <h2>카테고리</h2>
               <ul>
-               <c:forEach  items="${list}" var="m">
-                    <li><a href="#">${m.name}</a></li>
+               <c:forEach  items="${BTlist}" var="bt">
+                    <li><a href="#">${bt.name}</a></li>
                 </c:forEach>
               </ul>
         </div>
@@ -83,6 +81,9 @@
 	<div class="row">
 	<div class="col">
 	    <h2>오늘의 핫 아이템</h2>
+	    <c:forEach  items="${blist}" var="bb">
+                    <li><a href="#">${bb.name}</a></li>
+                </c:forEach>
         <div id="owl-hotItem" class="owl-carousel col-lg-10 mt-2"  style="margin:0 auto">
             
         </div>
@@ -121,15 +122,26 @@
 				</div>
 				<div class="product-description">
 					<!-- 제목 -->
-					<h1 class="product-description__title">
-						<a href="#">${pl.titl}</a>
-					</h1>
+					
+					<div class="product-description__title">
+						<div class="row">
+							<div class="col-lg-7 mb-2">
+							<a href="#">${pl.titl}</a>
+							</div>
+							<div class="col-lg-5 mb-2 text-right">
+							<% for (int j=0; j<5; j++) { %>
+								<img src='/upload/img/raty/star-on.png' class='starimg' alt='star'/>
+						    <% } %>
+				        </div>
+					</div>
+					
+					
 					<!-- 분류명 , 가격 -->
 					<div class="row">
-						<div class="col-lg-12 product-description__category secondary-text">
+						<div class="col-lg-7 product-description__category secondary-text">
 							${pl.middleTagName} - ${pl.smalltag.name}<br>
 						</div>
-						<div class="col-lg-12 product-description__price">${pl.pric} 원</div>
+						<div class="col-lg-5 product-description__price">${pl.pric} 원</div>
 					</div>
                     <hr class="NoMarginHr">
 					<!-- 멘토 이름 -->

@@ -14,6 +14,7 @@ public class Product {
   private int meno; // 판매자번호
   private int ctno; // 인증서번호
   private int stno; // 소분류번호
+  private int star; // 별점
   
   private Mentee mentee;
   private Cert cert;
@@ -24,6 +25,14 @@ public class Product {
 
   
   
+  public int getStar() {
+    return star;
+  }
+
+  public void setStar(int star) {
+    this.star = star;
+  }
+
   public String getMiddleTagName() {
     return middleTagName;
   }
