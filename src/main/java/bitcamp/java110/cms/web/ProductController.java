@@ -48,13 +48,6 @@ public class ProductController {
     List<Product> product_list = productService.list();
     List<ProductPopul> pp_list = productPopulService.list();
 
-    for (ProductPopul p : pp_list) {
-      System.out.println(p.getNo());
-      System.out.println(p.getPtno());
-      System.out.println(p.getProduct().getTitl());
-      System.out.println(p.getProduct().getPric());
-      System.out.println(p.getProduct().getPhot());
-    }
 
     ObjectMapper mapper = new ObjectMapper();
     String jsonText;
@@ -76,16 +69,16 @@ public class ProductController {
   @GetMapping("detail")
   public void detail(Model model) {
 
-    List<ProductRep> list = productRepSerivce.listByPtno(2);
+    List<ProductRep> replyList = productRepSerivce.listByPtno(2);
     /*
      * for(ProductRep p : list) { System.out.println(p.getConts());
      * System.out.println(p.getMentee().getNick()); System.out.println(p.getMentee().getPhot()); }
      */
-    System.out.println(productService.get(1).getStar());
+
 
     model.addAttribute("product", productService.get(1));
     // product - 웹에서 쓸 이름(아무거나 써도됨)
-    model.addAttribute("list", list);
+    model.addAttribute("replyList", replyList);
   }
 
 

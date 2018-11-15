@@ -16,6 +16,7 @@ public class Product {
   private int stno; // 소분류번호
   private int deli; // 택배비
   private int star; // 별점
+  private Classes classes; // 클래스정보
 
   private Mentee mentee;
   private ClassRep classRep;
@@ -161,7 +162,14 @@ public class Product {
     this.star = star;
   }
 
-  
+  public Classes getClasses() {
+    return classes;
+  }
+
+  public void setClasses(Classes classes) {
+    this.classes = classes;
+  }
+
 
 
 }
