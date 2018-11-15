@@ -35,7 +35,7 @@
 <!-- Custom styles for this template -->
 <!--  <link href="/css/clean-blog2.css" rel="stylesheet"> -->
 <link href="/css/common.css" rel="stylesheet">
-<link href="/css/prod_detail.css" rel="stylesheet">
+<link href="/css/class_detail.css" rel="stylesheet">
 
 
 
@@ -102,30 +102,8 @@
 
                                 </div>
                                 <!-- row.// -->
-
                                 <hr>
-                                <!---->
-                                <div class="row">
-                                    <div class="col-lg-3">
-                                        <dl class="param param-inline">
-                                            <dt>
-                                                <h4 class="mt-0">수량</h4>
-                                            </dt>
-                                            <dd>
-                                                <select class="form-control form-control-lg col-8">
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                </select>
-                                            </dd>
-                                        </dl>
-                                        <!-- item-property .// -->
-                                    </div>
-                                </div>
                                 <!-- row.// -->
-
-
-
                                 <!---->
                                 <hr>
                                 <a href="#" class="btn btn-lg btn-primary text-uppercase">
@@ -149,7 +127,7 @@
 
 
 <!-- 판매자가 수강한 클래스 정보들-->
-    <div class="container">
+    <%-- <div class="container">
         <div class="detail_info">
             <h3>판매자가 수강한 클래스</h3>
             <div class="row">
@@ -180,7 +158,7 @@
         <!-- <div class="detail_info"> -->
 
 
-    </div>
+    </div> --%>
 
 
 
@@ -196,7 +174,7 @@
 
                 <li class="under-nav-item"><a class="nav-link"
                     href="#prod_detail">
-                        <h4>상세정보</h4>
+                        <h4>요약</h4>
                 </a></li>
                 <!-- <li class="under-nav-item"><a class="nav-link"
                     href="#class_info">
@@ -206,14 +184,16 @@
                 </a></li> -->
                 <li class="under-nav-item"><a class="nav-link"
                     href="#prod_review">
-                        <h4>
-                            상품평
-                            <h4>
+                        <h4>강사소개</h4>
                 </a></li>
                 <li class="under-nav-item"><a class="nav-link" href="#qna">
-                        <h4>
-                            QnA
-                            <h4>
+                        <h4>강의설명</h4>
+                </a></li>
+                <li class="under-nav-item"><a class="nav-link" href="#qna">
+                        <h4>위치</h4>
+                </a></li>
+                <li class="under-nav-item"><a class="nav-link" href="#qna">
+                        <h4>클래스 후기</h4>
                 </a></li>
 
             </ul>
@@ -223,23 +203,43 @@
     </div>
 
 
-    <!--상세정보, 수업정보, 상품평, QnA-->
+    <!--요약 , 강사소개 , 강의설명,  위치, 클래스후기-->
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 mx-auto" id="detail">
-
-
                 <div class="detail_info">
                     <hr class="Fhr" id="prod_detail">
                     <h3>상세정보</h3>
                     ${detailclass.conts}
                 </div>
                 <!-- <div class="detail_info"> -->
-
-
-
-
-                <h3>상품평</h3>
+                
+                <div class="detail_info">
+                    <hr class="Fhr" id="prod_detail">
+                    <h3>강사소개</h3>
+                    ${detailclass.tinfo}
+                </div>
+                
+                <div class="detail_info">
+                    <hr class="Fhr" id="prod_detail">
+                    <h3>강의설명</h3>
+                    ${detailclass.cinfo}
+                </div>
+	                <div class="detail_info">
+	                    <hr class="Fhr" id="prod_detail">
+	                    <h3>위치</h3>
+	                    <div class="row">
+	                    <img style = "width:500px; height:500px;"src="/upload/img/product/700x400/julme.PNG" alt="">
+	                    <div id="adr" class = "addr"><strong>기본 주소</strong>  ${detailclass.basAddr}</div>
+	                    <div id="adr" class = "addr"><strong>상세 주소</strong>  ${detailclass.detAddr}</div>
+	                    </div>
+	                </div>
+                
+                <div class="detail_info">
+                    <hr class="Fhr" id="prod_detail">
+                    <h3>클래스 후기</h3>
+                    ${detailclass.tinfo}
+                </div>
                 
                 <hr class="Fhr" id="class_info">    
                 <div class="detail_info">
