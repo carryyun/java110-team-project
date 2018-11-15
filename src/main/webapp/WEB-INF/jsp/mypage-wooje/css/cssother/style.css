@@ -657,18 +657,55 @@ body.offcanvas {
     font-size: 18px;
     font-weight: 500; }
 
-.align-center{  
-    text-align: center;
-    display: inline-block;
-}
-.services h3.h3set{
-/*    margin-left: 20px;*/
+
+/*회원정보수정 - style~~~*/
+
+.profile-title,
+.profile-buttn{  
+   position: absolute;
     
 }
-.services .btnset{
-    margin-top: 20px;
+
+.profile-title{
     
 }
+.profile-contents{
+    position: relative;
+     top: 30%;
+    width: 100%;
+    left: 2%
+}
+
+.titl1{
+    position: absolute;
+}
+.cont1{
+    position: absolute; 
+    top: 0 ; right: 35%; font-size: 15px;
+    transform: translateX(50%)
+}
+
+
+
+.profile-buttn {  
+   bottom: 0;
+    left: 18%;
+    transform: translateX(-50%);
+    bottom: 10%
+}
+
+/*
+.profile-title,
+.profile-buttn,
+.profile-contents,
+.profile-contents *{
+    border: 1px solid red;
+       
+}
+*/
+
+/*~~~회원정보수정 - style*/
+
   .services.color-2 {
     border-bottom: 2px solid #ec5453; }
     .services.color-2 .icon2 i {
@@ -1501,8 +1538,21 @@ body.offcanvas {
 }
 
 
+/*menu4*/
+
+.qcontents{
+    width: 100px;
+}
+
 .colorlib-narrow-content{
     position: relative;
+}
+
+
+#btn-classqna.wrapper-btn3{
+   position: absolute;
+   left: 60%;
+    transform: translateX(-50%); 
 }
 
 .wrapper-btn1{
@@ -1514,8 +1564,30 @@ body.offcanvas {
 .wrapper-btn2{
    position: absolute;
    left: 25%;
-    transform: translateX(-50%);
-   
+    transform: translateX(-50%); 
+}
+.wrapper-btn3{
+   position: absolute;
+   left: 100%;
+    transform: translateX(-50%); 
+}
+.wrapper-btn4{
+   position: absolute;
+   left: 25%;
+    transform: translateX(-50%); 
+}
+.wrapper-btn5{
+    position: absolute;
+   left: 100%;
+    transform: translateX(-50%); 
 }
 
+.wrapper-cs{
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 13px;
+        
+
+}
 

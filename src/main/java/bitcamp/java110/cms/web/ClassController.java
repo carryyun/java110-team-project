@@ -156,6 +156,17 @@ public class ClassController {
 
     model.addAttribute("clslist", clslist);
   }
+  
+  @RequestMapping("classdetail")
+  public void classlist(Model model, int no) {
+    /*//<Classes> clsdetail = classService.
+    
+    model.addAttribute("class",classService.get(no));
+    
+    model.addAttribute("clsdetaillist",clsdetail);*/
+  }
+  
+  
   ////////////////////여기까지 p_cls 클래스////////////////////////
   
   @GetMapping("qnalist")

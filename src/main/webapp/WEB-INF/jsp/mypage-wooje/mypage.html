@@ -39,54 +39,15 @@
     <link rel="stylesheet" href="css/cssother/style.css">
 
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    
+    <!-- Load JS-->
+    <script src=js/hideshow.js></script>    
 
 
 
+    
 
-
-
-    <script type="text/javascript">
-        // 회원정보수정 load 
-        $(document).ready(function() {
-            $("#contents1").load("info.html");
-        });
-
-        // 수강목록 load
-        $(document).ready(function() {
-            $("#contents2").load("classlist.html");
-        });
-
-        // 결제내역 load / 하이드 / 쇼 
-        $(function(){
-        $("#contents3-1").load("paymentlist1.html");
-        });
-        
-        $(function(){
-            $("#classbkt").click(function(){
-                $("#contents3-2").hide("paymentlist2.html");
-                $("#contents3-1").show("paymentlist1.html");
-            });
-        });
-        
-        $(function(){
-            $("#productbkt").click(function(){
-                $("#contents3-2").load("paymentlist2.html");
-                $("#contents3-1").hide("paymentlist1.html");
-                $("#contents3-2").show("paymentlist2.html");
-            });
-        });
-        
-     
-
-
-        // 결제내역 load
-        $(document).ready(function() {
-            $("#contents4").load("myqna.html");
-        });
-        
-        
-     
-    </script>
+  
 
 
 
@@ -158,20 +119,20 @@
                 <section class="colorlib-about" data-section="about">
                     <div class="colorlib-narrow-content">
                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
-                                    <div class="col-md-12">
+                            
+                              
+                                    
                                         <div class="about-desc">
 
                                             <h2 class="colorlib-heading">회원정보수정</h2>
                                             <hr color="black">
                                         </div>
-                                    </div>
-                                </div>
+                                  
+                            
                                 <!--   회원정보수정 load-->
-                                <div id="contents1"> </div>
+                                <div id="menu1"> </div>
 
-                            </div>
+
                         </div>
                     </div>
 
@@ -182,21 +143,13 @@
 
                 <section class="colorlib-services" data-section="services">
                     <div class="colorlib-narrow-content">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
-                                    <div class="col-md-12">
-                                        <div class="about-desc">
+                        <div class="row"  style="height: 600px" >
 
-                                            <h2 class="colorlib-heading">수강목록</h2>
-                                            <hr color="black">
-                                        </div>
-                                    </div>
-                                </div>
-
+                                    <h2 class="colorlib-heading">수강목록</h2>
+                                    <hr color="black">
+                                     
                                 <!--   수강목록 load-->
-                                <div id="contents2"> </div>
-                            </div>
+                                <div id="menu2"> </div>
                         </div>
                     </div>
 
@@ -208,41 +161,124 @@
 
                 <section class="colorlib-skills" data-section="skills">
                     <div class="colorlib-narrow-content">
-                        <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
-                            <div class="col-md-12">
-                                <div class="about-desc">
+                        <div class="row"  style="height: 600px" >
 
                                     <h2 class="colorlib-heading">결제내역</h2>
-                                    <hr color="black">
-                                </div>
-                            </div>
-                        </div>
+                                    <hr color="black"    >
+                               
+                           
+                        
 
-                        <!-- 클래스면 contents3-1를, product면 contents3-2를 보여준다 -->
+                        <!--  sdfsdfsdfsdfsdf -->
                         <div>
                         <div id="wrapper" class="wrapper-btn1">
-                            <button id="classbkt" class="fancy">클래스</button>
+                            <button id="classbkt" class="fancy" >클래스</button>
                         </div>
                         
                         <div id="wrapper" class="wrapper-btn2">
                             <button id="productbkt" class="fancy">상품</button>
                         </div>
                           </div>                     
+                        <div style="margin-bottom: 100px;">
+                            
+                        </div>
+                        <div id="menu3-1"> </div>
+                        <div id="menu3-2"> </div>
                         
-                        <div id="contents3-1"> </div>
-                        <div id="contents3-2"> </div>
-                        
-                        <!-- 클래스면 contents3-1를, product면 contents3-2를 보여준다 -->
+                        <!--  menu3-1를,  menu3-2를 보여준다 -->
 
+                    </div>
                     </div>
                 </section>
 
 
-                <section class="colorlib-education" data-section="education">
-                    <!--  내 활동보기 load-->
-                    <div id="contents4"> </div>
-                </section>
+               
+                 <section class="colorlib-skills" data-section="education">
+                    <div class="colorlib-narrow-content">
+                        <div class="row"  style="height: 600px" >
 
+                                    <h2 class="colorlib-heading">내 활동보기</h2>
+                                    <hr color="black"    >
+                        
+
+                        <!--   -->
+                        
+                        <div>
+                        <div id="wrapper" class="wrapper-btn1">
+                            <button id="btn-menu4-1" class="fancy" >1:1문의</button>
+                        </div>
+                        
+<!--             메뉴4          -->
+ <!-- Split button -->
+        <div class="btn-group" style="  position: absolute; left: 30%;" >
+  <button  id="btn-classqna" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
+    클래스 QnA
+  </button>
+  <div class="dropdown-menu" style="border: none;">
+       <div id="wrapper" class="wrapper-btn2" style="">
+         <button id="btn-menu4-2" class="fancy" >질문</button>
+        </div>
+                       
+       <div id="wrapper" class="wrapper-btn3">
+        <button id="btn-menu4-3" class="fancy">답변</button>
+    </div>
+  </div>
+</div>           
+                        
+                        
+                        
+<!--                        -->
+<div class="btn-group" style="  position: absolute; left: 60%;">
+    <button id="btn-classqna" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
+        상품 QnA
+    </button>
+    <div class="dropdown-menu" style="border: none;">
+                                <div id="wrapper" class="wrapper-btn4">
+                            <button id="btn-menu4-4" class="fancy">질문</button>
+                        </div>
+                         <div id="wrapper" class="wrapper-btn5">
+                            <button id="btn-menu4-5" class="fancy">답변</button>
+                        </div>
+    </div>
+</div>                     
+                        
+                        
+                        
+
+                                        
+                            </div>
+                             <div style="margin-bottom: 100px;">
+                            
+                        </div>
+                        
+                        
+                        <div id="menu4-1"> </div>
+                        <div id="menu4-2"> </div>
+                        <div id="menu4-3"> </div>
+                        <div id="menu4-4"> </div>
+                        <div id="menu4-5"> </div>
+                        
+<!--                        <div id="menu4"></div>-->
+                        <!--   -->
+
+                   
+                    </div>
+                     </div>
+                </section>
+                               
+                           
+                        
+
+                        
+                      
+               
+              
+                    
+                   
+                
+
+               
+               
                 <section class="colorlib-experience" data-section="experience">
                     <div class="colorlib-narrow-content">
                         <div class="row">
@@ -644,19 +680,12 @@
     <script src="js/jsother/jquery.waypoints.min.js"></script>
     <!-- Counters -->
     <script src="js/jsother/jquery.countTo.js"></script>
-
-    <!-- jQuery Easing
-	<script src="js/jsother/jquery.easing.1.3.js"></script>
-	
-	Flexslider
-	<script src="js/jsother/jquery.flexslider-min.js"></script>
-	Owl carousel
-	<script src="js/owl.carousel.min.js"></script> -->
-
-
-
     <!-- MAIN JS -->
     <script src="js/jsother/main.js"></script>
+    <script src="js/jsother/bootstrap.min.js"></script>
+    
+
+
 
 </body>
 
