@@ -32,14 +32,9 @@ public class ProductController {
   ServletContext sc;
   ClassService classService;
 
-  public ProductController(
-      ProductService productService, 
-      BigTagService bigTagService,
-      MiddleTagService middleTagService, 
-      ProductPopulService productPopulService,
-      ProductRepService productRepSerivce,
-      ServletContext sc,
-      ClassService classService) {
+  public ProductController(ProductService productService, BigTagService bigTagService,
+      MiddleTagService middleTagService, ProductPopulService productPopulService,
+      ProductRepService productRepSerivce, ServletContext sc, ClassService classService) {
     this.productService = productService;
     this.bigTagService = bigTagService;
     this.middleTagService = middleTagService;
@@ -59,8 +54,8 @@ public class ProductController {
     for (ProductPopul p : pp_list) {
       pp_product.add(p.getProduct());
     }
-    
-    for(Product ppp:productList) {
+
+    for (Product ppp : productList) {
       System.out.println(ppp.getPhot());
     }
 
@@ -86,21 +81,22 @@ public class ProductController {
 
 
   @GetMapping("detail")
-  public void detail(Model model) {
+  public void detail(Model model, int no) {
+    Product product = productService.get(no);
 
-    List<ProductRep> replyList = productRepSerivce.listByPtno(2);
-    List<Classes> clslist = classService.list();
+    List<ProductRep> replyList = productRepSerivce.listByPtno(no);
+    Classes prdtcls = classService.findbyptno(no);
     /*
      * for(ProductRep p : list) { System.out.println(p.getConts());
      * System.out.println(p.getMentee().getNick()); System.out.println(p.getMentee().getPhot()); }
      */
 
 
-    model.addAttribute("product", productService.get(1));
+    model.addAttribute("product", product);
     // product - 웹에서 쓸 이름(아무거나 써도됨)
     model.addAttribute("replyList", replyList);
-    
-    model.addAttribute("clslist",clslist);
+    model.addAttribute("prdtcls", prdtcls);
+    /* model.addAttribute("clslist",clslist); */
   }
 
   @RequestMapping("P")

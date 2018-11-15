@@ -197,7 +197,6 @@
 
 
 <span class="container col-lg-12">
-                <button id="ClassRigist">클래스 개강</button>
             </span> 
             <div class="col-lg-12 mx-auto">
                 <div class="post-preview">
@@ -205,7 +204,6 @@
 
                         <div class="container">
                             <div class="row">
-                            <c:forEach items="${clslist}" var="c">
                                 <div class="col-lg-4">
                                     <article class="card-wrapper">
                                         <div class="image-holder">
@@ -218,26 +216,26 @@
                                         <div class="product-description">
                                             <!-- 제목 -->
                                             <h1 class="product-description__title">
-                                                <a href="#">${c.titl}</a>
+                                                <a href="#">${prdtcls.titl}</a>
                                             </h1>
                                             <!-- 분류명 , 가격 -->
                                             <div class="row">
                                                 <div class="col-lg-12 product-description__category secondary-text">
-                                                    ${c.middleTag.name }</div>
-                                                <div class="col-lg-12 product-description__price">${c.pric }원</div>
+                                                    ${prdtcls.middleTag.name }</div>
+                                                <div class="col-lg-12 product-description__price">${prdtcls.pric }원</div>
                                             </div>
                                             <hr />
                                             <!-- 멘토 이름 -->
                                             <div class="sizes-wrapper">
-                                                <b>멘토-${c.mentee.name }</b>
+                                                <b>멘토-${prdtcls.mentee.name }</b>
                                             </div>
                                             <!-- 주소 -->
                                             <div class="color-wrapper">
-                                                <b>${c.basAddr }</b>
+                                                <b>${prdtcls.basAddr }</b>
                                             </div>
                                             <div class="color-wrapper">
                                                 <b>
-                                                <c:set var="starint" value="${c.star}"/>
+                                                <c:set var="starint" value="${prdtcls.star}"/>
                                                 <strong>별점:</strong>
                                                 <%
                                                 int star = (int) pageContext.getAttribute("starint");
@@ -259,7 +257,6 @@
                                         </div>
                                     </article>
                                 </div>
-                            </c:forEach>
                             </div>
                         </div>
                 </div>
@@ -318,6 +315,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 col-md-12 mx-auto" id="detail">
+
+dddd
 
 
 				<div class="detail_info">

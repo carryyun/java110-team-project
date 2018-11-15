@@ -7,7 +7,7 @@ public interface ClassDao {
   List<Classes> findAll();
   List<Classes> findAllList();
   List<Classes> classform(int no);
-  List<Classes> findByptno(int no);
+  Classes findByptno(int no);
   
   int classinsert(Classes classes);
   int classupdate(Classes classes);
