@@ -14,6 +14,7 @@ public class Product {
   private int meno; // 판매자번호
   private int ctno; // 인증서번호
   private int stno; // 소분류번호
+
   private int deli; // 택배비
   private int star; // 별점
   private Classes classes; // 클래스정보
@@ -24,14 +25,13 @@ public class Product {
   private SmallTag smalltag;
   private String middleTagName;
 
-
-
   public ClassRep getClassRep() {
     return classRep;
   }
 
   public void setClassRep(ClassRep classRep) {
     this.classRep = classRep;
+
   }
 
   public String getMiddleTagName() {

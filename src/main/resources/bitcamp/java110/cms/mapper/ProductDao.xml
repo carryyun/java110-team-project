@@ -17,7 +17,7 @@
         <result column="meno"   property="meno"/>
         <result column="ctno"   property="ctno"/>
         <result column="stno"   property="stno"/>
-        
+        <result column="star"   property="star"/>
         <result column="meno"   property="mentee.no"/>
         <result column="name"   property="mentee.name"/>
         <result column="nick"   property="mentee.nick"/>
@@ -52,6 +52,7 @@
     p.meno,
     p.ctno,
     p.stno,
+    p.star,
     mete.meno,
     mete.nick,
     mete.name,

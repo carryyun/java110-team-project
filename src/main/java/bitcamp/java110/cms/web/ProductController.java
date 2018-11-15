@@ -1,5 +1,6 @@
 package bitcamp.java110.cms.web;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletContext;
 import org.springframework.stereotype.Controller;
@@ -32,7 +33,7 @@ public class ProductController {
 
   public ProductController(ProductService productService, BigTagService bigTagService,
       MiddleTagService middleTagService, ProductPopulService productPopulService,
-      ProductRepService productRepSerivce, ServletContext sc) {
+      ServletContext sc) {
     this.productService = productService;
     this.bigTagService = bigTagService;
     this.middleTagService = middleTagService;
@@ -43,28 +44,42 @@ public class ProductController {
 
   @GetMapping("prdt")
   public void prdt(Model model) {
-    List<BigTag> list = bigTagService.list();
-    List<MiddleTag> list2 = middleTagService.list();
+    List<BigTag> BTlist = bigTagService.list();
+    List<MiddleTag> MTlist = middleTagService.list();
     List<Product> product_list = productService.list();
+
     List<ProductPopul> pp_list = productPopulService.list();
+    List<Product> pp_product = new ArrayList<>();
 
-
-    ObjectMapper mapper = new ObjectMapper();
-    String jsonText;
-    try {
-      jsonText = mapper.writeValueAsString(list);
-      model.addAttribute("pp_list", pp_list);
-      System.out.println(jsonText);
-    } catch (JsonProcessingException e) {
-      System.out.println(e.getMessage());
+    for (ProductPopul p : pp_list) {
+      pp_product.add(p.getProduct());
     }
 
 
-    model.addAttribute("list", list);
-    model.addAttribute("list2", list2);
+    ObjectMapper mapper = new ObjectMapper();
+    String jsonText = "";
+    try {
+
+      jsonText = mapper.writeValueAsString(pp_product);
+      model.addAttribute("pp_list", jsonText);
+      System.out.println(jsonText);
+
+    } catch (JsonProcessingException e) {
+      System.out.println(e.getMessage());
+    }
+    /*
+     * model.addAttribute("BTlist",BTlist); model.addAttribute("MTlist",MTlist);
+     */
     model.addAttribute("product_list", product_list);
+    model.addAttribute("pp_list", jsonText);
 
   }
+
+  @GetMapping("test")
+  public void test() {
+
+  }
+
 
   @GetMapping("detail")
   public void detail(Model model) {
@@ -80,7 +95,6 @@ public class ProductController {
     // product - 웹에서 쓸 이름(아무거나 써도됨)
     model.addAttribute("replyList", replyList);
   }
-
 
   @RequestMapping("P")
   public String P() {

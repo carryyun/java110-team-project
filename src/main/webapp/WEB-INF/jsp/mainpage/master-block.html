@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <!-- 부트스트랩-->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <!-- js-->
+    <script src="js/master-mentorList.js"></script>
+
+    <!-- css -->
+    <link href="css/master-block.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+
+            <!-- 게시판 시작-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-lg-offset-12">
+                        <p>
+                            <span style="font-size: 45px; position: relative; right;"><strong>신고 접수 목록</strong></span>
+                        </p>
+
+                        <div class="col-md-3" id="serch-men">
+                            <form action="#" method="get">
+                                <div class="input-group">
+                                    <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
+                                    <input class="form-control" id="system-search" name="q" placeholder="Search for" required>
+                                    <span class="input-group-btn">
+                                        <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div><!-- 게시판 row-->
+            </div><!-- 게시판 container-->
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <br />
+                        <br />
+                        <table class="table table-list-search" style="height: 600px;">
+                            <thead>
+                                <tr>
+                                    <th class="text-center"></th>
+                                    <th class="text-center">No</th>
+                                    <th class="text-center">신고 유형</th>
+                                    <th class="text-center">제목</th>
+                                    <th class="text-center">글쓴이</th>
+                                    <th class="text-center">분류</th>
+                                    <th class="text-center">신고 처리 여부</th>
+                                    <th class="text-center">상세보기</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center"><input type="checkbox" id="men-ck" name="men-ck"></td>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">클래스 신고</td>
+                                    <td class="text-center">이 강사가 이상한 글 올렸어요</td>
+                                    <td class="text-center">예쁨</td>
+                                    <td class="text-center">음란물 배포</td>
+                                    <td class="text-center"><span style="color: red;"><strong>미처리</strong></span></td>
+                                    <td class="text-center"><button id="block-cho"><a href="#popup1" class="button">상세 보기</a></button></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="row mb-2">
+                        <div class="col-md-12">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination" id="page-list">
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Previous">
+                                            <span aria-hidden="true">«</span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Next">
+                                            <span aria-hidden="true">»</span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12" id="btn">
+                                <button type="button" class="btn btn-primary" id="mas-btn">
+                                    신고 접수 반려
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- popup-->
+
+            <div id="popup1" class="overlay">
+                <div class="popup">
+                    <h2> 신고 상세보기</h2>
+                    <a class="close" href="#">×</a>
+                    <div class="content">
+                        <br />
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <table class="table table-bordered" id="block-tab">
+                                        <tbody>
+                                           <tr>
+                                               <td>신고자 ID: mcminji</td>
+                                               <td>신고 ID: mcduc</td>
+                                               <td>신고 유형: 클래스 신고</td>
+                                               <td>2018.11.22</td>
+                                           </tr>
+                                            <tr>
+                                                <td colspan="3">제목: 와 진짜 빡치네여</td>
+                                                <td style="text-align: center;"><a href="#">www.naver.com</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4">내용: 이게 무슨 클래스에여 수업 듣다가 빡쳐서 넘어가는 줄 알았네 신고하면 보긴 하는 건가요? 와 진짜 신고해서 보지도 않으면 사람도 아니야 이 선생님 당장 그만두게 해주세요 수업에 수자도 모르면서 뭔 수업이에요 와 CSS를 해도 이모양이네 진짜 왜케 안이쁘고 난리야 빡치네 </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4"><span>이미지: <img alt="block-img" src="img/basket1.jpg" style="width: 100px; height: 100px;"></span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div><!-- 12 -->
+
+
+                            </div><!-- popup row-->
+                        </div><!-- popup container -->
+
+                        <div class="container">
+                            <button type="button" class="btn btn-primary" id="mas-p1">
+                                신고처리하기
+                            </button>
+                            <button type="button" class="btn btn-primary" id="mas-p2">
+                                보류하기
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- 메인 row-->
+    </div><!-- 메인 container-->
+
+
+</body>
+
+</html>

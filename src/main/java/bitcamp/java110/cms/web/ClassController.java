@@ -2,6 +2,8 @@ package bitcamp.java110.cms.web;
 
 import java.util.List;
 import javax.servlet.ServletContext;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,9 +17,10 @@ import bitcamp.java110.cms.service.ClassLikeService;
 import bitcamp.java110.cms.service.ClassOrderService;
 import bitcamp.java110.cms.service.ClassQnaService;
 import bitcamp.java110.cms.service.ClassService;
+import bitcamp.java110.cms.service.MenteeService;
 
-//@Controller
-//@RequestMapping("/class")
+@Controller
+@RequestMapping("/class")
 public class ClassController {
 
   ClassService classService;
@@ -25,17 +28,21 @@ public class ClassController {
   ClassOrderService classorderService;
   ClassLikeService classlikeService;
   ClassBaktService classbaktService;
+  MenteeService menteeService;
   ServletContext sc;
   
   public ClassController(
       ClassService classService,ClassQnaService classqnaService,
       ClassOrderService classorderService,ClassLikeService classlikeService
-      ,ClassBaktService classbaktService) {
+      ,ClassBaktService classbaktService,MenteeService menteeService,
+      ServletContext sc) {
     this.classService = classService;
     this.classqnaService = classqnaService;
     this.classorderService = classorderService;
     this.classlikeService = classlikeService;
     this.classbaktService = classbaktService;
+    this.menteeService = menteeService;
+    this.sc = sc;
   }
 
   @GetMapping("form") 
@@ -139,6 +146,15 @@ public class ClassController {
   public Classes findByday() {
     
     return null;
+  }
+  
+  @RequestMapping("classform")
+  public void classform(Model model) {
+    
+    
+    List<Classes> clslist = classService.list(); // list는 전체니까 cno로 찾는게아님
+
+    model.addAttribute("clslist", clslist);
   }
   ////////////////////여기까지 p_cls 클래스////////////////////////
   

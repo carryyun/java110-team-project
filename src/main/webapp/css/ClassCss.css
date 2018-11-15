@@ -1,3 +1,6 @@
+
+     
+     
         *{
             margin: 0 auto;
         }
@@ -187,11 +190,18 @@
         	float:right;
         	transform: translateY(950%);
         }
-        img{
+        img.classimg{
             /* 클래스 소개사진 */
             width: 200px;
             height: 200px;
         }
+        
+	     img.starimg{
+	     /* 별 이미지 */
+	     	width: 20px;
+	     	height: 20px;
+	     }
+        
         .mentor{
             width: 50px;
             height: 50px;
@@ -216,10 +226,10 @@ body {
   backgroud-color: #E5EDF8 ;
   
 }
-img {
+/* img {
   max-width: 100%;
   max-width: 100%;
-}
+} */
 
 hr {
   border-color: #e5e5e5;

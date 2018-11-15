@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
 import bitcamp.java110.cms.dao.MenteeDao;
 import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.service.MenteeService;
@@ -36,9 +35,16 @@ public class MenteeServiceImpl implements MenteeService {
   }
 
 
+  // 회원가입시 이메일 중복체크에 필요한메소드
   @Override
-  public List<Mentee> listByEmail(String email,Model model) {
-    return menteeDao.findAllByEmail(email);
+  public int checkByEmail(Mentee mentee) {
+    return menteeDao.checkemail(mentee);
+  }
+  
+  // 회원가입시 닉네임 중복체크에 필요한메소드
+  @Override
+  public int checkByNick(Mentee mentee) {
+    return menteeDao.checknick(mentee);
   }
 
 
