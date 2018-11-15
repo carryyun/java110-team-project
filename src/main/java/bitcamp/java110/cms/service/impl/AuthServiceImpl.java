@@ -30,8 +30,8 @@ public class AuthServiceImpl implements AuthService {
     public Mentee getMentee(
             String email, String pwd ) {
         HashMap<String,Object> params = new HashMap<>();
-        params.put("email", email);
-        params.put("pwd", pwd);
+        params.put("email", email.toLowerCase());
+        params.put("pwd", pwd.toLowerCase());
         return menteeDao.findByEmailPassword(params);
     }
   

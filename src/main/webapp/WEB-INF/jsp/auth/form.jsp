@@ -82,13 +82,14 @@
             </div>
             <div class="card-footer">
                 <div class="d-flex justify-content-center links">
-                    <a href="#">회원 가입</a>
+                    <a href="/app/mentee/signup">회원 가입</a>
                 </div>
                 <div class="d-flex justify-content-center">
                     <a href="#">이메일 찾기</a>
                 </div>
                 <div class="d-flex justify-content-center">
                     <a href="#">비밀번호 찾기</a>
+                    
                 </div>
             </div>
         </div>
