@@ -19,16 +19,14 @@
 
     <!-- 폰트 추가 -->
     <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
-    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+    integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+    <link href="/css/owl.carousel.css" rel="stylesheet">
     <link href="/css/list.css" rel="stylesheet">
     <link href="/css/clean-blog.css" rel="stylesheet">
     <link href="/css/common.css" rel="stylesheet">
-    <link href="/css/multi.css" rel="stylesheet">
-    <link href="/css/owl.carousel.css" rel="stylesheet">
-    <link href="/css/owl.theme.default.css" rel="stylesheet">
+    
  
     <!-- ===============필수포함=============== -->
     
@@ -38,17 +36,16 @@
   </head>
 
   <body>
-    <div id="wrap" style="background-color: #f2f4f7">
-    <div class="col" style="position:absolute; height: 95px; background-color: white">
-    
+    <div id="wrap" style="background-color: #fff">
+    <div class="col" style="position:absolute; height: 105px; background-color: white">
+    <!-- 헤더 배경색 적용 -->
     </div>
     
     <div class="container" style="background-color: white">
-    <!-- Header (스크립트로 임시 inclue) -->
-    <div class="row">
+	    <!-- Header (스크립트로 임시 inclue) -->
+	    <div class="row">
         <div class="col-lg-12">
-        <jsp:include page="../header.jsp"></jsp:include>
-        <%-- <jsp:include page="headerMain.jsp"></jsp:include> --%>
+        <jsp:include page="../headerMain.jsp"></jsp:include>
         </div>
      
          
@@ -58,11 +55,10 @@
     </header>
     
     
-    <!-- 카테고리 nav (스크립트로 임시 inclue) -->
-    <div class="col mb-3">
-    <jsp:include page="headerNav.jsp"></jsp:include>
-    <!-- <div id="headerNav"></div> -->
-    </div>
+	    <!-- 카테고리 nav (스크립트로 임시 inclue) -->
+	    <div class="col-lg-12">
+	    <jsp:include page="../headerNav.jsp"></jsp:include>
+	    </div>
 
     <!-- Main Content -->
 <div class="container col-lg-12" style="background-color: #white">
@@ -71,8 +67,8 @@
         <div class="col">
         <h2>카테고리</h2>
               <ul>
-               <c:forEach  items="${list}" var="m">
-                    <li><a href="#">${m.name}</a></li>
+               <c:forEach  items="${BTlist}" var="bt">
+                    <li><a href="#">${bt.name}</a></li>
                 </c:forEach>
               </ul>
         </div>
@@ -83,12 +79,12 @@
 	<div class="row">
 	<div class="col">
 	    <h2>오늘의 핫 아이템</h2>
-        <div id="owl-hotItem" class="owl-carousel col-lg-10 text-center">
+        <div id="owl-hotItem" class="owl-carousel col-lg-10 mt-2"  style="margin:0 auto">
             
         </div>
         <div class="owl-btns">
-            <div class="cusnext">></div>
-            <div class="cusprev"><</div>
+            <div class="cusnext"><i class="fas fa-caret-right"></i></div>
+            <div class="cusprev"><i class="fas fa-caret-left"></i></div>
         </div>
         </div>
     </div>
@@ -100,39 +96,54 @@
        
         <div class="col-lg-12 mx-auto">
           <div class="post-preview">
-            <a href="post.html">
+            <a href="post.html"></a>
 <div class="row">
 
 <div class="container">
+          <div class="clearfix">
+            <a class="btn btn-primary float-right mb-3" href="#">상품 등록 </a>
+          </div>
 	<div class="row">
-
-        <c:forEach  items="${product_list}" var="pl" varStatus="i">
+        
+        <c:forEach  items="${productList}" var="pl" varStatus="i">
         
 		<div class="col-lg-4">
 			<article class="card-wrapper">
 				<div class="image-holder">
 					<a href="#" class="image-holder__link"></a>
 					<div class="image-liquid image-holder--original">
-					<a href="#"><img alt="${i.count}" src="/upload/img/julme.PNG" style="width: 100%; height: 100%"></a>
+					<a href="#"><img alt="${i.count}" src="${pl.phot}" style="width: 100%; height: 100%"></a>
 					</div>
 				</div>
 				<div class="product-description">
 					<!-- 제목 -->
-					<h1 class="product-description__title">
-						<a href="#">${pl.titl}</a>
-					</h1>
+					
+					<div class="product-description__title">
+						<div class="row">
+							<div class="col-lg-7 mb-2">
+							<a href="#">${pl.titl}</a>
+							</div>
+							<div class="col-lg-5 mb-2 text-right">
+							<% for (int j=0; j<5; j++) { %>
+								<img src='/upload/img/raty/star-on.png' class='starimg' alt='star'/>
+						    <% } %>
+				        </div>
+					</div>
+					
+					
 					<!-- 분류명 , 가격 -->
 					<div class="row">
-						<div class="col-lg-12 product-description__category secondary-text">
+						<div class="col-lg-7 product-description__category secondary-text">
 							${pl.middleTagName} - ${pl.smalltag.name}<br>
 						</div>
-						<div class="col-lg-12 product-description__price">${pl.pric} 원</div>
+						<div class="col-lg-5 product-description__price">${pl.pric} 원</div>
 					</div>
-					<hr />
+                    <hr class="NoMarginHr">
 					<!-- 멘토 이름 -->
 					<div class="sizes-wrapper"><b>판매자 - ${pl.mentee.name}</b></div>
 					<!-- 주소 -->
 					<div class="color-wrapper"><b>기본 주소</b></div>
+				</div>
 				</div>
 			</article>
 		</div>
@@ -147,10 +158,7 @@
           </div>
           <hr>
 
-          <!-- Pager -->
-          <div class="clearfix">
-            <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
-          </div>
+          
         </div>
     </div>
 
@@ -161,7 +169,7 @@
     
     </div>
     </div>
-    
+     
         <footer>
       <div class="col px-0">
           <jsp:include page="../footer.jsp"></jsp:include>
@@ -183,35 +191,9 @@
     <script>
     var owl = $("#owl-hotItem");
       $(document).ready(function(){
-          var data = {
-                  "items" : [
-                {
-                  "img": "/upload/img/julme.PNG",
-                  "txt" : "h2",
-                  "alt" : "Owl Image 1"
-                },
-                {
-                  "img": "/upload/img/julme.PNG",
-                  "txt" : "h2",
-                  "alt" : "Owl Image 1"
-                },
-                {
-                  "img": "/upload/img/julme.PNG",
-                  "txt" : "h2",
-                  "alt" : "Owl Image 1"
-                },
-                {
-                  "img": "/upload/img/julme.PNG",
-                  "txt" : "h2",
-                  "alt" : "Owl Image 1"
-                },
-                {
-                  "img": "/upload/img/julme.PNG",
-                  "txt" : "h2",
-                  "alt" : "Owl Image 1"
-                }
-                  ]
-                };
+          
+          var data = { "items" : ${pp_list} };
+          console.log(data);
         owl.owlCarousel({
           nav:false,
           loop:true,
@@ -230,13 +212,14 @@
                 "text-align:center;"
             for ( var i in data["items"]) {
              
-             var img = data["items"][i].img;
-             var txt = data["items"][i].txt;
-             var alt = data["items"][i].alt;
+             var phot = data["items"][i].phot;
+             var titl = data["items"][i].titl;
+             var pric = data["items"][i].pric;
              content += "<div class='col' id='owl-col'>"
              content += "<div class='row' id='owl-row'>"
-             content += "<img id='owl-img' src=\"" +img+ "\" alt=\"" +alt+ "\">"
-             content += "<div class='col' id='owl-col2'>" + txt + "</div>"
+             content += "<img id='owl-img' src=\"" +phot+ "\" alt=\"" +titl+ "\">"
+             content += "<div class='col-lg-12' id='owl-col2'>" + titl + "</div>"
+             content += "<div class='col-lg-12' id='owl-col3'>" + pric + "￦</div>"
              content += "</div>"
              content += "</div>"
             }
@@ -246,7 +229,6 @@
        });
       $(".cusnext").click(function() {
           owl.trigger('next.owl.carousel');
-          console.log("123");
       });
 
       $(".cusprev").click(function() {

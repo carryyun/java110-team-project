@@ -13,14 +13,15 @@
         <result column="pric"   property="pric"/>
         <result column="rgdt"   property="rgdt"/>
         <result column="stock"   property="stock"/>
-        <result column="phot"   property="phot"/>
+        <result column="pp"   property="phot"/>
         <result column="meno"   property="meno"/>
         <result column="ctno"   property="ctno"/>
         <result column="stno"   property="stno"/>
-        
+        <result column="star"   property="star"/>
         <result column="meno"   property="mentee.no"/>
         <result column="name"   property="mentee.name"/>
-        
+        <result column="nick"   property="mentee.nick"/>
+        <result column="mp"   property="mentee.phot"/>
         <result column="ctno"   property="cert.no"/>
         <result column="type"   property="cert.type"/>
         
@@ -31,6 +32,9 @@
         <result column="mtname"   property="middleTagName"/>
         <result column="deli" property="deli"/>
         <result column="star" property="star"/>
+        <result column="titl" property="classes.titl"/>
+        <result column="cfile" property="classes.cfile"/>
+        
     </resultMap>
 
     
@@ -44,11 +48,13 @@
     p.star,
     p.rgdt,
     p.stock,
-    p.phot,
+    p.phot as pp,
     p.meno,
     p.ctno,
     p.stno,
+    p.star,
     mete.meno,
+    mete.nick,
     mete.name,
     cert.ctno,
     cert.type,
@@ -74,22 +80,45 @@ order by
     <select id="findByNo" 
             resultMap="productMap" parameterType="int">
         select
-            ptno,
-            titl,
-            conts,
-            pric,
-            deli,
-            star,
-            rgdt,
-            stock,
-            phot,
-            meno,
-            ctno,
-            stno
-        from
-            p_prdt
-        where 
-            ptno=#{value}
+    p.ptno,
+    p.titl,
+    p.conts,
+    p.pric,
+    p.deli,
+    p.star,
+    p.rgdt,
+    p.stock,
+    p.phot pp,
+    p.meno,
+    p.ctno,
+    p.stno,
+    mete.meno,
+    mete.nick,
+    mete.name,
+    mete.phot mp,
+    cert.ctno,
+    cert.type,
+    stag.stno,
+    stag.stname,
+    stag.mtno,
+    mtag.mtname,
+    pcls.titl,
+    pcls.cfile
+from 
+    p_prdt p
+    join p_mete mete
+    join p_cert cert
+    join p_stag stag
+    JOIN p_mtag mtag
+    join p_cls pcls
+ON
+    p.meno=mete.meno AND
+    p.ctno=cert.ctno AND
+    p.stno=stag.stno AND
+    stag.mtno = mtag.mtno AND
+    pcls.cno= cert.cno 
+where
+    ptno=#{value}
     </select>
     
     <select id="findAllByMeno" 
