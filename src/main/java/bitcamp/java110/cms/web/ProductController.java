@@ -12,9 +12,11 @@ import bitcamp.java110.cms.domain.BigTag;
 import bitcamp.java110.cms.domain.MiddleTag;
 import bitcamp.java110.cms.domain.Product;
 import bitcamp.java110.cms.domain.ProductPopul;
+import bitcamp.java110.cms.domain.ProductRep;
 import bitcamp.java110.cms.service.BigTagService;
 import bitcamp.java110.cms.service.MiddleTagService;
 import bitcamp.java110.cms.service.ProductPopulService;
+import bitcamp.java110.cms.service.ProductRepService;
 import bitcamp.java110.cms.service.ProductService;
 
 @Controller
@@ -25,6 +27,7 @@ public class ProductController {
   ProductPopulService productPopulService;
   BigTagService bigTagService;
   MiddleTagService middleTagService;
+  ProductRepService productRepSerivce;
   ServletContext sc;
 
   public ProductController(
@@ -32,11 +35,13 @@ public class ProductController {
       BigTagService bigTagService,
       MiddleTagService middleTagService,
       ProductPopulService productPopulService,
+      ProductRepService productRepSerivce,
       ServletContext sc) {
     this.productService = productService;
     this.bigTagService = bigTagService;
     this.middleTagService=middleTagService;
     this.productPopulService=productPopulService;
+    this.productRepSerivce=productRepSerivce; 
     this.sc = sc;
   }
   
@@ -74,6 +79,17 @@ public class ProductController {
   @GetMapping("detail")
   public void detail(Model model) {
     
+    List<ProductRep> list = productRepSerivce.listByPtno(2);
+    /*for(ProductRep p : list) {
+      System.out.println(p.getConts());
+      System.out.println(p.getMentee().getNick());
+      System.out.println(p.getMentee().getPhot());
+    }*/
+    
+    
+    model.addAttribute("product",productService.get(1)); 
+    // product - 웹에서 쓸 이름(아무거나 써도됨)
+    model.addAttribute("list",list);
   }
 
   

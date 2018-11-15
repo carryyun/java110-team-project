@@ -2,7 +2,7 @@ package bitcamp.java110.cms.domain;
 
 import java.sql.Date;
 
-//공예품
+// 공예품
 public class Product {
   private int no; // 공예품번호
   private String titl; // 제목
@@ -14,16 +14,23 @@ public class Product {
   private int meno; // 판매자번호
   private int ctno; // 인증서번호
   private int stno; // 소분류번호
-  
+
   private Mentee mentee;
+  private ClassRep classRep;
   private Cert cert;
   private SmallTag smalltag;
-  
   private String middleTagName;
-  
 
-  
-  
+
+
+  public ClassRep getClassRep() {
+    return classRep;
+  }
+
+  public void setClassRep(ClassRep classRep) {
+    this.classRep = classRep;
+  }
+
   public String getMiddleTagName() {
     return middleTagName;
   }
