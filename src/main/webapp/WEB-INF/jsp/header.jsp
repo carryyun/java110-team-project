@@ -41,7 +41,7 @@
                     <div class="col-sm-6 col-xs-12">
                         <div class="social">
                             <ul class="social-share">
-                                <li><a href="http://localhost:8888/app/auth/form"><i class="fa fa-login" >로그인</i></a></li>
+                                <li><a href="/app/auth/form"><i class="fa fa-login" >로그인</i></a></li>
                                 <li><a href="#"><i class="fa fa-basket">장바구니</i></a></li>
                                 <li><a href="#"><i class="fa fa-classlike">찜클래스</i></a></li>
                             </ul>

@@ -42,120 +42,10 @@
 <body style="background-color: #F2F4F7">
 
 
+<div class="container row" style="margin : 0 auto">
 	<hr>
-	<div class="container">
-		<div class="row">
 
-
-			<h2>상품 상세보기</h2>
-			<hr class="FhrBotMargin">
-
-			<div class="col-lg-12 col-md-12 text-center">
-
-
-				<div class="row">
-					<aside class="col-lg-5">
-						<article class="gallery-wrap">
-							<div class="img-big-wrap">
-								<div>
-									<a href="#"><img id="prod_img"
-										src="/upload/img/product/700x400/julme.PNG" alt=""></a>
-								</div>
-							</div>
-
-
-						</article>
-					</aside>
-					<aside class="col-lg-7">
-						<article class="card-body p-5">
-							<div class="text-left">
-								<h2 class="title mb-3">${product.titl}</h2>
-								<br>
-								<dl class="param param-feature">
-									<dt>
-										<h4>가격</h4>
-									</dt>
-									<dd>${product.pric}원</dd>
-								</dl>
-
-								<dl class="param param-feature">
-									<dt>
-										<h4>택배비</h4>
-									</dt>
-									<dd>${product.deli}원</dd>
-								</dl>
-
-
-								<div class="row">
-
-									<div class="col-lg-7">
-
-										<dl class="param param-inline">
-											<dt>
-												<h4>남은수량</h4>
-											</dt>
-											<dd>${product.stock}개</dd>
-										</dl>
-										<!-- item-property .// -->
-									</div>
-									<!-- col.// -->
-
-								</div>
-								<!-- row.// -->
-
-								<hr>
-								<!---->
-								<div class="row">
-									<div class="col-lg-3">
-										<dl class="param param-inline">
-											<dt>
-												<h4 class="mt-0">수량</h4>
-											</dt>
-											<dd>
-												<select class="form-control form-control-lg col-8">
-													<option>1</option>
-													<option>2</option>
-													<option>3</option>
-												</select>
-											</dd>
-										</dl>
-										<!-- item-property .// -->
-									</div>
-									<!-- col.// -->
-									<div class="col-lg-9 align-middle">
-										<p class="price-detail-wrap mt-5">
-											<span class="price h3 text-warning"> <span
-												class="currency">총 합계 : </span><span class="num">200,000원</span>
-											</span>
-										</p>
-										<!-- price-detail-wrap .// -->
-									</div>
-								</div>
-								<!-- row.// -->
-
-
-
-								<!---->
-								<hr>
-								<a href="#" class="btn btn-lg btn-primary text-uppercase">
-									구매하기 </a> <a href="#"
-									class="btn btn-lg btn-outline-primary text-uppercase"> <i
-									class="fas fa-shopping-cart"></i> 장바구니
-								</a>
-							</div>
-						</article>
-						<!-- card-body.// -->
-					</aside>
-					<!-- col.// -->
-				</div>
-				<!-- row.// -->
-			</div>
-			<!-- <div class="col-lg-12 col-md-12 text-center"> -->
-		</div>
-		<!-- <div class="row"> -->
-	</div>
-	<!-- <div class="container"> -->
-
+    <jsp:include page="prodDetail_1.jsp"></jsp:include>
 
 	<!-- 판매자가 수강한 클래스 정보들-->
 	<div class="container">
@@ -169,12 +59,12 @@
 							style="border-bottom: 0.3px solid rgba(0, 0, 0, 0.5)">
 							<div class="col-lg-1 text-center">
 
-								<img src='${product.mentee.phot}' alt="singup" id="circle">
+								<img src='${product.mentee.phot}' alt="signup" id="circle">
                                 
 								${product.mentee.nick}
 							</div>
 							<div class="col-lg-11 media-body">${product.classes.titl}</div>
-                            <div class="col-lg-11 media-body"><img src='${product.classes.cfile}' alt="singup" id="circle"></div>
+                            <div class="col-lg-11 media-body"><img src='${product.classes.cfile}' alt="signup" id="square"></div>
                             
 
 						</div>
@@ -191,6 +81,85 @@
 
 	</div>
 
+<!-- ddddddddddddddddddddddddddddddddddddddddddd -->
+
+
+
+
+<span class="container col-lg-12">
+            </span> 
+            <div class="col-lg-12 mx-auto">
+                <div class="post-preview">
+                    <a href="post.html"></a> <!-- <div class="row"> -->
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <article class="card-wrapper">
+                                        <div class="image-holder">
+                                            <a href="#" class="image-holder__link"></a>
+                                            <div class="image-liquid image-holder--original">
+                                                <a href="#"><img class="classimg" alt="1" src="${c.cfile }"
+                                                    style="width: 100%; height: 100%"></a>
+                                            </div>
+                                        </div>
+                                        <div class="product-description">
+                                            <!-- 제목 -->
+                                            <h1 class="product-description__title">
+                                                <a href="#">${prdtcls.titl}</a>
+                                            </h1>
+                                            <!-- 분류명 , 가격 -->
+                                            <div class="row">
+                                                <div class="col-lg-12 product-description__category secondary-text">
+                                                    ${prdtcls.middleTag.name }</div>
+                                                <div class="col-lg-12 product-description__price">${prdtcls.pric }원</div>
+                                            </div>
+                                            <hr />
+                                            <!-- 멘토 이름 -->
+                                            <div class="sizes-wrapper">
+                                                <b>멘토-${prdtcls.mentee.name }</b>
+                                            </div>
+                                            <!-- 주소 -->
+                                            <div class="color-wrapper">
+                                                <b>${prdtcls.basAddr }</b>
+                                            </div>
+                                            <div class="color-wrapper">
+                                                <b>
+                                                <c:set var="starint" value="${prdtcls.star}"/>
+                                                <strong>별점:</strong>
+                                                <%
+                                                int star = (int) pageContext.getAttribute("starint");
+                                                for(int i=0; i<5;i++){
+                                                  if(i<star){
+                                                %>
+                                                <img class="starimg" alt="star-on-big" src="/upload/img/raty/star-on-big.png"
+                                                style="width:20px; height:20px;">
+                                                <%}else{
+                                                    %>
+                                                <img class="starimg" alt="star-off-big" src="/upload/img/raty/star-off-big.png"
+                                                style="width:20px; height:20px;">
+                                                <%
+                                                        }
+                                                    }
+                                                %>
+                                                </b>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+<!-- dddddddddddddddddddddddddddddddddddddddddddd -->
 
 
 
@@ -222,7 +191,7 @@
 				<li class="under-nav-item"><a class="nav-link" href="#qna">
 						<h4>
 							QnA
-							<h4>
+							</h4>
 				</a></li>
 
 			</ul>
@@ -236,6 +205,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 col-md-12 mx-auto" id="detail">
+
+dddd
 
 
 				<div class="detail_info">
@@ -423,7 +394,7 @@
 
 
 	<hr>
-
+</div>
 
 	<!-- Bootstrap core JavaScript -->
 	<script src="/vendor/jquery/jquery.min.js"></script>

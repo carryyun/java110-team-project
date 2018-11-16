@@ -6,8 +6,10 @@ import bitcamp.java110.cms.domain.Classes;
 public interface ClassService {
   List<Classes> list();
   List<Classes> classlist(int no);
+  Classes findbyptno(int ptno);
   
-  Classes get(int no);
+  
+  Classes findAllBycno(int cno);
   int classadd(Classes classes);
   int classupdate(Classes classes);
 }

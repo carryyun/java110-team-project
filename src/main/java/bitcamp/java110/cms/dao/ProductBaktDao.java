@@ -12,9 +12,9 @@ public interface ProductBaktDao {
   
   List<ProductBakt> findAllByPtno(Map<String,Object> params); // 공예품번호 조회
   
-  List<ProductBakt> findAllByMeno(Map<String,Object> params); // 멘티번호
-  
   int insert(ProductBakt productBakt);
   int update(ProductBakt productBakt);
+  
+  List<ProductBakt> findAllByMeno(int no); //추가
   
 }

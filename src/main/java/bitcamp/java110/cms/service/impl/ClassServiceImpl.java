@@ -38,9 +38,9 @@ public class ClassServiceImpl implements ClassService{
 
   
   @Override
-  public Classes get(int no) {
+  public Classes findAllBycno(int cno) {
     
-    return classDao.findByCno(no);
+    return classDao.findByCno(cno);
   }
 
 
@@ -48,6 +48,12 @@ public class ClassServiceImpl implements ClassService{
   public List<Classes> classlist(int no) {
     // TODO Auto-generated method stub
     return null;
+  }
+
+  @Override
+  public Classes findbyptno(int ptno) {
+    
+    return classDao.findByptno(ptno);
   }
   
 }

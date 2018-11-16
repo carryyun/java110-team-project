@@ -23,10 +23,14 @@ public class MenteeController {
     this.sc = sc;
   }
   
-  @RequestMapping("signup")
+  @RequestMapping(value = "signup", method=RequestMethod.GET)
   public void signup(Mentee mentee) {
-
-      //menteeService.add(mentee);
+    }
+  
+  @RequestMapping(value = "signup", method=RequestMethod.POST)
+  public String signup2(Mentee mentee) {
+      menteeService.add(mentee);
+    return  "redirect:/app/auth/form";
     }
   
   @GetMapping("findAll")

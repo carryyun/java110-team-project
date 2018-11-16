@@ -16,7 +16,7 @@
 	    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 	    <!------ 위에는 회원가입에 필요한 것들  ---------->
 	    
-	    <link rel="stylesheet" href="/css/Sign.css">
+	    <link rel="stylesheet" href="/css/sign.css">
 </head>
 <body style="background-color: #f2f4f7">
    <div id="wrap">
@@ -33,13 +33,12 @@
 			<div class="main">
 				<div class="main-center">
 				<h1>Haru</h1>
-					<form class="" method="post" action="#">
-						
+					<form class="signup" method="post" action="/app/mentee/signup" onsubmit="return signupCheck()" >
 						<div class="form-group">
 							<label for="name"> 이름 </label>
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-				                    <input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name" max=20/>
+				                    <input type="text" class="form-control" name="name" id="username" oninput="chkName()" placeholder="이름을 입력해주세요." maxlength="10"/>
 							</div>
 						</div>
 
@@ -47,15 +46,15 @@
 							<label for="email">이메일</label>
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" id="useremail" oninput="checkemail()" placeholder="Enter your Email"/>
+									<input type="email" class="form-control" name="email" id="useremail" oninput="checkemail()" placeholder="이메일을 입력해주세요."/>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label for="username">닉네임</label>
-								<div class="input-group">
+								<div class="input-group"> 
 									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" id="usernick" oninput="checknick()" placeholder="Enter your Username"/>
+									<input type="text" class="form-control" name="nick" id="usernick" oninput="checknick()" placeholder="닉네임을 입력해주세요 "/>
 								</div>
 						</div>
 
@@ -63,7 +62,7 @@
 							<label for="password">비밀번호</label>
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" id="pass" oninput="checkPwd()" placeholder="Enter your Password"/>
+									<input type="password" class="form-control" name="pwd" id="pass" oninput="checkPwd()" placeholder="Enter your Password"/>
 								</div>
 						</div>
 
@@ -75,8 +74,8 @@
 								</div>
 						</div>
                         <div class="selecct-but">
-				            <button type="submit" class="signupbtn" disabled="disabled" oninput="signupCheck()">Sign Up</button>
-				            <button id="backbtn" onclick="location.href='../auth/form.jsp'">Go Home</button>
+				            <input type="submit" class="signupbtn" value=회원가입 onclick="wow();">
+				            <input type="button" id="backbtn" onclick="gohome();" value=뒤로가기>
 						</div>
 					</form>
 				</div><!--main-center"-->
@@ -86,46 +85,66 @@
 </div>
 
 <script>
-var idCheck = 0;
-var pwdCheck = 0;
-var nickCheck = 0;
+var nameCheck = 0; // 유효성검사
+var emailCheck = 0; // 이메일 중복체크 , 유효성검사
+var pwdCheck = 0; // 패스워드 , 패스워드확인 값이 같은지 체크용
+var nickCheck = 0;  // 닉네임 중복체크 , 유효성검사
+
+function chkName(){	
+	var reg_name = /^[가-힣]{2,4}$/;
+	var inputed2 = $("#username").val();
+	var x = reg_name.test(inputed2);
+	if(inputed2==""){
+		nameCheck = 0;
+	}else if(x == true){
+		nameCheck = 1;
+        signupCheck();	
+	}else{
+		nameCheck = 0;
+	}
+	    	
+}
+
+
+
+
+function gohome(){
+	location.href="/app/auth/form";
+}
 
 function checknick(){
+	var emailChk = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|\*]+$/;
 	var inputed2 = $("#usernick").val();
-	console.log(inputed2);
+	var x = emailChk.test(inputed2);
 	$.ajax({
 		data : {
 			nick : inputed2
 		},
 		url : "checknick.do",
 		success : function(data){
-			console.log(data);
 			if(inputed2=="" && data == '0'){
-				$(".signupbtn").prop("disabled", true);
-                $(".signupbtn").css("background-color", "#aaaaaa");
-				$("#usernick").css("background-color", "#BEF781");
+				$("#usernick").css("background-color", "#FA5858");
 				nickCheck = 0;
-			}else if(data =='0'){
-				$("#usernick").css("background-color", "#BEF781");
+			}else if(data =='0' && x == true){
+				$("#usernick").css("background-color", "#B0F6AC");
 				nickCheck = 1;
-				if(idCheck==1 && pwdCheck == 1 && nickCheck == 1) {
-                    $(".signupbtn").prop("disabled", false);
-                    $(".signupbtn").css("background-color", "#4CAF50");
-                    signupCheck();
-                } 
+                signupCheck();
 			}else if(data =='1'){
-				$(".signupbtn").prop("disabled", true);
-                $(".signupbtn").css("background-color", "#aaaaaa");
+				$("#usernick").css("background-color", "#FA5858");
+				nickCheck = 0;
+			}else if(data =='1' && x == false){
 				$("#usernick").css("background-color", "#FA5858");
 				nickCheck = 0;
 			}
-			
 		}
 	});
 }
 
+
 function checkemail() {
+	var inputed2 = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     var inputed = $("#useremail").val();
+	var y = inputed2.test(inputed);
     $.ajax({
         data : {
             email : inputed,
@@ -133,67 +152,65 @@ function checkemail() {
         url : "checkemail.do",
         success : function(data) {
             if(inputed=="" && data=='0') {
-                $(".signupbtn").prop("disabled", true);
-                $(".signupbtn").css("background-color", "#aaaaaa");
-                $("#useremail").css("background-color", "#BEF781");
-                idCheck = 0;
-            } else if (data == '0') {
-                $("#useremail").css("background-color", "#BEF781");
-                idCheck = 1;
-                if(idCheck==1 && pwdCheck == 1 && nickCheck == 1) {
-                    $(".signupbtn").prop("disabled", false);
-                    $(".signupbtn").css("background-color", "#4CAF50");
+                $("#useremail").css("background-color", "white");
+                emailCheck = 0;
+            } else if (data == '0' && y == true) {
+                	emailCheck = 1;
+	                $("#useremail").css("background-color", "#B0F6AC");
                     signupCheck();
-                } 
             } else if (data == '1') {
-                $(".signupbtn").prop("disabled", true);
-                $(".signupbtn").css("background-color", "#aaaaaa");
                 $("#useremail").css("background-color", "#FA5858");
-                idCheck = 0;
-            } 
+                emailCheck = 0;
+            }else if(data=='0' && y == false) {
+                $("#useremail").css("background-color", "#FA5858");
+                emailCheck = 0;
+            }
         }
     });
 }
-
+// 비밀번호 비밀번호 확인이 같은값인지  체크
 function checkPwd() {
     var inputed = $('#pass').val();
     var reinputed = $('#repwd').val();
     if(reinputed=="" && (inputed != reinputed || inputed == reinputed)){
-        $(".signupbtn").prop("disabled", true);
-        $(".signupbtn").css("background-color", "#aaaaaa");
-        $("#repwd").css("background-color", "#FFCECE");
-    }
-    else if (inputed == reinputed) {
+        $("#repwd").css("background-color", "#FA5858");
+    }else if (inputed == reinputed) {
         $("#repwd").css("background-color", "#B0F6AC");
         pwdCheck = 1;
-        if(idCheck==1 && pwdCheck == 1 && nickCheck ==1) {
-            $(".signupbtn").prop("disabled", false);
-            $(".signupbtn").css("background-color", "#4CAF50");
-            signupCheck();
-        }
+        signupCheck();
     } else if (inputed != reinputed) {
         pwdCheck = 0;
-        $(".signupbtn").prop("disabled", true);
-        $(".signupbtn").css("background-color", "#aaaaaa");
-        $("#repwd").css("background-color", "#FFCECE");
+        $("#repwd").css("background-color", "#FA5858");
         
     }
 }
 
-//닉네임과 이메일 입력하지 않았을 경우 가입버튼 비활성화
-function signupCheck() {
-    var nickname = $("#nickname").val();
-    var email = $("#email").val();
-    var pwd = $("#pass").val();
-    var repwd = $("#repwd").val();
-    var name = $("#name").val();
-    if(nickname=="" || email=="" || name=="" || pwd=="" || repwd=="") {
-        $(".signupbtn").prop("disabled", true);
-        $(".signupbtn").css("background-color", "#aaaaaa");
-    } else {
-    }
+var signChk = false;
+
+
+function wow(){
+	if(signupCheck() == false){
+		alert("회원정보를 다시 입력해주세요.");
+	}else if(signupCheck() == true){
+		alert($("#username").val() + "님 회원가입을 축하드립니다^^");
+	}
 }
 
+function signupCheck() {
+    var nickname = $("#usernick").val();
+    var email = $("#useremail").val();
+    var pwd = $("#pass").val();
+    var repwd = $("#repwd").val();
+    var name = $("#username").val();
+    if(nickname=="" || email=="" || name=="" || pwd=="" || repwd=="") {
+        return false;
+    }else if(emailCheck == 0 || pwdCheck == 0 || nickCheck == 0 || nameCheck == 0){
+		return false;
+	}else if(emailCheck == 1 && pwdCheck == 1 && nickCheck == 1 && nameCheck == 1){
+        return true;
+        location.href="/app/auth/form";
+	}
+}
 
 
 </script>

@@ -33,16 +33,7 @@ public class ProductBaktServiceImpl implements ProductBaktService {
     return productBaktDao.findByNo(no);
   }
 
-  
-  @Override
-  public List<ProductBakt> listByMeno(int pageNo, int pageSize, int meno) {
-    HashMap<String, Object> params = new HashMap<>();
-    params.put("rowNo", (pageNo - 1) * pageSize);
-    params.put("size", pageSize);
-    params.put("mentno", meno);
-
-    return productBaktDao.findAllByMeno(params);
-  }
+ 
 
 
   @Override
@@ -53,6 +44,13 @@ public class ProductBaktServiceImpl implements ProductBaktService {
     params.put("productno", ptno);
 
     return productBaktDao.findAllByPtno(params);
+  }
+
+  @Override
+  public List<ProductBakt> listAllByMeno(int meno) {
+    
+    return productBaktDao.findAllByMeno(meno);
+    
   }
 
 

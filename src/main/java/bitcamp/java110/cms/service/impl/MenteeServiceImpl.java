@@ -16,8 +16,8 @@ public class MenteeServiceImpl implements MenteeService {
   @Autowired
   MenteeDao menteeDao;
 
-  @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 
+  @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
   @Override
   public List<Mentee> list() {
 
