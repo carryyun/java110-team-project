@@ -186,7 +186,7 @@
         from 
             p_mete mte
         where
-            mte.email=#{email} and mte.pwd=#{pwd}
+            LOWER(mte.email)=#{email} and LOWER(mte.pwd)=#{pwd}
             <!-- mte.email=#{email} and mte.pwd=password(#{pwd}) -->
     </select> 
 </mapper>
