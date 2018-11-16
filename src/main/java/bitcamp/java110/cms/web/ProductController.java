@@ -90,7 +90,6 @@ public class ProductController {
      * System.out.println(p.getMentee().getNick()); System.out.println(p.getMentee().getPhot()); }
      */
 
-
     model.addAttribute("product", productService.get(1));
     // product - 웹에서 쓸 이름(아무거나 써도됨)
     model.addAttribute("replyList", replyList);
