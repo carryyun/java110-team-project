@@ -55,10 +55,6 @@ public class ProductController {
       pp_product.add(p.getProduct());
     }
 
-    for (Product ppp : productList) {
-      System.out.println(ppp.getPhot());
-    }
-
     ObjectMapper mapper = new ObjectMapper();
     String jsonText = "";
     try {
@@ -68,17 +64,15 @@ public class ProductController {
     } catch (JsonProcessingException e) {
       System.out.println(e.getMessage());
     }
-    /*
-     * model.addAttribute("BTlist",BTlist); model.addAttribute("MTlist",MTlist);
-     */
+
     model.addAttribute("productList", productList);
   }
 
-  @GetMapping("test")
-  public void test() {
 
+  @GetMapping("detail")
+  public void detail(Model model) {
+  
   }
-
 
   @GetMapping("detail2")
   public void detail(Model model, int no) {
@@ -105,5 +99,4 @@ public class ProductController {
   }
 
 }
-
 

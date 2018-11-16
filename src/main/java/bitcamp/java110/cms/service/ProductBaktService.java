@@ -13,8 +13,7 @@ public interface ProductBaktService {
   // 공예품 번호로 조회
   List<ProductBakt> listByPtno(int pageNo, int pageSize, int ptno); 
   
-  // 멘티 번호로 조회
-  List<ProductBakt> listByMeno(int pageNo, int pageSize, int meno);
   
+  List<ProductBakt> listAllByMeno(int no);
   
 }

@@ -7,6 +7,26 @@ public class ProductBakt {
   private int no; // 장바구니번호
   private int ptno; // 공예품번호
   private int meno; // 멘티번호
+  private Product product;
+  private Mentee mentee;
+  
+  
+
+  public Product getProduct() {
+    return product;
+  }
+
+  public void setProduct(Product product) {
+    this.product = product;
+  }
+
+  public Mentee getMentee() {
+    return mentee;
+  }
+
+  public void setMentee(Mentee mentee) {
+    this.mentee = mentee;
+  }
 
   public int getNo() {
     return no;

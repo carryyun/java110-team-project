@@ -10,6 +10,14 @@
         <id column="pbno"        property="no"/>
         <result column="ptno"   property="ptno"/>
         <result column="meno"   property="meno"/>
+        
+        <result column="titl" property="product.titl"/>
+        <result column="pric" property="product.pric"/>
+        <result column="deli" property="product.deli"/>
+        <result column="phot" property="product.phot"/>
+        
+        <result column="nick" property="mentee.nick"/>
+        
     </resultMap>
     
     <select id="findAll" resultMap="productBaktMap">
@@ -22,6 +30,7 @@
         order by 
             pbno asc
     </select>
+    
 
     <select id="findByNo" 
             resultMap="productBaktMap" parameterType="int">
@@ -34,20 +43,7 @@
         where 
             pbno=#{value}
     </select>
-    
-    <select id="findAllByMeno" 
-            resultMap="productBaktMap" parameterType="Map">
-        select
-            pbno,
-            ptno,
-            meno
-        from
-            p_prdt_bakt
-        where 
-            meno=#{mentno}
-    </select>
-    
-    
+   
     <select id="findAllByPtno" 
             resultMap="productBaktMap" parameterType="Map">
         select
@@ -58,6 +54,24 @@
             p_prdt_bakt
         where 
             ptno=#{productno}
+    </select>
+    
+    <select id="findAllByMeno" resultMap="productBaktMap" parameterType="int">
+        SELECT
+            pb.pbno,
+            pr.phot, 
+            pr.titl, 
+            pr.pric, 
+            pr.deli, 
+            mete.nick
+        FROM 
+            p_prdt_bakt pb 
+                join p_prdt pr
+            on pb.ptno = pr.ptno
+        JOIN p_mete mete
+            on pb.meno = mete.meno
+        where 
+            pb.meno = #{value}
     </select>
 
 </mapper>
