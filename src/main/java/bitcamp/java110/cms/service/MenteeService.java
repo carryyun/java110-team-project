@@ -6,7 +6,7 @@ import bitcamp.java110.cms.domain.Mentee;
 public interface MenteeService {
   
   // 전체 조회
-  List<Mentee> list(int pageNo, int pageSize); 
+  List<Mentee> list(); 
   
   // 멘티 번호로 조회
   Mentee get(int no); 

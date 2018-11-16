@@ -19,13 +19,10 @@ public class MenteeServiceImpl implements MenteeService {
   @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 
   @Override
-  public List<Mentee> list(int pageNo, int pageSize) {
+  public List<Mentee> list() {
 
-    HashMap<String, Object> params = new HashMap<>();
-    params.put("rowNo", (pageNo - 1) * pageSize);
-    params.put("size", pageSize);
 
-    return menteeDao.findAll(params);
+    return menteeDao.findAll();
 
   }
   @Override

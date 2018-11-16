@@ -10,7 +10,7 @@ public interface MenteeDao {
 
   int delete(int no);
 
-  List<Mentee> findAll(Map<String, Object> params); // 전체조회
+  List<Mentee> findAll(); // 전체조회
 
   Mentee findByNo(int no); // 멘티 번호
 

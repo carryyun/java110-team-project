@@ -3,7 +3,6 @@ package bitcamp.java110.cms.web;
 import java.util.List;
 import javax.servlet.ServletContext;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,7 +32,7 @@ public class MenteeController {
   @GetMapping("findAll")
   public void findAll() {
     System.out.println("findAll 호출");
-    List<Mentee> mlist= menteeService.list(3, 3);
+    List<Mentee> mlist= menteeService.list();
     for(Mentee m : mlist) {
       System.out.println(m.getNo());
       System.out.println(m.getBas_addr());
