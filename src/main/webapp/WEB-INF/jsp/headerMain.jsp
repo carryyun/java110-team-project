@@ -32,7 +32,7 @@
           <ul class="navbar-nav ml-auto mr-0">
             <li class="nav-item ">
              <div id="row">
-               <a class="nav-link" href="index.html">
+               <a class="nav-link" href="../auth/form">
               <i class="fas fa-power-off fa-2x"></i><br>로그인
                </a>
              </div>

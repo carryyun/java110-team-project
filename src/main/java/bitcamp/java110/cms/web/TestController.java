@@ -17,9 +17,13 @@ public class TestController {
   
   @RequestMapping("detail")
   public String detail() {
-    return "redirect:../product/detail";
+    return "redirect:../product/detail2?no=5";
   }
-  
+  @RequestMapping("prdtbakt")
+  public String prdtbakt() {
+    return "redirect:../productBakt/basketproduc";
+  }
+
 }
 
 
