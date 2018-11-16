@@ -200,10 +200,10 @@
 								<div class="col-lg-4">
 									<article class="card-wrapper">
 										<div class="image-holder">
-											<a href="#" class="image-holder__link"></a>
+											<a href="#" class="image-holder_link"></a>
 											<div class="image-liquid image-holder--original">
-												<a href="#"><img class="classimg" alt="1" src="${c.cfile }"
-													style="width: 100%; height: 100%"></a>
+												<a href="#"><img src='${c.cfile}' alt="1" class="classimg"></a>
+												
 											</div>
 										</div>
 										<div class="product-description">

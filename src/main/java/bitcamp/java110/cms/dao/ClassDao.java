@@ -7,8 +7,11 @@ public interface ClassDao {
   List<Classes> findAll();
   List<Classes> findAllList();
   List<Classes> classform(int no);
+  Classes findByptno(int no);
+  
   int classinsert(Classes classes);
   int classupdate(Classes classes);
+  
   Classes findBytag(int tag);
   Classes findByba(String ba);
   Classes findByday(String day);
