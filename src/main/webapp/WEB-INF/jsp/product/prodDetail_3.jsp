@@ -8,9 +8,9 @@
 	<div class="post-preview">
 		<a href="post.html"></a>
 
-		<div class="container"  style="position : fixed; background-color:aquamarine" >
-			<div class="row">
-				<div class="col-lg-4">
+		<div  style="position : fixed; background-color:aquamarine; margin: 80px 60px 0 0" >
+			<div class="">
+				<div class="">
 					<article class="card-wrapper">
 
 						<div class="image-holder">
