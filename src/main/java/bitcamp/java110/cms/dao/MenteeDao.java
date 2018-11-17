@@ -7,13 +7,15 @@ import bitcamp.java110.cms.domain.Mentee;
 
 public interface MenteeDao {
   int signup(Mentee mentee);
+  
+  int fbsignup(Mentee mentee);
 
   int delete(int no);
 
   List<Mentee> findAll(); // 전체조회
 
   Mentee findByNo(int no); // 멘티 번호
-
+  
   int checkemail(Mentee mentee); // 회원 가입시 닉네임 중복 체크
   
   int checknick(Mentee mentee); // 회원 가입시 닉네임 중복 체크

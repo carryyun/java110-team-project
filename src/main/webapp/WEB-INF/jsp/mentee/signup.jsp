@@ -32,7 +32,7 @@
 	<div class="container">
 			<div class="main">
 				<div class="main-center">
-				<h1>Haru</h1>
+				<h1>Haru 회원가입</h1>
 					<form class="signup" method="post" action="/app/mentee/signup" onsubmit="return signupCheck()" >
 						<div class="form-group">
 							<label for="name"> 이름 </label>
@@ -62,7 +62,7 @@
 							<label for="password">비밀번호</label>
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" name="pwd" id="pass" oninput="checkPwd()" placeholder="Enter your Password"/>
+									<input type="password" class="form-control" name="pwd" id="pass" oninput="checkPwd()" placeholder="8자이상 입력해주세요."/>
 								</div>
 						</div>
 
@@ -70,7 +70,7 @@
 							<label for="confirm">비밀번호 확인</label>
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" id="repwd" oninput="checkPwd()" placeholder="Confirm your Password"/>
+									<input type="password" class="form-control" id="repwd" oninput="checkPwd()" placeholder="8자이상 입력해주세요."/>
 								</div>
 						</div>
                         <div class="selecct-but">
@@ -104,9 +104,6 @@ function chkName(){
 	}
 	    	
 }
-
-
-
 
 function gohome(){
 	location.href="/app/auth/form";
@@ -172,9 +169,10 @@ function checkemail() {
 function checkPwd() {
     var inputed = $('#pass').val();
     var reinputed = $('#repwd').val();
+    console.log(inputed.length);
     if(reinputed=="" && (inputed != reinputed || inputed == reinputed)){
         $("#repwd").css("background-color", "#FA5858");
-    }else if (inputed == reinputed) {
+    }else if (inputed == reinputed && (inputed.length >= 8)) {
         $("#repwd").css("background-color", "#B0F6AC");
         pwdCheck = 1;
         signupCheck();
@@ -184,9 +182,6 @@ function checkPwd() {
         
     }
 }
-
-var signChk = false;
-
 
 function wow(){
 	if(signupCheck() == false){
@@ -202,9 +197,9 @@ function signupCheck() {
     var pwd = $("#pass").val();
     var repwd = $("#repwd").val();
     var name = $("#username").val();
-    if(nickname=="" || email=="" || name=="" || pwd=="" || repwd=="") {
+    if(nickname=="" || email=="" || name=="" || pwd=="" || repwd=="" || pwd.length < 8) {
         return false;
-    }else if(emailCheck == 0 || pwdCheck == 0 || nickCheck == 0 || nameCheck == 0){
+    }else if(emailCheck == 0 || pwdCheck == 0 || nickCheck == 0 || nameCheck == 0 || pwd.length < 8){
 		return false;
 	}else if(emailCheck == 1 && pwdCheck == 1 && nickCheck == 1 && nameCheck == 1){
         return true;

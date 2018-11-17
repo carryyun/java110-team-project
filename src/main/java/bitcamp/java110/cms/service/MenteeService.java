@@ -25,6 +25,8 @@ public interface MenteeService {
   
   void add(Mentee mentee); // insert
   
+  void fbadd(Mentee mentee);
+  
   void delete(int no);
   
   

@@ -2,6 +2,7 @@ package bitcamp.java110.cms.web;
 
 import java.util.List;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +27,18 @@ public class MenteeController {
   @RequestMapping(value = "signup", method=RequestMethod.GET)
   public void signup(Mentee mentee) {
     }
+  @RequestMapping(value = "fbsignup", method=RequestMethod.GET)
+  public void fbsignup(Mentee mentee) {
+  }
   
+  
+  @RequestMapping(value = "fbsignup", method = RequestMethod.POST)
+  public String fbsignup(Mentee mentee ,HttpSession session) {
+    mentee.setEmail(session.getAttribute("email").toString());
+    mentee.setName(session.getAttribute("name").toString());
+    menteeService.fbadd(mentee);
+    return  "redirect:/app/auth/form";
+  }
   @RequestMapping(value = "signup", method=RequestMethod.POST)
   public String signup2(Mentee mentee) {
       menteeService.add(mentee);

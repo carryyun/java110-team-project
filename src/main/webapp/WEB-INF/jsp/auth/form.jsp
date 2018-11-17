@@ -101,16 +101,17 @@
  <!-- 페이스북 -->
 <script type="text/javascript">
 function autoLogin(accessToken) {
-    var type = document.querySelector("input[name='type']:checked").value;
-    location.href = "fblogin?type=" + type + 
-            "&accessToken=" + accessToken;
+	console.log("자동로그인실행");
+    location.href = "fblogin?" + 
+            "accessToken=" + accessToken;
 }
 
 function checkLoginState() {
     FB.getLoginStatus(function(response) { 
+    	console.log(response.status);
         if (response.status === 'connected') {
             autoLogin(response.authResponse.accessToken);
-        
+        	console.log(accessToken);
         } else {
             alert("Facebook 로그인 실패!");
         }
@@ -118,9 +119,8 @@ function checkLoginState() {
 }
 
 window.fbAsyncInit = function() {
-  console.log("window.fbAsyncInit() 호출됨!");
   FB.init({
-    appId      : '253109695386842', // 개발자가 등록한 앱 ID
+    appId      : '182049192723689', // 개발자가 등록한 앱 ID
     cookie     : true,  
     xfbml      : true,  
     version    : 'v3.2' 
@@ -154,6 +154,7 @@ function loginWithKakao(){
                     "&id=" + JSON.stringify(res.id) +
                     "&profile_image=" + JSON.stringify(res.properties.profile_image) +
                     "&nickname=" + JSON.stringify(res.properties.nickname);
+            alert(JSON.stringify(res.id));
       },
       fail: function(error) {
         alert(JSON.stringify(error));
@@ -165,8 +166,6 @@ function loginWithKakao(){
     
 }
 </script>
-<script>
-</script> 
  <!-- Kakao.Auth.logout(function () {  alert("카카오로그아웃");}); -->
 </body>
 </html>

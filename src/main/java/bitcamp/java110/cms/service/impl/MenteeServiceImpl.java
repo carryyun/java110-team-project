@@ -20,8 +20,6 @@ public class MenteeServiceImpl implements MenteeService {
   @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
   @Override
   public List<Mentee> list() {
-
-
     return menteeDao.findAll();
 
   }
@@ -69,6 +67,11 @@ public class MenteeServiceImpl implements MenteeService {
   public void add(Mentee mentee) {
     menteeDao.signup(mentee);
   }
+  public void fbadd(Mentee mentee) {
+    if(menteeDao.checkemail(mentee) == 0)
+    menteeDao.fbsignup(mentee);
+  }
+  
 
   @Transactional
   @Override
