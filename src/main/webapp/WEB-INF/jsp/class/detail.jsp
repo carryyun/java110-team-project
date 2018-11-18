@@ -37,6 +37,16 @@
 <link href="/css/common.css" rel="stylesheet">
 <link href="/css/class_detail.css" rel="stylesheet">
 
+<!-- Bootstrap core JavaScript -->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+
+	<!-- 아래와 같이 주석처리한 이유는 bootstrap이 두번 선언된 경우에 동작이 두번할수도 있음 -->
+    <!-- <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/js/jquery.raty.min.js"></script>
+    <script src="/js/clean-blog.js"></script>
+
 <script type="text/javascript">
  var stmnLEFT = 0; // 오른쪽 여백 
  var stmnGAP1 = 0; // 위쪽 여백 
@@ -363,9 +373,8 @@
                         <h3>Q&A</h3>
                         <div class="row">
                             <div class="col-lg-12">
-                              <form id="qnaform">
-                                <table class="table row container" id="qna_table"
-                                    style="margin: 0 auto">
+                                <table class="table table-condensed" id="qna_table" 
+                                style="margin: 0 auto; border-collapse:collapse;">
                                     <thead class="col-lg-12">
                                         <tr class="row">
                                             <th scope="col" class="col-lg-1" id="qna_th">번호</th>
@@ -377,10 +386,12 @@
 
                                         </tr>
                                     </thead>
-                                    <c:forEach items="${clsqnalist}" var="cq"> 
+                                    
                                     <tbody class="col-lg-12">
-                                        <tr class="accordion-toggle row" data-toggle="collapse" data-target="#demo1">
-                                            <th class="col-lg-1" scope="row" id="qna_th">${cq.no}</th>
+                                    <c:forEach items="${clsqnalist}" var="cq" varStatus="i">
+                                        <tr data-toggle="collapse" 
+                                        data-target="#demo1-${i.count}" class="accordion-toggle row">
+                                            <td class="col-lg-1" scope="row" id="qna_th"> ${cq.no}</td>
                                             <td class="col-lg-2">${cq.type}</td>
                                             <c:set var="yn" value="${cq.anser}"/>
                                             <%
@@ -400,31 +411,33 @@
                                         </tr>
                                         <tr>
                                         	<td colspan="6" class="hiddenRow">
-                                        		<div class="accordian-body collapse" id="demo1">
-                                        			${cq.conts}
-                                        		</div>
+                                        		<div class="accordian-body collapse" id="demo1-${i.count}">
+                                        		<span class="adddet">질문 내용: </span>
+                                        		<span class="acco" id="cont">${cq.conts}</span><br>
                                         			<c:set var="ans" value="${cq.anser}"/>
 		                                            <%
 		                                            	String ans = (String)pageContext.getAttribute("ans");
 		                                            	if(ans==null){
 		                                           	%>
-		                                           		<div class="accordian-body collapse" >
-		                                           		답변이 등록되지 않았습니다.
+		                                           		<div class="col-lg-3">
+		                                           		<span class="adddet">질문 답변: </span>
 		                                           		</div>
+		                                           		<span class="acco" id="ans">답변이 등록되지 않았습니다.</span>
 		                                           	<%  }else{
 		                                           	%>
-		                                            	<div class="accordian-body collapse" >
-		                                           		${cq.anser}
+		                                           		<div class="col-lg-3">
+		                                           		<span class="adddet">질문 답변: </span>
 		                                           		</div>
+		                                           		<span class="acco" id="ans">${cq.anser}</span>
 		                                           	<%  
 		                                           	}
 		                                            %>
+                                        		</div>
                                         	</td>
                                         </tr>
-                                    </tbody>
                                     </c:forEach>
+                                    </tbody>
                                 </table>
-                              </form>
                             </div>
                             <!-- <div class="col-lg-12"> -->
                         </div>
@@ -470,15 +483,7 @@
     <hr>
 
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="/vendor/jquery/jquery.min.js"></script>
-
-    <script
-        src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/vendor/jquery/jquery.min.js"></script>
-    <script src="/js/jquery.raty.min.js"></script>
-    <script src="/js/clean-blog.js"></script>
+    
 
 
 

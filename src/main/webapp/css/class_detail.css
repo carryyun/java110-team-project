@@ -536,7 +536,7 @@ footer .copyright {
 .shortinfo{
 	float: right;
 	margin-right : 30px;
-}
+}	
 /*
     .btn
     .btn-primary
@@ -553,5 +553,12 @@ dd,dl{
 .hiddenRow {
     padding: 0 4px !important;
     background-color: #eeeeee;
-    font-size: 13px;
+    font-size: 15px;
+}
+.acco{
+	border-bottom:1px solid silver;
+}
+.adddet{
+	float : left;
+	display : inline;
 }
