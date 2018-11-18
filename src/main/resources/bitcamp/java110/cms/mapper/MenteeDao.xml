@@ -25,6 +25,10 @@
         <result column="stat"   property="stat"/>
         <result column="note"   property="note"/>
         <result column="mtstat"   property="mtstat"/>
+        <result column="rgdtmt" property="rgdtmt"/>
+        <result column="mono"   property="classes.mono"/>
+        <result column="titl"   property="classes.titl"/>
+        <result column="pric"   property="classes.pric"/>
     </resultMap>
     
     <select id="checkemail"
@@ -100,6 +104,17 @@
             p_mete
         where 
             meno=#{value}
+    </select>
+    
+    
+    <select id="findM2ByNo" 
+            resultMap="menteeMap" parameterType="int">
+        SELECT  c.titl, c.mono,c.pric
+        FROM    p_mete m INNER JOIN p_cls_order co ON m.meno = co.meno
+                INNER JOIN p_cls_ttab ct on co.ctno = ct.ctno
+                INNER JOIN p_cls c on ct.cno = c.cno
+        WHERE
+                m.meno=#{value}
     </select>
     
     <select id="findAllByEmail" parameterType="String">
@@ -206,4 +221,7 @@
             LOWER(mte.email)=#{email} and LOWER(mte.pwd)=#{pwd}
             <!-- mte.email=#{email} and mte.pwd=password(#{pwd}) -->
     </select> 
+    
+    
+    
 </mapper>

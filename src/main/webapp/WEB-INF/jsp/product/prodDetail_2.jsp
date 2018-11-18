@@ -128,7 +128,7 @@
 
 
 				<hr class="Fhr" id="prod_qna">
-				<div class="detail_info">
+				<div class="detail_info px-3 py-3">
 					<h3>Q&A</h3>
 					<div class="row">
 						<div class="col-lg-12">
@@ -138,10 +138,10 @@
 								<thead class="col-lg-12">
 									<tr class="row">
 										<th scope="col" class="col-lg-1" id="qna_th">번호</th>
-										<th scope="col" class="col-lg-1" id="qna_th">문의유형</th>
-										<th scope="col" class="col-lg-1" id="qna_th">답변상태</th>
-										<th scope="col" class="col-lg-6" id="qna_th">문의/답변</th>
-										<th scope="col" class="col-lg-1" id="qna_th">작성자</th>
+										<th scope="col" class="col-lg-2" id="qna_th">문의유형</th>
+										<th scope="col" class="col-lg-2" id="qna_th">답변상태</th>
+										<th scope="col" class="col-lg-3" id="qna_th">문의/답변</th>
+										<th scope="col" class="col-lg-2" id="qna_th">작성자</th>
 										<th scope="col" class="col-lg-2" id="qna_th">작성일</th>
 
 									</tr>
@@ -150,8 +150,8 @@
 								<tbody class="col-lg-12">
 									<tr class="row">
 										<th class="col-lg-1" scope="row" id="qna_th">${qna.no}</th>
-										<td class="col-lg-1">${qna.type}</td>
-										<td class="col-lg-1">
+										<td class="col-lg-2">${qna.type}</td>
+										<td class="col-lg-2">
 										<c:set var="rgdt2" value="${qna.rgdt2}" />
 									
 		                                    <%
@@ -168,22 +168,25 @@
 										
 										
 										</td>
-										<td class="col-lg-6">${qna.conts}</td>
-										<td class="col-lg-1">${qna.mentee.nick}</td>
+										<td class="col-lg-3">${qna.conts}</td>
+										<td class="col-lg-2">${qna.mentee.nick}</td>
 										<td class="col-lg-2">${qna.rgdt}</td>
 									</tr>
 								</tbody>
 								</c:forEach>
 							</table>
 						</div>
+						<div class="col-lg-12 text-right">
+						<button onclick="location.href='prdtQna'"
+                        style="width: 120px; height: 40px; background-color: #606066; color: #ffffff">
+                        상품 문의</button>
+						</div>
 						<!-- <div class="col-lg-12"> -->
 					</div>
 					<!-- <div class="row"> -->
 
 
-					<button onclick="location.href='prdtQna'"
-						style="width: 120px; height: 40px; margin-left: 960px; background-color: #606066; color: #ffffff">상품
-						문의</button>
+					
 
 				</div>
 				<!-- <div class="detail_info"> -->

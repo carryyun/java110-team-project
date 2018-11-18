@@ -53,5 +53,24 @@ public class ProductBaktServiceImpl implements ProductBaktService {
     
   }
 
+  @Override
+  public int add(ProductBakt productbakt) {
+    return productBaktDao.insert(productbakt);
+  }
+
+  @Override
+  public int update(ProductBakt productbakt) {
+    // TODO Auto-generated method stub
+    return productBaktDao.update(productbakt);
+  }
+
+  @Override
+  public void delete(int pbno) {
+    if (productBaktDao.delete(pbno) == 0) {
+      throw new RuntimeException("해당 번호의 데이터가 없습니다");
+    }
+    productBaktDao.delete(pbno);
+  }
+
 
 }

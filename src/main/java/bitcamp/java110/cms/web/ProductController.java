@@ -77,12 +77,8 @@ public class ProductController {
   }
 
 
+
   @GetMapping("detail")
-  public void detail(Model model) {
-
-  }
-
-  @GetMapping("detail2")
   public void detail(Model model, int no) {
     Product product = productService.get(no);
 
@@ -103,12 +99,6 @@ public class ProductController {
     model.addAttribute("prodQnaList", prodQnaList);
     /* model.addAttribute("clslist",clslist); */
   }
-
-  @RequestMapping("P")
-  public String P() {
-    return "redirect:../product/prdt";
-  }
-
 
 
   @GetMapping("prdtQna")
