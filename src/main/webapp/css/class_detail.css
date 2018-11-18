@@ -412,7 +412,7 @@ header.masthead .post-heading .meta a {
 /* 상품 상세정보 사진 크기 */
 #prod_img{
     height: 480px;
-    width: 470px;
+    width: 100%;
     margin-top : 50px;
 }
 
@@ -486,6 +486,7 @@ header.masthead .post-heading .meta a {
     border: 0px;
     border-radius: .25rem;
     margin-top:80px;
+    padding : 10px;
 }
 
 #testt{
@@ -514,6 +515,7 @@ table{
 
 #product-pn{
     text-align: center;
+    vertical-align: middle;
 }
 
 
@@ -531,10 +533,14 @@ footer .copyright {
   margin-bottom: 0;
   text-align: center;
 }
-
+.shortinfo{
+	float: right;
+	margin-right : 30px;
+}
 /*
     .btn
     .btn-primary
     .btn-primary:hover, .btn-primary:focus, .btn-primary:active
     .btn-lg
 */
+

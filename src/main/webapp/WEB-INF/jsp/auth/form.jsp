@@ -120,7 +120,7 @@ function checkLoginState() {
 window.fbAsyncInit = function() {
   console.log("window.fbAsyncInit() 호출됨!");
   FB.init({
-    appId      : '253109695386842', // 개발자가 등록한 앱 ID
+    appId      : '182049192723689', // 개발자가 등록한 앱 ID
     cookie     : true,  
     xfbml      : true,  
     version    : 'v3.2' 
