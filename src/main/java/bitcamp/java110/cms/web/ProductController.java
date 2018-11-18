@@ -34,20 +34,22 @@ public class ProductController {
   ProductRepService productRepSerivce;
   ServletContext sc;
   ClassService classService;
-  ProductQnAService productQnASerivce;
-  
+  ProductQnAService productQnAService;
+
   public ProductController(ProductService productService, BigTagService bigTagService,
       MiddleTagService middleTagService, ProductPopulService productPopulService,
       ProductRepService productRepSerivce, ServletContext sc, ClassService classService,
-      ProductQnAService productQnASerivce) {
+      ProductQnAService productQnAService) {
+
     this.productService = productService;
     this.bigTagService = bigTagService;
     this.middleTagService = middleTagService;
     this.productPopulService = productPopulService;
     this.productRepSerivce = productRepSerivce;
     this.classService = classService;
-    this.productQnASerivce = productQnASerivce;
     this.sc = sc;
+    this.classService = classService;
+    this.productQnAService = productQnAService;
   }
 
   @GetMapping("prdt")
@@ -77,7 +79,7 @@ public class ProductController {
 
   @GetMapping("detail")
   public void detail(Model model) {
-  
+
   }
 
   @GetMapping("detail2")
@@ -86,41 +88,45 @@ public class ProductController {
 
     List<ProductRep> replyList = productRepSerivce.listByPtno(no);
     Classes prdtcls = classService.findbyptno(no);
+    List<ProductQnA> prodQnaList = productQnAService.listByPtno(3,5,no);
+    System.out.println(prodQnaList.get(0).getTitl());
+    
     /*
      * for(ProductRep p : list) { System.out.println(p.getConts());
      * System.out.println(p.getMentee().getNick()); System.out.println(p.getMentee().getPhot()); }
      */
 
-
     model.addAttribute("product", product);
     // product - 웹에서 쓸 이름(아무거나 써도됨)
     model.addAttribute("replyList", replyList);
     model.addAttribute("prdtcls", prdtcls);
+    model.addAttribute("prodQnaList", prodQnaList);
+    /* model.addAttribute("clslist",clslist); */
   }
-  
+
   @RequestMapping("P")
   public String P() {
     return "redirect:../product/prdt";
   }
-  
-  
-  
+
+
+
   @GetMapping("prdtQna")
   public void prdtQna() {
-  
+
   }
-  
+
   @RequestMapping(value = "addqna", method = RequestMethod.POST)
-  public String addqna(String type,String titl, String conts) {
-    ProductQnA pqna= new ProductQnA();
+  public String addqna(String type, String titl, String conts) {
+    ProductQnA pqna = new ProductQnA();
     pqna.setTitl(titl);
     pqna.setConts(conts);
     pqna.setType(type);
     pqna.setMeno(5);
     pqna.setPtno(5);
-    
-    
-    productQnASerivce.add(pqna);
+
+
+    productQnAService.add(pqna);
     return "redirect:../product/prdtQna";
   }
 

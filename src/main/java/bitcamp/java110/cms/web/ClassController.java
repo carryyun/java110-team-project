@@ -162,7 +162,7 @@ public class ClassController {
     model.addAttribute("clslist", clslist);
   }
   
-  @RequestMapping("detail")
+  @RequestMapping("findByCno")
   public void findByCno(Model model,int no) {
     List<ClassRep> clsreqlist = classrepService.listbycno(no);
     
