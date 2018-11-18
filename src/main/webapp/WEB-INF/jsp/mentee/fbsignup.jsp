@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원 가입 화면</title>
+<title>필수항목</title>
 		<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 	    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 	    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -14,7 +14,6 @@
 	    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 	    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 	    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-	    <!------ 위에는 회원가입에 필요한 것들  ---------->
 	    
 	    <link rel="stylesheet" href="/css/sign.css">
 </head>
@@ -25,7 +24,7 @@
 			<div id="row">
     <div class="container col-lg-12 mx-auto">
     <!-- <div id="headerMain"></div> -->
-    <jsp:include page="../header.jsp"></jsp:include>
+    <jsp:include page="../header.jsp"></jsp:include> 
     </div>
     </div>
 

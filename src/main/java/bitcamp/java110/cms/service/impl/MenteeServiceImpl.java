@@ -25,8 +25,12 @@ public class MenteeServiceImpl implements MenteeService {
   }
   @Override
   public Mentee get(int no) {
-
     return menteeDao.findByNo(no);
+  }
+  
+  @Override
+  public String getByNamePhone(Mentee mentee) {
+    return menteeDao.findByNamePhone(mentee);
   }
 
 

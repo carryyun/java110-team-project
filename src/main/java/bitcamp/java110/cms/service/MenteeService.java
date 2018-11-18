@@ -17,6 +17,9 @@ public interface MenteeService {
   // 회원 가입시 닉네임중복 체크
   int checkByNick(Mentee mentee);
   
+  //
+  String getByNamePhone(Mentee mentee);
+  
   // 닉네임으로 조회
   List<Mentee> listByNick(int pageNo, int pageSize, String nick);
   

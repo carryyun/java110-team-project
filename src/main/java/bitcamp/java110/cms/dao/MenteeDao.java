@@ -19,6 +19,8 @@ public interface MenteeDao {
   int checkemail(Mentee mentee); // 회원 가입시 닉네임 중복 체크
   
   int checknick(Mentee mentee); // 회원 가입시 닉네임 중복 체크
+  
+  String findByNamePhone(Mentee mentee);
 
   List<Mentee> findAllByNick(Map<String, Object> params); // 닉네임
 

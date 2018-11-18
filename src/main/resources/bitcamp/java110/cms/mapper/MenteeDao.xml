@@ -40,6 +40,17 @@
     SELECT COUNT(*)
     FROM p_mete p WHERE p.nick=#{nick}
 	</select>
+	
+	<select id="findByNamePhone" parameterType="Mentee" resultType="String">
+			select
+				email
+			from
+				p_mete p
+			where
+				p.phone=#{phone} and
+				p.name=#{name}
+				
+	</select>
     
     <select id="findAll" resultMap="menteeMap">
         select

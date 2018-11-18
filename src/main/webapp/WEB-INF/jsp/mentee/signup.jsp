@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원 가입 화면</title>
+<title>Haru 회원 가입</title>
 		<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 	    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 	    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -169,7 +169,6 @@ function checkemail() {
 function checkPwd() {
     var inputed = $('#pass').val();
     var reinputed = $('#repwd').val();
-    console.log(inputed.length);
     if(reinputed=="" && (inputed != reinputed || inputed == reinputed)){
         $("#repwd").css("background-color", "#FA5858");
     }else if (inputed == reinputed && (inputed.length >= 8)) {
@@ -203,7 +202,6 @@ function signupCheck() {
 		return false;
 	}else if(emailCheck == 1 && pwdCheck == 1 && nickCheck == 1 && nameCheck == 1){
         return true;
-        location.href="/app/auth/form";
 	}
 }
 

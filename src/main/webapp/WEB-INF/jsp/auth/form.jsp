@@ -85,7 +85,7 @@
                     <a href="/app/mentee/signup">회원 가입</a>
                 </div>
                 <div class="d-flex justify-content-center">
-                    <a href="#">이메일 찾기</a>
+                    <a href="/app/mentee/searchuser">이메일 찾기</a>
                 </div>
                 <div class="d-flex justify-content-center">
                     <a href="#">비밀번호 찾기</a>
@@ -101,17 +101,14 @@
  <!-- 페이스북 -->
 <script type="text/javascript">
 function autoLogin(accessToken) {
-	console.log("자동로그인실행");
     location.href = "fblogin?" + 
             "accessToken=" + accessToken;
 }
 
 function checkLoginState() {
     FB.getLoginStatus(function(response) { 
-    	console.log(response.status);
         if (response.status === 'connected') {
             autoLogin(response.authResponse.accessToken);
-        	console.log(accessToken);
         } else {
             alert("Facebook 로그인 실패!");
         }
