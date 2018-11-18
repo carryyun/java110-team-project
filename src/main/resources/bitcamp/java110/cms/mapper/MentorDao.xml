@@ -29,12 +29,24 @@
     <select id="findAll" resultMap="mentorMap" >
         select 
         	mono,
-        	bas_addr,
-        	note,
         	carr
           from p_meto mto left outer join p_mete mte 
           	on mte.meno = mto.mono;
     </select>
+
+
+
+
+    <select id="findByNo" resultMap="mentorMap" parameterType="int" >
+        select 
+            mono,
+            carr
+          from p_meto mto left outer join p_mete mte 
+            on mte.meno = mto.mono
+            where
+            mono=#{value};
+    </select>
+
 
     <insert id="insert" parameterType="mentor">
         insert into 
@@ -42,6 +54,8 @@
         	 values
         		(#{carr})
     </insert>
+    
+    
     
       
     <select id="findByEmailPassword" 

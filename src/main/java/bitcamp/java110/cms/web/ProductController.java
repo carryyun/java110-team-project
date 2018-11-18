@@ -7,16 +7,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import bitcamp.java110.cms.domain.Classes;
 import bitcamp.java110.cms.domain.Product;
 import bitcamp.java110.cms.domain.ProductPopul;
+import bitcamp.java110.cms.domain.ProductQnA;
 import bitcamp.java110.cms.domain.ProductRep;
 import bitcamp.java110.cms.service.BigTagService;
 import bitcamp.java110.cms.service.ClassService;
 import bitcamp.java110.cms.service.MiddleTagService;
 import bitcamp.java110.cms.service.ProductPopulService;
+import bitcamp.java110.cms.service.ProductQnAService;
 import bitcamp.java110.cms.service.ProductRepService;
 import bitcamp.java110.cms.service.ProductService;
 
@@ -31,16 +34,19 @@ public class ProductController {
   ProductRepService productRepSerivce;
   ServletContext sc;
   ClassService classService;
-
+  ProductQnAService productQnASerivce;
+  
   public ProductController(ProductService productService, BigTagService bigTagService,
       MiddleTagService middleTagService, ProductPopulService productPopulService,
-      ProductRepService productRepSerivce, ServletContext sc, ClassService classService) {
+      ProductRepService productRepSerivce, ServletContext sc, ClassService classService,
+      ProductQnAService productQnASerivce) {
     this.productService = productService;
     this.bigTagService = bigTagService;
     this.middleTagService = middleTagService;
     this.productPopulService = productPopulService;
     this.productRepSerivce = productRepSerivce;
     this.classService = classService;
+    this.productQnASerivce = productQnASerivce;
     this.sc = sc;
   }
 
@@ -90,12 +96,32 @@ public class ProductController {
     // product - 웹에서 쓸 이름(아무거나 써도됨)
     model.addAttribute("replyList", replyList);
     model.addAttribute("prdtcls", prdtcls);
-    /* model.addAttribute("clslist",clslist); */
   }
-
+  
   @RequestMapping("P")
   public String P() {
     return "redirect:../product/prdt";
+  }
+  
+  
+  
+  @GetMapping("prdtQna")
+  public void prdtQna() {
+  
+  }
+  
+  @RequestMapping(value = "addqna", method = RequestMethod.POST)
+  public String addqna(String type,String titl, String conts) {
+    ProductQnA pqna= new ProductQnA();
+    pqna.setTitl(titl);
+    pqna.setConts(conts);
+    pqna.setType(type);
+    pqna.setMeno(5);
+    pqna.setPtno(5);
+    
+    
+    productQnASerivce.add(pqna);
+    return "redirect:../product/prdtQna";
   }
 
 }

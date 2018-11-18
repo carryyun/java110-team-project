@@ -13,6 +13,23 @@ public class ProductQnA {
   private Date rgdt; // 질문등록일
   private String anser; // 답변
   private Date rgdt2; // 답변등록일
+  private String type;
+  
+
+  @Override
+  public String toString() {
+    return "ProductQnA [no=" + no + ", meno=" + meno + ", ptno=" + ptno + ", titl=" + titl
+        + ", conts=" + conts + ", rgdt=" + rgdt + ", anser=" + anser + ", rgdt2=" + rgdt2
+        + ", type=" + type + "]";
+  }
+
+  public String getType() {
+    return type;
+  }
+
+  public void setType(String type) {
+    this.type = type;
+  }
 
   public int getNo() {
     return no;

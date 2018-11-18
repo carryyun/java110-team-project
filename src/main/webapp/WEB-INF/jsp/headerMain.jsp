@@ -61,7 +61,7 @@
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- js 추가 -->
-<!-- <script src="/js/clean-blog.js"></script> -->
+
 <!-- ===============필수포함=============== -->
 
 </html>
