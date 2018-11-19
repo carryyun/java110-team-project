@@ -17,7 +17,7 @@
 						<div class="img-big-wrap">
 							<div>
 								<a href="#"><img id="prod_img"
-									src="/upload/img/product/700x400/julme.PNG" alt=""></a>
+									src=${product.phot} alt=""></a>
 							</div>
 						</div>
 					</article>

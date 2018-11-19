@@ -13,7 +13,9 @@ import bitcamp.java110.cms.service.ProductQnAService;
 @Service
 public class ProductQnAServiceImpl implements ProductQnAService {
 
-  @Autowired ProductQnADao productQnADao;
+  @Autowired
+  ProductQnADao productQnADao;
+
   @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 
   @Override
@@ -33,7 +35,7 @@ public class ProductQnAServiceImpl implements ProductQnAService {
     return productQnADao.findByNo(no);
   }
 
-  
+
   @Override
   public List<ProductQnA> listByMeno(int pageNo, int pageSize, int meno) {
     HashMap<String, Object> params = new HashMap<>();
@@ -52,6 +54,7 @@ public class ProductQnAServiceImpl implements ProductQnAService {
     params.put("size", pageSize);
     params.put("productno", ptno);
 
+
     return productQnADao.findAllByPtno(params);
   }
 
@@ -68,6 +71,14 @@ public class ProductQnAServiceImpl implements ProductQnAService {
   @Override
   public int updateAnser(ProductQnA productQnA) {
     return productQnADao.updateAnser(productQnA);
+  }
+
+  // 질문자 번호로 조회
+  @Override
+  public List<ProductQnA> listByQno(int no) {
+
+
+    return productQnADao.findAllByQno(no);
   }
 
 

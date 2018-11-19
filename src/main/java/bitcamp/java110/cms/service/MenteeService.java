@@ -17,6 +17,9 @@ public interface MenteeService {
   // 회원 가입시 닉네임중복 체크
   int checkByNick(Mentee mentee);
   
+  //
+  String getByNamePhone(Mentee mentee);
+  
   // 닉네임으로 조회
   List<Mentee> listByNick(int pageNo, int pageSize, String nick);
   
@@ -25,6 +28,8 @@ public interface MenteeService {
   
   void add(Mentee mentee); // insert
   
+  void fbadd(Mentee mentee);
+  
   void delete(int no);
 
   Mentee getM2(int no);
@@ -32,6 +37,9 @@ public interface MenteeService {
 
 
 
+  
+  // 멘토신청 회원번호 목록 
+  List<Mentee> listByMetoStat();
   
   
 }

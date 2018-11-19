@@ -162,14 +162,17 @@ public class ClassController {
     model.addAttribute("clslist", clslist);
   }
   
-  @RequestMapping("findByCno")
+  @RequestMapping("detail")
   public void findByCno(Model model,int no) {
     List<ClassRep> clsreqlist = classrepService.listbycno(no);
     
     Classes detailclass = classService.findAllBycno(no);
     
+    List<ClassQna> clsqnalist = classqnaService.listbycno(no);
+    
     model.addAttribute("clsreqlist",clsreqlist);
     model.addAttribute("detailclass",detailclass);
+    model.addAttribute("clsqnalist",clsqnalist);
     
   }
   
@@ -208,6 +211,12 @@ public class ClassController {
     
     
     classqnaService.qnaadd(classqna);
+  }
+  
+  @RequestMapping("qnadelete")
+  public void qnadelete(int no) {
+    
+    classqnaService.qnadelete(no);
   }
   
   @RequestMapping("qnaupdate")

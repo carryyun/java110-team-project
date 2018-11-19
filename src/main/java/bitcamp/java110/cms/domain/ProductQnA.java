@@ -13,6 +13,8 @@ public class ProductQnA {
   private Date rgdt; // 질문등록일
   private String anser; // 답변
   private Date rgdt2; // 답변등록일
+  private Mentee mentee; // 멘티
+  private String type; // 질문유형
 
   public int getNo() {
     return no;
@@ -78,6 +80,27 @@ public class ProductQnA {
     this.rgdt2 = rgdt2;
   }
 
+  public Mentee getMentee() {
+    return mentee;
+  }
 
+  public void setMentee(Mentee mentee) {
+    this.mentee = mentee;
+  }
+
+  public String getType() {
+    return type;
+  }
+
+  public void setType(String type) {
+    this.type = type;
+  }
+
+  @Override
+  public String toString() {
+    return "ProductQnA [no=" + no + ", meno=" + meno + ", ptno=" + ptno + ", titl=" + titl
+        + ", conts=" + conts + ", rgdt=" + rgdt + ", anser=" + anser + ", rgdt2=" + rgdt2
+        + ", mentee=" + mentee + ", type=" + type + "]";
+  }
 
 }

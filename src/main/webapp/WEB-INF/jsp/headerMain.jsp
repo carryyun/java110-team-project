@@ -17,7 +17,7 @@
 </head>
 
     <nav class="navbar navbar-expand-lg mx-auto fixed-top" id="mainNav">
-        <a class="navbar-brand" href="index.html">하루</a>
+        <a class="navbar-brand" href="/app/mainpage/mainpage">하루</a>
         <div class="search">
             <form role="form">
                 <input type="text" class="search-form" autocomplete="off" placeholder="Search">
@@ -61,7 +61,7 @@
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- js 추가 -->
-<!-- <script src="/js/clean-blog.js"></script> -->
+
 <!-- ===============필수포함=============== -->
 
 </html>

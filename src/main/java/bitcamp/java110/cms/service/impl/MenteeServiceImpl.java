@@ -20,15 +20,17 @@ public class MenteeServiceImpl implements MenteeService {
   @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
   @Override
   public List<Mentee> list() {
-
-
     return menteeDao.findAll();
 
   }
   @Override
   public Mentee get(int no) {
-
     return menteeDao.findByNo(no);
+  }
+  
+  @Override
+  public String getByNamePhone(Mentee mentee) {
+    return menteeDao.findByNamePhone(mentee);
   }
 
   @Override
@@ -69,11 +71,21 @@ public class MenteeServiceImpl implements MenteeService {
 
     return menteeDao.findAllByPhone(params);
   }
+  
+  @Override
+  public List<Mentee> listByMetoStat() {
+    return menteeDao.findMentorRequest();
+  }
 
   @Override
   public void add(Mentee mentee) {
     menteeDao.signup(mentee);
   }
+  public void fbadd(Mentee mentee) {
+    if(menteeDao.checkemail(mentee) == 0)
+    menteeDao.fbsignup(mentee);
+  }
+  
 
   @Transactional
   @Override

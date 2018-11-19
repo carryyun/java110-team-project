@@ -1,0 +1,60 @@
+@charset "UTF-8";
+.main{
+ 	        padding: 40px 0;
+        }
+        .main input,
+        .main input::-webkit-input-placeholder {
+            font-size: 11px;
+            padding-top: 3px;
+        }
+        .main-center{
+            vertical-align: middle;
+            margin-top: -60px;
+            transform:  translateY(30%);
+            margin: 0 auto;
+            width: 450px;
+            padding: 10px 40px;
+            background: beige;
+            color: black;
+            text-shadow: none;
+            -webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
+            -moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
+            box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
+            opacity:
+        }
+        
+        
+        
+        span.input-group-addon i {
+            color: #009edf;
+            font-size: 17px;
+        }
+        #usernick2{
+        	font-size: 8px;
+        }
+        
+        h1{
+            text-align: center;
+        }
+       .signupbtn,#backbtn{
+            color: black;
+            border-radius: 10px;
+            background-color: dodgerblue;
+            font-size : 12px;
+        	font-weight: bold;
+        }
+        #backbtn{
+            float: right;
+        }
+        #signupbtn{
+        	float: left;
+        }
+        #emailcheck,#niccheck{
+        	float : right;
+        	transform:  translateY(-105%);
+        	font-size : 12px;
+        	font-weight: bold;
+        }
+        .input-group{
+        	width : 300px;
+        }

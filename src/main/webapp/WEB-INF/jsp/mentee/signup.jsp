@@ -15,7 +15,7 @@
 	    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 	    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 	    <!------ 위에는 회원가입에 필요한 것들  ---------->
-	    
+	    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	    <link rel="stylesheet" href="/css/sign.css">
 </head>
 <body style="background-color: #f2f4f7">
@@ -190,9 +190,19 @@ var signChk = false;
 
 function wow(){
 	if(signupCheck() == false){
-		alert("회원정보를 다시 입력해주세요.");
+	    console.log(signupCheck());
+		swal ( "Oops" ,  "회원정보를 다시 입력해주세요." ,  "error" );
 	}else if(signupCheck() == true){
-		alert($("#username").val() + "님 회원가입을 축하드립니다^^");
+	    console.log(signupCheck());
+	    swal({
+	        icon: "success",
+	        text: $("#username").val() + "님 회원가입을 축하드립니다^^"
+	      });
+	    setTimeout(function() {
+	        location.href="/app/auth/form";
+	      }, 3000);
+	    
+		/* alert($("#username").val() + "님 회원가입을 축하드립니다^^"); */
 	}
 }
 
@@ -208,7 +218,7 @@ function signupCheck() {
 		return false;
 	}else if(emailCheck == 1 && pwdCheck == 1 && nickCheck == 1 && nameCheck == 1){
         return true;
-        location.href="/app/auth/form";
+        /* location.href="/app/auth/form"; */
 	}
 }
 

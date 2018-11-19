@@ -2,11 +2,14 @@ package bitcamp.java110.cms.web;
 
 import java.util.List;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import bitcamp.java110.cms.dao.MenteeDao;
 import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.service.MenteeService;
 
@@ -26,7 +29,35 @@ public class MenteeController {
   @RequestMapping(value = "signup", method=RequestMethod.GET)
   public void signup(Mentee mentee) {
     }
+  @RequestMapping(value = "fbsignup", method=RequestMethod.GET)
+  public void fbsignup(Mentee mentee) {
+  }
   
+  @RequestMapping(value = "searchuser", method=RequestMethod.GET)
+  public void searchUser() {
+    
+  }
+  @RequestMapping(value = "searchuser", method=RequestMethod.POST)
+  public void searchUserPost() {
+  }
+  
+  @RequestMapping("resultemail")
+  public void resultEmail(Mentee mentee,Model model) {
+    if(menteeService.getByNamePhone(mentee) != null)
+    model.addAttribute("value",menteeService.getByNamePhone(mentee));
+    else {
+      model.addAttribute("value", "사용자 정보가 없습니다.");
+    }
+  }
+  
+  
+  @RequestMapping(value = "fbsignup", method = RequestMethod.POST)
+  public String fbsignup(Mentee mentee ,HttpSession session) {
+    mentee.setEmail(session.getAttribute("email").toString());
+    mentee.setName(session.getAttribute("name").toString());
+    menteeService.fbadd(mentee);
+    return  "redirect:/app/auth/form";
+  }
   @RequestMapping(value = "signup", method=RequestMethod.POST)
   public String signup2(Mentee mentee) {
       menteeService.add(mentee);
@@ -53,7 +84,6 @@ public class MenteeController {
   
   @RequestMapping(value = "checknick.do", method = { RequestMethod.GET, RequestMethod.POST})
   public @ResponseBody int checkByNick(Mentee mentee) {
-    System.out.println(menteeService.checkByNick(mentee));
     return menteeService.checkByNick(mentee);
     //model.addAttribute("checkemail", email);
   }

@@ -43,6 +43,17 @@
     SELECT COUNT(*)
     FROM p_mete p WHERE p.nick=#{nick}
 	</select>
+	
+	<select id="findByNamePhone" parameterType="Mentee" resultType="String">
+			select
+				email
+			from
+				p_mete p
+			where
+				p.phone=#{phone} and
+				p.name=#{name}
+				
+	</select>
     
     <select id="findAll" resultMap="menteeMap">
         select
@@ -171,6 +182,12 @@
         values(#{name},#{email},#{pwd},#{nick},now())
     </insert> 
     
+    <insert id="fbsignup" parameterType="mentee"
+            useGeneratedKeys="true" keyColumn="meno" keyProperty="no">
+        insert into p_mete(name,email,nick,rgdt)
+        values(#{name},#{email},#{nick},now())
+    </insert> 
+    
     <delete id="delete" parameterType="int">
         delete from p1_memb 
         where mno=#{value}
@@ -203,4 +220,16 @@
             LOWER(mte.email)=#{email} and LOWER(mte.pwd)=#{pwd}
             <!-- mte.email=#{email} and mte.pwd=password(#{pwd}) -->
     </select> 
+    
+    <select id="findMentorRequest" resultMap="menteeMap">
+        select
+            *
+        from 
+            p_mete
+        where
+            mtstat='I'
+        order by 
+            meno asc
+    </select>
+    
 </mapper>

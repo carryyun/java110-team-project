@@ -41,6 +41,17 @@ public class ClassQnaServiceImpl implements ClassQnaService{
     return classqnaDao.qnalist(params);
   }
 
+  @Override
+  public List<ClassQna> listbycno(int no) {
+    return classqnaDao.findByCno(no);
+  }
+
+  @Override
+  public int qnadelete(int no) {
+    
+    return classqnaDao.qnadelete(no);
+  }
+
   
 }
 
