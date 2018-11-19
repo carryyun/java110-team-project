@@ -165,7 +165,7 @@
 
                 <li class="under-nav-item"><a class="nav-link"
                     href="#class_detail">
-                        <h4>요약</h4>
+                        <h4>요약</h4> 
                 </a></li>
                 
                 <li class="under-nav-item"><a class="nav-link"

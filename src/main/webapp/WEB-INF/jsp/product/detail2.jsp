@@ -82,6 +82,7 @@
             console.log(testtTop);
             $(setId).css("position", "absolute");
             $(setId).css("top", (testtTop) + "px");
+            $(setId).css("width", "94.6%");
 
             $('#star1').raty({
                 path : "/upload/img/raty/",
@@ -99,12 +100,14 @@
                 if (position > 985) {
                     $(id).css("position", "fixed-top");
                     $(id).css("top", position + "px");
-                    $(id).css("width", "1110px");
+                    /* $(id).css("width", "1110px"); */
+                    $(id).css("width", "94.6%");
 
                 } else {
                     $(id).css("top", (testtTop) + "px");
                     $(id).css("position", "absolute");
-                    $(id).css("width", "1110px");
+                    /* $(id).css("width", "1110px"); */
+                    $(id).css("width", "94.6%");
                 }
 
             });
