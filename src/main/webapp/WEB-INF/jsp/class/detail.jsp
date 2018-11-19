@@ -107,29 +107,39 @@
                     	<aside class="col-lg-8">
                         <article class="card-body p-3">
                             <div class="text-center">
+                            <img style="width: 200px; height:200px;" src="${detailclass.cfile}" alt=""/>
                                 <h3 class="title mb-3">${detailclass.titl}</h3>
-                                <br>
                                 <dl class="param param-feature">
-                                    <dt>
-                                        <h4>가격</h4>
-                                    </dt>
-                                    <dd>${detailclass.pric}원</dd>
+                                    <dd>${detailclass.middleTag.name}</dd>
+                                </dl>
+                                <dl class="param param-feature">
+                                    ${detailclass.pric}원
                                 </dl>
 
                                 <dl class="param param-feature">
-                                    <dt>
-                                        <h4>수업시간</h4>
-                                    </dt>
-                                    <dd>${detailclass.time}시간</dd>
+                                    	${detailclass.mentee.nick} 멘토
                                 </dl>
-
-
                                         <dl class="param param-feature">
-                                            <dt>
-                                                <h4>모집인원</h4>
-                                            </dt>
-                                            <dd>${detailclass.capa}명</dd>
+                                            <dd>${detailclass.basAddr}</dd>
                                         </dl>
+                                <dl>
+                                	<c:set var="clsstar" value ="${detailclass.star}"/>
+                                	<%
+		                            	int clsstar = (int)pageContext.getAttribute("clsstar");
+		                            for(int i=0; i<5;i++){
+									  if(i<clsstar){
+									%>
+									<img class="starimg" alt="star-on-big" src="/upload/img/raty/star-on-big.png"
+									style="width:20px; height:20px;">
+									<%}else{
+		              					%>
+		              				<img class="starimg" alt="star-off-big" src="/upload/img/raty/star-off-big.png"
+		              				style="width:20px; height:20px;">
+		              				<%
+		            						}
+		            					}
+		            				%>
+                                </dl>
                                         <!-- item-property .// -->
                                     <!-- col.// -->
 
@@ -165,7 +175,7 @@
 
                 <li class="under-nav-item"><a class="nav-link"
                     href="#class_detail">
-                        <h4>요약</h4>
+                        <h4>요약</h4> 
                 </a></li>
                 
                 <li class="under-nav-item"><a class="nav-link"
@@ -206,7 +216,7 @@
 	                    <div class = "shortinfo"><strong>총 수업시간</strong>  ${detailclass.time}</div>
 	                    <div class = "shortinfo"><strong>모집인원</strong>  ${detailclass.capa}명</div>
                     </div>
-                    <div>${detailclass.mentee.nick}</div>
+                    <div><strong>멘토 : ${detailclass.mentee.nick}</strong></div>
                 </div>
                 <!-- <div class="detail_info"> -->
                 
@@ -369,7 +379,7 @@
                                     </thead>
                                     <c:forEach items="${clsqnalist}" var="cq"> 
                                     <tbody class="col-lg-12">
-                                        <tr class="row">
+                                        <tr class="accordion-toggle row" data-toggle="collapse" data-target="#demo1">
                                             <th class="col-lg-1" scope="row" id="qna_th">${cq.no}</th>
                                             <td class="col-lg-2">${cq.type}</td>
                                             <c:set var="yn" value="${cq.anser}"/>
@@ -384,9 +394,32 @@
                                            	<%  
                                            	}
                                             %>
-                                            <td class="col-lg-4">${cq.type}</td>
+                                            <td class="col-lg-4">${cq.titl}</td>
                                             <td class="col-lg-1">${cq.mentee.nick}</td>
                                             <td class="col-lg-2">${cq.rgdt}</td>
+                                        </tr>
+                                        <tr>
+                                        	<td colspan="6" class="hiddenRow">
+                                        		<div class="accordian-body collapse" id="demo1">
+                                        			${cq.conts}
+                                        		</div>
+                                        			<c:set var="ans" value="${cq.anser}"/>
+		                                            <%
+		                                            	String ans = (String)pageContext.getAttribute("ans");
+		                                            	if(ans==null){
+		                                           	%>
+		                                           		<div class="accordian-body collapse" >
+		                                           		답변이 등록되지 않았습니다.
+		                                           		</div>
+		                                           	<%  }else{
+		                                           	%>
+		                                            	<div class="accordian-body collapse" >
+		                                           		${cq.anser}
+		                                           		</div>
+		                                           	<%  
+		                                           	}
+		                                            %>
+                                        	</td>
                                         </tr>
                                     </tbody>
                                     </c:forEach>
@@ -452,8 +485,16 @@
 
 
     <!-- Custom scripts for this template -->
-
+<script>
+$('.accordian-body').on('show.bs.collapse', function () {
+    $(this).closest("table")
+        .find(".collapse.in")
+        .not(this)
+        .collapse('toggle')
+})
+</script>
     <script>
+    
         var testtTop;
         var setId = "#testt";
         $(document).ready(function() {
