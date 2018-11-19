@@ -23,13 +23,41 @@ public class Mentee {
   protected String note;
   protected char mtstat;
   protected Date rgdtmt;
-  
+  public Classes classes;
+  public ClassOrder classorder;
+  public Timetable timetable;
   
   public Date getRgdtmt() {
     return rgdtmt;
   }
   public void setRgdtmt(Date rgdtmt) {
     this.rgdtmt = rgdtmt;
+  }
+
+  
+
+  public Classes getClasses() {
+    return classes;
+  }
+
+  public void setClasses(Classes classes) {
+    this.classes = classes;
+  }
+
+  public ClassOrder getClassorder() {
+    return classorder;
+  }
+
+  public void setClassorder(ClassOrder classorder) {
+    this.classorder = classorder;
+  }
+
+  public Timetable getTimetable() {
+    return timetable;
+  }
+
+  public void setTimetable(Timetable timetable) {
+    this.timetable = timetable;
   }
   public int getNo() {
     return no;

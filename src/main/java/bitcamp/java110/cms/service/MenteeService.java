@@ -31,6 +31,7 @@ public interface MenteeService {
   void fbadd(Mentee mentee);
   
   void delete(int no);
-
   
+  Mentee getM2(int no);
+
 }
