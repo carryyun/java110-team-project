@@ -16,6 +16,7 @@
         <result column="anser"   property="anser"/>
         <result column="rgdt2"   property="rgdt2"/>
         <result column="nick" property="mentee.nick"/>
+        <result column="type"   property="type"/>
     </resultMap>
     
     <select id="findAll" resultMap="productQnAMap">
@@ -102,8 +103,8 @@
   
     <insert id="insert" parameterType="productQnA"
             useGeneratedKeys="true" keyColumn="qno" keyProperty="no">
-        insert into p_prdt_qna(meno,ptno,titl,conts,rgdt)
-        values(#{meno},#{ptno},#{titl},#{conts},now())
+        insert into p_prdt_qna(meno,ptno,titl,conts,rgdt,type)
+        values(#{meno},#{ptno},#{titl},#{conts},now(),#{type})
     </insert> 
     
     

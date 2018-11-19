@@ -1,3 +1,4 @@
+
 package bitcamp.java110.cms.web;
 
 import java.util.List;
@@ -163,10 +164,17 @@ public class ClassController {
   }
   
   @RequestMapping("findByCno")
-  public void findByCno(Model model, int no) {
-    List<ClassRep> clsdetail = classrepService.listbycno(no);
+  public void findByCno(Model model,int no) {
+    List<ClassRep> clsreqlist = classrepService.listbycno(no);
     
-    model.addAttribute("clsdetaillist",clsdetail);
+    Classes detailclass = classService.findAllBycno(no);
+    
+    List<ClassQna> clsqnalist = classqnaService.listbycno(no);
+    
+    model.addAttribute("clsreqlist",clsreqlist);
+    model.addAttribute("detailclass",detailclass);
+    model.addAttribute("clsqnalist",clsqnalist);
+    
   }
   
   @RequestMapping("findByptno")
@@ -202,7 +210,14 @@ public class ClassController {
     classqna.setTitl("호에에엣?");
     classqna.setConts("히이이ㅣ이엣?");
     
+    
     classqnaService.qnaadd(classqna);
+  }
+  
+  @RequestMapping("qnadelete")
+  public void qnadelete(int no) {
+    
+    classqnaService.qnadelete(no);
   }
   
   @RequestMapping("qnaupdate")
@@ -240,7 +255,6 @@ public class ClassController {
   public List<ClassOrder> orderlist() {
     
     List<ClassOrder> clist = classorderService.corderlist(5);
-    
     for(ClassOrder c : clist) {
       System.out.println(c.getNo());
       System.out.println(c.getMeno());

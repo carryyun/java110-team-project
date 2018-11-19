@@ -1,3 +1,4 @@
+<%@page import="bitcamp.java110.cms.domain.Classes"%>
 <%@page import="bitcamp.java110.cms.domain.Product"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -34,19 +35,55 @@
 <!-- Custom styles for this template -->
 <!--  <link href="/css/clean-blog2.css" rel="stylesheet"> -->
 <link href="/css/common.css" rel="stylesheet">
-<link href="/css/prod_detail.css" rel="stylesheet">
+<link href="/css/class_detail.css" rel="stylesheet">
+
+<script type="text/javascript">
+ var stmnLEFT = 0; // 오른쪽 여백 
+ var stmnGAP1 = 0; // 위쪽 여백 
+ var stmnGAP2 = 150; // 스크롤시 브라우저 위쪽과 떨어지는 거리 
+ var stmnBASE = 150; // 스크롤 시작위치 
+ var stmnActivateSpeed = 35; //스크롤을 인식하는 딜레이 (숫자가 클수록 느리게 인식)
+ var stmnScrollSpeed = 20; //스크롤 속도 (클수록 느림)
+ var stmnTimer; 
+ 
+ function RefreshStaticMenu() { 
+  var stmnStartPoint, stmnEndPoint; 
+  stmnStartPoint = parseInt(document.getElementById('STATICMENU').style.top, 10); 
+  stmnEndPoint = Math.max(document.documentElement.scrollTop, document.body.scrollTop) + stmnGAP2; 
+  if (stmnEndPoint < stmnGAP1) stmnEndPoint = stmnGAP1; 
+  if (stmnStartPoint != stmnEndPoint) { 
+   stmnScrollAmount = Math.ceil( Math.abs( stmnEndPoint - stmnStartPoint ) / 15 ); 
+   document.getElementById('STATICMENU').style.top = parseInt(document.getElementById('STATICMENU').style.top, 10) + ( ( stmnEndPoint<stmnStartPoint ) ? -stmnScrollAmount : stmnScrollAmount ) + 'px'; 
+   stmnRefreshTimer = stmnScrollSpeed; 
+   }
+  stmnTimer = setTimeout("RefreshStaticMenu();", stmnActivateSpeed); 
+  } 
+ function InitializeStaticMenu() {
+  document.getElementById('STATICMENU').style.right = stmnLEFT + 'px';  //처음에 오른쪽에 위치. left로 바꿔도.
+  document.getElementById('STATICMENU').style.top = document.body.scrollTop + stmnBASE + 'px'; 
+  RefreshStaticMenu();
+  }
+</script>
+
+<style type="text/css">
+#STATICMENU { 
+	margin: 0pt; padding: 0pt;  
+	position: absolute; right: 0px; top: 0px;
+	transform: translateX(95%);
+	border-top: 1px solid silver;
+	}
+</style>
 
 
 
 </head>
-<body style="background-color: #F2F4F7">
+<body style="background-color: #F2F4F7" onload="InitializeStaticMenu()">
 
     <hr>
     <div class="container">
         <div class="row">
 
-
-            <h2>상품 상세보기</h2>
+            <h2>클래스 상세보기</h2>
             <hr class="FhrBotMargin">
 
             <div class="col-lg-12 col-md-12 text-center">
@@ -65,86 +102,50 @@
 
                         </article>
                     </aside>
-                    <aside class="col-lg-7">
-                        <article class="card-body p-5">
-                            <div class="text-left">
-                                <h2 class="title mb-3">${product.titl}</h2>
+                    <!-- 사이드바 -->
+                    <div id="STATICMENU">
+                    	<aside class="col-lg-8">
+                        <article class="card-body p-3">
+                            <div class="text-center">
+                                <h3 class="title mb-3">${detailclass.titl}</h3>
                                 <br>
                                 <dl class="param param-feature">
                                     <dt>
                                         <h4>가격</h4>
                                     </dt>
-                                    <dd>${product.pric}원</dd>
+                                    <dd>${detailclass.pric}원</dd>
                                 </dl>
 
                                 <dl class="param param-feature">
                                     <dt>
-                                        <h4>택배비</h4>
+                                        <h4>수업시간</h4>
                                     </dt>
-                                    <dd>${product.deli}원</dd>
+                                    <dd>${detailclass.time}시간</dd>
                                 </dl>
 
 
-                                <div class="row">
-
-                                    <div class="col-lg-7">
-
-                                        <dl class="param param-inline">
+                                        <dl class="param param-feature">
                                             <dt>
-                                                <h4>남은수량</h4>
+                                                <h4>모집인원</h4>
                                             </dt>
-                                            <dd>${product.stock}개</dd>
+                                            <dd>${detailclass.capa}명</dd>
                                         </dl>
                                         <!-- item-property .// -->
-                                    </div>
                                     <!-- col.// -->
 
-                                </div>
-                                <!-- row.// -->
-
                                 <hr>
-                                <!---->
-                                <div class="row">
-                                    <div class="col-lg-3">
-                                        <dl class="param param-inline">
-                                            <dt>
-                                                <h4 class="mt-0">수량</h4>
-                                            </dt>
-                                            <dd>
-                                                <select class="form-control form-control-lg col-8">
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                </select>
-                                            </dd>
-                                        </dl>
-                                        <!-- item-property .// -->
-                                    </div>
-                                    <!-- col.// -->
-                                    <div class="col-lg-9 align-middle">
-                                        <p class="price-detail-wrap mt-5">
-                                            <span class="price h3 text-warning"> <span
-                                                class="currency">총 합계 : </span><span class="num">200,000원</span>
-                                            </span>
-                                        </p>
-                                        <!-- price-detail-wrap .// -->
-                                    </div>
-                                </div>
                                 <!-- row.// -->
-
-
-
                                 <!---->
                                 <hr>
-                                <a href="#" class="btn btn-lg btn-primary text-uppercase">
-                                    구매하기 </a> <a href="#"
-                                    class="btn btn-lg btn-outline-primary text-uppercase"> <i
-                                    class="fas fa-shopping-cart"></i> 장바구니
-                                </a>
+                                <a href="#" class="btn btn-lg btn-primary text-uppercase"> 수업 신청하기 </a> 
+                                <a href="#" class="btn btn-lg btn-outline-primary text-uppercase"> 
+                                    <i class="fas fa-shopping-cart"></i> 찜클래스 </a>
                             </div>
                         </article>
                         <!-- card-body.// -->
                     </aside>
+                    </div>
+                    <!-- 사이드바 끝 -->
                     <!-- col.// -->
                 </div>
                 <!-- row.// -->
@@ -155,113 +156,102 @@
     </div>
     <!-- <div class="container"> -->
 
-
-<!-- 판매자가 수강한 클래스 정보들-->
     <div class="container">
-        <div class="detail_info">
-            <h3>판매자가 수강한 클래스</h3>
-            <div class="row">
-                <div class="col-lg-12">
-
-                    <c:forEach items="${list}" var="r" varStatus="i">
-                        <div class="media"
-                            style="border-bottom: 0.3px solid rgba(0, 0, 0, 0.5)">
-                            <div class="col-lg-1 text-center">
-
-                                <img src='${r.mentee.phot}' alt="singup" id="circle">
-
-                                ${r.mentee.nick}
-
-                            </div>
-                            <div class="col-lg-11 media-body">${r.conts}</div>
-
-
-                        </div>
-                    </c:forEach>
-
-                </div>
-                <!-- <div class="col-lg-12"> -->
-            </div>
-            <!-- <div class="row"> -->
-
-        </div>
-        <!-- <div class="detail_info"> -->
-
-
-    </div>
-
-
-
-
-    <div class="container">
-
 
         <div class="col-lg-12" id="testt">
             <!-- Links -->
 
             <ul class="under-navbar-nav">
 
-
                 <li class="under-nav-item"><a class="nav-link"
-                    href="#prod_detail">
-                        <h4>상세정보</h4>
+                    href="#class_detail">
+                        <h4>요약</h4>
                 </a></li>
-                <!-- <li class="under-nav-item"><a class="nav-link"
-                    href="#class_info">
-                        <h4>
-                            수업정보
-                            <h4>
-                </a></li> -->
+                
                 <li class="under-nav-item"><a class="nav-link"
-                    href="#prod_review">
-                        <h4>
-                            상품평
-                            <h4>
+                    href="#mentor-info">
+                        <h4>강사소개</h4>
                 </a></li>
-                <li class="under-nav-item"><a class="nav-link" href="#qna">
-                        <h4>
-                            QnA
-                            <h4>
+                
+                <li class="under-nav-item"><a class="nav-link" 
+                	href="#class-info">
+                        <h4>강의설명</h4>
+                </a></li>
+                
+                <li class="under-nav-item"><a class="nav-link" 
+                	href="#location">
+                        <h4>위치</h4>
+                </a></li>
+                
+                <li class="under-nav-item"><a class="nav-link" 
+                	href="#class-review">
+                        <h4>클래스 후기</h4>
                 </a></li>
 
             </ul>
 
-
         </div>
     </div>
 
-
-    <!--상세정보, 수업정보, 상품평, QnA-->
+    <!--요약 , 강사소개 , 강의설명,  위치, 클래스후기-->
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 mx-auto" id="detail">
-
-
                 <div class="detail_info">
-                    <hr class="Fhr" id="prod_detail">
-                    <h3>상세정보</h3>
-                    ${product.conts}
+                    <hr class="Fhr" id="class_detail">
+                    <h3>요약</h3>
+                    <div class="row">
+                    	<img style = "width:300px; height:300px;"src="/upload/img/product/700x400/julme.PNG" alt="">
+                    	<div class = "shortinfo" style="margin-right:30px;"><strong>금액</strong>  ${detailclass.pric}원</div>
+	                    <div class = "shortinfo"><strong>총 수업시간</strong>  ${detailclass.time}</div>
+	                    <div class = "shortinfo"><strong>모집인원</strong>  ${detailclass.capa}명</div>
+                    </div>
+                    <div>${detailclass.mentee.nick}</div>
                 </div>
                 <!-- <div class="detail_info"> -->
-
-
-
-
-                <h3>상품평</h3>
+                
+                <div class="detail_info">
+                    <hr class="Fhr" id="mentor-info">
+                    <h3>강사소개</h3>
+                    ${detailclass.tinfo}
+                </div>
+                
+                <div class="detail_info">
+                    <hr class="Fhr" id="class-info">
+                    <h3>강의설명</h3>
+                    ${detailclass.cinfo}
+                </div>
+	                <div class="detail_info">
+	                    <hr class="Fhr" id="location">
+	                    <h3>위치</h3>
+	                    <div class="row">
+	                    <img style = "width:500px; height:500px;"src="/upload/img/product/700x400/julme.PNG" alt="">
+	                    <div id="adr" class = "addr"><strong>기본 주소</strong>  ${detailclass.basAddr}</div>
+	                    <div id="adr" class = "addr"><strong>상세 주소</strong>  ${detailclass.detAddr}</div>
+	                    </div>
+	                </div>
+                
+                <div class="detail_info">
+                    <hr class="Fhr" id="class-review">
+                    <h3>클래스 후기</h3>
+                    ${detailclass.tinfo}
+                </div>
                 
                 <hr class="Fhr" id="class_info">    
                 <div class="detail_info">
                 </div>  
                 <!-- <div class="detail_info"> -->  
-                <hr class="Fhr" id="prod_review">   
+                <hr class="Fhr" id="class-review">   
                 <div class="detail_info">   
                     <div class="row" style="margin: 0 auto">    
                         <div class="col text-center">   
-                            <h1 class="rating-num">${product.star}</h1> 
+                            <%-- <h1 class="rating-num">${detailclass.star}</h1>  --%>
+                            <c:set var="starint" value="${detailclass.star}"/>
+                            <strong>별점:</strong>
                             <div class="rating col">    
-                                <% Product p = (Product)request.getAttribute("product"); 
+                                <% int star = (int)pageContext.getAttribute("starint"); 
                                 for( int i=0;i<5;i++){
-                                  if(i<p.getStar()){
+                                  if(i<star){
                                 %> 
                                     <img alt="star-on-big" src="/upload/img/raty/star-on-big.png">
                                 <%}else{
@@ -292,10 +282,10 @@
                                             <fieldset>
                                                 <!-- Message body -->
                                                 <div class="form-group">
-                                                    <label class="col-md-3 control-label" for="message">상품평</label>
+                                                    <label class="col-md-3 control-label" for="message">클래스 후기</label>
                                                     <div class="col-md-9">
                                                         <textarea class="form-control" id="message" name="message"
-                                                            placeholder="상품평을 등록해주세요." rows="5"></textarea>
+                                                            placeholder="클래스 후기를 등록해주세요." rows="5"></textarea>
                                                     </div>
                                                 </div>
 
@@ -319,7 +309,6 @@
                                             </div>
                                         </div>
 
-
                                     </td>
                                     </fieldset>
                                     </form>
@@ -330,67 +319,87 @@
                     </div>
 
                     <hr>
-                    <c:forEach items="${list}" var="r" varStatus="i">
+                    <div class ="row">
+                    <c:forEach items="${clsreqlist}" var="r">
                         <div class="media"
                             style="border-bottom: 0.3px solid rgba(0, 0, 0, 0.5)">
                             <div class="col-lg-1 text-center">
 
                                 <img src='${r.mentee.phot}' alt="singup" id="circle">
-
                                 ${r.mentee.nick}
-
                             </div>
                             <div class="col-lg-11 media-body">${r.conts}</div>
-
-
+                            <%-- <%
+                            	int rstar = (int)pageContext.getAttribute("cr");
+                            for(int i=0; i<5;i++){
+							  if(i<rstar){
+							%>
+							<img class="starimg" alt="star-on-big" src="/upload/img/raty/star-on-big.png"
+							style="width:20px; height:20px;">
+							<%}else{
+              					%>
+              				<img class="starimg" alt="star-off-big" src="/upload/img/raty/star-off-big.png"
+              				style="width:20px; height:20px;">
+              				<%
+            						}
+            					}
+            				%>  --%>                    
                         </div>
                     </c:forEach>
-
-
-
-
-
+                    </div>
+	
                     <hr class="Fhr" id="qna">
                     <div class="detail_info">
                         <h3>Q&A</h3>
                         <div class="row">
                             <div class="col-lg-12">
-
+                              <form id="qnaform">
                                 <table class="table row container" id="qna_table"
                                     style="margin: 0 auto">
                                     <thead class="col-lg-12">
                                         <tr class="row">
                                             <th scope="col" class="col-lg-1" id="qna_th">번호</th>
-                                            <th scope="col" class="col-lg-1" id="qna_th">문의유형</th>
-                                            <th scope="col" class="col-lg-1" id="qna_th">답변상태</th>
-                                            <th scope="col" class="col-lg-6" id="qna_th">문의/답변</th>
+                                            <th scope="col" class="col-lg-2" id="qna_th">문의유형</th>
+                                            <th scope="col" class="col-lg-2" id="qna_th">답변상태</th>
+                                            <th scope="col" class="col-lg-4" id="qna_th">질문 제목</th>
                                             <th scope="col" class="col-lg-1" id="qna_th">작성자</th>
                                             <th scope="col" class="col-lg-2" id="qna_th">작성일</th>
 
                                         </tr>
                                     </thead>
+                                    <c:forEach items="${clsqnalist}" var="cq"> 
                                     <tbody class="col-lg-12">
                                         <tr class="row">
-                                            <th class="col-lg-1" scope="row" id="qna_th">1</th>
-                                            <td class="col-lg-1">배송</td>
-                                            <td class="col-lg-1">미완료</td>
-                                            <td class="col-lg-6">주문한지 3일이 지났는데 왜 송장번호도 안나오는건가요?</td>
-                                            <td class="col-lg-1">절미맘</td>
-                                            <td class="col-lg-2">2018-11-14 09:35</td>
+                                            <th class="col-lg-1" scope="row" id="qna_th">${cq.no}</th>
+                                            <td class="col-lg-2">${cq.type}</td>
+                                            <c:set var="yn" value="${cq.anser}"/>
+                                            <%
+                                            	String qnayn = (String)pageContext.getAttribute("yn");
+                                            	if(qnayn==null){
+                                           	%>
+                                           		<td class="col-lg-2">미완료</td>
+                                           	<%  }else{
+                                           	%>
+                                            	<td class="col-lg-2">완료</td>
+                                           	<%  
+                                           	}
+                                            %>
+                                            <td class="col-lg-4">${cq.type}</td>
+                                            <td class="col-lg-1">${cq.mentee.nick}</td>
+                                            <td class="col-lg-2">${cq.rgdt}</td>
                                         </tr>
-
-
                                     </tbody>
+                                    </c:forEach>
                                 </table>
+                              </form>
                             </div>
                             <!-- <div class="col-lg-12"> -->
                         </div>
                         <!-- <div class="row"> -->
 
 
-                        <button
-                            style="width: 120px; height: 40px; margin-left: 960px; background-color: #606066; color: #ffffff">상품
-                            문의하기</button>
+                        <button style="width: 120px; height: 40px; margin-left: 960px;
+                        background-color: #606066; color: #ffffff">클래스문의</button>
 
                     </div>
                     <!-- <div class="detail_info"> -->

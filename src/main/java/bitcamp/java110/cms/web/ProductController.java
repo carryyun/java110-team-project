@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import bitcamp.java110.cms.domain.Classes;
@@ -39,11 +40,13 @@ public class ProductController {
       MiddleTagService middleTagService, ProductPopulService productPopulService,
       ProductRepService productRepSerivce, ServletContext sc, ClassService classService,
       ProductQnAService productQnAService) {
+
     this.productService = productService;
     this.bigTagService = bigTagService;
     this.middleTagService = middleTagService;
     this.productPopulService = productPopulService;
     this.productRepSerivce = productRepSerivce;
+    this.classService = classService;
     this.sc = sc;
     this.classService = classService;
     this.productQnAService = productQnAService;
@@ -60,10 +63,6 @@ public class ProductController {
       pp_product.add(p.getProduct());
     }
 
-    for (Product ppp : productList) {
-      System.out.println(ppp.getPhot());
-    }
-
     ObjectMapper mapper = new ObjectMapper();
     String jsonText = "";
     try {
@@ -73,17 +72,15 @@ public class ProductController {
     } catch (JsonProcessingException e) {
       System.out.println(e.getMessage());
     }
-    /*
-     * model.addAttribute("BTlist",BTlist); model.addAttribute("MTlist",MTlist);
-     */
+
     model.addAttribute("productList", productList);
   }
 
-  @GetMapping("test")
-  public void test() {
+
+  @GetMapping("detail")
+  public void detail(Model model) {
 
   }
-
 
   @GetMapping("detail2")
   public void detail(Model model, int no) {
@@ -112,6 +109,26 @@ public class ProductController {
     return "redirect:../product/prdt";
   }
 
-}
 
+
+  @GetMapping("prdtQna")
+  public void prdtQna() {
+
+  }
+
+  @RequestMapping(value = "addqna", method = RequestMethod.POST)
+  public String addqna(String type, String titl, String conts) {
+    ProductQnA pqna = new ProductQnA();
+    pqna.setTitl(titl);
+    pqna.setConts(conts);
+    pqna.setType(type);
+    pqna.setMeno(5);
+    pqna.setPtno(5);
+
+
+    productQnAService.add(pqna);
+    return "redirect:../product/prdtQna";
+  }
+
+}
 

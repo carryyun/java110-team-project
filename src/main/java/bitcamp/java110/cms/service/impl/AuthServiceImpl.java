@@ -23,8 +23,6 @@ public class AuthServiceImpl implements AuthService {
     @Autowired MentorDao mentorDao;
     @Autowired ManagerDao managerDao;
     @Autowired MenteeDao menteeDao;
-    
-    
 
     @Override 
     public Mentee getMentee(
@@ -39,53 +37,23 @@ public class AuthServiceImpl implements AuthService {
   @Override
   public Mentee getFacebookMember(
       String accessToken) {
-
-    // Facebook의 Graph API 실행하기
-    // => HTTP 요청을 할 때 스프링에서 제공하는 RestTemplate을 사용하라! 
-    // 
     RestTemplate restTemplate = new RestTemplate();
-
-    /*
-        HashMap<String,String> vars = new HashMap<>();
-        vars.put("v1", accessToken);
-        vars.put("v2", "id,name,email");
-     */
-
-    // 원격 서버에서 보낸 JSON 문자열을 Map 객체로 자동 변환하려면
-    // JSON 문자열을 처리하는 라이브러리를 추가해 둬야 한다.
-    // 따로 코드를 추가할 필요는 없다.
-    // => Gson 또는 Jackson 라이브러리
-    //
     @SuppressWarnings("rawtypes")
     Map response = restTemplate.getForObject(
         "https://graph.facebook.com/v3.2/me?access_token={v1}&fields={v2}", 
         Map.class,
         accessToken,
         "id,name,email");
-    //vars); // 값을 개별적으로 넘기지 않고 맵에 담아 넘길 수도 있다.
-
-    // Facebook 사용자의 이메일로 현재 서버의 사용자 정보를 찾는다.
+    
     Mentee mentee = null;
-    // member = managerDao.findByEmail(response.get("email").toString());
-
-    // 해당 회원을 현재 서버에서 찾았으면 그 정보를 리턴한다.
-    if (mentee != null)
-      return mentee;
-
-    // 현재 서버에 가입한 사용자가 아니라면, 
-    // 페이스북 기본 정보를 가지고 자동으로 회원 등록한다.
-    //
+    int x = menteeDao.checkemail(mentee);
+    
+    if (x != 0)
+    return mentee;
+    
     mentee = new Mentee();
     mentee.setName(response.get("name").toString());
-    mentee.setEmail(response.get("email").toString()+"mmm");
-    
-    
-    //임시
-    mentee.setPwd("1111");
-    mentee.setPhone("12345-12345");
-    mentee.setNick("테스트11");
-    menteeDao.signup(mentee);
-
+    mentee.setEmail(response.get("email").toString());
     return mentee;
   }
 
@@ -116,12 +84,10 @@ public class AuthServiceImpl implements AuthService {
         str+=inputLine;
       }
       br.close();
-      System.out.println("str=" + str);
 
       ObjectMapper mapper = new ObjectMapper();
 
       Map<String,Object> map = mapper.readValue(str, Map.class);
-      System.out.println("response : " + map.get("response").toString());
       map = (Map<String,Object>) map.get("response");
 
       name = (String) map.get("name");
@@ -129,22 +95,14 @@ public class AuthServiceImpl implements AuthService {
       email = (String) map.get("email");
       fileurl=map.get("profile_image").toString();
 
-      System.out.println("name="+name);
-      System.out.println("nickname="+nickname);
-      System.out.println("email="+email);
-      System.out.println("fileurl="+fileurl);
-
       Mentee m = new Mentee();
       m.setName(name);
       m.setNick(nickname);
       m.setEmail(email);
       m.setPhot(fileurl);
 
-      // 임시
-      m.setPwd("1111");
-      m.setPhone("1111-22223");
-
-      menteeDao.signup(m);
+      if(menteeDao.checkemail(m) == 0) 
+      menteeDao.fbsignup(m);
 
       return m;
 
@@ -179,10 +137,6 @@ public class AuthServiceImpl implements AuthService {
       m.setNick(nickname);
       m.setEmail(email);
       m.setPhot(fileurl);
-
-      // 임시
-      m.setPwd("1111");
-      m.setPhone("1111-22224");
 
       menteeDao.signup(m);
 

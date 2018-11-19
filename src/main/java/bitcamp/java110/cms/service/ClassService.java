@@ -9,7 +9,7 @@ public interface ClassService {
   Classes findbyptno(int ptno);
   
   
-  Classes get(int no);
+  Classes findAllBycno(int no);
   int classadd(Classes classes);
   int classupdate(Classes classes);
 }

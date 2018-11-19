@@ -1,8 +1,6 @@
 package bitcamp.java110.cms.service.impl;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import bitcamp.java110.cms.dao.MenteeDao;
@@ -44,17 +42,16 @@ public class MentorServiceImpl implements MentorService {
   }
   
   @Override
-  public List<Mentor> list(int pageSize, int no) {
-    Map<String,Object> params = new HashMap<>();
-    params.put("pagesize", pageSize);
-    params.put("no", no);
-    return mentorDao.findAll(params);
+  public List<Mentor> list() {
+//    Map<String,Object> params = new HashMap<>();
+//    params.put("pagesize", pageSize);
+//    params.put("no", no);
+    return mentorDao.findAll();
   }
 
   @Override
   public Mentor get(int no) {
-    // TODO Auto-generated method stub
-    return null;
+    return mentorDao.findByNo(no);
   }
 
   @Override

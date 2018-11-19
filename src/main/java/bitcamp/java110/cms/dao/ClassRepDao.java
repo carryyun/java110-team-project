@@ -8,6 +8,6 @@ public interface ClassRepDao {
 //  int repInsert(ClassRep classRep);
 //  int repDelete(int no);
 //  int repChange(int no); // update
-  List<ClassRep> findbycno(int no);
+  List<ClassRep> findByCno(int no);
   
 }

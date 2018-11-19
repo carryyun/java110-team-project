@@ -6,7 +6,7 @@ import bitcamp.java110.cms.domain.Mentor;
 public interface MentorService {
 
   //전체 조회
- List<Mentor> list(int pageSize, int no); 
+ List<Mentor> list(); 
  
  // 멘티 번호로 조회
  Mentor get(int no); 

@@ -7,7 +7,8 @@
 * 추가부분
 */
 
-.cusNext, .cusPrev{
+.cusNextCls, .cusPrevCls,
+.cusNextPrdt, .cusPrevPrdt{
   cursor:pointer;
   font-size: 50px;
   position: absolute;
@@ -15,10 +16,10 @@
   transform: translateY(-60%);
 }
 
-.cusPrev {
+.cusPrevCls,.cusPrevPrdt {
   left: 3rem;
 }
-.cusNext {
+.cusNextCls,.cusNextPrdt {
   right: 3rem;
 }
 
@@ -92,7 +93,7 @@
   .owl-carousel .owl-nav.disabled,
   .owl-carousel .owl-dots.disabled {
     display: none; }
-  .owl-carousel .owl-nav .owl-prev,
+/*   .owl-carousel .owl-nav .owl-prev,
   .owl-carousel .owl-nav .owl-next,
   .owl-carousel .owl-dot {
     cursor: pointer;
@@ -108,7 +109,7 @@
     color: inherit;
     border: none;
     padding: 0 !important;
-    font: inherit; }
+    font: inherit; } */
   .owl-carousel.owl-loaded {
     display: block; }
   .owl-carousel.owl-loading {

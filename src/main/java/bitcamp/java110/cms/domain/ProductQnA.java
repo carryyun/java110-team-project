@@ -96,6 +96,11 @@ public class ProductQnA {
     this.type = type;
   }
 
-
+  @Override
+  public String toString() {
+    return "ProductQnA [no=" + no + ", meno=" + meno + ", ptno=" + ptno + ", titl=" + titl
+        + ", conts=" + conts + ", rgdt=" + rgdt + ", anser=" + anser + ", rgdt2=" + rgdt2
+        + ", mentee=" + mentee + ", type=" + type + "]";
+  }
 
 }
