@@ -25,4 +25,8 @@ public interface MenteeDao {
   List<Mentee> findByPhone(Map<String, Object> params); // 핸드폰
   
   Mentee findByEmailPassword(Map<String,Object> params);
+
+  Mentee findM2ByNo(int no);
+
+
 }

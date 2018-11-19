@@ -1,4 +1,8 @@
-
+<%@page import="bitcamp.java110.cms.domain.Mentee"%>
+<%@page import="bitcamp.java110.cms.domain.Mentor"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
 
             <div class="row">
 
@@ -9,10 +13,10 @@
                                 <h3>나의 프로필</h3>
                             </div>
                             <div class="profile-contents" style=" height: 150px;">
-                                <div class="author-img" style="background-image: url(img/about.jpg); position: absolute;">
+                                <div class="author-img" style="background-image: url(${mentee.phot}); position: absolute;">
                                 </div>
                                 <div class="cont1" >
-                                <B>닉네임</B> 로버트 킴
+                                <B>닉네임</B>&nbsp;&nbsp;&nbsp;${mentee.nick}
                                 </div>
                                 <div id="wrapper" style=" position: relative; right: -50px; bottom: -60px">
                                 <button class="fancy">멘토신청</button>
@@ -46,7 +50,7 @@
                                 출금계좌
                                 </div>
                                 <div class="cont1" >
-                                    비트은행 110-239-129380
+                                    ${mentee.bkname}&nbsp;&nbsp;&nbsp;${mentee.bkno}
                                 </div>
                                 
                                 
@@ -70,7 +74,7 @@
                                 핸드폰 번호
                                 </div>
                                 <div class="cont1" >
-                                    010-1929-2929
+                                    ${mentee.phone}
                                 </div>
                                 
                                 
@@ -105,7 +109,7 @@
                                 우편번호
                                 </div>
                                 <div class="cont1" >
-                                    330-20
+                                   ${mentee.pstno}
                                 </div>
                                 
                                 
@@ -115,7 +119,7 @@
                                 기본주소
                                 </div>
                                 <div class="cont1" >
-                                   서울시 어쩌구 저쩌동 
+                                   ${mentee.bas_addr}
                                 </div>
                                 
                                 
@@ -126,7 +130,7 @@
                                 상세주소
                                 </div>
                                 <div class="cont1" >
-                                   정말좋은 아파트 11032호
+                                   ${mentee.det_addr}
                                 </div>
                                 
                                 

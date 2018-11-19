@@ -22,6 +22,34 @@ public class Mentee {
   protected char stat;
   protected String note;
   protected char mtstat;
+  public Classes classes;
+  public ClassOrder classorder;
+  public Timetable timetable;
+  
+
+  public Classes getClasses() {
+    return classes;
+  }
+
+  public void setClasses(Classes classes) {
+    this.classes = classes;
+  }
+
+  public ClassOrder getClassorder() {
+    return classorder;
+  }
+
+  public void setClassorder(ClassOrder classorder) {
+    this.classorder = classorder;
+  }
+
+  public Timetable getTimetable() {
+    return timetable;
+  }
+
+  public void setTimetable(Timetable timetable) {
+    this.timetable = timetable;
+  }
 
   public int getNo() {
     return no;
