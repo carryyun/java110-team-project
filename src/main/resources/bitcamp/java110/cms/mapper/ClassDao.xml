@@ -26,6 +26,7 @@
         
         <result column="meno"		property="mentee.no"/>
         <result column="name"  		property="mentee.name"/>
+        <result column="nick"		property="mentee.nick"/>
         
         <result column="mtno"		property="middleTag.mtno"/>
         <result column="mtname"		property="middleTag.name"/>
@@ -100,6 +101,7 @@
 			ps.conts,
 			ps.pric,
 			ps.rgdt,
+			ps.cfile,
 			ps.time,
 			ps.capa,
 			ps.tinfo,
@@ -108,12 +110,15 @@
 			ps.bas_addr,
 			ps.det_addr,
 			ps.edt,
-            ps.star
+            ps.star,
+            ptg.mtname
 		from
 			p_cls as ps inner join p_meto as po
 				on ps.mono = po.mono
 			inner join p_mete as pe
 				on po.mono = pe.meno
+            inner join p_mtag as ptg
+            	on ps.mtno = ptg.mtno
 		where
 			cno =  #{no}
 	</select>
