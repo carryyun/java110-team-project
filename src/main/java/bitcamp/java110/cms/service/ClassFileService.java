@@ -9,5 +9,5 @@ public interface ClassFileService {
   ClassFile get(int no);
   void delete(int no);
   int update(ClassFile cfile);
-
+  List<ClassFile> findByCno(int cno);
 }

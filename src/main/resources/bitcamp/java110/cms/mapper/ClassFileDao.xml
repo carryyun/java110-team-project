@@ -30,6 +30,15 @@
             cno=#{value}
     </select>
     
+	<select id="findByCno" resultMap="cfileMap" parameterType="int">
+		select 
+			fname
+		from
+			p_cls_file
+		where
+			cno =#{no}
+	</select>
+    
     <insert id="insert" parameterType="ClassFile" useGeneratedKeys="true" keyColumn="cfno" keyProperty="no">
         insert into p_cls_file(fname, cno)
         values(#{fname},3)

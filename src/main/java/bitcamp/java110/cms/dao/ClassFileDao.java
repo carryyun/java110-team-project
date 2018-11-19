@@ -10,5 +10,5 @@ public interface ClassFileDao {
   ClassFile findByNo(int no);
   int delete(int no);
   int update(ClassFile cfile);
-
+  List<ClassFile> findByCno(int cno);
 }

@@ -8,12 +8,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import bitcamp.java110.cms.domain.ClassBakt;
+import bitcamp.java110.cms.domain.ClassFile;
 import bitcamp.java110.cms.domain.ClassLike;
 import bitcamp.java110.cms.domain.ClassOrder;
 import bitcamp.java110.cms.domain.ClassQna;
 import bitcamp.java110.cms.domain.ClassRep;
 import bitcamp.java110.cms.domain.Classes;
 import bitcamp.java110.cms.service.ClassBaktService;
+import bitcamp.java110.cms.service.ClassFileService;
 import bitcamp.java110.cms.service.ClassLikeService;
 import bitcamp.java110.cms.service.ClassOrderService;
 import bitcamp.java110.cms.service.ClassQnaService;
@@ -31,6 +33,7 @@ public class ClassController {
   ClassLikeService classlikeService;
   ClassBaktService classbaktService;
   ClassRepService classrepService;
+  ClassFileService classFileService;
   MenteeService menteeService;
   ServletContext sc;
   
@@ -38,7 +41,7 @@ public class ClassController {
       ClassService classService,ClassQnaService classqnaService,
       ClassOrderService classorderService,ClassLikeService classlikeService
       ,ClassBaktService classbaktService,MenteeService menteeService,
-      ClassRepService classrepService,
+      ClassRepService classrepService,ClassFileService classFileService,
       ServletContext sc) {
     this.classService = classService;
     this.classqnaService = classqnaService;
@@ -46,7 +49,8 @@ public class ClassController {
     this.classlikeService = classlikeService;
     this.classbaktService = classbaktService;
     this.menteeService = menteeService;
-    this.classrepService= classrepService;
+    this.classrepService = classrepService;
+    this.classFileService = classFileService;
     this.sc = sc;
   }
 
@@ -168,12 +172,14 @@ public class ClassController {
     
     Classes detailclass = classService.findAllBycno(no);
     
-    List<ClassQna> clsqnalist = classqnaService.listbycno(no);
+    List<ClassQna> clsqnalist = classqnaService.listbycno(10, 10, no);
+    
+    List<ClassFile> clsfilelist = classFileService.findByCno(no);
     
     model.addAttribute("clsreqlist",clsreqlist);
     model.addAttribute("detailclass",detailclass);
     model.addAttribute("clsqnalist",clsqnalist);
-    
+    model.addAttribute("clsfilelist",clsfilelist);
   }
   
   @RequestMapping("findByptno")

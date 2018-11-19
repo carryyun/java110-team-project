@@ -42,8 +42,13 @@ public class ClassQnaServiceImpl implements ClassQnaService{
   }
 
   @Override
-  public List<ClassQna> listbycno(int no) {
-    return classqnaDao.findByCno(no);
+  public List<ClassQna> listbycno(int pageNo,int pageSize ,int cno) {
+    HashMap<String, Object> params = new HashMap<>();
+    params.put("pageNo", (pageNo - 1) * pageSize);
+    params.put("pageSize", pageSize);
+    params.put("no", cno);
+    
+    return classqnaDao.findByCno(params);
   }
 
   @Override
