@@ -1,18 +1,14 @@
 package bitcamp.java110.cms.web;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.Mentor;
 import bitcamp.java110.cms.domain.Product;
-import bitcamp.java110.cms.domain.ProductPopul;
 import bitcamp.java110.cms.domain.ProductQnA;
 import bitcamp.java110.cms.service.ClassService;
 import bitcamp.java110.cms.service.MenteeService;
@@ -70,31 +66,23 @@ public class MasterController {
     
   }
   
-  @GetMapping("mentoradd")
-  public void mentoradd(Model model) {
-    Mentee mentee = menteeService.get(6);
-    Mentor mentor = new Mentor();
-    mentor.setNo(mentee.getNo());
-    mentor.setCarr(4);
-    mentor = (Mentor) mentee;
-    System.out.println("닉네임>" + mentor.getNick());
-//    mentorService.add(mentor);
+  @RequestMapping(value = "mentoradd", method = RequestMethod.POST)
+  public void mentoradd(int no, int carr) {
+    Mentee mentee = menteeService.get(no);
     
+    if(mentee !=null) {
+      Mentor mentor = new Mentor();
+      mentor.setNo(mentee.getNo());
+      mentor.setCarr(carr);
+      mentorService.add(mentor);
+    }
     
-    List<Mentee> MentorRequestList = menteeService.listByMetoStat();
-    System.out.println(MentorRequestList);
-    
-    
-    
-    model.addAttribute("MentorRequestList", MentorRequestList);
   }
   
   @GetMapping("mentorlist")
   public void mentorlist(Model model) {
-    List<Mentee> MentorRequestList = menteeService.listByMetoStat();
+    List<Mentor> MentorRequestList = mentorService.listByMetoStat();
     System.out.println(MentorRequestList);
-    
-    
     
     model.addAttribute("MentorRequestList", MentorRequestList);
   }

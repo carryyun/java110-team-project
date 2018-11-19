@@ -22,7 +22,15 @@ public class Mentee {
   protected char stat;
   protected String note;
   protected char mtstat;
-
+  protected Date rgdtmt;
+  
+  
+  public Date getRgdtmt() {
+    return rgdtmt;
+  }
+  public void setRgdtmt(Date rgdtmt) {
+    this.rgdtmt = rgdtmt;
+  }
   public int getNo() {
     return no;
   }

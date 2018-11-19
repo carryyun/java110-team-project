@@ -19,18 +19,13 @@
     float: right;
 }
 
-.container #page-list1{
+#page-list1{
     position: relative;
     
 }
 
-#page-list {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    top:10%;
-    transform: translateX(-50%);
-
+#page-list > li{
+    float: left;
 
 }
 
@@ -44,6 +39,7 @@
     transition: opacity 500ms;
     visibility: hidden;
     opacity: 0;
+    z-index: 9;
 }
 
 .overlay:target {
@@ -59,7 +55,7 @@
     width: 55%;
     height: auto;
     position: relative;
-    transition: all 5s ease-in-out;
+    transition: all 2s ease-in-out;
 }
 
 .popup h2 {
@@ -84,7 +80,7 @@
 }
 
 .popup .content {
-    max-height: 30%;
+    max-height: auto;
     overflow: auto;
     height: 750px;
     background: whitesmoke;
@@ -126,12 +122,6 @@
     margin-top: 10%;
     right: 10px;
 }
-
-/* h3 {
-    position: relative;
-    text-align: center;
-}
- */
 .col-lg-6 .pic1 {
     position: relative;
     text-align: center;
