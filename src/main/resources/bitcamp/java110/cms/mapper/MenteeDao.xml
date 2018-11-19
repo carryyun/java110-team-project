@@ -206,4 +206,16 @@
             LOWER(mte.email)=#{email} and LOWER(mte.pwd)=#{pwd}
             <!-- mte.email=#{email} and mte.pwd=password(#{pwd}) -->
     </select> 
+    
+    <select id="findMentorRequest" resultMap="menteeMap">
+        select
+            *
+        from 
+            p_mete
+        where
+            mtstat='I'
+        order by 
+            meno asc
+    </select>
+    
 </mapper>

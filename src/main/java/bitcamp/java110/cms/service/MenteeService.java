@@ -32,5 +32,8 @@ public interface MenteeService {
   
   void delete(int no);
   
+  // 멘토신청 회원번호 목록 
+  List<Mentee> listByMetoStat();
+  
   
 }

@@ -66,6 +66,11 @@ public class MenteeServiceImpl implements MenteeService {
 
     return menteeDao.findAllByPhone(params);
   }
+  
+  @Override
+  public List<Mentee> listByMetoStat() {
+    return menteeDao.findMentorRequest();
+  }
 
   @Override
   public void add(Mentee mentee) {
