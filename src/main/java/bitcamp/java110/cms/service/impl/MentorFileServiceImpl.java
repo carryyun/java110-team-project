@@ -26,7 +26,7 @@ public class MentorFileServiceImpl implements MentorFileService{
   }
 
   @Override
-  public MentorFile get(int no) {
+  public List<MentorFile> get(int no) {
     return mfileDao.findByNo(no);
   }
 

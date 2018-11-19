@@ -23,6 +23,10 @@ public class MentorFile {
   public void setMono(int mono) {
     this.mono = mono;
   }
+  @Override
+  public String toString() {
+    return "MentorFile [no=" + no + ", mfname=" + mfname + ", mono=" + mono + "]";
+  }
   
 
   

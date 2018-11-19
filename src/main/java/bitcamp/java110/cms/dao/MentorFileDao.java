@@ -7,7 +7,7 @@ import bitcamp.java110.cms.domain.MentorFile;
 public interface MentorFileDao {
   List<MentorFile> findAll(Map<String,Object> params);
   int insert(MentorFile mfile);
-  MentorFile findByNo(int no);
+  List<MentorFile> findByNo(int no);
   int delete(int no);
   int update(MentorFile mfile);
 

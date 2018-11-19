@@ -2,9 +2,16 @@ package bitcamp.java110.cms.service.impl;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import bitcamp.java110.cms.dao.MenteeDao;
 import bitcamp.java110.cms.domain.Mentee;
@@ -12,17 +19,50 @@ import bitcamp.java110.cms.service.MenteeService;
 
 @Service
 public class MenteeServiceImpl implements MenteeService {
-
-  @Autowired
+  
+  @Autowired    
   MenteeDao menteeDao;
 
 
-  @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
   @Override
   public List<Mentee> list() {
     return menteeDao.findAll();
 
   }
+  @Override
+  public void tempwd(Mentee mentee) {
+    System.out.println(mentee.getPwd());
+    System.out.println(mentee.getEmail());
+    menteeDao.tempwd(mentee);
+  }
+  
+  public void naverMailSend(Mentee m) {
+    String host = "smtp.naver.com";
+    String user = "";
+    String password = "";
+    Properties props = new Properties(); 
+    props.put("mail.smtp.host", host);
+    props.put("mail.smtp.port", 587);
+    props.put("mail.smtp.auth", "true");
+    Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+      protected PasswordAuthentication getPasswordAuthentication() { 
+        return new PasswordAuthentication(user,password);}});
+    try { MimeMessage message = new MimeMessage(session); 
+    message.setFrom(new InternetAddress(user)); 
+    message.addRecipient(Message.RecipientType.TO, 
+        new InternetAddress(m.getEmail())); 
+    // 메일 제목 
+    message.setSubject("Haru 임시 비밀번호입니다.");
+    // 메일 내용 
+    message.setText("임시비밀번호 : " + m.getPwd() + "로 로그인부탁드립니다."); 
+    // send the message 
+    Transport.send(message); 
+    System.out.println("Success Message Send"); 
+    }catch (MessagingException e) { e.printStackTrace(); } 
+    
+  }
+  
+  
   @Override
   public Mentee get(int no) {
     return menteeDao.findByNo(no);
@@ -31,6 +71,11 @@ public class MenteeServiceImpl implements MenteeService {
   @Override
   public String getByNamePhone(Mentee mentee) {
     return menteeDao.findByNamePhone(mentee);
+  }
+  
+  @Override
+  public String getByNameEmail(Mentee mentee) {
+    return menteeDao.findByNameEmail(mentee);
   }
 
   @Override

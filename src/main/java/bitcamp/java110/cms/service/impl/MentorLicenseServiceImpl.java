@@ -26,7 +26,7 @@ public class MentorLicenseServiceImpl implements MentorLicenseService {
   }
 
   @Override
-  public MentorLicense get(int no) {
+  public List<MentorLicense> get(int no) {
     return mlicnDao.findByNo(no);
   }
 

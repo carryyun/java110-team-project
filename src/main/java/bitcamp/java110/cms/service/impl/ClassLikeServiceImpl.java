@@ -14,6 +14,7 @@ import bitcamp.java110.cms.service.ClassLikeService;
 public class ClassLikeServiceImpl implements ClassLikeService {
 
   @Autowired ClassLikeDao classlikeDao;
+  @Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
   
   @Override
   public List<ClassLike> classlikelist(int pageSize) {
@@ -23,15 +24,24 @@ public class ClassLikeServiceImpl implements ClassLikeService {
     return classlikeDao.likelist(params);
   }
 
-  @Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
   @Override
   public void likeadd(ClassLike classlike) {
     classlikeDao.likeinsert(classlike);
   }
 
-  @Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
   @Override
-  public void likesub(ClassLike classlike) {
-    classlikeDao.likedelete(classlike);
+  public List<ClassLike> listByMeno(int no) {
+    // TODO Auto-generated method stub
+    return classlikeDao.findAllByMeno(no);
   }
+
+  @Override
+  public void likesub(int no) {
+    if (classlikeDao.likedelete(no) == 0) {
+      throw new RuntimeException("해당 번호의 데이터가 없습니다");
+    }
+    classlikeDao.likedelete(no);
+    
+  }
+
 }
