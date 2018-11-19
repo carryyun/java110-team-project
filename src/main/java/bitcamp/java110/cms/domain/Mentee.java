@@ -22,9 +22,18 @@ public class Mentee {
   protected char stat;
   protected String note;
   protected char mtstat;
+  protected Date rgdtmt;
   public Classes classes;
   public ClassOrder classorder;
   public Timetable timetable;
+  
+  public Date getRgdtmt() {
+    return rgdtmt;
+  }
+  public void setRgdtmt(Date rgdtmt) {
+    this.rgdtmt = rgdtmt;
+  }
+
   
 
   public Classes getClasses() {
@@ -50,7 +59,6 @@ public class Mentee {
   public void setTimetable(Timetable timetable) {
     this.timetable = timetable;
   }
-
   public int getNo() {
     return no;
   }

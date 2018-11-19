@@ -25,6 +25,7 @@
         <result column="stat"   property="stat"/>
         <result column="note"   property="note"/>
         <result column="mtstat"   property="mtstat"/>
+        <result column="rgdtmt" property="rgdtmt"/>
         <result column="mono"   property="classes.mono"/>
         <result column="titl"   property="classes.titl"/>
         <result column="pric"   property="classes.pric"/>
@@ -221,15 +222,6 @@
             <!-- mte.email=#{email} and mte.pwd=password(#{pwd}) -->
     </select> 
     
-    <select id="findMentorRequest" resultMap="menteeMap">
-        select
-            *
-        from 
-            p_mete
-        where
-            mtstat='I'
-        order by 
-            meno asc
-    </select>
+    
     
 </mapper>
