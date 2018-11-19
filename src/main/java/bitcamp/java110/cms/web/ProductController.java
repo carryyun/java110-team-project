@@ -104,12 +104,6 @@ public class ProductController {
     /* model.addAttribute("clslist",clslist); */
   }
 
-  @RequestMapping("P")
-  public String P() {
-    return "redirect:../product/prdt";
-  }
-
-
 
   @GetMapping("prdtQna")
   public void prdtQna() {

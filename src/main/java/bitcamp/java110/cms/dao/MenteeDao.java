@@ -29,4 +29,7 @@ public interface MenteeDao {
   List<Mentee> findByPhone(Map<String, Object> params); // 핸드폰
   
   Mentee findByEmailPassword(Map<String,Object> params);
+  
+  // 멘토신청목록
+  List<Mentee> findMentorRequest();
 }

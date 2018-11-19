@@ -1,21 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"
+    trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<html>
 
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
 
     <!-- 부트스트랩-->
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+    integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <!-- js-->
-    <script src="js/master-mentorList.js"></script>
+    <!-- <script src="js/master-mentorList.js"></script> -->
 
     <!-- css -->
-    <link href="css/master-mentorList.css" rel="stylesheet">
+    <!-- <link href="css/master-mentorList.css" rel="stylesheet"> -->
 
 
 </head>
@@ -157,7 +159,7 @@
 
                                     <div class="col-lg-6">
                                         <h3>작품</h3>
-                                        <dir class="pic1">
+                                        <div class="pic1">
                                             <span><a class="page-link" href="#" aria-label="Previous" style="left: 10%;">
                                                     <span aria-hidden="true"><i class="fas fa-angle-left"></i></span>
                                                     <span class="sr-only">Previous</span>
@@ -171,12 +173,12 @@
                                                     <span aria-hidden="true"><i class="fas fa-angle-right"></i></span>
                                                     <span class="sr-only">Next</span>
                                                 </a></span>
-                                        </dir>
+                                        </div>
                                     </div>
                                     
                                     <div class="col-lg-6">
                                         <h3>자격증</h3>
-                                        <dir class="pic1">
+                                        <div class="pic1">
                                             <span><a class="page-link" href="#" aria-label="Previous">
                                                     <span aria-hidden="true"><i class="fas fa-angle-left"></i></span>
                                                     <span class="sr-only">Previous</span>
@@ -190,16 +192,12 @@
                                                     <span aria-hidden="true"><i class="fas fa-angle-right"></i></span>
                                                     <span class="sr-only">Next</span>
                                                 </a></span>
-                                        </dir>
+                                        </div>
                                     </div>
                                 </div><!-- 12 -->
                             </div>
-                            <button type="button" class="btn btn-primary" id="mas-p1">
-                                승락
-                            </button>
-                            <button type="button" class="btn btn-primary" id="mas-p2">
-                                거절
-                            </button>
+                            <button type="button" class="btn btn-primary" id="mas-p1">승락</button>
+                            <button type="button" class="btn btn-primary" id="mas-p2">거절</button>
                         </div>
 
                     </div>
