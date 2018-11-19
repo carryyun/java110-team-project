@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import bitcamp.java110.cms.domain.ClassBakt;
 import bitcamp.java110.cms.domain.ClassLike;
 import bitcamp.java110.cms.domain.ClassOrder;
 import bitcamp.java110.cms.domain.ClassQna;
@@ -293,34 +292,34 @@ public class ClassController {
   }
   
   ////////////////////////p_cls_like 찜클래스///////////////////////
-  
-  @PostMapping("baktinsert")
-  public int baktinsert(ClassBakt classbakt) {
-   
-    classbaktService.baktadd(classbakt);
-    
-    return 1;
-  }
-  
-  @PostMapping("baktdelete")
-  public int baktdelete(ClassBakt classbakt) {
-    
-    classbaktService.baktsub(classbakt);
-    
-    return 1;
-  }
-  
-  @GetMapping("baktlist")
-  public List<ClassBakt> baktlist(){
-    
-    List<ClassBakt> clist = classbaktService.baktlist(5);
-    
-    for(ClassBakt c : clist) {
-      System.out.println(c.getNo());
-      System.out.println(c.getMeno());
-      System.out.println(c.getCtno());
-    }
-    
-    return null;
-  }
+//  
+//  @PostMapping("baktinsert")
+//  public int baktinsert(ClassBakt classbakt) {
+//   
+//    classbaktService.baktadd(classbakt);
+//    
+//    return 1;
+//  }
+//  
+//  @PostMapping("baktdelete")
+//  public int baktdelete(ClassBakt classbakt) {
+//    
+//    classbaktService.baktsub(classbakt);
+//    
+//    return 1;
+//  }
+//  
+//  @GetMapping("baktlist")
+//  public List<ClassBakt> baktlist(){
+//    
+//    List<ClassBakt> clist = classbaktService.baktlist(5);
+//    
+//    for(ClassBakt c : clist) {
+//      System.out.println(c.getNo());
+//      System.out.println(c.getMeno());
+//      System.out.println(c.getCtno());
+//    }
+//    
+//    return null;
+//  }
 }

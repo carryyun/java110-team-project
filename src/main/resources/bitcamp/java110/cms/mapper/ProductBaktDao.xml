@@ -6,10 +6,11 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bitcamp.java110.cms.dao.ProductBaktDao">
 
-    <resultMap type="productBakt" id="productBaktMap">
+    <resultMap type="ProductBakt" id="productBaktMap">
         <id column="pbno"        property="no"/>
         <result column="ptno"   property="ptno"/>
         <result column="meno"   property="meno"/>
+        <result column="cnt"    property="cnt"/>
         
         <result column="titl" property="product.titl"/>
         <result column="pric" property="product.pric"/>
@@ -58,6 +59,7 @@
     
     <select id="findAllByMeno" resultMap="productBaktMap" parameterType="int">
         SELECT
+            pb.cnt,
             pb.pbno,
             pr.phot, 
             pr.titl, 
@@ -73,5 +75,29 @@
         where 
             pb.meno = #{value}
     </select>
+    
+      <insert id="insert" parameterType="ProductBakt" useGeneratedKeys="true" keyColumn="pbno" keyProperty="no">
+            insert into p_prdt_bakt(ptno, meno, cnt) 
+            VALUES(#{ptno},#{meno},#{cnt});
+            
+  </insert>
+  
+  <delete id="delete" parameterType="int">
+        delete from p_prdt_bakt
+        where pbno=#{value}
+  </delete>
+  
+  <update id="update" parameterType="ProductBakt">
+    update p_prdt_bakt
+    
+        <set>
+            <if test="ptno!=null">ptno=#{ptno},</if>
+            <if test="meno!=null">meno=#{meno},</if>
+            <if test="ctno!=ctno">cnt=#{cnt}</if>
+        </set>
+        
+        where
+            meno=#{no}
+  </update>
 
 </mapper>
