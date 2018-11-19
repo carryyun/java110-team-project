@@ -33,6 +33,11 @@ public class MenteeServiceImpl implements MenteeService {
     return menteeDao.findByNamePhone(mentee);
   }
 
+  @Override
+  public Mentee getM2(int no) {
+
+    return menteeDao.findM2ByNo(no);
+  }
 
   // 회원가입시 이메일 중복체크에 필요한메소드
   @Override
@@ -86,5 +91,6 @@ public class MenteeServiceImpl implements MenteeService {
     menteeDao.delete(no);
 
   }
+
 
 }

@@ -15,8 +15,11 @@ public interface ProductQnADao {
   // 질문자번호 조회
   List<ProductQnA> findAllByMeno(Map<String,Object> params); 
   
-  // 공예품번호 조회
+  // 공예품번호 조회 
   List<ProductQnA> findAllByPtno(Map<String,Object> params); 
+  
+  // 질문 번호로 조회
+  List<ProductQnA> findAllByQno(int no);
   
   // 삽입
   int insert(ProductQnA productQnA);

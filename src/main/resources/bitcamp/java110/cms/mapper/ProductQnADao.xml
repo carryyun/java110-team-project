@@ -15,6 +15,8 @@
         <result column="rgdt"   property="rgdt"/>
         <result column="anser"   property="anser"/>
         <result column="rgdt2"   property="rgdt2"/>
+        <result column="nick" property="mentee.nick"/>
+        <result column="type"   property="type"/>
     </resultMap>
     
     <select id="findAll" resultMap="productQnAMap">
@@ -68,28 +70,41 @@
     </select>
     
     
+     <select id="findAllByQno" 
+            resultMap="productQnAMap" parameterType="int">
+        select 
+            qno, 
+            type, 
+            conts, 
+            nick,
+            qna.rgdt
+        from 
+            p_prdt_qna qna inner join p_mete mete
+            on qna.meno = mete.meno
+        where qno=#{no}
+    </select>
+    
+    
+    
     <select id="findAllByPtno" 
             resultMap="productQnAMap" parameterType="Map">
-        select
-            qno,
-            meno,
-            ptno,
-            titl,
-            conts,
-            rgdt,
-            anser,
-            rgdt2
-        from
-            p_prdt_qna
-        where 
-            ptno=#{productno}
+        select 
+            qno, 
+            type, 
+            conts, 
+            nick,
+            qna.rgdt
+        from 
+            p_prdt_qna qna inner join p_mete mete
+            on qna.meno = mete.meno
+        where ptno=#{productno}
     </select>
     
   
     <insert id="insert" parameterType="productQnA"
             useGeneratedKeys="true" keyColumn="qno" keyProperty="no">
-        insert into p_prdt_qna(meno,ptno,titl,conts,rgdt)
-        values(#{meno},#{ptno},#{titl},#{conts},now())
+        insert into p_prdt_qna(meno,ptno,titl,conts,rgdt,type)
+        values(#{meno},#{ptno},#{titl},#{conts},now(),#{type})
     </insert> 
     
     

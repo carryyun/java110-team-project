@@ -16,6 +16,9 @@ public interface ProductQnAService {
   // 공예품 번호로 조회
   List<ProductQnA> listByPtno(int pageNo, int pageSize, int ptno); 
   
+  // 질문 번호로 조회
+  List<ProductQnA> listByQno(int no);
+  
   // 입력(추가)
   int add(ProductQnA productQnA);
 

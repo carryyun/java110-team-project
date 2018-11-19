@@ -1,3 +1,4 @@
+<%@page import="java.sql.Date"%>
 <%@page import="bitcamp.java110.cms.domain.Product"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -18,7 +19,6 @@
 			     href="#prod_qna"><h4>Q&A</h4></a></li>
 		</ul>
 	</div>
-	
 
 	<!-- 상세정보, 수업정보, 상품평, QnA -->
 	<div class="row">
@@ -65,52 +65,50 @@
 			<div id="prod_review">
 				<!--  class="container col-lg-12" 생략 -->
 				<div class="row">
-					<table width="100%" border="0">
-						<div class="col-md-9 col-md-offset-0">
+				<div class="col">
+				<form class="form-horizontal" action="send.php" method="post">
+                    <fieldset>
+					<table class="fixed-table w-100" >
 							<tr>
-								<td width="77%">
+								<td colspan="3">
 									<!-- <div class=""> -->
-									<form class="form-horizontal" action="send.php" method="post">
-										<fieldset>
+									
 											<!-- Message body -->
 											<div class="form-group">
-												<label class="col-md-3 control-label" for="message">상품평</label>
-												<div class="col-md-9">
+												<label class="col-lg-3 control-label" for="message">상품평</label>
+												<div class="col-lg-12">
 													<textarea class="form-control" id="message" name="message"
 														placeholder="상품평을 등록해주세요." rows="5"></textarea>
 												</div>
 											</div>
-
-
-											<div class="form-group">
-												<label class="col-lg-3 control-label" for="message">별점</label>
-
-												<div id="star1" class="col-lg-9"></div>
-											</div>
+                                                </td>
+                                </tr>
+                                <tr>
+                                            <td>
+												<label class="control-label my-0" for="message">별점</label>
+                                            </td>
+                                            <td>
+												<div id="star1"></div>
 											<!-- </div> -->
 											<!-- <div class=""> -->
-										</fieldset>
-									</form>
-								</td>
-								<td align="center" valign="top" width="23%">
+                                            </td>
+								
+								<td align="right" valign="top">
 									<!-- Form actions -->
-									<div class="form-group">
 										<!--col-lg-12추가했음-->
-										<div class="col-md-12 col-lg-12 text-center">
+										<div class="col-md-12 col-lg-12 text-right" style="vertical-align: middle;">
 											<button type="submit" class="btn btn-primary btn-md"
 												style="background-color: #606066; color: #ffffff">등록</button>
 											<button type="reset" class="btn btn-default btn-md">취소</button>
 										</div>
-									</div>
-
-
 								</td>
-
-
 							</tr>
-						</div>
 						<!-- <div class="col-md-9 col-md-offset-0"> -->
 					</table>
+					                                       </fieldset>
+                                    </form>
+                                    </div>
+                                    
 					<!-- <table width="100%" border="0"> -->
 				</div>
 				<!-- <div class="row"> ???? -->
@@ -130,7 +128,7 @@
 
 
 				<hr class="Fhr" id="prod_qna">
-				<div class="detail_info">
+				<div class="detail_info px-3 py-3">
 					<h3>Q&A</h3>
 					<div class="row">
 						<div class="col-lg-12">
@@ -140,36 +138,55 @@
 								<thead class="col-lg-12">
 									<tr class="row">
 										<th scope="col" class="col-lg-1" id="qna_th">번호</th>
-										<th scope="col" class="col-lg-1" id="qna_th">문의유형</th>
-										<th scope="col" class="col-lg-1" id="qna_th">답변상태</th>
-										<th scope="col" class="col-lg-6" id="qna_th">문의/답변</th>
-										<th scope="col" class="col-lg-1" id="qna_th">작성자</th>
+										<th scope="col" class="col-lg-2" id="qna_th">문의유형</th>
+										<th scope="col" class="col-lg-2" id="qna_th">답변상태</th>
+										<th scope="col" class="col-lg-3" id="qna_th">문의/답변</th>
+										<th scope="col" class="col-lg-2" id="qna_th">작성자</th>
 										<th scope="col" class="col-lg-2" id="qna_th">작성일</th>
 
 									</tr>
 								</thead>
+								<c:forEach items="${prodQnaList}" var="qna">
 								<tbody class="col-lg-12">
 									<tr class="row">
-										<th class="col-lg-1" scope="row" id="qna_th">1</th>
-										<td class="col-lg-1">배송</td>
-										<td class="col-lg-1">미완료</td>
-										<td class="col-lg-6">주문한지 3일이 지났는데 왜 송장번호도 안나오는건가요?</td>
-										<td class="col-lg-1">절미맘</td>
-										<td class="col-lg-2">2018-11-14 09:35</td>
+										<th class="col-lg-1" scope="row" id="qna_th">${qna.no}</th>
+										<td class="col-lg-2">${qna.type}</td>
+										<td class="col-lg-2">
+										<c:set var="rgdt2" value="${qna.rgdt2}" />
+									
+		                                    <%
+		                                    Date rgdt2 = (Date) pageContext.getAttribute("rgdt2");
+		                                    if(rgdt2!=null){
+		                                    %>
+		                                                                                        완료
+		                                    <%}else{
+		                                    %>
+		                                                                                        미완료
+		                                              <%
+		                                               }
+		                                            %>
+										
+										
+										</td>
+										<td class="col-lg-3">${qna.conts}</td>
+										<td class="col-lg-2">${qna.mentee.nick}</td>
+										<td class="col-lg-2">${qna.rgdt}</td>
 									</tr>
-
-
 								</tbody>
+								</c:forEach>
 							</table>
+						</div>
+						<div class="col-lg-12 text-right">
+						<button onclick="location.href='prdtQna'"
+                        style="width: 120px; height: 40px; background-color: #606066; color: #ffffff">
+                        상품 문의</button>
 						</div>
 						<!-- <div class="col-lg-12"> -->
 					</div>
 					<!-- <div class="row"> -->
 
 
-					<button
-						style="width: 120px; height: 40px; margin-left: 960px; background-color: #606066; color: #ffffff">상품
-						문의하기</button>
+					
 
 				</div>
 				<!-- <div class="detail_info"> -->
@@ -185,12 +202,11 @@
 	<!-- <div class="row"> -->
 
 
-
 	<!--페이지 넘버-->
 	<nav aria-label="Page navigation example" id="product-pn">
 		<ul class="pagination justify-content-center">
 			<li class="page-item disabled "><a class="page-link" href="#"
-				tabindex="-1"><</a></li>
+				tabindex="-1"> <</a></li>
 			<li class="page-item"><a class="page-link" href="#">1</a></li>
 			<li class="page-item"><a class="page-link" href="#">2</a></li>
 			<li class="page-item"><a class="page-link" href="#">3</a></li>

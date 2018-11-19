@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import bitcamp.java110.cms.dao.MenteeDao;
 import bitcamp.java110.cms.dao.MentorDao;
+import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.Mentor;
 import bitcamp.java110.cms.service.MentorService;
 
@@ -18,11 +19,7 @@ public class MentorServiceImpl implements MentorService {
   
   @Override
   public int add(Mentor mentor) {
-    mentor.setNo(6);
-    mentor.setCarr(3);
-    mentor.setMtstat('Y');
-    mentorDao.insert(mentor);
-    return 0;
+    return mentorDao.insert(mentor);
   }
 
   @Override
@@ -58,5 +55,10 @@ public class MentorServiceImpl implements MentorService {
   public List<Mentor> listByEmail(int pageSize, String email) {
     // TODO Auto-generated method stub
     return null;
+  }
+  
+  @Override
+  public List<Mentor> listByMetoStat() {
+    return mentorDao.findMentorRequest();
   }
 }

@@ -12,6 +12,10 @@ public class ClassQna {
   private Date rgdt;
   private String anser;
   private Date rgdt2;
+  private String type;
+  
+  private Mentee mentee;
+  private Classes classes;
   
   public int getNo() {
     return no;
@@ -60,5 +64,23 @@ public class ClassQna {
   }
   public void setRgdt2(Date rgdt2) {
     this.rgdt2 = rgdt2;
+  }
+  public Mentee getMentee() {
+    return mentee;
+  }
+  public void setMentee(Mentee mentee) {
+    this.mentee = mentee;
+  }
+  public Classes getClasses() {
+    return classes;
+  }
+  public void setClasses(Classes classes) {
+    this.classes = classes;
+  }
+  public String getType() {
+    return type;
+  }
+  public void setType(String type) {
+    this.type = type;
   }
 }

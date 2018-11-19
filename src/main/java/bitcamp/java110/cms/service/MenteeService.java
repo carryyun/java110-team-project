@@ -32,5 +32,6 @@ public interface MenteeService {
   
   void delete(int no);
   
-  
+  Mentee getM2(int no);
+
 }

@@ -121,7 +121,7 @@
         <div class="row my-3">
             <div class="col-lg-12">
                 <h2>오늘의 추천작품</h2>
-                <div class="button_base b01_simple_rollover">작품 더보기</div>
+                <div class="button_base b01_simple_rollover" onclick="location.href='../product/prdt'">작품 더보기</div>
             </div>
             
         </div><!-- 추천작품 row -->
@@ -176,9 +176,12 @@
           var content = "";
           for ( var i in dataCls["itemsCls"]) {
            
+           var cno = dataCls["itemsCls"][i].no;
            var cfile = dataCls["itemsCls"][i].cfile;
            var titl = dataCls["itemsCls"][i].titl;
            var pric = dataCls["itemsCls"][i].pric;
+           
+           content += "<a href='../class/detail?no="+ cno +"'>"
            content += "<div class='col-lg-12' id='owl-col'>"
            content += "<div class='row' id='owl-row'>"
            content += "<img id='owl-img' src=\"" +cfile+ "\" alt=\"" +titl+ "\">"
@@ -186,6 +189,7 @@
            content += "<div class='col-lg-12' id='owl-col3'>" + pric + "￦</div>"
            content += "</div>"
            content += "</div>"
+           content += "</a>"
           }
           owlCls.html(content);
       }
@@ -205,10 +209,11 @@
         function customDataSuccessPrdt(dataPrdt) {
             var content = "";
             for ( var i in dataPrdt["itemsPrdt"]) {
-             
+             var ptno = dataPrdt["itemsPrdt"][i].no;
              var phot = dataPrdt["itemsPrdt"][i].phot;
              var titl = dataPrdt["itemsPrdt"][i].titl;
              var pric = dataPrdt["itemsPrdt"][i].pric;
+             content += "<a href='../product/detail2?no="+ ptno +"'>"
              content += "<div class='col-lg-12' id='owl-col'>"
              content += "<div class='row' id='owl-row'>"
              content += "<img id='owl-img' src=\"" +phot+ "\" alt=\"" +titl+ "\">"
@@ -216,6 +221,7 @@
              content += "<div class='col-lg-12' id='owl-col3'>" + pric + "￦</div>"
              content += "</div>"
              content += "</div>"
+             content += "</a>"
             }
             owlPrdt.html(content);
         }

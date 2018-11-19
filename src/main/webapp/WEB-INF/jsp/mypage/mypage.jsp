@@ -58,9 +58,9 @@
             <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
             <aside id="colorlib-aside" role="complementary" class="border js-fullheight">
                 <div class="text-center">
-                    <div class="author-img" style="background-image: url(/html/mypage/about.jpg);"></div>
-                    <h1 id="colorlib-logo"><a href="index.html">로버트 킴</a></h1>
-                    <span class="position"><a href="">MIT Universe.</a><br>로봇공학 박사</span>
+                    <div class="author-img" style="background-image: url(${mentee.phot};"></div>
+                    <h1 id="colorlib-logo"><a href="index.html">${mentee.name}</a></h1>
+                    <span class="position"><a href="">MIT Universe.</a><br>{멘토자격증}</span>
                 </div>
 
                 <nav id="colorlib-main-menu" role="navigation" class="navbar">
