@@ -8,7 +8,7 @@
 	<div class="post-preview">
 		<a href="post.html"></a>
 
-		<div  style="position : fixed; background-color:aquamarine; margin: 80px 60px 0 0" >
+		<div  style="position : fixed; background-color:aquamarine; margin: 80px 60px 0 0; padding : 10px" >
 			<div class="">
 				<div class="">
 					<article class="card-wrapper">
@@ -16,8 +16,10 @@
 						<div class="image-holder">
 							<a href="#" class="image-holder__link"></a>
 							<div class="image-liquid image-holder--original">
-								<a href="#"><img class="classimg" alt="1" src="${c.cfile}"
-									style="width: 100%; height: 100%"></a>
+								<a href="#">
+								<img class="classimg" alt="1" src="${prdtcls.cfile}"
+									style="width: 100%; height: 100%">
+							    </a>
 							</div>
 						</div>
 

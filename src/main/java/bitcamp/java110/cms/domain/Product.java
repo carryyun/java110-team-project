@@ -14,6 +14,7 @@ public class Product {
   private int meno; // 판매자번호
   private int ctno; // 인증서번호
   private int stno; // 소분류번호
+  
 
   private int deli; // 택배비
   private int star; // 별점

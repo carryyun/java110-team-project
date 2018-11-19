@@ -76,7 +76,7 @@
         var testtTop;
         var setId = "#testt";
         $(document).ready(function() {
-            /* $("#headerNav").load("headerNav.html") */
+            $("#headerNav").load("headerNav.html")
 
             testtTop = $("#detail").offset().top;
             console.log(testtTop);
@@ -111,6 +111,7 @@
         }
         scroll_follow(setId);
 
+    
         $('#click').raty(
                 {
                     click : function(score, evt) {
