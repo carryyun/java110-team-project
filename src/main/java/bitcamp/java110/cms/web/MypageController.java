@@ -5,9 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import bitcamp.java110.cms.domain.ClassQna;
 import bitcamp.java110.cms.domain.Cs;
 import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.Mentor;
+import bitcamp.java110.cms.service.ClassQnaService;
 import bitcamp.java110.cms.service.CsService;
 import bitcamp.java110.cms.service.MenteeService;
 import bitcamp.java110.cms.service.MentorService;
@@ -18,10 +20,20 @@ public class MypageController {
 
   MenteeService menteeService;
   MentorService mentorService;
+  CsService csService;
+  ClassQnaService classQnaService;
 
-  public MypageController(MenteeService menteeService,MentorService mentorService) {
+  public MypageController(
+      MenteeService menteeService,
+      MentorService mentorService,
+      CsService csService,
+      ClassQnaService classQnaService) {
    this.menteeService = menteeService;
    this.mentorService = mentorService;
+   this.csService = csService;
+   this.classQnaService = classQnaService;
+   
+   
   }
 
   @GetMapping("mypage")
@@ -90,12 +102,21 @@ public class MypageController {
   
   @GetMapping("menu4-1")
   public void menu4_1(Model model) {
-
+    
+    List<Cs> cslist = csService.list(4, 10);
+    
+    model.addAttribute("cslist",cslist);
+    
+    
     
   }
   
   @GetMapping("menu4-2")
   public void menu4_2(Model model) {
+    
+    List<ClassQna> qnalist = classQnaService.classqnalist(4);
+    
+    model.addAttribute("qnalist",qnalist);
     
   }
   

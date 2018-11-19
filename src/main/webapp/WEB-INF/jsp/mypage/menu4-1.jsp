@@ -1,5 +1,8 @@
+<%@ page import="bitcamp.java110.cms.domain.Cs"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <div class="col-lg-12">
     <div class="panel panel-default">
        
@@ -13,7 +16,7 @@
        
        
                         
-                        
+                          
         <div class="panel-body">
             <table class="table table-condensed" style="border-collapse:collapse;">
 
@@ -30,38 +33,37 @@
 
                 <tbody>
 
-   <%--  <c:foreach items="${cs}" var="item" varStatus="i"> --%>
+        <c:forEach items="${cslist}" var="c" varStatus="i">
 
-                    <tr data-toggle="collapse" data-target="#demo${status.index}" class="accordion-toggle">
-                        <td>1</td>
-                        <td>클래스 문의</td>
-                        <td>멘토가 잠수탔어요...</td>
-                        <td>2018-11-15</td>
-                        <td>답변완료</td>
+                    <tr data-toggle="collapse" data-target="#demo1-${i.count}" class="accordion-toggle">
+                        <td>${i.count}</td>
+                        <td>${c.cstype}</td>
+                        <td>${c.titl}</td>
+                        <td>${c.rgdt}</td>
+                        <td>처리상태</td>
                         
 
                     </tr>
                     <tr>
                         <td colspan="6" class="hiddenRow">
-                            <div class="accordian-body collapse" id="demo${status.index}">
+                            <div class="accordian-body collapse" id="demo1-${i.count}">
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                           <td class="qcontents">문의내용</td>
-                                            <td>진심 X빡쳐요. 경찰에 신고해야하나요? 하루수업하더니 연락두절이네요
-                                            </td>
+                                           <td class="qcontents">질문내용</td>
+                                            <td>${c.conts}</td>
                                         </tr>
                                         
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td class="qcontents">답변내용</td>
-                                            <td>아... OO님 저희도 반달곰 멘토님을 애타게 찾고있습니다.아마 겨울이라서 남은수업도 잊은채 겨울잠에 들어가신거같은데요.... 깜빡하신분들은 저희가 우선 환불처리를 해드리고있습니다.</td>
+                                            <td>${c.anser}</td>
                                             
                                         </tr>
 
 
-    <!-- </c:forEach> -->
+   
                                     </tbody>
                                 </table>
 
@@ -71,7 +73,8 @@
                     
                     
                    
-                    
+         
+        </c:forEach>      
                     
                     
                 </tbody>

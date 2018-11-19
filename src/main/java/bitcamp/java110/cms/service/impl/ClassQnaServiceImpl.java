@@ -38,7 +38,7 @@ public class ClassQnaServiceImpl implements ClassQnaService{
     HashMap<String, Object> params = new HashMap<>();
     params.put("size", pageSize);
     
-    return classqnaDao.qnalist(params);
+    return classqnaDao.classqnalist(params);
   }
 
   @Override
