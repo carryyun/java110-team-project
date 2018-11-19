@@ -77,12 +77,8 @@ public class ProductController {
   }
 
 
+
   @GetMapping("detail")
-  public void detail(Model model) {
-
-  }
-
-  @GetMapping("detail2")
   public void detail(Model model, int no) {
     Product product = productService.get(no);
 
