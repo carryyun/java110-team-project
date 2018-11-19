@@ -206,6 +206,7 @@ public class ClassController {
     classqna.setTitl("호에에엣?");
     classqna.setConts("히이이ㅣ이엣?");
     
+    
     classqnaService.qnaadd(classqna);
   }
   
@@ -244,7 +245,6 @@ public class ClassController {
   public List<ClassOrder> orderlist() {
     
     List<ClassOrder> clist = classorderService.corderlist(5);
-    
     for(ClassOrder c : clist) {
       System.out.println(c.getNo());
       System.out.println(c.getMeno());

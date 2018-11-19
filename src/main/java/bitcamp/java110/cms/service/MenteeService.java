@@ -6,7 +6,7 @@ import bitcamp.java110.cms.domain.Mentee;
 public interface MenteeService {
   
   // 전체 조회
-  List<Mentee> list(int pageNo, int pageSize); 
+  List<Mentee> list(); 
   
   // 멘티 번호로 조회
   Mentee get(int no); 
@@ -17,6 +17,9 @@ public interface MenteeService {
   // 회원 가입시 닉네임중복 체크
   int checkByNick(Mentee mentee);
   
+  //
+  String getByNamePhone(Mentee mentee);
+  
   // 닉네임으로 조회
   List<Mentee> listByNick(int pageNo, int pageSize, String nick);
   
@@ -24,6 +27,8 @@ public interface MenteeService {
   List<Mentee> listByPhone(int pageNo, int pageSize, String phone);
   
   void add(Mentee mentee); // insert
+  
+  void fbadd(Mentee mentee);
   
   void delete(int no);
   

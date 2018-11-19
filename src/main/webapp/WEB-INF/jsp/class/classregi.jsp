@@ -1,4 +1,3 @@
-<%@page import="bitcamp.java110.cms.domain.Classes"%>
 <%@page import="bitcamp.java110.cms.domain.Product"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -35,7 +34,7 @@
 <!-- Custom styles for this template -->
 <!--  <link href="/css/clean-blog2.css" rel="stylesheet"> -->
 <link href="/css/common.css" rel="stylesheet">
-<link href="/css/class_detail.css" rel="stylesheet">
+<link href="/css/prod_detail.css" rel="stylesheet">
 
 
 
@@ -45,14 +44,9 @@
     <hr>
     <div class="container">
         <div class="row">
-
-
-            <h2>클래스 상세보기</h2>
+            <h2>상품 상세보기</h2>
             <hr class="FhrBotMargin">
-
             <div class="col-lg-12 col-md-12 text-center">
-
-
                 <div class="row">
                     <aside class="col-lg-5">
                         <article class="gallery-wrap">
@@ -69,20 +63,20 @@
                     <aside class="col-lg-7">
                         <article class="card-body p-5">
                             <div class="text-left">
-                                <h2 class="title mb-3">${detailclass.titl}</h2>
+                                <h2 class="title mb-3">${product.titl}</h2>
                                 <br>
                                 <dl class="param param-feature">
                                     <dt>
                                         <h4>가격</h4>
                                     </dt>
-                                    <dd>${detailclass.pric}원</dd>
+                                    <dd>${product.pric}원</dd>
                                 </dl>
 
                                 <dl class="param param-feature">
                                     <dt>
-                                        <h4>수업시간</h4>
+                                        <h4>택배비</h4>
                                     </dt>
-                                    <dd>${detailclass.time}시간</dd>
+                                    <dd>${product.deli}원</dd>
                                 </dl>
 
 
@@ -92,9 +86,9 @@
 
                                         <dl class="param param-inline">
                                             <dt>
-                                                <h4>모집인원</h4>
+                                                <h4>남은수량</h4>
                                             </dt>
-                                            <dd>${detailclass.capa}명</dd>
+                                            <dd>${product.stock}개</dd>
                                         </dl>
                                         <!-- item-property .// -->
                                     </div>
@@ -102,14 +96,45 @@
 
                                 </div>
                                 <!-- row.// -->
+
                                 <hr>
+                                <!---->
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <dl class="param param-inline">
+                                            <dt>
+                                                <h4 class="mt-0">수량</h4>
+                                            </dt>
+                                            <dd>
+                                                <select class="form-control form-control-lg col-8">
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                </select>
+                                            </dd>
+                                        </dl>
+                                        <!-- item-property .// -->
+                                    </div>
+                                    <!-- col.// -->
+                                    <div class="col-lg-9 align-middle">
+                                        <p class="price-detail-wrap mt-5">
+                                            <span class="price h3 text-warning"> <span
+                                                class="currency">총 합계 : </span><span class="num">200,000원</span>
+                                            </span>
+                                        </p>
+                                        <!-- price-detail-wrap .// -->
+                                    </div>
+                                </div>
                                 <!-- row.// -->
+
+
+
                                 <!---->
                                 <hr>
                                 <a href="#" class="btn btn-lg btn-primary text-uppercase">
-                                    수업 신청하기 </a> <a href="#"
+                                    구매하기 </a> <a href="#"
                                     class="btn btn-lg btn-outline-primary text-uppercase"> <i
-                                    class="fas fa-shopping-cart"></i> 찜클래스
+                                    class="fas fa-shopping-cart"></i> 장바구니
                                 </a>
                             </div>
                         </article>
@@ -127,13 +152,13 @@
 
 
 <!-- 판매자가 수강한 클래스 정보들-->
-    <%-- <div class="container">
+    <div class="container">
         <div class="detail_info">
             <h3>판매자가 수강한 클래스</h3>
             <div class="row">
                 <div class="col-lg-12">
 
-                    <c:forEach items="${clsreqlist}" var="r">
+                    <c:forEach items="${list}" var="r" varStatus="i">
                         <div class="media"
                             style="border-bottom: 0.3px solid rgba(0, 0, 0, 0.5)">
                             <div class="col-lg-1 text-center">
@@ -158,7 +183,7 @@
         <!-- <div class="detail_info"> -->
 
 
-    </div> --%>
+    </div>
 
 
 
@@ -174,7 +199,7 @@
 
                 <li class="under-nav-item"><a class="nav-link"
                     href="#prod_detail">
-                        <h4>요약</h4>
+                        <h4>상세정보</h4>
                 </a></li>
                 <!-- <li class="under-nav-item"><a class="nav-link"
                     href="#class_info">
@@ -184,16 +209,14 @@
                 </a></li> -->
                 <li class="under-nav-item"><a class="nav-link"
                     href="#prod_review">
-                        <h4>강사소개</h4>
+                        <h4>
+                            상품평
+                            <h4>
                 </a></li>
                 <li class="under-nav-item"><a class="nav-link" href="#qna">
-                        <h4>강의설명</h4>
-                </a></li>
-                <li class="under-nav-item"><a class="nav-link" href="#qna">
-                        <h4>위치</h4>
-                </a></li>
-                <li class="under-nav-item"><a class="nav-link" href="#qna">
-                        <h4>클래스 후기</h4>
+                        <h4>
+                            QnA
+                            <h4>
                 </a></li>
 
             </ul>
@@ -203,43 +226,23 @@
     </div>
 
 
-    <!--요약 , 강사소개 , 강의설명,  위치, 클래스후기-->
+    <!--상세정보, 수업정보, 상품평, QnA-->
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 mx-auto" id="detail">
+
+
                 <div class="detail_info">
                     <hr class="Fhr" id="prod_detail">
                     <h3>상세정보</h3>
-                    ${detailclass.conts}
+                    ${product.conts}
                 </div>
                 <!-- <div class="detail_info"> -->
-                
-                <div class="detail_info">
-                    <hr class="Fhr" id="prod_detail">
-                    <h3>강사소개</h3>
-                    ${detailclass.tinfo}
-                </div>
-                
-                <div class="detail_info">
-                    <hr class="Fhr" id="prod_detail">
-                    <h3>강의설명</h3>
-                    ${detailclass.cinfo}
-                </div>
-	                <div class="detail_info">
-	                    <hr class="Fhr" id="prod_detail">
-	                    <h3>위치</h3>
-	                    <div class="row">
-	                    <img style = "width:500px; height:500px;"src="/upload/img/product/700x400/julme.PNG" alt="">
-	                    <div id="adr" class = "addr"><strong>기본 주소</strong>  ${detailclass.basAddr}</div>
-	                    <div id="adr" class = "addr"><strong>상세 주소</strong>  ${detailclass.detAddr}</div>
-	                    </div>
-	                </div>
-                
-                <div class="detail_info">
-                    <hr class="Fhr" id="prod_detail">
-                    <h3>클래스 후기</h3>
-                    ${detailclass.tinfo}
-                </div>
+
+
+
+
+                <h3>상품평</h3>
                 
                 <hr class="Fhr" id="class_info">    
                 <div class="detail_info">
@@ -249,9 +252,9 @@
                 <div class="detail_info">   
                     <div class="row" style="margin: 0 auto">    
                         <div class="col text-center">   
-                            <h1 class="rating-num">${detailclass.star}</h1> 
+                            <h1 class="rating-num">${product.star}</h1> 
                             <div class="rating col">    
-                                <% Classes p = (Classes)request.getAttribute("detailclass"); 
+                                <% Product p = (Product)request.getAttribute("product"); 
                                 for( int i=0;i<5;i++){
                                   if(i<p.getStar()){
                                 %> 
@@ -284,10 +287,10 @@
                                             <fieldset>
                                                 <!-- Message body -->
                                                 <div class="form-group">
-                                                    <label class="col-md-3 control-label" for="message">클래스 후기</label>
+                                                    <label class="col-md-3 control-label" for="message">상품평</label>
                                                     <div class="col-md-9">
                                                         <textarea class="form-control" id="message" name="message"
-                                                            placeholder="클래스 후기를 등록해주세요." rows="5"></textarea>
+                                                            placeholder="상품평을 등록해주세요." rows="5"></textarea>
                                                     </div>
                                                 </div>
 
@@ -322,14 +325,14 @@
                     </div>
 
                     <hr>
-                    <c:forEach items="${clsreqlist}" var="r">
+                    <c:forEach items="${list}" var="r" varStatus="i">
                         <div class="media"
                             style="border-bottom: 0.3px solid rgba(0, 0, 0, 0.5)">
                             <div class="col-lg-1 text-center">
 
                                 <img src='${r.mentee.phot}' alt="singup" id="circle">
 
-                                ddd${r.mentee.nick}
+                                ${r.mentee.nick}
 
                             </div>
                             <div class="col-lg-11 media-body">${r.conts}</div>

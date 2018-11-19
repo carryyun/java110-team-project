@@ -1,3 +1,8 @@
+<%@page import="bitcamp.java110.cms.domain.Mentee"%>
+<%@page import="bitcamp.java110.cms.domain.Mentor"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <!DOCTYPE HTML>
 <html>
 
@@ -21,53 +26,20 @@
     <meta name="twitter:url" content="" />
     <meta name="twitter:card" content="" />
 
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <link rel="shortcut icon" href="favicon.ico">
-
 
     <!--    버튼-->
-    <link rel="stylesheet" href="css/button/skyblue-gradient.css">
-    <link href="css/button/switchbtn.css" rel="stylesheet">
-
-
+    <link rel="stylesheet" href="/css/mypagecss/button/skyblue-gradient.css">
     <!-- Animate.css -->
-    <link rel="stylesheet" href="css/cssother/animate.css">
+    <link rel="stylesheet" href="/css/mypagecss/animate.css">
     <!-- Bootstrap  -->
-    <!--    <link rel="stylesheet" href="css/bootstrap.css">-->
-    <link href="css/cssother/bootstrap.css" rel="stylesheet">
+    <link href="/css/mypagecss/bootstrap.css" rel="stylesheet">
     <!-- Theme style  -->
-    <link rel="stylesheet" href="css/cssother/style.css">
-
+    <link rel="stylesheet" href="/css/mypagecss/style.css">
+    <!-- J Query -->
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    
     <!-- Load JS-->
-    <script src=js/hideshow.js></script>    
-
-
-
+    <script src=/js/mypagejs/hideshow.js></script>    
     
-
-  
-
-
-
-
-
-
-    <!-- <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700" rel="stylesheet">
-	Icomoon Icon Fonts
-	<link rel="stylesheet" href="css/icomoon.css">
-	
-	
-	<link rel="stylesheet" href="css/cssother/bootstrap.css">
-	Flexslider
-	<link rel="stylesheet" href="css/cssother/flexslider.css">
-	Flaticons
-	<link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
-	Owl Carousel
-	<link rel="stylesheet" href="css/cssother/owl.carousel.min.css">
-	<link rel="stylesheet" href="css/cssother/owl.theme.default.min.css"> -->
     <style>
 
         #colorlib-aside {
@@ -75,7 +47,6 @@
             }
   
         </style>
-
 
 </head>
 
@@ -87,7 +58,7 @@
             <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
             <aside id="colorlib-aside" role="complementary" class="border js-fullheight">
                 <div class="text-center">
-                    <div class="author-img" style="background-image: url(img/about.jpg);"></div>
+                    <div class="author-img" style="background-image: url(/html/mypage/about.jpg);"></div>
                     <h1 id="colorlib-logo"><a href="index.html">로버트 킴</a></h1>
                     <span class="position"><a href="">MIT Universe.</a><br>로봇공학 박사</span>
                 </div>
@@ -672,21 +643,20 @@
 
     </footer>
 
-    <!-- jQuery -->
-    <script src="js/jsother/jquery.min.js"></script>
-    <!-- Bootstrap -->
-    <script src="js/bootstrap.min.js"></script>
-    <!-- Waypoints -->
-    <script src="js/jsother/jquery.waypoints.min.js"></script>
-    <!-- Counters -->
-    <script src="js/jsother/jquery.countTo.js"></script>
-    <!-- MAIN JS -->
-    <script src="js/jsother/main.js"></script>
-    <script src="js/jsother/bootstrap.min.js"></script>
+
+    
     
 
 
 
 </body>
-
+<!-- jQuery -->
+    <script src="/js/mypagejs/jquery.min.js"></script>
+    <!-- Waypoints -->
+    <script src="/js/mypagejs/jquery.waypoints.min.js"></script>
+    <!-- Counters -->
+    <script src="/js/mypagejs/jquery.countTo.js"></script>
+    <!-- MAIN JS -->
+    <script src="/js/mypagejs/main.js"></script>
+    <script src="/js/mypagejs/bootstrap.min.js"></script>
 </html>

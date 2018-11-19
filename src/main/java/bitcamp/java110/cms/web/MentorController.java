@@ -30,7 +30,7 @@ public class MentorController {
   @GetMapping("findAll")
   public void findAll() {
     System.out.println("findAll 호출");
-    List<Mentor> mlist= mentorService.list(3, 3);
+    List<Mentor> mlist= mentorService.list();
     for(Mentor m : mlist) {
       System.out.println(m.getNo());
       System.out.println(m.getBas_addr());

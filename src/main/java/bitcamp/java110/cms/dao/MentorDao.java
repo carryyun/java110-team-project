@@ -14,7 +14,7 @@ public interface MentorDao {
   // 로그인을 체크하기위해 필요한 메소드 
   Mentee findByEmailPassword(Map<String,Object> params);
   
-  List<Mentor> findAll(Map<String, Object> params); // 전체조회
+  List<Mentor> findAll(); // 전체조회
 
   List<Mentor> findAllByEmail(Map<String, Object> params); // 이메일
 

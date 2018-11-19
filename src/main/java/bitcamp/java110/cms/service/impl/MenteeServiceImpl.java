@@ -19,19 +19,18 @@ public class MenteeServiceImpl implements MenteeService {
 
   @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
   @Override
-  public List<Mentee> list(int pageNo, int pageSize) {
-
-    HashMap<String, Object> params = new HashMap<>();
-    params.put("rowNo", (pageNo - 1) * pageSize);
-    params.put("size", pageSize);
-
-    return menteeDao.findAll(params);
+  public List<Mentee> list() {
+    return menteeDao.findAll();
 
   }
   @Override
   public Mentee get(int no) {
-
     return menteeDao.findByNo(no);
+  }
+  
+  @Override
+  public String getByNamePhone(Mentee mentee) {
+    return menteeDao.findByNamePhone(mentee);
   }
 
 
@@ -72,6 +71,11 @@ public class MenteeServiceImpl implements MenteeService {
   public void add(Mentee mentee) {
     menteeDao.signup(mentee);
   }
+  public void fbadd(Mentee mentee) {
+    if(menteeDao.checkemail(mentee) == 0)
+    menteeDao.fbsignup(mentee);
+  }
+  
 
   @Transactional
   @Override
