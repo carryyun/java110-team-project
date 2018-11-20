@@ -35,7 +35,7 @@
                         <td>${i.count}</td>
                         <td>${c.classes.titl}</td>
                         <td>${c.titl}</td>
-                        <td>${c.rgdt})</td>
+                        <td>${c.rgdt}</td>
                         <td>처리상태</td>
                         
 

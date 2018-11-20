@@ -9,10 +9,12 @@ import bitcamp.java110.cms.domain.ClassQna;
 import bitcamp.java110.cms.domain.Cs;
 import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.Mentor;
+import bitcamp.java110.cms.domain.ProductQnA;
 import bitcamp.java110.cms.service.ClassQnaService;
 import bitcamp.java110.cms.service.CsService;
 import bitcamp.java110.cms.service.MenteeService;
 import bitcamp.java110.cms.service.MentorService;
+import bitcamp.java110.cms.service.ProductQnAService;
 
 @Controller
 @RequestMapping("/mypage")
@@ -22,16 +24,20 @@ public class MypageController {
   MentorService mentorService;
   CsService csService;
   ClassQnaService classQnaService;
+  ProductQnAService productQnAService;
+  
 
   public MypageController(
       MenteeService menteeService,
       MentorService mentorService,
       CsService csService,
-      ClassQnaService classQnaService) {
+      ClassQnaService classQnaService,
+      ProductQnAService productQnAService) {
    this.menteeService = menteeService;
    this.mentorService = mentorService;
    this.csService = csService;
    this.classQnaService = classQnaService;
+   this.productQnAService = productQnAService;
    
    
   }
@@ -103,7 +109,7 @@ public class MypageController {
   @GetMapping("menu4-1")
   public void menu4_1(Model model) {
     
-    List<Cs> cslist = csService.list(4, 10);
+    List<Cs> cslist = csService.list(4, 10,5);
     
     model.addAttribute("cslist",cslist);
     
@@ -113,7 +119,7 @@ public class MypageController {
   
   @GetMapping("menu4-2")
   public void menu4_2(Model model) {
-    List<ClassQna> cqlist = classQnaService.classqnalist(4,10, 5);
+    List<ClassQna> cqlist = classQnaService.classqnalist(4,10,5);
     model.addAttribute("cqlist", cqlist );
     
   }
@@ -125,6 +131,8 @@ public class MypageController {
   
   @GetMapping("menu4-4")
   public void menu4_4(Model model) {
+    List<ProductQnA> pqlist = productQnAService.listByMeno(4, 10, 5);
+    model.addAttribute("pqlist", pqlist );
     
   }
   

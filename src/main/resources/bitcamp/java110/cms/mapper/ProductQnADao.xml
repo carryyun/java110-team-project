@@ -17,6 +17,8 @@
         <result column="rgdt2"   property="rgdt2"/>
         <result column="nick" property="mentee.nick"/>
         <result column="type"   property="type"/>
+        
+        <result column="ptitl"   property="product.titl"/>
     </resultMap>
     
     <select id="findAll" resultMap="productQnAMap">
@@ -54,19 +56,21 @@
     
     <select id="findAllByMeno" 
             resultMap="productQnAMap" parameterType="Map">
-        select
-            qno,
-            meno,
-            ptno,
-            titl,
-            conts,
-            rgdt,
-            anser,
-            rgdt2
-        from
-            p_prdt_qna
-        where 
-            meno=#{mentno}
+        SELECT
+            pq.type,
+            p.titl as ptitl,
+            pq.titl,
+            pq.rgdt,
+            pq.conts,
+            pq.anser
+        FROM 
+            p_prdt_qna pq JOIN p_prdt p ON pq.ptno = p.ptno
+            JOIN p_mete m ON pq.meno = m.meno
+        WHERE
+            m.meno = #{meno}
+        order by
+            qno desc
+        
     </select>
     
     
