@@ -109,7 +109,7 @@ public class MypageController {
   @GetMapping("menu4-1")
   public void menu4_1(Model model) {
     
-    List<Cs> cslist = csService.list(4, 10);
+    List<Cs> cslist = csService.list(4, 10,5);
     
     model.addAttribute("cslist",cslist);
     
