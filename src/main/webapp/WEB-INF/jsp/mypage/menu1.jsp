@@ -4,9 +4,9 @@
     pageEncoding="UTF-8"%>
     
 
-            <div class="row">
+            <div class="row" >
 
-                <div class="col-md-6 animate-box" >
+                <div class="col-md-6 animate-box"  >
                     <div class="services  color-1" >
                         
                             <div class=profile-title>
@@ -143,86 +143,6 @@
                             
                     </div>
                 </div>
-                
-<!--
-                <div class="col-md-6 animate-box">
-                    <div class="services color-2" >
-                        <div class="align-center">
-                            <h3>비밀번호/계좌</h3>
-                            <div class="pwtxt">
-                                비밀번호 </div>
-                            <div class="clstxt">
-                                계좌번호 </div>
-                            <button class=btnset>수정 </button>
-                        </div>
-                        <div class="align-center" style="position: relative;top: -62px">
-                            <div class="pwtxt">
-                                비밀번호 </div>
-                            <div class="clstxt">
-                                계좌번호 </div>
-                        </div>
-
-                    </div>
-                </div>
-                
-                <div class="col-md-6 animate-box" >
-                    <div class="services color-3" >
-                        <div class="align-center">
-                            <h3>연락처</h3>
-
-
-
-
-                            <div class="pwtxt">
-                                본인확인 이메일 </div>
-                            <div class="clstxt">
-                                핸드폰번호 </div>
-                            <button class=btnset>수정 </button>
-
-
-                        </div>
-                        <div class="align-center" style="position: relative;top: -62px">
-
-                            <div class="pwtxt">
-                                bitcamp@bmail.com </div>
-                            <div class="clstxt">
-                                010-0101-0202 </div>
-                        </div>
-
-                    </div>
-                </div>
-                
-                <div class="col-md-6 animate-box">
-                 
-                    <div class="services color-4">
-                        <div class="align-center">
-                            <h3>배송지 설정</h3>
-
-
-                            <div class="pwtxt">
-                                우편번호 </div>
-                            <div class="pwtxt">
-                                기본주소 </div>
-                            <div class="clstxt">
-                                상세주소 </div>
-                            <button class=btnset>수정 </button>
-
-
-                        </div>
-                        <div class="align-center" style="position: relative;top: -62px">
-
-                            <div class="pwtxt">
-                                330-20 </div>
-                            <div class="clstxt">
-                                서울시 서초구 서초1동 </div>
-                            <div class="clstxt">
-                                bit동 11032호 </div>
-                        </div>
-
-                    </div>
-                </div>
-                
-                -->
                 
                 
                 
