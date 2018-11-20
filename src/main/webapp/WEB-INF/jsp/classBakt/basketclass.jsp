@@ -78,7 +78,7 @@
                                             <a class="thumbnail pull-left" href="#"> <img class="media-object" src="${r.classes.cfile }" style="width: 100px; height: 100px;"> </a>
                                             <div class="media-body">
                                                 <h4 class="media-heading"><a href="#">${r.classes.titl }</a></h4>
-                                                <h5 class="media-heading"> 판매자 <a href="#">${r.mentorNick }</a></h5>
+                                                <h5 class="media-heading"> 멘토 <a href="#">${r.mentorNick }</a></h5>
                                                 <span></span><span class="text-warning"><strong>당일 취소 불가</strong></span>
                                             </div>
                                         </div>

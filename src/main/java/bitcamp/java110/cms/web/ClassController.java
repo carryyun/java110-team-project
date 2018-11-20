@@ -294,11 +294,9 @@ public class ClassController {
   }
   
   @RequestMapping("likedelete")
-  public void likedelete(ClassLike classlike) {
+  public void likedelet(int no) {
     
-    classlike.setNo(4);
-    
-    classlikeService.likesub(classlike);
+    classlikeService.likesub(no);
   }
   
   ////////////////////////p_cls_like 찜클래스///////////////////////
