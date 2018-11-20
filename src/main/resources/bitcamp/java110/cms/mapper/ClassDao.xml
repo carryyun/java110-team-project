@@ -27,6 +27,7 @@
         <result column="meno"		property="mentee.no"/>
         <result column="name"  		property="mentee.name"/>
         <result column="nick"		property="mentee.nick"/>
+        <result column="phot"		property="mentee.phot"/>
         
         <result column="mtno"		property="middleTag.mtno"/>
         <result column="mtname"		property="middleTag.name"/>
@@ -111,7 +112,8 @@
 			ps.det_addr,
 			ps.edt,
             ps.star,
-            ptg.mtname
+            ptg.mtname,
+            pe.phot
 		from
 			p_cls as ps inner join p_meto as po
 				on ps.mono = po.mono

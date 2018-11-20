@@ -534,8 +534,15 @@ footer .copyright {
   text-align: center;
 }
 .shortinfo{
-	float: right;
-	margin-right : 30px;
+	margin-right : 40px;
+	margin-left: 100px;
+	float : left;
+	text-align: center;
+	border-bottom : 1px solid silver;
+	border-top : 1px solid silver;
+}	
+.inf{
+	display :block;
 }
 /*
     .btn
@@ -553,5 +560,10 @@ dd,dl{
 .hiddenRow {
     padding: 0 4px !important;
     background-color: #eeeeee;
-    font-size: 13px;
+    font-size: 15px;
+}
+.adddet{
+	transform: translateX(250%);
+	font-size : 15px;
+	font-weight : bold;
 }

@@ -33,4 +33,8 @@ public interface MenteeDao {
   List<Mentee> findMentorRequest();
 
   Mentee findM2ByNo(int no);
+  
+  void tempwd(Mentee mentee);
+
+  String findByNameEmail(Mentee mentee);
 }

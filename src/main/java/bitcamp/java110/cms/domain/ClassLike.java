@@ -5,6 +5,30 @@ public class ClassLike {
   private int meno;
   private int cno;
   
+  private Classes classes;
+  private Mentee mentee;
+  private String mentorNick;
+  
+  
+  
+  public Classes getClasses() {
+    return classes;
+  }
+  public void setClasses(Classes classes) {
+    this.classes = classes;
+  }
+  public Mentee getMentee() {
+    return mentee;
+  }
+  public void setMentee(Mentee mentee) {
+    this.mentee = mentee;
+  }
+  public String getMentorNick() {
+    return mentorNick;
+  }
+  public void setMentorNick(String mentorNick) {
+    this.mentorNick = mentorNick;
+  }
   public int getNo() {
     return no;
   }

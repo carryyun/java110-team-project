@@ -97,7 +97,7 @@ this.value = autoHypenPhone(_val) ;
 var nameCheck = 0; // 유효성검사
 
 function chkName(){	
-	var reg_name = /^[가-힣]{2,4}$/;
+	var reg_name = /^[가-힣]{2,6}$/;
 	var inputed2 = $("#username").val();
 	var x = reg_name.test(inputed2);
 	if(inputed2==""){
@@ -115,7 +115,6 @@ function gohome(){
 }
 
 function wow(){
-	alert(serachCheck);
 	if(searchCheck() == false)
 		alert("회원정보를 다시 입력해주세요.");
 }

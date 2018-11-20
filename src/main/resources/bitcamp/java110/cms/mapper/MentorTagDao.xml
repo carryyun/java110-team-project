@@ -4,15 +4,15 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="bitcamp.java110.cms.dao.MentoTagDao">
+<mapper namespace="bitcamp.java110.cms.dao.MentorTagDao">
 
-    <resultMap type="mentoTag" id="mentoTagMap">
+    <resultMap type="mentorTag" id="mentorTagMap">
         <id column="mono"        property="mono"/>
         <id column="btno"        property="btno"/>
         
     </resultMap>
     
-    <select id="findAll" resultMap="mentoTagMap">
+    <select id="findAll" resultMap="mentorTagMap">
         select
             mono,
             btno
@@ -23,7 +23,18 @@
     </select>
 
     <select id="findAllByMono" 
-            resultMap="mentoTagMap" parameterType="Map">
+            resultMap="mentorTagMap" parameterType="Map">
+        select
+            mono,
+            btno
+        from 
+            p_meto_tag
+        where 
+            mono=#{mentoNo}
+    </select>
+    
+    <select id="findByMono" 
+            resultMap="mentorTagMap" parameterType="Map">
         select
             mono,
             btno
@@ -34,7 +45,7 @@
     </select>
     
     <select id="findAllByBtno" 
-            resultMap="mentoTagMap" parameterType="Map">
+            resultMap="mentorTagMap" parameterType="Map">
         select
             mono,
             btno
@@ -46,7 +57,7 @@
     
     
     
-   <insert id="insert" parameterType="MentoTag" keyProperty="no">
+   <insert id="insert" parameterType="MentorTag" keyProperty="no">
         insert into p_meto_tag(mono,btno)
         values(#{mono},#{btno})
     </insert> 

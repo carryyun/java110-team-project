@@ -1,14 +1,16 @@
 package bitcamp.java110.cms.domain;
 
 import java.sql.Date;
+import java.sql.Time;
 
 public class Timetable {
   
   private int no;
   private int cno;
   private Date date;
-  private Date stime;
+  private Time stime;
   private int capa;
+  
   public int getNo() {
     return no;
   }
@@ -27,10 +29,10 @@ public class Timetable {
   public void setCno(int cno) {
     this.cno = cno;
   }
-  public Date getStime() {
+  public Time getStime() {
     return stime;
   }
-  public void setStime(Date stime) {
+  public void setStime(Time stime) {
     this.stime = stime;
   }
   public int getCapa() {

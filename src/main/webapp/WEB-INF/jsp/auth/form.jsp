@@ -88,8 +88,7 @@
                     <a href="/app/mentee/searchuser">이메일 찾기</a>
                 </div>
                 <div class="d-flex justify-content-center">
-                    <a href="#">비밀번호 찾기</a>
-                    
+                    <a href="/app/mentee/searchpwd">비밀번호 찾기</a>
                 </div>
             </div>
         </div>

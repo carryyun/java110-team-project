@@ -1,7 +1,7 @@
 package bitcamp.java110.cms.domain;
 
 // 인증서
-public class MentoTag {
+public class MentorTag {
 
   private int mono; // 멘토번호
   private int btno; // 대분류번호
