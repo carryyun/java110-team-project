@@ -27,6 +27,16 @@ public class Mentee {
   public ClassOrder classorder;
   public Timetable timetable;
   
+  
+  @Override
+  public String toString() {
+    return "Mentee [no=" + no + ", name=" + name + ", email=" + email + ", pwd=" + pwd + ", nick="
+        + nick + ", phone=" + phone + ", pstno=" + pstno + ", bas_addr=" + bas_addr + ", det_addr="
+        + det_addr + ", phot=" + phot + ", sell=" + sell + ", bkname=" + bkname + ", bkno=" + bkno
+        + ", rgdt=" + rgdt + ", stat=" + stat + ", note=" + note + ", mtstat=" + mtstat
+        + ", rgdtmt=" + rgdtmt + ", classes=" + classes + ", classorder=" + classorder
+        + ", timetable=" + timetable + "]";
+  }
   public Date getRgdtmt() {
     return rgdtmt;
   }

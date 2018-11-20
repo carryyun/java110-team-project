@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.Mentor;
 import bitcamp.java110.cms.domain.Product;
@@ -64,17 +65,11 @@ public class MasterController {
    * 멘토신청목록 관련
   */
   
-  @RequestMapping(value = "mentoradd", method = RequestMethod.POST)
-  public void mentoradd(int no, int carr) {
-    Mentee mentee = menteeService.get(no);
-    
-    if(mentee !=null) {
-      Mentor mentor = new Mentor();
-      mentor.setNo(mentee.getNo());
-      mentor.setCarr(carr);
-      mentorService.add(mentor);
-    }
-    
+  @RequestMapping(value = "mtstat.do", method = { RequestMethod.GET, RequestMethod.POST})
+  public @ResponseBody int mtstat(int meno,char stat) {
+    Mentee mentee = menteeService.get(meno);
+    mentee.setMtstat(stat);
+    return menteeService.updateMtstat(mentee);
   }
 
   @GetMapping("mentorlist")

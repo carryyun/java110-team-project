@@ -136,6 +136,12 @@ public class MenteeServiceImpl implements MenteeService {
     menteeDao.delete(no);
 
   }
+  
+  // 멘토상태변경
+  @Override
+  public int updateMtstat(Mentee mentee) {
+    return menteeDao.updateMtstat(mentee);
+  }
 
 
 }

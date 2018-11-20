@@ -39,5 +39,8 @@ public interface MenteeService {
   void delete(int no);
   
   Mentee getM2(int no);
+  
+  // 멘토신청 처리
+  int updateMtstat(Mentee mentee);
 
 }
