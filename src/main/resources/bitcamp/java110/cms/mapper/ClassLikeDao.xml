@@ -9,6 +9,12 @@
         <id column="clno" property="no"/>
         <result column="meno"  property="meno"/>
         <result column="cno"    property="cno"/>
+        
+        <result column="titl" property="classes.titl"/>
+        <result column="cfile" property="classes.cfile"/>
+        <result column="pric" property="classes.pric"/>
+        
+        <result column="nick" property="mentorNick"/>
     </resultMap>
     
 
@@ -42,13 +48,20 @@
 			clno = #{no}
 	</delete>
     
+    <select id="findAllByMeno" resultMap="classlikeMap" parameterType="int">
+        SELECT
+            cl.clno, 
+            cls.titl, 
+            mete2.nick, 
+            cls.pric
+        FROM p_cls_like cl 
+            join p_mete mete
+                on cl.meno = mete.meno
+            JOIN p_cls cls
+                on cl.cno = cls.cno
+            join p_mete mete2
+                on cls.mono = mete2.meno
+        WHERE mete.meno=#{value}
+    </select>
+    
 </mapper>
-
-
-
-
-
-
-
-
-

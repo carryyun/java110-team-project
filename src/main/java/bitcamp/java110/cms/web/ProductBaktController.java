@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import bitcamp.java110.cms.domain.ProductBakt;
 import bitcamp.java110.cms.service.ProductBaktService;
 
@@ -18,9 +19,9 @@ public class ProductBaktController {
     this.productBaktService = productBaktService;
   }
   
-  @GetMapping("basketproduc")
-  public void basketproduc(Model model) {
-    List<ProductBakt> basketList = productBaktService.listAllByMeno(5);
+  @GetMapping("basketproduct")
+  public void basketproduct(Model model) {
+    List<ProductBakt> basketList = productBaktService.listAllByMeno(4);
     
     int total=0;
     
@@ -29,9 +30,16 @@ public class ProductBaktController {
       
     }
     
-      System.out.println(productBaktService.listAllByMeno(5));
     model.addAttribute("total", total);
     model.addAttribute("basketList", basketList);
+  }
+  
+  @ResponseBody
+  @RequestMapping("removeDate")
+  public String removeDate(int no) throws Exception {
+      
+      productBaktService.delete(no);
+      return "redirect:basketproduct";
   }
 
 }

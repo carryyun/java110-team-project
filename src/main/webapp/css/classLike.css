@@ -1,0 +1,14 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.media-body{
+    position: relative;
+    left:3%;    
+}
+
+.btncancel {
+    position: relative;
+    float: none;
+}

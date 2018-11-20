@@ -294,11 +294,9 @@ public class ClassController {
   }
   
   @RequestMapping("likedelete")
-  public void likedelete(ClassLike classlike) {
+  public void likedelet(int no) {
     
-    classlike.setNo(4);
-    
-    classlikeService.likesub(classlike);
+    classlikeService.likesub(no);
   }
   
   ////////////////////////p_cls_like 찜클래스///////////////////////
@@ -306,15 +304,15 @@ public class ClassController {
   @PostMapping("baktinsert")
   public int baktinsert(ClassBakt classbakt) {
    
-    classbaktService.baktadd(classbakt);
+    classbaktService.add(classbakt);
     
     return 1;
   }
   
   @PostMapping("baktdelete")
-  public int baktdelete(ClassBakt classbakt) {
+  public int baktdelete(int no) {
     
-    classbaktService.baktsub(classbakt);
+    classbaktService.delete(no);
     
     return 1;
   }
@@ -322,7 +320,7 @@ public class ClassController {
   @GetMapping("baktlist")
   public List<ClassBakt> baktlist(){
     
-    List<ClassBakt> clist = classbaktService.baktlist(5);
+    List<ClassBakt> clist = classbaktService.list(3, 5);
     
     for(ClassBakt c : clist) {
       System.out.println(c.getNo());
