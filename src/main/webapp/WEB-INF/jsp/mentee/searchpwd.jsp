@@ -16,6 +16,9 @@
 	    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 	    <link rel="stylesheet" href="/css/searchuser.css">
 	    
+	    
+	    
+	    
 </head>
 	<body style="background-color: #f2f4f7">
    <div id="wrap">
@@ -31,8 +34,8 @@
 	<div class="container">
 			<div class="main">
 				<div class="main-center">
-				<h1>Haru 이메일찾기</h1>
-					<form class="searchuser" method="post" action="/app/mentee/resultemail" onsubmit="return searchCheck()" >
+				<h1>Haru 비밀번호찾기</h1>
+					<form class="searchuser" method="post" action="/app/mentee/resultpwd" onsubmit="return searchCheck()" >
 						<div class="form-group">
 							<label for="name"> 이름 </label>
 								<div class="input-group">
@@ -41,14 +44,14 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="phone">핸드폰 번호</label>
+							<label for="email">이메일</label>
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="phone" id="userphone" maxlength="13" placeholder="핸드폰번호를 입력해주세요."/>
+									<input type="text" class="form-control" name="email" id="useremail" oninput="chkEmail()" placeholder="이메일을 입력해주세요."/>
 							</div>
 						</div>
                         <div class="selecct-but">
-				            <input type="submit" class="searchemail" value=이메일찾기 onclick="wow();">
+				            <input type="submit" class="searchpwd" value=비밀번호찾기 onclick="wow();">
 				            <input type="button" id="backbtn" onclick="gohome();" value=뒤로가기>
 						</div>
 					</form>
@@ -59,42 +62,21 @@
 </div>
 
 <script>
-
-function autoHypenPhone(str){
-    str = str.replace(/[^0-9]/g, '');
-    var tmp = '';
-    if( str.length < 4){
-        return str;
-    }else if(str.length < 7){
-        tmp += str.substr(0, 3);
-        tmp += '-';
-        tmp += str.substr(3);
-        return tmp;
-    }else if(str.length < 11){
-        tmp += str.substr(0, 3);
-        tmp += '-';
-        tmp += str.substr(3, 3);
-        tmp += '-';
-        tmp += str.substr(6);
-        return tmp;
-    }else{              
-        tmp += str.substr(0, 3);
-        tmp += '-';
-        tmp += str.substr(3, 4);
-        tmp += '-';
-        tmp += str.substr(7);
-        return tmp;
-    }
-    return str;
-}
-
-var cellPhone = document.getElementById('userphone');
-userphone.onkeyup = function(event){
-event = event || window.event;
-var _val = this.value.trim();
-this.value = autoHypenPhone(_val) ;
-}
 var nameCheck = 0; // 유효성검사
+var emailCheck = 0;
+
+function chkEmail() {
+	var inputed2 = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    var inputed = $("#useremail").val();
+	var y = inputed2.test(inputed);
+	if(inputed==""){
+		emailCheck = 0;	
+	}else if(y == true){
+		emailCheck = 1;
+	}else{
+		emailCheck = 0;
+	}
+}
 
 function chkName(){	
 	var reg_name = /^[가-힣]{2,6}$/;
@@ -104,7 +86,6 @@ function chkName(){
 		nameCheck = 0;
 	}else if(x == true){
 		nameCheck = 1;
-        searchCheck();	
 	}else{
 		nameCheck = 0;
 	}
@@ -117,16 +98,25 @@ function gohome(){
 function wow(){
 	if(searchCheck() == false)
 		alert("회원정보를 다시 입력해주세요.");
+	smtpTransport.sendMail(mailOpt, function(err, res) {
+		  if( err ) {
+		      console.log(err);
+		  }else{
+		      console.log('Message send :'+ res);
+		  }
+
+		  smtpTransport.close();
+		})
 }
 
 function searchCheck() {
-    var phone = $("#userphone").val();
+    var email = $("#useremail").val();
     var name = $("#username").val();
-    if(phone=="" || name=="") {
+    if(email=="" || name=="") {
         return false;
-    }else if(nameCheck == 0 || phone.length <= 9){
+    }else if(nameCheck == 0 || emailCheck == 0){
 		return false;
-	}else if(nameCheck == 1 && phone.length > 9 ){
+	}else if(nameCheck == 1 && emailCheck == 1){
         return true;
 	}
 }

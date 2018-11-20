@@ -91,7 +91,7 @@ var pwdCheck = 0; // 패스워드 , 패스워드확인 값이 같은지 체크�
 var nickCheck = 0;  // 닉네임 중복체크 , 유효성검사
 
 function chkName(){	
-	var reg_name = /^[가-힣]{2,4}$/;
+	var reg_name = /^[가-힣]{2,6}$/;
 	var inputed2 = $("#username").val();
 	var x = reg_name.test(inputed2);
 	if(inputed2==""){
@@ -110,9 +110,9 @@ function gohome(){
 }
 
 function checknick(){
-	var emailChk = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|\*]+$/;
+	var nickChk = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|\*]+$/;
 	var inputed2 = $("#usernick").val();
-	var x = emailChk.test(inputed2);
+	var x = nickChk.test(inputed2);
 	$.ajax({
 		data : {
 			nick : inputed2
@@ -200,7 +200,7 @@ function signupCheck() {
         return false;
     }else if(emailCheck == 0 || pwdCheck == 0 || nickCheck == 0 || nameCheck == 0 || pwd.length < 8){
 		return false;
-	}else if(emailCheck == 1 && pwdCheck == 1 && nickCheck == 1 && nameCheck == 1){
+	}else if(emailCheck == 1 && pwdCheck == 1 && nickCheck == 1 && nameCheck == 1 && pwd.length >= 8){
         return true;
 	}
 }

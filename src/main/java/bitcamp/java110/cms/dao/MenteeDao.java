@@ -11,6 +11,8 @@ public interface MenteeDao {
   int fbsignup(Mentee mentee);
 
   int delete(int no);
+  
+  void tempwd(Mentee mentee);
 
   List<Mentee> findAll(); // 전체조회
 
@@ -21,6 +23,8 @@ public interface MenteeDao {
   int checknick(Mentee mentee); // 회원 가입시 닉네임 중복 체크
   
   String findByNamePhone(Mentee mentee);
+  
+  String findByNameEmail(Mentee mentee);
 
   List<Mentee> findAllByNick(Map<String, Object> params); // 닉네임
 

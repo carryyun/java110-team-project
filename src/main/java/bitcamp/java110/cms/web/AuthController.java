@@ -72,10 +72,10 @@ public class AuthController {
             String redirectUrl = null;
             if(loginUser.getMtstat() == 'Y') {
               System.out.println("멘토로그인성공");
-              redirectUrl = "form";
+              redirectUrl = "../mainpage/mainpage";
             } else {
               System.out.println("멘티로그인성공");
-              redirectUrl = "form";
+              redirectUrl = "../mainpage/mainpage";
             }
             return "redirect:" + redirectUrl;
             

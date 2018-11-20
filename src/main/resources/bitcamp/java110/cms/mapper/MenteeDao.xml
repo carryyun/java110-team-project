@@ -41,6 +41,23 @@
     FROM p_mete p WHERE p.nick=#{nick}
 	</select>
 	
+	<update id="tempwd" parameterType="Mentee" >
+		UPDATE p_mete 
+		   SET
+		  	pwd = #{pwd}
+		 where email = #{email}
+	</update>
+	
+	<select id="findByNameEmail" parameterType="Mentee" resultType="String">
+			select
+				email
+			from
+				p_mete p
+			where
+				p.name=#{name} and
+				p.email=#{email}
+	</select>
+	
 	<select id="findByNamePhone" parameterType="Mentee" resultType="String">
 			select
 				email

@@ -11,6 +11,10 @@ public interface MenteeService {
   // 멘티 번호로 조회
   Mentee get(int no); 
   
+  void naverMailSend(Mentee mentee);
+  
+  void tempwd(Mentee mentee);
+  
   // 회원 가입시 이메일중복 체크
   int checkByEmail(Mentee mentee); 
   
@@ -19,6 +23,8 @@ public interface MenteeService {
   
   //
   String getByNamePhone(Mentee mentee);
+  
+  String getByNameEmail(Mentee mentee);
   
   // 닉네임으로 조회
   List<Mentee> listByNick(int pageNo, int pageSize, String nick);
