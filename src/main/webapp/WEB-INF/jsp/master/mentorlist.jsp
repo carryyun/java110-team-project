@@ -13,8 +13,6 @@
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
     integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <!-- js-->
-    <!-- <script src="js/master-mentorList.js"></script> -->
 
     <!-- css -->
     <link href="/css/master.css" rel="stylesheet">
@@ -60,8 +58,8 @@
                             </thead>
                             <tbody>
                             <c:forEach items="${MentorRequestList}" var="ml" varStatus="i">
-                                <tr>
-                                    <td class="text-center"><input type="checkbox" id="men-ck" name="men-ck" value="${ml.no}"></td>
+                                <tr id="rmv${ml.no}">
+                                    <td class="text-center"><input type="checkbox" id="men-ck" class="men-ck" name="men-ck" value="${ml.no}"></td>
                                     <td class="text-center">${i.count}</td>
                                     <td class="text-center"><a class="button" href="#popup${i.count}">${ml.nick}(${ml.name})</a></td>
                                     <td class="text-center">${ml.phone}</td>
@@ -204,8 +202,8 @@
                          </div>
                          
                             </div>
-                            <button type="button" class="btn btn-primary" id="mas-p1">승락</button>
-                            <button type="button" class="btn btn-primary" id="mas-p2">거절</button>
+                            <button type="button" class="btn btn-primary" id="mas-p1" name="Y" value="${ml.no}" onclick="stat(value,name)">승락</button>
+                            <button type="button" class="btn btn-primary" id="mas-p2" name="N" value="${ml.no}" onclick="stat(value,name)">거절</button>
                         </div>
 
                     </div>
@@ -245,11 +243,10 @@
             <div class="col-lg-12">
                 <div class="row">
                     <div class="col-lg-12" id="btn">
-                        <button type="button" class="btn btn-primary" id="mas-btn">멘토 신청 반려</button>
+                        <button type="button" class="btn btn-primary" id="mas-btn" onclick="checkItem()">멘토 신청 반려</button>
                     </div>
                 </div>
-
-
+            </div>
         </div><!-- 메인 row-->
     </div><!-- 메인 container-->
 
@@ -259,8 +256,88 @@
 <script src="/vendor/jquery/jquery.min.js"></script>
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script>
+$(document).ready(function() {
+    var activeSystemClass = $('.list-group-item.active');
+
+    //something is entered in search form
+    $('#system-search').keyup( function() {
+       var that = this;
+        // affect all table rows on in systems table
+        var tableBody = $('.table-list-search tbody');
+        var tableRowsClass = $('.table-list-search tbody tr');
+        $('.search-sf').remove();
+        tableRowsClass.each( function(i, val) {
+        
+            //Lower text for case insensitive
+            var rowText = $(val).text().toLowerCase();
+            var inputText = $(that).val().toLowerCase();
+            if(inputText != '')
+            {
+                $('.search-query-sf').remove();
+                tableBody.prepend('<tr class="search-query-sf"><td colspan="6"><strong>Searching for: "'
+                    + $(that).val()
+                    + '"</strong></td></tr>');
+            }
+            else
+            {
+                $('.search-query-sf').remove();
+            }
+
+            if( rowText.indexOf( inputText ) == -1 )
+            {
+                //hide rows
+                tableRowsClass.eq(i).hide();
+                
+            }
+            else
+            {
+                $('.search-sf').remove();
+                tableRowsClass.eq(i).show();
+            }
+        });
+        //all tr elements are hidden
+        if(tableRowsClass.children(':visible').length == 0)
+        {
+            tableBody.append('<tr class="search-sf"><td class="text-muted" colspan="6">No entries found.</td></tr>');
+        }
+    });
+});
+
+
 var stopHref = function(event) {
 event.stopPropagation();
+}
+
+var fadeTime = 200;
+function stat(no,name){
+    removeItem(no)
+    $.ajax({
+        data : {
+            meno : no,
+            stat : name
+        },
+        url : "mtstat.do",
+        success : location.href="#"
+    });
+}
+function removeItem(no) {
+    /* Remove row from DOM and recalc cart total */
+    var getRow = document.getElementById("rmv"+no);
+    getRow = $(getRow);
+    getRow.slideUp(fadeTime, function () {
+        getRow.remove();
+    });
+}
+
+function checkItem(){
+    var arr = new Array();
+    var check = $('input:checkbox:checked.men-ck').map(function(){
+        return this.value; }).get().join(",");
+    arr=check.split(',');
+    for(i in arr){
+        stat(arr[i],'N');
+    }
+    
 }
 </script>
 </html>
