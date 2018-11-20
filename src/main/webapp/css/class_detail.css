@@ -534,9 +534,16 @@ footer .copyright {
   text-align: center;
 }
 .shortinfo{
-	float: right;
-	margin-right : 30px;
+	margin-right : 40px;
+	margin-left: 100px;
+	float : left;
+	text-align: center;
+	border-bottom : 1px solid silver;
+	border-top : 1px solid silver;
 }	
+.inf{
+	display :block;
+}
 /*
     .btn
     .btn-primary
@@ -555,10 +562,8 @@ dd,dl{
     background-color: #eeeeee;
     font-size: 15px;
 }
-.acco{
-	border-bottom:1px solid silver;
-}
 .adddet{
-	float : left;
-	display : inline;
+	transform: translateX(250%);
+	font-size : 15px;
+	font-weight : bold;
 }

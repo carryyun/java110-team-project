@@ -87,7 +87,7 @@
 
 
 
-                <section class="colorlib-about" data-section="about">
+                <section class="colorlib-about" data-section="about" >
                     <div class="colorlib-narrow-content">
                         <div class="row">
                             
@@ -164,9 +164,9 @@
 
 
                
-                 <section class="colorlib-skills" data-section="education">
-                    <div class="colorlib-narrow-content">
-                        <div class="row"  style="height: 600px" >
+                 <section class="colorlib-skills" data-section="education"  >
+                    <div class="colorlib-narrow-content"  >
+                        <div class="row"  >
 
                                     <h2 class="colorlib-heading">내 활동보기</h2>
                                     <hr color="black"    >

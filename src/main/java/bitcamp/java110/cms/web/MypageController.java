@@ -113,10 +113,8 @@ public class MypageController {
   
   @GetMapping("menu4-2")
   public void menu4_2(Model model) {
-    
-    List<ClassQna> qnalist = classQnaService.classqnalist(4);
-    
-    model.addAttribute("qnalist",qnalist);
+    List<ClassQna> cqlist = classQnaService.classqnalist(4,10, 5);
+    model.addAttribute("cqlist", cqlist );
     
   }
   

@@ -18,21 +18,22 @@
         
         <result column="nick"		property="mentee.nick"/>
         
+        <result column="ctitl"       property="classes.titl"/>
+        
     </resultMap>
     
-    <select id="qnalist" resultMap="cqnaMap">
-        select 
-            qno,
-            meno,
-            cno,
-            titl,
-            conts,
-            star,
-            rgdt
-        from 
-            p_cls_qna
-        order by
-            qna desc;
+    <select id="classqnalist" resultMap="cqnaMap" parameterType="Map">
+       SELECT
+            c.titl as ctitl,
+            cq.titl,
+            cq.rgdt 
+       FROM
+            p_cls_qna cq JOIN p_cls c ON cq.cno = c.cno
+            JOIN p_mete m ON cq.meno = m.meno
+       WHERE
+            m.meno = 5
+       order by
+            qno desc;
     </select>
     
     <select id="findByCno" resultMap="cqnaMap" parameterType="int">

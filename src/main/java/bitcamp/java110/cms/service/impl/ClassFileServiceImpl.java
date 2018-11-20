@@ -50,4 +50,10 @@ public class ClassFileServiceImpl implements ClassFileService {
     return cfileDao.update(cfile);
   }
 
+  @Override
+  public List<ClassFile> findByCno(int cno) {
+    
+    return cfileDao.findByCno(cno);
+  }
+
 }

@@ -81,6 +81,7 @@
 	position: absolute; right: 0px; top: 0px;
 	transform: translateX(95%);
 	border-top: 1px solid silver;
+	width : 300px;
 	}
 </style>
 
@@ -97,20 +98,65 @@
             <hr class="FhrBotMargin">
 
             <div class="col-lg-12 col-md-12 text-center">
-
-
                 <div class="row">
-                    <aside class="col-lg-5">
+                    <%-- <aside class="col-lg-5">
                         <article class="gallery-wrap">
                             <div class="img-big-wrap">
                                 <div>
                                     <a href="#"><img id="prod_img"
-                                        src="/upload/img/product/700x400/julme.PNG" alt=""></a>
+                                        src="${detailclass.cfile}" alt=""></a>
                                 </div>
                             </div>
-
-
                         </article>
+                    </aside> --%>
+                    <aside class="col-lg-12">
+                        <article class="gallery-wrap">
+                            <div class="img-big-wrap">
+                                <div>
+				                    <div id="carouselExampleIndicators" class="carousel slide" data-interval="false" data-ride="carousel">
+									  <ol class="carousel-indicators">
+									    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+									    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+									    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+									  </ol>
+									  <div class="carousel-inner">
+									    <div class="carousel-item active">
+									      <img class="d-block w-100" src="${detailclass.cfile}" alt="First slide">
+									    </div>
+									    <c:forEach items="${clsfilelist}" var="cf" varStatus="i">
+									    	<c:set var="divi" value="${cf.fname}"/>
+									    	<%
+									    		String fna = (String)pageContext.getAttribute("divi");
+									    		if(fna.endsWith("jpg") || fna.endsWith("png")){
+									    	%>	  
+									    		<div class="carousel-item">
+											      <img class="d-block w-100" style="width=1100px; height=450px; " src="${cf.fname}" alt="${i.count}">
+											    </div>
+									    	<%	  
+									    		}else {
+									    		 int idx = fna.indexOf("=");
+									    		 String fnaurl = fna.substring(idx+1);
+									    	%>
+											    <div class="carousel-item" style="margin-bottom: -5px;">
+											      <iframe width="1110" height="450" src="https://www.youtube.com/embed/<%=fnaurl%>" 
+											      frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+											      allowfullscreen></iframe>
+											    </div>
+											<%
+									    		}
+											%>
+										</c:forEach>
+									  </div>
+									  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+									    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+									  </a>
+									  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+									    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+									  </a>
+									</div>
+								</div>
+                            </div>
+						</article>
                     </aside>
                     <!-- 사이드바 -->
                     <div id="STATICMENU">
@@ -220,13 +266,15 @@
                 <div class="detail_info">
                     <hr class="Fhr" id="class_detail">
                     <h3>요약</h3>
-                    <div class="row">
-                    	<img style = "width:300px; height:300px;"src="/upload/img/product/700x400/julme.PNG" alt="">
-                    	<div class = "shortinfo" style="margin-right:30px;"><strong>금액</strong>  ${detailclass.pric}원</div>
-	                    <div class = "shortinfo"><strong>총 수업시간</strong>  ${detailclass.time}</div>
-	                    <div class = "shortinfo"><strong>모집인원</strong>  ${detailclass.capa}명</div>
+                    <!-- <div class="row"> -->
+                    <div>
+                    	<img style = "width:200px; height:200px; float:left;"src="${detailclass.mentee.phot}" alt="">
+                    	<br><br><br>
+                    	<div class = "shortinfo"><strong>금액</strong><div class="inf">${detailclass.pric}원</div></div>
+	                    <div class = "shortinfo"><strong>총 수업시간</strong><div class="inf">${detailclass.time}시간</div></div>
+	                    <div class = "shortinfo"><strong>모집인원</strong><div class="inf">${detailclass.capa}명</div></div>
                     </div>
-                    <div><strong>멘토 : ${detailclass.mentee.nick}</strong></div>
+                    <div style="margin-left : 40px;"><strong>멘토 : ${detailclass.mentee.nick}</strong></div>
                 </div>
                 <!-- <div class="detail_info"> -->
                 
@@ -251,13 +299,7 @@
 	                    </div>
 	                </div>
                 
-                <div class="detail_info">
-                    <hr class="Fhr" id="class-review">
-                    <h3>클래스 후기</h3>
-                    ${detailclass.tinfo}
-                </div>
-                
-                <hr class="Fhr" id="class_info">    
+                <!-- <hr class="Fhr" id="class_info"> -->    
                 <div class="detail_info">
                 </div>  
                 <!-- <div class="detail_info"> -->  
@@ -265,7 +307,6 @@
                 <div class="detail_info">   
                     <div class="row" style="margin: 0 auto">    
                         <div class="col text-center">   
-                            <%-- <h1 class="rating-num">${detailclass.star}</h1>  --%>
                             <c:set var="starint" value="${detailclass.star}"/>
                             <strong>별점:</strong>
                             <div class="rating col">    
@@ -293,79 +334,68 @@
                 
                 <div class="container col-lg-12" id="prod_review">
                     <div class="row">
-                        <table width="100%" border="0">
-                            <div class="col-md-9 col-md-offset-0">
-                                <tr>
-                                    <td width="77%">
-                                        <!-- <div class=""> -->
-                                        <form class="form-horizontal" action="send.php" method="post">
-                                            <fieldset>
-                                                <!-- Message body -->
-                                                <div class="form-group">
-                                                    <label class="col-md-3 control-label" for="message">클래스 후기</label>
-                                                    <div class="col-md-9">
-                                                        <textarea class="form-control" id="message" name="message"
-                                                            placeholder="클래스 후기를 등록해주세요." rows="5"></textarea>
-                                                    </div>
-                                                </div>
-
-
-                                                <div class="form-group">
-                                                    <label class="col-lg-3 control-label" for="message">별점</label>
-
-                                                    <div id="star1" class="col-lg-9"></div>
-                                                </div>
-                                                <!-- </div> -->
-                                                <!-- <div class=""> -->
-                                    </td>
-                                    <td align="center" valign="top" width="23%">
-                                        <!-- Form actions -->
-                                        <div class="form-group">
-                                            <!--col-lg-12추가했음-->
-                                            <div class="col-md-12 col-lg-12 text-center">
-                                                <button type="submit" class="btn btn-primary btn-md"
-                                                    style="background-color: #606066; color: #ffffff">등록</button>
-                                                <button type="reset" class="btn btn-default btn-md">취소</button>
-                                            </div>
-                                        </div>
-
-                                    </td>
-                                    </fieldset>
-                                    </form>
+                        <div class="col">
+				<form class="form-horizontal" action="send.php" method="post">
+                    <fieldset>
+					<table class="fixed-table w-100" >
+							<tr>
+								<td colspan="3">
+									<!-- <div class=""> -->
+									
+											<!-- Message body -->
+											<div class="form-group">
+												<div class="col-lg-12">
+													<textarea class="form-control" id="message" name="message"
+														placeholder="클래스평을 등록해주세요." rows="5"></textarea>
+												</div>
+											</div>
+                                                </td>
                                 </tr>
-                            </div>
-                            <!-- <div class="col-md-9 col-md-offset-0"> -->
-                        </table>
+                                <tr>
+                                            <td>
+												<label class="control-label my-0" for="message">별점</label>
+                                            </td>
+                                            <td>
+												<div id="star1"></div>
+											<!-- </div> -->
+											<!-- <div class=""> -->
+                                            </td>
+								
+								<td align="right" valign="top">
+									<!-- Form actions -->
+										<!--col-lg-12추가했음-->
+										<div class="col-md-12 col-lg-12 text-right" style="vertical-align: middle;">
+											<button id="repbtn" type="submit" class="btn btn-primary btn-md"
+												style="background-color: #606066; color: #ffffff">등록</button>
+											<button type="reset" class="btn btn-default btn-md">취소</button>
+										</div>
+								</td>
+							</tr>
+						<!-- <div class="col-md-9 col-md-offset-0"> -->
+					</table>
+					                                       </fieldset>
+                                    </form>
+                                    </div>
                     </div>
 
                     <hr>
                     <div class ="row">
-                    <c:forEach items="${clsreqlist}" var="r">
-                        <div class="media"
-                            style="border-bottom: 0.3px solid rgba(0, 0, 0, 0.5)">
-                            <div class="col-lg-1 text-center">
-
-                                <img src='${r.mentee.phot}' alt="singup" id="circle">
-                                ${r.mentee.nick}
-                            </div>
-                            <div class="col-lg-11 media-body">${r.conts}</div>
-                            <%-- <%
-                            	int rstar = (int)pageContext.getAttribute("cr");
-                            for(int i=0; i<5;i++){
-							  if(i<rstar){
-							%>
-							<img class="starimg" alt="star-on-big" src="/upload/img/raty/star-on-big.png"
-							style="width:20px; height:20px;">
-							<%}else{
-              					%>
-              				<img class="starimg" alt="star-off-big" src="/upload/img/raty/star-off-big.png"
-              				style="width:20px; height:20px;">
-              				<%
-            						}
-            					}
-            				%>  --%>                    
-                        </div>
-                    </c:forEach>
+	                    <div class="detail_info">
+	                    <hr class="Fhr" id="class-review">
+	                    <h3>클래스 후기</h3>
+	                
+	                    <c:forEach items="${clsreqlist}" var="r">
+	                        <div class="media"
+	                            style="border-bottom: 0.3px solid rgba(0, 0, 0, 0.5)">
+	                            <div class="col-lg-1 text-center">
+	
+	                                <img src='${r.mentee.phot}' alt="singup" id="circle">
+	                                ${r.mentee.nick}
+	                            </div>
+	                            <div class="col-lg-11 media-body">${r.conts}</div>
+	                        </div>
+	                    </c:forEach>
+	                    </div>
                     </div>
 	
                     <hr class="Fhr" id="qna">
@@ -412,23 +442,25 @@
                                         <tr>
                                         	<td colspan="6" class="hiddenRow">
                                         		<div class="accordian-body collapse" id="demo1-${i.count}">
-                                        		<span class="adddet">질문 내용: </span>
-                                        		<span class="acco" id="cont">${cq.conts}</span><br>
+                                        		<div class="adddet col-lg-2" style="text-align: center;
+                                        		vertical-align: middle;
+															display : block;">질문 내용</div>
+                                        		<div class="acco" id="cont">${cq.conts}</div><br>
                                         			<c:set var="ans" value="${cq.anser}"/>
 		                                            <%
 		                                            	String ans = (String)pageContext.getAttribute("ans");
 		                                            	if(ans==null){
 		                                           	%>
-		                                           		<div class="col-lg-3">
-		                                           		<span class="adddet">질문 답변: </span>
-		                                           		</div>
-		                                           		<span class="acco" id="ans">답변이 등록되지 않았습니다.</span>
+		                                           		<div class="adddet col-lg-2" style="text-align: center;
+		                                           			vertical-align: middle;
+															display : block;">질문 답변</div>
+		                                           		<div class="acco" id="ans">답변이 등록되지 않았습니다.</div>
 		                                           	<%  }else{
 		                                           	%>
-		                                           		<div class="col-lg-3">
-		                                           		<span class="adddet">질문 답변: </span>
-		                                           		</div>
-		                                           		<span class="acco" id="ans">${cq.anser}</span>
+		                                           		<div class="adddet col-lg-2" style="text-align: center;
+		                                           		vertical-align: middle;
+															display : block;">질문 답변</div>
+		                                           		<div class="acco" id="ans">${cq.anser}</div>
 		                                           	<%  
 		                                           	}
 		                                            %>
