@@ -12,4 +12,7 @@ public interface ClassService {
   Classes findAllBycno(int no);
   int classadd(Classes classes);
   int classupdate(Classes classes);
+  
+  // 클래스 신청목록
+  List<Classes> listByStat(String stat);
 }

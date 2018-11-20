@@ -16,4 +16,7 @@ public interface ClassDao {
   Classes findByba(String ba);
   Classes findByday(String day);
   Classes findByCno(int no);
+  
+  // 클래스 신청목록
+  List<Classes> findByStat(String stat);
 }

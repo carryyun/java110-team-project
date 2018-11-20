@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import bitcamp.java110.cms.domain.Classes;
 import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.Mentor;
 import bitcamp.java110.cms.domain.Product;
@@ -72,7 +73,7 @@ public class MasterController {
     return menteeService.updateMtstat(mentee);
   }
 
-  @GetMapping("mentorlist")
+  @GetMapping("mentorreqlist")
   public void mentorlist(Model model) {
     List<Mentor> MentorRequestList = mentorService.listByMetoStat();
     for(Mentor m : MentorRequestList) {
@@ -83,6 +84,16 @@ public class MasterController {
     model.addAttribute("MentorRequestList", MentorRequestList);
   }
   
+  /*
+   * 클래스신청목록 관련
+  */
+  
+  @GetMapping("classlist")
+  public void classlist(Model model) {
+    List<Classes> ClassRequestList = classService.listByStat("I");
+
+    model.addAttribute("ClassRequestList", ClassRequestList);
+  }
   
   /*
    * Request 예제 (추후 삭제)
