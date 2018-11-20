@@ -188,7 +188,7 @@ public class ClassController {
   @GetMapping("qnalist")
   public void qnalist() {
     
-    List<ClassQna> clist= classqnaService.classqnalist(5);
+    List<ClassQna> clist= classqnaService.classqnalist(4,10,5);
     
 
     for(ClassQna c : clist) {
