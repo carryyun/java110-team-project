@@ -14,26 +14,41 @@ import bitcamp.java110.cms.service.ClassBaktService;
 public class ClassBaktServiceImpl implements ClassBaktService {
 
   @Autowired ClassBaktDao classbaktDao;
-  
+  @Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
+
   @Override
-  public List<ClassBakt> baktlist(int pageSize) {
-    
+  public List<ClassBakt> list(int pageNo, int pageSize) {
     HashMap<String, Object> params = new HashMap<>();
+    params.put("rowNo", (pageNo - 1)* pageSize);
     params.put("size", pageSize);
     
-    return classbaktDao.baktlist(params);
+    return classbaktDao.findAll(params);
   }
 
-  @Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
   @Override
-  public void baktadd(ClassBakt classbakt) {
-    classbaktDao.baktinsert(classbakt);
+  public int add(ClassBakt classbakt) {
+    return classbaktDao.insert(classbakt);
+    
   }
 
-  @Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
   @Override
-  public void baktsub(ClassBakt classbakt) {
-    classbaktDao.baktdelete(classbakt);
+  public int update(ClassBakt classbakt) {
+    return classbaktDao.update(classbakt);
+    
   }
+
+  @Override
+  public void delete(int cbno) {
+    if (classbaktDao.delete(cbno) == 0) {
+      throw new RuntimeException("해당 번호의 데이터가 없습니다");
+    }
+    classbaktDao.delete(cbno);
+  }
+
+  @Override
+  public List<ClassBakt> listByMeno(int meno) {
+    return classbaktDao.findAllByMeno(meno);
+  }
+  
 
 }

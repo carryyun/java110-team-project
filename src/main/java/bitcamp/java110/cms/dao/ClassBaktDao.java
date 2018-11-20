@@ -6,7 +6,9 @@ import bitcamp.java110.cms.domain.ClassBakt;
 
 public interface ClassBaktDao {
 
-  List<ClassBakt> baktlist(Map<String, Object> params);
-  int baktinsert(ClassBakt classbakt);
-  int baktdelete(ClassBakt classbakt);
+  List<ClassBakt> findAll(Map<String, Object> params);
+  int insert(ClassBakt classbakt);
+  int delete(int no);
+  int update(ClassBakt classbakt);
+  List<ClassBakt> findAllByMeno(int no);
 }

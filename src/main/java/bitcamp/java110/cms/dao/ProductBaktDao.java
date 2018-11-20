@@ -14,6 +14,7 @@ public interface ProductBaktDao {
   
   int insert(ProductBakt productBakt);
   int update(ProductBakt productBakt);
+  int delete(int pbno);
   
   List<ProductBakt> findAllByMeno(int no); //추가
   

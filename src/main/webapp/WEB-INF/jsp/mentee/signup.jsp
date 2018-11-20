@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Haru 회원 가입</title>
+<title>회원 가입 화면</title>
 		<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 	    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 	    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -15,7 +15,7 @@
 	    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 	    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 	    <!------ 위에는 회원가입에 필요한 것들  ---------->
-	    
+	    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	    <link rel="stylesheet" href="/css/sign.css">
 </head>
 <body style="background-color: #f2f4f7">
@@ -32,7 +32,7 @@
 	<div class="container">
 			<div class="main">
 				<div class="main-center">
-				<h1>Haru 회원가입</h1>
+				<h1>Haru</h1>
 					<form class="signup" method="post" action="/app/mentee/signup" onsubmit="return signupCheck()" >
 						<div class="form-group">
 							<label for="name"> 이름 </label>
@@ -62,7 +62,7 @@
 							<label for="password">비밀번호</label>
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" name="pwd" id="pass" oninput="checkPwd()" placeholder="8자이상 입력해주세요."/>
+									<input type="password" class="form-control" name="pwd" id="pass" oninput="checkPwd()" placeholder="Enter your Password"/>
 								</div>
 						</div>
 
@@ -70,7 +70,7 @@
 							<label for="confirm">비밀번호 확인</label>
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" id="repwd" oninput="checkPwd()" placeholder="8자이상 입력해주세요."/>
+									<input type="password" class="form-control" id="repwd" oninput="checkPwd()" placeholder="Confirm your Password"/>
 								</div>
 						</div>
                         <div class="selecct-but">
@@ -91,7 +91,7 @@ var pwdCheck = 0; // 패스워드 , 패스워드확인 값이 같은지 체크�
 var nickCheck = 0;  // 닉네임 중복체크 , 유효성검사
 
 function chkName(){	
-	var reg_name = /^[가-힣]{2,6}$/;
+	var reg_name = /^[가-힣]{2,4}$/;
 	var inputed2 = $("#username").val();
 	var x = reg_name.test(inputed2);
 	if(inputed2==""){
@@ -105,14 +105,17 @@ function chkName(){
 	    	
 }
 
+
+
+
 function gohome(){
 	location.href="/app/auth/form";
 }
 
 function checknick(){
-	var nickChk = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|\*]+$/;
+	var emailChk = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|\*]+$/;
 	var inputed2 = $("#usernick").val();
-	var x = nickChk.test(inputed2);
+	var x = emailChk.test(inputed2);
 	$.ajax({
 		data : {
 			nick : inputed2
@@ -171,7 +174,7 @@ function checkPwd() {
     var reinputed = $('#repwd').val();
     if(reinputed=="" && (inputed != reinputed || inputed == reinputed)){
         $("#repwd").css("background-color", "#FA5858");
-    }else if (inputed == reinputed && (inputed.length >= 8)) {
+    }else if (inputed == reinputed) {
         $("#repwd").css("background-color", "#B0F6AC");
         pwdCheck = 1;
         signupCheck();
@@ -182,11 +185,24 @@ function checkPwd() {
     }
 }
 
+var signChk = false;
+
+
 function wow(){
 	if(signupCheck() == false){
-		alert("회원정보를 다시 입력해주세요.");
+	    console.log(signupCheck());
+		swal ( "Oops" ,  "회원정보를 다시 입력해주세요." ,  "error" );
 	}else if(signupCheck() == true){
-		alert($("#username").val() + "님 회원가입을 축하드립니다^^");
+	    console.log(signupCheck());
+	    swal({
+	        icon: "success",
+	        text: $("#username").val() + "님 회원가입을 축하드립니다^^"
+	      });
+	    setTimeout(function() {
+	        location.href="/app/auth/form";
+	      }, 3000);
+	    
+		/* alert($("#username").val() + "님 회원가입을 축하드립니다^^"); */
 	}
 }
 
@@ -196,12 +212,13 @@ function signupCheck() {
     var pwd = $("#pass").val();
     var repwd = $("#repwd").val();
     var name = $("#username").val();
-    if(nickname=="" || email=="" || name=="" || pwd=="" || repwd=="" || pwd.length < 8) {
+    if(nickname=="" || email=="" || name=="" || pwd=="" || repwd=="") {
         return false;
-    }else if(emailCheck == 0 || pwdCheck == 0 || nickCheck == 0 || nameCheck == 0 || pwd.length < 8){
+    }else if(emailCheck == 0 || pwdCheck == 0 || nickCheck == 0 || nameCheck == 0){
 		return false;
-	}else if(emailCheck == 1 && pwdCheck == 1 && nickCheck == 1 && nameCheck == 1 && pwd.length >= 8){
+	}else if(emailCheck == 1 && pwdCheck == 1 && nickCheck == 1 && nameCheck == 1){
         return true;
+        /* location.href="/app/auth/form"; */
 	}
 }
 

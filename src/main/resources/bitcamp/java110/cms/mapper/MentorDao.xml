@@ -23,7 +23,9 @@
         <result column="stat"   property="stat"/>
         <result column="note"   property="note"/>
         <result column="mtstat"   property="mtstat"/>
+        <result column="rgdtmt" property="rgdtmt"/>
         <result column="carr"   property="carr"/>
+        
     </resultMap>
     
     <select id="findAll" resultMap="mentorMap" >
@@ -37,10 +39,9 @@
 
 
 
-    <select id="findByNo" resultMap="mentorMap" parameterType="int" >
+    <select id="findByNo" resultMap="mentorMap" parameterType="int">
         select 
-            mono,
-            carr
+            *
           from p_meto mto left outer join p_mete mte 
             on mte.meno = mto.mono
             where
@@ -52,7 +53,7 @@
         insert into 
         		p_meto
         	 values
-        		(#{carr})
+        		(#{no},#{carr})
     </insert>
     
     
@@ -85,7 +86,18 @@
             mte.email=#{email} and mte.pwd=password(#{pwd})
     </select> 
     
-    
+    <select id="findMentorRequest" resultMap="mentorMap">
+        select
+            *
+        from 
+            p_meto meto
+            join p_mete mete
+        where
+            meto.mono = mete.meno and
+            mtstat='I'
+        order by 
+            meto.mono asc
+    </select>
     
     
 </mapper>

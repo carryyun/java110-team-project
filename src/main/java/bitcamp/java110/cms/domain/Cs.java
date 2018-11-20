@@ -5,6 +5,7 @@ import java.sql.Date;
 public class Cs {
   private int no;
   private int meno;
+  private String cstype;
   private String titl;
   private String conts;
   private Date rgdt;
@@ -13,6 +14,12 @@ public class Cs {
   
   public int getMeno() {
     return meno;
+  }
+  public String getCstype() {
+    return cstype;
+  }
+  public void setCstype(String cstype) {
+    this.cstype = cstype;
   }
   public void setMeno(int meno) {
     this.meno = meno;

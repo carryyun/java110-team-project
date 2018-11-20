@@ -16,4 +16,8 @@ public interface ProductBaktService {
   
   List<ProductBakt> listAllByMeno(int no);
   
+  int add(ProductBakt productbakt);
+  int update(ProductBakt productbakt);
+  void delete(int pbno);
+  
 }

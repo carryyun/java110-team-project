@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ClassFile 클래스가 사용할 SQL이 들어 있는 파일 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="bitcamp.java110.cms.dao.ClassQnaDao">
+    
+    <resultMap type="ClassQna" id="cqnaMap">
+        <id 	column="qno" 		property="no"/>
+        <result column="meno" 		property="meno"/>
+        <result column="cno" 		property="cno"/>
+        <result column="titl" 		property="titl"/>
+        <result column="conts" 		property="conts"/>
+        <result column="rgdt" 		property="rgdt"/>
+        <result column="anser"		property="anser"/>
+        <result column="rgdt2"		property="rgdt2"/>
+        <result column="type"		property="type"/>
+        
+        <result column="nick"		property="mentee.nick"/>
+        
+    </resultMap>
+    
+    <select id="qnalist" resultMap="cqnaMap">
+        select 
+            qno,
+            meno,
+            cno,
+            titl,
+            conts,
+            star,
+            rgdt
+        from 
+            p_cls_qna
+        order by
+            qna desc;
+    </select>
+    
+    <select id="findByCno" resultMap="cqnaMap" parameterType="int">
+        select
+			psa.qno,
+			psa.type,
+			psa.titl,
+			psa.conts,
+			pme.nick,
+			psa.rgdt,
+			psa.anser
+		from
+			p_cls_qna as psa inner join p_cls as ps
+				on psa.cno = ps.cno
+			inner join p_mete as pme 
+				on psa.meno = pme.meno
+		where
+			ps.cno = #{no}
+		order by 
+			psa.qno desc;
+    </select>
+    
+    <insert id="qnainsert" parameterType="ClassQna"
+    	useGeneratedKeys="true" keyColumn="qno" keyProperty="no">
+    	insert 
+    		into p_cls_qna(meno,cno,conts,rgdt)
+    	values 
+    		(#{meno},#{cno},#{conts},#{rgdt})
+    </insert>
+    
+    <delete id="qnadelete" parameterType="int">
+    	delete 
+    		from p_cls_qna
+    	where
+    		qno = #{no};
+    </delete>
+    
+    <update id="qnaupdate" parameterType="ClassQna">
+    	update p_cls_qna
+    		<set>
+    			<if test="conts != null">conts = #{conts},</if>
+    			<if test="rgdt != null">rgdt = now()</if>
+    		</set>
+    	where
+    		qno = #{no}
+    </update>
+    
+    <update id="ansupdate" parameterType="ClassQna">
+    	update p_cls_qna
+    		<set>
+    			<if test="anser != null">anser = #{anser},</if>
+    			<if test="rgdt2 != null">rgdt2 = #{rgdt2}</if>
+    		</set>
+    	where
+    		qno = #{no}
+    </update>
+    
+  </mapper>

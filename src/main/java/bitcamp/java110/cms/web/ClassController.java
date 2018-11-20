@@ -162,14 +162,17 @@ public class ClassController {
     model.addAttribute("clslist", clslist);
   }
   
-  @RequestMapping("findByCno")
+  @RequestMapping("detail")
   public void findByCno(Model model,int no) {
     List<ClassRep> clsreqlist = classrepService.listbycno(no);
     
     Classes detailclass = classService.findAllBycno(no);
     
+    List<ClassQna> clsqnalist = classqnaService.listbycno(no);
+    
     model.addAttribute("clsreqlist",clsreqlist);
     model.addAttribute("detailclass",detailclass);
+    model.addAttribute("clsqnalist",clsqnalist);
     
   }
   
@@ -208,6 +211,12 @@ public class ClassController {
     
     
     classqnaService.qnaadd(classqna);
+  }
+  
+  @RequestMapping("qnadelete")
+  public void qnadelete(int no) {
+    
+    classqnaService.qnadelete(no);
   }
   
   @RequestMapping("qnaupdate")
@@ -297,15 +306,15 @@ public class ClassController {
   @PostMapping("baktinsert")
   public int baktinsert(ClassBakt classbakt) {
    
-    classbaktService.baktadd(classbakt);
+    classbaktService.add(classbakt);
     
     return 1;
   }
   
   @PostMapping("baktdelete")
-  public int baktdelete(ClassBakt classbakt) {
+  public int baktdelete(int no) {
     
-    classbaktService.baktsub(classbakt);
+    classbaktService.delete(no);
     
     return 1;
   }
@@ -313,7 +322,7 @@ public class ClassController {
   @GetMapping("baktlist")
   public List<ClassBakt> baktlist(){
     
-    List<ClassBakt> clist = classbaktService.baktlist(5);
+    List<ClassBakt> clist = classbaktService.list(3, 5);
     
     for(ClassBakt c : clist) {
       System.out.println(c.getNo());
