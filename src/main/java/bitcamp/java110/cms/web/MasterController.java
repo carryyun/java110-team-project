@@ -10,8 +10,11 @@ import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.Mentor;
 import bitcamp.java110.cms.domain.Product;
 import bitcamp.java110.cms.domain.ProductQnA;
+import bitcamp.java110.cms.service.BigTagService;
 import bitcamp.java110.cms.service.ClassService;
 import bitcamp.java110.cms.service.MenteeService;
+import bitcamp.java110.cms.service.MentorFileService;
+import bitcamp.java110.cms.service.MentorLicenseService;
 import bitcamp.java110.cms.service.MentorService;
 import bitcamp.java110.cms.service.ProductPopulService;
 import bitcamp.java110.cms.service.ProductService;
@@ -25,13 +28,20 @@ public class MasterController {
   ProductService productService;
   ProductPopulService productPopulService;
   ClassService classService;
+  
+  BigTagService bigTagService;
+  MentorFileService mentorFileService;
+  MentorLicenseService mentorlicenseService;
 
   public MasterController(
       ProductService productService,
       ProductPopulService productPopulService,
       ClassService classService,
       MenteeService menteeService,
-      MentorService mentorService
+      MentorService mentorService,
+      MentorFileService mentorFileService,
+      MentorLicenseService mentorlicenseService,
+      BigTagService bigTagService
       ) {
 
     this.productService = productService;
@@ -39,32 +49,20 @@ public class MasterController {
     this.classService = classService;
     this.menteeService = menteeService;
     this.mentorService = mentorService;
+    this.mentorFileService = mentorFileService;
+    this.mentorlicenseService = mentorlicenseService;
+    this.bigTagService = bigTagService;
   }
 
   @GetMapping("prdtlist")
   public void prdt(Model model) {
     List<Product> productList = productService.list();
     model.addAttribute("productList", productList);
-    
-    /*List<ProductPopul> pp_list = productPopulService.list();
-    List<Product> pp_product = new ArrayList<>();
-
-    for (ProductPopul p : pp_list) {
-      pp_product.add(p.getProduct());
-    }
-
-    ObjectMapper mapper = new ObjectMapper();
-    String jsonText = "";
-    try {
-
-      jsonText = mapper.writeValueAsString(pp_product);
-      model.addAttribute("pp_list", jsonText);
-    } catch (JsonProcessingException e) {
-      System.out.println(e.getMessage());
-    }*/
-
-    
   }
+  
+  /*
+   * 멘토신청목록 관련
+  */
   
   @RequestMapping(value = "mentoradd", method = RequestMethod.POST)
   public void mentoradd(int no, int carr) {
@@ -78,15 +76,22 @@ public class MasterController {
     }
     
   }
-  
+
   @GetMapping("mentorlist")
   public void mentorlist(Model model) {
     List<Mentor> MentorRequestList = mentorService.listByMetoStat();
-    System.out.println(MentorRequestList);
-    
+    for(Mentor m : MentorRequestList) {
+      m.setMentorFile(mentorFileService.get(m.getNo()));
+      m.setMentorLicense(mentorlicenseService.get(m.getNo()));
+      m.setMentorTag(bigTagService.listByMono(m.getNo()));
+    }
     model.addAttribute("MentorRequestList", MentorRequestList);
   }
   
+  
+  /*
+   * Request 예제 (추후 삭제)
+  */
   @RequestMapping(value = "addqna", method = RequestMethod.POST)
   public String addqna(String type, String titl, String conts) {
     ProductQnA pqna = new ProductQnA();

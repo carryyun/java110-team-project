@@ -43,4 +43,17 @@
             btno=#{value}
     </select>
     
+    <select id="findByMono" 
+            resultMap="bigtagMap" parameterType="int">
+        select
+            btag.btno,
+            btag.btname
+        from
+            p_btag btag
+            JOIN p_meto_tag metotag
+        where 
+            btag.btno=metotag.btno and
+            metotag.mono=#{value}
+    </select>
+    
 </mapper>

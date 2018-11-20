@@ -55,7 +55,7 @@
     width: 55%;
     height: auto;
     position: relative;
-    transition: all 2s ease-in-out;
+    transition: all 500ms ease-in-out;
 }
 
 .popup h2 {
@@ -102,12 +102,6 @@
 
 .pop-type {
     font-size: 20px;
-    margin-left: 10px;
-}
-
-#my-art {
-    margin-top: 45px;
-    position: relative;
 }
 
 #mas-p1 {
