@@ -13,6 +13,7 @@ import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.Mentor;
 import bitcamp.java110.cms.domain.ProductOrder;
 import bitcamp.java110.cms.domain.ProductQnA;
+import bitcamp.java110.cms.domain.Report;
 import bitcamp.java110.cms.service.BigTagService;
 import bitcamp.java110.cms.service.ClassOrderService;
 import bitcamp.java110.cms.service.ClassService;
@@ -23,6 +24,7 @@ import bitcamp.java110.cms.service.MentorService;
 import bitcamp.java110.cms.service.ProductOrderService;
 import bitcamp.java110.cms.service.ProductPopulService;
 import bitcamp.java110.cms.service.ProductService;
+import bitcamp.java110.cms.service.ReportService;
 
 @Controller
 @RequestMapping("/master")
@@ -38,6 +40,8 @@ public class MasterController {
   BigTagService bigTagService;
   MentorFileService mentorFileService;
   MentorLicenseService mentorlicenseService;
+  
+  ReportService reportService;
 
   public MasterController(
       ProductService productService,
@@ -49,7 +53,9 @@ public class MasterController {
       ClassOrderService classOrderService,
       MentorFileService mentorFileService, 
       MentorLicenseService mentorlicenseService,
-      BigTagService bigTagService) {
+      BigTagService bigTagService,
+      ReportService reportService
+      ) {
 
     this.productService = productService;
     this.productPopulService = productPopulService;
@@ -61,6 +67,7 @@ public class MasterController {
     this.mentorFileService = mentorFileService;
     this.mentorlicenseService = mentorlicenseService;
     this.bigTagService = bigTagService;
+    this.reportService = reportService;
   }
 
   @GetMapping("prodOrderList")
@@ -112,6 +119,31 @@ public class MasterController {
     model.addAttribute("ClassRequestList", ClassRequestList);
   }
 
+  /*
+   * 신고목록 관련(미완성)
+  */
+  
+  @GetMapping("reportlist")
+  public void reportlist(Model model) {
+    List<Report> ReportList = reportService.list(3, 3);
+    for(Report r: ReportList) {
+      r.setCnt(reportService.getMeno2Cnt(r.getMeno2()));
+    }
+    
+    model.addAttribute("ReportList",ReportList);
+    
+  }
+  
+  
+  /*
+   * 차단목록 관련(미완성)
+  */
+  
+  @GetMapping("blacklist")
+  public void blacklist(Model model) {
+    
+    
+  }
   /*
    * Request 예제 (추후 삭제)
    */
