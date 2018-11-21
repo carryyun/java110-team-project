@@ -12,6 +12,7 @@
 		<result column="conts"    property="conts" />
 		<result column="url"      property="url" />
 		<result column="type"     property="type" />
+		<result column="type_detail" property="type_detail"/>
 		<result column="rtdt"     property="rtdt" />
 	    <result column="meno"     property="meno" />	
         <result column="meno2"    property="meno2" />
@@ -42,18 +43,15 @@
             conts,
             url,
             type,
+            type_detail,
             rtdt,
             r.meno,
-            r.meno2,
-            mete.nick as metenick,
-            mete2.nick as mete2nick
+            r.meno2
         FROM
-            p_rept r
-            join p_mete mete
-            join p_mete mete2
-        WHERE
-            r.meno = mete.meno AND
-            r.meno2 = mete2.meno
+            p_rept as rept inner join p_mete as mete
+            on rept.meno = mete.meno
+        order by 
+            ptno DESC
 	</select>
 
 	<select id="findByNo" resultMap="reportMap"
