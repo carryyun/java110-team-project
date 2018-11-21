@@ -84,6 +84,8 @@
             r.meno = mete.meno AND
             r.meno2 = mete2.meno AND
             (r.stat='Y' OR r.stat='N')
+        GROUP BY r.meno2
+        
 	</select>
 
 	<select id="findByNo" resultMap="reportMap"
@@ -104,11 +106,28 @@
 	</select>
 
 	<select id="findByMeno" resultMap="reportMap"
-		parameterType="int">
-		<include refid="select1"></include>
-		where
-		meno=#{value}
-	</select>
+        parameterType="int">
+        <include refid="select1"></include>
+        where
+        meno=#{value}
+    </select>
+    
+    <select id="findByMeno2" resultMap="reportMap" parameterType="map">
+        SELECT
+            mete2.nick as mete2nick,
+            rept.type,
+            rept.type_detail,
+            rept.titl,
+            rept.conts,
+            rept.url,
+            rept.rtdt
+        FROM
+            p_rept rept
+            join p_mete mete2
+        WHERE
+            rept.meno2 = mete2.meno and
+            meno2=#{meno2}
+    </select>
 
 	<insert id="insert" parameterType="report"
 		useGeneratedKeys="true" keyColumn="rtno" keyProperty="no">

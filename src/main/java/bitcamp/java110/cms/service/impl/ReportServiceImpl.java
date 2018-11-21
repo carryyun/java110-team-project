@@ -50,6 +50,18 @@ public class ReportServiceImpl implements ReportService {
   }
   
   @Override
+  public List<Report> listByMeno2(int pageNo, int pageSize,int meno2) {
+      HashMap<String,Object> params = new HashMap<>();
+      params.put("rowNo", (pageNo - 1) * pageSize);
+      params.put("size", pageSize);
+      params.put("meno2", meno2);
+      
+      return reportDao.findByMeno2(params);
+  }
+  
+  
+  
+  @Override
   public List<Report> finishlist(int pageNo, int pageSize) {
       HashMap<String,Object> params = new HashMap<>();
       params.put("rowNo", (pageNo - 1) * pageSize);

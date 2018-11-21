@@ -16,7 +16,23 @@ public class ClassOrder {
   private Mentor mentor;
   private Classes classes;
   private Timetable timetable;
+  private Cert cert;
+  private ClassFile classFile;
   
+    
+  public ClassFile getClassFile() {
+    return classFile;
+  }
+  public void setClassFile(ClassFile classFile) {
+    this.classFile = classFile;
+  }
+  public Cert getCert() {
+    return cert;
+  }
+  public void setCert(Cert cert) {
+    this.cert = cert;
+  }
+
   private String mentornick;
   
   private String mtname; // 중분류이름

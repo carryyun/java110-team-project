@@ -33,7 +33,7 @@
                         <td>${i.count}</td>
                         <td>${c.paydt}</td>
                         <td>${c.payopt}</td>
-                        <td><a href='#'>${c.classes.titl}</a></td>
+                        <td>${c.classes.titl}<a href='#'><img src="${c.classFile.fname}" width="200px" height="150px"></a></td>
                         <td>${c.mentornick}</td>
                         <td>${c.tot_pric}</td>
                         <td>결제상태</td>
