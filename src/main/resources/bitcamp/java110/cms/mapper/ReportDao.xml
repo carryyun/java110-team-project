@@ -51,7 +51,7 @@
             p_rept as rept inner join p_mete as mete
             on rept.meno = mete.meno
         order by 
-            ptno DESC
+            rtno DESC
         
     </select>
 	
