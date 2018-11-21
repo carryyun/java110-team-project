@@ -133,8 +133,8 @@
 		useGeneratedKeys="true" keyColumn="rtno" keyProperty="no">
 
 		INSERT INTO
-		p_rept(titl, conts, url, type, rtdt, meno2, meno)
-		VALUES(#{titl},#{conts},#{url},#{type},now(),#{meno},#{meno2})
+		p_rept(titl, conts, url, type, rtdt, meno2, meno,type_detail)
+		VALUES(#{titl},#{conts},#{url},#{type},now(),#{meno},#{meno2},#{type_detail})
 
 	</insert>
 

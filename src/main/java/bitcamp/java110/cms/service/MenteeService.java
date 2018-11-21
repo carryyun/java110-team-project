@@ -27,7 +27,7 @@ public interface MenteeService {
   String getByNameEmail(Mentee mentee);
   
   // 닉네임으로 조회
-  List<Mentee> listByNick(int pageNo, int pageSize, String nick);
+  Mentee getByNick(String nick);
   
   // 핸드폰으로 조회
   List<Mentee> listByPhone(int pageNo, int pageSize, String phone);

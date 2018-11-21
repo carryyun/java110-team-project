@@ -40,7 +40,6 @@ public class MasterController {
   BigTagService bigTagService;
   MentorFileService mentorFileService;
   MentorLicenseService mentorlicenseService;
-  
   ReportService reportService;
 
   public MasterController(
@@ -81,9 +80,6 @@ public class MasterController {
   public void cls(Model model) {
     List<ClassOrder> classOrderList = classOrderService.listByMaster(3, 5);
     model.addAttribute("classOrderList", classOrderList);
-
-   /* List<Product> productList = productService.list();
-    model.addAttribute("productList", productList);*/
   }
 
   /*
@@ -96,13 +92,6 @@ public class MasterController {
     mentee.setMtstat(stat);
     return menteeService.updateMtstat(mentee);
   }
-  
-  /*@RequestMapping(value = "mtstat2.do", method = {RequestMethod.GET, RequestMethod.POST})
-  public @ResponseBody int mtstat2(int meno, char stat) {
-    Mentee mentee = menteeService.get(meno);
-    mentee.setMtstat(stat);
-    return menteeService.updateMtstat(mentee);
-  }*/
 
   @GetMapping("mentorreqlist")
   public void mentorlist(Model model) {
@@ -129,6 +118,11 @@ public class MasterController {
   /*
    * 신고목록 관련(미완성)
   */
+  @GetMapping("report")
+  public void report() {
+    
+  }
+  
   @GetMapping("reportFinishList")
   public void reportFinishList(Model model) {
     List<Report> ReportList = reportService.finishlist(3, 3);
@@ -147,6 +141,22 @@ public class MasterController {
     }
     model.addAttribute("ReportList",ReportList);
   }
+  @RequestMapping(value = "reptchecknick.do", method = { RequestMethod.GET, RequestMethod.POST})
+  public @ResponseBody int checkByNick(Mentee mentee) {
+    return menteeService.checkByNick(mentee);
+  }
+  
+  @RequestMapping(value = "addreport.do", method = {RequestMethod.GET, RequestMethod.POST})
+  public @ResponseBody int addRept(Report report, String nick) {
+    Mentee mentee = menteeService.getByNick(nick);
+    report.setMeno2(mentee.getNo());
+    return reportService.add(report);
+  }
+  
+  
+  
+  
+  
   
   
   /*
