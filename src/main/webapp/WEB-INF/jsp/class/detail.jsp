@@ -46,11 +46,12 @@
     <script src="/vendor/jquery/jquery.min.js"></script>
     <script src="/js/jquery.raty.min.js"></script>
     <script src="/js/clean-blog.js"></script>
-
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services"></script>
+    
 <script type="text/javascript">
  var stmnLEFT = 0; // 오른쪽 여백 
  var stmnGAP1 = 0; // 위쪽 여백 
- var stmnGAP2 = 150; // 스크롤시 브라우저 위쪽과 떨어지는 거리 
+ var stmnGAP2 = 50; // 스크롤시 브라우저 위쪽과 떨어지는 거리 
  var stmnBASE = 150; // 스크롤 시작위치 
  var stmnActivateSpeed = 35; //스크롤을 인식하는 딜레이 (숫자가 클수록 느리게 인식)
  var stmnScrollSpeed = 20; //스크롤 속도 (클수록 느림)
@@ -59,7 +60,7 @@
  function RefreshStaticMenu() { 
   var stmnStartPoint, stmnEndPoint; 
   stmnStartPoint = parseInt(document.getElementById('STATICMENU').style.top, 10); 
-  stmnEndPoint = Math.max(document.documentElement.scrollTop, document.body.scrollTop) + stmnGAP2; 
+  stmnEndPoint = Math.max(document.documentElement.scrollTop, document.body.scrollTop) + stmnGAP2 - 150; 
   if (stmnEndPoint < stmnGAP1) stmnEndPoint = stmnGAP1; 
   if (stmnStartPoint != stmnEndPoint) { 
    stmnScrollAmount = Math.ceil( Math.abs( stmnEndPoint - stmnStartPoint ) / 15 ); 
@@ -80,7 +81,6 @@
 	margin: 0pt; padding: 0pt;  
 	position: absolute; right: 0px; top: 0px;
 	transform: translateX(95%);
-	border-top: 1px solid silver;
 	width : 300px;
 	}
 </style>
@@ -93,7 +93,9 @@
     <hr>
     <div class="container">
         <div class="row">
-
+		<div class="col-lg-12">
+                                <jsp:include page="../headerMain.jsp"></jsp:include>
+                            </div>
             <h2>클래스 상세보기</h2>
             <hr class="FhrBotMargin">
 
@@ -293,7 +295,7 @@
 	                    <hr class="Fhr" id="location">
 	                    <h3>위치</h3>
 	                    <div class="row">
-	                    <img style = "width:500px; height:500px;"src="/upload/img/product/700x400/julme.PNG" alt="">
+	                    <div id="map" style="width:500px;height:400px;"></div>
 	                    <div id="adr" class = "addr"><strong>기본 주소</strong>  ${detailclass.basAddr}</div>
 	                    <div id="adr" class = "addr"><strong>상세 주소</strong>  ${detailclass.detAddr}</div>
 	                    </div>
@@ -504,6 +506,11 @@
 
         </div>
         <!-- <div class="col-lg-12 col-md-12 mx-auto" id="detail"> -->
+        <footer>
+                        <div class="col px-0">
+                            <jsp:include page="../footer.jsp"></jsp:include>
+                        </div>
+                    </footer>
     </div>
     <!-- <div class="row"> -->
 
@@ -515,13 +522,58 @@
     <hr>
 
 
-    
-
-
-
-
-
     <!-- Custom scripts for this template -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=74d4f74bdd85b5f1c1d2492eaf6b2a88&libraries=services"></script>
+<script>
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 7 // 지도의 확대 레벨
+    };  
+
+// 지도를 생성합니다    
+var map = new daum.maps.Map(mapContainer, mapOption); 
+
+// 주소-좌표 변환 객체를 생성합니다
+var geocoder = new daum.maps.services.Geocoder();
+
+// 주소로 좌표를 검색합니다
+geocoder.addressSearch('${detailclass.basAddr}', function(result, status) {
+
+    // 정상적으로 검색이 완료됐으면 
+     if (status === daum.maps.services.Status.OK) {
+
+        var coords = new daum.maps.LatLng(result[0].y, result[0].x);
+        
+        var Circle = new daum.maps.Circle({
+            center : new daum.maps.LatLng(result[0].y, result[0].x),  // 원의 중심좌표 
+            radius: 1000, // 미터 단위의 원의 반지름
+            strokeWeight: 5, // 선의 두께 
+            strokeColor: '#75B8FA', // 선의 색깔
+            strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명
+            strokeStyle: 'dashed', // 선의 스타일 
+            fillColor: '#CFE7FF', // 채우기 색깔
+            fillOpacity: 0.7  // 채우기 불투명도
+        });
+       	Circle.setMap(map); 
+       
+        // 결과값으로 받은 위치를 마커로 표시합니다
+        var marker = new daum.maps.Marker({
+            map: map,
+            position: coords
+        });
+
+        // 인포윈도우로 장소에 대한 설명을 표시합니다
+        var infowindow = new daum.maps.InfoWindow({
+            content: '<div style="width:150px;text-align:center;padding:6px 0;">클래스 받을 지역</div>'
+        });
+        infowindow.open(map, marker);
+
+        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+        map.setCenter(coords);
+    } 
+});    
+</script>
 <script>
 $('.accordian-body').on('show.bs.collapse', function () {
     $(this).closest("table")
