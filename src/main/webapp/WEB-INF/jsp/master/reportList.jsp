@@ -64,7 +64,7 @@
                             <td class="text-center">${rl.type}</td>
                             <td class="text-center">${rl.type_detail}</td>
                             <td class="text-center">${rl.titl}</td>
-                            <td class="text-center">${rl.meno}</td>
+                            <td class="text-center">${rl.menteeNick}</td>
                             <td class="text-center">${rl.rtdt}</td>
                             <td class="text-center"><button id="block-cho"><a class="button" href="#popup1">상세 보기</a></button></td>
                         </tr>
