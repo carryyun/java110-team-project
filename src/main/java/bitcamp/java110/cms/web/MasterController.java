@@ -137,6 +137,17 @@ public class MasterController {
     
   }
   
+  @GetMapping("reportList")
+  public void reportList(Model model) {
+    List<Report> ReportList = reportService.finishlist(3, 3);
+    for(Report r: ReportList) {
+      r.setCnt(reportService.getMeno2Cnt(r.getMeno2()));
+    }
+    
+    model.addAttribute("ReportList",ReportList);
+    
+  }
+  
   
   /*
    * 차단목록 관련(미완성)
