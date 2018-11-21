@@ -7,7 +7,7 @@ public class ClassOrder {
   private int no;
   private int meno;
   private int time;
-  private int totPric;
+  private int tot_pric;
   private String payopt;
   private Date paydt;
   private int ctno;
@@ -15,7 +15,7 @@ public class ClassOrder {
   private String cls_titl; // 클래스명
   private String mete_nick; // 구매자 닉네임
   private String mete2_nick; // 판매자 닉네임
-  private String tot_pric; // 클래스가격
+  private int cls_pric; // 클래스가격
 
   public int getNo() {
     return no;
@@ -41,12 +41,12 @@ public class ClassOrder {
     this.time = time;
   }
 
-  public int getTotPric() {
-    return totPric;
+  public int getTot_pric() {
+    return tot_pric;
   }
 
-  public void setTotPric(int totPric) {
-    this.totPric = totPric;
+  public void setTot_pric(int tot_pric) {
+    this.tot_pric = tot_pric;
   }
 
   public String getPayopt() {
@@ -105,13 +105,14 @@ public class ClassOrder {
     this.mete2_nick = mete2_nick;
   }
 
-  public String getTot_pric() {
-    return tot_pric;
+  public int getCls_pric() {
+    return cls_pric;
   }
 
-  public void setTot_pric(String tot_pric) {
-    this.tot_pric = tot_pric;
+  public void setCls_pric(int cls_pric) {
+    this.cls_pric = cls_pric;
   }
+
 
 
 }

@@ -6,17 +6,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import bitcamp.java110.cms.domain.ClassOrder;
+import bitcamp.java110.cms.domain.Classes;
 import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.Mentor;
 import bitcamp.java110.cms.domain.ProductOrder;
 import bitcamp.java110.cms.domain.ProductQnA;
 import bitcamp.java110.cms.domain.Report;
-import bitcamp.java110.cms.service.ClassOrderService;
-import org.springframework.web.bind.annotation.ResponseBody;
-import bitcamp.java110.cms.domain.Classes;
-import bitcamp.java110.cms.domain.Product;
 import bitcamp.java110.cms.service.BigTagService;
+import bitcamp.java110.cms.service.ClassOrderService;
 import bitcamp.java110.cms.service.ClassService;
 import bitcamp.java110.cms.service.MenteeService;
 import bitcamp.java110.cms.service.MentorFileService;
@@ -83,8 +82,8 @@ public class MasterController {
     List<ClassOrder> classOrderList = classOrderService.listByMaster(3, 5);
     model.addAttribute("classOrderList", classOrderList);
 
-    List<Product> productList = productService.list();
-    model.addAttribute("productList", productList);
+   /* List<Product> productList = productService.list();
+    model.addAttribute("productList", productList);*/
   }
 
   /*

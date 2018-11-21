@@ -44,6 +44,33 @@
     </select>
 
     <select id="findAllMaster" resultMap="productOrderMap">
+    
+    <!--
+    select 
+            stag.stname,
+            prdt.titl, 
+            mete.nick,
+            mete2.nick,
+            prdt.pric, 
+            paydt,
+            porder.ono
+        from
+            p_prdt_order as porder 
+            inner join p_prdt as prdt 
+            inner join p_stag as stag
+            inner join p_mete as mete
+            inner join p_cert as cert
+            inner join p_mete as mete2
+        
+            on prdt.ptno = porder.ptno and
+             prdt.stno = stag.stno AND
+             porder.meno = mete.meno and
+             mete2.meno = cert.meno and
+             prdt.ctno = cert.ctno
+        order by 
+            ono asc
+    
+      -->
         select 
 	        stag.stname,
 	        prdt.titl, 
