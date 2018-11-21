@@ -175,6 +175,8 @@ function viewConts(visibleTr) {
         $(visibleTr).css('display', 'none');
     }
 }
+
+
 $(document).ready(function() {
     var activeSystemClass = $('.list-group-item.active');
 
