@@ -90,7 +90,7 @@
 }
 
 .popup .content, .popupH .content {
-    max-height: auto;
+    max-height: auto; 
     overflow: auto;
     height: auto;
     background: whitesmoke;

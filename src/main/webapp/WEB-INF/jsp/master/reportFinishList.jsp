@@ -142,8 +142,6 @@
             </c:forEach>
         
 
-
-
         </div><!-- 메인 row-->
     </div><!-- 메인 container-->
 
