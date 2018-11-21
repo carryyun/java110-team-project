@@ -6,6 +6,8 @@ import bitcamp.java110.cms.domain.ProductOrder;
 public interface ProductOrderService {
 
   List<ProductOrder> list(int pageNo, int pageSize);
+  
+  List<ProductOrder> listByMaster(int pageNo, int pageSize);
 
   // 주문 번호로 조회
   ProductOrder get(int no);
@@ -15,6 +17,7 @@ public interface ProductOrderService {
 
   // 공예품 번호로 조회
   List<ProductOrder> listByPtno(int pageNo, int pageSize, int ptno);
+  
 
   int add(ProductOrder productOrder);
 

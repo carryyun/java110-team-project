@@ -14,6 +14,12 @@ public class ProductOrder {
   private Date paydt; // 날짜시간
   private String parc_name; // 택배사
   private int parc_no; // 송장번호
+  private String stname; // 소분류이름
+
+  private String prdt_titl; // 상품명
+  private String mete_nick; // 구매자 닉네임
+  private String mete2_nick; // 판매자 닉네임
+  private String prdt_pric; // 상품가격
 
   public int getNo() {
     return no;
@@ -87,6 +93,53 @@ public class ProductOrder {
     this.parc_no = parc_no;
   }
 
+  public String getStname() {
+    return stname;
+  }
 
+  public void setStname(String stname) {
+    this.stname = stname;
+  }
+
+  public String getPrdt_titl() {
+    return prdt_titl;
+  }
+
+  public void setPrdt_titl(String prdt_titl) {
+    this.prdt_titl = prdt_titl;
+  }
+
+  public String getMete_nick() {
+    return mete_nick;
+  }
+
+  public void setMete_nick(String mete_nick) {
+    this.mete_nick = mete_nick;
+  }
+
+  public String getMete2_nick() {
+    return mete2_nick;
+  }
+
+  public void setMete2_nick(String mete2_nick) {
+    this.mete2_nick = mete2_nick;
+  }
+
+  public String getPrdt_pric() {
+    return prdt_pric;
+  }
+
+  public void setPrdt_pric(String prdt_pric) {
+    this.prdt_pric = prdt_pric;
+  }
+
+  @Override
+  public String toString() {
+    return "ProductOrder [no=" + no + ", meno=" + meno + ", ptno=" + ptno + ", cnt=" + cnt
+        + ", tot_pric=" + tot_pric + ", payopt=" + payopt + ", paydt=" + paydt + ", parc_name="
+        + parc_name + ", parc_no=" + parc_no + ", stname=" + stname + ", prdt_titl=" + prdt_titl
+        + ", mete_nick=" + mete_nick + ", mete2_nick=" + mete2_nick + ", prdt_pric=" + prdt_pric
+        + "]";
+  }
 
 }

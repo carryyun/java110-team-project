@@ -24,6 +24,18 @@ public class ClassOrderServiceImpl implements ClassOrderService{
     return classorderDao.orderlist(params);
   }
   
+
+  @Override
+  public List<ClassOrder> listByMaster(int pageNo, int pageSize) {
+    HashMap<String, Object> params = new HashMap<>();
+    params.put("rowNo", (pageNo - 1) * pageSize);
+    params.put("size", pageSize);
+
+    return classorderDao.findAllMaster(params);
+  }
+  
+  
+
   @Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
   @Override
   public void orderadd(ClassOrder classorder) {

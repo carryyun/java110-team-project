@@ -16,6 +16,17 @@ public class ProductOrderServiceImpl implements ProductOrderService {
   @Autowired ProductOrderDao productOrderDao;
   @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 
+
+  @Override
+  public List<ProductOrder> listByMaster(int pageNo, int pageSize) {
+    HashMap<String, Object> params = new HashMap<>();
+    params.put("rowNo", (pageNo - 1) * pageSize);
+    params.put("size", pageSize);
+
+    return productOrderDao.findAllMaster(params);
+  }
+  
+  
   @Override
   public List<ProductOrder> list(int pageNo, int pageSize) {
 
@@ -59,6 +70,7 @@ public class ProductOrderServiceImpl implements ProductOrderService {
   public int add(ProductOrder productOrder) {
     return productOrderDao.insert(productOrder);
   }
+
 
 
 }
