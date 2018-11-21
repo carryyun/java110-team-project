@@ -7,15 +7,19 @@
 <mapper namespace="bitcamp.java110.cms.dao.ReportDao">
 
 	<resultMap type="report" id="reportMap">
-		<id column="rtno" property="no" />
-		<result column="titl" property="titl" />
-		<result column="conts" property="conts" />
-		<result column="url" property="url" />
-		<result column="type" property="type" />
-		<result column="rtdt" property="rtdt" />
-		<result column="meno2" property="meno2" />
-		<result column="meno" property="meno" />
-
+		<id column="rtno"         property="no" />
+		<result column="titl"     property="titl" />
+		<result column="conts"    property="conts" />
+		<result column="url"      property="url" />
+		<result column="type"     property="type" />
+		<result column="type_detail" property="type_detail"/>
+		<result column="rtdt"     property="rtdt" />
+	    <result column="meno"     property="meno" />	
+        <result column="meno2"    property="meno2" />
+  
+        <result column="metenick" property="menteeNick" />
+        <result column="mete2email" property="mentee2Email" />
+        <result column="mete2nick" property="mentee2Nick" />
 	</resultMap>
 
 	<sql id="select1">
@@ -26,47 +30,111 @@
 		url,
 		type,
 		rtdt,
-		meno2,
-		meno
+		meno,
+		meno2
 		FROM
 		p_rept
 	</sql>
-
+	
 	<select id="findAll" resultMap="reportMap" parameterType="map">
-		<include refid="select1"></include>
+       SELECT
+            rtno,
+            titl,
+            conts,
+            url,
+            type,
+            type_detail,
+            rtdt,
+            rept.meno,
+            rept.meno2,
+            mete.email, 
+            mete2.email 
+        FROM
+            p_rept as rept 
+            join p_mete as mete
+            join p_mete as mete2
+            
+            on rept.meno = mete.meno and
+               rept.meno2 = mete2.meno
+            
+        
+    </select>
+	
+	
 
-
-		order by
-		rtno asc
+	<select id="findFinishAll" resultMap="reportMap" parameterType="map">
+        SELECT
+            rtno,
+            titl,
+            conts,
+            url,
+            type,
+            type_detail,
+            rtdt,
+            r.meno,
+            r.meno2,
+            mete.nick as metenick,
+            mete2.email as mete2email,
+            mete2.nick as mete2nick
+        FROM
+            p_rept r
+            join p_mete mete
+            join p_mete mete2
+        WHERE
+            r.meno = mete.meno AND
+            r.meno2 = mete2.meno AND
+            (r.stat='Y' OR r.stat='N')
+        GROUP BY r.meno2
+        
 	</select>
 
 	<select id="findByNo" resultMap="reportMap"
 		parameterType="int">
-		<include refid="select1"></include>
-		where
-		rtno=#{value}
+        <include refid="select1"></include>
+        where
+        rtno=#{value}
+
 	</select>
 
-	<select id="findByMeno2" resultMap="reportMap"
-		parameterType="int">
-		<include refid="select1"></include>
-		where
-		meno2=#{value}
+	<select id="findByMeno2Cnt" resultType="int" parameterType="int">
+        select
+            count(meno2)
+        from
+            p_rept
+        where
+            meno2=#{value}
 	</select>
 
 	<select id="findByMeno" resultMap="reportMap"
-		parameterType="int">
-		<include refid="select1"></include>
-		where
-		meno=#{value}
-	</select>
+        parameterType="int">
+        <include refid="select1"></include>
+        where
+        meno=#{value}
+    </select>
+    
+    <select id="findByMeno2" resultMap="reportMap" parameterType="map">
+        SELECT
+            mete2.nick as mete2nick,
+            rept.type,
+            rept.type_detail,
+            rept.titl,
+            rept.conts,
+            rept.url,
+            rept.rtdt
+        FROM
+            p_rept rept
+            join p_mete mete2
+        WHERE
+            rept.meno2 = mete2.meno and
+            meno2=#{meno2}
+    </select>
 
 	<insert id="insert" parameterType="report"
 		useGeneratedKeys="true" keyColumn="rtno" keyProperty="no">
 
 		INSERT INTO
-		p_rept(titl, conts, url, type, rtdt, meno2, meno)
-		VALUES(#{titl},#{conts},#{url},#{type},now(),#{meno},#{meno2})
+		p_rept(titl, conts, url, type, rtdt, meno2, meno,type_detail)
+		VALUES(#{titl},#{conts},#{url},#{type},now(),#{meno},#{meno2},#{type_detail})
 
 	</insert>
 
@@ -74,11 +142,8 @@
     
     
 	<update id="update" parameterType="report">
-
 		update p_rept
-
 		<set>
-			
 			<if test="titl!=null">titl= #{titl},</if>
 			<if test="conts!=null">conts= #{conts},</if>
 			<if test="url!=null">url= #{url},</if>

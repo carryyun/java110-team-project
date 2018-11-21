@@ -6,8 +6,12 @@ import bitcamp.java110.cms.domain.ProductOrder;
 
 public interface ProductOrderDao {
   
-  List<ProductOrder> findAll(Map<String,Object> params); // 전체조회
+  List<ProductOrder> findAll(Map<String,Object> params); // 전체조회 
+  
+  List<ProductOrder> findByMeno(Map<String,Object> params); // 마이페이지 상품결제내역
 
+  List<ProductOrder> findAllMaster(Map<String, Object> params); // 관리자조회
+  
   ProductOrder findByNo(int no); // 주문번호
   
   List<ProductOrder> findAllByMeno(Map<String,Object> params); // 주문자번호

@@ -13,7 +13,7 @@ public interface ProductQnADao {
   ProductQnA findByNo(int no); // 질문번호 조회
   
   // 질문자번호 조회
-  List<ProductQnA> findAllByMeno(Map<String,Object> params); 
+  List<ProductQnA> findAllByMeno(Map<String,Object> params); // 멘티번호로 조회해서 마이페이지에 
   
   // 공예품번호 조회 
   List<ProductQnA> findAllByPtno(Map<String,Object> params); 

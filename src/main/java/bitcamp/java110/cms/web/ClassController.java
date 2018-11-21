@@ -194,7 +194,7 @@ public class ClassController {
   @GetMapping("qnalist")
   public void qnalist() {
     
-    List<ClassQna> clist= classqnaService.classqnalist(5);
+    List<ClassQna> clist= classqnaService.classqnalist(4,10,5);
     
 
     for(ClassQna c : clist) {
@@ -256,22 +256,23 @@ public class ClassController {
     return 1;
   }
   
-  @GetMapping("orderlist")
+ /* @GetMapping("corderlist")
   public List<ClassOrder> orderlist() {
     
-    List<ClassOrder> clist = classorderService.corderlist(5);
+    List<ClassOrder> clist = classorderService.corderlist(4,10,5);
+    
     for(ClassOrder c : clist) {
       System.out.println(c.getNo());
       System.out.println(c.getMeno());
       System.out.println(c.getTime());
-      System.out.println(c.getTotPric());
+      System.out.println(c.getTot_pric());
       System.out.println(c.getPayopt());
       System.out.println(c.getPaydt());
       System.out.println(c.getCtno());
     }
     
     return null;
-  }
+  }*/
   
   ///////////////// p_cls_order 클래스 신청내역///////////////////////
   

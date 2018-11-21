@@ -2,24 +2,22 @@
     pageEncoding="UTF-8"
     trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <html>
-
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
 
-    <!-- 부트스트랩-->
+    <!-- 필수-->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
     integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
     <!-- js-->
     <!-- <script src="js/master-mentorList.js"></script> -->
 
     <!-- css -->
     <link href="/css/master.css" rel="stylesheet">
     <link href="/css/common.css" rel="stylesheet">
-
 
 </head>
 
@@ -30,7 +28,7 @@
             <!-- 게시판 시작-->
                     <div class="col-lg-12 col-lg-offset-12">
                         <p>
-                            <span style="font-size: 45px; position: relative;"><strong>멘토 신청 목록</strong></span>
+                            <span style="font-size: 45px; position: relative;"><strong>클래스 신청 목록</strong></span>
                         </p>
                         <div class="col-lg-3 mb-3" id="serch-men">
                             <form action="#" method="get">
@@ -53,33 +51,35 @@
                                     <th></th>
                                     <th class="text-center">No</th>
                                     <th class="text-center">멘토이름</th>
-                                    <th class="text-center">휴대전화</th>
+                                    <th class="text-center">클래스 이름</th>
                                     <th class="text-center">분야</th>
                                     <th class="text-center">신청일</th>
+                                    <th class="text-center">처리현황</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            <c:forEach items="${MentorRequestList}" var="ml" varStatus="i">
-                                <tr>
-                                    <td class="text-center"><input type="checkbox" id="men-ck" name="men-ck" value="${ml.no}"></td>
+                            <c:forEach items="${ClassRequestList}" var="cl" varStatus="i">
+                                <tr id="rmv${cl.no}">
+                                    <td class="text-center"><input type="checkbox" id="men-ck" class="men-ck" name="men-ck" value="${cl.no}"></td>
                                     <td class="text-center">${i.count}</td>
-                                    <td class="text-center"><a class="button" href="#popup${i.count}">${ml.nick}(${ml.name})</a></td>
-                                    <td class="text-center">${ml.phone}</td>
+                                    <td class="text-center">${cl.mono}</td><%-- ${cl.nick}(${cl.name}) --%>
+                                    <td class="text-center"><a class="button" href="#popup${i.count}">${cl.titl}</a></td>
+                                    <td class="text-center">${cl.mtno}</td>
+                                    <td class="text-center">${cl.rgdt}</td>
                                     <td class="text-center">
-                                    <c:forEach items="${ml.mentorTag}" var="mt" varStatus="m">
-                                    ${mt.name}
-                                    <c:if test="${!m.last}">
-                                        ,
-                                    </c:if>
-                                    </c:forEach>
+                                    <c:choose>
+                                      <c:when test="${cl.stat eq 'I'}">미처리</c:when>
+                                      <c:when test="${cl.stat eq 'Y'}">승인</c:when>
+                                      <c:when test="${cl.stat eq 'N'}">반려</c:when>
+                                      <c:otherwise>관리자문의</c:otherwise>
+                                    </c:choose>
                                     </td>
-                                    <td class="text-center">${ml.rgdtmt}</td>
                                 </tr>
                                 <!-- popup-->
             
-            <div id="popup${i.count}" class="overlay">
+            <%-- <div id="popup${i.count}" class="overlay">
                 <div class="popup">
-                    <h2> 멘토 신청 상세</h2>
+                    <h2> 클래스 신청 상세</h2>
                     <a class="close" href="#">×</a>
                     <div class="content">
                         <br />
@@ -88,14 +88,14 @@
                             <div class="row">
                                     <div class="col-lg-5 mx-auto">
                                         <span>
-                                            <img class="ment-pic" src="${ml.phot}" style="height: 300px; width: 300px;">
+                                            <img class="ment-pic" src="${cl.phot}">
                                         </span>
                                     </div>
 
                                     <div class="col-lg-6 mx-auto">
                                         <ul class="pop-in">
                                             <li><span style="font-size: 20px;"><i class="fas fa-star-of-life mr-3"></i>닉네임(이름):</span>
-                                            <br><span class="pop-type ml-5">${ml.nick}(${ml.name})</span></li>
+                                            <br><span class="pop-type ml-5">${cl.nick}(${cl.name})</span></li>
                                             <li><span style="font-size: 20px;"><i class="fas fa-star-of-life mr-3"></i>휴대전화: </span>
                                             <span class="pop-type">${ml.phone}</span></li>
                                             <li><span style="font-size: 20px;"><i class="fas fa-star-of-life mr-3"></i>출금계좌: </span>
@@ -105,11 +105,11 @@
                                             <li><span style="font-size: 20px;"><i class="fas fa-star-of-life mr-3"></i>분야: </span>
                                             <span class="pop-type">
                                             <c:forEach items="${ml.mentorTag}" var="mt" varStatus="m">
-			                                    ${mt.name}
-			                                    <c:if test="${!m.last}">
-			                                        ,
-			                                    </c:if>
-			                                </c:forEach>
+                                                ${mt.name}
+                                                <c:if test="${!m.last}">
+                                                    ,
+                                                </c:if>
+                                            </c:forEach>
                                             </span></li>
                                             <li><span style="font-size: 20px;"><i class="fas fa-star-of-life mr-3"></i>경력: </span>
                                             <span class="pop-type">${ml.carr}</span></li>
@@ -124,14 +124,14 @@
                                        <h3>작품</h3>
                                        <div class="pic1 row">
                                            <div id="carousel-Create${i.index}" class="carousel slide" data-ride="carousel">
-										  <ol class="carousel-indicators">
-										    <li data-target="#carousel-Create${i.index}" data-slide-to="0" class="active"></li>
-										    <li data-target="#carousel-Create${i.index}" data-slide-to="1"></li>
-										    <li data-target="#carousel-Create${i.index}" data-slide-to="2"></li>
-										  </ol>
-										  <div class="carousel-inner">
-										  
-										  <!-- 팝업 - 멘토 작품파일 -->
+                                          <ol class="carousel-indicators">
+                                            <li data-target="#carousel-Create${i.index}" data-slide-to="0" class="active"></li>
+                                            <li data-target="#carousel-Create${i.index}" data-slide-to="1"></li>
+                                            <li data-target="#carousel-Create${i.index}" data-slide-to="2"></li>
+                                          </ol>
+                                          <div class="carousel-inner">
+                                          
+                                          <!-- 팝업 - 멘토 작품파일 -->
                                           <c:forEach items="${ml.mentorFile}" var="mlFile" varStatus="j">
                                           <!-- 팝업 - 멘토 작품파일 - 첫째 사진만 active하기위한 choose(if) -->
                                           <c:choose>
@@ -147,16 +147,16 @@
                                             </div>
                                           </c:forEach>
                                           </div>
-										  
-										  <a class="carousel-control-prev" href="#carousel-Create${i.index}" role="button" data-slide="prev">
-										    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-										    <span class="sr-only">Previous</span>
-										  </a>
-										  <a class="carousel-control-next" href="#carousel-Create${i.index}" role="button" data-slide="next">
-										    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-										    <span class="sr-only">Next</span>
-										  </a>
-										</div>
+                                          
+                                          <a class="carousel-control-prev" href="#carousel-Create${i.index}" role="button" data-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                          </a>
+                                          <a class="carousel-control-next" href="#carousel-Create${i.index}" role="button" data-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                          </a>
+                                        </div>
                                        </div>
                                    </div>
                                    
@@ -165,52 +165,52 @@
                                        <h3>자격증</h3>
                                        <div class="pic1 row">
                                            <div id="carousel-Certificate${i.index}" class="carousel slide" data-ride="carousel">
-										  <ol class="carousel-indicators">
-										    <li data-target="#carousel-Certificate${i.index}" data-slide-to="0" class="active"></li>
-										    <li data-target="#carousel-Certificate${i.index}" data-slide-to="1"></li>
-										    <li data-target="#carousel-Certificate${i.index}" data-slide-to="2"></li>
-										  </ol>
-										  <div class="carousel-inner">
-										  <!-- 팝업 - 멘토 자격증 -->
-										  <c:forEach items="${ml.mentorLicense}" var="mlLicense" varStatus="k">
-										  <!-- 팝업 - 멘토 자격증 - 첫째 사진만 active하기위한 choose(if) -->
-										  <c:choose>
-										    <c:when test="${k.index eq 0}">
-										      <div class="carousel-item active">
-										    </c:when>
-										    <c:otherwise>
+                                          <ol class="carousel-indicators">
+                                            <li data-target="#carousel-Certificate${i.index}" data-slide-to="0" class="active"></li>
+                                            <li data-target="#carousel-Certificate${i.index}" data-slide-to="1"></li>
+                                            <li data-target="#carousel-Certificate${i.index}" data-slide-to="2"></li>
+                                          </ol>
+                                          <div class="carousel-inner">
+                                          <!-- 팝업 - 멘토 자격증 -->
+                                          <c:forEach items="${ml.mentorLicense}" var="mlLicense" varStatus="k">
+                                          <!-- 팝업 - 멘토 자격증 - 첫째 사진만 active하기위한 choose(if) -->
+                                          <c:choose>
+                                            <c:when test="${k.index eq 0}">
+                                              <div class="carousel-item active">
+                                            </c:when>
+                                            <c:otherwise>
                                               <div class="carousel-item">
-										    </c:otherwise>
-										  </c:choose>
-										      <img class="d-block" width="275px" height="250px" src="${mlLicense.phot}" alt="slide_${k.count}"
-										      onclick="window.open('${mlLicense.phot}','_blank','toolbar=no,location=no,status=no,menubar=no, scrollbars=auto,resizable=no,directories=no, width=1024,height=768, top=10,left=10')">
-										      <div class="carousel-caption d-none d-md-block">
-											    <h5 style="background: rgba(110, 110, 110, 0.7);">${k.count}. ${mlLicense.lname}</h5>
-											  </div>
-										    </div>
-										  </c:forEach>
-										  </div>
-										  <a class="carousel-control-prev" href="#carousel-Certificate${i.index}" role="button" data-slide="prev">
-										    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-										    <span class="sr-only">Previous</span>
-										  </a>
-										  <a class="carousel-control-next" href="#carousel-Certificate${i.index}" role="button" data-slide="next">
-										    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-										    <span class="sr-only">Next</span>
-										  </a>
-										</div>
+                                            </c:otherwise>
+                                          </c:choose>
+                                              <img class="d-block" width="275px" height="250px" src="${mlLicense.phot}" alt="slide_${k.count}"
+                                              onclick="window.open('${mlLicense.phot}','_blank','toolbar=no,location=no,status=no,menubar=no, scrollbars=auto,resizable=no,directories=no, width=1024,height=768, top=10,left=10')">
+                                              <div class="carousel-caption d-none d-md-block">
+                                                <h5 style="background: rgba(110, 110, 110, 0.7);">${k.count}. ${mlLicense.lname}</h5>
+                                              </div>
+                                            </div>
+                                          </c:forEach>
+                                          </div>
+                                          <a class="carousel-control-prev" href="#carousel-Certificate${i.index}" role="button" data-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                          </a>
+                                          <a class="carousel-control-next" href="#carousel-Certificate${i.index}" role="button" data-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                          </a>
+                                        </div>
                              </div>
                          </div>
                          </div>
                          
                             </div>
-                            <button type="button" class="btn btn-primary" id="mas-p1">승락</button>
-                            <button type="button" class="btn btn-primary" id="mas-p2">거절</button>
+                            <button type="button" class="btn btn-primary" id="mas-p1" name="Y" value="${ml.no}" onclick="stat(value,name)">승락</button>
+                            <button type="button" class="btn btn-primary" id="mas-p2" name="N" value="${ml.no}" onclick="stat(value,name)">거절</button>
                         </div>
 
                     </div>
                 </div>
-            </div>
+            </div> --%>
                                 
                             </c:forEach>
                             </tbody>
@@ -236,7 +236,7 @@
                                     </li>
                                 </ul>
                             </nav>
-                    </div>
+                     </div>
 
                 </div>
             </div>
@@ -245,11 +245,10 @@
             <div class="col-lg-12">
                 <div class="row">
                     <div class="col-lg-12" id="btn">
-                        <button type="button" class="btn btn-primary" id="mas-btn">멘토 신청 반려</button>
+                        <button type="button" class="btn btn-primary" id="mas-btn" onclick="checkItem()">클래스 신청 반려</button>
                     </div>
                 </div>
-
-
+            </div>
         </div><!-- 메인 row-->
     </div><!-- 메인 container-->
 
@@ -259,8 +258,88 @@
 <script src="/vendor/jquery/jquery.min.js"></script>
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script>
+$(document).ready(function() {
+    var activeSystemClass = $('.list-group-item.active');
+
+    //something is entered in search form
+    $('#system-search').keyup( function() {
+       var that = this;
+        // affect all table rows on in systems table
+        var tableBody = $('.table-list-search tbody');
+        var tableRowsClass = $('.table-list-search tbody tr');
+        $('.search-sf').remove();
+        tableRowsClass.each( function(i, val) {
+        
+            //Lower text for case insensitive
+            var rowText = $(val).text().toLowerCase();
+            var inputText = $(that).val().toLowerCase();
+            if(inputText != '')
+            {
+                $('.search-query-sf').remove();
+                tableBody.prepend('<tr class="search-query-sf"><td colspan="6"><strong>Searching for: "'
+                    + $(that).val()
+                    + '"</strong></td></tr>');
+            }
+            else
+            {
+                $('.search-query-sf').remove();
+            }
+
+            if( rowText.indexOf( inputText ) == -1 )
+            {
+                //hide rows
+                tableRowsClass.eq(i).hide();
+                
+            }
+            else
+            {
+                $('.search-sf').remove();
+                tableRowsClass.eq(i).show();
+            }
+        });
+        //all tr elements are hidden
+        if(tableRowsClass.children(':visible').length == 0)
+        {
+            tableBody.append('<tr class="search-sf"><td class="text-muted" colspan="6">No entries found.</td></tr>');
+        }
+    });
+});
+
+
 var stopHref = function(event) {
 event.stopPropagation();
+}
+
+var fadeTime = 200;
+function stat(no,name){
+    removeItem(no)
+    $.ajax({
+        data : {
+            meno : no,
+            stat : name
+        },
+        url : "mtstat.do",
+        success : location.href="#"
+    });
+}
+function removeItem(no) {
+    /* Remove row from DOM and recalc cart total */
+    var getRow = document.getElementById("rmv"+no);
+    getRow = $(getRow);
+    getRow.slideUp(fadeTime, function () {
+        getRow.remove();
+    });
+}
+
+function checkItem(){
+    var arr = new Array();
+    var check = $('input:checkbox:checked.men-ck').map(function(){
+        return this.value; }).get().join(",");
+    arr=check.split(',');
+    for(i in arr){
+        stat(arr[i],'N');
+    }
+    
 }
 </script>
 </html>

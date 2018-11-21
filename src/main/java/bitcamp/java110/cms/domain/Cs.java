@@ -12,6 +12,15 @@ public class Cs {
   private String anser;
   private Date rgdt2;
   
+  private Mentee mentee;
+  
+  
+  public Mentee getMentee() {
+    return mentee;
+  }
+  public void setMentee(Mentee mentee) {
+    this.mentee = mentee;
+  }
   public int getMeno() {
     return meno;
   }

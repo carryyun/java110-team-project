@@ -387,6 +387,8 @@ body.offcanvas {
   margin: 0;
   padding: 0; }
 
+
+
 .colorlib-experience,
 .colorlib-skills,
 .colorlib-education,
@@ -395,8 +397,11 @@ body.offcanvas {
 .colorlib-about,
 .colorlib-services,
 .colorlib-contact {
-  padding-top: 4em;
+   
+  padding-top: 3.5em;
   padding-bottom: 9em;
+
+ height: 1000px;
   clear: both;
   width: 100%;
   display: block; }
@@ -411,6 +416,7 @@ body.offcanvas {
     .colorlib-contact {
       padding-top: 5em;
       padding-bottom: 8em; } }
+
 
 
 
@@ -455,6 +461,7 @@ body.offcanvas {
   font-weight: 500; }
 
 .leave{
+    
 
 }
 .leave .btn-hire {

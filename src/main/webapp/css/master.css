@@ -46,7 +46,9 @@
     visibility: visible;
     opacity: 1;
 }
-
+.content{
+ padding: 15px;
+}
 .popup {
     margin: 70px auto;
     padding: 20px;
@@ -57,14 +59,24 @@
     position: relative;
     transition: all 500ms ease-in-out;
 }
+.popupH {
+    margin: 70px auto;
+    padding: 20px;
+    background-color: gainsboro;
+    border-radius: 5px;
+    width: 80%;
+    height: auto;
+    position: relative;
+    transition: all 500ms ease-in-out;
+}
 
-.popup h2 {
+.popup h2, .popupH h2 {
     margin-top: 0;
     color: #333;
     font-family: Tahoma, Arial, sans-serif;
 }
 
-.popup .close {
+.popup .close, .popupH .close {
     position: absolute;
     top: 20px;
     right: 30px;
@@ -75,14 +87,14 @@
     color: #333;
 }
 
-.popup .close:hover {
+.popup .close:hover .popupH .close:hover {
     color: #06D85F;
 }
 
-.popup .content {
-    max-height: auto;
+.popup .content, .popupH .content {
+    max-height: auto; 
     overflow: auto;
-    height: 750px;
+    height: auto;
     background: whitesmoke;
 }
 
@@ -92,6 +104,9 @@
     }
 
     .popup {
+        width: 70%;
+    }
+    .popupH {
         width: 70%;
     }
 }
@@ -104,19 +119,31 @@
     font-size: 20px;
 }
 
+.col-lg-6 .pic1 {
+    position: relative;
+    text-align: center;
+}
+
+
 #mas-p1 {
+ /* 멘토신청 리스트 팝업 승락버튼 */
     position: relative;
     float: right;
     margin-top: 10%;
 }
 
 #mas-p2 {
+ /* 멘토신청 리스트 팝업 반려버튼 */
     position: relative;
     float: right;
     margin-top: 10%;
     right: 10px;
 }
-.col-lg-6 .pic1 {
-    position: relative;
-    text-align: center;
+
+
+.ment-pic{
+ /* 멘토신청 리스트 팝업 멘토사진 */
+  height: 300px;
+  width: 300px;
+ 
 }

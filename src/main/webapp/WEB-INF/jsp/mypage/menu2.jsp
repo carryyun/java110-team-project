@@ -1,62 +1,68 @@
+<%@ page import="bitcamp.java110.cms.domain.ClassOrder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<div class="col-lg-12">
+    <div class="panel panel-default">
+       
+                          
+        <div class="panel-body">
+            <table class="table table-condensed" style="border-collapse:collapse;">
 
+                <thead>
+                    <tr>
+                       
+                         <th width="5%">No.</th>
+                         <th width="30%">클래스</th>
+                         <th width="15%">멘토</th>
+                         <th width="15%">시작일</th>
+                         <th width="15%">수업시간</th>
+                         <th width="10%">가격</th>
+                         <th width="10%">수료상태</th>
 
+                        
+                    </tr>
+                </thead>
+                <tbody>
 
+   <c:forEach items="${colist}" var="c" varStatus="i">
+     
 
-                <div id="container">
-                    <div align="right">
-                        <!-- Login 검증 -->
-                        <!-- jstl의 if문은 else가 없어서 따로 검증해야함. -->
-                            <!--<%-- <%@include file="loginOk.jsp" %> --%>-->
-                            <!--        <%-- <%@include file="login.jsp" %> --%>-->
-                    </div>
+                    <tr >
+                                              
+                        <td>${i.count}</td>
+                        <td>${c.classes.titl}<a href='#'><img src="${c.classFile.fname}" width="200px" height="150px"></a></td>
+                        <td>${c.mentornick}</td>
+                        <td>${c.timetable.date}</td>
+                         <td>${c.timetable.stime}<br>(${c.classes.time}시간)</td>
+                        <td>${c.tot_pric}</td>
+                        <td>${c.cert.type}수료증 if문처리(필요한것 : 클래스중분류,사용가능기한,발급횟수)</td>
+                        
 
-
-
-
-                    <div>
-                        <table class="table table-striped table-bordered table-hover">
-                            <thead>
-                                <tr>
-                                     <th width="10%">No.</th>
-                                    <th width="50%">강의명</th>
-                                    <th width="10%">강사명</th>
-                                    <th width="20%">가격</th>
-                                    <th width="10%">수강상태</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                    <tr>
-                                        <td>
-                                        </td>
-                                        <td>
-                                            <a href="#">${m2.classes.titl} </a>
+                    </tr>
+                   
+                    
+                    
+                   
          
-                                        </td>
-                                        <td>
-                                        
-                                        </td>
-                                        <td>
-                                        ${m2.classes.pric}
-                                        </td>
-                                        <td>
-                                        
-                                        </td>
-                                    <tr>
-                            </tbody>
-                        </table>
+        </c:forEach>      
+                    
+                    
+                </tbody>
+            </table>
+        </div>
 
-                        <!-- Paging 처리 -->
+    </div>
+
+<!-- Paging 처리 -->
                         <div id="paging">
                             <!--        ${pageCode}-->
                         </div>
                     </div>
-                </div>
                 
-                
-            <!-- page navigation -->
+
+ <!-- page navigation -->
 <nav aria-label="Page navigation"  class="pn-center" >
   <ul class="pagination" >
     <li class="page-item">
@@ -76,4 +82,4 @@
     </li>
   </ul>
 </nav>
-
+            

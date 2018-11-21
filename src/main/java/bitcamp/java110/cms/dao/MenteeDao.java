@@ -21,7 +21,7 @@ public interface MenteeDao {
   
   String findByNamePhone(Mentee mentee);
 
-  List<Mentee> findAllByNick(Map<String, Object> params); // 닉네임
+  Mentee findByNick(String nick); // 닉네임
 
   List<Mentee> findAllByPhone(Map<String, Object> params); // 핸드폰
   
@@ -31,7 +31,10 @@ public interface MenteeDao {
   
   // 멘토신청목록
   List<Mentee> findMentorRequest();
-
+  
+  int updateMtstat(Mentee mentee);
+  //
+  
   Mentee findM2ByNo(int no);
   
   void tempwd(Mentee mentee);

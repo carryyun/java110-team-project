@@ -14,16 +14,30 @@ import bitcamp.java110.cms.service.ClassOrderService;
 public class ClassOrderServiceImpl implements ClassOrderService{
 
   @Autowired ClassOrderDao classorderDao;
-
+  
   @Override
-  public List<ClassOrder> corderlist(int pageSize) {
+  public List<ClassOrder> listByMeno(int pageNo, int pageSize, int meno) {
     
     HashMap<String, Object> params = new HashMap<>();
-    params.put("size", pageSize);
+    params.put("pageNo", pageNo);
+    params.put("pageSize", pageSize);
+    params.put("meno", meno);
     
-    return classorderDao.orderlist(params);
+    return classorderDao.findByMeno(params);
   }
   
+
+  @Override
+  public List<ClassOrder> listByMaster(int pageNo, int pageSize) {
+    HashMap<String, Object> params = new HashMap<>();
+    params.put("rowNo", (pageNo - 1) * pageSize);
+    params.put("size", pageSize);
+
+    return classorderDao.findAllMaster(params);
+  }
+  
+  
+
   @Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
   @Override
   public void orderadd(ClassOrder classorder) {

@@ -29,33 +29,36 @@
 
                 <tbody>
                 
-<c:forEach items="${qnalist}" var="q" varStatus="i"> 
+<c:forEach items="${cqlist}" var="c" varStatus="i">
    
-                    <tr data-toggle="collapse" data-target="#demo2-1" class="accordion-toggle">
+                    <tr data-toggle="collapse" data-target="#demo2-${i.count}" class="accordion-toggle">
                         <td>${i.count}</td>
-                        <td>클래스</td>
-                        <td>${q.titl}</td>
-                        <td>${q.rgdt}</td>
+                        <td>${c.classes.titl}</td>
+                        <td>${c.titl}</td>
+                        <td>${c.rgdt}</td>
                         <td>처리상태</td>
                         
 
                     </tr>
                     <tr>
                         <td colspan="6" class="hiddenRow">
-                            <div class="accordian-body collapse" id="demo2-1">
+                            <div class="accordian-body collapse" id="demo2-${i.count}">
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
                                            <td class="qcontents">문의내용</td>
-                                            <td>진심 X빡쳐요. 경찰에 신고해야하나요? 하루수업하더니 연락두절이네요
+                                            <td>${c.conts}
                                             </td>
                                         </tr>
                                         
                                     </thead>
                                     <tbody>
+                                    
+                                    
+
                                         <tr>
                                             <td class="qcontents">답변내용</td>
-                                            <td>아... OO님 저희도 반달곰 멘토님을 애타게 찾고있습니다.아마 겨울이라서 남은수업도 잊은채 겨울잠에 들어가신거같은데요.... 깜빡하신분들은 저희가 우선 환불처리를 해드리고있습니다.</td>
+                                            <td>${c.anser}</td>
                                         </tr>
 
 
@@ -68,7 +71,7 @@
                     </tr>
                     
                     
- </c:forEach>                 
+ </c:forEach>    
                     
                 </tbody>
             </table>

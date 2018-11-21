@@ -15,6 +15,16 @@ public class ProductQnA {
   private Date rgdt2; // 답변등록일
   private Mentee mentee; // 멘티
   private String type; // 질문유형
+  
+  private Product product; // 공예품
+
+  public Product getProduct() {
+    return product;
+  }
+
+  public void setProduct(Product product) {
+    this.product = product;
+  }
 
   public int getNo() {
     return no;

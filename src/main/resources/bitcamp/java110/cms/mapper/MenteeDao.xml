@@ -144,7 +144,7 @@
     </select>
     
     
-    <select id="findAllByNick" 
+    <select id="findByNick" 
             resultMap="menteeMap" parameterType="Map">
         select
             meno,
@@ -239,6 +239,11 @@
             <!-- mte.email=#{email} and mte.pwd=password(#{pwd}) -->
     </select> 
     
-    
+    <update id="updateMtstat" parameterType="Mentee">
+        UPDATE p_mete 
+           SET
+            mtstat = #{mtstat}
+         where meno = #{no}
+    </update>
     
 </mapper>

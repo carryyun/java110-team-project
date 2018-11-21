@@ -5,34 +5,118 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bitcamp.java110.cms.dao.ClassOrderDao">
 
-    <resultMap type="ClassOrder" id="ClassorderMap">
-        <id 	column="ono" 		property="no"/>
-        <result column="meno"   	property="meno"/>
-        <result column="time"    	property="time"/>
-        <result column="tot_pric"   property="totPric"/>
-        <result column="payopt"  	property="payopt"/>
-        <result column="paydt"  	property="paydt"/>
-        <result column="ctno"  		property="ctno"/>
+    <resultMap type="classOrder" id="classOrderMap">
+        <id     column="ono"        property="no"/>
+        <result column="meno"       property="meno"/>
+        <result column="time"       property="time"/>
+        <result column="tot_pric"   property="tot_pric"/>
+        <result column="payopt"     property="payopt"/>
+        <result column="paydt"      property="paydt"/>
+        <result column="ctno"       property="ctno"/>
+        
+        <result column="ctitl"       property="classes.titl"/>
+        <result column="mentornick"  property="mentornick"/>
+        
+        <result column="date"  property="timetable.date"/>
+        <result column="stime"  property="timetable.stime"/>
+        <result column="ctime"  property="classes.time"/>
+        <result column="cectno"  property="cert.no"/>
+        <result column="cetype"  property="cert.type"/>
+        <result column="cecnt"  property="cert.cnt"/>
+        <result column="ceedt"  property="cert.edt"/>
+        <result column="cectdt"  property="cert.ctdt"/>
+        <result column="fname"  property="classFile.fname"/>
+        <result column="cfno"  property="classFile.no"/>   
+     
+        <result column="mtname" property="mtname"/>
+        <result column="titl" property="cls_titl"/>
+        <result column="nick" property="mete_nick"/>
+        <result column="nick2" property="mete2_nick"/>
+        <result column="pric" property="cls_pric"/>
     </resultMap>
     
-    <select id="orderlist" resultMap="ClassorderMap" parameterType="map">
-        select
-        	meno,time,tot_pric,payopt,paydt,ctno
-        from
-        	p_cls_order
-        	
+   
+     <select id="findByMeno" resultMap="classOrderMap" parameterType="Map">
+       
+       SELECT
+            co.ono,
+            co.meno,
+            co.time,
+            co.tot_pric,
+            co.payopt,
+            co.paydt,
+            co.ctno,
+            c.titl as ctitl,
+            me2.nick as mentornick,
+            ct.date,
+            ct.stime,
+            c.time as ctime,
+            ce.ctno as cectno,
+            ce.type as cetype,
+            ce.cnt as cecnt,
+            ce.edt as ceedt,
+            ce.ctdt as cectdt,
+            cf.fname
+            
+         FROM
+            p_cls_order co JOIN p_mete me on co.meno = me.meno
+            JOIN p_cls_ttab ct ON co.ctno = ct.ctno
+            JOIN p_cls c ON ct.cno = c.cno
+            JOIN p_meto mo ON c.mono =mo.mono
+            JOIN p_mete me2 ON mo.mono = me2.meno
+            JOIN p_cert ce on me.meno= ce.meno
+            Join p_cls_file cf on c.cno=cf.cno 
+        where
+            me.meno=#{meno} 
+        ORDER BY
+           cf.cfno desc
+          <!--   cf.cfno asc  첫사진을불러옴 근데얘는 영상임 ㅜㅜ-->
+            limit 1
+            
+            
+   
+            
     </select>
+    
+    
+    <select id="findAllMaster" resultMap="classOrderMap">
+        select
+            mtag.mtname,
+            cls.titl,
+            mete.nick nick,
+            mete2.nick nick2,
+            cls.pric,
+            paydt,
+            corder.ono
+
+        from
+            p_cls_order as corder 
+            inner join p_cls_ttab as ttab
+            inner join p_cls as cls
+            inner join p_mtag as mtag
+            inner join p_mete as mete
+            inner join p_mete as mete2
+        on
+            corder.ctno = ttab.ctno and
+            ttab.cno = cls.cno and
+            cls.mtno = mtag.mtno and
+            corder.meno = mete.meno and
+            mete2.meno = cls.mono
+        order by
+            ono asc
+
+    </select>
+    
 
     <insert id="orderinsert" parameterType="int"
     useGeneratedKeys="true" keyColumn="ono" keyProperty="no">
         insert 
-        	into p_cls_order(meno,time,tot_pric,payopt,paydt,ctno)
+            into p_cls_order(meno,time,tot_pric,payopt,paydt,ctno)
         values
-        	(#{meno},#{time},#{tot_pric},#{payopt},now(),#{ctno})
+            (#{meno},#{time},#{tot_pric},#{payopt},now(),#{ctno})
     </insert>
     
 </mapper>
-
 
 
 
