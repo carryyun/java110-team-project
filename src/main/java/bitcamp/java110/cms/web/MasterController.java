@@ -96,6 +96,13 @@ public class MasterController {
     mentee.setMtstat(stat);
     return menteeService.updateMtstat(mentee);
   }
+  
+  /*@RequestMapping(value = "mtstat2.do", method = {RequestMethod.GET, RequestMethod.POST})
+  public @ResponseBody int mtstat2(int meno, char stat) {
+    Mentee mentee = menteeService.get(meno);
+    mentee.setMtstat(stat);
+    return menteeService.updateMtstat(mentee);
+  }*/
 
   @GetMapping("mentorreqlist")
   public void mentorlist(Model model) {

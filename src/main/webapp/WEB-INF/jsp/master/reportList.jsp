@@ -66,7 +66,7 @@
                             <td class="text-center">${rl.titl}</td>
                             <td class="text-center">${rl.menteeNick}</td>
                             <td class="text-center">${rl.rtdt}</td>
-                            <td class="text-center"><button id="block-cho"><a class="button" href="#popup1">상세 보기</a></button></td>
+                            <td class="text-center"><button id="block-cho"><a class="button" href="#popup${i.index}">상세 보기</a></button></td>
                         </tr>
                     </c:forEach>
                     </tbody>
@@ -97,53 +97,87 @@
 
 
             <!-- popup-->
-
-            <div id="popup1" class="overlay">
+<c:forEach items="${ReportList}" var="rl" varStatus="i">
+            <div id="popup${i.index}" class="overlay">
                 <div class="popup">
-                    <h2> 신고 누적 목록</h2>
+                    <h2> 신고 상세 목록</h2>
                     <a class="close" href="#">×</a>
                     <div class="content">
                         <br />
                         <div class="container">
                             <div class="row">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>신고자ID</th>
-                                            <th>신고유형</th>
-                                            <th>신고제목</th>
-                                            <th>신고내용</th>
-                                            <th>URL</th>
-                                            <th>신고날짜</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>minjisiro</td>
-                                            <td>클래스 신고</td>
-                                            <td>음란물 배포</td>
-                                            <td>음란물 배포</td>
-                                            <td><a href="#">이건 해당 신고 게시글</a></td>
-                                            <td>2032.13.14</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                            
+                            <!-- <i class="fas fa-star-of-life mr-3"></i><<이거 다 생략함 -->
+                            <div class="col-lg-12">
+                                    <table class="table table-bordered" id="block-tab" style="list-style-type:none;">
+                                        <tbody>
+                                           <tr>
+                                               <td><li><span style="font-size: 20px;">신고자: </span>
+                                            <span class="pop-type">${rl.menteeNick}</span></li></td>
+                                               <td><li><span style="font-size: 20px;">피신고자: </span>
+                                            <span class="pop-type">${rl.mentee2Nick}</span></li></td>
+                                               <td><li><span style="font-size: 20px;">신고유형: </span>
+                                            <span class="pop-type">${rl.type}</span></li></td>
+                                               <td><li><span style="font-size: 20px;">분류: </span>
+                                            <span class="pop-type">${rl.type_detail}</span></li></td>
+                                           </tr>
+                                           
+                                           <tr>
+                                                <td colspan="4"><li><span style="font-size: 20px;">클래스URL: </span>
+                                            <a href="${rl.url}"><span class="pop-type">${rl.url}</span></a></li></td>
+                                            </tr>
+                                            
+                                    
+                                            <tr>
+                                                <td colspan="3"><li><span style="font-size: 20px;">제목: </span>
+                                            <span class="pop-type">${rl.titl}</span></li></td>
+                                                <td colspan="3"><li><span style="font-size: 20px;">신고날짜: </span>
+                                            <span class="pop-type">${rl.rtdt}</span></li></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4" style="height: 500px"><li><span style="font-size: 20px;">내용: </span>
+                                            <span class="pop-type">${rl.conts}</span></li></td>
+                                            </tr>
+                                            <!-- <tr>
+                                                <td colspan="4"><span>이미지: <img alt="block-img" src="img/basket1.jpg" style="width: 100px; height: 100px;"></span></td>
+                                            </tr> -->
+                                        </tbody>
+                                    </table>
+                                </div><!-- 12 -->
+                                <button type="button" class="btn btn-primary" id="mas-p1" name="Y" value="${rl.no}" onclick="stat(value,name)">수락</button>
+                            <button type="button" class="btn btn-primary" id="mas-p2" name="N" value="${rl.no}" onclick="stat(value,name)">거절</button>
+                                
                             </div><!-- popup row-->
                         </div><!-- popup container -->
 
                     </div>
                 </div>
             </div>
+            
+            </c:forEach>
 
         </div><!-- 메인 row-->
     </div><!-- 메인 container-->
+
+
 
 
 </body>
 <!-- Bootstrap core JavaScript -->
 <script src="/vendor/jquery/jquery.min.js"></script>
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- <script>
+function stat(no,name){
+    removeItem(no)
+    $.ajax({
+        data : {
+            meno : no,
+            stat : name
+        },
+        url : "mtstat2.do",
+        success : location.href="#"
+    });
+}
+</script> -->
 
 </html>
