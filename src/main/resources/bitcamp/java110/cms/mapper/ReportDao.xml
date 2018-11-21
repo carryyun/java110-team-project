@@ -16,9 +16,9 @@
 		<result column="rtdt"     property="rtdt" />
 	    <result column="meno"     property="meno" />	
         <result column="meno2"    property="meno2" />
-		
   
         <result column="metenick" property="menteeNick" />
+        <result column="mete2name" property="mentee2Name" />
         <result column="mete2nick" property="mentee2Nick" />
 	</resultMap>
 
@@ -36,7 +36,7 @@
 		p_rept
 	</sql>
 
-	<select id="findAll" resultMap="reportMap" parameterType="map">
+	<select id="findFinishAll" resultMap="reportMap" parameterType="map">
         SELECT
             rtno,
             titl,
@@ -52,6 +52,18 @@
             on rept.meno = mete.meno
         order by 
             ptno DESC
+            r.meno2,
+            mete.nick as metenick,
+            mete2.name as mete2name,
+            mete2.nick as mete2nick
+        FROM
+            p_rept r
+            join p_mete mete
+            join p_mete mete2
+        WHERE
+            r.meno = mete.meno AND
+            r.meno2 = mete2.meno AND
+            r.stat='Y'
 	</select>
 
 	<select id="findByNo" resultMap="reportMap"

@@ -50,6 +50,15 @@ public class ReportServiceImpl implements ReportService {
   }
   
   @Override
+  public List<Report> finishlist(int pageNo, int pageSize) {
+      HashMap<String,Object> params = new HashMap<>();
+      params.put("rowNo", (pageNo - 1) * pageSize);
+      params.put("size", pageSize);
+      
+      return reportDao.findFinishAll(params);
+  }
+  
+  @Override
   public Report get(int no) {
       return reportDao.findByNo(no);
   }

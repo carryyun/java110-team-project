@@ -122,10 +122,16 @@ public class MasterController {
   /*
    * 신고목록 관련(미완성)
   */
+<<<<<<< HEAD
   
   @GetMapping("reportFinishList")
   public void reportFinishList(Model model) {
     List<Report> ReportList = reportService.list(3, 3);
+=======
+  @GetMapping("reportFinishList")
+  public void reportFinishList(Model model) {
+    List<Report> ReportList = reportService.finishlist(3, 3);
+>>>>>>> a0cb4dfd4d7802fa4af70d1a390bd5ae3ff3d680
     for(Report r: ReportList) {
       r.setCnt(reportService.getMeno2Cnt(r.getMeno2()));
     }

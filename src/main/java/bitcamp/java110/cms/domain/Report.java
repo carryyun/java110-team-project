@@ -6,6 +6,7 @@ public class Report {
 
 
   private int no;
+<<<<<<< HEAD
   private String titl; // 제목
   private String conts; // 내용
   private String url; // URL
@@ -14,12 +15,59 @@ public class Report {
   private Date rtdt; // 신고일
   private int meno; // 신고자
   private int meno2; // 피신고자
+=======
+  private String titl;
+  private String conts;
+  private String url;
+  private String type;
+  private Date rtdt;
+  private int meno;
+  private int meno2;
+>>>>>>> a0cb4dfd4d7802fa4af70d1a390bd5ae3ff3d680
 
   private String menteeNick;
+  private String mentee2Name;
   private String mentee2Nick;
 
   private int cnt;
+<<<<<<< HEAD
 
+=======
+  
+  
+
+  @Override
+  public String toString() {
+    return "Report [no=" + no + ", titl=" + titl + ", conts=" + conts + ", url=" + url + ", type="
+        + type + ", rtdt=" + rtdt + ", meno=" + meno + ", meno2=" + meno2 + ", menteeNick="
+        + menteeNick + ", mentee2Name=" + mentee2Name + ", mentee2Nick=" + mentee2Nick + ", cnt="
+        + cnt + "]";
+  }
+  public String getMentee2Name() {
+    return mentee2Name;
+  }
+  public void setMenteeName(String mentee2Name) {
+    this.mentee2Name = mentee2Name;
+  }
+  public int getCnt() {
+    return cnt;
+  }
+  public void setCnt(int cnt) {
+    this.cnt = cnt;
+  }
+  public String getMenteeNick() {
+    return menteeNick;
+  }
+  public void setMenteeNick(String menteeNick) {
+    this.menteeNick = menteeNick;
+  }
+  public String getMentee2Nick() {
+    return mentee2Nick;
+  }
+  public void setMentee2Nick(String mentee2Nick) {
+    this.mentee2Nick = mentee2Nick;
+  }
+>>>>>>> a0cb4dfd4d7802fa4af70d1a390bd5ae3ff3d680
   public int getNo() {
     return no;
   }
@@ -107,6 +155,7 @@ public class Report {
   public void setMentee2Nick(String mentee2Nick) {
     this.mentee2Nick = mentee2Nick;
   }
+<<<<<<< HEAD
 
   public int getCnt() {
     return cnt;
@@ -127,3 +176,7 @@ public class Report {
 
 
 }
+=======
+  
+}
+>>>>>>> a0cb4dfd4d7802fa4af70d1a390bd5ae3ff3d680
