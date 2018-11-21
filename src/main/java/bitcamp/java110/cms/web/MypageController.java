@@ -89,7 +89,8 @@ public class MypageController {
   @GetMapping("menu2")
   public void menu2(Model model) {
 
-
+    List<ClassOrder> colist = classOrderService.listByMeno(4,10,5);
+    model.addAttribute("colist", colist );
     
    
     
