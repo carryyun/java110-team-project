@@ -1,6 +1,7 @@
 package bitcamp.java110.cms.web;
 
 import java.util.List;
+import java.util.UUID;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import bitcamp.java110.cms.dao.MenteeDao;
 import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.service.MenteeService;
 
@@ -24,6 +24,13 @@ public class MenteeController {
       ServletContext sc) {
     this.menteeService = menteeService;
     this.sc = sc;
+  }
+  
+  @RequestMapping(value = "searchpwd", method=RequestMethod.GET)
+  public void searchpwd() {
+  }
+  @RequestMapping(value = "searchpwd", method=RequestMethod.POST)
+  public void searchpwdPost() {
   }
   
   @RequestMapping(value = "signup", method=RequestMethod.GET)
@@ -41,6 +48,21 @@ public class MenteeController {
   public void searchUserPost() {
   }
   
+  @RequestMapping("resultpwd")
+  public void resultPwd(Mentee mentee,Model model) {
+    String pwd = UUID.randomUUID().toString();
+    if(menteeService.getByNameEmail(mentee) != null) {
+      mentee.setPwd(pwd);
+      System.out.println(mentee.getPwd());
+      System.out.println(mentee.getEmail());
+      menteeService.naverMailSend(mentee);
+      menteeService.tempwd(mentee);
+      model.addAttribute("value",menteeService.getByNameEmail(mentee));
+    }else {
+        model.addAttribute("value", "사용자 정보가 없습니다.");
+      }
+  }
+  
   @RequestMapping("resultemail")
   public void resultEmail(Mentee mentee,Model model) {
     if(menteeService.getByNamePhone(mentee) != null)
@@ -56,12 +78,12 @@ public class MenteeController {
     mentee.setEmail(session.getAttribute("email").toString());
     mentee.setName(session.getAttribute("name").toString());
     menteeService.fbadd(mentee);
-    return  "redirect:/app/auth/form";
+    return  "redirect:app/mainpage/mainpage";
   }
   @RequestMapping(value = "signup", method=RequestMethod.POST)
   public String signup2(Mentee mentee) {
       menteeService.add(mentee);
-    return  "redirect:/app/auth/form";
+    return  "redirect:app/mainpage/mainpage";
     }
   
   @GetMapping("findAll")

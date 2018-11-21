@@ -23,10 +23,11 @@ public class CsServiceImpl implements CsService {
   }
 
   @Override
-  public List<Cs> list(int pageNo, int pageSize) {
+  public List<Cs> list(int pageNo, int pageSize,int meno) {
     HashMap<String, Object> params = new HashMap<>();
-    params.put("rowNo", (pageNo - 1)* pageSize);
-    params.put("size", pageSize);
+    params.put("pageNo", pageNo);
+    params.put("pageSize", pageSize);
+    params.put("meno", meno);
     
     return csDao.findAll(params);
     

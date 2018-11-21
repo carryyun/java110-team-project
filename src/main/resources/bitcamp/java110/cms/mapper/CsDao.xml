@@ -8,6 +8,7 @@
     <resultMap type="Cs" id="csMap">
         <id column="csno" property="no"/>
         <result column="meno" property="meno"/>
+         <result column="cstype" property="cstype"/>
         <result column="titl" property="titl"/>
         <result column="conts" property="conts"/>
         <result column="rgdt" property="rgdt"/>
@@ -19,6 +20,7 @@
         select 
             csno,
             meno,
+            cstype,
             titl, 
             conts, 
             rgdt, 
@@ -29,10 +31,19 @@
     
     </sql>
     
-    <select id="findAll" resultMap="csMap">
-       <include refid="select1"/>
+    <select id="findAll" resultMap="csMap" parameterType="Map" >
+       select
+            cstype,
+            titl,
+            p_cs.rgdt,
+            conts,
+            anser
+        from
+            p_cs join p_mete m on p_cs.meno = m.meno
+       where
+            m.meno=5
        order by
-            csno asc
+            csno desc
        
     </select>
     

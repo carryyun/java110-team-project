@@ -1,8 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <div class="col-lg-12">
     <div class="panel panel-default">
        
         
-            <h2 class="colorlib-heading">클래스 질문내역</h2>
+            <h2 class="colorlib-heading">클래스 답변내역</h2>
        
             
        
@@ -25,7 +27,7 @@
 
                 <tbody>
                     
-                    <tr data-toggle="collapse" data-target="#demo2-1" class="accordion-toggle">
+                    <tr data-toggle="collapse" data-target="#demo3-1" class="accordion-toggle">
                         <td>1</td>
                         <td>클래스이름1</td>
                         <td>제목1</td>
@@ -36,7 +38,7 @@
                     </tr>
                     <tr>
                         <td colspan="6" class="hiddenRow">
-                            <div class="accordian-body collapse" id="demo2-1">
+                            <div class="accordian-body collapse" id="demo3-1">
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
@@ -62,7 +64,7 @@
                     </tr>
                     
                     
-                    <tr data-toggle="collapse" data-target="#demo2-2" class="accordion-toggle">
+                    <tr data-toggle="collapse" data-target="#demo3-2" class="accordion-toggle">
                         <td>2</td>
                         <td>클래스 문의</td>
                         <td>멘토님이 이상해요</td>
@@ -73,7 +75,7 @@
                     </tr>
                     <tr>
                         <td colspan="6" class="hiddenRow">
-                            <div class="accordian-body collapse" id="demo2-2">
+                            <div class="accordian-body collapse" id="demo3-2">
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
@@ -98,7 +100,7 @@
                         </td>
                     </tr>
                     
-                    <tr data-toggle="collapse" data-target="#demo2-3" class="accordion-toggle">
+                    <tr data-toggle="collapse" data-target="#demo3-3" class="accordion-toggle">
                         <td>3</td>
                         <td>사이트이용</td>
                         <td>멘토가 잠수탔어요...</td>
@@ -109,7 +111,7 @@
                     </tr>
                     <tr>
                         <td colspan="6" class="hiddenRow">
-                            <div class="accordian-body collapse" id="demo2-3">
+                            <div class="accordian-body collapse" id="demo3-3">
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
@@ -147,7 +149,7 @@
                             <!--        ${pageCode}-->
                         </div>
                     </div>
-           
+                </div>
 
  <!-- page navigation -->
 <nav aria-label="Page navigation"  class="pn-center" >

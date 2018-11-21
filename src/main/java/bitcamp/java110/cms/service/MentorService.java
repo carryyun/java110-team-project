@@ -1,6 +1,7 @@
 package bitcamp.java110.cms.service;
 
 import java.util.List;
+import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.Mentor;
 
 public interface MentorService {
@@ -23,4 +24,9 @@ public interface MentorService {
  int add(Mentor mentor); // insert
  
  int delete(int no);
+ 
+ 
+ // 멘토신청 회원번호 목록 
+ List<Mentor> listByMetoStat();
+ 
 }

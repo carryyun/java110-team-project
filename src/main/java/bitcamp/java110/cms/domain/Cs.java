@@ -5,14 +5,30 @@ import java.sql.Date;
 public class Cs {
   private int no;
   private int meno;
+  private String cstype;
   private String titl;
   private String conts;
   private Date rgdt;
   private String anser;
   private Date rgdt2;
   
+  private Mentee mentee;
+  
+  
+  public Mentee getMentee() {
+    return mentee;
+  }
+  public void setMentee(Mentee mentee) {
+    this.mentee = mentee;
+  }
   public int getMeno() {
     return meno;
+  }
+  public String getCstype() {
+    return cstype;
+  }
+  public void setCstype(String cstype) {
+    this.cstype = cstype;
   }
   public void setMeno(int meno) {
     this.meno = meno;

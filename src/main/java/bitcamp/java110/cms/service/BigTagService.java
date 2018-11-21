@@ -10,4 +10,6 @@ public interface BigTagService {
   BigTag get(int no);
   
   BigTag get(String name);
+  
+  List<BigTag> listByMono(int no); 
 }

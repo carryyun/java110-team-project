@@ -7,7 +7,7 @@ import bitcamp.java110.cms.domain.MentorLicense;
 public interface MentorLicenseDao {
   List<MentorLicense> findAll(Map<String,Object> params);
   int insert(MentorLicense mlicn);
-  MentorLicense findByNo(int no);
+  List<MentorLicense> findByNo(int no);
   int delete(int no);
   int update(MentorLicense mlicn);
 

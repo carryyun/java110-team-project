@@ -55,5 +55,10 @@ public class ClassServiceImpl implements ClassService{
     
     return classDao.findByptno(ptno);
   }
+
+  @Override
+  public List<Classes> listByStat(String stat) {
+    return classDao.findByStat(stat);
+  }
   
 }

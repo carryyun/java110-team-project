@@ -1,0 +1,134 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+#serch-men {
+    position: relative;
+    float: right;
+}
+
+#men-ck {
+    position: relative;
+    float: right;
+    font-size: 1000%;
+}
+
+#btn > #mas-btn {
+    position: relative;
+    float: right;
+}
+
+#page-list1{
+    position: relative;
+    
+}
+
+#page-list > li{
+    float: left;
+
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 9;
+}
+
+.overlay:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+.popup {
+    margin: 70px auto;
+    padding: 20px;
+    background-color: gainsboro;
+    border-radius: 5px;
+    width: 55%;
+    height: auto;
+    position: relative;
+    transition: all 500ms ease-in-out;
+}
+
+.popup h2 {
+    margin-top: 0;
+    color: #333;
+    font-family: Tahoma, Arial, sans-serif;
+}
+
+.popup .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+}
+
+.popup .close:hover {
+    color: #06D85F;
+}
+
+.popup .content {
+    max-height: auto;
+    overflow: auto;
+    height: 750px;
+    background: whitesmoke;
+}
+
+@media screen and (max-width: 700px) {
+    .box {
+        width: 70%;
+    }
+
+    .popup {
+        width: 70%;
+    }
+}
+
+.pop-in > li {
+    margin-top: 10px;
+}
+
+.pop-type {
+    font-size: 20px;
+}
+
+.col-lg-6 .pic1 {
+    position: relative;
+    text-align: center;
+}
+
+
+#mas-p1 {
+ /* 멘토신청 리스트 팝업 승락버튼 */
+    position: relative;
+    float: right;
+    margin-top: 10%;
+}
+
+#mas-p2 {
+ /* 멘토신청 리스트 팝업 반려버튼 */
+    position: relative;
+    float: right;
+    margin-top: 10%;
+    right: 10px;
+}
+
+
+.ment-pic{
+ /* 멘토신청 리스트 팝업 멘토사진 */
+  height: 300px;
+  width: 300px;
+ 
+}

@@ -6,20 +6,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import bitcamp.java110.cms.dao.MentoTagDao;
-import bitcamp.java110.cms.domain.MentoTag;
+import bitcamp.java110.cms.dao.MentorTagDao;
+import bitcamp.java110.cms.domain.MentorTag;
 import bitcamp.java110.cms.service.MentoTagService;
 
 @Service
 public class MentoTagServiceImpl implements MentoTagService {
 
   @Autowired
-  MentoTagDao mentoTagDao;
+  MentorTagDao mentoTagDao;
 
   @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 
   @Override
-  public List<MentoTag> list(int pageNo, int pageSize) {
+  public List<MentorTag> list(int pageNo, int pageSize) {
 
     HashMap<String, Object> params = new HashMap<>();
     params.put("rowNo", (pageNo - 1) * pageSize);
@@ -31,7 +31,7 @@ public class MentoTagServiceImpl implements MentoTagService {
 
 
   @Override
-  public List<MentoTag> listByMono(int pageNo, int pageSize, int mono) {
+  public List<MentorTag> listByMono(int pageNo, int pageSize, int mono) {
     HashMap<String, Object> params = new HashMap<>();
     params.put("rowNo", (pageNo - 1) * pageSize);
     params.put("size", pageSize);
@@ -41,7 +41,7 @@ public class MentoTagServiceImpl implements MentoTagService {
   }
 
   @Override
-  public List<MentoTag> listByBtno(int pageNo, int pageSize, int btno) {
+  public List<MentorTag> listByBtno(int pageNo, int pageSize, int btno) {
     HashMap<String, Object> params = new HashMap<>();
     params.put("rowNo", (pageNo - 1) * pageSize);
     params.put("size", pageSize);
@@ -52,7 +52,7 @@ public class MentoTagServiceImpl implements MentoTagService {
 
 
   @Override
-  public int add(MentoTag mentoTag) {
+  public int add(MentorTag mentoTag) {
     return mentoTagDao.insert(mentoTag);
   }
 

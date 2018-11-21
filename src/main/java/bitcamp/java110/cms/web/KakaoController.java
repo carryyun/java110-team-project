@@ -305,7 +305,6 @@ public class KakaoController {
       ClassFile c = new ClassFile();
       
       c.setNo(7);
-      c.setFname("test2");
       
       cfileService.update(c);
     }

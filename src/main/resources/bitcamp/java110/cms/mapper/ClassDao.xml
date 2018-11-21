@@ -27,11 +27,32 @@
         <result column="meno"		property="mentee.no"/>
         <result column="name"  		property="mentee.name"/>
         <result column="nick"		property="mentee.nick"/>
+        <result column="phot"		property="mentee.phot"/>
         
         <result column="mtno"		property="middleTag.mtno"/>
         <result column="mtname"		property="middleTag.name"/>
         
         <result column="fname"		property="classFile.fname"/>
+    </resultMap>
+    
+    <resultMap type="Classes" id="classMapOrigin">
+        <id     column="cno"        property="no"/>
+        <result column="titl"       property="titl"/>
+        <result column="conts"      property="conts"/>
+        <result column="pric"       property="pric"/>
+        <result column="rgdt"       property="rgdt"/>
+        <result column="time"       property="time"/>
+        <result column="capa"       property="capa"/>
+        <result column="cfile"      property="cfile"/>
+        <result column="tinfo"      property="tinfo"/>
+        <result column="cinfo"      property="cinfo"/>
+        <result column="pstno"      property="pstno"/>
+        <result column="bas_addr"   property="basAddr"/>
+        <result column="det_addr"   property="detAddr"/>
+        <result column="edt"        property="edt"/>
+        <result column="mono"       property="mono"/>
+        <result column="mtno"       property="mtno"/>
+        <result column="star"       property="star"/>
     </resultMap>
     
     <sql id="select1">
@@ -62,8 +83,7 @@
 				on po.mono = pe.meno
 		order by ps.cno desc
 	</select>
-	
-	
+ 
     <select id="findAll" resultMap="classMap" parameterType="map">
         <include refid="select1"></include>
 		order by
@@ -111,7 +131,8 @@
 			ps.det_addr,
 			ps.edt,
             ps.star,
-            ptg.mtname
+            ptg.mtname,
+            pe.phot
 		from
 			p_cls as ps inner join p_meto as po
 				on ps.mono = po.mono
@@ -166,6 +187,17 @@
     	where 
     		cno = #{no}
     </update>
+    
+    <select id="findByStat" resultMap="classMapOrigin" parameterType="string">
+        SELECT
+            *
+        FROM
+            p_cls
+        where
+            stat = #{stat}
+        order by
+            cno DESC;
+    </select>
     
 </mapper>
 

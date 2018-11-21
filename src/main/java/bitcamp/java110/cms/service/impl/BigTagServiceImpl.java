@@ -35,6 +35,11 @@ public class BigTagServiceImpl implements BigTagService {
     return bigtagDao.findByName(name);
   }
 
+  @Override
+  public List<BigTag> listByMono(int no) {
+    return bigtagDao.findByMono(no);
+  }
+
 
 
 }

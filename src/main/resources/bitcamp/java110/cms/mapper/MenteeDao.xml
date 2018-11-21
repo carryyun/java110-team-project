@@ -25,6 +25,10 @@
         <result column="stat"   property="stat"/>
         <result column="note"   property="note"/>
         <result column="mtstat"   property="mtstat"/>
+        <result column="rgdtmt" property="rgdtmt"/>
+        <result column="mono"   property="classes.mono"/>
+        <result column="titl"   property="classes.titl"/>
+        <result column="pric"   property="classes.pric"/>
     </resultMap>
     
     <select id="checkemail"
@@ -39,6 +43,23 @@
     resultType="java.lang.Integer">
     SELECT COUNT(*)
     FROM p_mete p WHERE p.nick=#{nick}
+	</select>
+	
+	<update id="tempwd" parameterType="Mentee" >
+		UPDATE p_mete 
+		   SET
+		  	pwd = #{pwd}
+		 where email = #{email}
+	</update>
+	
+	<select id="findByNameEmail" parameterType="Mentee" resultType="String">
+			select
+				email
+			from
+				p_mete p
+			where
+				p.name=#{name} and
+				p.email=#{email}
 	</select>
 	
 	<select id="findByNamePhone" parameterType="Mentee" resultType="String">
@@ -100,6 +121,17 @@
             p_mete
         where 
             meno=#{value}
+    </select>
+    
+    
+    <select id="findM2ByNo" 
+            resultMap="menteeMap" parameterType="int">
+        SELECT  c.titl, c.mono,c.pric
+        FROM    p_mete m INNER JOIN p_cls_order co ON m.meno = co.meno
+                INNER JOIN p_cls_ttab ct on co.ctno = ct.ctno
+                INNER JOIN p_cls c on ct.cno = c.cno
+        WHERE
+                m.meno=#{value}
     </select>
     
     <select id="findAllByEmail" parameterType="String">
@@ -207,15 +239,11 @@
             <!-- mte.email=#{email} and mte.pwd=password(#{pwd}) -->
     </select> 
     
-    <select id="findMentorRequest" resultMap="menteeMap">
-        select
-            *
-        from 
-            p_mete
-        where
-            mtstat='I'
-        order by 
-            meno asc
-    </select>
+    <update id="updateMtstat" parameterType="Mentee">
+        UPDATE p_mete 
+           SET
+            mtstat = #{mtstat}
+         where meno = #{no}
+    </update>
     
 </mapper>

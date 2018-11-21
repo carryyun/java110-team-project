@@ -1,0 +1,97 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+ 
+/* Body/Header stuff */
+body {
+  padding: 0px 30px 30px 20px;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 100;
+}
+
+/* Totals section */
+.totals .totals-item {
+    margin-top: 2%;
+  float: right;
+  clear: both;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.totals .totals-item label {
+  float: left;
+  clear: both;
+  width: 79%;
+  text-align: right;
+}
+.totals .totals-item .totals-value {
+  float: right;
+  width: 21%;
+  text-align: right;
+}
+.totals .totals-item-total {
+  font-family: "HelveticaNeue-Medium", "Helvetica Neue Medium";
+}
+
+#selc1{
+    border: 1px solid black;
+    color: black;
+    background-color: ghostwhite
+}
+
+#selc2{
+    border: 1px solid black;
+    color: black;
+    background-color: ghostwhite
+}
+
+.pay4 td #selc1:hover{
+    background-color: gainsboro;
+}
+
+.pay4 td #selc2:hover{
+    background-color: gainsboro;
+}
+
+p .btn{
+    border: 1px solid black;
+    color: black;
+    background-color: darkgray;
+    
+}
+
+p #btn-cl{
+    border: 1px solid black;
+    background-color:whitesmoke;
+    color: black;
+}
+
+p #btn-cl:hover{
+    background-color: gainsboro;
+}
+
+.btn-all{
+    position: relative;
+    float: right;
+    margin-top: 3%;
+    margin-bottom: 2%;
+}
+
+.media a{
+    position: relative;
+    margin-right: 2%;
+}
+
+.product .product-line-price:after
+, .product .del:after
+, .product .product-price:after
+, .totals-value:after
+{
+    content: ' 원';
+  }
+
+.total{
+    border-top:1px solid silver;
+}
+
+

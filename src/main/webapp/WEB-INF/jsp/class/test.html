@@ -7,58 +7,97 @@
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <style>
-        .btn-group label
-{
-  padding-left: 40px;
+        .table tr {
+    cursor: pointer;
 }
-    input[type="radio"]:empty
-    {
-      display: none;
-    }
-
-    input[type="radio"] ~ span:before
-    {
-      position: absolute;
-      display: block;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      content: '';
-      width: 2.5em;
-      background: #D1D3D4;
-    }
-
-    input[type="radio"]:before
-    {
-      content: '\2714';
-      text-indent: .9em;
-      color: #C2C2C2;
-    }
-
-    input[type="radio"]:checked ~ span:before
-    {
-      content: '\2714';
-      text-indent: .3em;
-      color: #fff;
-      background-color: #5cb85c;
-      line-height: 2.5em;
-    }
+.hiddenRow {
+    padding: 0 4px !important;
+    background-color: #eeeeee;
+    font-size: 13px;
+}
     </style>
 </head>
 <body>
-        <div class="row">
-            <label class="btn btn-default">
-	            <input type="radio" name="testrad" value="0">
-	            <span>One Value</span>
-	        </label>
-	        <label class="btn btn-default">
-	            <input type="radio" name="testrad" value="1">
-	            <span>Two Value</span>
-	        </label>
-	        <label class="btn btn-default">
-	            <input type="radio" name="testrad" value="2">
-	            <span>Three Value</span>
-	        </label>
-        </div>
+<table class="table table-condensed" style="border-collapse:collapse;">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Credit</th>
+            <th>Debit</th>
+            <th>Balance</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr data-toggle="collapse" data-target="#demo1" class="accordion-toggle">
+            <td>1</td>
+            <td>05 May 2013</td>
+            <td>Credit Account</td>
+            <td class="text-success">$150.00</td>
+            <td class="text-error"></td>
+            <td class="text-success">$150.00</td>
+        </tr>
+        <tr >
+            <td colspan="6" class="hiddenRow"><div class="accordian-body collapse" id="demo1"> Demo Content1 </div> </td>
+        </tr>
+		
+        <tr data-toggle="collapse" data-target="#demo2" class="accordion-toggle">
+            <td>2</td>
+            <td>05 May 2013</td>
+            <td>Credit Account</td>
+            <td class="text-success">$11.00</td>
+            <td class="text-error"></td>
+            <td class="text-success">$161.00</td>
+        </tr>
+        <tr>
+            <td colspan="6" class="hiddenRow"><div id="demo2" class="accordian-body collapse">Demo Content2</div></td>
+        </tr>
+		
+        <tr data-toggle="collapse" data-target="#demo3" class="accordion-toggle">
+            <td>3</td>
+            <td>05 May 2013</td>
+            <td>Credit Account</td>
+            <td class="text-success">$500.00</td>
+            <td class="text-error"></td>
+            <td class="text-success">$661.00</td>
+        </tr>
+        <tr>
+            <td colspan="6"  class="hiddenRow"><div id="demo3" class="accordian-body collapse">Demo Content3</div></td>
+        </tr>
+
+        <tr data-toggle="collapse" data-target="#demo4" class="accordion-toggle">
+            <td>4</td>
+            <td>05 May 2013</td>
+            <td>Credit Account</td>
+            <td class="text-success">$500.00</td>
+            <td class="text-error"></td>
+            <td class="text-success">$661.00</td>
+        </tr>
+        <tr>
+            <td colspan="6"  class="hiddenRow"><div id="demo4" class="accordian-body collapse">Demo Content4</div></td>
+        </tr>
+
+        <tr data-toggle="collapse" data-target="#demo5" class="accordion-toggle">
+            <td>5</td>
+            <td>05 May 2013</td>
+            <td>Credit Account</td>
+            <td class="text-success">$500.00</td>
+            <td class="text-error"></td>
+            <td class="text-success">$661.00</td>
+        </tr>
+        <tr>
+            <td colspan="6"  class="hiddenRow"><div id="demo5" class="accordian-body collapse">Demo Content5</div></td>
+        </tr>		
+    </tbody>
+</table>
+<script>
+    $('.accordian-body').on('show.bs.collapse', function () {
+    $(this).closest("table")
+        .find(".collapse.in")
+        .not(this)
+        .collapse('toggle')
+})
+    </script>
 </body>
 </html>

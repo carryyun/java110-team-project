@@ -9,6 +9,6 @@ public interface ClassQnaService {
   int qnaupdate(ClassQna classqna);
   int ansupdate(ClassQna classqna);
   
-  List<ClassQna> classqnalist(int pageSize);
-  List<ClassQna> listbycno(int no);
+  List<ClassQna> classqnalist(int pageNo,int pageSize,int no);
+  List<ClassQna> listbycno(int pageNo,int pageSize ,int no);
 }

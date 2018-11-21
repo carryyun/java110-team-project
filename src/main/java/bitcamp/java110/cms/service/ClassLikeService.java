@@ -6,5 +6,7 @@ import bitcamp.java110.cms.domain.ClassLike;
 public interface ClassLikeService {
   List<ClassLike> classlikelist(int pageSize);
   void likeadd(ClassLike classlike);
-  void likesub(ClassLike classlike);
+  void likesub(int no);
+  List<ClassLike> listByMeno(int meno);
+  
 }

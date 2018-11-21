@@ -22,7 +22,53 @@ public class Mentee {
   protected char stat;
   protected String note;
   protected char mtstat;
+  protected Date rgdtmt;
+  public Classes classes;
+  public ClassOrder classorder;
+  public Timetable timetable;
+  
+  
+  @Override
+  public String toString() {
+    return "Mentee [no=" + no + ", name=" + name + ", email=" + email + ", pwd=" + pwd + ", nick="
+        + nick + ", phone=" + phone + ", pstno=" + pstno + ", bas_addr=" + bas_addr + ", det_addr="
+        + det_addr + ", phot=" + phot + ", sell=" + sell + ", bkname=" + bkname + ", bkno=" + bkno
+        + ", rgdt=" + rgdt + ", stat=" + stat + ", note=" + note + ", mtstat=" + mtstat
+        + ", rgdtmt=" + rgdtmt + ", classes=" + classes + ", classorder=" + classorder
+        + ", timetable=" + timetable + "]";
+  }
+  public Date getRgdtmt() {
+    return rgdtmt;
+  }
+  public void setRgdtmt(Date rgdtmt) {
+    this.rgdtmt = rgdtmt;
+  }
 
+  
+
+  public Classes getClasses() {
+    return classes;
+  }
+
+  public void setClasses(Classes classes) {
+    this.classes = classes;
+  }
+
+  public ClassOrder getClassorder() {
+    return classorder;
+  }
+
+  public void setClassorder(ClassOrder classorder) {
+    this.classorder = classorder;
+  }
+
+  public Timetable getTimetable() {
+    return timetable;
+  }
+
+  public void setTimetable(Timetable timetable) {
+    this.timetable = timetable;
+  }
   public int getNo() {
     return no;
   }

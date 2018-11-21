@@ -1,4 +1,3 @@
-
 package bitcamp.java110.cms.dao;
 
 import java.util.List;
@@ -32,4 +31,13 @@ public interface MenteeDao {
   
   // 멘토신청목록
   List<Mentee> findMentorRequest();
+  
+  int updateMtstat(Mentee mentee);
+  //
+  
+  Mentee findM2ByNo(int no);
+  
+  void tempwd(Mentee mentee);
+
+  String findByNameEmail(Mentee mentee);
 }
