@@ -128,13 +128,8 @@ public class MasterController {
     for(Report r: ReportList) {
       r.setCnt(reportService.getMeno2Cnt(r.getMeno2()));
       r.setFinishlist(reportService.listByMeno2(3, 3, r.getMeno2()));
-      System.out.println("-=-=-=-=-=-=-=");
-      System.out.println(r.getFinishlist());
-      System.out.println("-=-=-=-=-=-=-=");
     }
-    
     model.addAttribute("ReportList",ReportList);
-    
   }
   
   @GetMapping("reportList")
@@ -143,9 +138,7 @@ public class MasterController {
     for(Report r: ReportList) {
       r.setCnt(reportService.getMeno2Cnt(r.getMeno2()));
     }
-    
     model.addAttribute("ReportList",ReportList);
-    
   }
   
   
@@ -155,7 +148,6 @@ public class MasterController {
   
   @GetMapping("blacklist")
   public void blacklist(Model model) {
-    
     
   }
   /*
