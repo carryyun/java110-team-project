@@ -1,6 +1,7 @@
 package bitcamp.java110.cms.domain;
 
 import java.sql.Date;
+import java.util.List;
 
 public class Report {
   private int no;
@@ -13,13 +14,22 @@ public class Report {
   private int meno; // 신고자
   private int meno2; // 피신고자
   
-  private String menteeNick;
-  private String mentee2Email;
-  private String mentee2Nick;
+  private String menteeNick; // 신고자 닉네임
+  private String mentee2Email; // 피신고자 이메일
+  private String mentee2Nick; // 피신고자 닉네임
 
   private int cnt;
   
+  private List<Report> finishlist;
   
+
+  public List<Report> getFinishlist() {
+    return finishlist;
+  }
+
+  public void setFinishlist(List<Report> finishlist) {
+    this.finishlist = finishlist;
+  }
 
   public int getNo() {
     return no;

@@ -57,14 +57,24 @@
     position: relative;
     transition: all 500ms ease-in-out;
 }
+.popupH {
+    margin: 70px auto;
+    padding: 20px;
+    background-color: gainsboro;
+    border-radius: 5px;
+    width: 80%;
+    height: auto;
+    position: relative;
+    transition: all 500ms ease-in-out;
+}
 
-.popup h2 {
+.popup h2, .popupH h2 {
     margin-top: 0;
     color: #333;
     font-family: Tahoma, Arial, sans-serif;
 }
 
-.popup .close {
+.popup .close, .popupH .close {
     position: absolute;
     top: 20px;
     right: 30px;
@@ -75,14 +85,14 @@
     color: #333;
 }
 
-.popup .close:hover {
+.popup .close:hover .popupH .close:hover {
     color: #06D85F;
 }
 
-.popup .content {
-    max-height: auto;
+.popup .content, .popupH .content {
+    max-height: auto; 
     overflow: auto;
-    height: 750px;
+    height: auto;
     background: whitesmoke;
 }
 
@@ -92,6 +102,9 @@
     }
 
     .popup {
+        width: 70%;
+    }
+    .popupH {
         width: 70%;
     }
 }

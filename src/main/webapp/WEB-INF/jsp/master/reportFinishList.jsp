@@ -63,8 +63,9 @@
                             <td class="text-center">${rl.mentee2Email}</td>
                             <td class="text-center">${rl.mentee2Nick}</td>
                             <td class="text-center">${rl.cnt}</td>
-                            <td class="text-center"><button id="block-cho" name="${rl.meno2}" onclick="location.href='#popup1'" >상세 보기</button></td>
+                            <td class="text-center"><button id="block-cho" name="${rl.meno2}" onclick="location.href='#popup${rl.meno2}'" >상세 보기</button></td>
                         </tr>
+            
                     </c:forEach>
                     </tbody>
                 </table>
@@ -93,10 +94,11 @@
             </div>
 
 
-            <!-- popup-->
-
-            <div id="popup1" class="overlay">
-                <div class="popup">
+        <!-- popup-->
+        <c:forEach items="${ReportList}" var="rl" varStatus="i">
+            
+            <div id="popup${rl.meno2}" class="overlay">
+                <div class="popupH">
                     <h2> 신고 누적 목록</h2>
                     <a class="close" href="#">×</a>
                     <div class="content">
@@ -107,24 +109,28 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>신고자ID</th>
-                                            <th>신고유형</th>
-                                            <th>신고제목</th>
-                                            <th>신고내용</th>
+                                            <th>신고자 닉네임</th>
+                                            <th>분류</th>
+                                            <th>유형</th>
+                                            <th>제목</th>
+                                            <th>내용</th>
                                             <th>URL</th>
                                             <th>신고날짜</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <c:forEach items="${rl.finishlist}" var="fl" varStatus="j">
                                         <tr>
-                                            <td>1</td>
-                                            <td>minjisiro</td>
-                                            <td>클래스 신고</td>
-                                            <td>음란물 배포</td>
-                                            <td>음란물 배포</td>
-                                            <td><a href="#">이건 해당 신고 게시글</a></td>
-                                            <td>2032.13.14</td>
+                                            <td>${j.count}</td>
+                                            <td>${fl.mentee2Nick}</td>
+                                            <td>${fl.type}</td>
+                                            <td>${fl.type_detail}</td>
+                                            <td>${fl.titl}</td>
+                                            <td>${fl.conts}</td>
+                                            <td><a href="${fl.url}">${fl.url}</a></td>
+                                            <td>${fl.rtdt}</td>
                                         </tr>
+                                    </c:forEach>
                                     </tbody>
                                 </table>
                             </div><!-- popup row-->
@@ -133,6 +139,8 @@
                     </div>
                 </div>
             </div>
+            </c:forEach>
+        
 
         </div><!-- 메인 row-->
     </div><!-- 메인 container-->
