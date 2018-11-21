@@ -35,7 +35,7 @@
                         <td>${c.payopt}</td>
                         <td><a href='#'>${c.classes.titl}</a></td>
                         <td>${c.mentornick}</td>
-                        <td>${c.totPric}</td>
+                        <td>${c.tot_pric}</td>
                         <td>결제상태</td>
                         
 

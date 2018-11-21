@@ -16,14 +16,14 @@ public class ClassOrderServiceImpl implements ClassOrderService{
   @Autowired ClassOrderDao classorderDao;
 
   @Override
-  public List<ClassOrder> corderlist(int pageNo,int pageSize,int meno) {
+  public List<ClassOrder> listByMeno(int pageNo, int pageSize, int meno) {
     
     HashMap<String, Object> params = new HashMap<>();
     params.put("pageNo", pageNo);
     params.put("pageSize", pageSize);
     params.put("meno", meno);
     
-    return classorderDao.corderlist(params);
+    return classorderDao.findByMeno(params);
   }
   
 

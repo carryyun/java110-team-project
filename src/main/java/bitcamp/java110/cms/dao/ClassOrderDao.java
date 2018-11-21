@@ -5,7 +5,7 @@ import java.util.Map;
 import bitcamp.java110.cms.domain.ClassOrder;
 
 public interface ClassOrderDao {
-  List<ClassOrder> corderlist(Map<String,Object> params);
+  List<ClassOrder> findByMeno(Map<String,Object> params);
   
   int orderinsert(ClassOrder corder);
 

@@ -101,8 +101,8 @@
             ono asc
     </select>
 
-    <select id="findByNo" 
-            resultMap="productOrderMap" parameterType="int">
+    <select id="findByMeno" 
+            resultMap="productOrderMap" parameterType="map">
        SELECT
             po.paydt,
             po.payopt,
