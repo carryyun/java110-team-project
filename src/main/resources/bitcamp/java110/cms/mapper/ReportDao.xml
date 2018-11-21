@@ -35,6 +35,31 @@
 		FROM
 		p_rept
 	</sql>
+	
+	<select id="findAll" resultMap="reportMap" parameterType="map">
+        SELECT
+            rtno,
+            titl,
+            conts,
+            url,
+            type,
+            type_detail,
+            rtdt,
+            r.meno,
+            r.meno2
+        FROM
+            p_rept as rept inner join p_mete as mete
+            on rept.meno = mete.meno
+        order by 
+            ptno DESC
+            r.meno2,
+            mete.nick as metenick,
+            mete2.name as mete2name,
+            mete2.nick as mete2nick
+        
+    </select>
+	
+	
 
 	<select id="findFinishAll" resultMap="reportMap" parameterType="map">
         SELECT
