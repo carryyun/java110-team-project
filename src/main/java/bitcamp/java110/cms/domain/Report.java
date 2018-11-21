@@ -3,8 +3,6 @@ package bitcamp.java110.cms.domain;
 import java.sql.Date;
 
 public class Report {
-
-
   private int no;
   private String titl; // 제목
   private String conts; // 내용
@@ -14,13 +12,14 @@ public class Report {
   private Date rtdt; // 신고일
   private int meno; // 신고자
   private int meno2; // 피신고자
-
-
+  
   private String menteeNick;
-  private String mentee2Name;
+  private String mentee2Email;
   private String mentee2Nick;
 
   private int cnt;
+  
+  
 
   public int getNo() {
     return no;
@@ -102,12 +101,12 @@ public class Report {
     this.menteeNick = menteeNick;
   }
 
-  public String getMentee2Name() {
-    return mentee2Name;
+  public String getMentee2Email() {
+    return mentee2Email;
   }
 
-  public void setMentee2Name(String mentee2Name) {
-    this.mentee2Name = mentee2Name;
+  public void setMentee2Email(String mentee2Email) {
+    this.mentee2Email = mentee2Email;
   }
 
   public String getMentee2Nick() {
@@ -130,8 +129,9 @@ public class Report {
   public String toString() {
     return "Report [no=" + no + ", titl=" + titl + ", conts=" + conts + ", url=" + url + ", type="
         + type + ", type_detail=" + type_detail + ", rtdt=" + rtdt + ", meno=" + meno + ", meno2="
-        + meno2 + ", menteeNick=" + menteeNick + ", mentee2Name=" + mentee2Name + ", mentee2Nick="
+        + meno2 + ", menteeNick=" + menteeNick + ", mentee2Email=" + mentee2Email + ", mentee2Nick="
         + mentee2Nick + ", cnt=" + cnt + "]";
   }
+  
   
 }

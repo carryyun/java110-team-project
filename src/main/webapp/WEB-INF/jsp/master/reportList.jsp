@@ -52,18 +52,20 @@
                             <th class="text-center">분류</th>
                             <th class="text-center">제목</th>
                             <th class="text-center">글쓴이</th>
-                            <th class="text-center">분류</th>
+                            <th class="text-center">신고날짜</th>
                             <th class="text-center">상세보기</th>
                         </tr>
                     </thead>
                     <tbody>
                     <c:forEach items="${ReportList}" var="rl" varStatus="i">
                         <tr>
+                 
                             <td class="text-center">${i.count}</td>
+                            <td class="text-center">${rl.type}</td>
+                            <td class="text-center">${rl.type_detail}</td>
+                            <td class="text-center">${rl.titl}</td>
+                            <td class="text-center">${rl.meno}</td>
                             <td class="text-center">${rl.rtdt}</td>
-                            <td class="text-center">${rl.menteeNick}</td>
-                            <td class="text-center">${rl.menteeNick}</td>
-                            <td class="text-center">${rl.cnt}</td>
                             <td class="text-center"><button id="block-cho"><a class="button" href="#popup1">상세 보기</a></button></td>
                         </tr>
                     </c:forEach>

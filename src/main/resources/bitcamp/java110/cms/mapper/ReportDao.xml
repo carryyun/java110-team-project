@@ -18,7 +18,7 @@
         <result column="meno2"    property="meno2" />
   
         <result column="metenick" property="menteeNick" />
-        <result column="mete2name" property="mentee2Name" />
+        <result column="mete2email" property="mentee2Email" />
         <result column="mete2nick" property="mentee2Nick" />
 	</resultMap>
 
@@ -37,7 +37,7 @@
 	</sql>
 	
 	<select id="findAll" resultMap="reportMap" parameterType="map">
-        SELECT
+       SELECT
             rtno,
             titl,
             conts,
@@ -45,13 +45,18 @@
             type,
             type_detail,
             rtdt,
-            r.meno,
-            r.meno2
+            rept.meno,
+            rept.meno2,
+            mete.email, 
+            mete2.email 
         FROM
-            p_rept as rept inner join p_mete as mete
-            on rept.meno = mete.meno
-        order by 
-            rtno DESC
+            p_rept as rept 
+            join p_mete as mete
+            join p_mete as mete2
+            
+            on rept.meno = mete.meno and
+               rept.meno2 = mete2.meno
+            
         
     </select>
 	
@@ -67,7 +72,10 @@
             type_detail,
             rtdt,
             r.meno,
-            r.meno2
+            r.meno2,
+            mete.nick as metenick,
+            mete2.email as mete2email,
+            mete2.nick as mete2nick
         FROM
             p_rept r
             join p_mete mete
@@ -75,7 +83,7 @@
         WHERE
             r.meno = mete.meno AND
             r.meno2 = mete2.meno AND
-            r.stat='Y'
+            (r.stat='Y' OR r.stat='N')
 	</select>
 
 	<select id="findByNo" resultMap="reportMap"
