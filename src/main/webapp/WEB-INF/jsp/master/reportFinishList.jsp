@@ -60,10 +60,10 @@
                         <tr>
                             <td class="text-center">${i.count}</td>
                             <td class="text-center">${rl.rtdt}</td>
-                            <td class="text-center">${rl.menteeNick}</td>
-                            <td class="text-center">${rl.menteeNick}</td>
+                            <td class="text-center">${rl.mentee2Email}</td>
+                            <td class="text-center">${rl.mentee2Nick}</td>
                             <td class="text-center">${rl.cnt}</td>
-                            <td class="text-center"><button id="block-cho"><a class="button" href="#popup1">상세 보기</a></button></td>
+                            <td class="text-center"><button id="block-cho" name="${rl.meno2}" onclick="location.href='#popup1'" >상세 보기</button></td>
                         </tr>
                     </c:forEach>
                     </tbody>

@@ -18,7 +18,7 @@
         <result column="meno2"    property="meno2" />
   
         <result column="metenick" property="menteeNick" />
-        <result column="mete2name" property="mentee2Name" />
+        <result column="mete2email" property="mentee2Email" />
         <result column="mete2nick" property="mentee2Nick" />
 	</resultMap>
 
@@ -67,7 +67,10 @@
             type_detail,
             rtdt,
             r.meno,
-            r.meno2
+            r.meno2,
+            mete.nick as metenick,
+            mete2.email as mete2email,
+            mete2.nick as mete2nick
         FROM
             p_rept r
             join p_mete mete
@@ -75,7 +78,7 @@
         WHERE
             r.meno = mete.meno AND
             r.meno2 = mete2.meno AND
-            r.stat='Y'
+            (r.stat='Y' OR r.stat='N')
 	</select>
 
 	<select id="findByNo" resultMap="reportMap"
