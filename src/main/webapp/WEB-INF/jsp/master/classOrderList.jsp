@@ -65,14 +65,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <c:forEach items="${productOrderList}" var="pl" varStatus="i">
+                            <c:forEach items="${classOrderList}" var="pl" varStatus="i">
                                 <tr>
                                     <td class="text-center">${i.count}</td>
-                                    <td class="text-center">${pl.stname}</td> <!-- 카테고리 -->
-                                    <td class="text-center"><a class="button" href="#">${pl.prdt_titl}</a></td> <!-- 클래스명 -->
+                                    <td class="text-center">${pl.mtname}</td> <!-- 카테고리 -->
+                                    <td class="text-center"><a class="button" href="#">${pl.cls_titl}</a></td> <!-- 클래스명 -->
                                     <td class="text-center">${pl.mete_nick}</td><!-- 구매자 -->
                                     <td class="text-center">${pl.mete2_nick}</td><!-- 판매자 -->
-                                    <td class="text-center">￦${pl.prdt_pric}</td><!-- 가격 -->
+                                    <td class="text-center">￦${pl.cls_pric}</td><!-- 가격 -->
                                     <td class="text-center bold">${pl.paydt}</td><!--결제일 -->
                                 </tr>
                             </c:forEach>

@@ -264,7 +264,7 @@ public class ClassController {
       System.out.println(c.getNo());
       System.out.println(c.getMeno());
       System.out.println(c.getTime());
-      System.out.println(c.getTotPric());
+      System.out.println(c.getTot_pric());
       System.out.println(c.getPayopt());
       System.out.println(c.getPaydt());
       System.out.println(c.getCtno());
