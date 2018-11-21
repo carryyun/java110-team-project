@@ -19,6 +19,15 @@
         
         <result column="ptitl"   property="product.titl"/>
         <result column="sellernick"   property="sellernick"/>
+        
+        <result column="stname" property="stname"/>
+        <result column="titl" property="prdt_titl"/>
+        <result column="nick" property="mete_nick"/>
+        <result column="nick2" property="mete2_nick"/>
+        <result column="pric" property="prdt_pric"/>
+ 
+        
+        
     </resultMap>
     
     <select id="findAll" resultMap="productOrderMap">
@@ -38,7 +47,61 @@
             ono asc
     </select>
 
-    <select id="findByMeno" 
+    
+    <select id="findAllMaster" resultMap="productOrderMap">
+    
+    <!--
+    select 
+            stag.stname,
+            prdt.titl, 
+            mete.nick,
+            mete2.nick,
+            prdt.pric, 
+            paydt,
+            porder.ono
+        from
+            p_prdt_order as porder 
+            inner join p_prdt as prdt 
+            inner join p_stag as stag
+            inner join p_mete as mete
+            inner join p_cert as cert
+            inner join p_mete as mete2
+        
+            on prdt.ptno = porder.ptno and
+             prdt.stno = stag.stno AND
+             porder.meno = mete.meno and
+             mete2.meno = cert.meno and
+             prdt.ctno = cert.ctno
+        order by 
+            ono asc
+    
+      -->
+        select 
+	        stag.stname,
+	        prdt.titl, 
+	        mete.nick nick,
+	        mete2.nick nick2,
+	        prdt.pric, 
+	        paydt,
+	        porder.ono
+		from
+		    p_prdt_order as porder 
+		    inner join p_prdt as prdt 
+		    inner join p_stag as stag
+		    inner join p_mete as mete
+		    inner join p_cert as cert
+		    inner join p_mete as mete2
+		
+		    on prdt.ptno = porder.ptno and
+		     prdt.stno = stag.stno AND
+		     porder.meno = mete.meno and
+		     mete2.meno = cert.meno and
+		     prdt.ctno = cert.ctno
+        order by 
+            ono asc
+    </select>
+
+    <select id="findByNo" 
             resultMap="productOrderMap" parameterType="int">
        SELECT
             po.paydt,

@@ -19,7 +19,7 @@ import bitcamp.java110.cms.service.MenteeService;
 
 @Service
 public class MenteeServiceImpl implements MenteeService {
-  
+
   @Autowired    
   MenteeDao menteeDao;
 
@@ -35,7 +35,7 @@ public class MenteeServiceImpl implements MenteeService {
     System.out.println(mentee.getEmail());
     menteeDao.tempwd(mentee);
   }
-  
+
   public void naverMailSend(Mentee m) {
     String host = "smtp.naver.com";
     String user = "";
@@ -59,20 +59,20 @@ public class MenteeServiceImpl implements MenteeService {
     Transport.send(message); 
     System.out.println("Success Message Send"); 
     }catch (MessagingException e) { e.printStackTrace(); } 
-    
+
   }
-  
-  
+
+
   @Override
   public Mentee get(int no) {
     return menteeDao.findByNo(no);
   }
-  
+
   @Override
   public String getByNamePhone(Mentee mentee) {
     return menteeDao.findByNamePhone(mentee);
   }
-  
+
   @Override
   public String getByNameEmail(Mentee mentee) {
     return menteeDao.findByNameEmail(mentee);
@@ -85,7 +85,7 @@ public class MenteeServiceImpl implements MenteeService {
   public int checkByEmail(Mentee mentee) {
     return menteeDao.checkemail(mentee);
   }
-  
+
   // 회원가입시 닉네임 중복체크에 필요한메소드
   @Override
   public int checkByNick(Mentee mentee) {
@@ -119,9 +119,9 @@ public class MenteeServiceImpl implements MenteeService {
   }
   public void fbadd(Mentee mentee) {
     if(menteeDao.checkemail(mentee) == 0)
-    menteeDao.fbsignup(mentee);
+      menteeDao.fbsignup(mentee);
   }
-  
+
 
   @Transactional
   @Override
@@ -132,7 +132,7 @@ public class MenteeServiceImpl implements MenteeService {
     menteeDao.delete(no);
 
   }
-  
+
   // 멘토상태변경
   @Override
   public int updateMtstat(Mentee mentee) {

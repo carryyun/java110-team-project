@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <title>Document</title>
 
-    <!-- 필수-->
+    <!-- 부트스트랩-->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
     integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
@@ -22,15 +22,13 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">
 
             <!-- 게시판 시작-->
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 col-lg-offset-12">
                         <p>
-                            <span style="font-size: 45px; position: relative; right;"><strong>전체 상품 목록</strong></span>
+                            <span style="font-size: 45px; position: relative; right;"><strong>주문 내역</strong></span>
                         </p>
 
                         <div class="col-lg-3" id="serch-men">
@@ -57,23 +55,25 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">No</th>
+                                    <th class="text-center">카테고리</th>
+                                    <th class="text-center">상품명</th>
+                                    <th class="text-center">구매자</th>
                                     <th class="text-center">판매자</th>
-                                    <th class="text-center">판매글 제목</th>
                                     <th class="text-center">가격</th>
-                                    <th class="text-center">재고</th>
-                                    <th class="text-center">신청일</th>
+                                    <th class="text-center">결제일</th>
 
                                 </tr>
                             </thead>
                             <tbody>
-                            <c:forEach items="${productList}" var="pl" varStatus="i">
+                            <c:forEach items="${productOrderList}" var="pl" varStatus="i">
                                 <tr>
                                     <td class="text-center">${i.count}</td>
-                                    <td class="text-center">${pl.mentee.nick}</td>
-                                    <td class="text-center"><a class="button" href="#">${pl.titl}</a></td>
-                                    <td class="text-center">￦${pl.pric}</td>
-                                    <td class="text-center">${pl.stock}</td>
-                                    <td class="text-center bold">${pl.rgdt}</td>
+                                    <td class="text-center">${pl.stname}</td> <!-- 카테고리 -->
+                                    <td class="text-center"><a class="button" href="#">${pl.prdt_titl}</a></td> <!-- 상품명 -->
+                                    <td class="text-center">${pl.mete_nick}</td><!-- 구매자 -->
+                                    <td class="text-center">${pl.mete2_nick}</td><!-- 판매자 -->
+                                    <td class="text-center">￦${pl.prdt_pric}</td><!-- 가격 -->
+                                    <td class="text-center bold">${pl.paydt}</td><!--결제일 -->
                                 </tr>
                             </c:forEach>
                             </tbody>
@@ -106,9 +106,6 @@
 
                 </div>
             </div>
-
-        </div><!-- 메인 row-->
-    </div><!-- 메인 container-->
 
 
 </body>

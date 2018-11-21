@@ -5,17 +5,23 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bitcamp.java110.cms.dao.ClassOrderDao">
 
-    <resultMap type="ClassOrder" id="ClassorderMap">
+    <resultMap type="classOrder" id="classOrderMap">
         <id 	column="ono" 		property="no"/>
         <result column="meno"   	property="meno"/>
         <result column="time"    	property="time"/>
-        <result column="tot_pric"   property="totPric"/>
+        <result column="tot_pric"   property="tot_pric"/>
         <result column="payopt"  	property="payopt"/>
         <result column="paydt"  	property="paydt"/>
         <result column="ctno"  		property="ctno"/>
         
         <result column="ctitl"       property="classes.titl"/>
         <result column="mentornick"  property="mentornick"/>
+        
+         <result column="mtname" property="mtname"/>
+        <result column="titl" property="cls_titl"/>
+        <result column="nick" property="mete_nick"/>
+        <result column="nick2" property="mete2_nick"/>
+        <result column="pric" property="cls_pric"/>
     </resultMap>
     
     <select id="corderlist" resultMap="ClassorderMap" parameterType="map">
@@ -41,6 +47,36 @@
    
         	
     </select>
+    
+    
+    <select id="findAllMaster" resultMap="classOrderMap">
+        select
+            mtag.mtname,
+            cls.titl,
+            mete.nick nick,
+            mete2.nick nick2,
+            cls.pric,
+            paydt,
+            corder.ono
+
+        from
+            p_cls_order as corder 
+            inner join p_cls_ttab as ttab
+            inner join p_cls as cls
+            inner join p_mtag as mtag
+            inner join p_mete as mete
+            inner join p_mete as mete2
+        on
+            corder.ctno = ttab.ctno and
+            ttab.cno = cls.cno and
+            cls.mtno = mtag.mtno and
+            corder.meno = mete.meno and
+            mete2.meno = cls.mono
+        order by
+            ono asc
+
+    </select>
+    
 
     <insert id="orderinsert" parameterType="int"
     useGeneratedKeys="true" keyColumn="ono" keyProperty="no">

@@ -104,19 +104,31 @@
     font-size: 20px;
 }
 
+.col-lg-6 .pic1 {
+    position: relative;
+    text-align: center;
+}
+
+
 #mas-p1 {
+ /* 멘토신청 리스트 팝업 승락버튼 */
     position: relative;
     float: right;
     margin-top: 10%;
 }
 
 #mas-p2 {
+ /* 멘토신청 리스트 팝업 반려버튼 */
     position: relative;
     float: right;
     margin-top: 10%;
     right: 10px;
 }
-.col-lg-6 .pic1 {
-    position: relative;
-    text-align: center;
+
+
+.ment-pic{
+ /* 멘토신청 리스트 팝업 멘토사진 */
+  height: 300px;
+  width: 300px;
+ 
 }

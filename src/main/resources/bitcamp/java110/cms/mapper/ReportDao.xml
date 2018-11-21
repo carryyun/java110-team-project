@@ -7,15 +7,19 @@
 <mapper namespace="bitcamp.java110.cms.dao.ReportDao">
 
 	<resultMap type="report" id="reportMap">
-		<id column="rtno" property="no" />
-		<result column="titl" property="titl" />
-		<result column="conts" property="conts" />
-		<result column="url" property="url" />
-		<result column="type" property="type" />
-		<result column="rtdt" property="rtdt" />
-		<result column="meno2" property="meno2" />
-		<result column="meno" property="meno" />
-
+		<id column="rtno"         property="no" />
+		<result column="titl"     property="titl" />
+		<result column="conts"    property="conts" />
+		<result column="url"      property="url" />
+		<result column="type"     property="type" />
+		<result column="type_detail" property="type_detail"/>
+		<result column="rtdt"     property="rtdt" />
+	    <result column="meno"     property="meno" />	
+        <result column="meno2"    property="meno2" />
+  
+        <result column="metenick" property="menteeNick" />
+        <result column="mete2name" property="mentee2Name" />
+        <result column="mete2nick" property="mentee2Nick" />
 	</resultMap>
 
 	<sql id="select1">
@@ -26,32 +30,69 @@
 		url,
 		type,
 		rtdt,
-		meno2,
-		meno
+		meno,
+		meno2
 		FROM
 		p_rept
 	</sql>
-
+	
 	<select id="findAll" resultMap="reportMap" parameterType="map">
-		<include refid="select1"></include>
+        SELECT
+            rtno,
+            titl,
+            conts,
+            url,
+            type,
+            type_detail,
+            rtdt,
+            r.meno,
+            r.meno2
+        FROM
+            p_rept as rept inner join p_mete as mete
+            on rept.meno = mete.meno
+        order by 
+            rtno DESC
+        
+    </select>
+	
+	
 
-
-		order by
-		rtno asc
+	<select id="findFinishAll" resultMap="reportMap" parameterType="map">
+        SELECT
+            rtno,
+            titl,
+            conts,
+            url,
+            type,
+            type_detail,
+            rtdt,
+            r.meno,
+            r.meno2
+        FROM
+            p_rept r
+            join p_mete mete
+            join p_mete mete2
+        WHERE
+            r.meno = mete.meno AND
+            r.meno2 = mete2.meno AND
+            r.stat='Y'
 	</select>
 
 	<select id="findByNo" resultMap="reportMap"
 		parameterType="int">
-		<include refid="select1"></include>
-		where
-		rtno=#{value}
+        <include refid="select1"></include>
+        where
+        rtno=#{value}
+
 	</select>
 
-	<select id="findByMeno2" resultMap="reportMap"
-		parameterType="int">
-		<include refid="select1"></include>
-		where
-		meno2=#{value}
+	<select id="findByMeno2Cnt" resultType="int" parameterType="int">
+        select
+            count(meno2)
+        from
+            p_rept
+        where
+            meno2=#{value}
 	</select>
 
 	<select id="findByMeno" resultMap="reportMap"
@@ -74,11 +115,8 @@
     
     
 	<update id="update" parameterType="report">
-
 		update p_rept
-
 		<set>
-			
 			<if test="titl!=null">titl= #{titl},</if>
 			<if test="conts!=null">conts= #{conts},</if>
 			<if test="url!=null">url= #{url},</if>

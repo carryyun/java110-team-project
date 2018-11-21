@@ -9,7 +9,10 @@ public interface ReportService {
   
   void add(Report report);
   List<Report> list(int pageNo, int pageSize);
+  List<Report> finishlist(int pageNo, int pageSize);
   Report get(int no);
   void update(Report report);
+  
+  int getMeno2Cnt(int no);
 
 }
