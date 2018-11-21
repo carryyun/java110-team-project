@@ -6,13 +6,16 @@
 <mapper namespace="bitcamp.java110.cms.dao.ClassOrderDao">
 
     <resultMap type="classOrder" id="classOrderMap">
-        <id 	column="ono" 		property="no"/>
-        <result column="meno"   	property="meno"/>
-        <result column="time"    	property="time"/>
+        <id     column="ono"        property="no"/>
+        <result column="meno"       property="meno"/>
+        <result column="time"       property="time"/>
         <result column="tot_pric"   property="tot_pric"/>
-        <result column="payopt"  	property="payopt"/>
-        <result column="paydt"  	property="paydt"/>
-        <result column="ctno"  		property="ctno"/>
+        <result column="payopt"     property="payopt"/>
+        <result column="paydt"      property="paydt"/>
+        <result column="ctno"       property="ctno"/>
+        
+        <result column="ctitl"       property="classes.titl"/>
+        <result column="mentornick"  property="mentornick"/>
         
         <result column="mtname" property="mtname"/>
         <result column="titl" property="cls_titl"/>
@@ -21,12 +24,28 @@
         <result column="pric" property="cls_pric"/>
     </resultMap>
     
-    <select id="orderlist" resultMap="classOrderMap" parameterType="map">
-        select
-        	meno,time,tot_pric,payopt,paydt,ctno
-        from
-        	p_cls_order
-        	
+     <select id="findByMeno" resultMap="classOrderMap" parameterType="Map">
+       
+        SELECT
+            co.ono,
+            co.meno,
+            co.time,
+            co.tot_pric,
+            co.payopt,
+            co.paydt,
+            co.ctno,
+            c.titl as ctitl,
+            me2.nick as mentornick
+         FROM
+            p_cls_order co JOIN p_mete me on co.meno = me.meno
+            JOIN p_cls_ttab ct ON co.ctno = ct.ctno
+            JOIN p_cls c ON ct.cno = c.cno
+            JOIN p_meto mo ON c.mono =mo.mono
+            JOIN p_mete me2 ON mo.mono = me2.meno 
+        where
+            me.meno=${meno}
+   
+            
     </select>
     
     
@@ -62,13 +81,12 @@
     <insert id="orderinsert" parameterType="int"
     useGeneratedKeys="true" keyColumn="ono" keyProperty="no">
         insert 
-        	into p_cls_order(meno,time,tot_pric,payopt,paydt,ctno)
+            into p_cls_order(meno,time,tot_pric,payopt,paydt,ctno)
         values
-        	(#{meno},#{time},#{tot_pric},#{payopt},now(),#{ctno})
+            (#{meno},#{time},#{tot_pric},#{payopt},now(),#{ctno})
     </insert>
     
 </mapper>
-
 
 
 

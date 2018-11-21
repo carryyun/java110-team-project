@@ -48,11 +48,11 @@ public class ProductOrderServiceImpl implements ProductOrderService {
   @Override
   public List<ProductOrder> listByMeno(int pageNo, int pageSize, int meno) {
     HashMap<String, Object> params = new HashMap<>();
-    params.put("rowNo", (pageNo - 1) * pageSize);
-    params.put("size", pageSize);
-    params.put("mentno", meno);
+    params.put("pageNo", pageNo);
+    params.put("pageSize", pageSize);
+    params.put("meno", meno);
 
-    return productOrderDao.findAllByMeno(params);
+    return productOrderDao.findByMeno(params);
   }
 
 

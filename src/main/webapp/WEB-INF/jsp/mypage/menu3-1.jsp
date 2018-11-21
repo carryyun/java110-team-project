@@ -1,60 +1,65 @@
+<%@ page import="bitcamp.java110.cms.domain.ClassOrder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-                <div id="container">
-                    <div align="right">
+<div class="col-lg-12">
+    <div class="panel panel-default">
+       
+                          
+        <div class="panel-body">
+            <table class="table table-condensed" style="border-collapse:collapse;">
+
+                <thead>
+                    <tr>
+                       
+                         <th width="5%">No.</th>
+                         <th width="15%">결제일자</th>
+                         <th width="15%">결제방법</th>
+                         <th width="30%">클래스</th>
+                         <th width="10%">멘토</th>
+                         <th width="10%">가격</th>
+                         <th width="15%">결제상태</th>
+
+                        
+                    </tr>
+                </thead>
+                <tbody>
+
+   <c:forEach items="${colist}" var="c" varStatus="i">
+     
+
+                    <tr >
+                        <td>${i.count}</td>
+                        <td>${c.paydt}</td>
+                        <td>${c.payopt}</td>
+                        <td><a href='#'>${c.classes.titl}</a></td>
+                        <td>${c.mentornick}</td>
+                        <td>${c.tot_pric}</td>
+                        <td>결제상태</td>
+                        
+
+                    </tr>
+                   
                     
-                    </div>
+                    
+                   
+         
+        </c:forEach>      
+                    
+                    
+                </tbody>
+            </table>
+        </div>
 
+    </div>
 
-
-
-                    <div>
-                        <table class="table table-striped table-bordered table-hover">
-                            <thead>
-                                <tr>
-                                    <th width="5%">No.</th>
-                                    <th width="20%">결제일자</th>
-                                    <th width="30%">클래스 이름</th>
-                                    <th width="15%">멘토</th>
-                                    <th width="10%">가격</th>
-                                    <th width="20%">결제상태</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                    <tr>
-                                        <td>
-                                        </td>
-                                        <td id="title">
-                                           
-                                            <a >
-                                                </a>
-                                            
-                  <span class="hit"> </span>
-            
-                                        </td>
-                                        <td>
-                                            
-                                        </td>
-                                        <td>
-                                            
-                                        </td>
-                                        <td>
-                                            
-                                        </td>
-                                        <td>
-                                           
-                                        </td>
-                                    <tr>
-                            </tbody>
-                        </table>
-
-                        <!-- Paging 처리 -->
+<!-- Paging 처리 -->
                         <div id="paging">
                             <!--        ${pageCode}-->
                         </div>
                     </div>
-                </div>
+                
 
  <!-- page navigation -->
 <nav aria-label="Page navigation"  class="pn-center" >
@@ -77,4 +82,3 @@
   </ul>
 </nav>
             
-   
