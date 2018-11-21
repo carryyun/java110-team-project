@@ -126,6 +126,12 @@ public class Report {
     this.cnt = cnt;
   }
 
-
-
+  @Override
+  public String toString() {
+    return "Report [no=" + no + ", titl=" + titl + ", conts=" + conts + ", url=" + url + ", type="
+        + type + ", type_detail=" + type_detail + ", rtdt=" + rtdt + ", meno=" + meno + ", meno2="
+        + meno2 + ", menteeNick=" + menteeNick + ", mentee2Name=" + mentee2Name + ", mentee2Nick="
+        + mentee2Nick + ", cnt=" + cnt + "]";
+  }
+  
 }
