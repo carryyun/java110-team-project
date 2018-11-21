@@ -1,22 +1,21 @@
 package bitcamp.java110.cms.web;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import bitcamp.java110.cms.domain.ClassOrder;
 import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.Mentor;
-import bitcamp.java110.cms.domain.Product;
-import bitcamp.java110.cms.domain.ProductPopul;
+import bitcamp.java110.cms.domain.ProductOrder;
 import bitcamp.java110.cms.domain.ProductQnA;
+import bitcamp.java110.cms.service.ClassOrderService;
 import bitcamp.java110.cms.service.ClassService;
 import bitcamp.java110.cms.service.MenteeService;
 import bitcamp.java110.cms.service.MentorService;
+import bitcamp.java110.cms.service.ProductOrderService;
 import bitcamp.java110.cms.service.ProductPopulService;
 import bitcamp.java110.cms.service.ProductService;
 
@@ -29,13 +28,17 @@ public class MasterController {
   ProductService productService;
   ProductPopulService productPopulService;
   ClassService classService;
+  ProductOrderService productOrderService;
+  ClassOrderService classOrderService;
 
   public MasterController(
       ProductService productService,
       ProductPopulService productPopulService,
       ClassService classService,
       MenteeService menteeService,
-      MentorService mentorService
+      MentorService mentorService,
+      ProductOrderService productOrderService,
+      ClassOrderService classOrderService
       ) {
 
     this.productService = productService;
@@ -43,30 +46,21 @@ public class MasterController {
     this.classService = classService;
     this.menteeService = menteeService;
     this.mentorService = mentorService;
+    this.productOrderService = productOrderService;
+    this.classOrderService = classOrderService;
   }
 
-  @GetMapping("prdtlist")
+  @GetMapping("prodOrderList")
   public void prdt(Model model) {
-    List<Product> productList = productService.list();
-    model.addAttribute("productList", productList);
+    List<ProductOrder> productOrderList = productOrderService.listByMaster(3, 5);
+    model.addAttribute("productOrderList", productOrderList);
     
-    /*List<ProductPopul> pp_list = productPopulService.list();
-    List<Product> pp_product = new ArrayList<>();
-
-    for (ProductPopul p : pp_list) {
-      pp_product.add(p.getProduct());
-    }
-
-    ObjectMapper mapper = new ObjectMapper();
-    String jsonText = "";
-    try {
-
-      jsonText = mapper.writeValueAsString(pp_product);
-      model.addAttribute("pp_list", jsonText);
-    } catch (JsonProcessingException e) {
-      System.out.println(e.getMessage());
-    }*/
-
+  }
+  
+  @GetMapping("classOrderList")
+  public void cls(Model model) {
+    List<ClassOrder> classOrderList = classOrderService.listByMaster(3, 5);
+    model.addAttribute("classOrderList", classOrderList);
     
   }
   
@@ -110,6 +104,9 @@ public class MasterController {
 
     return "redirect:./prdtQna";
   }
+  
+  
+ 
 
 }
 

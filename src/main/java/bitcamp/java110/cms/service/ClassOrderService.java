@@ -6,5 +6,8 @@ import bitcamp.java110.cms.domain.ClassOrder;
 public interface ClassOrderService {
 
   List<ClassOrder> corderlist(int pageSize);
+
   void orderadd(ClassOrder classorder);
+
+  List<ClassOrder> listByMaster(int pageNo, int pageSize); // 관리자- 클래스 조회
 }

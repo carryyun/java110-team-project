@@ -13,6 +13,11 @@
         <result column="payopt"  	property="payopt"/>
         <result column="paydt"  	property="paydt"/>
         <result column="ctno"  		property="ctno"/>
+        
+        <result column="mtname" property="mtname"/>
+        <result column="titl" property="cls_titl"/>
+        <result column="nick" property="mete_nick"/>
+        <result column="nick2" property="mete2_nick"/>
     </resultMap>
     
     <select id="orderlist" resultMap="ClassorderMap" parameterType="map">
@@ -22,6 +27,37 @@
         	p_cls_order
         	
     </select>
+    
+    
+    <select id="findAllMaster" resultMap="ClassorderMap">
+        select
+    mtag.mtname,
+    cls.cls_titl,
+    mete_nick nick,
+    mete2_nick nick2,
+    cls.tot_pric,
+    paydt
+    corder.ono
+
+from
+    p_cls_order as corder 
+    inner join p_cls_ttab as ttab
+    inner join p_cls as cls
+    inner join p_mtag as mtag
+    inner join p_mete as mete
+    inner join p_cert as cert
+on
+    corder.ctno = ttab.ctno and
+    ttab.cno = cls.cno and
+    cls.mtno = mtag.mtno and
+    corder.meno = mete.meno and
+    cls.cno = cert.cno and
+    cert.meno = mete.meno
+order by
+    ono asc
+
+    </select>
+    
 
     <insert id="orderinsert" parameterType="int"
     useGeneratedKeys="true" keyColumn="ono" keyProperty="no">
