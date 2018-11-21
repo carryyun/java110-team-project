@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-
+ 
     <!-- 필수-->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
