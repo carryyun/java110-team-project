@@ -127,6 +127,10 @@ public class MasterController {
     List<Report> ReportList = reportService.finishlist(3, 3);
     for(Report r: ReportList) {
       r.setCnt(reportService.getMeno2Cnt(r.getMeno2()));
+      r.setFinishlist(reportService.listByMeno2(3, 3, r.getMeno2()));
+      System.out.println("-=-=-=-=-=-=-=");
+      System.out.println(r.getFinishlist());
+      System.out.println("-=-=-=-=-=-=-=");
     }
     
     model.addAttribute("ReportList",ReportList);

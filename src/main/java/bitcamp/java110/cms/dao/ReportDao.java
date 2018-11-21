@@ -9,6 +9,7 @@ public interface ReportDao {
   
   List<Report> findAll(Map<String,Object> params);
   List<Report> findFinishAll(Map<String,Object> params);
+  List<Report> findByMeno2(Map<String,Object> params);
   Report findByNo(int no);
 //  Report findByTitl(String titl);
 //  Report findByConts(String conts);

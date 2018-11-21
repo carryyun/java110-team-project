@@ -1,6 +1,7 @@
 package bitcamp.java110.cms.domain;
 
 import java.sql.Date;
+import java.util.List;
 
 public class Report {
   private int no;
@@ -19,7 +20,16 @@ public class Report {
 
   private int cnt;
   
+  private List<Report> finishlist;
   
+
+  public List<Report> getFinishlist() {
+    return finishlist;
+  }
+
+  public void setFinishlist(List<Report> finishlist) {
+    this.finishlist = finishlist;
+  }
 
   public int getNo() {
     return no;
