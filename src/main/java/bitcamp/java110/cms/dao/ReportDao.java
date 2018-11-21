@@ -15,7 +15,7 @@ public interface ReportDao {
 //  Report findByType(String type);
 //  Report findByRtdt(Date rtdt);
   Report findByMeno(int no);
-  Report findByMeno2(int no);
+  int findByMeno2Cnt(int no);
   int insert(Report report);
   int update(Report report);
 }

@@ -11,8 +11,38 @@ public class Report {
   private String url;
   private String type;
   private Date rtdt;
-  private int meno2;
   private int meno;
+  private int meno2;
+  
+  private String menteeNick;
+  private String mentee2Nick;
+  
+  private int cnt;
+  
+  @Override
+  public String toString() {
+    return "Report [no=" + no + ", titl=" + titl + ", conts=" + conts + ", url=" + url + ", type="
+        + type + ", rtdt=" + rtdt + ", meno=" + meno + ", meno2=" + meno2 + ", menteeNick="
+        + menteeNick + ", mentee2Nick=" + mentee2Nick + ", cnt=" + cnt + "]";
+  }
+  public int getCnt() {
+    return cnt;
+  }
+  public void setCnt(int cnt) {
+    this.cnt = cnt;
+  }
+  public String getMenteeNick() {
+    return menteeNick;
+  }
+  public void setMenteeNick(String menteeNick) {
+    this.menteeNick = menteeNick;
+  }
+  public String getMentee2Nick() {
+    return mentee2Nick;
+  }
+  public void setMentee2Nick(String mentee2Nick) {
+    this.mentee2Nick = mentee2Nick;
+  }
   public int getNo() {
     return no;
   }

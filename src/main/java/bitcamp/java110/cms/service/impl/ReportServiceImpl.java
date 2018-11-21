@@ -53,6 +53,11 @@ public class ReportServiceImpl implements ReportService {
   public Report get(int no) {
       return reportDao.findByNo(no);
   }
+
+  @Override
+  public int getMeno2Cnt(int no) {
+    return reportDao.findByMeno2Cnt(no);
+  }
   
 }
   
