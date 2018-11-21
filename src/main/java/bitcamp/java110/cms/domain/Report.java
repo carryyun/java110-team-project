@@ -15,6 +15,7 @@ public class Report {
   private int meno; // 신고자
   private int meno2; // 피신고자
 
+
   private String menteeNick;
   private String mentee2Name;
   private String mentee2Nick;

@@ -52,10 +52,6 @@
             on rept.meno = mete.meno
         order by 
             ptno DESC
-            r.meno2,
-            mete.nick as metenick,
-            mete2.name as mete2name,
-            mete2.nick as mete2nick
         
     </select>
 	
