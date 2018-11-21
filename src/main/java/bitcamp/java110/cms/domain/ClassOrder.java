@@ -12,6 +12,44 @@ public class ClassOrder {
   private Date paydt;
   private int ctno;
   
+  private Mentee mentee;
+  private Mentor mentor;
+  private Classes classes;
+  private Timetable timetable;
+  
+  private String mentornick;
+  
+  
+  public String getMentornick() {
+    return mentornick;
+  }
+  public void setMentornick(String mentornick) {
+    this.mentornick = mentornick;
+  }
+  public Mentee getMentee() {
+    return mentee;
+  }
+  public void setMentee(Mentee mentee) {
+    this.mentee = mentee;
+  }
+  public Mentor getMentor() {
+    return mentor;
+  }
+  public void setMentor(Mentor mentor) {
+    this.mentor = mentor;
+  }
+  public Classes getClasses() {
+    return classes;
+  }
+  public void setClasses(Classes classes) {
+    this.classes = classes;
+  }
+  public Timetable getTimetable() {
+    return timetable;
+  }
+  public void setTimetable(Timetable timetable) {
+    this.timetable = timetable;
+  }
   public int getNo() {
     return no;
   }

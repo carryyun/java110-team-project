@@ -16,6 +16,9 @@
         <result column="paydt"   property="paydt"/>
         <result column="parc_name"   property="parc_name"/>
         <result column="parc_no"   property="parc_no"/>
+        
+        <result column="ptitl"   property="product.titl"/>
+        <result column="sellernick"   property="sellernick"/>
     </resultMap>
     
     <select id="findAll" resultMap="productOrderMap">
@@ -35,22 +38,26 @@
             ono asc
     </select>
 
-    <select id="findByNo" 
+    <select id="findByMeno" 
             resultMap="productOrderMap" parameterType="int">
-        select
-            ono,
-            meno,
-            ptno,
-            cnt,
-            tot_pric,
-            payopt,
-            paydt,
-            parc_name,
-            parc_no
-        from
-            p_prdt_order
-        where 
-            ono=#{value}
+       SELECT
+            po.paydt,
+            po.payopt,
+            po.tot_pric,
+            po.parc_name,
+            po.parc_no,
+            po.tot_pric,
+            po.cnt,
+            po.ptno,
+            p.titl as ptitl,
+            me2.nick as sellernick
+         FROM
+            p_prdt_order po
+            JOIN p_mete me on po.meno = me.meno
+            JOIN p_prdt p ON po.ptno = p.ptno
+            JOIN p_mete me2 ON p.meno = me2.meno 
+        where
+            me.meno=#{meno}
     </select>
     
     <select id="findAllByMeno" 

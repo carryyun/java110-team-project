@@ -13,13 +13,32 @@
         <result column="payopt"  	property="payopt"/>
         <result column="paydt"  	property="paydt"/>
         <result column="ctno"  		property="ctno"/>
+        
+        <result column="ctitl"       property="classes.titl"/>
+        <result column="mentornick"  property="mentornick"/>
     </resultMap>
     
-    <select id="orderlist" resultMap="ClassorderMap" parameterType="map">
-        select
-        	meno,time,tot_pric,payopt,paydt,ctno
-        from
-        	p_cls_order
+    <select id="corderlist" resultMap="ClassorderMap" parameterType="map">
+       
+        SELECT
+            co.ono,
+            co.meno,
+            co.time,
+            co.tot_pric,
+            co.payopt,
+            co.paydt,
+            co.ctno,
+            c.titl as ctitl,
+            me2.nick as mentornick
+         FROM
+            p_cls_order co JOIN p_mete me on co.meno = me.meno
+            JOIN p_cls_ttab ct ON co.ctno = ct.ctno
+            JOIN p_cls c ON ct.cno = c.cno
+            JOIN p_meto mo ON c.mono =mo.mono
+            JOIN p_mete me2 ON mo.mono = me2.meno 
+        where
+            me.meno=${meno}
+   
         	
     </select>
 

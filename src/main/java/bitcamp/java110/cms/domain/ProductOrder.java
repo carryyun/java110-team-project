@@ -14,6 +14,35 @@ public class ProductOrder {
   private Date paydt; // 날짜시간
   private String parc_name; // 택배사
   private int parc_no; // 송장번호
+  
+  private Mentee mentee;
+  private Product product;
+  private String sellernick;
+  
+
+  public Mentee getMentee() {
+    return mentee;
+  }
+
+  public void setMentee(Mentee mentee) {
+    this.mentee = mentee;
+  }
+
+  public Product getProduct() {
+    return product;
+  }
+
+  public void setProduct(Product product) {
+    this.product = product;
+  }
+
+  public String getSellernick() {
+    return sellernick;
+  }
+
+  public void setSellernick(String sellernick) {
+    this.sellernick = sellernick;
+  }
 
   public int getNo() {
     return no;

@@ -6,7 +6,7 @@ import bitcamp.java110.cms.domain.Cs;
 
 public interface CsDao {
   int insert(Cs cs);
-  List<Cs> findAll(Map<String,Object> params); // 마이페이지 1:1문이ㅡ
+  List<Cs> findAll(Map<String,Object> params); // 마이페이지 1:1문의
   Cs findByNo(int no);
   int delete(int no);
   int update(Cs cs);
