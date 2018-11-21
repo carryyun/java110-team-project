@@ -13,17 +13,27 @@ public class Report {
   private Date rtdt;
   private int meno;
   private int meno2;
-  
+
   private String menteeNick;
+  private String mentee2Name;
   private String mentee2Nick;
-  
+
   private int cnt;
   
+  
+
   @Override
   public String toString() {
     return "Report [no=" + no + ", titl=" + titl + ", conts=" + conts + ", url=" + url + ", type="
         + type + ", rtdt=" + rtdt + ", meno=" + meno + ", meno2=" + meno2 + ", menteeNick="
-        + menteeNick + ", mentee2Nick=" + mentee2Nick + ", cnt=" + cnt + "]";
+        + menteeNick + ", mentee2Name=" + mentee2Name + ", mentee2Nick=" + mentee2Nick + ", cnt="
+        + cnt + "]";
+  }
+  public String getMentee2Name() {
+    return mentee2Name;
+  }
+  public void setMenteeName(String mentee2Name) {
+    this.mentee2Name = mentee2Name;
   }
   public int getCnt() {
     return cnt;
@@ -92,7 +102,4 @@ public class Report {
     this.meno = meno;
   }
   
-  
-  
-
 }
