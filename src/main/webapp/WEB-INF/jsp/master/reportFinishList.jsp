@@ -62,7 +62,7 @@
                             <td class="text-center">${rl.rtdt}</td>
                             <td class="text-center">${rl.menteeNick}</td>
                             <td class="text-center">${rl.menteeNick}</td>
-                            <td class="text-center">3</td>
+                            <td class="text-center">${rl.cnt}</td>
                             <td class="text-center"><button id="block-cho"><a class="button" href="#popup1">상세 보기</a></button></td>
                         </tr>
                     </c:forEach>
