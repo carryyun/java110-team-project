@@ -36,7 +36,7 @@
                         <td><a href='#'>${p.product.titl}</a></td>
                         <td>${p.sellernick}</td>
                         <td>${p.tot_pric}(${p.cnt})개</td>
-                        <td>${p.parc_name }</td>
+                        <td>${p.parc_name }<br>${p.parc_no}</td>
                         
 
                     </tr>

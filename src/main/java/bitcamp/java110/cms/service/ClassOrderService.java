@@ -10,4 +10,6 @@ public interface ClassOrderService {
   void orderadd(ClassOrder classorder);
 
   List<ClassOrder> listByMaster(int pageNo, int pageSize); // 관리자- 클래스 조회
+
+ 
 }
