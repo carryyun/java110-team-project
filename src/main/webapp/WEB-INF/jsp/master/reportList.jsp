@@ -135,7 +135,7 @@
                                             <span class="pop-type">${rl.rtdt}</span></li></td>
                                             </tr>
                                             <tr>
-                                                <td colspan="4" style="height: 500px"><li><span style="font-size: 20px;">내용: </span>
+                                                <td colspan="4" style="height: 100px"><li><span style="font-size: 20px;">내용: </span>
                                             <span class="pop-type">${rl.conts}</span></li></td>
                                             </tr>
                                             <!-- <tr>
@@ -166,7 +166,8 @@
 <!-- Bootstrap core JavaScript -->
 <script src="/vendor/jquery/jquery.min.js"></script>
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- <script>
+<!-- 181121고친거 -->
+<script>
 function stat(no,name){
     removeItem(no)
     $.ajax({
@@ -178,6 +179,6 @@ function stat(no,name){
         success : location.href="#"
     });
 }
-</script> -->
+</script>
 
 </html>
