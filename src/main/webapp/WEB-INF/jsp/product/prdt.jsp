@@ -18,7 +18,6 @@
 <!-- Bootstrap core CSS -->
 <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- 폰트 추가 -->
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
 	integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
@@ -110,10 +109,9 @@
 															<a href="#"><img alt="${i.count}" src="${pl.phot}"
 																style="width: 100%; height: 100%"></a> <img src="${pl.mentee.phot}"
 																class="mentorimg" alt="${pl.mentee.phot}">
-															<div
-																style="padding: 0 5px; top: 75px; width: auto; height: auto; position: absolute; background-color: #f58500; color: white; border-bottom-right-radius: 10px">${pl.mentee.name}</div>
-															<div
-																style="padding: 0 5px; top: 100px; width: auto; height: auto; position: absolute; background-color: #333873; color: white; border-bottom-right-radius: 10px">${pl.mentee.nick}
+															<div style="padding: 0 5px; top: 75px; width: auto; height: auto; position: absolute; background-color: #f58500; color: white; border-bottom-right-radius: 10px">${pl.mentee.name}
+															</div>
+															<div style="padding: 0 5px; top: 100px; width: auto; height: auto; position: absolute; background-color: #333873; color: white; border-bottom-right-radius: 10px">${pl.mentee.nick}
 																멘토</div>
 														</div>
 													</div>

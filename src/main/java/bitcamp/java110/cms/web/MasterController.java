@@ -1,6 +1,7 @@
 package bitcamp.java110.cms.web;
 
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,7 @@ import bitcamp.java110.cms.domain.ClassOrder;
 import bitcamp.java110.cms.domain.Classes;
 import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.Mentor;
+import bitcamp.java110.cms.domain.Notice;
 import bitcamp.java110.cms.domain.ProductOrder;
 import bitcamp.java110.cms.domain.ProductQnA;
 import bitcamp.java110.cms.domain.Report;
@@ -21,6 +23,7 @@ import bitcamp.java110.cms.service.MenteeService;
 import bitcamp.java110.cms.service.MentorFileService;
 import bitcamp.java110.cms.service.MentorLicenseService;
 import bitcamp.java110.cms.service.MentorService;
+import bitcamp.java110.cms.service.NoticeService;
 import bitcamp.java110.cms.service.ProductOrderService;
 import bitcamp.java110.cms.service.ProductPopulService;
 import bitcamp.java110.cms.service.ProductService;
@@ -42,6 +45,8 @@ public class MasterController {
   MentorLicenseService mentorlicenseService;
   ReportService reportService;
 
+  
+  NoticeService noticeService;
   public MasterController(
       ProductService productService,
       ProductPopulService productPopulService,
@@ -53,7 +58,8 @@ public class MasterController {
       MentorFileService mentorFileService, 
       MentorLicenseService mentorlicenseService,
       BigTagService bigTagService,
-      ReportService reportService
+      ReportService reportService,
+      NoticeService noticeService
       ) {
 
     this.productService = productService;
@@ -67,8 +73,15 @@ public class MasterController {
     this.mentorlicenseService = mentorlicenseService;
     this.bigTagService = bigTagService;
     this.reportService = reportService;
+    
+    this.noticeService = noticeService;
   }
 
+  @GetMapping("prdtlist")
+  public void prdtlist(){
+    
+  }
+  
   @GetMapping("prodOrderList")
   public void prdt(Model model) {
     List<ProductOrder> productOrderList = productOrderService.listByMaster(3, 5);
@@ -94,12 +107,12 @@ public class MasterController {
   }
   
   // 181121 고친거
- /* @RequestMapping(value = "mtstat2.do", method = {RequestMethod.GET, RequestMethod.POST})
-  public @ResponseBody int mtstat2(int meno, char stat) {
-    Mentee mentee = menteeService.get(meno);
-    mentee.setMtstat(stat);
-    return menteeService.updateMtstat(mentee);
-  }*/
+  @RequestMapping(value = "reptstat.do", method = {RequestMethod.GET, RequestMethod.POST})
+  public @ResponseBody int reptstat(int rtno, char stat) {
+    Report report = reportService.get(rtno);
+    report.setStat(stat);
+    return reportService.updateReptstat(report);
+  }
 
   @GetMapping("mentorreqlist")
   public void mentorlist(Model model) {
@@ -116,7 +129,7 @@ public class MasterController {
    * 클래스신청목록 관련
    */
 
-  @GetMapping("classlist")
+  @GetMapping("classreqlist")
   public void classlist(Model model) {
     List<Classes> ClassRequestList = classService.listByStat("I");
 
@@ -143,7 +156,7 @@ public class MasterController {
   
   @GetMapping("reportList")
   public void reportList(Model model) {
-    List<Report> ReportList = reportService.finishlist(3, 3);
+    List<Report> ReportList = reportService.listByStat(10, 3);
     for(Report r: ReportList) {
       r.setCnt(reportService.getMeno2Cnt(r.getMeno2()));
     }
@@ -164,8 +177,21 @@ public class MasterController {
   
   
   
+  /*
+   * 사용자 알림 (추후 mypage폴더로 이동시켜야함)
+   */
   
-  
+  @GetMapping("notice")
+  public void notice(Model model ,HttpSession session) {
+    Mentee loginUser = (Mentee)session.getAttribute("loginUser");
+    List<Notice> noticeList = noticeService.listByMeno(5, 5, loginUser.getNo());
+    
+    model.addAttribute("noticeList", noticeList);
+  }
+  @RequestMapping(value = "notiRemove.do", method = {RequestMethod.GET, RequestMethod.POST})
+  public @ResponseBody int removeNoti(int no) {
+    return noticeService.remove(no);
+  }
   
   /*
    * 차단목록 관련(미완성)

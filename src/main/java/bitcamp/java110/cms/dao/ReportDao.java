@@ -9,6 +9,7 @@ public interface ReportDao {
   
   List<Report> findAll(Map<String,Object> params);
   List<Report> findFinishAll(Map<String,Object> params);
+  List<Report> findByStat(Map<String,Object> params);
   List<Report> findByMeno2(Map<String,Object> params);
   Report findByNo(int no);
 //  Report findByTitl(String titl);
@@ -20,4 +21,6 @@ public interface ReportDao {
   int findByMeno2Cnt(int no);
   int insert(Report report);
   int update(Report report);
+  
+  int updateReptstat(Report report);
 }

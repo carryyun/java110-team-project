@@ -6,7 +6,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="container">
 
-    <!-- 상세정보, 상품평, QnA navi바 -->
+	<!-- 상세정보, 상품평, QnA navi바 -->
 	<div id="testt">
 		<ul class="under-navbar-nav">
 			<li class="under-nav-item"><a class="nav-link"
@@ -14,9 +14,8 @@
 
 			<li class="under-nav-item"><a class="nav-link"
 				href="#prod_review"><h4>상품평</h4></a></li>
-				
-			<li class="under-nav-item"><a class="nav-link"
-			     href="#prod_qna"><h4>Q&A</h4></a></li>
+
+			<li class="under-nav-item"><a class="nav-link" href="#prod_qna"><h4>Q&A</h4></a></li>
 		</ul>
 	</div>
 
@@ -24,12 +23,12 @@
 	<div class="row">
 		<div class="col-lg-12 col-md-12 mx-auto" id="detail">
 
-            <h3>상세정보</h3>
+			<h3>상세정보</h3>
 			<div class="detail_info">
 				<hr class="Fhr" id="prod_detail">
 				${product.conts}
 			</div>
-			
+
 			<h3>상품평</h3>
 
 			<hr class="Fhr" id="prod_review">
@@ -65,15 +64,13 @@
 			<div id="prod_review">
 				<!--  class="container col-lg-12" 생략 -->
 				<div class="row">
-				<div class="col">
-				<form class="form-horizontal" action="send.php" method="post">
-                    <fieldset>
-					<table class="fixed-table w-100" >
-							<tr>
-								<td colspan="3">
-									<!-- <div class=""> -->
-									
-											<!-- Message body -->
+					<div class="col">
+						<form class="form-horizontal" action="send.php" method="post">
+							<fieldset>
+								<table class="fixed-table w-100">
+									<tr>
+										<td colspan="3">
+											<!-- <div class=""> --> <!-- Message body -->
 											<div class="form-group">
 												<label class="col-lg-3 control-label" for="message">상품평</label>
 												<div class="col-lg-12">
@@ -81,34 +78,31 @@
 														placeholder="상품평을 등록해주세요." rows="5"></textarea>
 												</div>
 											</div>
-                                                </td>
-                                </tr>
-                                <tr>
-                                            <td>
-												<label class="control-label my-0" for="message">별점</label>
-                                            </td>
-                                            <td>
-												<div id="star1"></div>
-											<!-- </div> -->
-											<!-- <div class=""> -->
-                                            </td>
-								
-								<td align="right" valign="top">
-									<!-- Form actions -->
-										<!--col-lg-12추가했음-->
-										<div class="col-md-12 col-lg-12 text-right" style="vertical-align: middle;">
-											<button type="submit" class="btn btn-primary btn-md"
-												style="background-color: #606066; color: #ffffff">등록</button>
-											<button type="reset" class="btn btn-default btn-md">취소</button>
-										</div>
-								</td>
-							</tr>
-						<!-- <div class="col-md-9 col-md-offset-0"> -->
-					</table>
-					                                       </fieldset>
-                                    </form>
-                                    </div>
-                                    
+										</td>
+									</tr>
+									<tr>
+										<td><label class="control-label my-0" for="message">별점</label>
+										</td>
+										<td>
+											<div id="star1"></div> <!-- </div> --> <!-- <div class=""> -->
+										</td>
+
+										<td align="right" valign="top">
+											<!-- Form actions --> <!--col-lg-12추가했음-->
+											<div class="col-md-12 col-lg-12 text-right"
+												style="vertical-align: middle;">
+												<button type="submit" class="btn btn-primary btn-md"
+													style="background-color: #606066; color: #ffffff">등록</button>
+												<button type="reset" class="btn btn-default btn-md">취소</button>
+											</div>
+										</td>
+									</tr>
+									<!-- <div class="col-md-9 col-md-offset-0"> -->
+								</table>
+							</fieldset>
+						</form>
+					</div>
+
 					<!-- <table width="100%" border="0"> -->
 				</div>
 				<!-- <div class="row"> ???? -->
@@ -147,46 +141,38 @@
 									</tr>
 								</thead>
 								<c:forEach items="${prodQnaList}" var="qna">
-								<tbody class="col-lg-12">
-									<tr class="row">
-										<th class="col-lg-1" scope="row" id="qna_th">${qna.no}</th>
-										<td class="col-lg-2">${qna.type}</td>
-										<td class="col-lg-2">
-										<c:set var="rgdt2" value="${qna.rgdt2}" />
-									
-		                                    <%
-		                                    Date rgdt2 = (Date) pageContext.getAttribute("rgdt2");
-		                                    if(rgdt2!=null){
-		                                    %>
-		                                                                                        완료
-		                                    <%}else{
-		                                    %>
-		                                                                                        미완료
-		                                              <%
-		                                               }
-		                                            %>
-										
-										
-										</td>
-										<td class="col-lg-3">${qna.conts}</td>
-										<td class="col-lg-2">${qna.mentee.nick}</td>
-										<td class="col-lg-2">${qna.rgdt}</td>
-									</tr>
-								</tbody>
+									<tbody class="col-lg-12">
+										<tr class="row">
+											<th class="col-lg-1" scope="row" id="qna_th">${qna.no}</th>
+											<td class="col-lg-2">${qna.type}</td>
+											<td class="col-lg-2"><c:set var="rgdt2"
+													value="${qna.rgdt2}" /> <%
+   Date rgdt2 = (Date) pageContext.getAttribute("rgdt2");
+     if (rgdt2 != null) {
+ %> 완료 <%
+   } else {
+ %> 미완료 <%
+   }
+ %></td>
+											<td class="col-lg-3">${qna.conts}</td>
+											<td class="col-lg-2">${qna.mentee.nick}</td>
+											<td class="col-lg-2">${qna.rgdt}</td>
+										</tr>
+									</tbody>
 								</c:forEach>
 							</table>
 						</div>
 						<div class="col-lg-12 text-right">
-						<button onclick="location.href='prdtQna'"
-                        style="width: 120px; height: 40px; background-color: #606066; color: #ffffff">
-                        상품 문의</button>
+							<button onclick="location.href='prdtQna'"
+								style="width: 120px; height: 40px; background-color: #606066; color: #ffffff">
+								상품 문의</button>
 						</div>
 						<!-- <div class="col-lg-12"> -->
 					</div>
 					<!-- <div class="row"> -->
 
 
-					
+
 
 				</div>
 				<!-- <div class="detail_info"> -->

@@ -45,7 +45,7 @@
 									style="margin: 10px 20px; width: 50px; height: 50px; border-radius: 25px"><br>
 								<div class="dropdown-content text-left" id="dropdown-content">
 									<a href="#"><span><i class="fas fa-user"></i></span><span class="ml-3">마이페이지</span></a>
-									<a href="#"><span><i class="fas fa-bell"></i></span><span class="ml-3">알림</span></a>
+									<a href="../master/notice"><span><i class="fas fa-bell"></i></span><span class="ml-3">알림</span></a>
 									<hr class="Hhr"/>
 									<a href="../auth/logout"><span><i class="fas fa-sign-out-alt"></i></span><span class="ml-3">로그아웃</span></a>
 								</div>

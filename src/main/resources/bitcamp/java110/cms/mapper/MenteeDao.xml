@@ -207,8 +207,8 @@
     </insert> 
     
     <delete id="delete" parameterType="int">
-        delete from p1_memb 
-        where mno=#{value}
+        delete from p1_noti
+        where nino=#{value}
     </delete>
     
     
