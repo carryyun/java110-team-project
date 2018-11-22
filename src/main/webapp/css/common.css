@@ -6,6 +6,14 @@
 } */
 
 /* hr 관련 */
+*{
+ margin: 0;
+ padding: 0;
+}
+body{
+ font-size: 1rem;
+}
+
 hr.SmallMarginHr{
     margin: 4px !important;
 }
@@ -46,5 +54,8 @@ hr.Hhr{
 
 
 ul{
- list-style: none;
+    list-style: none;
+}
+a{
+    text-decoration: none !important;
 }

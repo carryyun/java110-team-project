@@ -72,7 +72,7 @@
                         <input type="password" name="pwd" class="form-control" placeholder="password">
                     </div>
                     <div class="row align-items-center remember">
-                        <input type="checkbox" name="save">이메일 저장
+                        <input type="checkbox" name="save" ${cookie.save.value}>이메일 저장
                     </div>
                     <div id="login" class="form-group">
                         <input type="submit" value="login" class="btn float-right login_btn">
@@ -99,6 +99,10 @@
 
  <!-- 페이스북 -->
 <script type="text/javascript">
+$(document).ready(function(){
+    
+});
+
 function autoLogin(accessToken) {
     location.href = "fblogin?" + 
             "accessToken=" + accessToken;
