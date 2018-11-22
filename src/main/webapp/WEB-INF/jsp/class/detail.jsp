@@ -478,10 +478,8 @@
                         <!-- <div class="row"> -->
                         <button style="width: 120px; height: 40px; margin-left: 960px;
                         background-color: #606066; color: #ffffff">클래스문의</button>
-
                     </div>
                     <!-- <div class="detail_info"> -->
-
                 </div>
                 <!-- <div class="row"> -->
             </div>
