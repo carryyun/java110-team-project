@@ -108,10 +108,13 @@
 														<a href="#" class="image-holder__link"></a>
 														<div class="image-liquid image-holder--original">
 															<a href="#"><img alt="${i.count}" src="${pl.phot}"
-																style="width: 100%; height: 100%"></a>
-																<img src="${pl.mentee.phot}" class="mentorimg" alt="${pl.mentee.phot}">
-																<div style="padding:0 5px ;top:75px;width:auto;height:auto; position: absolute; background-color: #f58500; color: white; border-bottom-right-radius: 10px">${pl.mentee.name}</div>
-																<div style="padding:0 5px ;top:100px;width:auto;height:auto; position: absolute; background-color: #333873; color: white; border-bottom-right-radius: 10px">${pl.mentee.nick} 멘토</div>
+																style="width: 100%; height: 100%"></a> <img src="${pl.mentee.phot}"
+																class="mentorimg" alt="${pl.mentee.phot}">
+															<div
+																style="padding: 0 5px; top: 75px; width: auto; height: auto; position: absolute; background-color: #f58500; color: white; border-bottom-right-radius: 10px">${pl.mentee.name}</div>
+															<div
+																style="padding: 0 5px; top: 100px; width: auto; height: auto; position: absolute; background-color: #333873; color: white; border-bottom-right-radius: 10px">${pl.mentee.nick}
+																멘토</div>
 														</div>
 													</div>
 													<div class="product-description">
@@ -123,17 +126,17 @@
 																	<a href="#">${pl.titl}</a>
 																</div>
 																<div class="col-lg-6 mb-2 text-right">
-																    <%
+																	<%
 										                              Product p = (Product) pageContext.getAttribute("pl");
 										                              for (int i = 0; i < 5; i++) {
 										                                if (i < p.getStar()) {
 										                            %>
-										                            <img alt="star-on-big" class='starimg' src="/upload/img/raty/star-on-big.png">
-										                            <%
+																	<img alt="star-on-big" class='starimg' src="/upload/img/raty/star-on-big.png">
+																	<%
 										                              } else {
 										                            %>
-										                            <img alt="star-off-big" class='starimg' src="/upload/img/raty/star-off-big.png">
-										                            <%
+																	<img alt="star-off-big" class='starimg' src="/upload/img/raty/star-off-big.png">
+																	<%
 										                              }
 										                              }
 										                            %>
