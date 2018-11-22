@@ -46,7 +46,6 @@
     <script src="/vendor/jquery/jquery.min.js"></script>
     <script src="/js/jquery.raty.min.js"></script>
     <script src="/js/clean-blog.js"></script>
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services"></script>
     
 <script type="text/javascript">
  var stmnLEFT = 0; // 오른쪽 여백 
@@ -417,6 +416,7 @@
                                             <th scope="col" class="col-lg-4" id="qna_th">질문 제목</th>
                                             <th scope="col" class="col-lg-1" id="qna_th">작성자</th>
                                             <th scope="col" class="col-lg-2" id="qna_th">작성일</th>
+
                                         </tr>
                                     </thead>
                                     
@@ -443,10 +443,11 @@
                                             <td class="col-lg-2">${cq.rgdt}</td>
                                         </tr>
                                         <tr>
-                                        	<td class="hiddenRow">
+                                        	<td colspan="6" class="hiddenRow">
                                         		<div class="accordian-body collapse" id="demo1-${i.count}">
                                         		<div class="adddet col-lg-2" style="text-align: center;
-                                        		vertical-align: middle; display : block;">질문 내용</div>
+                                        		vertical-align: middle;
+															display : block;">질문 내용</div>
                                         		<div class="acco" id="cont">${cq.conts}</div><br>
                                         			<c:set var="ans" value="${cq.anser}"/>
 		                                            <%
@@ -476,8 +477,11 @@
                             <!-- <div class="col-lg-12"> -->
                         </div>
                         <!-- <div class="row"> -->
+
+
                         <button style="width: 120px; height: 40px; margin-left: 960px;
                         background-color: #606066; color: #ffffff">클래스문의</button>
+
                     </div>
                     <!-- <div class="detail_info"> -->
                 </div>
@@ -519,6 +523,7 @@
 
 
     <!-- Custom scripts for this template -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=74d4f74bdd85b5f1c1d2492eaf6b2a88&libraries=services"></script>
 <script>
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
