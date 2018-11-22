@@ -122,7 +122,7 @@
 									  </ol>
 									  <div class="carousel-inner">
 									    <div class="carousel-item active">
-									      <img class="d-block w-100" src="${detailclass.cfile}" alt="First slide">
+									      <img style="width=1100px; margin-left:-10px;" class="d-block w-100" src="${detailclass.cfile}" alt="First slide">
 									    </div>
 									    <c:forEach items="${clsfilelist}" var="cf" varStatus="i">
 									    	<c:set var="divi" value="${cf.fname}"/>
@@ -131,7 +131,8 @@
 									    		if(fna.endsWith("jpg") || fna.endsWith("png")){
 									    	%>	  
 									    		<div class="carousel-item">
-											      <img class="d-block w-100" style="width=1100px; height=450px; " src="${cf.fname}" alt="${i.count}">
+											      <img class="d-block w-100" style="width=1100px; height=450px; margin-left:-10px; " 
+											      src="${cf.fname}" alt="${i.count}">
 											    </div>
 									    	<%	  
 									    		}else {
@@ -139,7 +140,7 @@
 									    		 String fnaurl = fna.substring(idx+1);
 									    	%>
 											    <div class="carousel-item" style="margin-bottom: -5px;">
-											      <iframe width="1110" height="450" src="https://www.youtube.com/embed/<%=fnaurl%>" 
+											      <iframe width="1100" height="450" style="margin-left:-10px;" src="https://www.youtube.com/embed/<%=fnaurl%>" 
 											      frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
 											      allowfullscreen></iframe>
 											    </div>
@@ -294,7 +295,7 @@
 	                    <hr class="Fhr" id="location">
 	                    <h3>위치</h3>
 	                    <div class="row">
-	                    <div id="map" style="width:500px;height:400px;"></div>
+	                    <div id="map" style="width:500px;height:400px; margin-left:10px;"></div>
 	                    <span id="adr" class = "addr" style="vertical-align: middle; margin-left:80px;
 	                    margin-top : 150px;"><div><strong>기본 주소</strong></div>  ${detailclass.basAddr}</span>
 	                    <span id="adr" class = "addr" style="vertical-align: middle; margin-left:80px;
