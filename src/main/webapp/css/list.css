@@ -7,9 +7,19 @@
   border-color: #e5e5e5;
   margin: 15px 0;
 } */
+.mentorimg{
+ top:7px;
+ left:7px;
+ width:60px;
+ height:60px;
+ border-radius:30px;
+ position: absolute;
+}
 
 .starimg{
   vertical-align: top;
+  width: 20px;
+  height: 20px;
 }
 
 .secondary-text {
@@ -85,7 +95,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #4CAF50;
+  background-color: rgba(255,255,255,0.6);
   opacity: 0;
   z-index: 5;
   transition: opacity 0.6s;
@@ -101,7 +111,7 @@
   left: 50%;
   width: 75px;
   height: 75px;
-  line-height: 75px;
+  line-height: 65px;
   background-color: #ffffff;
   opacity: 0;
   border-radius: 50%;
@@ -112,7 +122,7 @@
 }
 @media (min-width: 768px) {
   .image-holder:after {
-    top: 107.5px;
+    top: 92.5px;
   }
 }
 .image-holder .image-holder__link {

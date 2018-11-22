@@ -1,3 +1,31 @@
+/* 헤더 회원정보 드롭다운 Start*/
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 180px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 9;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content a:hover {
+    background-color: #6e6e6e;
+    color: white !important;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* 드롭다운 End */
+
 #mainNav {
   position: relative;
   background-color: white;
@@ -23,8 +51,8 @@
   color: #343a40;
 }
 
-#mainNav .navbar-nav > li.nav-item > a {
-  font-size: 20px;
+#mainNav .navbar-nav > li.nav-item a {
+  font-size: 1rem;
   font-weight: 800;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -87,10 +115,10 @@
   #mainNav.is-fixed .navbar-brand:focus, #mainNav.is-fixed .navbar-brand:hover {
     color: #0085A1;
   }
-  #mainNav.is-fixed .navbar-nav > li.nav-item > a {
+  #mainNav.is-fixed .navbar-nav > li.nav-item a {
     color: #212529;
   }
-  #mainNav.is-fixed .navbar-nav > li.nav-item > a:focus, #mainNav.is-fixed .navbar-nav > li.nav-item > a:hover {
+  #mainNav.is-fixed .navbar-nav > li.nav-item a:focus, #mainNav.is-fixed .navbar-nav > li.nav-item a:hover {
     color: #0085A1;
   }
 }

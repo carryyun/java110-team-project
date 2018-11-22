@@ -60,10 +60,16 @@ public class AuthController {
             Cookie cookie = new Cookie("email", email);
             cookie.setMaxAge(60 * 60 * 24 * 30);
             response.addCookie(cookie);
+            Cookie cookie2 = new Cookie("save", "checked");
+            cookie.setMaxAge(60 * 60 * 24 * 30);
+            response.addCookie(cookie2);
         } else {// 이메일을 저장하고 싶지 않다면,
             Cookie cookie = new Cookie("email", "");
             cookie.setMaxAge(0);
             response.addCookie(cookie);
+            Cookie cookie2 = new Cookie("save", "");
+            cookie.setMaxAge(0);
+            response.addCookie(cookie2);
         }
         Mentee loginUser = authService.getMentee(email, pwd);
         if (loginUser != null) {
@@ -87,9 +93,9 @@ public class AuthController {
     
     @GetMapping("logout")
     public String logout(HttpSession session) {
-        session.invalidate();
+        session.removeAttribute("loginUser");
         System.out.println("log out!");
-        return "redirect:form";
+        return "redirect:../mainpage/mainpage";
     }
     
     @RequestMapping("fblogin")
@@ -122,8 +128,9 @@ public class AuthController {
     }
     @RequestMapping("naver")
     public String naver(String accessToken, HttpSession session) {
-      authService.getNaverMember(accessToken);
-      return "redirect:../auth/form";
+      Mentee loginUser = authService.getNaverMember(accessToken);
+      session.setAttribute("loginUser", loginUser);
+      return "redirect:../mainpage/mainpage";
     }
     @GetMapping("callback")
     public void callback(String access_token, HttpSession session) {}

@@ -56,6 +56,7 @@
     mete.meno,
     mete.nick,
     mete.name,
+    mete.phot mp,
     cert.ctno,
     cert.type,
     stag.stno,
