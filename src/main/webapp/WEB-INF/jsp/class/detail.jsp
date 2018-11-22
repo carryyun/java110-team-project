@@ -50,8 +50,6 @@
 	}
 </style>
 
-
-
 </head>
 <body style="background-color: #F2F4F7" onload="InitializeStaticMenu()">
 
