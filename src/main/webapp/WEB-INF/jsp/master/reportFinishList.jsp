@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"
     trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -108,14 +109,14 @@
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
-                                            <th>신고자 닉네임</th>
-                                            <th>분류</th>
-                                            <th>유형</th>
-                                            <th>제목</th>
-                                            <th>내용</th>
-                                            <th>URL</th>
-                                            <th>신고날짜</th>
+                                            <th width="5%">No</th>
+                                            <th width="10%">신고자</th>
+                                            <th width="8%">분류</th>
+                                            <th width="13%">유형</th>
+                                            <th width="16%">제목</th>
+                                            <th width="18%">내용</th>
+                                            <th width="15%">URL</th>
+                                            <th width="15%">신고날짜</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -126,9 +127,24 @@
                                             <td>${fl.type}</td>
                                             <td>${fl.type_detail}</td>
                                             <td>${fl.titl}</td>
-                                            <td>${fl.conts}</td>
+                                            <td>
+                                            <c:choose>
+	                                            <c:when test="${fn:length(fl.conts) >10}">
+	                                              <a class="button" style="color: #007bff;cursor: pointer;" onclick="viewConts('#visible${j.index}');">
+	                                              ${fn:substring(fl.conts,0,10)} ...
+	                                              </a>
+	                                            </c:when>
+	                                            <c:otherwise>
+	                                              ${fl.conts}
+	                                            </c:otherwise>
+                                            </c:choose>
+                                            </td>
                                             <td><a href="${fl.url}">${fl.url}</a></td>
                                             <td>${fl.rtdt}</td>
+                                        </tr>
+                                        <tr id="visible${j.index}" style="display: none">
+                                            <td colspan="2">내용</td>
+                                            <td colspan="6">${fl.conts}</td>
                                         </tr>
                                     </c:forEach>
                                     </tbody>
@@ -150,5 +166,62 @@
 <!-- Bootstrap core JavaScript -->
 <script src="/vendor/jquery/jquery.min.js"></script>
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script>
+function viewConts(visibleTr) {
+    var curVisible = $(visibleTr).css('display');
+    if(curVisible == "none"){
+        $(visibleTr).css('display', 'table-row');
+    }else{
+        $(visibleTr).css('display', 'none');
+    }
+}
 
+
+$(document).ready(function() {
+    var activeSystemClass = $('.list-group-item.active');
+
+    //something is entered in search form
+    $('#system-search').keyup( function() {
+       var that = this;
+        // affect all table rows on in systems table
+        var tableBody = $('.table-list-search tbody');
+        var tableRowsClass = $('.table-list-search tbody tr');
+        $('.search-sf').remove();
+        tableRowsClass.each( function(i, val) {
+        
+            //Lower text for case insensitive
+            var rowText = $(val).text().toLowerCase();
+            var inputText = $(that).val().toLowerCase();
+            if(inputText != '')
+            {
+                $('.search-query-sf').remove();
+                tableBody.prepend('<tr class="search-query-sf"><td colspan="6"><strong>Searching for: "'
+                    + $(that).val()
+                    + '"</strong></td></tr>');
+            }
+            else
+            {
+                $('.search-query-sf').remove();
+            }
+
+            if( rowText.indexOf( inputText ) == -1 )
+            {
+                //hide rows
+                tableRowsClass.eq(i).hide();
+                
+            }
+            else
+            {
+                $('.search-sf').remove();
+                tableRowsClass.eq(i).show();
+            }
+        });
+        //all tr elements are hidden
+        if(tableRowsClass.children(':visible').length == 0)
+        {
+            tableBody.append('<tr class="search-sf"><td class="text-muted" colspan="6">No entries found.</td></tr>');
+        }
+    });
+});
+</script>
 </html>

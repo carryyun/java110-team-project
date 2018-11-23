@@ -45,12 +45,12 @@
       
       br.close();
       if(responseCode==200) {
-        out.println(res.toString());
+        /* out.println(res.toString()); */
         String[] str = res.toString().split("\"");
         //tokenUrl=str[3];
         tokenUrl=URLEncoder.encode(str[3],"UTF-8");
-        System.out.println("str[3]=     " + str[3]);
-        System.out.println("token_url=  " + tokenUrl);
+        /* System.out.println("str[3]=     " + str[3]);
+        System.out.println("token_url=  " + tokenUrl); */
       }
     } catch (Exception e) {
       System.out.println(e);

@@ -40,7 +40,6 @@ public class MasterController {
   BigTagService bigTagService;
   MentorFileService mentorFileService;
   MentorLicenseService mentorlicenseService;
-  
   ReportService reportService;
 
   public MasterController(
@@ -81,9 +80,6 @@ public class MasterController {
   public void cls(Model model) {
     List<ClassOrder> classOrderList = classOrderService.listByMaster(3, 5);
     model.addAttribute("classOrderList", classOrderList);
-
-   /* List<Product> productList = productService.list();
-    model.addAttribute("productList", productList);*/
   }
 
   /*
@@ -130,19 +126,19 @@ public class MasterController {
   /*
    * 신고목록 관련(미완성)
   */
+  @GetMapping("report")
+  public void report() {
+    
+  }
+  
   @GetMapping("reportFinishList")
   public void reportFinishList(Model model) {
     List<Report> ReportList = reportService.finishlist(3, 3);
     for(Report r: ReportList) {
       r.setCnt(reportService.getMeno2Cnt(r.getMeno2()));
       r.setFinishlist(reportService.listByMeno2(3, 3, r.getMeno2()));
-      System.out.println("-=-=-=-=-=-=-=");
-      System.out.println(r.getFinishlist());
-      System.out.println("-=-=-=-=-=-=-=");
     }
-    
     model.addAttribute("ReportList",ReportList);
-    
   }
   
   @GetMapping("reportList")
@@ -151,10 +147,24 @@ public class MasterController {
     for(Report r: ReportList) {
       r.setCnt(reportService.getMeno2Cnt(r.getMeno2()));
     }
-    
     model.addAttribute("ReportList",ReportList);
-    
   }
+  @RequestMapping(value = "reptchecknick.do", method = { RequestMethod.GET, RequestMethod.POST})
+  public @ResponseBody int checkByNick(Mentee mentee) {
+    return menteeService.checkByNick(mentee);
+  }
+  
+  @RequestMapping(value = "addreport.do", method = {RequestMethod.GET, RequestMethod.POST})
+  public @ResponseBody int addRept(Report report, String nick) {
+    Mentee mentee = menteeService.getByNick(nick);
+    report.setMeno2(mentee.getNo());
+    return reportService.add(report);
+  }
+  
+  
+  
+  
+  
   
   
   /*
@@ -163,7 +173,6 @@ public class MasterController {
   
   @GetMapping("blacklist")
   public void blacklist(Model model) {
-    
     
   }
   /*

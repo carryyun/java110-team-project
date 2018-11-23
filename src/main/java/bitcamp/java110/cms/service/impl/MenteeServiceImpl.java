@@ -94,13 +94,8 @@ public class MenteeServiceImpl implements MenteeService {
 
 
   @Override
-  public List<Mentee> listByNick(int pageNo, int pageSize, String nick) {
-    HashMap<String, Object> params = new HashMap<>();
-    params.put("rowNo", (pageNo - 1) * pageSize);
-    params.put("size", pageSize);
-    params.put("paramNick", nick);
-
-    return menteeDao.findAllByNick(params);
+  public Mentee getByNick(String nick) {
+    return menteeDao.findByNick(nick);
   }
 
   @Override

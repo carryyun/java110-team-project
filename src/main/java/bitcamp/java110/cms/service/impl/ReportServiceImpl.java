@@ -20,17 +20,10 @@ public class ReportServiceImpl implements ReportService {
           propagation=Propagation.REQUIRED,
           rollbackFor=Exception.class)
     
-    @Override
-    public void add(Report report) {
-      reportDao.insert(report);
-      
-//      if (report.getNo() != null) {
-//        
-//        HashMap<String,Object> params = new HashMap<>();
-//        params.put("no", report.getNo());
-//       
-//      }
-    }
+  @Override
+  public int add(Report report) {
+    return reportDao.insert(report);
+  }
 
   @Override
   public void update(Report report) {

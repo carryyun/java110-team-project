@@ -82,13 +82,8 @@ table.fixed-table td.tableBtn{
 
 </table>
 
-
 <br>
-
-
-
 <br>
-
 
 </form>
 </body>

@@ -21,7 +21,7 @@ public interface MenteeDao {
   
   String findByNamePhone(Mentee mentee);
 
-  List<Mentee> findAllByNick(Map<String, Object> params); // 닉네임
+  Mentee findByNick(String nick); // 닉네임
 
   List<Mentee> findAllByPhone(Map<String, Object> params); // 핸드폰
   

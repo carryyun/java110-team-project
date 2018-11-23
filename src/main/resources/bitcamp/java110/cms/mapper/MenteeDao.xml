@@ -144,7 +144,7 @@
     </select>
     
     
-    <select id="findAllByNick" 
+    <select id="findByNick" 
             resultMap="menteeMap" parameterType="Map">
         select
             meno,
