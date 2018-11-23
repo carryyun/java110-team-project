@@ -45,7 +45,7 @@ public class ClassServiceImpl implements ClassService{
 
 
   @Override
-  public List<Classes> classlist(int no) {
+  public List<Classes> classList(int no) {
     // TODO Auto-generated method stub
     return null;
   }
@@ -59,6 +59,12 @@ public class ClassServiceImpl implements ClassService{
   @Override
   public List<Classes> listByStat(String stat) {
     return classDao.findByStat(stat);
+  }
+
+  // 클래스 전체 목록 조회
+  @Override
+  public List<Classes> findAllByList() {
+    return classDao.findAllByList();
   }
   
 }

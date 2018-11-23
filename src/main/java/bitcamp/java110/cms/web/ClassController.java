@@ -62,7 +62,7 @@ public class ClassController {
   @PostMapping("findAll")
   public void findAll() {
     System.out.println("findAll 호출");
-    List<Classes> clist= classService.classlist(5);
+    List<Classes> clist= classService.classList(5);
     
 
     for(Classes c : clist) {
@@ -122,7 +122,7 @@ public class ClassController {
   @GetMapping("findBytag")
   public Classes findBytag() {
     
-    List<Classes> clist = classService.classlist(5);
+    List<Classes> clist = classService.classList(5);
 
     for(Classes c : clist) {
       
@@ -138,7 +138,7 @@ public class ClassController {
   @GetMapping("findByba")
   public Classes findByba() {
     
-    List<Classes> clist = classService.classlist(5);
+    List<Classes> clist = classService.classList(5);
     
     for(Classes c : clist) {
 

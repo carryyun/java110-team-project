@@ -7,6 +7,8 @@ public interface ProductService {
  
   List<Product> list(); 
   
+  List<Product> findAllByList(); // 전체 상품 조회
+  
   Product get(int no); // 공예품 번호로 조회
   
   List<Product> listByMeno(int pageNo, int pageSize, int meno); // 판매자번호로 조회

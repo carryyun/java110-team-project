@@ -13,6 +13,7 @@ import bitcamp.java110.cms.domain.Classes;
 import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.Mentor;
 import bitcamp.java110.cms.domain.Notice;
+import bitcamp.java110.cms.domain.Product;
 import bitcamp.java110.cms.domain.ProductOrder;
 import bitcamp.java110.cms.domain.ProductQnA;
 import bitcamp.java110.cms.domain.Report;
@@ -77,9 +78,17 @@ public class MasterController {
     this.noticeService = noticeService;
   }
 
-  @GetMapping("prdtList")
-  public void prdtList(){
+  @GetMapping("prdtlist")
+  public void prdtList(Model model){
+    List<Product> findAllByList = productService.findAllByList();
+    model.addAttribute("findAllByList",findAllByList);
     
+  }
+  
+  @GetMapping("classList")
+  public void classList(Model model) {
+    List<Classes> findAllByList = classService.findAllByList();
+    model.addAttribute("findAllByList", findAllByList);
   }
   
   @GetMapping("prodOrderList")
