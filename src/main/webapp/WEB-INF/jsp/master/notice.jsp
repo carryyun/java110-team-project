@@ -23,7 +23,7 @@
 
     <c:forEach items="${noticeList}" var="nl" varStatus="i">
     <%-- onclick="location.href='${nl.url}'"   style="cursor: pointer;" --%>
-    <div class="notice notice-lg">
+    <div class="notice notice-lg" id="rmv${nl.no}">
         <span><strong>Big notice</strong> <a href='${nl.url}'>${nl.url}</a></span> 
         <span style="float: right; cursor: pointer;" onclick="del(${nl.no})"><i class="fas fa-trash-alt"></i></span>
     </div>
@@ -32,9 +32,25 @@
 </div>
 </body>
 <script>
+var fadeTime = 200;
 function del(no){
-    
-    
+    removeItem(no)
+    $.ajax({
+        data : {
+            no : no,
+            stat : name
+        },
+        url : "mtstat.do",
+        success : location.href="#"
+    });
+}
+function removeItem(no) {
+    /* Remove row from DOM and recalc cart total */
+    var getRow = document.getElementById("rmv"+no);
+    getRow = $(getRow);
+    getRow.slideUp(fadeTime, function () {
+        getRow.remove();
+    });
 }
 </script>
 </html>
