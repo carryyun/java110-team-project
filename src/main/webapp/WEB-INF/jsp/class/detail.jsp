@@ -40,6 +40,7 @@
 
 	<!-- bootstrap이 두번 선언된 경우에 동작이 두번할수도 있음 -->
 
+
 <style type="text/css">
 #STATICMENU { 
 	margin: 0pt; padding: 0pt;  
@@ -380,6 +381,7 @@
                                             <th scope="col" class="col-lg-4" id="qna_th">질문 제목</th>
                                             <th scope="col" class="col-lg-1" id="qna_th">작성자</th>
                                             <th scope="col" class="col-lg-2" id="qna_th">작성일</th>
+
                                         </tr>
                                     </thead>
                                     
@@ -407,9 +409,10 @@
                                         </tr>
                                         <tr>
                                         	<td colspan="6" class="hiddenRow">
-                                        		<div class="accordian-body collapse p-3" id="demo1-${i.count}">
+                                        		<div class="accordian-body collapse" id="demo1-${i.count}">
                                         		<div class="adddet col-lg-2" style="text-align: center;
-                                        		vertical-align: middle; display : block;">질문 내용</div>
+                                        		vertical-align: middle;
+															display : block;">질문 내용</div>
                                         		<div class="acco" id="cont">${cq.conts}</div><br>
                                         			<c:set var="ans" value="${cq.anser}"/>
 		                                            <%
