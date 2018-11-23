@@ -142,7 +142,6 @@ public class ProductController {
   @ResponseBody
   @RequestMapping("removeDate")
   public String removeDate(int no) throws Exception {
-      
       productBaktService.delete(no);
       return "redirect:basketproduct";
   }
