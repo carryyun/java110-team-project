@@ -77,8 +77,8 @@ public class MasterController {
     this.noticeService = noticeService;
   }
 
-  @GetMapping("prdtlist")
-  public void prdtlist(){
+  @GetMapping("prdtList")
+  public void prdtList(){
     
   }
   
