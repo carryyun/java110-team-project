@@ -493,13 +493,17 @@
 <script src="/js/clean-blog.js"></script>
     
 <script>
-$('.accordian-body').on('show.bs.collapse', function () {
+/* $('.accordian-body').on('show.bs.collapse', function () {
     console.log("toggle 호출1");
     $(this).closest("table")
         .find(".collapse.in")
         .not(this)
         .collapse('toggle');
-});
+}); */
+
+$(".accordian-body").click(function(){
+    $("tr").slideToggle();
+}); 
 </script>    
 
 <script type="text/javascript">
