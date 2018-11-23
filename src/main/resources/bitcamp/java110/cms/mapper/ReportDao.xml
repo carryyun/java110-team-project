@@ -60,6 +60,30 @@
         
     </select>
 	
+	<select id="findByStat" resultMap="reportMap" parameterType="map">
+       SELECT
+            rtno,
+            titl,
+            conts,
+            url,
+            type,
+            type_detail,
+            rtdt,
+            rept.meno,
+            rept.meno2,
+            mete.email, 
+            mete2.email 
+        FROM
+            p_rept as rept 
+            join p_mete as mete
+            join p_mete as mete2
+            
+            on rept.meno = mete.meno and
+               rept.meno2 = mete2.meno and
+               rept.stat = 'I';
+            
+        
+    </select>
 	
 
 	<select id="findFinishAll" resultMap="reportMap" parameterType="map">
@@ -155,5 +179,14 @@
 		where
 		rtno=#{no}
 	</update>
+	
+	<update id="updateReptstat" parameterType="report">
+        update p_rept
+        <set>
+            <if test="stat!=null">stat= #{stat}</if>
+        </set>
+        where
+        rtno=#{no}
+    </update>
 
 </mapper>

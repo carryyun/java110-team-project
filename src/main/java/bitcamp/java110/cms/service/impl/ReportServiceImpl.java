@@ -43,6 +43,15 @@ public class ReportServiceImpl implements ReportService {
   }
   
   @Override
+  public List<Report> listByStat(int pageNo, int pageSize) {
+      HashMap<String,Object> params = new HashMap<>();
+      params.put("rowNo", (pageNo - 1) * pageSize);
+      params.put("size", pageSize);
+      
+      return reportDao.findByStat(params);
+  }
+  
+  @Override
   public List<Report> listByMeno2(int pageNo, int pageSize,int meno2) {
       HashMap<String,Object> params = new HashMap<>();
       params.put("rowNo", (pageNo - 1) * pageSize);
@@ -71,6 +80,11 @@ public class ReportServiceImpl implements ReportService {
   @Override
   public int getMeno2Cnt(int no) {
     return reportDao.findByMeno2Cnt(no);
+  }
+
+  @Override
+  public int updateReptstat(Report report) {
+    return reportDao.updateReptstat(report);
   }
   
 }
