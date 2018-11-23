@@ -422,7 +422,7 @@ header.masthead .post-heading .meta a {
 */
 .gallery-wrap .img-big-wrap img {
     height: 450px;
-    width: auto;
+    width: 1100px;
     display: inline-block;
     cursor: zoom-in;
 }
