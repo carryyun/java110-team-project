@@ -80,7 +80,7 @@
                         </table>
                     </div>
 
-                    <div class="row lg-2" id="page-list1">
+                    <div class="row lg-2" id="page-list1" style="margin: auto;">
                         <div class="col-lg-12">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination" id="page-list">
