@@ -189,6 +189,11 @@ public class ClassController {
     model.addAttribute("prdtcls",prdtcls);
   }
   
+  @RequestMapping("classregi")
+  public void classregi() {
+    
+  }
+  
   ////////////////////여기까지 p_cls 클래스////////////////////////
   
   @GetMapping("qnalist")

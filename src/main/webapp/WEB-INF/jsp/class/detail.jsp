@@ -492,6 +492,16 @@
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/js/clean-blog.js"></script>
     
+<script>
+$('.accordian-body').on('show.bs.collapse', function () {
+    console.log("toggle 호출1");
+    $(this).closest("table")
+        .find(".collapse.in")
+        .not(this)
+        .collapse('toggle');
+});
+</script>    
+
 <script type="text/javascript">
  var stmnLEFT = 0; // 오른쪽 여백 
  var stmnGAP1 = 0; // 위쪽 여백 
@@ -569,15 +579,6 @@ geocoder.addressSearch('${detailclass.basAddr}', function(result, status) {
         map.setCenter(coords);
     } 
 });    
-</script>
-<script>
-$('.accordian-body').on('show.bs.collapse', function () {
-    console.log("toggle 호출1")
-    $(this).closest("table")
-        .find(".collapse.in")
-        .not(this)
-        .collapse('toggle')
-})
 </script>
 <script src="/js/jquery.raty.min.js"></script>
     <script>
