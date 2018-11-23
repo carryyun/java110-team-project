@@ -63,4 +63,10 @@ public class ProductServiceImpl implements ProductService {
     return productDao.update(product);
   }
 
+  @Override
+  public List<Product> findAllByList() {
+
+    return productDao.findAllByList();
+  }
+
 }

@@ -53,6 +53,8 @@
         <result column="mono"       property="mono"/>
         <result column="mtno"       property="mtno"/>
         <result column="star"       property="star"/>
+        <result column="mtname"       property="middleTag.name"/>
+        <result column="name"       property="mentee.nick"/>
     </resultMap>
     
     <sql id="select1">
@@ -81,8 +83,30 @@
 				on po.mono = ps.mono
 			inner join p_mete as pe
 				on po.mono = pe.meno
-		order by ps.cno desc
+		order by ps.cno asc
 	</select>
+	
+	<select id="findAllByList" resultMap="classMap"> <!-- 이게 전체리스트출력하는거임 -->
+        select 
+            cls.cno,
+            mtag.mtname,
+            cls.titl,
+            mete.nick,
+            mete.name,
+            cls.pric,
+            cls.rgdt
+
+        from
+            p_cls as cls 
+            inner join p_mtag as mtag
+            inner join p_cert as cert
+            inner join p_mete as mete
+            on cls.mtno = mtag.mtno and
+            cls.cno = cert.cno and
+            cert.meno = mete.meno
+        order by 
+            cls.cno desc
+    </select>
  
     <select id="findAll" resultMap="classMap" parameterType="map">
         <include refid="select1"></include>
