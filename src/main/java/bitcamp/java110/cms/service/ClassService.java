@@ -5,11 +5,12 @@ import bitcamp.java110.cms.domain.Classes;
 
 public interface ClassService {
   List<Classes> list();
-  List<Classes> classlist(int no);
+  List<Classes> classList(int no);
+  List<Classes> findAllByList();
   Classes findbyptno(int ptno);
   
   
-  Classes findAllBycno(int no);
+  Classes findBycno(int no);
   int classadd(Classes classes);
   int classupdate(Classes classes);
   

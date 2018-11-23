@@ -77,6 +77,28 @@ ON
 order by 
     ptno DESC
     </select>
+    
+    <select id="findAllByList" resultMap="productMap">
+    select
+        prdt.ptno,
+        stag.stname,
+        prdt.titl, 
+        mete.nick,
+        mete.name,
+        prdt.pric,
+        prdt.stock,
+        prdt.rgdt
+    from
+        p_prdt as prdt 
+        inner join p_stag as stag
+        inner join p_mete as mete
+
+    on  prdt.stno = stag.stno and
+        prdt.meno = mete.meno
+     
+    order by
+        prdt.ptno asc
+    </select>
 
     <select id="findByNo" 
             resultMap="productMap" parameterType="int">

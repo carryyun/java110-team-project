@@ -39,16 +39,52 @@
 
 <!-- Bootstrap core JavaScript -->
 
-	<!-- bootstrap이 두번 선언된 경우에 동작이 두번할수도 있음 -->
+	<!-- 아래와 같이 주석처리한 이유는 bootstrap이 두번 선언된 경우에 동작이 두번할수도 있음 -->
+    <!-- <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/jquery.raty.min.js"></script>
+    <script src="/js/clean-blog.js"></script>
+
+<script type="text/javascript">
+ var stmnLEFT = 0; // 오른쪽 여백 
+ var stmnGAP1 = 0; // 위쪽 여백 
+ var stmnGAP2 = 150; // 스크롤시 브라우저 위쪽과 떨어지는 거리 
+ var stmnBASE = 150; // 스크롤 시작위치 
+ var stmnActivateSpeed = 35; //스크롤을 인식하는 딜레이 (숫자가 클수록 느리게 인식)
+ var stmnScrollSpeed = 20; //스크롤 속도 (클수록 느림)
+ var stmnTimer; 
+ 
+ function RefreshStaticMenu() { 
+  var stmnStartPoint, stmnEndPoint; 
+  stmnStartPoint = parseInt(document.getElementById('STATICMENU').style.top, 10); 
+  stmnEndPoint = Math.max(document.documentElement.scrollTop, document.body.scrollTop) + stmnGAP2; 
+  if (stmnEndPoint < stmnGAP1) stmnEndPoint = stmnGAP1; 
+  if (stmnStartPoint != stmnEndPoint) { 
+   stmnScrollAmount = Math.ceil( Math.abs( stmnEndPoint - stmnStartPoint ) / 15 ); 
+   document.getElementById('STATICMENU').style.top = parseInt(document.getElementById('STATICMENU').style.top, 10) + ( ( stmnEndPoint<stmnStartPoint ) ? -stmnScrollAmount : stmnScrollAmount ) + 'px'; 
+   stmnRefreshTimer = stmnScrollSpeed; 
+   }
+  stmnTimer = setTimeout("RefreshStaticMenu();", stmnActivateSpeed); 
+  } 
+ function InitializeStaticMenu() {
+  document.getElementById('STATICMENU').style.right = stmnLEFT + 'px';  //처음에 오른쪽에 위치. left로 바꿔도.
+  document.getElementById('STATICMENU').style.top = document.body.scrollTop + stmnBASE + 'px'; 
+  RefreshStaticMenu();
+  }
+</script>
 
 <style type="text/css">
 #STATICMENU { 
 	margin: 0pt; padding: 0pt;  
 	position: absolute; right: 0px; top: 0px;
 	transform: translateX(95%);
+	border-top: 1px solid silver;
 	width : 300px;
 	}
 </style>
+
+
 
 </head>
 <body style="background-color: #F2F4F7" onload="InitializeStaticMenu()">
@@ -56,9 +92,7 @@
     <hr>
     <div class="container">
         <div class="row">
-		<div class="col-lg-12">
-                                <jsp:include page="../headerMain.jsp"></jsp:include>
-                            </div>
+
             <h2>클래스 상세보기</h2>
             <hr class="FhrBotMargin">
 
@@ -449,6 +483,7 @@
 
                     </div>
                     <!-- <div class="detail_info"> -->
+
                 </div>
                 <!-- <div class="row"> -->
             </div>
@@ -471,11 +506,6 @@
 
         </div>
         <!-- <div class="col-lg-12 col-md-12 mx-auto" id="detail"> -->
-        <footer>
-                        <div class="col px-0">
-                            <jsp:include page="../footer.jsp"></jsp:include>
-                        </div>
-                    </footer>
     </div>
     <!-- <div class="row"> -->
 
@@ -487,37 +517,20 @@
     <hr>
 
 
-    <!-- Custom scripts for this template -->
-<script src="/vendor/jquery/jquery.min.js"></script>
-<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="/js/clean-blog.js"></script>
     
-<script type="text/javascript">
- var stmnLEFT = 0; // 오른쪽 여백 
- var stmnGAP1 = 0; // 위쪽 여백 
- var stmnGAP2 = 50; // 스크롤시 브라우저 위쪽과 떨어지는 거리 
- var stmnBASE = 150; // 스크롤 시작위치 
- var stmnActivateSpeed = 35; //스크롤을 인식하는 딜레이 (숫자가 클수록 느리게 인식)
- var stmnScrollSpeed = 20; //스크롤 속도 (클수록 느림)
- var stmnTimer; 
- 
- function RefreshStaticMenu() { 
-  var stmnStartPoint, stmnEndPoint; 
-  stmnStartPoint = parseInt(document.getElementById('STATICMENU').style.top, 10); 
-  stmnEndPoint = Math.max(document.documentElement.scrollTop, document.body.scrollTop) + stmnGAP2 - 150; 
-  if (stmnEndPoint < stmnGAP1) stmnEndPoint = stmnGAP1; 
-  if (stmnStartPoint != stmnEndPoint) { 
-   stmnScrollAmount = Math.ceil( Math.abs( stmnEndPoint - stmnStartPoint ) / 15 ); 
-   document.getElementById('STATICMENU').style.top = parseInt(document.getElementById('STATICMENU').style.top, 10) + ( ( stmnEndPoint<stmnStartPoint ) ? -stmnScrollAmount : stmnScrollAmount ) + 'px'; 
-   stmnRefreshTimer = stmnScrollSpeed; 
-   }
-  stmnTimer = setTimeout("RefreshStaticMenu();", stmnActivateSpeed); 
-  } 
- function InitializeStaticMenu() {
-  document.getElementById('STATICMENU').style.right = stmnLEFT + 'px';  //처음에 오른쪽에 위치. left로 바꿔도.
-  document.getElementById('STATICMENU').style.top = document.body.scrollTop + stmnBASE + 'px'; 
-  RefreshStaticMenu();
-  }
+
+
+
+
+
+    <!-- Custom scripts for this template -->
+<script>
+$('.accordian-body').on('show.bs.collapse', function () {
+    $(this).closest("table")
+        .find(".collapse.in")
+        .not(this)
+        .collapse('toggle')
+})
 </script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=74d4f74bdd85b5f1c1d2492eaf6b2a88&libraries=services"></script>
 <script>
@@ -570,15 +583,6 @@ geocoder.addressSearch('${detailclass.basAddr}', function(result, status) {
     } 
 });    
 </script>
-<script>
-$('.accordian-body').on('show.bs.collapse', function () {
-    $(this).closest("table")
-        .find(".collapse.in")
-        .not(this)
-        .collapse('toggle')
-})
-</script>
-<script src="/js/jquery.raty.min.js"></script>
     <script>
     
         var testtTop;
@@ -607,8 +611,7 @@ $('.accordian-body').on('show.bs.collapse', function () {
                 if (position > 985) {
                     $(id).css("position", "fixed-top");
                     $(id).css("top", position + "px");
-                    /* $(id).css("width", "1110px"); */
-                    $(id).css("width", "94.6%");
+                    $(id).css("width", "1110px");
 
                 } else {
                     $(id).css("top", (testtTop) + "px");
@@ -620,7 +623,9 @@ $('.accordian-body').on('show.bs.collapse', function () {
         }
         scroll_follow(setId);
 
-       
+        function click_button() {
+
+        }
 
         $('#click').raty(
                 {

@@ -2,22 +2,26 @@ package bitcamp.java110.cms.web;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import bitcamp.java110.cms.domain.Classes;
+import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.Product;
+import bitcamp.java110.cms.domain.ProductBakt;
 import bitcamp.java110.cms.domain.ProductPopul;
 import bitcamp.java110.cms.domain.ProductQnA;
 import bitcamp.java110.cms.domain.ProductRep;
 import bitcamp.java110.cms.service.BigTagService;
 import bitcamp.java110.cms.service.ClassService;
 import bitcamp.java110.cms.service.MiddleTagService;
+import bitcamp.java110.cms.service.ProductBaktService;
 import bitcamp.java110.cms.service.ProductPopulService;
 import bitcamp.java110.cms.service.ProductQnAService;
 import bitcamp.java110.cms.service.ProductRepService;
@@ -32,14 +36,15 @@ public class ProductController {
   BigTagService bigTagService;
   MiddleTagService middleTagService;
   ProductRepService productRepSerivce;
-  ServletContext sc;
   ClassService classService;
   ProductQnAService productQnAService;
+  
+  ProductBaktService productBaktService;
 
   public ProductController(ProductService productService, BigTagService bigTagService,
       MiddleTagService middleTagService, ProductPopulService productPopulService,
-      ProductRepService productRepSerivce, ServletContext sc, ClassService classService,
-      ProductQnAService productQnAService) {
+      ProductRepService productRepSerivce, ClassService classService,
+      ProductQnAService productQnAService, ProductBaktService productBaktService) {
 
     this.productService = productService;
     this.bigTagService = bigTagService;
@@ -47,9 +52,8 @@ public class ProductController {
     this.productPopulService = productPopulService;
     this.productRepSerivce = productRepSerivce;
     this.classService = classService;
-    this.sc = sc;
-    this.classService = classService;
     this.productQnAService = productQnAService;
+    this.productBaktService = productBaktService;
   }
 
   @GetMapping("prdt")
@@ -120,5 +124,27 @@ public class ProductController {
     return "redirect:../product/prdtQna";
   }
 
+  /*
+   * 장바구니 관련 시작
+   */
+  @GetMapping("basket")
+  public void basketproduct(Model model,HttpSession session) {
+    Mentee mentee = (Mentee) session.getAttribute("loginUser");
+    List<ProductBakt> basketList = productBaktService.listAllByMeno(mentee.getNo());
+    int total=0;
+    for(ProductBakt pb: basketList) {
+      total += pb.getProduct().getPric();
+    }
+    
+    model.addAttribute("total", total);
+    model.addAttribute("basketList", basketList);
+  }
+  @ResponseBody
+  @RequestMapping("removeDate")
+  public String removeDate(int no) throws Exception {
+      productBaktService.delete(no);
+      return "redirect:basketproduct";
+  }
+  // 장바구니 관련 끝
 }
 
