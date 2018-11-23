@@ -97,7 +97,8 @@ public class MasterController {
     return menteeService.updateMtstat(mentee);
   }
   
-  /*@RequestMapping(value = "mtstat2.do", method = {RequestMethod.GET, RequestMethod.POST})
+  // 181121 고친거
+ /* @RequestMapping(value = "mtstat2.do", method = {RequestMethod.GET, RequestMethod.POST})
   public @ResponseBody int mtstat2(int meno, char stat) {
     Mentee mentee = menteeService.get(meno);
     mentee.setMtstat(stat);
