@@ -41,7 +41,7 @@
     <script src="/vendor/jquery/jquery.min.js"></script>
 
 	<!-- 아래와 같이 주석처리한 이유는 bootstrap이 두번 선언된 경우에 동작이 두번할수도 있음 -->
-    <!-- <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
+
     <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="/vendor/jquery/jquery.min.js"></script>
     <script src="/js/jquery.raty.min.js"></script>
@@ -296,8 +296,10 @@
 	                    <h3>위치</h3>
 	                    <div class="row">
 	                    <div id="map" style="width:500px;height:400px;"></div>
-	                    <div id="adr" class = "addr"><strong>기본 주소</strong>  ${detailclass.basAddr}</div>
-	                    <div id="adr" class = "addr"><strong>상세 주소</strong>  ${detailclass.detAddr}</div>
+	                    <span id="adr" class = "addr" style="vertical-align: middle; margin-left:80px;
+	                    margin-top : 150px;"><div><strong>기본 주소</strong></div>  ${detailclass.basAddr}</span>
+	                    <span id="adr" class = "addr" style="vertical-align: middle; margin-left:80px;
+	                    margin-top : 150px;"><div><strong>상세 주소</strong></div>  ${detailclass.detAddr}</span>
 	                    </div>
 	                </div>
                 
@@ -415,7 +417,6 @@
                                             <th scope="col" class="col-lg-4" id="qna_th">질문 제목</th>
                                             <th scope="col" class="col-lg-1" id="qna_th">작성자</th>
                                             <th scope="col" class="col-lg-2" id="qna_th">작성일</th>
-
                                         </tr>
                                     </thead>
                                     
@@ -442,11 +443,10 @@
                                             <td class="col-lg-2">${cq.rgdt}</td>
                                         </tr>
                                         <tr>
-                                        	<td colspan="6" class="hiddenRow">
+                                        	<td class="hiddenRow">
                                         		<div class="accordian-body collapse" id="demo1-${i.count}">
                                         		<div class="adddet col-lg-2" style="text-align: center;
-                                        		vertical-align: middle;
-															display : block;">질문 내용</div>
+                                        		vertical-align: middle; display : block;">질문 내용</div>
                                         		<div class="acco" id="cont">${cq.conts}</div><br>
                                         			<c:set var="ans" value="${cq.anser}"/>
 		                                            <%
@@ -476,8 +476,6 @@
                             <!-- <div class="col-lg-12"> -->
                         </div>
                         <!-- <div class="row"> -->
-
-
                         <button style="width: 120px; height: 40px; margin-left: 960px;
                         background-color: #606066; color: #ffffff">클래스문의</button>
 

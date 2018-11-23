@@ -231,10 +231,7 @@ blockquote {
   }
 
 }
-#adr{
-	font-weight: bold;
-	float : right;
-}
+
 header.masthead {
   margin-bottom: 130px;
   background: no-repeat center center;
@@ -566,4 +563,7 @@ dd,dl{
 	transform: translateX(250%);
 	font-size : 15px;
 	font-weight : bold;
+}
+.addr{
+	text-align : center;
 }
