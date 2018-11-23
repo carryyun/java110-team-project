@@ -15,7 +15,7 @@
 <link href="/css/mainheader.css" rel="stylesheet">
 
 </head>
-<nav class="navbar navbar-expand-lg mx-auto fixed-top" id="mainNav">
+<nav class="navbar navbar-expand-lg mx-auto fixed-top mb-5" id="mainNav">
 	<a class="navbar-brand" href="/app/mainpage/mainpage">하루</a>
 	<div class="search">
 		<form role="form">
@@ -44,7 +44,7 @@
 								<img src="${sessionScope.loginUser.phot}" alt="userIMG"
 									style="margin: 10px 20px; width: 50px; height: 50px; border-radius: 25px"><br>
 								<div class="dropdown-content text-left" id="dropdown-content">
-									<a href="#"><span><i class="fas fa-user"></i></span><span class="ml-3">마이페이지</span></a>
+									<a href="../mypage/mypage"><span><i class="fas fa-user"></i></span><span class="ml-3">마이페이지</span></a>
 									<a href="../master/notice"><span><i class="fas fa-bell"></i></span><span class="ml-3">알림</span></a>
 									<hr class="Hhr"/>
 									<a href="../auth/logout"><span><i class="fas fa-sign-out-alt"></i></span><span class="ml-3">로그아웃</span></a>
@@ -67,7 +67,7 @@
 						</c:when>
 						
 						<c:otherwise>
-							<a class="nav-link " href="#"> <i class="fas fa-shopping-cart fa-2x"></i><br>장바구니
+							<a class="nav-link " href="../product/basket"> <i class="fas fa-shopping-cart fa-2x"></i><br>장바구니
 							</a>
 						</c:otherwise>
 					</c:choose>

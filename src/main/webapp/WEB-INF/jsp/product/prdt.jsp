@@ -45,9 +45,6 @@
 					<jsp:include page="../headerMain.jsp"></jsp:include>
 				</div>
 
-				<!-- Page Header ?????-->
-				<header class="masthead"> </header>
-
 				<!-- 카테고리 nav (스크립트로 임시 inclue) -->
 				<div class="col-lg-12">
 					<jsp:include page="../headerNav.jsp"></jsp:include>
