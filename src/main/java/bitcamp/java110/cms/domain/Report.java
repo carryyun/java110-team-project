@@ -13,15 +13,16 @@ public class Report {
   private Date rtdt; // 신고일
   private int meno; // 신고자
   private int meno2; // 피신고자
-  
+  private char stat; // 신고 상태
+
   private String menteeNick; // 신고자 닉네임
   private String mentee2Email; // 피신고자 이메일
   private String mentee2Nick; // 피신고자 닉네임
 
   private int cnt;
-  
+
   private List<Report> finishlist;
-  
+
 
   public List<Report> getFinishlist() {
     return finishlist;
@@ -135,13 +136,22 @@ public class Report {
     this.cnt = cnt;
   }
 
+  public char getStat() {
+    return stat;
+  }
+
+  public void setStat(char stat) {
+    this.stat = stat;
+  }
+
   @Override
   public String toString() {
     return "Report [no=" + no + ", titl=" + titl + ", conts=" + conts + ", url=" + url + ", type="
         + type + ", type_detail=" + type_detail + ", rtdt=" + rtdt + ", meno=" + meno + ", meno2="
-        + meno2 + ", menteeNick=" + menteeNick + ", mentee2Email=" + mentee2Email + ", mentee2Nick="
-        + mentee2Nick + ", cnt=" + cnt + "]";
+        + meno2 + ", stat=" + stat + ", menteeNick=" + menteeNick + ", mentee2Email=" + mentee2Email
+        + ", mentee2Nick=" + mentee2Nick + ", cnt=" + cnt + ", finishlist=" + finishlist + "]";
   }
-  
-  
+
+
+
 }

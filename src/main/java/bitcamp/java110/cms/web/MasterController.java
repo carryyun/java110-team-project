@@ -107,12 +107,12 @@ public class MasterController {
   }
   
   // 181121 고친거
- /* @RequestMapping(value = "mtstat2.do", method = {RequestMethod.GET, RequestMethod.POST})
-  public @ResponseBody int mtstat2(int meno, char stat) {
-    Mentee mentee = menteeService.get(meno);
-    mentee.setMtstat(stat);
-    return menteeService.updateMtstat(mentee);
-  }*/
+  @RequestMapping(value = "reptstat.do", method = {RequestMethod.GET, RequestMethod.POST})
+  public @ResponseBody int reptstat(int rtno, char stat) {
+    Report report = reportService.get(rtno);
+    report.setStat(stat);
+    return reportService.updateReptstat(report);
+  }
 
   @GetMapping("mentorreqlist")
   public void mentorlist(Model model) {
@@ -156,7 +156,7 @@ public class MasterController {
   
   @GetMapping("reportList")
   public void reportList(Model model) {
-    List<Report> ReportList = reportService.finishlist(3, 3);
+    List<Report> ReportList = reportService.listByStat(10, 3);
     for(Report r: ReportList) {
       r.setCnt(reportService.getMeno2Cnt(r.getMeno2()));
     }
