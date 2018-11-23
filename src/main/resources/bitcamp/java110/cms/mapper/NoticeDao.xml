@@ -34,6 +34,12 @@
         where
         nino=#{value}
     </select>
+    
+    <select id="findByMeno" resultMap="notiMap" parameterType="map">
+        <include refid="select1"/>
+        where
+        meno=#{meno}
+    </select>
 
     <insert id="insert" parameterType="Notice"
         useGeneratedKeys="true" keyColumn="nino" keyProperty="no">

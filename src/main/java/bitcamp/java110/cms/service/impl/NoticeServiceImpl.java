@@ -18,7 +18,6 @@ public class NoticeServiceImpl implements NoticeService{
 
   @Override
   public List<Notice> list(int pageNo, int pageSize) {
-    
     HashMap<String, Object> params = new HashMap<>();
     params.put("rowNo", (pageNo - 1) * pageSize);
     params.put("size", pageSize);
@@ -36,6 +35,14 @@ public class NoticeServiceImpl implements NoticeService{
   @Override
   public int update(Notice noti) {
     return notiDao.update(noti);
+  }
+  @Override
+  public List<Notice> listByMeno(int pageNo, int pageSize, int meno) {
+    HashMap<String, Object> params = new HashMap<>();
+    params.put("rowNo", (pageNo - 1) * pageSize);
+    params.put("size", pageSize);
+    params.put("meno", meno);
+    return notiDao.findByMeno(params);
   }
   
   

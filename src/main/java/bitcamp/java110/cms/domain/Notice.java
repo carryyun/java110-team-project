@@ -4,7 +4,14 @@ public class Notice {
   private int no;
   private String type;
   private String url;
+  private int meno;
   
+  public int getMeno() {
+    return meno;
+  }
+  public void setMeno(int meno) {
+    this.meno = meno;
+  }
   public int getNo() {
     return no;
   }
