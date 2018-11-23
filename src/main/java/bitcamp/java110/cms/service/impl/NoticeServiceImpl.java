@@ -45,6 +45,10 @@ public class NoticeServiceImpl implements NoticeService{
     return notiDao.findByMeno(params);
   }
   
+  @Override
+  public int remove(int no) {
+    return notiDao.delete(no);
+  }
   
   
 

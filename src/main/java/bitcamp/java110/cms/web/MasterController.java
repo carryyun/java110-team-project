@@ -190,7 +190,7 @@ public class MasterController {
   }
   @RequestMapping(value = "notiRemove.do", method = {RequestMethod.GET, RequestMethod.POST})
   public @ResponseBody int removeNoti(int no) {
-    return noticeService.(no);
+    return noticeService.remove(no);
   }
   
   /*
