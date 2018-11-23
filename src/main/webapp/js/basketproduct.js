@@ -63,6 +63,7 @@ $(document).ready(function () {
 
     /* Update quantity */
     function updateQuantity(quantityInput) {
+        console.log(quantityInput);
         /* Calculate line price */
         var productRow = $(quantityInput).parent().parent();
         var price = parseInt(productRow.children('.product-price').text());

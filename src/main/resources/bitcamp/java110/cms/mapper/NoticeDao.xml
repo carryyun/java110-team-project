@@ -9,7 +9,9 @@
     <resultMap type="Notice" id="notiMap">
         <id column="nino" property="no" />
         <result column="type" property="type" />
+        <result column="conts" property="conts" />
         <result column="url" property="url" />
+        <result column="urlno" property="urlno" />
         <result column="meno" property="meno" />
     </resultMap>
 
@@ -17,7 +19,9 @@
         select
         n.nino,
         n.type,
+        n.conts,
         n.url,
+        n.urlno,
         n.meno
         from
         p_noti n
@@ -59,5 +63,10 @@
         where
         nino=#{no}
     </update>
+    
+    <delete id="delete" parameterType="int">
+        delete from p_noti
+        where nino=#{value}
+    </delete>
 
 </mapper>

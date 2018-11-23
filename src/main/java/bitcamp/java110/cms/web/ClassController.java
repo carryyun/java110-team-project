@@ -1,12 +1,13 @@
 package bitcamp.java110.cms.web;
 
 import java.util.List;
-import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import bitcamp.java110.cms.domain.ClassBakt;
 import bitcamp.java110.cms.domain.ClassFile;
 import bitcamp.java110.cms.domain.ClassLike;
@@ -14,6 +15,7 @@ import bitcamp.java110.cms.domain.ClassOrder;
 import bitcamp.java110.cms.domain.ClassQna;
 import bitcamp.java110.cms.domain.ClassRep;
 import bitcamp.java110.cms.domain.Classes;
+import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.service.ClassBaktService;
 import bitcamp.java110.cms.service.ClassFileService;
 import bitcamp.java110.cms.service.ClassLikeService;
@@ -31,27 +33,25 @@ public class ClassController {
   ClassQnaService classqnaService;
   ClassOrderService classorderService;
   ClassLikeService classlikeService;
-  ClassBaktService classbaktService;
+  ClassBaktService classBaktService;
   ClassRepService classrepService;
   ClassFileService classFileService;
   MenteeService menteeService;
-  ServletContext sc;
   
   public ClassController(
       ClassService classService,ClassQnaService classqnaService,
       ClassOrderService classorderService,ClassLikeService classlikeService
-      ,ClassBaktService classbaktService,MenteeService menteeService,
-      ClassRepService classrepService,ClassFileService classFileService,
-      ServletContext sc) {
+      ,ClassBaktService classBaktService,MenteeService menteeService,
+      ClassRepService classrepService,ClassFileService classFileService
+      ) {
     this.classService = classService;
     this.classqnaService = classqnaService;
     this.classorderService = classorderService;
     this.classlikeService = classlikeService;
-    this.classbaktService = classbaktService;
+    this.classBaktService = classBaktService;
     this.menteeService = menteeService;
     this.classrepService = classrepService;
     this.classFileService = classFileService;
-    this.sc = sc;
   }
 
   @GetMapping("form") 
@@ -62,7 +62,7 @@ public class ClassController {
   @PostMapping("findAll")
   public void findAll() {
     System.out.println("findAll 호출");
-    List<Classes> clist= classService.classlist(5);
+    List<Classes> clist= classService.classList(5);
     
 
     for(Classes c : clist) {
@@ -122,7 +122,7 @@ public class ClassController {
   @GetMapping("findBytag")
   public Classes findBytag() {
     
-    List<Classes> clist = classService.classlist(5);
+    List<Classes> clist = classService.classList(5);
 
     for(Classes c : clist) {
       
@@ -138,7 +138,7 @@ public class ClassController {
   @GetMapping("findByba")
   public Classes findByba() {
     
-    List<Classes> clist = classService.classlist(5);
+    List<Classes> clist = classService.classList(5);
     
     for(Classes c : clist) {
 
@@ -170,7 +170,7 @@ public class ClassController {
   public void findByCno(Model model,int no) {
     List<ClassRep> clsreqlist = classrepService.listbycno(no);
     
-    Classes detailclass = classService.findAllBycno(no);
+    Classes detailclass = classService.findBycno(no);
     
     List<ClassQna> clsqnalist = classqnaService.listbycno(10, 10, no);
     
@@ -316,7 +316,7 @@ public class ClassController {
   @PostMapping("baktinsert")
   public int baktinsert(ClassBakt classbakt) {
    
-    classbaktService.add(classbakt);
+    classBaktService.add(classbakt);
     
     return 1;
   }
@@ -324,7 +324,7 @@ public class ClassController {
   @PostMapping("baktdelete")
   public int baktdelete(int no) {
     
-    classbaktService.delete(no);
+    classBaktService.delete(no);
     
     return 1;
   }
@@ -332,7 +332,7 @@ public class ClassController {
   @GetMapping("baktlist")
   public List<ClassBakt> baktlist(){
     
-    List<ClassBakt> clist = classbaktService.list(3, 5);
+    List<ClassBakt> clist = classBaktService.list(3, 5);
     
     for(ClassBakt c : clist) {
       System.out.println(c.getNo());
@@ -342,4 +342,23 @@ public class ClassController {
     
     return null;
   }
+  
+  /*
+   * 클래스 장바구니 관련 시작
+   */
+  @GetMapping("basket")
+  public void basketclass(Model model, HttpSession session) {
+    Mentee mentee = (Mentee) session.getAttribute("loginUser");
+    List<ClassBakt> basketList = classBaktService.listByMeno(mentee.getNo());
+    model.addAttribute("basketList", basketList);
+  }
+  
+  @ResponseBody
+  @RequestMapping("removeDate")
+  public String removeDate(int no) throws Exception {
+      
+      classBaktService.delete(no);
+      return "redirect:basketclass";
+  }
+  //클래스 장바구니 종료
 }

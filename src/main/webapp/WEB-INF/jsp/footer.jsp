@@ -15,7 +15,7 @@
 </head>
     <!-- footer -->
     
-        <div class="col text-center" id="footerCss">
+        <div class="col px-0 text-center" id="footerCss">
     <div class="footes">        
             <div class="row ">
                 <!-- footer-about -->
