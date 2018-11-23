@@ -1,5 +1,4 @@
 <%@page import="bitcamp.java110.cms.domain.Classes"%>
-<%@page import="bitcamp.java110.cms.domain.Product"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -381,7 +380,6 @@
                                             <th scope="col" class="col-lg-4" id="qna_th">질문 제목</th>
                                             <th scope="col" class="col-lg-1" id="qna_th">작성자</th>
                                             <th scope="col" class="col-lg-2" id="qna_th">작성일</th>
-
                                         </tr>
                                     </thead>
                                     
@@ -409,10 +407,9 @@
                                         </tr>
                                         <tr>
                                         	<td colspan="6" class="hiddenRow">
-                                        		<div class="accordian-body collapse" id="demo1-${i.count}">
+                                        		<div class="accordian-body collapse p-3" id="demo1-${i.count}">
                                         		<div class="adddet col-lg-2" style="text-align: center;
-                                        		vertical-align: middle;
-															display : block;">질문 내용</div>
+                                        		vertical-align: middle; display : block;">질문 내용</div>
                                         		<div class="acco" id="cont">${cq.conts}</div><br>
                                         			<c:set var="ans" value="${cq.anser}"/>
 		                                            <%
@@ -572,6 +569,7 @@ geocoder.addressSearch('${detailclass.basAddr}', function(result, status) {
 </script>
 <script>
 $('.accordian-body').on('show.bs.collapse', function () {
+    console.log("toggle 호출1")
     $(this).closest("table")
         .find(".collapse.in")
         .not(this)
