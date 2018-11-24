@@ -5,11 +5,12 @@ import bitcamp.java110.cms.domain.Timetable;
 
 public interface TimetableService {
   
-  
-  
-  void add(Timetable timetable);
   List<Timetable> list(int pageNo, int pageSize);
+  List<Timetable> findByCno(int cno);
+  
   Timetable get(int no);
-  void update(Timetable timetable);
-
+  int add(Timetable timetable);
+  int delete(int ctno);
+  int update(Timetable timetable);
+  
 }

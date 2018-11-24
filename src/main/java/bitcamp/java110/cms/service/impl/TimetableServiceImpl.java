@@ -18,15 +18,15 @@ public class TimetableServiceImpl implements TimetableService {
   @Transactional(
       rollbackFor=Exception.class)
   @Override
-  public void add(Timetable timetable) {
+  public int add(Timetable timetable) {
 
-    timetableDao.insert(timetable);
+    return timetableDao.insert(timetable);
   }
 
   @Override
-  public void update(Timetable timetable) {
-    timetableDao.update(timetable);
-
+  public int update(Timetable timetable) {
+    
+    return timetableDao.update(timetable);
   }
 
 
@@ -42,6 +42,18 @@ public class TimetableServiceImpl implements TimetableService {
   @Override
   public Timetable get(int no) {
     return timetableDao.findByCtno(no);
+  }
+
+  @Override
+  public List<Timetable> findByCno(int cno) {
+    
+    return timetableDao.findByCno(cno);
+  }
+
+  @Override
+  public int delete(int ctno) {
+
+    return timetableDao.delete(ctno);
   }
 
 
