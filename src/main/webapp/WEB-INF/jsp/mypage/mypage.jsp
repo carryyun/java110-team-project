@@ -29,6 +29,7 @@
 
     <!--    버튼-->
     <link rel="stylesheet" href="/css/mypagecss/button/skyblue-gradient.css">
+    <link rel="stylesheet" href="/css/mypagecss/button/togglecustom.css">
     <!-- Animate.css -->
     <link rel="stylesheet" href="/css/mypagecss/animate.css">
     <!-- Bootstrap  -->

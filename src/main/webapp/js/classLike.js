@@ -1,18 +1,16 @@
 
 $(document).ready(function () {
-    
-    var fadeTime = 200;
-
+    var fadeTime = 100;
     $('.btncancel').click(function () {
         removeItem(this);
 
         $.ajax({ 
             type : "GET", 
-            url : "removeDate",
+            url : "removeLike",
             data : {"no": this.value},
             success : function(data){
                 if(data != 0){
-                    alert("success!");
+                    /*alert("success!");*/
                 }else{
                     alert("fail!");
                 }
