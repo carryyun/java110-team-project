@@ -51,7 +51,9 @@
     <select id="findAllByMeno" resultMap="classlikeMap" parameterType="int">
         SELECT
             cl.clno, 
-            cls.titl, 
+            cls.cno,
+            cls.titl,
+            cls.cfile,
             mete2.nick, 
             cls.pric
         FROM p_cls_like cl 

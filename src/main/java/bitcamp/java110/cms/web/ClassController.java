@@ -16,6 +16,7 @@ import bitcamp.java110.cms.domain.ClassQna;
 import bitcamp.java110.cms.domain.ClassRep;
 import bitcamp.java110.cms.domain.Classes;
 import bitcamp.java110.cms.domain.Mentee;
+import bitcamp.java110.cms.domain.Timetable;
 import bitcamp.java110.cms.service.ClassBaktService;
 import bitcamp.java110.cms.service.ClassFileService;
 import bitcamp.java110.cms.service.ClassLikeService;
@@ -24,6 +25,7 @@ import bitcamp.java110.cms.service.ClassQnaService;
 import bitcamp.java110.cms.service.ClassRepService;
 import bitcamp.java110.cms.service.ClassService;
 import bitcamp.java110.cms.service.MenteeService;
+import bitcamp.java110.cms.service.TimetableService;
 
 @Controller
 @RequestMapping("/class")
@@ -36,14 +38,15 @@ public class ClassController {
   ClassBaktService classBaktService;
   ClassRepService classrepService;
   ClassFileService classFileService;
+  TimetableService timetableService;
   MenteeService menteeService;
   
   public ClassController(
       ClassService classService,ClassQnaService classqnaService,
       ClassOrderService classorderService,ClassLikeService classlikeService
       ,ClassBaktService classBaktService,MenteeService menteeService,
-      ClassRepService classrepService,ClassFileService classFileService
-      ) {
+      ClassRepService classrepService,ClassFileService classFileService,
+      TimetableService timetableService) {
     this.classService = classService;
     this.classqnaService = classqnaService;
     this.classorderService = classorderService;
@@ -52,6 +55,7 @@ public class ClassController {
     this.menteeService = menteeService;
     this.classrepService = classrepService;
     this.classFileService = classFileService;
+    this.timetableService = timetableService;
   }
 
   @GetMapping("form") 
@@ -176,10 +180,13 @@ public class ClassController {
     
     List<ClassFile> clsfilelist = classFileService.findByCno(no);
     
+    List<Timetable> clstimelist = timetableService.findByCno(no);
+    
     model.addAttribute("clsreqlist",clsreqlist);
     model.addAttribute("detailclass",detailclass);
     model.addAttribute("clsqnalist",clsqnalist);
     model.addAttribute("clsfilelist",clsfilelist);
+    model.addAttribute("clstimelist",clstimelist);
   }
   
   @RequestMapping("findByptno")
@@ -361,4 +368,25 @@ public class ClassController {
       return "redirect:basketclass";
   }
   //클래스 장바구니 종료
+  
+  /*
+   * 찜클래스 관련 시작
+   */
+  @GetMapping("like")
+  public void basketproduct(Model model, HttpSession session) {
+    Mentee loginUser = (Mentee) session.getAttribute("loginUser");
+    
+    List<ClassLike> likeList = classlikeService.listByMeno(loginUser.getNo());
+    
+    model.addAttribute("likeList",likeList);
+    
+  }
+  @ResponseBody
+  @RequestMapping("removeLike")
+  public String removeLike(int no) throws Exception {
+      
+      classlikeService.likesub(no);
+      return "redirect:classLike";
+  }
+  // 찜클래스 종료
 }
