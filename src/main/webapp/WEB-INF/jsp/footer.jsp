@@ -2,20 +2,12 @@
     contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     trimDirectiveWhitespaces="true"%>
-
-<!DOCTYPE html>
 <html>
-<head>
-<!--     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
     <link rel="stylesheet" href="/css/footer.css">
-</head>
     <!-- footer -->
     
-        <div class="col px-0 text-center" id="footerCss">
+<div class="col px-0 text-center " id="footerCss">
     <div class="footes">        
             <div class="row ">
                 <!-- footer-about -->
@@ -55,9 +47,10 @@
                 <!-- footer-links -->
                 <div class="col-xl-3 col-lg-3 col-md-12 col-sm-6 col-6 ">
                     <div class="footer-widget ">
-                        <h3 class="footer-title">
-                            <div class="ft-logo"><img src="/upload/img/logo.png" alt="logo" style="width: 200px;"></div>
-                        </h3>
+                        <div class="footer-title">
+                            CONTACT
+                            <!-- <div class="ft-logo"><img src="/upload/img/logo.png" alt="logo" style="width: 200px;"></div> -->
+                        </div>
                         <p><b>카카오톡 플러스</b><br>: @Haru</p>
 
                         <p><b>고객센터 운영시간</b><br>평일 AM 10:00 ~ PM 06:00<br>점심 AM 12:30 ~ PM 01:30</p>

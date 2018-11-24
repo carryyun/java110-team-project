@@ -361,4 +361,25 @@ public class ClassController {
       return "redirect:basketclass";
   }
   //클래스 장바구니 종료
+  
+  /*
+   * 찜클래스 관련 시작
+   */
+  @GetMapping("like")
+  public void basketproduct(Model model, HttpSession session) {
+    Mentee loginUser = (Mentee) session.getAttribute("loginUser");
+    
+    List<ClassLike> likeList = classlikeService.listByMeno(loginUser.getNo());
+    
+    model.addAttribute("likeList",likeList);
+    
+  }
+  @ResponseBody
+  @RequestMapping("removeLike")
+  public String removeLike(int no) throws Exception {
+      
+      classlikeService.likesub(no);
+      return "redirect:classLike";
+  }
+  // 찜클래스 종료
 }

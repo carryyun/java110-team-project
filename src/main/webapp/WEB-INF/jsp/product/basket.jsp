@@ -10,15 +10,12 @@
 <title>Insert title here</title>
 <%-- 부트스트랩 --%>
 <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
 <%-- css --%>
 <link href="/css/basketproduct.css" rel="stylesheet">
 <link href="/css/common.css" rel="stylesheet">
 <%-- js --%>
 <script src="/vendor/jquery/jquery.min.js"></script>
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-
 <script src="/js/basketproduct.js"></script>
 
 </head>
