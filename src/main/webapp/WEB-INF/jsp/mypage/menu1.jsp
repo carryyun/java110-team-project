@@ -19,7 +19,7 @@
        
     }
     else
-    {
+    {   
         text1.readOnly = true;
         text1.style.border = "none";
     }
@@ -31,11 +31,11 @@
     {
         text2.readOnly = false;
         text2.style.border = "solid";
-        text2.style.borderColor = "#F9BD41";
+        text2.style.borderColor = "#EB5554";
         
         text3.readOnly = false;
         text3.style.border = "solid";
-        text3.style.borderColor = "#F9BD41";
+        text3.style.borderColor = "#EB5554";
        
     }
     else
@@ -55,11 +55,11 @@
     {
         text4.readOnly = false;
         text4.style.border = "solid";
-        text4.style.borderColor = "#EB5554";
+        text4.style.borderColor = "#F9BD41";
         
         text5.readOnly = false;
         text5.style.border = "solid";
-        text5.style.borderColor = "#EB5554";
+        text5.style.borderColor = "#F9BD41";
        
     }
     else
@@ -124,12 +124,17 @@
                                 </div>
                             </div>
                           
-                            <section class="model-13" style="position:absolute; right:0; top:0;">
+                         <div class="toggle toggle--knob" style="position:absolute; right:30px; top:0; ">
+                                <input type="checkbox" id="toggle--knob1" class="toggle--checkbox" onClick="cbox1(this);" >
+                                <label class="toggle--btn" for="toggle--knob1"><span class="toggle--feature" data-label-on=""  data-label-off="" ></span></label>
+                         </div>
+                        
+                         <!--    <section class="model-13" style="position:absolute; right:0; top:0;">
                                 <div class="checkbox">
                                 <input  type="checkbox" value="1" onClick="cbox1(this);"/>
                                 <label></label>
                                 </div>
-                            </section>
+                            </section> -->
                             
                     </div>
                 </div>
@@ -145,7 +150,7 @@
                                                             비밀번호
                                 </div>
                                 <div class="cont1" >
-                                   <input id="text4" type="text" name="pwd" value="&nbsp;**********" readonly style="width:140px; border:none; ">
+                                   <input id="text2" type="text" name="pwd" value="&nbsp;**********" readonly style="width:140px; border:none; ">
                                     
                                 </div>
                                 
@@ -156,19 +161,24 @@
                                 출금계좌
                                 </div>
                              <div class="cont1" >
-                                    <input id="text5" type="text" name="bk" value="&nbsp; ${mentee.bkname}&nbsp;&nbsp;&nbsp;${mentee.bkno}" readonly style="width:140px; border:none; ">
+                                    <input id="text3" type="text" name="bk" value="&nbsp; ${mentee.bkname}&nbsp;&nbsp;&nbsp;${mentee.bkno}" readonly style="width:140px; border:none; ">
                                    
                                 </div>
                                 
                                 
                             </div>
-                           
+                            
+                             <div class="toggle toggle--knob" style="position:absolute; right:30px; top:0; ">
+                                <input type="checkbox" id="toggle--knob2" class="toggle--checkbox" onClick="cbox2(this);">
+                                <label class="toggle--btn" for="toggle--knob2" style="background:#EB5554;"><span class="toggle--feature" data-label-on=""  data-label-off="" ></span></label>
+                         </div>
+                           <!-- 
                              <section class="model-13" style="position:absolute; right:0; top:0;">
                                 <div class="checkbox">
                                 <input  type="checkbox" value="1" onClick="cbox3(this);"/>
                                 <label></label>
                                 </div>
-                            </section>
+                            </section> -->
                     </div>
                 </div>
                 
@@ -186,7 +196,7 @@
                                                     핸드폰 번호                          
                                 </div>
                                 <div class="cont1" >
-                                   <input id="text2" type="text" name="pwd" value="&nbsp;  ${mentee.phone}" readonly style="width:140px; border:none; ">
+                                   <input id="text4" type="text" name="pwd" value="&nbsp;  ${mentee.phone}" readonly style="width:140px; border:none; ">
                                     
                                 </div>
                                 
@@ -197,19 +207,17 @@
                                 몰랑
                                 </div>
                              <div class="cont1" >
-                                    <input id="text3" type="text" name="bk" value="&nbsp; 뭘써야함;;&nbsp;&nbsp;&nbsp;${mentee.bkno}" readonly style="width:140px; border:none; ">
+                                    <input id="text5" type="text" name="bk" value="&nbsp; 뭘써야함;;&nbsp;&nbsp;&nbsp;${mentee.bkno}" readonly style="width:140px; border:none; ">
                                    
                                 </div>
                                 
                                 
                             </div>
                            
-                             <section class="model-13" style="position:absolute; right:0; top:0;">
-                                <div class="checkbox">
-                                <input  type="checkbox" value="1" onClick="cbox2(this);"/>
-                                <label></label>
-                                </div>
-                            </section>
+                             <div class="toggle toggle--knob" style="position:absolute; right:30px; top:0; ">
+                                <input type="checkbox" id="toggle--knob3" class="toggle--checkbox" onClick="cbox3(this);">
+                                <label class="toggle--btn" for="toggle--knob3" style="background:#F9BD41;"><span class="toggle--feature" data-label-on=""  data-label-off="" ></span></label>
+                         </div>
                     </div>
                 </div>
                 
@@ -257,12 +265,10 @@
                                 
                             </div>
                            
-                             <section class="model-13" style="position:absolute; right:0; top:0;">
-                                <div class="checkbox">
-                                <input  type="checkbox" value="1" onClick="cbox4(this);"/>
-                                <label></label>
-                                </div>
-                            </section>
+                             <div class="toggle toggle--knob" style="position:absolute; right:30px; top:0; ">
+                                <input type="checkbox" id="toggle--knob4" class="toggle--checkbox" onClick="cbox4(this);">
+                                <label class="toggle--btn" for="toggle--knob4" style="background:#A64DB6"><span class="toggle--feature" data-label-on=""  data-label-off="" ></span></label>
+                         </div>
                     </div>
                 </div>
                 
