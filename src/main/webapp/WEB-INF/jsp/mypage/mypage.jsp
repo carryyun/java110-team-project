@@ -29,7 +29,6 @@
 
     <!--    버튼-->
     <link rel="stylesheet" href="/css/mypagecss/button/skyblue-gradient.css">
-    <link rel="stylesheet" href="/css/mypagecss/button/togglecustom.css">
     <link rel="stylesheet" href="/css/mypagecss/button/flipbtn.css">
     <!-- Animate.css -->
     <link rel="stylesheet" href="/css/mypagecss/animate.css">
@@ -48,7 +47,13 @@
                 overflow: hidden;
             }
   
-        </style>
+        #th-pay th,
+        #tb-pay td{
+                vertical-align: middle;
+                text-align:center
+         }
+         
+     </style>
 
 </head>
 
@@ -142,13 +147,14 @@
                            
                         
 
-                        <!--  sdfsdfsdfsdfsdf -->
+                   
+                        
                         <div>
-                        <div id="wrapper" class="wrapper-btn1">
-                            <button id="classbkt" class="fancy" >클래스</button>
+                        <div id="wrapper" class="wrapper-btn11">
+                            <button id="classbkt" class="fancy">클래스</button>
                         </div>
                         
-                        <div id="wrapper" class="wrapper-btn2">
+                        <div id="wrapper" class="wrapper-btn22" >
                             <button id="productbkt" class="fancy">상품</button>
                         </div>
                           </div>                     
@@ -158,7 +164,7 @@
                         <div id="menu3-1"> </div>
                         <div id="menu3-2"> </div>
                         
-                        <!--  menu3-1를,  menu3-2를 보여준다 -->
+                        
 
                     </div>
                     </div>

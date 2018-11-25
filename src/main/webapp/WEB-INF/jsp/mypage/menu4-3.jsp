@@ -57,84 +57,19 @@
 
 
                                     </tbody>
+                                   
                                 </table>
-
+                                <div style="width:150px; margin-left:auto; margin-right:0;">
+ <button type="button" class="btn btn-primary" >확인</button>
+ <!-- 이미 답변한 게시물은 '답변수정' 으로 출력  -->
+ <button type="button" class="btn btn-secondary">취소</button>
+ </div>
                             </div>
                         </td>
                     </tr>
                     
                     
-                    <tr data-toggle="collapse" data-target="#demo3-2" class="accordion-toggle">
-                        <td>2</td>
-                        <td>클래스 문의</td>
-                        <td>멘토님이 이상해요</td>
-                        <td>2018-11-14</td>
-                        <td>답변완료</td>
-                        
-
-                    </tr>
-                    <tr>
-                        <td colspan="6" class="hiddenRow">
-                            <div class="accordian-body collapse" id="demo3-2">
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                           <td class="qcontents">문의내용</td>
-                                            <td> 멘토님이 사람이아닌거같아요. 발바닥 두께도 그렇고 가슴털도 반달이에요.
-                                            </td>
-                                        </tr>
-                                        
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="qcontents">답변내용</td>
-                                            <td>뭐... 사람이든 곰이든 상관없지않나요? 문제가되시면 다시 문의주시면 감사하겠습니다.<td>
-                                        </tr>
-
-
-
-                                    </tbody>
-                                </table>
-
-                            </div>
-                        </td>
-                    </tr>
                     
-                    <tr data-toggle="collapse" data-target="#demo3-3" class="accordion-toggle">
-                        <td>3</td>
-                        <td>사이트이용</td>
-                        <td>멘토가 잠수탔어요...</td>
-                        <td>2018-11-15</td>
-                        <td>답변완료</td>
-                        
-
-                    </tr>
-                    <tr>
-                        <td colspan="6" class="hiddenRow">
-                            <div class="accordian-body collapse" id="demo3-3">
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                           <td class="qcontents">문의내용</td>
-                                            <td>진심 X빡쳐요. 경찰에 신고해야하나요? 하루수업하더니 연락두절이네요
-                                            </td>
-                                        </tr>
-                                        
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="qcontents">답변내용</td>
-                                            <td>아... OO님 저희도 반달곰 멘토님을 애타게 찾고있습니다.아마 겨울이라서 남은수업도 잊은채 겨울잠에 들어가신거같은데요.... 깜빡하신분들은 저희가 우선 환불처리를 해드리고있습니다.</td>
-                                        </tr>
-
-
-
-                                    </tbody>
-                                </table>
-
-                            </div>
-                        </td>
-                    </tr>
                     
                     
                     

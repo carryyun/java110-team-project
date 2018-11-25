@@ -207,7 +207,7 @@
                                 몰랑
                                 </div>
                              <div class="cont1" >
-                                    <input id="text5" type="text" name="bk" value="&nbsp; 뭘써야함;;&nbsp;&nbsp;&nbsp;${mentee.bkno}" readonly style="width:140px; border:none; ">
+                                    <input id="text5" type="text" name="bk" value="&nbsp; 뭘써야함;;" readonly style="width:140px; border:none; ">
                                    
                                 </div>
                                 
