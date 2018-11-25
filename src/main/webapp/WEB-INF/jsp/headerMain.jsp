@@ -80,7 +80,7 @@
                         </c:when>
                         
                         <c:otherwise>
-                            <a class="nav-link" href="#"> <i class="fas fa-star fa-2x"></i><br>찜클래스
+                            <a class="nav-link" href="../class/like"> <i class="fas fa-star fa-2x"></i><br>찜클래스
                             </a>
                         </c:otherwise>
                     </c:choose>
