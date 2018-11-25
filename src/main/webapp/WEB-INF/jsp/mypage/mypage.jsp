@@ -30,9 +30,11 @@
     <!--    버튼-->
     <link rel="stylesheet" href="/css/mypagecss/button/skyblue-gradient.css">
     <link rel="stylesheet" href="/css/mypagecss/button/switchbtn.css">
-   <!--  <link rel="stylesheet" href="/css/mypagecss/button/modal.css"> -->
+    <link rel="stylesheet" href="/css/mypagecss/button/flipbtn.css">
+    <link rel="stylesheet" href="/css/mypagecss/button/togglebtn.css">
+    <!--  <link rel="stylesheet" href="/css/mypagecss/button/modal.css"> -->
     <!-- <link rel="stylesheet" href="/css/mypagecss/button/slider.css"> -->
-    <!-- <link rel="stylesheet" href="/css/mypagecss/button/flipbtn.css"> -->
+    
     <!-- Animate.css -->
     <link rel="stylesheet" href="/css/mypagecss/animate.css">
     <!-- Bootstrap  -->
@@ -42,7 +44,8 @@
     <!-- J Query -->
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <!-- Load JS-->
-    <script src=/js/mypagejs/hideshow.js></script>    
+    <script src=/js/mypagejs/hideshow.js></script> 
+    <script src=/js/mypagejs/menu4btn.js></script>
     
     <style>
 
@@ -57,7 +60,7 @@
          }
          
      </style>
-
+     
 </head>
 
 <body>
@@ -148,6 +151,7 @@
                                     <hr color="black"    >
                                
                            
+                          
                         
   <div class="switch-field">
       <input type="radio" id="classbkt" name="switch_2" value="yes" checked/>
@@ -188,30 +192,33 @@
 
                                     <h2 class="colorlib-heading">내 활동보기</h2>
                                     <hr color="black"    >
+                                    
                         
-<div class="switch-field">
+<div class="switch-field" style="position:relative;">
       <input type="radio" id="btn-menu4-1" name="switch_3" value="yes" checked/>
       <label for="btn-menu4-1">1:1문의</label>
       
-      <input type="radio" id="2rdswitch" name="switch_3" value="maybe"/>
+
+      <input type="radio" id="2ndswitch" name="switch_3" value="maybe" />
+      <label for="2ndswitch">클래스</label>
       
       
-      <label for="2rdswitch">클래스</label>
       
-        
-  
-      <input type="radio" id="3rdswitch" name="switch_3" value="no" data-toggle="dropdown" />
+      <input type="radio" id="3rdswitch" name="switch_3" value="no"  />
       <label for="3rdswitch">상품</label>
       
-                    <div class="dropdown-menu" style="border: 1px solid black; position:relative; top:50px; left:-120px">
-                                <div id="wrapper" class="wrapper-btn4">
-                            <button id="btn-menu4-4" class="fancy">질문</button>
-                        </div>
-                         <div id="wrapper" class="wrapper-btn5">
-                            <button id="btn-menu4-5" class="fancy">답변</button>
-                        </div>
-                </div>
+      <div id="clsqna" style=" position: absolute; bottom:10%; left:17.2%;">
+      <button class="btn-primary" id="btn-menu4-2">질문</button>
+      <button class="btn-warning"id="btn-menu4-3">답변</button>
+      </div>
       
+      
+      <div id="prdtqna" style=" position: absolute; bottom:10%; left:29.5%;">
+      <button class="btn-primary" id="btn-menu4-4" >질문</button>
+      <button class="btn-warning" id="btn-menu4-5">답변</button>
+      </div>
+      
+     
 
 </div>
 
