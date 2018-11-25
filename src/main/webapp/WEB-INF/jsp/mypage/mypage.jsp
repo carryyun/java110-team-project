@@ -30,6 +30,7 @@
     <!--    버튼-->
     <link rel="stylesheet" href="/css/mypagecss/button/skyblue-gradient.css">
     <link rel="stylesheet" href="/css/mypagecss/button/switchbtn.css">
+   <!--  <link rel="stylesheet" href="/css/mypagecss/button/modal.css"> -->
     <!-- <link rel="stylesheet" href="/css/mypagecss/button/slider.css"> -->
     <!-- <link rel="stylesheet" href="/css/mypagecss/button/flipbtn.css"> -->
     <!-- Animate.css -->
@@ -173,7 +174,7 @@
                         <div id="menu3-1"> </div>
                         <div id="menu3-2"> </div>
                         
-                        
+          
 
                     </div>
                     </div>
@@ -730,12 +731,13 @@
 
 
 </body>
-<!-- jQuery -->
+    <!-- jQuery -->
     <script src="/js/mypagejs/jquery.min.js"></script>
     <!-- Waypoints -->
     <script src="/js/mypagejs/jquery.waypoints.min.js"></script>
     <!-- Counters -->
     <script src="/js/mypagejs/jquery.countTo.js"></script>
+    
     <!-- MAIN JS -->
     <script src="/js/mypagejs/main.js"></script>
     <script src="/js/mypagejs/bootstrap.min.js"></script>
