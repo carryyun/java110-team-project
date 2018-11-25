@@ -6,7 +6,9 @@
 /*
 * 추가부분
 */
-
+#main-carousel .active{
+ background-color: #ec5453; 
+}
 .cusNextCls, .cusPrevCls,
 .cusNextPrdt, .cusPrevPrdt{
   cursor:pointer;
@@ -15,6 +17,12 @@
   top: 60%;
   transform: translateY(-60%);
 }
+
+.cusPrevCls > i,.cusPrevPrdt > i ,
+.cusNextCls > i,.cusNextPrdt > i {
+  color: #ec5453;
+}
+
 
 .cusPrevCls,.cusPrevPrdt {
   left: 3rem;

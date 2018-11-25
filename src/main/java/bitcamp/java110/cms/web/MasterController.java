@@ -217,5 +217,12 @@ public class MasterController {
   public void blacklist(Model model) {
     
   }
+  
+  @GetMapping("dashBoard")
+  public void dashBoard(Model model) {
+    
+  }
+  
+  
 }
 

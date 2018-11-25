@@ -34,8 +34,71 @@
 <link href="/css/common.css" rel="stylesheet">
 <link href="/css/prod_detail.css" rel="stylesheet">
 
+<style type="text/css">
+#STATICMENU { 
+    margin: 0pt; padding: 0pt;  
+    position: absolute; right: 0px; top: 0px;
+    border-top: 1px solid silver;
+    }
+</style>
 
-<script type="text/javascript">
+
+
+</head>
+<body style="background-color: #F2F4F7" onload="InitializeStaticMenu()">
+    <div class="container">
+    <div class="row">
+    
+            <div class="col-lg-12" id="headermain">
+                <jsp:include page="../headerMain.jsp"></jsp:include>
+            </div>
+            <!-- 카테고리 nav (스크립트로 임시 inclue) -->
+            <div class="col-lg-12" id="headernav">
+                <jsp:include page="../headerNav.jsp"></jsp:include>
+            </div>
+
+        <div class="col-lg-9">
+            <hr>
+
+            <!-- 상품 상세보기 -->
+            <jsp:include page="prodDetail_1.jsp"></jsp:include>
+
+            <!-- 상품 상세정보, 상품평, QnA-->
+            <jsp:include page="prodDetail_2.jsp"></jsp:include>
+
+            <hr>
+        </div>
+
+        <div class="col-lg-3">
+            <!-- 판매자가 수강한 클래스 정보들 -->
+            <jsp:include page="prodDetail_3.jsp"></jsp:include>
+
+        </div>
+
+    </div>
+</div>
+    <script type="text/javascript">
+    var testtTop;
+    var setId = "#testt";
+    testtTop = $("#detail").offset().top - $("#headermain").offset().top - $("#headernav").offset().top;
+    
+    console.log(testtTop);
+    $(setId).css("position", "absolute");
+    $(setId).css("top", (testtTop) + "px");
+    $(setId).css("width", "94.6%");
+    </script>
+</body>
+
+<!-- Script 시작 -->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script
+        src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/js/jquery.raty.min.js"></script>
+    <script src="/js/clean-blog.js"></script>
+    <!-- Custom scripts for this template -->
+    <script type="text/javascript">
  var stmnLEFT = 0; // 오른쪽 여백 
  var stmnGAP1 = 0; // 위쪽 여백 
  var stmnGAP2 = 150; // 스크롤시 브라우저 위쪽과 떨어지는 거리 
@@ -62,66 +125,8 @@
   RefreshStaticMenu();
   }
 </script>
-
-<style type="text/css">
-#STATICMENU { 
-    margin: 0pt; padding: 0pt;  
-    position: absolute; right: 0px; top: 0px;
-    border-top: 1px solid silver;
-    }
-</style>
-
-
-
-</head>
-<body style="background-color: #F2F4F7" onload="InitializeStaticMenu()">
-
-
-
-    <div class="container row col-lg-12">
-
-
-        <div class="container col-lg-9">
-            <hr>
-
-            <!-- 상품 상세보기 -->
-            <jsp:include page="prodDetail_1.jsp"></jsp:include>
-
-            <!-- 상품 상세정보, 상품평, QnA-->
-            <jsp:include page="prodDetail_2.jsp"></jsp:include>
-
-            <hr>
-        </div>
-
-        <div class="col-lg-3">
-            <!-- 판매자가 수강한 클래스 정보들 -->
-            <jsp:include page="prodDetail_3.jsp"></jsp:include>
-
-        </div>
-
-    </div>
-
-    <!-- Script 시작 -->
-    <script src="/vendor/jquery/jquery.min.js"></script>
-    <script
-        src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/vendor/jquery/jquery.min.js"></script>
-    <script src="/js/jquery.raty.min.js"></script>
-    <script src="/js/clean-blog.js"></script>
-    <!-- Custom scripts for this template -->
     <script>
-        var testtTop;
-        var setId = "#testt";
         $(document).ready(function() {
-            $("#headerNav").load("headerNav.html")
-
-            testtTop = $("#detail").offset().top;
-            console.log(testtTop);
-            $(setId).css("position", "absolute");
-            $(setId).css("top", (testtTop) + "px");
-            $(setId).css("width", "94.6%");
-
             $('#star1').raty({
                 path : "/upload/img/raty/",
                 start : 1,
@@ -134,17 +139,15 @@
         function scroll_follow(id) {
             $(window).scroll(function() //스크롤이 움직일때마다 이벤트 발생
             {
-                var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
-                if (position > 985) {
+                var position = $(window).scrollTop()- $("#headermain").offset().top - $("#headernav").offset().top - 48; // 현재 스크롤바의 위치값을 반환합니다.
+                if (position > testtTop) {
                     $(id).css("position", "fixed-top");
                     $(id).css("top", position + "px");
-                    /* $(id).css("width", "1110px"); */
                     $(id).css("width", "94.6%");
 
                 } else {
                     $(id).css("top", (testtTop) + "px");
                     $(id).css("position", "absolute");
-                    /* $(id).css("width", "1110px"); */
                     $(id).css("width", "94.6%");
                 }
 
@@ -161,5 +164,5 @@
                     }
                 });
     </script>
-</body>
+
 </html>

@@ -58,7 +58,7 @@
 								<h2>카테고리</h2>
 								<ul>
 									<c:forEach items="${BTlist}" var="bt">
-										<li><a href="#">${bt.name}</a></li>
+										<li class="ml-5"><a href="#">${bt.name}</a></li>
 									</c:forEach>
 								</ul>
 							</div>
@@ -72,10 +72,10 @@
 									<div id="owl-hotItem" class="owl-carousel col-lg-10 mt-2" style="margin: 0 auto"></div>
 									<div class="owl-btns">
 										<div class="cusnextPrdt">
-											<i class="fas fa-caret-right"></i>
+											<i class="fas fa-caret-right" style="color: #ec5453"></i>
 										</div>
 										<div class="cusprevPrdt">
-											<i class="fas fa-caret-left"></i>
+											<i class="fas fa-caret-left" style="color: #ec5453"></i>
 										</div>
 									</div>
 								</div>
@@ -224,8 +224,8 @@
                     var phot = data["items"][i].phot;
                     var titl = data["items"][i].titl;
                     var pric = data["items"][i].pric;
-                    content += "<a href='detail2?no="+ ptno +"'>"
-                    content += "<div class='col' id='owl-col'>"
+                    content += "<a href='detail?no="+ ptno +"'>"
+                    content += "<div class='col' id='owl-col'>" 
                     content += "<div class='row' id='owl-row'>"
                     content += "<img id='owl-img' src=\"" + phot + "\" alt=\"" + titl + "\">"
                     content += "<div class='col-lg-12' id='owl-col2'>" + titl + "</div>"
