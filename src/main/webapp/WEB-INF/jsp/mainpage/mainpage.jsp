@@ -63,7 +63,7 @@
                             <div class="mask rgba-black-slight"></div>
                         </div>
                     </div>
-                </div>
+                </div> 
                 <!--/.Slides-->
             </div>
 
