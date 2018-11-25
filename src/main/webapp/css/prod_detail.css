@@ -57,56 +57,11 @@ nav.navbar{
     padding: 0;
 }
 
-/*
-    참고로 #categoryNav 없는데 걍 혹시몰라숴 뒀음
-*/
-
-#categoryNav > .navbar-nav > li.nav-item > a {
-  font-size: 30px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: #6e6e6e;
-  font-family: 'Noto Sans KR', sans-serif;
-}
-#categoryNav > .navbar-nav > li.nav-item > a:hover{
-  font-size: 35px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-family: 'Noto Sans KR', sans-serif;
-  color: #cce5ee;
-  background-color: #6e6e6e;
-}
-#categoryNav > .navbar-nav > li.nav-item > a#menu01 {
-  font-size: 35px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: #6e6e6e;
-  font-family: 'Noto Sans KR', sans-serif;
-}
-#categoryNav > .navbar-nav > li.nav-item > a#menu01:hover{
-  font-size: 35px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-family: 'Noto Sans KR', sans-serif;
-  color: #cce5ee;
-  background-color: #6e6e6e;
-}
-ul.navbar-nav{
-    float: left;
-}
-nav.navbar{
-    background-color: #cceeee;
-}
-
 /* 카르셀 화살표 관련*/
 
 
 /*--------------------------*/
-
+/* 
 body {
   font-size: 20px;
   color: #212529;
@@ -132,7 +87,7 @@ h6 {
   font-weight: 800;
   font-family: 'Noto Sans KR', sans-serif;
 }
-
+ */
 a {
   color: #212529;
   -webkit-transition: all 0.2s;
@@ -408,8 +363,8 @@ header.masthead .post-heading .meta a {
 
 /* 상품 상세정보 사진 크기 */
 #prod_img{
-    height: 480px;
-    width: 470px;
+    height: 100%;
+    width: 100%;
     margin-top : 50px;
 }
 

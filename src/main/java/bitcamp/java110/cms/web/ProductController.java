@@ -89,7 +89,7 @@ public class ProductController {
     List<ProductRep> replyList = productRepSerivce.listByPtno(no);
     Classes prdtcls = classService.findbyptno(no);
     List<ProductQnA> prodQnaList = productQnAService.listByPtno(3,5,no);
-    System.out.println(prodQnaList.get(0).getTitl());
+    
     
     /*
      * for(ProductRep p : list) { System.out.println(p.getConts());

@@ -213,7 +213,7 @@
              var phot = dataPrdt["itemsPrdt"][i].phot;
              var titl = dataPrdt["itemsPrdt"][i].titl;
              var pric = dataPrdt["itemsPrdt"][i].pric;
-             content += "<a href='../product/detail2?no="+ ptno +"'>"
+             content += "<a href='../product/detail?no="+ ptno +"'>"
              content += "<div class='col-lg-12' id='owl-col'>"
              content += "<div class='row' id='owl-row'>"
              content += "<img id='owl-img' src=\"" +phot+ "\" alt=\"" +titl+ "\">"

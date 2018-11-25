@@ -224,8 +224,8 @@
                     var phot = data["items"][i].phot;
                     var titl = data["items"][i].titl;
                     var pric = data["items"][i].pric;
-                    content += "<a href='detail2?no="+ ptno +"'>"
-                    content += "<div class='col' id='owl-col'>"
+                    content += "<a href='detail?no="+ ptno +"'>"
+                    content += "<div class='col' id='owl-col'>" 
                     content += "<div class='row' id='owl-row'>"
                     content += "<img id='owl-img' src=\"" + phot + "\" alt=\"" + titl + "\">"
                     content += "<div class='col-lg-12' id='owl-col2'>" + titl + "</div>"
