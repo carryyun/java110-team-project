@@ -36,30 +36,30 @@
             <div id="carousel-banner" class="carousel slide carousel-fade" data-ride="carousel">
                 <!--Indicators-->
                 <ol class="carousel-indicators">
-                    <li data-target="#carousel-banner" data-slide-to="0" class="active"></li>
-                    <li data-target="#carousel-banner" data-slide-to="1"></li>
+                    <li data-target="#carousel-banner" data-slide-to="0"></li>
+                    <li data-target="#carousel-banner" data-slide-to="1" class="active"></li>
                     <li data-target="#carousel-banner" data-slide-to="2"></li>
                 </ol>
                 <!--/.Indicators-->
                 <!--Slides-->
                 <div class="carousel-inner" role="listbox">
-                    <div class="carousel-item active">
+                    <div class="carousel-item">
                         <div class="view">
-                            <img class="w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(68).jpg" alt="First slide">
+                            <img class="w-100" src="/upload/img/banner_1.png" alt="First slide">
                             <div class="mask rgba-black-light"></div>
                         </div>
                     </div>
-                    <div class="carousel-item">
+                    <div class="carousel-item active">
                         <!--Mask color-->
                         <div class="view">
-                            <img class="w-100 " src="https://mdbootstrap.com/img/Photos/Slides/img%20(6).jpg" alt="Second slide">
+                            <img class="w-100 " src="/upload/img/banner_2.png" alt="Second slide">
                             <div class="mask rgba-black-strong"></div>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <!--Mask color-->
                         <div class="view">
-                            <img class="w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(9).jpg" alt="Third slide">
+                            <img class="w-100" src="/upload/img/banner_3.png" alt="Third slide">
                             <div class="mask rgba-black-slight"></div>
                         </div>
                     </div>

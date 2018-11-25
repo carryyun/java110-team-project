@@ -58,7 +58,7 @@
 								<h2>카테고리</h2>
 								<ul>
 									<c:forEach items="${BTlist}" var="bt">
-										<li><a href="#">${bt.name}</a></li>
+										<li class="ml-5"><a href="#">${bt.name}</a></li>
 									</c:forEach>
 								</ul>
 							</div>
@@ -72,10 +72,10 @@
 									<div id="owl-hotItem" class="owl-carousel col-lg-10 mt-2" style="margin: 0 auto"></div>
 									<div class="owl-btns">
 										<div class="cusnextPrdt">
-											<i class="fas fa-caret-right"></i>
+											<i class="fas fa-caret-right" style="color: #ec5453"></i>
 										</div>
 										<div class="cusprevPrdt">
-											<i class="fas fa-caret-left"></i>
+											<i class="fas fa-caret-left" style="color: #ec5453"></i>
 										</div>
 									</div>
 								</div>

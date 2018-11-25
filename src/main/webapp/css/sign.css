@@ -4,15 +4,18 @@
         }
         .main input,
         .main input::-webkit-input-placeholder {
-            font-size: 11px;
+            vertical-align:middle;
+            height:50px;
+            border-radius:10px;
+            font-size: 1rem;
             padding-top: 3px;
         }
         .main-center{
             vertical-align: middle;
-            margin-top: -60px;
-            transform:  translateY(30%);
+            /* margin-top: -60px;
+            transform:  translateY(30%); */
             margin: 0 auto;
-            width: 450px;
+            /* width: 450px; */
             padding: 10px 40px;
             background: beige;
             color: black;
@@ -20,17 +23,27 @@
             -webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
             -moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
             box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
-            opacity:
         }
+         
+        div#iborder{
+        padding: 7px 0px 5px; 
+        border-radius: 10px;
+        background-color: #eeeeee;
+        border: 1px solid #6e6e6e;
+        -webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
+        -moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
+        box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
         
-        
-        
+        }
+        span.input-group-addon{
+            
+        }
         span.input-group-addon i {
             color: #009edf;
-            font-size: 17px;
+            font-size: 2rem;
         }
         #usernick2{
-        	font-size: 8px;
+        	font-size: 16px;
         }
         
         h1{
@@ -40,7 +53,7 @@
             color: black;
             border-radius: 10px;
             background-color: dodgerblue;
-            font-size : 12px;
+            font-size : 16px;
         	font-weight: bold;
         }
         #backbtn{
@@ -52,7 +65,7 @@
         #emailcheck,#niccheck{
         	float : right;
         	transform:  translateY(-105%);
-        	font-size : 12px;
+        	font-size : 16px;
         	font-weight: bold;
         }
         .input-group{

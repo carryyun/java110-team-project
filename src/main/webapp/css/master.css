@@ -39,7 +39,7 @@
     transition: opacity 500ms;
     visibility: hidden;
     opacity: 0;
-    z-index: 9;
+    z-index: 200;
 }
 
 .overlay:target {
@@ -55,6 +55,7 @@
     background-color: gainsboro;
     border-radius: 5px;
     width: 55%;
+    min-width:760px;
     height: auto;
     position: relative;
     transition: all 500ms ease-in-out;
@@ -65,6 +66,7 @@
     background-color: gainsboro;
     border-radius: 5px;
     width: 80%;
+    
     height: auto;
     position: relative;
     transition: all 500ms ease-in-out;
@@ -94,20 +96,24 @@
 .popup .content, .popupH .content {
     max-height: auto; 
     overflow: auto;
-    height: auto;
+    height: 550px;
     background: whitesmoke;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 300px) {
     .box {
-        width: 70%;
+        width: 50%;
+        min-width: 640px;
+        
     }
 
     .popup {
-        width: 70%;
+        width: 50%;
+        min-width: 640px;
     }
     .popupH {
-        width: 70%;
+        width: 50%;
+        min-width: 640px;
     }
 }
 
@@ -116,10 +122,11 @@
 }
 
 .pop-type {
-    font-size: 20px;
+    font-size: 16px;
 }
 
-.col-lg-6 .pic1 {
+.pic1 {
+    width: 100%;
     position: relative;
     text-align: center;
 }
@@ -143,7 +150,6 @@
 
 .ment-pic{
  /* 멘토신청 리스트 팝업 멘토사진 */
-  height: 300px;
-  width: 300px;
- 
+  width: 100%;
+  height: 50%;
 }
