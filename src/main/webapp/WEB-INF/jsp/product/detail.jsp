@@ -103,10 +103,7 @@
 
     <!-- Script 시작 -->
     <script src="/vendor/jquery/jquery.min.js"></script>
-    <script
-        src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/vendor/jquery/jquery.min.js"></script>
     <script src="/js/jquery.raty.min.js"></script>
     <script src="/js/clean-blog.js"></script>
     <!-- Custom scripts for this template -->
