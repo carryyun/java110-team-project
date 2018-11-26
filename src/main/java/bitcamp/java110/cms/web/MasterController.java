@@ -220,8 +220,25 @@ public class MasterController {
   
   @GetMapping("dashBoard")
   public void dashBoard(Model model) {
+      List<Classes> ClassesFindAll = classService.findAllByList();
+      model.addAttribute("ClassesFindAll",ClassesFindAll);
+      
+//      List<Report> findAll = reportService.list(pageNo, pageSize);
+      List<Product> ProductFindAll = productService.findAllByList();
+      model.addAttribute("ProductFindAll", ProductFindAll);
+      
+      List<Mentor> MentorFindAll = mentorService.listByMetoStat();
+      for(Mentor m : MentorFindAll) {
+        m.setMentorTag(bigTagService.listByMono(m.getNo()));
+        
+      }
+      model.addAttribute("MentorFindAll",MentorFindAll);
+      
+      List<Report> ReportFindAll = reportService.list(3, 3);
+      model.addAttribute("ReportFindAll",ReportFindAll);
+      
     
-  }
+  }// dashBoard end
   
   
 }
