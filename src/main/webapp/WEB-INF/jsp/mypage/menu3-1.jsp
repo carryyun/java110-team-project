@@ -2,24 +2,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 
 <div class="col-lg-12">
     <div class="panel panel-default">
        
                           
-        <div class="panel-body">
+        <div class="panel-body" >
             <table class="table table-condensed" style="border-collapse:collapse;">
 
                 <thead>
-                    <tr>
+                    <tr id="th-pay" >
                        
                          <th width="5%">No.</th>
-                         <th width="15%">결제일자</th>
-                         <th width="15%">결제방법</th>
+                         <th width="15%">결제일자<br>(주문번호)</th>
                          <th width="30%">클래스</th>
                          <th width="10%">멘토</th>
-                         <th width="10%">가격</th>
-                         <th width="15%">결제상태</th>
+                         <th width="25%">결제금액<br>(결제방법)</th>
+                         <th width="15%">상태</th>
 
                         
                     </tr>
@@ -27,16 +28,15 @@
                 <tbody>
 
    <c:forEach items="${colist}" var="c" varStatus="i">
-     
 
-                    <tr >
+                    <tr id="tb-pay">
                         <td>${i.count}</td>
-                        <td>${c.paydt}</td>
-                        <td>${c.payopt}</td>
+                        <td>${c.paydt}<br>
+                        (<fmt:formatDate value="${c.paydt}" pattern="yyyyMMdd"/>${c.no})</td>
                         <td>${c.classes.titl}<a href='#'><img src="${c.classFile.fname}" width="200px" height="150px"></a></td>
                         <td>${c.mentornick}</td>
-                        <td>${c.tot_pric}</td>
-                        <td>결제상태</td>
+                        <td>${c.tot_pric}<br>${c.payopt}</td>
+                        <td>결제완료</td>
                         
 
                     </tr>

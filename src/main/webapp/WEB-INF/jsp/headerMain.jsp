@@ -15,14 +15,12 @@
 <link href="/css/mainheader.css" rel="stylesheet">
 
 </head>
-<nav class="navbar navbar-expand-lg mx-auto fixed-top mb-5" id="mainNav">
+<nav class="navbar navbar-expand-lg mx-auto fixed-top mb-2" id="mainNav">
 	<a class="navbar-brand" href="/app/mainpage/mainpage">하루</a>
-	<div class="search">
-		<form role="form">
-			<input type="text" class="search-form" autocomplete="off" placeholder="Search">
-			<input type="button" class="search-button" value="검색">
-		</form>
-	</div>
+	<div class="search" style="position: relative;">
+			<input type="text" class="search-form" autocomplete="off" placeholder="클래스 또는 멘토 검색"> 
+            <a href="#" onclick="console.log('123')"><i class="fas fa-search fa-2x"></i></a>	
+	</div> 
 	<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
 		data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
 		aria-label="Toggle navigation">
@@ -42,7 +40,7 @@
 						<c:otherwise>
 							<div class="dropdown" id="dropdown">
 								<img src="${sessionScope.loginUser.phot}" alt="userIMG"
-									style="margin: 10px 20px; width: 50px; height: 50px; border-radius: 25px"><br>
+									style="margin: 8px 23px; width: 56px; height: 56px; border-radius: 28px; border: 3px solid #ec5453"><br>
 								<div class="dropdown-content text-left" id="dropdown-content">
 									<a href="../mypage/mypage"><span><i class="fas fa-user"></i></span><span class="ml-3">마이페이지</span></a>
 									<a href="../master/notice"><span><i class="fas fa-bell"></i></span><span class="ml-3">알림</span></a>

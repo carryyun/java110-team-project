@@ -4,6 +4,9 @@
  margin: 0;
  padding: 0;
 }
+.wrap{
+  min-width: 1110px;
+}
 body{
  font-size: 1rem;
 }

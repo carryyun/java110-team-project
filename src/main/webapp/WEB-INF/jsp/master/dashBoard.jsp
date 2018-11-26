@@ -66,7 +66,7 @@
                             <p>
                                 <span class="h3">최근 클래스신청</span>
                                 <button type="button"
-                                    style="position: relative; float: right;">
+                                    style="position: relative; float: right;" onclick="location.href='classreqlist'">
                                     <i class="far fa-plus-square fa-lg"></i>
                                 </button>
                             </p>
@@ -111,7 +111,7 @@
                             <p>
                                 <span class="h3">최근 신고접수</span>
                                 <button type="button"
-                                    style="position: relative; float: right;">
+                                    style="position: relative; float: right;" onclick="location.href='reportList'">
                                     <i class="far fa-plus-square fa-lg"></i>
                                 </button>
                             </p>
@@ -158,9 +158,9 @@
                     <div class="pro col-lg-6">
                         <div class="header">
                             <p>
-                                <span class="h3">최근 상품신청</span>
+                                <span class="h3">최근 상품등록</span>
                                 <button type="button"
-                                    style="position: relative; float: right;">
+                                    style="position: relative; float: right;" onclick="location.href='prdtlist'">
                                     <i class="far fa-plus-square fa-lg"></i>
                                 </button>
                             </p>
@@ -206,7 +206,7 @@
                             <p>
                                 <span class="h3">최근 멘토신청</span>
                                 <button type="button"
-                                    style="position: relative; float: right;">
+                                    style="position: relative; float: right;" onclick="location.href='mentorreqlist'">
                                     <i class="far fa-plus-square fa-lg"></i>
                                 </button>
                             </p>

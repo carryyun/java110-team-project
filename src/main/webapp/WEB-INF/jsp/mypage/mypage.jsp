@@ -29,7 +29,10 @@
 
     <!--    버튼-->
     <link rel="stylesheet" href="/css/mypagecss/button/skyblue-gradient.css">
-    <link rel="stylesheet" href="/css/mypagecss/button/togglecustom.css">
+    <link rel="stylesheet" href="/css/mypagecss/button/switchbtn.css">
+   <!--  <link rel="stylesheet" href="/css/mypagecss/button/modal.css"> -->
+    <!-- <link rel="stylesheet" href="/css/mypagecss/button/slider.css"> -->
+    <!-- <link rel="stylesheet" href="/css/mypagecss/button/flipbtn.css"> -->
     <!-- Animate.css -->
     <link rel="stylesheet" href="/css/mypagecss/animate.css">
     <!-- Bootstrap  -->
@@ -47,7 +50,13 @@
                 overflow: hidden;
             }
   
-        </style>
+        #th-pay th,
+        #tb-pay td{
+                vertical-align: middle;
+                text-align:center
+         }
+         
+     </style>
 
 </head>
 
@@ -140,24 +149,32 @@
                                
                            
                         
-
-                        <!--  sdfsdfsdfsdfsdf -->
-                        <div>
-                        <div id="wrapper" class="wrapper-btn1">
-                            <button id="classbkt" class="fancy" >클래스</button>
+  <div class="switch-field">
+      <input type="radio" id="classbkt" name="switch_2" value="yes" checked/>
+      <label for="classbkt">클래스</label>
+      <input type="radio" id="productbkt" name="switch_2" value="no" />
+      <label for="productbkt">상품</label>
+    </div>
+                   
+                        
+                      <!--   <div>
+                        <div id="wrapper" class="wrapper-btn11">
+                            <button id="classbkt" class="fancy">클래스</button>
                         </div>
                         
-                        <div id="wrapper" class="wrapper-btn2">
+                        <div id="wrapper" class="wrapper-btn22" >
                             <button id="productbkt" class="fancy">상품</button>
                         </div>
-                          </div>                     
-                        <div style="margin-bottom: 100px;">
-                            
-                        </div>
+                          </div>  -->
+                          
+                                              
+                      <!--   <div style="margin-bottom: 100px;"></div> -->
+                        
+                        
                         <div id="menu3-1"> </div>
                         <div id="menu3-2"> </div>
                         
-                        <!--  menu3-1를,  menu3-2를 보여준다 -->
+          
 
                     </div>
                     </div>
@@ -172,16 +189,74 @@
                                     <h2 class="colorlib-heading">내 활동보기</h2>
                                     <hr color="black"    >
                         
+<div class="switch-field">
+      <input type="radio" id="btn-menu4-1" name="switch_3" value="yes" checked/>
+      <label for="btn-menu4-1">1:1문의</label>
+      
+      <input type="radio" id="2rdswitch" name="switch_3" value="maybe"/>
+      
+      
+      <label for="2rdswitch">클래스</label>
+      
+        
+  
+      <input type="radio" id="3rdswitch" name="switch_3" value="no" data-toggle="dropdown" />
+      <label for="3rdswitch">상품</label>
+      
+                    <div class="dropdown-menu" style="border: 1px solid black; position:relative; top:50px; left:-120px">
+                                <div id="wrapper" class="wrapper-btn4">
+                            <button id="btn-menu4-4" class="fancy">질문</button>
+                        </div>
+                         <div id="wrapper" class="wrapper-btn5">
+                            <button id="btn-menu4-5" class="fancy">답변</button>
+                        </div>
+                </div>
+      
 
-                        <!--   -->
+</div>
+
+
+                        <!-- slider  -->
                         
+ <!--                        <nav class="slidemenu">
+  
+  Item 1
+  <input type="radio" name="slideItem" id="btn-menu4-1" class="slide-toggle" checked/>
+  <label for="btn-menu4-1"><p class="icon">❔</p><span>1:1문의</span></label>
+  
+  Item 2
+  <input type="radio" name="slideItem" id="btn-menu4-2" class="slide-toggle"/>
+  <label for="btn-menu4-2"><p class="icon"> <img src=images.png style="width: 50%; height: auto;"></p><span>클래스</span></label>
+
+  Item 3
+  <input type="radio" name="slideItem" id="btn-menu4-4" class="slide-toggle"/>
+  <label for="btn-menu4-4"><p class="icon"> <img src=goods.png style="width: 50%; height: auto;"></p><span>상품</span></label>
+  
+ 
+  
+  <div class="clear"></div>
+  
+  Bar
+  <div class="slider">
+    <div class="bar"></div>
+  </div>
+  
+</nav> -->
+
+<!-- sldier -->
+
+
+<!-- button -->
+<!-- 
+
+
                         <div>
                         <div id="wrapper" class="wrapper-btn1">
                             <button id="btn-menu4-1" class="fancy" >1:1문의</button>
                         </div>
                         
-<!--             메뉴4          -->
- <!-- Split button -->
+                
+
         <div class="btn-group" style="  position: absolute; left: 30%;" >
   <button  id="btn-classqna" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
     클래스 QnA
@@ -195,11 +270,11 @@
         <button id="btn-menu4-3" class="fancy">답변</button>
     </div>
   </div>
-</div>           
+</div>      
                         
                         
                         
-<!--                        -->
+                      
 <div class="btn-group" style="  position: absolute; left: 60%;">
     <button id="btn-classqna" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
         상품 QnA
@@ -218,8 +293,13 @@
                         
 
                                         
-                            </div>
-                             <div style="margin-bottom: 100px;">
+                            </div> 
+                            
+                       -->      
+<!-- button -->
+                            
+                            
+                             <div style="margin-bottom: 1px;">
                             
                         </div>
                         
@@ -651,12 +731,13 @@
 
 
 </body>
-<!-- jQuery -->
+    <!-- jQuery -->
     <script src="/js/mypagejs/jquery.min.js"></script>
     <!-- Waypoints -->
     <script src="/js/mypagejs/jquery.waypoints.min.js"></script>
     <!-- Counters -->
     <script src="/js/mypagejs/jquery.countTo.js"></script>
+    
     <!-- MAIN JS -->
     <script src="/js/mypagejs/main.js"></script>
     <script src="/js/mypagejs/bootstrap.min.js"></script>

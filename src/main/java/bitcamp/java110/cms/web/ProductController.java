@@ -89,7 +89,7 @@ public class ProductController {
     List<ProductRep> replyList = productRepSerivce.listByPtno(no);
     Classes prdtcls = classService.findbyptno(no);
     List<ProductQnA> prodQnaList = productQnAService.listByPtno(3,5,no);
-    System.out.println(prodQnaList.get(0).getTitl());
+    
     
     /*
      * for(ProductRep p : list) { System.out.println(p.getConts());
@@ -110,6 +110,11 @@ public class ProductController {
 
   }
 
+  // 2018.11.23 수정 -> 써머노트
+  @GetMapping("prodRegister")
+  public void prodRegister() {
+    
+  }
   @RequestMapping(value = "addqna", method = RequestMethod.POST)
   public String addqna(String type, String titl, String conts) {
     ProductQnA pqna = new ProductQnA();

@@ -1562,6 +1562,18 @@ body.offcanvas {
     transform: translateX(-50%); 
 }
 
+
+.wrapper-btn11{
+   position: absolute;
+   left: 10%;
+     transform: translateX(-50%);
+   
+}
+.wrapper-btn22{
+   position: absolute;
+   left: 24%;
+    transform: translateX(-50%); 
+}
 .wrapper-btn1{
    position: absolute;
    left: 10%;
@@ -1596,5 +1608,10 @@ body.offcanvas {
     font-size: 13px;
         
 
+}
+
+/* 테이블  */
+#tr-pay .tp{
+    vertical-align: middle;
 }
 
