@@ -47,8 +47,10 @@
             rtdt,
             rept.meno,
             rept.meno2,
-            mete.email, 
-            mete2.email 
+            mete.email,
+            mete.nick, 
+            mete2.email,
+            mete2.nick as mete2nick
         FROM
             p_rept as rept 
             join p_mete as mete
@@ -188,5 +190,7 @@
         where
         rtno=#{no}
     </update>
+    
+    
 
 </mapper>
