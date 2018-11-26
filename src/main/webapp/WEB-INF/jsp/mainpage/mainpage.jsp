@@ -121,7 +121,7 @@
         <div class="row my-3">
             <div class="col-lg-12">
                 <h2>오늘의 추천작품</h2>
-                <div class="button_base b01_simple_rollover" onclick="location.href='../product/prdt'">작품 더보기</div>
+                <a class="btn btn-primary float-right mb-3" href="../product/prdt">작품 더보기 </a>
             </div>
             
         </div><!-- 추천작품 row -->
@@ -180,13 +180,24 @@
            var cfile = dataCls["itemsCls"][i].cfile;
            var titl = dataCls["itemsCls"][i].titl;
            var pric = dataCls["itemsCls"][i].pric;
+           var star = dataCls["itemsCls"][i].star;
            
            content += "<a href='../class/detail?no="+ cno +"'>"
            content += "<div class='col-lg-12' id='owl-col'>"
            content += "<div class='row' id='owl-row'>"
            content += "<img id='owl-img' src=\"" +cfile+ "\" alt=\"" +titl+ "\">"
            content += "<div class='col-lg-12' id='owl-col2'>" + titl + "</div>"
-           content += "<div class='col-lg-12' id='owl-col3'>" + pric + "￦</div>"
+           
+           content += "<div class='col-lg-6' id='owl-colstar'>"
+           for(var j=0; j<5; j++) {
+               if(j<star){
+                   content += "<img id='owl-star' width='15px' height='15px' src='/upload/img/raty/star-on.png' alt='star-on'>"
+               }else{
+                   content += "<img id='owl-star' width='15px' height='15px' src='/upload/img/raty/star-off.png' alt='star-off'>"
+               }
+           }
+           content += "</div>"
+           content += "<div class='col-lg-6' id='owl-col3'>" + pric + "￦</div>"
            content += "</div>"
            content += "</div>"
            content += "</a>"
@@ -213,12 +224,22 @@
              var phot = dataPrdt["itemsPrdt"][i].phot;
              var titl = dataPrdt["itemsPrdt"][i].titl;
              var pric = dataPrdt["itemsPrdt"][i].pric;
+             var star = dataPrdt["itemsPrdt"][i].star;
              content += "<a href='../product/detail?no="+ ptno +"'>"
              content += "<div class='col-lg-12' id='owl-col'>"
              content += "<div class='row' id='owl-row'>"
              content += "<img id='owl-img' src=\"" +phot+ "\" alt=\"" +titl+ "\">"
              content += "<div class='col-lg-12' id='owl-col2'>" + titl + "</div>"
-             content += "<div class='col-lg-12' id='owl-col3'>" + pric + "￦</div>"
+             content += "<div class='col-lg-6' id='owl-colstar'>"
+             for(var j=0; j<5; j++) {
+                 if(j<star){
+                     content += "<img id='owl-star' width='15px' height='15px' src='/upload/img/raty/star-on.png' alt='star-on'>"
+                 }else{
+                     content += "<img id='owl-star' width='15px' height='15px' src='/upload/img/raty/star-off.png' alt='star-off'>"
+                 }
+             }
+             content += "</div>"
+             content += "<div class='col-lg-6' id='owl-col3'>" + pric + "￦</div>"
              content += "</div>"
              content += "</div>"
              content += "</a>"

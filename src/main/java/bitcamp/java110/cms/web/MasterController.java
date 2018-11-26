@@ -79,7 +79,7 @@ public class MasterController {
   
   
 
-  @GetMapping("prdtlist")
+  @GetMapping("prdtList")
   public void prdtList(Model model){
     List<Product> findAllByList = productService.findAllByList();
     model.addAttribute("findAllByList",findAllByList);

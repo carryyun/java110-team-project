@@ -246,7 +246,6 @@ blockquote {
 
 table{
     text-align: center;
-    
 }
 
 #qna_th{
@@ -258,21 +257,6 @@ table{
     vertical-align: middle;
 }
 
-
-footer {
-  padding: 50px 0 65px;
-}
-
-footer .list-inline {
-  margin: 0;	
-  padding: 0;
-}
-
-footer .copyright {
-  font-size: 14px;
-  margin-bottom: 0;
-  text-align: center;
-}
 .shortinfo{
 	margin-right : 40px;
 	margin-left: 100px;

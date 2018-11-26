@@ -65,7 +65,7 @@
 						</c:when>
 						
 						<c:otherwise>
-							<a class="nav-link " href="../product/basket"> <i class="fas fa-shopping-cart fa-2x"></i><br>장바구니
+							<a class="nav-link " href="../class/basket"> <i class="fas fa-shopping-cart fa-2x"></i><br>장바구니
 							</a>
 						</c:otherwise>
 					</c:choose>
@@ -82,8 +82,6 @@
                             </a>
                         </c:otherwise>
                     </c:choose>
-					
-					</a>
 				</div>
 			</li>
 		</ul>

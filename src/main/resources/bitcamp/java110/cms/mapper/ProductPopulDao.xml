@@ -14,6 +14,9 @@
         <result column="titl"   property="product.titl"/>
         <result column="pric"   property="product.pric"/>
         <result column="phot"   property="product.phot"/>
+        <result column="star"   property="product.star"/>
+        <result column="mtname"   property="middleTagName"/>
+        <result column="stname"   property="smallTagName"/>
     </resultMap>
     
     <select id="findAll" resultMap="productPopulMap">
@@ -22,12 +25,23 @@
             popul.ptno,
             p.titl,
             p.pric,
-            p.phot
+            p.phot,
+            p.star,
+            mtag.mtname,
+            stag.stname
         from
             p_prdt_popul popul
+            JOIN p_mete mete
             join p_prdt p
+            join p_cert cert
+            join p_stag stag
+            JOIN p_mtag mtag
         ON
-            popul.ptno=p.ptno
+            popul.ptno=p.ptno AND
+            p.meno=mete.meno AND
+            p.ctno=cert.ctno AND
+            p.stno=stag.stno AND
+            stag.mtno = mtag.mtno
         order by
             ppno DESC
     </select>
