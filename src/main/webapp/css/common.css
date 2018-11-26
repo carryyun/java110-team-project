@@ -4,7 +4,7 @@
  margin: 0;
  padding: 0;
 }
-.wrap{
+div.wrap{
   min-width: 1110px;
 }
 body{

@@ -36,18 +36,45 @@
 }
 
 #owl-col2{
-  padding : 5px 15px;
-  height:40px;
+  padding : 5px 10px;
+  font-size: 14px;
+  height:35px;
   cursor:pointer;
   background-color:weat;
   text-align:left;
+} 
+#owl-coltag{
+  font-size:12px;
+  padding : 5px 5px;
+  color: gray;
+  height:35px;
+  background-color:weat;
+  text-align:right;
 }
 
 #owl-col3{
   color:green;
+  padding : 0px 5px 5px;
   cursor:pointer;
   background-color:weat;
   text-align:right;
+  margin-top: -5px;
+
+}
+
+#owl-colstar{
+  padding: 0px 10px 5px;
+  color:green;
+  cursor:pointer;
+  background-color:weat;
+  text-align:right;
+  
+}
+#owl-star{
+
+  width:15px;
+  height:15px;
+  float: left;
 }
 
 

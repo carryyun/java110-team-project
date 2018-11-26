@@ -5,6 +5,15 @@ public class ClassPopul {
   private int no; // 공예품번호
   private int cno; // 공예품번호
   private Classes classes; // 제목
+  private int star;
+  
+  
+  public int getStar() {
+    return star;
+  }
+  public void setStar(int star) {
+    this.star = star;
+  }
   public int getNo() {
     return no;
   }
