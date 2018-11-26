@@ -82,6 +82,28 @@
 									  <div class="carousel-inner">
 									    <div class="carousel-item active">
 									      <img style="width=1100px; margin-left:-10px;" class="d-block w-100" src="${detailclass.cfile}" alt="First slide">
+									      <c:set var="decf" value="${detailclass.cfile}"/>
+									    	<%
+									    		String fna = (String)pageContext.getAttribute("divi");
+									    		if(fna.endsWith("jpg") || fna.endsWith("png")){
+									    	%>	  
+									    		<div class="carousel-item">
+											      <img class="d-block w-100" style="width=1100px; height=450px; margin-left:-10px; " 
+											      src="${cf.fname}" alt="${i.count}">
+											    </div>
+									    	<%	  
+									    		}else {
+									    		 int idx = fna.indexOf("=");
+									    		 String fnaurl = fna.substring(idx+1);
+									    	%>
+											    <div class="carousel-item" style="margin-bottom: -5px;">
+											      <iframe width="1100" height="450" style="margin-left:-10px;" src="https://www.youtube.com/embed/<%=fnaurl%>" 
+											      frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+											      allowfullscreen></iframe>
+											    </div>
+											<%
+									    		}
+											%>
 									    </div>
 									    <c:forEach items="${clsfilelist}" var="cf" varStatus="i">
 									    	<c:set var="divi" value="${cf.fname}"/>
