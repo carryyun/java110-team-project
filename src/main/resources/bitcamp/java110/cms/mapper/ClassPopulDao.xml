@@ -15,6 +15,7 @@
         <result column="pric"   property="classes.pric"/>
         <result column="cfile"   property="classes.cfile"/>
         <result column="star"   property="classes.star"/>
+        <result column="mtname"   property="middleTagName"/>
     </resultMap>
     
     <select id="findAll" resultMap="classPopulMap">
@@ -24,12 +25,15 @@
             c.titl,
             c.pric,
             c.cfile,
-            c.star
+            c.star,
+            mtag.mtname
         from
             p_cls_popul popul
             join p_cls c
+            join p_mtag mtag
         ON
-            popul.cno=c.cno
+            popul.cno=c.cno AND
+            c.mtno = mtag.mtno
         order by
             cpno DESC
     </select>
