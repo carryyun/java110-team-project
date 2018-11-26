@@ -13,6 +13,7 @@
         <result column="cnt"   property="cnt"/>
         <result column="edt"   property="edt"/>
         <result column="ctdt"   property="ctdt"/>
+        <result column="titl"   property="classes.titl"/>
     </resultMap>
     
     <sql id="select1">
@@ -38,6 +39,25 @@
 		<include refid="select1"></include>
 		where ctno = #{ctno}
 	</select>
+	
+	<select id="findByMeno" resultMap="certMap" parameterType="Map">
+        select 
+            p.ctno,
+            p.cno,
+            p.meno,
+            p.type,
+            p.cnt,
+            p.edt,
+            p.ctdt,
+            cls.titl
+        from
+            p_cert p
+            join p_cls cls
+        where
+            p.meno= #{meno} AND
+            p.cno= cls.cno
+        
+    </select>
 
     
 </mapper>

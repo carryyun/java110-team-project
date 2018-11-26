@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="en">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<html>
 <head>
 <meta charset="UTF-8">
-<title>Summernote</title>
+<title>상품등록페이지</title>
 <link
 	href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
 	rel="stylesheet">
@@ -121,7 +122,13 @@
 		
     가격 <input type="number"><br>
     택배비 <input type="number">
-    무료배송 <input type="checkbox">
+    무료배송 <input type="checkbox"><br>
+    인증서 <select name="time">
+          <c:forEach items="${certList}" var="cl">
+          <option value="">${cl.classes.titl}</option>
+          </c:forEach>
+      </select>
+    
 	</div>
 	
 </body>

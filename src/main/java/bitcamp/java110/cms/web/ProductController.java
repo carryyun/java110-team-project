@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import bitcamp.java110.cms.domain.Cert;
 import bitcamp.java110.cms.domain.Classes;
 import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.Product;
@@ -19,6 +20,7 @@ import bitcamp.java110.cms.domain.ProductPopul;
 import bitcamp.java110.cms.domain.ProductQnA;
 import bitcamp.java110.cms.domain.ProductRep;
 import bitcamp.java110.cms.service.BigTagService;
+import bitcamp.java110.cms.service.CertService;
 import bitcamp.java110.cms.service.ClassService;
 import bitcamp.java110.cms.service.MiddleTagService;
 import bitcamp.java110.cms.service.ProductBaktService;
@@ -40,11 +42,14 @@ public class ProductController {
   ProductQnAService productQnAService;
   
   ProductBaktService productBaktService;
+  
+  CertService certService;
 
   public ProductController(ProductService productService, BigTagService bigTagService,
       MiddleTagService middleTagService, ProductPopulService productPopulService,
       ProductRepService productRepSerivce, ClassService classService,
-      ProductQnAService productQnAService, ProductBaktService productBaktService) {
+      ProductQnAService productQnAService, ProductBaktService productBaktService,
+      CertService certService) {
 
     this.productService = productService;
     this.bigTagService = bigTagService;
@@ -54,6 +59,7 @@ public class ProductController {
     this.classService = classService;
     this.productQnAService = productQnAService;
     this.productBaktService = productBaktService;
+    this.certService = certService;
   }
 
   @GetMapping("prdt")
@@ -112,7 +118,14 @@ public class ProductController {
 
   // 2018.11.23 수정 -> 써머노트
   @GetMapping("prodRegister")
-  public void prodRegister() {
+  public void prodRegister(Model model,HttpSession session) {
+    Mentee loginUser = (Mentee) session.getAttribute("loginUser");
+    List<Cert> certList = certService.listByMeno(5, 5, loginUser.getNo());
+    for(Cert c : certList) {
+      System.out.println(c.getClasses().getTitl());
+    }
+    
+    model.addAttribute("certList", certList);
     
   }
   @RequestMapping(value = "addqna", method = RequestMethod.POST)
@@ -152,5 +165,8 @@ public class ProductController {
       return "redirect:basketproduct";
   }
   // 장바구니 관련 끝
+  
+  
+  
 }
 
