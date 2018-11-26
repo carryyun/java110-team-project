@@ -121,7 +121,7 @@
         <div class="row my-3">
             <div class="col-lg-12">
                 <h2>오늘의 추천작품</h2>
-                <div class="button_base b01_simple_rollover" onclick="location.href='../product/prdt'">작품 더보기</div>
+                <a class="btn btn-primary float-right mb-3" href="../product/prdt">작품 더보기 </a>
             </div>
             
         </div><!-- 추천작품 row -->
@@ -132,7 +132,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <div id="owl-hotItem" class="owl-carousel col-lg-10 mt-2 px-1" style="margin:0 auto">
+                <div id="owl-hotItem" class="owl-carousel col-lg-10 mt-2 px-1" style="margin:0 auto;">
 
                 </div>
                 <div class="owl-btns">
@@ -176,17 +176,30 @@
           var content = "";
           for ( var i in dataCls["itemsCls"]) {
            
-           var cno = dataCls["itemsCls"][i].no;
-           var cfile = dataCls["itemsCls"][i].cfile;
-           var titl = dataCls["itemsCls"][i].titl;
-           var pric = dataCls["itemsCls"][i].pric;
+           var cno = dataCls["itemsCls"][i].classes.no;
+           var cfile = dataCls["itemsCls"][i].classes.cfile;
+           var titl = dataCls["itemsCls"][i].classes.titl;
+           var pric = dataCls["itemsCls"][i].classes.pric;
+           var star = dataCls["itemsCls"][i].classes.star;
+           var mtname = dataCls["itemsCls"][i].middleTagName;
            
            content += "<a href='../class/detail?no="+ cno +"'>"
            content += "<div class='col-lg-12' id='owl-col'>"
            content += "<div class='row' id='owl-row'>"
            content += "<img id='owl-img' src=\"" +cfile+ "\" alt=\"" +titl+ "\">"
-           content += "<div class='col-lg-12' id='owl-col2'>" + titl + "</div>"
-           content += "<div class='col-lg-12' id='owl-col3'>" + pric + "￦</div>"
+           content += "<div class='col-lg-8' id='owl-col2'>" + titl + "</div>"
+           content += "<div class='col-lg-4' id='owl-coltag'>" + mtname + "</div>"
+           
+           content += "<div class='col-lg-6' id='owl-colstar'>"
+           for(var j=0; j<5; j++) {
+               if(j<star){
+                   content += "<img id='owl-star' width='15px' height='15px' src='/upload/img/raty/star-on.png' alt='star-on'>"
+               }else{
+                   content += "<img id='owl-star' width='15px' height='15px' src='/upload/img/raty/star-off.png' alt='star-off'>"
+               }
+           }
+           content += "</div>"
+           content += "<div class='col-lg-6' id='owl-col3'>" + pric + "￦</div>"
            content += "</div>"
            content += "</div>"
            content += "</a>"
@@ -209,16 +222,29 @@
         function customDataSuccessPrdt(dataPrdt) {
             var content = "";
             for ( var i in dataPrdt["itemsPrdt"]) {
-             var ptno = dataPrdt["itemsPrdt"][i].no;
-             var phot = dataPrdt["itemsPrdt"][i].phot;
-             var titl = dataPrdt["itemsPrdt"][i].titl;
-             var pric = dataPrdt["itemsPrdt"][i].pric;
+             var ptno = dataPrdt["itemsPrdt"][i].product.no;
+             var phot = dataPrdt["itemsPrdt"][i].product.phot;
+             var titl = dataPrdt["itemsPrdt"][i].product.titl;
+             var pric = dataPrdt["itemsPrdt"][i].product.pric;
+             var star = dataPrdt["itemsPrdt"][i].product.star;
+             var mtname = dataPrdt["itemsPrdt"][i].middleTagName;
+             var stname = dataPrdt["itemsPrdt"][i].smallTagName;
              content += "<a href='../product/detail?no="+ ptno +"'>"
              content += "<div class='col-lg-12' id='owl-col'>"
              content += "<div class='row' id='owl-row'>"
              content += "<img id='owl-img' src=\"" +phot+ "\" alt=\"" +titl+ "\">"
-             content += "<div class='col-lg-12' id='owl-col2'>" + titl + "</div>"
-             content += "<div class='col-lg-12' id='owl-col3'>" + pric + "￦</div>"
+             content += "<div class='col-lg-9' id='owl-col2'>" + titl + "</div>"
+             content += "<div class='col-lg-3' id='owl-coltag'>" + stname + "</div>"
+             content += "<div class='col-lg-6' id='owl-colstar'>"
+             for(var j=0; j<5; j++) {
+                 if(j<star){
+                     content += "<img id='owl-star' width='15px' height='15px' src='/upload/img/raty/star-on.png' alt='star-on'>"
+                 }else{
+                     content += "<img id='owl-star' width='15px' height='15px' src='/upload/img/raty/star-off.png' alt='star-off'>"
+                 }
+             }
+             content += "</div>"
+             content += "<div class='col-lg-6' id='owl-col3'>" + pric + "￦</div>"
              content += "</div>"
              content += "</div>"
              content += "</a>"

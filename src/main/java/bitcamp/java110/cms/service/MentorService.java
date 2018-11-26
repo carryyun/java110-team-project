@@ -1,7 +1,6 @@
 package bitcamp.java110.cms.service;
 
 import java.util.List;
-import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.Mentor;
 
 public interface MentorService {

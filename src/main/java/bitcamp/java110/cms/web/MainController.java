@@ -33,9 +33,9 @@ public class MainController {
   @GetMapping("mainpage")
   public void mainpage(Model model) {
     List<ProductPopul> pp_list = productPopulService.list();
-    List<Product> pp_product=new ArrayList<>();
+    List<ProductPopul> pp_product=new ArrayList<>();
     for (ProductPopul p: pp_list ) {
-      pp_product.add(p.getProduct());
+      pp_product.add(p);
     }
     ObjectMapper mapper = new ObjectMapper();
     String jsonTextPrdt="";
@@ -49,9 +49,9 @@ public class MainController {
     
     
     List<ClassPopul> cp_list = classPopulService.list();      
-    List<Classes> cp_class=new ArrayList<>();
+    List<ClassPopul> cp_class=new ArrayList<>();
     for (ClassPopul c: cp_list ) {
-      cp_class.add(c.getClasses());
+      cp_class.add(c);
     }
     String jsonTextCls="";
     try {

@@ -67,10 +67,11 @@ public class ProductController {
     List<Product> productList = productService.list();
 
     List<ProductPopul> pp_list = productPopulService.list();
-    List<Product> pp_product = new ArrayList<>();
+    List<ProductPopul> pp_product = new ArrayList<>();
 
     for (ProductPopul p : pp_list) {
-      pp_product.add(p.getProduct());
+      
+      pp_product.add(p);
     }
 
     ObjectMapper mapper = new ObjectMapper();
