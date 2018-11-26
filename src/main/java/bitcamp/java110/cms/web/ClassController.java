@@ -1,12 +1,13 @@
 package bitcamp.java110.cms.web;
 
 import java.util.List;
-import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import bitcamp.java110.cms.domain.ClassBakt;
 import bitcamp.java110.cms.domain.ClassFile;
 import bitcamp.java110.cms.domain.ClassLike;
@@ -14,6 +15,8 @@ import bitcamp.java110.cms.domain.ClassOrder;
 import bitcamp.java110.cms.domain.ClassQna;
 import bitcamp.java110.cms.domain.ClassRep;
 import bitcamp.java110.cms.domain.Classes;
+import bitcamp.java110.cms.domain.Mentee;
+import bitcamp.java110.cms.domain.Timetable;
 import bitcamp.java110.cms.service.ClassBaktService;
 import bitcamp.java110.cms.service.ClassFileService;
 import bitcamp.java110.cms.service.ClassLikeService;
@@ -22,6 +25,7 @@ import bitcamp.java110.cms.service.ClassQnaService;
 import bitcamp.java110.cms.service.ClassRepService;
 import bitcamp.java110.cms.service.ClassService;
 import bitcamp.java110.cms.service.MenteeService;
+import bitcamp.java110.cms.service.TimetableService;
 
 @Controller
 @RequestMapping("/class")
@@ -31,27 +35,27 @@ public class ClassController {
   ClassQnaService classqnaService;
   ClassOrderService classorderService;
   ClassLikeService classlikeService;
-  ClassBaktService classbaktService;
+  ClassBaktService classBaktService;
   ClassRepService classrepService;
   ClassFileService classFileService;
+  TimetableService timetableService;
   MenteeService menteeService;
-  ServletContext sc;
   
   public ClassController(
       ClassService classService,ClassQnaService classqnaService,
       ClassOrderService classorderService,ClassLikeService classlikeService
-      ,ClassBaktService classbaktService,MenteeService menteeService,
+      ,ClassBaktService classBaktService,MenteeService menteeService,
       ClassRepService classrepService,ClassFileService classFileService,
-      ServletContext sc) {
+      TimetableService timetableService) {
     this.classService = classService;
     this.classqnaService = classqnaService;
     this.classorderService = classorderService;
     this.classlikeService = classlikeService;
-    this.classbaktService = classbaktService;
+    this.classBaktService = classBaktService;
     this.menteeService = menteeService;
     this.classrepService = classrepService;
     this.classFileService = classFileService;
-    this.sc = sc;
+    this.timetableService = timetableService;
   }
 
   @GetMapping("form") 
@@ -170,16 +174,19 @@ public class ClassController {
   public void findByCno(Model model,int no) {
     List<ClassRep> clsreqlist = classrepService.listbycno(no);
     
-    Classes detailclass = classService.findAllBycno(no);
+    Classes detailclass = classService.findBycno(no);
     
     List<ClassQna> clsqnalist = classqnaService.listbycno(10, 10, no);
     
     List<ClassFile> clsfilelist = classFileService.findByCno(no);
     
+    List<Timetable> clstimelist = timetableService.findByCno(no);
+    
     model.addAttribute("clsreqlist",clsreqlist);
     model.addAttribute("detailclass",detailclass);
     model.addAttribute("clsqnalist",clsqnalist);
     model.addAttribute("clsfilelist",clsfilelist);
+    model.addAttribute("clstimelist",clstimelist);
   }
   
   @RequestMapping("findByptno")
@@ -187,6 +194,11 @@ public class ClassController {
     Classes prdtcls = classService.findbyptno(no);
     
     model.addAttribute("prdtcls",prdtcls);
+  }
+  
+  @RequestMapping("classregi")
+  public void classregi() {
+    
   }
   
   ////////////////////여기까지 p_cls 클래스////////////////////////
@@ -311,7 +323,7 @@ public class ClassController {
   @PostMapping("baktinsert")
   public int baktinsert(ClassBakt classbakt) {
    
-    classbaktService.add(classbakt);
+    classBaktService.add(classbakt);
     
     return 1;
   }
@@ -319,7 +331,7 @@ public class ClassController {
   @PostMapping("baktdelete")
   public int baktdelete(int no) {
     
-    classbaktService.delete(no);
+    classBaktService.delete(no);
     
     return 1;
   }
@@ -327,7 +339,7 @@ public class ClassController {
   @GetMapping("baktlist")
   public List<ClassBakt> baktlist(){
     
-    List<ClassBakt> clist = classbaktService.list(3, 5);
+    List<ClassBakt> clist = classBaktService.list(3, 5);
     
     for(ClassBakt c : clist) {
       System.out.println(c.getNo());
@@ -337,4 +349,44 @@ public class ClassController {
     
     return null;
   }
+  
+  /*
+   * 클래스 장바구니 관련 시작
+   */
+  @GetMapping("basket")
+  public void basketclass(Model model, HttpSession session) {
+    Mentee mentee = (Mentee) session.getAttribute("loginUser");
+    List<ClassBakt> basketList = classBaktService.listByMeno(mentee.getNo());
+    model.addAttribute("basketList", basketList);
+  }
+  
+  @ResponseBody
+  @RequestMapping("removeDate")
+  public String removeDate(int no) throws Exception {
+      
+      classBaktService.delete(no);
+      return "redirect:basketclass";
+  }
+  //클래스 장바구니 종료
+  
+  /*
+   * 찜클래스 관련 시작
+   */
+  @GetMapping("like")
+  public void basketproduct(Model model, HttpSession session) {
+    Mentee loginUser = (Mentee) session.getAttribute("loginUser");
+    
+    List<ClassLike> likeList = classlikeService.listByMeno(loginUser.getNo());
+    
+    model.addAttribute("likeList",likeList);
+    
+  }
+  @ResponseBody
+  @RequestMapping("removeLike")
+  public String removeLike(int no) throws Exception {
+      
+      classlikeService.likesub(no);
+      return "redirect:classLike";
+  }
+  // 찜클래스 종료
 }

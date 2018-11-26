@@ -1,14 +1,11 @@
 @charset "UTF-8";
-/* a, a:hover{
- text-decoration: none !important;
- text-decoration-style: none !important; 
- color: #6e6e6e !important;
-} */
-
 /* hr 관련 */
 *{
  margin: 0;
  padding: 0;
+}
+.wrap{
+  min-width: 1110px;
 }
 body{
  font-size: 1rem;

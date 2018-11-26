@@ -13,59 +13,69 @@ nav.navbar{
   flex-grow: 1;
   flex-direction: row;
 }
-#categoryNav > .navbar-nav > li.nav-item > a {
+#categoryNav > .navbar-nav > li.nav-item {
+  border-top: 1px solid #6e6e6e;
+  border-bottom: 1px solid #6e6e6e;
+  
   font-size: 15px;
   font-weight: 800;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: #6e6e6e;
   font-family: 'Noto Sans KR', sans-serif;
   text-align: center;
-  min-width: 120px;
-  -webkit-transition:font 1s;
-  transition:font 0.3s;
 }
-#categoryNav > .navbar-nav > li.nav-item > a:hover{
+#categoryNav > .navbar-nav > li.nav-item:hover {
+  border-top: 1px solid #6e6e6e;
+  border-left: 1px solid #6e6e6e;
+  border-right: 1px solid #6e6e6e;
+  border-bottom: 1px solid #6e6e6e;
+  
   font-size: 20px;
   font-weight: 800;
   letter-spacing: 1px;
   text-transform: uppercase;
   font-family: 'Noto Sans KR', sans-serif;
-  color: #cce5ee;
-  background-color: #6e6e6e;
-  
+}
+
+#categoryNav > .navbar-nav > li.nav-item > a {
+  padding: 8px;
+  color: #6e6e6e;
+  min-width: 120px;
+}
+#categoryNav > .navbar-nav > li.nav-item > a:hover{
+  padding: 4px 8px 8px 8px;
+  border-bottom: 4px solid #ec5453;
   min-width: 120px;
 }
 #categoryNav > .navbar-nav > li.nav-item > a#menu01 {
+  padding: 8px;
   font-size: 20px;
   font-weight: 800;
   letter-spacing: 1px;
   text-transform: uppercase;
   color: #6e6e6e;
   font-family: 'Noto Sans KR', sans-serif;
-  
   min-width: 120px;
 }
 #categoryNav > .navbar-nav > li.nav-item > a#menu01:hover{
+  padding: 4px 8px 8px 8px;
   font-size: 20px;
   font-weight: 800;
   letter-spacing: 1px;
   text-transform: uppercase;
   font-family: 'Noto Sans KR', sans-serif;
-  color: #cce5ee;
-  background-color: #6e6e6e;
-  
+  border-bottom: 4px solid #ec5453;
   min-width: 120px;
 }
 
 nav.navbar{
-    background-color: #fff;
+    /* background-color: #fff; */
 }
 
 /* 카테고리 서브메뉴 관련 */
 div.menusubs{
     position: relative;
-    width: 100%;
+    width: 97.5%;
     z-index: 6;
     text-align: left;
     margin-top: 0px;

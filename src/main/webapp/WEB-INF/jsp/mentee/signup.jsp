@@ -7,70 +7,84 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 가입 화면</title>
-		<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!-- 		<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 	    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 	    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	
 	    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 	    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-	    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
+	    
+	   
+	    <%-- 부트스트랩 --%>
+		<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<%-- css --%>
+		<%-- js --%>
+		<script src="/vendor/jquery/jquery.min.js"></script>
+		<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	    <!------ 위에는 회원가입에 필요한 것들  ---------->
-	    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	    <link rel="stylesheet" href="/css/sign.css">
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <link rel="stylesheet" href="/css/sign.css">
+        <link rel="stylesheet" href="/css/common.css">
+	    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+	    integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+	    crossorigin="anonymous">
+	    
 </head>
-<body style="background-color: #f2f4f7">
+<body>
    <div id="wrap">
-		<div class="container mx-auto px-0">
-			<!-- Header (스크립트로 임시 inclue) -->
-			<div id="row">
-    <div class="container col-lg-12 mx-auto">
-    <!-- <div id="headerMain"></div> -->
-    <jsp:include page="../header.jsp"></jsp:include>
-    </div>
-    </div>
+		<div class="container">
+            <div class="row">
 
-	<div class="container">
-			<div class="main">
+            <div class="col" style="position: absolute; height: 105px; background-color: white">
+                    <!-- 헤더 배경색 적용 -->
+                </div>
+
+                <div class="col-lg-12" style="z-index: 100">
+                    <jsp:include page="../headerMain.jsp"></jsp:include>
+                </div>                
+
+
+			<div class="main col-lg-7" style="margin: 0 auto;">
 				<div class="main-center">
-				<h1>Haru</h1>
 					<form class="signup" method="post" action="/app/mentee/signup" onsubmit="return signupCheck()" >
 						<div class="form-group">
 							<label for="name"> 이름 </label>
 								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-				                    <input type="text" class="form-control" name="name" id="username" oninput="chkName()" placeholder="이름을 입력해주세요." maxlength="10"/>
+									<div class="col-lg-1 px-0 text-center" id="iborder"><span class="input-group-addon"><i class="fas fa-user fa-2x"></i></span></div>
+				                    <span class=" col-lg-11 mr-auto"><input type="text" class="form-control" name="name" id="username" oninput="chkName()" placeholder="이름을 입력해주세요." maxlength="10"/></span>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label for="email">이메일</label>
 								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-									<input type="email" class="form-control" name="email" id="useremail" oninput="checkemail()" placeholder="이메일을 입력해주세요."/>
+									<div class="col-lg-1 px-0 text-center" id="iborder"><span class="input-group-addon"><i class="fas fa-envelope fa" aria-hidden="true"></i></span></div>
+									<span class=" col-lg-11 mr-auto"><input type="email" class="form-control" name="email" id="useremail" oninput="checkemail()" placeholder="이메일을 입력해주세요."/></span>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label for="username">닉네임</label>
 								<div class="input-group"> 
-									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="nick" id="usernick" oninput="checknick()" placeholder="닉네임을 입력해주세요 "/>
+									<div class="col-lg-1 px-0 text-center" id="iborder"><span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span></div>
+									<span class=" col-lg-11 mr-auto"><input type="text" class="form-control" name="nick" id="usernick" oninput="checknick()" placeholder="닉네임을 입력해주세요 "/></span>
 								</div>
 						</div>
 
 						<div class="form-group">
 							<label for="password">비밀번호</label>
 								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" name="pwd" id="pass" oninput="checkPwd()" placeholder="Enter your Password"/>
+									<div class="col-lg-1 px-0 text-center" id="iborder"><span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span></div>
+									<span class=" col-lg-11 mr-auto"><input type="password" class="form-control" name="pwd" id="pass" oninput="checkPwd()" placeholder="Enter your Password"/></span>
 								</div>
 						</div>
 
 						<div class="form-group">
 							<label for="confirm">비밀번호 확인</label>
 								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" id="repwd" oninput="checkPwd()" placeholder="Confirm your Password"/>
+									<div class="col-lg-1 px-0 text-center" id="iborder"><span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span></div>
+									<span class=" col-lg-11 mr-auto"><input type="password" class="form-control" id="repwd" oninput="checkPwd()" placeholder="Confirm your Password"/></span>
 								</div>
 						</div>
                         <div class="selecct-but">
@@ -80,8 +94,8 @@
 					</form>
 				</div><!--main-center"-->
 			</div><!--main-->
-		</div><!--container-->
 	</div>
+</div>
 </div>
 
 <script>

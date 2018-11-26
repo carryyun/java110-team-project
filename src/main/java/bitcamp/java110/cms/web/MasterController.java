@@ -15,7 +15,6 @@ import bitcamp.java110.cms.domain.Mentor;
 import bitcamp.java110.cms.domain.Notice;
 import bitcamp.java110.cms.domain.Product;
 import bitcamp.java110.cms.domain.ProductOrder;
-import bitcamp.java110.cms.domain.ProductQnA;
 import bitcamp.java110.cms.domain.Report;
 import bitcamp.java110.cms.service.BigTagService;
 import bitcamp.java110.cms.service.ClassOrderService;
@@ -77,6 +76,8 @@ public class MasterController {
     
     this.noticeService = noticeService;
   }
+  
+  
 
   @GetMapping("prdtlist")
   public void prdtList(Model model){
@@ -184,8 +185,6 @@ public class MasterController {
   }
   
   
-  
-  
   /*
    * 사용자 알림 (추후 mypage폴더로 이동시켜야함)
    */
@@ -194,11 +193,19 @@ public class MasterController {
   public void notice(Model model ,HttpSession session) {
     Mentee loginUser = (Mentee)session.getAttribute("loginUser");
     List<Notice> noticeList = noticeService.listByMeno(5, 5, loginUser.getNo());
-    
+    for(Notice n : noticeList) {
+      if(n.getType().equals("상품")) {
+        n.setPhot(productService.get(n.getUrlno()).getPhot());
+        n.setTitl(productService.get(n.getUrlno()).getTitl());
+      }else if(n.getType().equals("클래스")) {
+        n.setPhot(classService.findBycno(n.getUrlno()).getCfile());
+        n.setTitl(classService.findBycno(n.getUrlno()).getTitl());
+      }
+    }
     model.addAttribute("noticeList", noticeList);
   }
   @RequestMapping(value = "notiRemove.do", method = {RequestMethod.GET, RequestMethod.POST})
-  public @ResponseBody int removeNoti(int no) {
+  public @ResponseBody int notiRemove(int no) {
     return noticeService.remove(no);
   }
   
@@ -210,22 +217,12 @@ public class MasterController {
   public void blacklist(Model model) {
     
   }
-  /*
-   * Request 예제 (추후 삭제)
-   */
-  @RequestMapping(value = "addqna", method = RequestMethod.POST)
-  public String addqna(String type, String titl, String conts) {
-    ProductQnA pqna = new ProductQnA();
-    pqna.setTitl(titl);
-    pqna.setConts(conts);
-    pqna.setType(type);
-    pqna.setMeno(5);
-    pqna.setPtno(5);
-
-    return "redirect:./prdtQna";
+  
+  @GetMapping("dashBoard")
+  public void dashBoard(Model model) {
+    
   }
-
-
-
+  
+  
 }
 

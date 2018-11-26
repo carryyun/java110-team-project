@@ -65,11 +65,6 @@ public class MainController {
 
   }
   
-  @RequestMapping("p")
-  public String P() {
-    return "redirect:../product/prdt";
-  }
-
 }
 
 

@@ -1,5 +1,4 @@
 <%@page import="bitcamp.java110.cms.domain.Classes"%>
-<%@page import="bitcamp.java110.cms.domain.Product"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -37,9 +36,7 @@
 <link href="/css/common.css" rel="stylesheet">
 <link href="/css/class_detail.css" rel="stylesheet">
 
-<!-- Bootstrap core JavaScript -->
-
-	<!-- bootstrap이 두번 선언된 경우에 동작이 두번할수도 있음 -->
+	<!-- 아래와 같이 주석처리한 이유는 bootstrap이 두번 선언된 경우에 동작이 두번할수도 있음 -->
 
 <style type="text/css">
 #STATICMENU { 
@@ -52,24 +49,28 @@
 
 </head>
 <body style="background-color: #F2F4F7" onload="InitializeStaticMenu()">
-
     <hr>
     <div class="container">
         <div class="row">
-		<div class="col-lg-12">
-                                <jsp:include page="../headerMain.jsp"></jsp:include>
-                            </div>
-            <h2>클래스 상세보기</h2>
-            <hr class="FhrBotMargin">
-
+			<div class="col-lg-12">
+                <jsp:include page="../headerMain.jsp"></jsp:include>
+            </div>
+            <!-- 카테고리 nav (스크립트로 임시 inclue) -->
+            <div class="col-lg-12">
+                <jsp:include page="../headerNav.jsp"></jsp:include>
+            </div>
+            
+            <div class="col-lg-12 col-md-12 mt-5">
+	            <h2>클래스 상세보기</h2>
+	            <hr class="FhrBotMargin">
+            </div>
             <div class="col-lg-12 col-md-12 text-center">
                 <div class="row">
                     <%-- <aside class="col-lg-5">
                         <article class="gallery-wrap">
                             <div class="img-big-wrap">
                                 <div>
-                                    <a href="#"><img id="prod_img"
-                                        src="${detailclass.cfile}" alt=""></a>
+                                    <a href="#"><img id="prod_img" src="${detailclass.cfile}" alt=""></a>
                                 </div>
                             </div>
                         </article>
@@ -83,10 +84,30 @@
 									    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
 									    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
 									    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+									    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
 									  </ol>
 									  <div class="carousel-inner">
-									    <div class="carousel-item active">
+									    
+									    <c:set var="cfl" value="${detailclass.cfile}"/>
+									    <%
+                                            String cfile = (String)pageContext.getAttribute("cfl");
+                                            if(cfile.endsWith("jpg") || cfile.endsWith("png")){
+                                        %>    
+                                        <div class="carousel-item active">
 									      <img style="width=1100px; margin-left:-10px;" class="d-block w-100" src="${detailclass.cfile}" alt="First slide">
+									      <%     
+                                            }else {
+                                             int cfileidx = cfile.indexOf("=");
+                                             String cfileurl = cfile.substring(cfileidx+1);
+                                        %>
+                                            <div class="carousel-item active" style="margin-bottom: -5px;">
+                                              <iframe width="1110px" height="450" style="margin-left:-10px;" src="https://www.youtube.com/embed/<%=cfileurl%>" 
+                                              frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                                              allowfullscreen></iframe>
+                                        <%
+                                            }
+                                        %>
+									      
 									    </div>
 									    <c:forEach items="${clsfilelist}" var="cf" varStatus="i">
 									    	<c:set var="divi" value="${cf.fname}"/>
@@ -95,7 +116,7 @@
 									    		if(fna.endsWith("jpg") || fna.endsWith("png")){
 									    	%>	  
 									    		<div class="carousel-item">
-											      <img class="d-block w-100" style="width=1100px; height=450px; margin-left:-10px; " 
+											      <img class="d-block w-100" style="width:1110px; height:450px; margin-left:-10px; " 
 											      src="${cf.fname}" alt="${i.count}">
 											    </div>
 									    	<%	  
@@ -104,7 +125,7 @@
 									    		 String fnaurl = fna.substring(idx+1);
 									    	%>
 											    <div class="carousel-item" style="margin-bottom: -5px;">
-											      <iframe width="1100" height="450" style="margin-left:-10px;" src="https://www.youtube.com/embed/<%=fnaurl%>" 
+											      <iframe width="1110px" height="450" style="margin-left:-10px;" src="https://www.youtube.com/embed/<%=fnaurl%>" 
 											      frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
 											      allowfullscreen></iframe>
 											    </div>
@@ -141,9 +162,11 @@
                                 <dl class="param param-feature">
                                     	${detailclass.mentee.nick} 멘토
                                 </dl>
-                                        <dl class="param param-feature">
+                                
+                                <dl class="param param-feature">
                                             <dd>${detailclass.basAddr}</dd>
-                                        </dl>
+                                </dl>
+                                
                                 <dl>
                                 	<c:set var="clsstar" value ="${detailclass.star}"/>
                                 	<%
@@ -165,6 +188,14 @@
                                         <!-- item-property .// -->
                                     <!-- col.// -->
 
+                                <dl class="param param-feature">
+                                            <select name="time">
+	                                            <c:forEach items="${clstimelist}" var="t">
+	                                            	<option value="">날짜 : ${t.date} , 시간 : ${t.stime}</option>
+	                                            </c:forEach>
+                                            </select>
+                                </dl>
+                                
                                 <hr>
                                 <!-- row.// -->
                                 <!---->
@@ -259,7 +290,7 @@
 	                    <hr class="Fhr" id="location">
 	                    <h3>위치</h3>
 	                    <div class="row">
-	                    <div id="map" style="width:500px;height:400px; margin-left:10px;"></div>
+	                    <div id="map" style="width:500px;height:400px; margin-left:15px;"></div>
 	                    <span id="adr" class = "addr" style="vertical-align: middle; margin-left:80px;
 	                    margin-top : 150px;"><div><strong>기본 주소</strong></div>  ${detailclass.basAddr}</span>
 	                    <span id="adr" class = "addr" style="vertical-align: middle; margin-left:80px;
@@ -378,8 +409,8 @@
                                             <th scope="col" class="col-lg-1" id="qna_th">번호</th>
                                             <th scope="col" class="col-lg-2" id="qna_th">문의유형</th>
                                             <th scope="col" class="col-lg-2" id="qna_th">답변상태</th>
-                                            <th scope="col" class="col-lg-4" id="qna_th">질문 제목</th>
-                                            <th scope="col" class="col-lg-1" id="qna_th">작성자</th>
+                                            <th scope="col" class="col-lg-3" id="qna_th">질문 제목</th>
+                                            <th scope="col" class="col-lg-2" id="qna_th">작성자</th>
                                             <th scope="col" class="col-lg-2" id="qna_th">작성일</th>
 
                                         </tr>
@@ -403,8 +434,8 @@
                                            	<%  
                                            	}
                                             %>
-                                            <td class="col-lg-4">${cq.titl}</td>
-                                            <td class="col-lg-1">${cq.mentee.nick}</td>
+                                            <td class="col-lg-3">${cq.titl}</td>
+                                            <td class="col-lg-2">${cq.mentee.nick}</td>
                                             <td class="col-lg-2">${cq.rgdt}</td>
                                         </tr>
                                         <tr>
@@ -438,36 +469,36 @@
                                     </c:forEach>
                                     </tbody>
                                 </table>
+		                        <button style="width: 120px; height: 40px; float : right;
+		                        background-color: #606066; color: #ffffff">클래스문의</button>
                             </div>
                             <!-- <div class="col-lg-12"> -->
                         </div>
                         <!-- <div class="row"> -->
 
 
-                        <button style="width: 120px; height: 40px; margin-left: 960px;
-                        background-color: #606066; color: #ffffff">클래스문의</button>
 
                     </div>
                     <!-- <div class="detail_info"> -->
+					<!--페이지 넘버-->
+		            <nav aria-label="Page navigation example" id="product-pn" 
+		            style="margin : auto; margin-top: -40px;">
+		                <ul class="pagination justify-content-center">
+		                    <li class="page-item disabled "><a class="page-link" href="#"
+		                        tabindex="-1"> <</a></li>
+		                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+		                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+		                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+		                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+		                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+		                    <li class="page-item"><a class="page-link" href="#">></a></li>
+		                </ul>
+		            </nav>
                 </div>
                 <!-- <div class="row"> -->
             </div>
             <!-- <div class="container col-lg-12"> -->
 
-
-            <!--페이지 넘버-->
-            <nav aria-label="Page navigation example" id="product-pn">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item disabled "><a class="page-link" href="#"
-                        tabindex="-1"> <</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                    <li class="page-item"><a class="page-link" href="#">></a></li>
-                </ul>
-            </nav>
 
         </div>
         <!-- <div class="col-lg-12 col-md-12 mx-auto" id="detail"> -->
@@ -487,11 +518,24 @@
     <hr>
 
 
-    <!-- Custom scripts for this template -->
-<script src="/vendor/jquery/jquery.min.js"></script>
+</body>
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="/js/clean-blog.js"></script>
+    <script>
+$('.accordian-body').on('show.bs.collapse', function () {
+    console.log($(this).closest("table")
+            .find(".collapse.in")
+            .not(this));
     
+    $(this).closest("table")
+        .find(".collapse.in")
+        .not(this)
+        .collapse('toggle')
+})
+</script>
+	<script src="/vendor/jquery/jquery.min.js"></script>
+    
+    <script src="/js/jquery.raty.min.js"></script>
+    <script src="/js/clean-blog.js"></script>
 <script type="text/javascript">
  var stmnLEFT = 0; // 오른쪽 여백 
  var stmnGAP1 = 0; // 위쪽 여백 
@@ -500,11 +544,12 @@
  var stmnActivateSpeed = 35; //스크롤을 인식하는 딜레이 (숫자가 클수록 느리게 인식)
  var stmnScrollSpeed = 20; //스크롤 속도 (클수록 느림)
  var stmnTimer; 
+ var stmnsub = 150; // stmtEndPoint 맞춰줄 때 쓴다.
  
  function RefreshStaticMenu() { 
   var stmnStartPoint, stmnEndPoint; 
   stmnStartPoint = parseInt(document.getElementById('STATICMENU').style.top, 10); 
-  stmnEndPoint = Math.max(document.documentElement.scrollTop, document.body.scrollTop) + stmnGAP2 - 150; 
+  stmnEndPoint = Math.max(document.documentElement.scrollTop, document.body.scrollTop) + stmnGAP2 - stmnsub; 
   if (stmnEndPoint < stmnGAP1) stmnEndPoint = stmnGAP1; 
   if (stmnStartPoint != stmnEndPoint) { 
    stmnScrollAmount = Math.ceil( Math.abs( stmnEndPoint - stmnStartPoint ) / 15 ); 
@@ -519,6 +564,7 @@
   RefreshStaticMenu();
   }
 </script>
+    <!-- Custom scripts for this template -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=74d4f74bdd85b5f1c1d2492eaf6b2a88&libraries=services"></script>
 <script>
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -570,15 +616,6 @@ geocoder.addressSearch('${detailclass.basAddr}', function(result, status) {
     } 
 });    
 </script>
-<script>
-$('.accordian-body').on('show.bs.collapse', function () {
-    $(this).closest("table")
-        .find(".collapse.in")
-        .not(this)
-        .collapse('toggle')
-})
-</script>
-<script src="/js/jquery.raty.min.js"></script>
     <script>
     
         var testtTop;
@@ -588,6 +625,7 @@ $('.accordian-body').on('show.bs.collapse', function () {
 
             testtTop = $("#detail").offset().top;
             console.log(testtTop);
+            console.log("toggle2");
             $(setId).css("position", "absolute");
             $(setId).css("top", (testtTop) + "px");
 
@@ -607,8 +645,7 @@ $('.accordian-body').on('show.bs.collapse', function () {
                 if (position > 985) {
                     $(id).css("position", "fixed-top");
                     $(id).css("top", position + "px");
-                    /* $(id).css("width", "1110px"); */
-                    $(id).css("width", "94.6%");
+                    $(id).css("width", "1110px");
 
                 } else {
                     $(id).css("top", (testtTop) + "px");
@@ -620,7 +657,9 @@ $('.accordian-body').on('show.bs.collapse', function () {
         }
         scroll_follow(setId);
 
-       
+        function click_button() {
+
+        }
 
         $('#click').raty(
                 {
@@ -630,6 +669,4 @@ $('.accordian-body').on('show.bs.collapse', function () {
                     }
                 });
     </script>
-</body>
-
 </html>

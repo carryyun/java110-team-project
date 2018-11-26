@@ -11,7 +11,7 @@
             <table class="table table-condensed" style="border-collapse:collapse;">
 
                 <thead>
-                    <tr>
+                    <tr id="th-pay">
                        
                          <th width="5%">No.</th>
                          <th width="30%">클래스</th>
@@ -29,7 +29,7 @@
    <c:forEach items="${colist}" var="c" varStatus="i">
      
 
-                    <tr >
+                    <tr id="tb-pay" >
                                               
                         <td>${i.count}</td>
                         <td>${c.classes.titl}<a href='#'><img src="${c.classFile.fname}" width="200px" height="150px"></a></td>

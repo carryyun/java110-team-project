@@ -341,15 +341,15 @@ footer .copyright {
 }
 
 .btn-primary {
-  background-color: #0085A1;
-  border-color: #0085A1;
-    padding: 5px 15px;
+  background-color: #ec5453 !important;
+  border-color: #ec5453 !important;
+    padding: 5px 15px !important;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
-  color: #fff;
-  background-color: #00657b !important;
-  border-color: #00657b !important;
+  color: #fff !important;
+  background-color: #d84b6b !important;
+  border-color: #d84b6b !important;
 }
 
 .btn-lg {

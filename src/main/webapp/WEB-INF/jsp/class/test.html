@@ -9,88 +9,69 @@
     <style>
         .table tr {
     cursor: pointer;
-}
-.hiddenRow {
-    padding: 0 4px !important;
-    background-color: #eeeeee;
-    font-size: 13px;
-}
+    }
+    .hiddenRow {
+        padding: 0 4px !important;
+        background-color: #eeeeee;
+        font-size: 15px;
+    }
     </style>
 </head>
 <body>
-<table class="table table-condensed" style="border-collapse:collapse;">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Date</th>
-            <th>Description</th>
-            <th>Credit</th>
-            <th>Debit</th>
-            <th>Balance</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr data-toggle="collapse" data-target="#demo1" class="accordion-toggle">
-            <td>1</td>
-            <td>05 May 2013</td>
-            <td>Credit Account</td>
-            <td class="text-success">$150.00</td>
-            <td class="text-error"></td>
-            <td class="text-success">$150.00</td>
-        </tr>
-        <tr >
-            <td colspan="6" class="hiddenRow"><div class="accordian-body collapse" id="demo1"> Demo Content1 </div> </td>
-        </tr>
-		
-        <tr data-toggle="collapse" data-target="#demo2" class="accordion-toggle">
-            <td>2</td>
-            <td>05 May 2013</td>
-            <td>Credit Account</td>
-            <td class="text-success">$11.00</td>
-            <td class="text-error"></td>
-            <td class="text-success">$161.00</td>
-        </tr>
-        <tr>
-            <td colspan="6" class="hiddenRow"><div id="demo2" class="accordian-body collapse">Demo Content2</div></td>
-        </tr>
-		
-        <tr data-toggle="collapse" data-target="#demo3" class="accordion-toggle">
-            <td>3</td>
-            <td>05 May 2013</td>
-            <td>Credit Account</td>
-            <td class="text-success">$500.00</td>
-            <td class="text-error"></td>
-            <td class="text-success">$661.00</td>
-        </tr>
-        <tr>
-            <td colspan="6"  class="hiddenRow"><div id="demo3" class="accordian-body collapse">Demo Content3</div></td>
-        </tr>
+<div class="detail_info">
+                        <h3>Q&A</h3>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <table class="table table-condensed" id="qna_table" 
+                                style="margin: 0 auto; border-collapse:collapse;">
+                                    <thead class="col-lg-12">
+                                        <tr class="row">
+                                            <th scope="col" class="col-lg-1" id="qna_th">번호</th>
+                                            <th scope="col" class="col-lg-2" id="qna_th">문의유형</th>
+                                            <th scope="col" class="col-lg-2" id="qna_th">답변상태</th>
+                                            <th scope="col" class="col-lg-4" id="qna_th">질문 제목</th>
+                                            <th scope="col" class="col-lg-1" id="qna_th">작성자</th>
+                                            <th scope="col" class="col-lg-2" id="qna_th">작성일</th>
 
-        <tr data-toggle="collapse" data-target="#demo4" class="accordion-toggle">
-            <td>4</td>
-            <td>05 May 2013</td>
-            <td>Credit Account</td>
-            <td class="text-success">$500.00</td>
-            <td class="text-error"></td>
-            <td class="text-success">$661.00</td>
-        </tr>
-        <tr>
-            <td colspan="6"  class="hiddenRow"><div id="demo4" class="accordian-body collapse">Demo Content4</div></td>
-        </tr>
+                                        </tr>
+                                    </thead>
+                                    
+                                    <tbody class="col-lg-12">
+                                    <!--<c:forEach items="${clsqnalist}" var="cq" varStatus="i">-->
+                                        <tr data-toggle="collapse" 
+                                        data-target="#demo1-1" class="accordion-toggle row">
+                                            <td class="col-lg-1" scope="row" id="qna_th"> ${cq.no}</td>
+                                            <td class="col-lg-2">${cq.type}</td>
+                                            
+                                            <td class="col-lg-4">${cq.titl}</td>
+                                            <td class="col-lg-1">${cq.mentee.nick}</td>
+                                            <td class="col-lg-2">${cq.rgdt}</td>
+                                        </tr>
+                                        <tr>
+                                        	<td colspan="6" class="hiddenRow">
+                                        		<div class="accordian-body collapse" id="demo1-1">
+                                        		<div class="adddet col-lg-2" style="text-align: center;
+                                        		vertical-align: middle;
+															display : block;">질문 내용</div>
+                                        		<div class="acco" id="cont">${cq.conts}</div><br>
+                                        			<c:set var="ans" value="${cq.anser}"/>
+		                                            
+                                        		</div>
+                                        	</td>
+                                        </tr>
+                                    <!--</c:forEach>-->
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- <div class="col-lg-12"> -->
+                        </div>
+                        <!-- <div class="row"> -->
 
-        <tr data-toggle="collapse" data-target="#demo5" class="accordion-toggle">
-            <td>5</td>
-            <td>05 May 2013</td>
-            <td>Credit Account</td>
-            <td class="text-success">$500.00</td>
-            <td class="text-error"></td>
-            <td class="text-success">$661.00</td>
-        </tr>
-        <tr>
-            <td colspan="6"  class="hiddenRow"><div id="demo5" class="accordian-body collapse">Demo Content5</div></td>
-        </tr>		
-    </tbody>
-</table>
+    
+                        <button style="width: 120px; height: 40px; margin-left: 960px;
+                        background-color: #606066; color: #ffffff">클래스문의</button>
+
+                    </div>
 <script>
     $('.accordian-body').on('show.bs.collapse', function () {
     $(this).closest("table")

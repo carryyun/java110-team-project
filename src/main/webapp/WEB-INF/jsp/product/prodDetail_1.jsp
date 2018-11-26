@@ -16,8 +16,8 @@
 					<article class="gallery-wrap">
 						<div class="img-big-wrap">
 							<div>
-								<a href="#"><img id="prod_img"
-									src=${product.phot} alt=""></a>
+								<img id="prod_img" src="${product.phot}" alt="${product.phot}">
+									<!-- <a href="#" style="width: 100%"></a> -->
 							</div>
 						</div>
 					</article>

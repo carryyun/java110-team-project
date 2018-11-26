@@ -20,7 +20,7 @@
     
     </head>
     <!-- Category Navigation -->
-    <hr class="Fhr">
+    <!-- <hr class="Fhr"> -->
     
     <nav class="navbar navbar-expand-lg">
         <div class="navbar-nav" id="categoryNav">
@@ -34,7 +34,7 @@
         </div>
     </nav>
     
-    <hr class="Fhr">
+    <!-- <hr class="Fhr"> -->
     
     <div class="col px-0">
     <div id="menusubs" class="menusubs">
