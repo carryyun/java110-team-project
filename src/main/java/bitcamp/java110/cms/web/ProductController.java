@@ -111,6 +111,11 @@ public class ProductController {
 
   }
 
+  // 2018.11.23 수정 -> 써머노트
+  @GetMapping("prodRegister")
+  public void prodRegister() {
+    
+  }
   @RequestMapping(value = "addqna", method = RequestMethod.POST)
   public String addqna(String type, String titl, String conts) {
     ProductQnA pqna = new ProductQnA();
