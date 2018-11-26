@@ -66,7 +66,8 @@
                             <p>
                                 <span class="h3">최근 클래스신청</span>
                                 <button type="button"
-                                    style="position: relative; float: right;" onclick="location.href='classreqlist'">
+                                    style="position: relative; float: right;"
+                                    onclick="location.href='classreqlist'">
                                     <i class="far fa-plus-square fa-lg"></i>
                                 </button>
                             </p>
@@ -82,25 +83,16 @@
                             </thead>
 
                             <tbody class="table-hover">
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>중분류</td>
-                                    <td>닉네임</td>
-                                    <td>2018.03.21</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>중분류</td>
-                                    <td>닉네임</td>
-                                    <td>2018.03.21</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>중분류</td>
-                                    <td>닉네임</td>
-                                    <td>2018.03.21</td>
-                                </tr>
-
+                                <c:forEach items="${ClassesFindAll }"
+                                    var="r" begin="1" end="3" step="1"
+                                    varStatus="status">
+                                    <tr>
+                                        <th scope="row">${status.count }</th>
+                                        <td>${r.middleTag.name }</td>
+                                        <td>${r.mentee.nick }</td>
+                                        <td>${r.rgdt }</td>
+                                    </tr>
+                                </c:forEach>
                             </tbody>
                         </table>
                     </div>
@@ -111,7 +103,8 @@
                             <p>
                                 <span class="h3">최근 신고접수</span>
                                 <button type="button"
-                                    style="position: relative; float: right;" onclick="location.href='reportList'">
+                                    style="position: relative; float: right;"
+                                    onclick="location.href='reportList'">
                                     <i class="far fa-plus-square fa-lg"></i>
                                 </button>
                             </p>
@@ -127,25 +120,16 @@
                             </thead>
 
                             <tbody class="table-hover">
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>중분류</td>
-                                    <td>닉네임</td>
-                                    <td>2018.03.21</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>중분류</td>
-                                    <td>닉네임</td>
-                                    <td>2018.03.21</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>중분류</td>
-                                    <td>닉네임</td>
-                                    <td>2018.03.21</td>
-                                </tr>
+                                <c:forEach items="${ReportFindAll }" var="r" begin="1" end="3" step="1"
+                                    varStatus="status">
+                                    <tr>
+                                        <th scope="row">${status.count }</th>
+                                        <td>${r.type }</td>
+                                        <td>${r.mentee2Nick }</td>
+                                        <td>${r.rtdt }</td>
+                                    </tr>
 
+                                </c:forEach>
                             </tbody>
                         </table>
 
@@ -160,7 +144,8 @@
                             <p>
                                 <span class="h3">최근 상품등록</span>
                                 <button type="button"
-                                    style="position: relative; float: right;" onclick="location.href='prdtlist'">
+                                    style="position: relative; float: right;"
+                                    onclick="location.href='prdtlist'">
                                     <i class="far fa-plus-square fa-lg"></i>
                                 </button>
                             </p>
@@ -176,25 +161,17 @@
                             </thead>
 
                             <tbody class="table-hover">
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>중분류</td>
-                                    <td>닉네임</td>
-                                    <td>2018.03.21</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>중분류</td>
-                                    <td>닉네임</td>
-                                    <td>2018.03.21</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>중분류</td>
-                                    <td>닉네임</td>
-                                    <td>2018.03.21</td>
-                                </tr>
+                                <c:forEach items="${ProductFindAll }"
+                                    var="r" begin="1" end="3" step="1"
+                                    varStatus="status">
+                                    <tr>
+                                        <th scope="row">${status.count }</th>
+                                        <td>${r.smalltag.name }</td>
+                                        <td>${r.mentee.nick }</td>
+                                        <td>${r.rgdt }</td>
+                                    </tr>
 
+                                </c:forEach>
                             </tbody>
                         </table>
 
@@ -206,7 +183,8 @@
                             <p>
                                 <span class="h3">최근 멘토신청</span>
                                 <button type="button"
-                                    style="position: relative; float: right;" onclick="location.href='mentorreqlist'">
+                                    style="position: relative; float: right;"
+                                    onclick="location.href='mentorreqlist'">
                                     <i class="far fa-plus-square fa-lg"></i>
                                 </button>
                             </p>
@@ -222,25 +200,22 @@
                             </thead>
 
                             <tbody class="table-hover">
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>중분류</td>
-                                    <td>닉네임</td>
-                                    <td>2018.03.21</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>중분류</td>
-                                    <td>닉네임</td>
-                                    <td>2018.03.21</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>중분류</td>
-                                    <td>닉네임</td>
-                                    <td>2018.03.21</td>
-                                </tr>
+                                <c:forEach items="${MentorFindAll }"
+                                    var="r" begin="1" end="3" step="1"
+                                    varStatus="status">
+                                    <tr>
+                                        <th scope="row">${status.count }</th>
+                                        <td><c:forEach
+                                                items="${r.mentorTag }"
+                                                var="mt">
+                                        ${mt.name }
+                                        </c:forEach></td>
 
+                                        <td>${r.nick }</td>
+                                        <td>${r.rgdtmt }</td>
+                                    </tr>
+
+                                </c:forEach>
                             </tbody>
                         </table>
 

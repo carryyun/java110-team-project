@@ -49,7 +49,9 @@
 
 </head>
 <body style="background-color: #F2F4F7" onload="InitializeStaticMenu()">
-    <hr>
+<div class="col" style="position: absolute; height: 105px; background-color: white">
+    <!-- 헤더 배경색 적용 -->
+</div>
     <div class="container">
         <div class="row">
 			<div class="col-lg-12">
@@ -502,21 +504,14 @@
 
         </div>
         <!-- <div class="col-lg-12 col-md-12 mx-auto" id="detail"> -->
-        <footer>
-                        <div class="col px-0">
-                            <jsp:include page="../footer.jsp"></jsp:include>
-                        </div>
-                    </footer>
+
     </div>
     <!-- <div class="row"> -->
-
-
-    </div>
-    <!-- <div class="container"> -->
-
-
-    <hr>
-
+        <footer>
+            <div class="col px-0">
+                <jsp:include page="../footer.jsp"></jsp:include>
+            </div>
+        </footer>
 
 </body>
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

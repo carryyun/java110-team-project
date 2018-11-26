@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import bitcamp.java110.cms.dao.MenteeDao;
 import bitcamp.java110.cms.dao.MentorDao;
-import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.Mentor;
 import bitcamp.java110.cms.service.MentorService;
 
@@ -61,4 +60,5 @@ public class MentorServiceImpl implements MentorService {
   public List<Mentor> listByMetoStat() {
     return mentorDao.findMentorRequest();
   }
+
 }

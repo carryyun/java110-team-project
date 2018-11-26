@@ -220,16 +220,30 @@
                     "background-color:weat;" +
                     "text-align:center;"
                 for (var i in data["items"]) {
-                    var ptno = data["items"][i].no;
-                    var phot = data["items"][i].phot;
-                    var titl = data["items"][i].titl;
-                    var pric = data["items"][i].pric;
+                    var ptno = data["items"][i].product.no;
+                    var phot = data["items"][i].product.phot;
+                    var titl = data["items"][i].product.titl;
+                    var star = data["items"][i].product.star;
+                    var pric = data["items"][i].product.pric;
+                    var mtname = data["items"][i].middleTagName;
+                    var stname = data["items"][i].smallTagName;
+                    
                     content += "<a href='detail?no="+ ptno +"'>"
                     content += "<div class='col' id='owl-col'>" 
                     content += "<div class='row' id='owl-row'>"
                     content += "<img id='owl-img' src=\"" + phot + "\" alt=\"" + titl + "\">"
-                    content += "<div class='col-lg-12' id='owl-col2'>" + titl + "</div>"
-                    content += "<div class='col-lg-12' id='owl-col3'>" + pric + "￦</div>"
+                    content += "<div class='col-lg-9' id='owl-col2'>" + titl + "</div>"
+                    content += "<div class='col-lg-3' id='owl-coltag'>" + stname + "</div>"
+                    content += "<div class='col-lg-6' id='owl-colstar'>"
+                    for(var j=0; j<5; j++) {
+                        if(j<star){
+                            content += "<img id='owl-star' width='15px' height='15px' src='/upload/img/raty/star-on.png' alt='star-on'>"
+                        }else{
+                            content += "<img id='owl-star' width='15px' height='15px' src='/upload/img/raty/star-off.png' alt='star-off'>"
+                        }
+                    }
+                    content += "</div>"
+                    content += "<div class='col-lg-6' id='owl-col3'>" + pric + "￦</div>"
                     content += "</div>"
                     content += "</div>"
                     content += "</a>"

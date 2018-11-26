@@ -21,6 +21,5 @@ public interface ReportDao {
   int findByMeno2Cnt(int no);
   int insert(Report report);
   int update(Report report);
-  
   int updateReptstat(Report report);
 }
