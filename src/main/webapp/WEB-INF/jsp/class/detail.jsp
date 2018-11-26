@@ -53,11 +53,17 @@
     <div class="container">
         <div class="row">
 			<div class="col-lg-12">
-                                <jsp:include page="../headerMain.jsp"></jsp:include>
-                            </div>
-            <h2>클래스 상세보기</h2>
-            <hr class="FhrBotMargin">
-
+                <jsp:include page="../headerMain.jsp"></jsp:include>
+            </div>
+            <!-- 카테고리 nav (스크립트로 임시 inclue) -->
+            <div class="col-lg-12">
+                <jsp:include page="../headerNav.jsp"></jsp:include>
+            </div>
+            
+            <div class="col-lg-12 col-md-12 mt-5">
+	            <h2>클래스 상세보기</h2>
+	            <hr class="FhrBotMargin">
+            </div>
             <div class="col-lg-12 col-md-12 text-center">
                 <div class="row">
                     <%-- <aside class="col-lg-5">
@@ -78,32 +84,30 @@
 									    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
 									    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
 									    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+									    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
 									  </ol>
 									  <div class="carousel-inner">
-									    <div class="carousel-item active">
+									    
+									    <c:set var="cfl" value="${detailclass.cfile}"/>
+									    <%
+                                            String cfile = (String)pageContext.getAttribute("cfl");
+                                            if(cfile.endsWith("jpg") || cfile.endsWith("png")){
+                                        %>    
+                                        <div class="carousel-item active">
 									      <img style="width=1100px; margin-left:-10px;" class="d-block w-100" src="${detailclass.cfile}" alt="First slide">
-									      <c:set var="decf" value="${detailclass.cfile}"/>
-									    	<%
-									    		String fna = (String)pageContext.getAttribute("divi");
-									    		if(fna.endsWith("jpg") || fna.endsWith("png")){
-									    	%>	  
-									    		<div class="carousel-item">
-											      <img class="d-block w-100" style="width=1100px; height=450px; margin-left:-10px; " 
-											      src="${cf.fname}" alt="${i.count}">
-											    </div>
-									    	<%	  
-									    		}else {
-									    		 int idx = fna.indexOf("=");
-									    		 String fnaurl = fna.substring(idx+1);
-									    	%>
-											    <div class="carousel-item" style="margin-bottom: -5px;">
-											      <iframe width="1100" height="450" style="margin-left:-10px;" src="https://www.youtube.com/embed/<%=fnaurl%>" 
-											      frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-											      allowfullscreen></iframe>
-											    </div>
-											<%
-									    		}
-											%>
+									      <%     
+                                            }else {
+                                             int cfileidx = cfile.indexOf("=");
+                                             String cfileurl = cfile.substring(cfileidx+1);
+                                        %>
+                                            <div class="carousel-item active" style="margin-bottom: -5px;">
+                                              <iframe width="1110px" height="450" style="margin-left:-10px;" src="https://www.youtube.com/embed/<%=cfileurl%>" 
+                                              frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                                              allowfullscreen></iframe>
+                                        <%
+                                            }
+                                        %>
+									      
 									    </div>
 									    <c:forEach items="${clsfilelist}" var="cf" varStatus="i">
 									    	<c:set var="divi" value="${cf.fname}"/>
@@ -112,7 +116,7 @@
 									    		if(fna.endsWith("jpg") || fna.endsWith("png")){
 									    	%>	  
 									    		<div class="carousel-item">
-											      <img class="d-block w-100" style="width=1100px; height=450px; margin-left:-10px; " 
+											      <img class="d-block w-100" style="width:1110px; height:450px; margin-left:-10px; " 
 											      src="${cf.fname}" alt="${i.count}">
 											    </div>
 									    	<%	  
@@ -121,7 +125,7 @@
 									    		 String fnaurl = fna.substring(idx+1);
 									    	%>
 											    <div class="carousel-item" style="margin-bottom: -5px;">
-											      <iframe width="1100" height="450" style="margin-left:-10px;" src="https://www.youtube.com/embed/<%=fnaurl%>" 
+											      <iframe width="1110px" height="450" style="margin-left:-10px;" src="https://www.youtube.com/embed/<%=fnaurl%>" 
 											      frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
 											      allowfullscreen></iframe>
 											    </div>

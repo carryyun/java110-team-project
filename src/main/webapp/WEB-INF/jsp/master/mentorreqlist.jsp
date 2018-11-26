@@ -6,7 +6,10 @@
 <html>
 
 <head>
-    <meta charset="UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
     <title>Document</title>
 
     <!-- 부트스트랩-->
@@ -22,8 +25,18 @@
 </head>
 
 <body>
+<div class="wrap">
     <div class="container">
         <div class="row">
+            <div class="col-lg-12" style="z-index: 100">
+                <jsp:include page="../headerMain.jsp"></jsp:include>
+            </div>
+
+            <!-- 카테고리 nav (스크립트로 임시 inclue) -->
+            <div class="col-lg-12 mb-5">
+                <jsp:include page="../headerNav.jsp"></jsp:include>
+            </div>
+
 
             <!-- 게시판 시작-->
                     <div class="col-lg-12 col-lg-offset-12">
@@ -84,23 +97,21 @@
 
                         <div class="col-lg-12">
                             <div class="row">
-                                    <div class="col-lg-5 mx-auto">
-                                        <span>
-                                            <img class="ment-pic" src="${ml.phot}">
-                                        </span>
+                                    <div class="col-lg-5">
+                                        <img class="ment-pic" src="${ml.phot}">
                                     </div>
 
-                                    <div class="col-lg-6 mx-auto">
+                                    <div class="col-lg-7">
                                         <ul class="pop-in">
-                                            <li><span style="font-size: 20px;"><i class="fas fa-star-of-life mr-3"></i>닉네임(이름):</span>
+                                            <li><span style="font-size: 16px;"><i class="fas fa-star-of-life mr-3"></i>닉네임(이름):</span>
                                             <br><span class="pop-type ml-5">${ml.nick}(${ml.name})</span></li>
-                                            <li><span style="font-size: 20px;"><i class="fas fa-star-of-life mr-3"></i>휴대전화: </span>
+                                            <li><span style="font-size: 16px;"><i class="fas fa-star-of-life mr-3"></i>휴대전화: </span>
                                             <span class="pop-type">${ml.phone}</span></li>
-                                            <li><span style="font-size: 20px;"><i class="fas fa-star-of-life mr-3"></i>출금계좌: </span>
+                                            <li><span style="font-size: 16px;"><i class="fas fa-star-of-life mr-3"></i>출금계좌: </span>
                                             <span class="pop-type">${ml.bkname}</span></li>
-                                            <li><span style="font-size: 20px;"><i class="fas fa-star-of-life mr-3"></i>계좌번호: </span>
+                                            <li><span style="font-size: 16px;"><i class="fas fa-star-of-life mr-3"></i>계좌번호: </span>
                                             <span class="pop-type">${ml.bkno}</span></li>
-                                            <li><span style="font-size: 20px;"><i class="fas fa-star-of-life mr-3"></i>분야: </span>
+                                            <li><span style="font-size: 16px;"><i class="fas fa-star-of-life mr-3"></i>분야: </span>
                                             <span class="pop-type">
                                             <c:forEach items="${ml.mentorTag}" var="mt" varStatus="m">
 			                                    ${mt.name}
@@ -109,7 +120,7 @@
 			                                    </c:if>
 			                                </c:forEach>
                                             </span></li>
-                                            <li><span style="font-size: 20px;"><i class="fas fa-star-of-life mr-3"></i>경력: </span>
+                                            <li><span style="font-size: 16px;"><i class="fas fa-star-of-life mr-3"></i>경력: </span>
                                             <span class="pop-type">${ml.carr}</span></li>
                                         </ul>
                                     </div>
@@ -118,9 +129,9 @@
 
                     <div class="col-lg-12 mt-5">
                         <div class="row">
-                            <div class="col-lg-5 mx-auto">
+                            <div class="col-lg-6 mx-auto">
                                        <h3>작품</h3>
-                                       <div class="pic1 row">
+                                       <div class="pic1">
                                            <div id="carousel-Create${i.index}" class="carousel slide" data-ride="carousel">
 										  <ol class="carousel-indicators">
 										    <li data-target="#carousel-Create${i.index}" data-slide-to="0" class="active"></li>
@@ -140,7 +151,8 @@
                                               <div class="carousel-item">
                                             </c:otherwise>
                                           </c:choose>
-                                              <img class="d-block" width="275px" height="250px" src="${mlFile.mfname}" alt="slide_${j.count}"
+                                              <img style="width:100%; height:50%; display:block;"
+                                              src="${mlFile.mfname}" alt="slide_${j.count}"
                                               onclick="window.open('${mlFile.mfname}','_blank','toolbar=no,location=no,status=no,menubar=no, scrollbars=auto,resizable=no,directories=no, width=1024,height=768, top=10,left=10')">
                                             </div>
                                           </c:forEach>
@@ -159,9 +171,9 @@
                                    </div>
                                    
                                    
-                                   <div class="col-lg-5 mx-auto">
+                                   <div class="col-lg-6 mx-auto">
                                        <h3>자격증</h3>
-                                       <div class="pic1 row">
+                                       <div class="pic1">
                                            <div id="carousel-Certificate${i.index}" class="carousel slide" data-ride="carousel">
 										  <ol class="carousel-indicators">
 										    <li data-target="#carousel-Certificate${i.index}" data-slide-to="0" class="active"></li>
@@ -180,7 +192,8 @@
                                               <div class="carousel-item">
 										    </c:otherwise>
 										  </c:choose>
-										      <img class="d-block" width="275px" height="250px" src="${mlLicense.phot}" alt="slide_${k.count}"
+										      <img style="width:100%; height:50%; display:block;"
+										      src="${mlLicense.phot}" alt="slide_${k.count}"
 										      onclick="window.open('${mlLicense.phot}','_blank','toolbar=no,location=no,status=no,menubar=no, scrollbars=auto,resizable=no,directories=no, width=1024,height=768, top=10,left=10')">
 										      <div class="carousel-caption d-none d-md-block">
 											    <h5 style="background: rgba(110, 110, 110, 0.7);">${k.count}. ${mlLicense.lname}</h5>
@@ -249,8 +262,12 @@
             </div>
         </div><!-- 메인 row-->
     </div><!-- 메인 container-->
-
-
+    <footer>
+        <div class="col px-0">
+            <jsp:include page="../footer.jsp"></jsp:include>
+        </div>
+    </footer>
+</div> <!-- wrap -->
 </body>
 <!-- Bootstrap core JavaScript -->
 <script src="/vendor/jquery/jquery.min.js"></script>
