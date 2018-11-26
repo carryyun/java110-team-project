@@ -45,8 +45,32 @@
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <!-- Load JS-->
     <script src=/js/mypagejs/hideshow.js></script> 
-    <script src=/js/mypagejs/menu4btn.js></script>
+        
     
+    <script>
+    
+     /* menu4 btn 스크립트 */
+    function div_OnOff(v){
+        // 라디오 버튼 value 값 조건 비교
+        if(v == "3"){
+         document.getElementById(id="con3").style.display = ""; // 보여줌
+         document.getElementById(id="con2").style.display = "none"; // 숨김
+         
+        }
+        else if(v == "2"){
+            document.getElementById(id="con2").style.display = ""; // 보여줌
+            document.getElementById(id="con3").style.display = "none"; // 숨김
+            
+           }
+        else{
+         document.getElementById(id="con3").style.display = "none"; // 숨김
+         document.getElementById(id="con2").style.display = "none"; // 숨김
+        }
+        
+        
+       }
+    </script>
+
     <style>
 
         #colorlib-aside {
@@ -60,6 +84,7 @@
          }
          
      </style>
+      
      
 </head>
 
@@ -194,31 +219,33 @@
                                     <hr color="black"    >
                                     
                         
-<div class="switch-field" style="position:relative;">
-      <input type="radio" id="btn-menu4-1" name="switch_3" value="yes" checked/>
+<div class="switch-field" style="position:relative; height:117px; ">
+      <input type="radio" id="btn-menu4-1" name="switch_3" value="1" onclick="div_OnOff(this.value);"     checked/>
       <label for="btn-menu4-1">1:1문의</label>
       
 
-      <input type="radio" id="2ndswitch" name="switch_3" value="maybe" />
-      <label for="2ndswitch">클래스</label>
+      <input type="radio" id="2ndswitch" name="switch_3" value="2" onclick="div_OnOff(this.value);" />
+      <label class="3bro" for="2ndswitch" >클래스</label>
       
-      
-      
-      <input type="radio" id="3rdswitch" name="switch_3" value="no"  />
+      <input type="radio" id="3rdswitch"  name="switch_3" value="3" onclick="div_OnOff(this.value);"  />
       <label for="3rdswitch">상품</label>
       
-      <div id="clsqna" style=" position: absolute; bottom:10%; left:17.2%;">
-      <button class="btn-primary" id="btn-menu4-2">질문</button>
-      <button class="btn-warning"id="btn-menu4-3">답변</button>
+      
+      <div id="con2"  class="switch-field" style="display:none; padding:0; position: absolute; bottom:0; left:26.8%;" >
+      <input type="radio" id="btn-menu4-2"" name="switch_2" value="42" checked/>
+      <label for="btn-menu4-2" style="width:100px;">질문</label>
+      <input type="radio" id="btn-menu4-3" name="switch_2" value="43" />
+      <label for="btn-menu4-3" style="width:100px;">답변</label>
       </div>
       
       
-      <div id="prdtqna" style=" position: absolute; bottom:10%; left:29.5%;">
-      <button class="btn-primary" id="btn-menu4-4" >질문</button>
-      <button class="btn-warning" id="btn-menu4-5">답변</button>
+       <div id="con3"  class="switch-field" style="display:none; padding:0; position: absolute; bottom:0; left:50.8%;">
+      <input type="radio" id="btn-menu4-4"" name="switch_2" value="44" checked/>
+      <label for="btn-menu4-4" style="width:100px;">질문</label>
+      <input type="radio" id="btn-menu4-5" name="switch_2" value="45" />
+      <label for="btn-menu4-5" style="width:100px;">답변</label>
       </div>
-      
-     
+
 
 </div>
 
