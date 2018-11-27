@@ -46,7 +46,7 @@
 
 				<div class="col-lg-12 mt-5">
 					<div class="row">
-						<div class="col-lg-6 text-left">
+						<div class="main-btn col-lg-6 text-left">
 							<button type="button" class="btn btn-default btn-lg" id="btn-cl" onclick="location.href='/app/class/basket'">장바구니(클래스)</button>
 							<button type="button" class="btn btn-default btn-lg"
 								onclick="location.href='/app/product/basket'">장바구니(공예품)</button>

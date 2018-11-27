@@ -223,7 +223,6 @@ public class MasterController {
       List<Classes> ClassesFindAll = classService.findAllByList();
       model.addAttribute("ClassesFindAll",ClassesFindAll);
       
-//      List<Report> findAll = reportService.list(pageNo, pageSize);
       List<Product> ProductFindAll = productService.findAllByList();
       model.addAttribute("ProductFindAll", ProductFindAll);
       
