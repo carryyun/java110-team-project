@@ -1,6 +1,6 @@
 .switch-field {
   font-family: "굴림";
-  padding: 40px;
+  padding: 20px;
     overflow: hidden;
 }
 
@@ -23,7 +23,7 @@
 
 .switch-field label {
   display: inline-block;
-  width: 100px;
+  width: 200px;
   background-color: lightsteelblue;
   color: rgba(0, 0, 0, 0.6);
   color:white;
@@ -59,3 +59,5 @@
 .switch-field label:last-of-type {
   border-radius: 0 4px 4px 0;
 }
+
+

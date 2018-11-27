@@ -18,8 +18,11 @@
 	rel="stylesheet">
 <script
 	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
+	<link href="/css/common.css" rel="stylesheet">
 <style>
-
+.note-editable{
+    height: 300px;
+}
 /* layout.css Style */
 .upload-drop-zone {
 	height: 200px;
@@ -120,17 +123,30 @@
 
 		</div>
 		
-    가격 <input type="number"><br>
-    택배비 <input type="number">
-    무료배송 <input type="checkbox"><br>
-    인증서 <select name="time">
+    가격　 <input type="text"><br>
+   <form>
+        택배비 <input name="textbox" type="text">
+        무료배송<input name="chkbox" type="checkbox" onClick="checkDisable(this.form)">
+   </form>
+    인증서 <select name="cert">
           <c:forEach items="${certList}" var="cl">
           <option value="">${cl.classes.titl}</option>
           </c:forEach>
       </select>
     
+	    <div class="text-right">
+	    <input type="submit" value="등록">
+	    <input type="reset" value="취소">
+	    </div>
 	</div>
 	
+	<footer>
+            <div class="col px-0">
+                <jsp:include page="../footer.jsp"></jsp:include>
+            </div>
+        </footer>
+
+
 </body>
 
 <script>
@@ -182,5 +198,18 @@ function($) {
     }
 
 }(jQuery);
+</script>
+
+<script language="javascript">
+
+function checkDisable(frm)
+{
+    if( frm.chkbox.checked == true ){
+       frm.textbox.disabled = true;
+    } else 
+    {
+       frm.textbox.disabled = false;
+    }
+}
 </script>
 </html>

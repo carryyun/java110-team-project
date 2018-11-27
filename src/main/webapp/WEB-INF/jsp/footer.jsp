@@ -3,7 +3,7 @@
     pageEncoding="UTF-8"
     trimDirectiveWhitespaces="true"%>
 <html>
-    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+ <!--    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="/css/footer.css">
     <!-- footer -->
     
@@ -71,6 +71,6 @@
             </div>
         </div>
          </div>
-<script src="/vendor/jquery/jquery.min.js"></script>
-<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- <script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
         </html>

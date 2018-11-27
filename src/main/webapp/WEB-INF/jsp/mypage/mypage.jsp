@@ -5,7 +5,7 @@
 
 <!DOCTYPE HTML>
 <html>
-
+ 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,9 +30,11 @@
     <!--    버튼-->
     <link rel="stylesheet" href="/css/mypagecss/button/skyblue-gradient.css">
     <link rel="stylesheet" href="/css/mypagecss/button/switchbtn.css">
-   <!--  <link rel="stylesheet" href="/css/mypagecss/button/modal.css"> -->
+    <link rel="stylesheet" href="/css/mypagecss/button/flipbtn.css">
+    <link rel="stylesheet" href="/css/mypagecss/button/togglebtn.css">
+    <!--  <link rel="stylesheet" href="/css/mypagecss/button/modal.css"> -->
     <!-- <link rel="stylesheet" href="/css/mypagecss/button/slider.css"> -->
-    <!-- <link rel="stylesheet" href="/css/mypagecss/button/flipbtn.css"> -->
+    
     <!-- Animate.css -->
     <link rel="stylesheet" href="/css/mypagecss/animate.css">
     <!-- Bootstrap  -->
@@ -42,8 +44,33 @@
     <!-- J Query -->
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <!-- Load JS-->
-    <script src=/js/mypagejs/hideshow.js></script>    
+    <script src=/js/mypagejs/hideshow.js></script> 
+        
     
+    <script>
+    
+     /* menu4 btn 스크립트 */ 
+    function div_OnOff(v){
+        // 라디오 버튼 value 값 조건 비교
+        if(v == "3"){
+         document.getElementById(id="con3").style.display = ""; // 보여줌
+         document.getElementById(id="con2").style.display = "none"; // 숨김
+         
+        }
+        else if(v == "2"){
+            document.getElementById(id="con2").style.display = ""; // 보여줌
+            document.getElementById(id="con3").style.display = "none"; // 숨김
+            
+           }
+        else{
+         document.getElementById(id="con3").style.display = "none"; // 숨김
+         document.getElementById(id="con2").style.display = "none"; // 숨김
+        }
+        
+        
+       }
+    </script>
+
     <style>
 
         #colorlib-aside {
@@ -57,7 +84,8 @@
          }
          
      </style>
-
+      
+     
 </head>
 
 <body>
@@ -124,7 +152,7 @@
 
                 <section class="colorlib-services" data-section="services">
                     <div class="colorlib-narrow-content">
-                        <div class="row"  style="height: 600px" >
+                        <div class="row"   >
 
                                     <h2 class="colorlib-heading">수강목록</h2>
                                     <hr color="black">
@@ -142,12 +170,13 @@
 
                 <section class="colorlib-skills" data-section="skills">
                     <div class="colorlib-narrow-content">
-                        <div class="row"  style="height: 600px" >
+                        <div class="row"   >
 
                                     <h2 class="colorlib-heading">결제내역</h2>
                                     <hr color="black"    >
                                
                            
+                          
                         
   <div class="switch-field">
       <input type="radio" id="classbkt" name="switch_2" value="yes" checked/>
@@ -188,30 +217,35 @@
 
                                     <h2 class="colorlib-heading">내 활동보기</h2>
                                     <hr color="black"    >
+                                    
                         
-<div class="switch-field">
-      <input type="radio" id="btn-menu4-1" name="switch_3" value="yes" checked/>
+<div class="switch-field" style="position:relative; height:117px; ">
+      <input type="radio" id="btn-menu4-1" name="switch_3" value="1" onclick="div_OnOff(this.value);"     checked/>
       <label for="btn-menu4-1">1:1문의</label>
       
-      <input type="radio" id="2rdswitch" name="switch_3" value="maybe"/>
+
+      <input type="radio" id="2ndswitch" name="switch_3" value="2" onclick="div_OnOff(this.value);" />
+      <label class="3bro" for="2ndswitch" >클래스</label>
       
-      
-      <label for="2rdswitch">클래스</label>
-      
-        
-  
-      <input type="radio" id="3rdswitch" name="switch_3" value="no" data-toggle="dropdown" />
+      <input type="radio" id="3rdswitch"  name="switch_3" value="3" onclick="div_OnOff(this.value);"  />
       <label for="3rdswitch">상품</label>
       
-                    <div class="dropdown-menu" style="border: 1px solid black; position:relative; top:50px; left:-120px">
-                                <div id="wrapper" class="wrapper-btn4">
-                            <button id="btn-menu4-4" class="fancy">질문</button>
-                        </div>
-                         <div id="wrapper" class="wrapper-btn5">
-                            <button id="btn-menu4-5" class="fancy">답변</button>
-                        </div>
-                </div>
       
+      <div id="con2"  class="switch-field" style="display:none; padding:0; position: absolute; bottom:0; left:26.8%;" >
+      <input type="radio" id="btn-menu4-2"" name="switch_2" value="42" checked/>
+      <label for="btn-menu4-2" style="width:100px;">질문</label>
+      <input type="radio" id="btn-menu4-3" name="switch_2" value="43" />
+      <label for="btn-menu4-3" style="width:100px;">답변</label>
+      </div>
+      
+      
+       <div id="con3"  class="switch-field" style="display:none; padding:0; position: absolute; bottom:0; left:50.8%;">
+      <input type="radio" id="btn-menu4-4"" name="switch_2" value="44" checked/>
+      <label for="btn-menu4-4" style="width:100px;">질문</label>
+      <input type="radio" id="btn-menu4-5" name="switch_2" value="45" />
+      <label for="btn-menu4-5" style="width:100px;">답변</label>
+      </div>
+
 
 </div>
 
@@ -334,314 +368,30 @@
                 <section class="colorlib-experience" data-section="experience">
                     <div class="colorlib-narrow-content">
                         <div class="row">
-                            <div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
-                                <span class="heading-meta">Experience</span>
-                                <h2 class="colorlib-heading animate-box">Work Experience</h2>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="timeline-centered">
-                                    <article class="timeline-entry animate-box" data-animate-effect="fadeInLeft">
-                                        <div class="timeline-entry-inner">
-
-                                            <div class="timeline-icon color-1">
-                                                <i class="icon-pen2"></i>
-                                            </div>
-
-                                            <div class="timeline-label">
-                                                <h2><a href="#">Full Stack Developer</a> <span>2017-2018</span></h2>
-                                                <p>Tolerably earnestly middleton extremely distrusts she boy now not. Add and offered prepare how cordial two promise. Greatly who affixed suppose but enquire compact prepare all put. Added forth chief trees but rooms think may.</p>
-                                            </div>
-                                        </div>
-                                    </article>
-
-
-                                    <article class="timeline-entry animate-box" data-animate-effect="fadeInRight">
-                                        <div class="timeline-entry-inner">
-                                            <div class="timeline-icon color-2">
-                                                <i class="icon-pen2"></i>
-                                            </div>
-                                            <div class="timeline-label">
-                                                <h2><a href="#">Front End Developer at Google Company</a> <span>2017-2018</span></h2>
-                                                <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-                                            </div>
-                                        </div>
-                                    </article>
-
-                                    <article class="timeline-entry animate-box" data-animate-effect="fadeInLeft">
-                                        <div class="timeline-entry-inner">
-                                            <div class="timeline-icon color-3">
-                                                <i class="icon-pen2"></i>
-                                            </div>
-                                            <div class="timeline-label">
-                                                <h2><a href="#">System Analyst</a> <span>2017-2018</span></h2>
-                                                <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-                                            </div>
-                                        </div>
-                                    </article>
-
-                                    <article class="timeline-entry animate-box" data-animate-effect="fadeInTop">
-                                        <div class="timeline-entry-inner">
-                                            <div class="timeline-icon color-4">
-                                                <i class="icon-pen2"></i>
-                                            </div>
-                                            <div class="timeline-label">
-                                                <h2><a href="#">Creative Designer</a> <span>2017-2018</span></h2>
-                                                <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-                                            </div>
-                                        </div>
-                                    </article>
-
-                                    <article class="timeline-entry animate-box" data-animate-effect="fadeInLeft">
-                                        <div class="timeline-entry-inner">
-                                            <div class="timeline-icon color-5">
-                                                <i class="icon-pen2"></i>
-                                            </div>
-                                            <div class="timeline-label">
-                                                <h2><a href="#">UI/UX Designer at Envato</a> <span>2017-2018</span></h2>
-                                                <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-                                            </div>
-                                        </div>
-                                    </article>
-
-                                    <article class="timeline-entry begin animate-box" data-animate-effect="fadeInBottom">
-                                        <div class="timeline-entry-inner">
-                                            <div class="timeline-icon color-none">
-                                            </div>
-                                        </div>
-                                    </article>
-                                </div>
-                            </div>
-                        </div>
+                                <h2 class="colorlib-heading" >클래스 관리</h2>
+                                 <hr color="black"    >
+                   
+                    <div id="menu5"></div>
+                        
                     </div>
                 </section>
+
+
 
                 <section class="colorlib-work" data-section="work">
                     <div class="colorlib-narrow-content">
-                        <div class="row">
-                            <div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
-                                <span class="heading-meta">My Work</span>
-                                <h2 class="colorlib-heading animate-box">Recent Work</h2>
-                            </div>
-                        </div>
-                        <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
-                            <div class="col-md-12">
-                                <p class="work-menu"><span><a href="#" class="active">Graphic Design</a></span> <span><a href="#">Web Design</a></span> <span><a href="#">Software</a></span> <span><a href="#">Apps</a></span></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 animate-box" data-animate-effect="fadeInLeft">
-                                <div class="project" style="background-image: url(images/img-1.jpg);">
-                                    <div class="desc">
-                                        <div class="con">
-                                            <h3><a href="work.html">Work 01</a></h3>
-                                            <span>Website</span>
-                                            <p class="icon">
-                                                <span><a href="#"><i class="icon-share3"></i></a></span>
-                                                <span><a href="#"><i class="icon-eye"></i> 100</a></span>
-                                                <span><a href="#"><i class="icon-heart"></i> 49</a></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 animate-box" data-animate-effect="fadeInRight">
-                                <div class="project" style="background-image: url(images/img-2.jpg);">
-                                    <div class="desc">
-                                        <div class="con">
-                                            <h3><a href="work.html">Work 02</a></h3>
-                                            <span>Animation</span>
-                                            <p class="icon">
-                                                <span><a href="#"><i class="icon-share3"></i></a></span>
-                                                <span><a href="#"><i class="icon-eye"></i> 100</a></span>
-                                                <span><a href="#"><i class="icon-heart"></i> 49</a></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 animate-box" data-animate-effect="fadeInTop">
-                                <div class="project" style="background-image: url(images/img-3.jpg);">
-                                    <div class="desc">
-                                        <div class="con">
-                                            <h3><a href="work.html">Work 03</a></h3>
-                                            <span>Illustration</span>
-                                            <p class="icon">
-                                                <span><a href="#"><i class="icon-share3"></i></a></span>
-                                                <span><a href="#"><i class="icon-eye"></i> 100</a></span>
-                                                <span><a href="#"><i class="icon-heart"></i> 49</a></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 animate-box" data-animate-effect="fadeInBottom">
-                                <div class="project" style="background-image: url(images/img-4.jpg);">
-                                    <div class="desc">
-                                        <div class="con">
-                                            <h3><a href="work.html">Work 04</a></h3>
-                                            <span>Application</span>
-                                            <p class="icon">
-                                                <span><a href="#"><i class="icon-share3"></i></a></span>
-                                                <span><a href="#"><i class="icon-eye"></i> 100</a></span>
-                                                <span><a href="#"><i class="icon-heart"></i> 49</a></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 animate-box" data-animate-effect="fadeInLeft">
-                                <div class="project" style="background-image: url(images/img-5.jpg);">
-                                    <div class="desc">
-                                        <div class="con">
-                                            <h3><a href="work.html">Work 05</a></h3>
-                                            <span>Graphic, Logo</span>
-                                            <p class="icon">
-                                                <span><a href="#"><i class="icon-share3"></i></a></span>
-                                                <span><a href="#"><i class="icon-eye"></i> 100</a></span>
-                                                <span><a href="#"><i class="icon-heart"></i> 49</a></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 animate-box" data-animate-effect="fadeInRight">
-                                <div class="project" style="background-image: url(images/img-6.jpg);">
-                                    <div class="desc">
-                                        <div class="con">
-                                            <h3><a href="work.html">Work 06</a></h3>
-                                            <span>Web Design</span>
-                                            <p class="icon">
-                                                <span><a href="#"><i class="icon-share3"></i></a></span>
-                                                <span><a href="#"><i class="icon-eye"></i> 100</a></span>
-                                                <span><a href="#"><i class="icon-heart"></i> 49</a></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 animate-box">
-                                <p><a href="#" class="btn btn-primary btn-lg btn-load-more">Load more <i class="icon-reload"></i></a></p>
-                            </div>
-                        </div>
+                    <div class="row">
+                                <h2 class="colorlib-heading animate-box">상품 관리</h2>
+                                  <hr color="black"    >
+                        
+                        <div id="menu6"></div>
+                        
                     </div>
                 </section>
 
-                <section class="colorlib-blog" data-section="blog">
-                    <div class="colorlib-narrow-content">
-                        <div class="row">
-                            <div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
-                                <span class="heading-meta">Read</span>
-                                <h2 class="colorlib-heading">Recent Blog</h2>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4 col-sm-6 animate-box" data-animate-effect="fadeInLeft">
-                                <div class="blog-entry">
-                                    <a href="blog.html" class="blog-img"><img src="images/blog-1.jpg" class="img-responsive" alt="HTML5 Bootstrap Template by colorlib.com"></a>
-                                    <div class="desc">
-                                        <span><small>April 14, 2018 </small> | <small> Web Design </small> | <small> <i class="icon-bubble3"></i> 4</small></span>
-                                        <h3><a href="blog.html">Renovating National Gallery</a></h3>
-                                        <p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-6 animate-box" data-animate-effect="fadeInRight">
-                                <div class="blog-entry">
-                                    <a href="blog.html" class="blog-img"><img src="images/blog-2.jpg" class="img-responsive" alt="HTML5 Bootstrap Template by colorlib.com"></a>
-                                    <div class="desc">
-                                        <span><small>April 14, 2018 </small> | <small> Web Design </small> | <small> <i class="icon-bubble3"></i> 4</small></span>
-                                        <h3><a href="blog.html">Wordpress for a Beginner</a></h3>
-                                        <p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-6 animate-box" data-animate-effect="fadeInLeft">
-                                <div class="blog-entry">
-                                    <a href="blog.html" class="blog-img"><img src="images/blog-3.jpg" class="img-responsive" alt="HTML5 Bootstrap Template by colorlib.com"></a>
-                                    <div class="desc">
-                                        <span><small>April 14, 2018 </small> | <small> Inspiration </small> | <small> <i class="icon-bubble3"></i> 4</small></span>
-                                        <h3><a href="blog.html">Make website from scratch</a></h3>
-                                        <p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 animate-box">
-                                <p><a href="#" class="btn btn-primary btn-lg btn-load-more">Load more <i class="icon-reload"></i></a></p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                
 
-                <section class="colorlib-contact" data-section="contact">
-                    <div class="colorlib-narrow-content">
-                        <div class="row">
-                            <div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
-                                <span class="heading-meta">Get in Touch</span>
-                                <h2 class="colorlib-heading">Contact</h2>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-5">
-                                <div class="colorlib-feature colorlib-feature-sm animate-box" data-animate-effect="fadeInLeft">
-                                    <div class="colorlib-icon">
-                                        <i class="icon-globe-outline"></i>
-                                    </div>
-                                    <div class="colorlib-text">
-                                        <p><a href="#">info@domain.com</a></p>
-                                    </div>
-                                </div>
-
-                                <div class="colorlib-feature colorlib-feature-sm animate-box" data-animate-effect="fadeInLeft">
-                                    <div class="colorlib-icon">
-                                        <i class="icon-map"></i>
-                                    </div>
-                                    <div class="colorlib-text">
-                                        <p>198 West 21th Street, Suite 721 New York NY 10016</p>
-                                    </div>
-                                </div>
-
-                                <div class="colorlib-feature colorlib-feature-sm animate-box" data-animate-effect="fadeInLeft">
-                                    <div class="colorlib-icon">
-                                        <i class="icon-phone"></i>
-                                    </div>
-                                    <div class="colorlib-text">
-                                        <p><a href="tel://">+123 456 7890</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-7 col-md-push-1">
-                                <div class="row">
-                                    <div class="col-md-10 col-md-offset-1 col-md-pull-1 animate-box" data-animate-effect="fadeInRight">
-                                        <form action="">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Name">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Email">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Subject">
-                                            </div>
-                                            <div class="form-group">
-                                                <textarea name="" id="message" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="submit" class="btn btn-primary btn-send-message" value="Send Message">
-                                            </div>
-                                        </form>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                
 
             </div><!-- end:colorlib-main -->
         </div><!-- end:container-wrap -->
