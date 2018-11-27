@@ -1,4 +1,4 @@
- // 회원정보수정 load 
+        // 회원정보수정 load 
         $(document).ready(function() {
             $("#menu1").load("/app/mypage/menu1");
         });
@@ -77,3 +77,12 @@
         });
              
              
+          // 클래스 관리   
+             $(document).ready(function() {
+                 $("#menu5").load("/app/mypage/menu5");
+             });
+            
+             // 상품 관리   
+             $(document).ready(function() {
+                 $("#menu6").load("/app/mypage/menu6");
+             });
