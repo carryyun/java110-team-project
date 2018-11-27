@@ -1,7 +1,6 @@
 package bitcamp.java110.cms.web;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -138,19 +137,11 @@ public class ProductController {
   }
   
   @PostMapping("test")
-  public void test(MultipartFile files, MultipartFile f1) throws Exception {
-    System.out.println(files.getOriginalFilename());
-    System.out.println(f1.getOriginalFilename());
-    String filename = UUID.randomUUID().toString();
-    files.transferTo(new File(sc.getRealPath("/upload/img/test/" + f1)));
-    files.transferTo(new File(sc.getRealPath("/upload/img/test/" + filename)));
-    
-/*    for(MultipartFile m : files) {
+  public void test(List<MultipartFile> files) throws Exception {
+    for(MultipartFile file : files) {
       String filename = UUID.randomUUID().toString();
-      m.transferTo(new File(sc.getRealPath("/upload/img/test/" + filename)));
-      System.out.println(m);
-      
-    }*/
+      file.transferTo(new File(sc.getRealPath("/upload/img/test/" + filename+".png")));
+    }
     
   }
   
