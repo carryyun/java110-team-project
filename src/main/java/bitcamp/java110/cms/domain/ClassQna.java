@@ -5,6 +5,12 @@ import java.sql.Date;
 public class ClassQna {
 
   private int no;
+  @Override
+  public String toString() {
+    return "ClassQna [no=" + no + ", meno=" + meno + ", cno=" + cno + ", titl=" + titl + ", conts="
+        + conts + ", rgdt=" + rgdt + ", anser=" + anser + ", rgdt2=" + rgdt2 + ", type=" + type
+        + ", mentee=" + mentee + ", classes=" + classes + "]";
+  }
   private int meno;
   private int cno;
   private String titl;

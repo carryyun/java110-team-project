@@ -46,9 +46,7 @@ public class ProductController {
   ProductRepService productRepSerivce;
   ClassService classService;
   ProductQnAService productQnAService;
-  
   ProductBaktService productBaktService;
-  
   CertService certService;
   
   ServletContext sc;
@@ -194,6 +192,15 @@ public class ProductController {
       return "redirect:basketproduct";
   }
   // 장바구니 관련 끝
+  
+  @GetMapping("payment")
+  public void paymentProduct(Model model, HttpSession session) {
+    Mentee mentee = (Mentee) session.getAttribute("loginUser");
+    List<ProductBakt> paymentList = productBaktService.listAllByMeno(mentee.getNo());
+    model.addAttribute("paymentList",paymentList);
+    
+  }
+
   
   
   

@@ -66,10 +66,11 @@
                                 </thead>
 
                                 <tbody>
+                                <c:forEach items="${paymentList}" var="r">
                                     <tr class="d-flex">
                                         <td class="col-2">
                                             <div class="media">
-                                                <a class="thumbnail pull-right" href="#"> <img class="media-object" src="img/basket3.jpg" style="width: 110px; height: 110px;"> </a>
+                                                <a class="thumbnail pull-right" href="#"> <img class="media-object" src="" style="width: 110px; height: 110px;"> </a>
                                             </div>
                                         </td>
                                         <td class="col-4">
@@ -90,6 +91,7 @@
                                         <td class="del col-2 text-center">2500</td>
                                         <td class="total col-2 text-center"><strong>36000</strong></td>
                                     </tr>
+                                    </c:forEach>
                                 </tbody>
 
                                 <tfoot>

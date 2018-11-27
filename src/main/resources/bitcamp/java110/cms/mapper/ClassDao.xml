@@ -140,6 +140,7 @@
 
 	<select id="findByCno" resultMap="classMap" parameterType="int">
 		select
+			ps.cno,
 			pe.nick,
 			ps.titl,
 			ps.conts,
