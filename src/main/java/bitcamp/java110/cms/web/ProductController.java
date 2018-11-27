@@ -1,14 +1,19 @@
 package bitcamp.java110.cms.web;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import bitcamp.java110.cms.domain.Cert;
@@ -42,12 +47,14 @@ public class ProductController {
   ProductQnAService productQnAService;
   ProductBaktService productBaktService;
   CertService certService;
+  
+  ServletContext sc;
 
   public ProductController(ProductService productService, BigTagService bigTagService,
       MiddleTagService middleTagService, ProductPopulService productPopulService,
       ProductRepService productRepSerivce, ClassService classService,
       ProductQnAService productQnAService, ProductBaktService productBaktService,
-      CertService certService) {
+      CertService certService, ServletContext sc) {
 
     this.productService = productService;
     this.bigTagService = bigTagService;
@@ -58,6 +65,7 @@ public class ProductController {
     this.productQnAService = productQnAService;
     this.productBaktService = productBaktService;
     this.certService = certService;
+    this.sc =sc;
   }
 
   @GetMapping("prdt")
@@ -127,6 +135,17 @@ public class ProductController {
     model.addAttribute("certList", certList);
     
   }
+  
+  @PostMapping("test")
+  public void test(List<MultipartFile> files) throws Exception {
+    for(MultipartFile file : files) {
+      String filename = UUID.randomUUID().toString();
+      file.transferTo(new File(sc.getRealPath("/upload/img/test/" + filename+".png")));
+    }
+    
+  }
+  
+  
   @RequestMapping(value = "addqna", method = RequestMethod.POST)
   public String addqna(String type, String titl, String conts) {
     ProductQnA pqna = new ProductQnA();

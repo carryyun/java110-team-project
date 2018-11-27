@@ -36,12 +36,12 @@
          Spring WebMVC 프레임워크에서 직접 처리하고 싶다면,  
          다음 객체를 등록하라!
     -->
-    <!--  
-    <bean id="multipartResolver" 
+ 
+     <bean id="multipartResolver" 
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> 
         <property name="maxUploadSize" value="2000000" /> 
-    </bean>
-    -->
+    </bean> 
+
     
     <!-- 기존의 ViewResolver를 교체하기 
          이 ViewResolver는 request handler가 리턴한 경로의 
