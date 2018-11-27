@@ -14,7 +14,8 @@
 						<th width="5%">No.</th>
 						<th width="40%">클래스</th>
 						<th width="20%">카테고리</th>
-						<th width="35%">수업기간</th>
+						<th width="20%">수업기간</th>
+						<th width="15%">멘티보기</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -24,6 +25,7 @@
 						<td><a href='#'>2${c.classes.titl}</a></td>
 						<td>${c.mentornick}3</td>
 						<td>${c.timetable.date}4</td>
+						<td> <button class="btn-primary" style="width:70px;">멘티!</button></td>
 					</tr>
 					<%--         </c:forEach>      --%>
 
