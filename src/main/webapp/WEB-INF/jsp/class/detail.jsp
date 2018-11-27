@@ -471,8 +471,50 @@
                                     </c:forEach>
                                     </tbody>
                                 </table>
-		                        <button style="width: 120px; height: 40px; float : right;
-		                        background-color: #606066; color: #ffffff">클래스문의</button>
+                                
+		                        <div class="center"><button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block"
+								style="width: 120px; height: 40px; float : right; background-color: #606066; color: #ffffff;">클래스 문의</button></div>
+								<div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+								  <div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h4 class="modal-title" id="lineModalLabel">클래스 명: ${detailclass.titl}</h3>
+											<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+										</div>
+										<div class="modal-body">
+											
+								            <!-- content goes here -->
+											<form action="detail?no=${detailclass.no}" method="post">
+											  <div class="form-group">
+								                <label for="exampleInputEmail1">문의 유형</label>
+								                		<input type="radio" name="type" class="type" value="환불" id="opt1" checked="checked"/>
+													    <label for="opt1">환불</label>
+													    <input type="radio" name="type" class="type" value="위치" id="opt2"/>
+													    <label for="opt2">위치</label>
+													    <input type="radio" name="type" class="type" value="강의" id="opt3"/>
+													    <label for="opt2">강의</label>
+													    <input type="radio" name="type" class="type" value="기타" id="opt4"/>
+													    <label for="opt2">기타</label>
+								              </div>
+								              <div class="form-group">
+								                <label for="exampleInputEmail1">Q&A 제목</label>
+								                <input type="text" class="form-control" name="titl" id="titl" placeholder="제목을 입력해주세요">
+								              </div>
+								              <div class="form-group">
+								                <label for="exampleInputconts1">Q&A 내용</label>
+								                <div>
+								                <textarea name="conts" id="conts" rows="5" class="customWidth" style="resize: none; width:100%;" 
+								                placeholder="내용을 입력해주세요"></textarea></div>
+								              </div>
+								              <button type="button" class="btn btn-default" 
+													onClick="addqna(${sessionScope.loginUser.no});">등록하기</button>
+											  <button type="button" class="btn btn-default" data-dismiss="modal"  role="button">취소</button>
+								            </form>
+								
+										</div>
+									</div>
+								  </div>
+								</div>
                             </div>
                             <!-- <div class="col-lg-12"> -->
                         </div>
@@ -528,9 +570,61 @@ $('.accordian-body').on('show.bs.collapse', function () {
 })
 </script>
 	<script src="/vendor/jquery/jquery.min.js"></script>
-    
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="/js/jquery.raty.min.js"></script>
     <script src="/js/clean-blog.js"></script>
+    
+<script>
+function addqna(no) {
+    var type = $('input:radio:checked.type').val();
+    var titl = $('input:text#titl').val();
+    var conts = $('textarea#conts').val();
+    var cno = ${detailclass.no};
+
+    console.log(titl);
+    console.log(conts);
+    console.log(type);
+    console.log(cno);
+    console.log(no);
+    
+    if(titl == "" || conts == ""  ) {
+        console.log(titl);
+        console.log(conts);
+        console.log(cno);
+        console.log(no);
+        swal({
+            title: "필수 입력항목을 입력안하셨습니다.",
+            button : "확인",
+          })
+    } 
+    else{
+        $.ajax({
+            type:"POST",
+            data : {
+	            "type" : type,
+	            "titl" : titl,
+	            "conts" : conts,
+	            "cno" : cno,
+	            "meno" : no
+	        },
+	        url : "qnainsert",
+	        success : function() {
+	            swal({
+	                title : "Q&A 질문이 등록되었습니다",
+	                text : "축하드립니다.",
+	                icon : "success",
+	                button : "확인",
+	              })
+	            /* location.href="detail?no="+${detailclass.no}; */
+	        },successs
+	        ,error : function(error,status){
+	            console.log(error);
+	            console.log(status);
+	        }
+        });
+    }
+} 
+</script>
 <script type="text/javascript">
  var stmnLEFT = 0; // 오른쪽 여백 
  var stmnGAP1 = 0; // 위쪽 여백 
@@ -539,7 +633,7 @@ $('.accordian-body').on('show.bs.collapse', function () {
  var stmnActivateSpeed = 35; //스크롤을 인식하는 딜레이 (숫자가 클수록 느리게 인식)
  var stmnScrollSpeed = 20; //스크롤 속도 (클수록 느림)
  var stmnTimer; 
- var stmnsub = 150; // stmtEndPoint 맞춰줄 때 쓴다.
+ var stmnsub = 190; // stmtEndPoint 맞춰줄 때 쓴다.
  
  function RefreshStaticMenu() { 
   var stmnStartPoint, stmnEndPoint; 

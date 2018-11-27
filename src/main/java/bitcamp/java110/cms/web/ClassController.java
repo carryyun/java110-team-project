@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import bitcamp.java110.cms.domain.ClassBakt;
 import bitcamp.java110.cms.domain.ClassFile;
@@ -171,12 +172,13 @@ public class ClassController {
   }
   
   @RequestMapping("detail")
-  public void findByCno(Model model,int no) {
+  public void findByCno(Model model,int no ,HttpSession session) {
+    
     List<ClassRep> clsreqlist = classrepService.listbycno(no);
     
     Classes detailclass = classService.findBycno(no);
     
-    List<ClassQna> clsqnalist = classqnaService.listbycno(10, 10, no);
+    List<ClassQna> clsqnalist = classqnaService.listbycno(5, 5, no);
     
     List<ClassFile> clsfilelist = classFileService.findByCno(no);
     
@@ -218,17 +220,18 @@ public class ClassController {
     }
   }
   
-  @RequestMapping("qnainsert")
-  public void qnainsert(ClassQna classqna) {
+  @RequestMapping(value = "qnainsert", method = {RequestMethod.POST})
+  public @ResponseBody int qnainsert(ClassQna classqna) {
+    System.out.println(classqna.getCno());
+    System.out.println(classqna.getTitl());
+    System.out.println(classqna.getConts());
+    System.out.println(classqna.getMeno());
+    System.out.println(classqna.getType());
     
-    classqna.setNo(7);
-    classqna.setMeno(5);
-    classqna.setCno(7);
-    classqna.setTitl("호에에엣?");
-    classqna.setConts("히이이ㅣ이엣?");
     
+    System.out.println(classqna.toString());
     
-    classqnaService.qnaadd(classqna);
+    return classqnaService.qnaadd(classqna);
   }
   
   @RequestMapping("qnadelete")

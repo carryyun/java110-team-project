@@ -38,6 +38,7 @@
     
     <select id="findByCno" resultMap="cqnaMap" parameterType="int">
         select
+        	ps.cno,
 			psa.qno,
 			psa.type,
 			psa.titl,
@@ -59,9 +60,9 @@
     <insert id="qnainsert" parameterType="ClassQna"
     	useGeneratedKeys="true" keyColumn="qno" keyProperty="no">
     	insert 
-    		into p_cls_qna(meno,cno,conts,rgdt)
+    		into p_cls_qna(meno,cno,titl,conts,rgdt,type)
     	values 
-    		(#{meno},#{cno},#{conts},#{rgdt})
+    		(#{meno},#{cno},#{titl},#{conts},now(),#{type})
     </insert>
     
     <delete id="qnadelete" parameterType="int">
