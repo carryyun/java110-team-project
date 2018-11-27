@@ -60,7 +60,7 @@
                                    
                                 </table>
                                 <div style="width:150px; margin-left:auto; margin-right:0;">
- <button type="button" class="btn btn-primary" >확인</button>
+ <button type="button" class="btn btn-primary" >수정</button>
  <!-- 이미 답변한 게시물은 '답변수정' 으로 출력  -->
  <button type="button" class="btn btn-secondary">취소</button>
  </div>
