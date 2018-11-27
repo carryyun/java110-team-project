@@ -17,9 +17,9 @@
   width: 21%;
   text-align: right;
 }
-.totals .totals-item-total {
+/* .totals .totals-item-total {
   font-family: "HelveticaNeue-Medium", "Helvetica Neue Medium";
-}
+} */
 
 #selc1{
     border: 1px solid black;
@@ -41,20 +41,19 @@
     background-color: gainsboro;
 }
 
-p .btn{
+.main-btn .btn{
     border: 1px solid black;
     color: black;
     background-color: darkgray;
     
 }
-
-p #btn-cl{
+.main-btn #btn-cl{
     border: 1px solid black;
     background-color:whitesmoke;
     color: black;
 }
 
-p #btn-cl:hover{
+.main-btn #btn-cl:hover{
     background-color: gainsboro;
 }
 
