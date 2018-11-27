@@ -202,8 +202,10 @@
                                 <!-- row.// -->
                                 <!---->
                                 <hr>
-                                <a href="#" class="btn btn-lg btn-primary text-uppercase"> 수업 신청하기 </a> 
-                                <a href="#" class="btn btn-lg btn-outline-primary text-uppercase"> 
+                                <a href="#" class="btn btn-lg btn-primary text-uppercase"
+                                onClick="cls"> 수업 신청하기 </a>
+                                <a href="#" class="btn btn-lg btn-outline-primary text-uppercase"
+                                onClick="clslikeins(${sessionScope.loginUser.no});"> 
                                     <i class="fas fa-shopping-cart"></i> 찜클래스 </a>
                             </div>
                         </article>
@@ -336,7 +338,7 @@
                 <div class="container col-lg-12" id="prod_review">
                     <div class="row">
                         <div class="col">
-				<form class="form-horizontal" action="send.php" method="post">
+				<form class="form-horizontal" action="detail?no=${detailclass.no}" method="post">
                     <fieldset>
 					<table class="fixed-table w-100" >
 							<tr>
@@ -346,7 +348,10 @@
 											<!-- Message body -->
 											<div class="form-group">
 												<div class="col-lg-12">
-													<textarea class="form-control" id="message" name="message"
+													<input type="file" id="phot" name="phot">사진만 가능합니다.</input>
+												</div>
+												<div class="col-lg-12">
+													<textarea class="form-control" id="conts" name="conts"
 														placeholder="클래스평을 등록해주세요." rows="5"></textarea>
 												</div>
 											</div>
@@ -354,19 +359,19 @@
                                 </tr>
                                 <tr>
                                             <td>
-												<label class="control-label my-0" for="message">별점</label>
+												<label class="control-label my-0" id="star" name="star" for="message">별점</label>
                                             </td>
                                             <td>
 												<div id="star1"></div>
 											<!-- </div> -->
 											<!-- <div class=""> -->
                                             </td>
-								
 								<td align="right" valign="top">
 									<!-- Form actions -->
 										<!--col-lg-12추가했음-->
 										<div class="col-md-12 col-lg-12 text-right" style="vertical-align: middle;">
-											<button id="repbtn" type="submit" class="btn btn-primary btn-md"
+											<button id="repbtn" type="button" onClick="repins(${sessionScope.loginUser.no});" 
+											class="btn btn-primary btn-md"
 												style="background-color: #606066; color: #ffffff">등록</button>
 											<button type="reset" class="btn btn-default btn-md">취소</button>
 										</div>
@@ -455,7 +460,9 @@
 		                                           		<div class="adddet col-lg-2" style="text-align: center;
 		                                           			vertical-align: middle;
 															display : block;">질문 답변</div>
-		                                           		<div class="acco" id="ans">답변이 등록되지 않았습니다.</div>
+		                                           		<button type="button" style="background-color:aqua;" 
+		                                           		class="btn btn-default" 
+		                                           		onClick="answerins${sessionScope.loginUser.no}">답변 하기</button>
 		                                           	<%  }else{
 		                                           	%>
 		                                           		<div class="adddet col-lg-2" style="text-align: center;
@@ -559,14 +566,10 @@
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script>
 $('.accordian-body').on('show.bs.collapse', function () {
-    console.log($(this).closest("table")
-            .find(".collapse.in")
-            .not(this));
-    
     $(this).closest("table")
         .find(".collapse.in")
         .not(this)
-        .collapse('toggle')
+        .collapse("toggle")
 })
 </script>
 	<script src="/vendor/jquery/jquery.min.js"></script>
@@ -580,24 +583,13 @@ function addqna(no) {
     var titl = $('input:text#titl').val();
     var conts = $('textarea#conts').val();
     var cno = ${detailclass.no};
-
-    console.log(titl);
-    console.log(conts);
-    console.log(type);
-    console.log(cno);
-    console.log(no);
     
     if(titl == "" || conts == ""  ) {
-        console.log(titl);
-        console.log(conts);
-        console.log(cno);
-        console.log(no);
         swal({
             title: "필수 입력항목을 입력안하셨습니다.",
             button : "확인",
           })
-    } 
-    else{
+    } else {
         $.ajax({
             type:"POST",
             data : {
@@ -615,15 +607,76 @@ function addqna(no) {
 	                icon : "success",
 	                button : "확인",
 	              })
-	            /* location.href="detail?no="+${detailclass.no}; */
-	        },successs
-	        ,error : function(error,status){
+	            location.href="detail?no="+${detailclass.no};
+	        },error : function(error,status){
 	            console.log(error);
 	            console.log(status);
 	        }
         });
     }
-} 
+}
+
+function answerins(no) {
+    /* var cno = ${detailclass.no}; */
+    
+	if(cno == no) {
+	    
+	}    
+}
+
+function repins(no) {
+    var cno = ${detailclass.no};
+    var conts = $('textarea#conts').val();
+    var star = $('#star1-score').val();
+    var phot = $('input:file#phot').val();
+
+    $.ajax({
+        type : "POST",
+        data : {
+            "meno" : no ,
+            "cno" : cno , 
+            "conts" : conts , 
+            "star" : star ,
+            "phot" : phot 
+        },
+        url : "repinsert",
+        success : function() {
+            swal({
+                text : "클래스 후기가 등록되었습니다",
+                icon : "success",
+                button : "확인",
+              })
+            location.href="detail?no="+${detailclass.no};
+        },error : function(error,status){
+            console.log(error);
+            console.log(status);
+        }
+    });
+}
+
+function clslikeins(no) {
+    var cno = ${detailclass.no};
+    
+    $.ajax({
+        type : "POST" , 
+        data : {
+            "cno" : cno , 
+            "meno" : no
+        },
+        url : "clslikeins" ,
+        success : function() {
+            swal({
+                text : "찜클래스가 등록되었습니다",
+                icon : "success",
+                button : "확인",
+              })
+            location.href="detail?no="+${detailclass.no};
+        },error : function(error,status){
+            console.log(error);
+            console.log(status);
+        }
+    });
+}
 </script>
 <script type="text/javascript">
  var stmnLEFT = 0; // 오른쪽 여백 
@@ -717,14 +770,14 @@ geocoder.addressSearch('${detailclass.basAddr}', function(result, status) {
             console.log("toggle2");
             $(setId).css("position", "absolute");
             $(setId).css("top", (testtTop) + "px");
-
+            
             $('#star1').raty({
                 path : "/upload/img/raty/",
                 start : 1,
                 starOff : 'star-off-big.png',
                 starOn : 'star-on-big.png',
                 width : 200
-            });
+            }); 
         });
 
         function scroll_follow(id) {
@@ -741,19 +794,13 @@ geocoder.addressSearch('${detailclass.basAddr}', function(result, status) {
                     $(id).css("position", "absolute");
                     $(id).css("width", "1110px");
                 }
-
             });
         }
         scroll_follow(setId);
-
-        function click_button() {
-
-        }
-
-        $('#click').raty(
-                {
-                    click : function(score, evt) {
-                        alert('ID: ' + this.attr('id') + '\nscore: ' + score
+        
+        $('#click').raty({
+            click : function(score, evt) {
+                alert('ID: ' + this.attr('id') + '\nscore: ' + score
                                 + '\nevent: ' + evt);
                     }
                 });

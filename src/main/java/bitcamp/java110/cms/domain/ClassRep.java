@@ -16,6 +16,12 @@ public class ClassRep {
   private Classes classes;
   private Mentee mentee;
   
+  
+  @Override
+  public String toString() {
+    return "ClassRep [no=" + no + ", meno=" + meno + ", cno=" + cno + ", titl=" + titl + ", conts="
+        + conts + ", star=" + star + ", phot=" + phot + ", rgdt=" + rgdt + "]";
+  }
   public int getNo() {
     return no;
   }
