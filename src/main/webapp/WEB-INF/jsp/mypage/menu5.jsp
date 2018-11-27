@@ -28,7 +28,7 @@
 						<td> <button class="btn-primary" style="width:70px;">멘티!</button></td>
 					</tr>
 					<%--         </c:forEach>      --%>
-
+ 
 				</tbody>
 			</table>
 		</div>
