@@ -3,6 +3,8 @@ package bitcamp.java110.cms.service.impl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import bitcamp.java110.cms.dao.ClassRepDao;
 import bitcamp.java110.cms.domain.ClassRep;
 import bitcamp.java110.cms.service.ClassRepService;
@@ -25,6 +27,7 @@ public class ClassRepServiceImpl implements ClassRepService{
   }
 
   @Override
+  @Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
   public int repAdd(ClassRep classRep) {
 
     return classRepDao.repinsert(classRep);

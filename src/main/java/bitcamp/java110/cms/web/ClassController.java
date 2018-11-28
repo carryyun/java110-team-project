@@ -253,13 +253,17 @@ public class ClassController {
   }
   
   @RequestMapping(value = "ansupdate", method = {RequestMethod.POST})
-  public @ResponseBody void ansupdate(ClassQna classqna) {
+  public @ResponseBody int ansupdate(ClassQna classqna) {
     
-    classqna.setNo(6);
-    classqna.setAnser("손님..;; 손님이 더 이상해요!!!");
+    System.out.println(classqna.getCno());
+    System.out.println(classqna.getTitl());
+    System.out.println(classqna.getConts());
+    System.out.println(classqna.getMeno());
+    System.out.println(classqna.getType());
+    System.out.println(classqna.getAnser());
+    System.out.println(classqna.getRgdt2());
     
-    classqnaService.ansupdate(classqna);
-    
+    return classqnaService.ansupdate(classqna);
   }
   
   @RequestMapping(value = "repinsert", method = {RequestMethod.POST})

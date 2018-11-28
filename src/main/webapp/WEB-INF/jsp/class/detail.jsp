@@ -463,6 +463,7 @@
 		                                           		<button type="button" style="background-color:aqua;" 
 		                                           		class="btn btn-default" 
 		                                           		onClick="answerins${sessionScope.loginUser.no}">답변 하기</button>
+		                                           		<input class="clickedit" type="text" />
 		                                           	<%  }else{
 		                                           	%>
 		                                           		<div class="adddet col-lg-2" style="text-align: center;
@@ -617,11 +618,12 @@ function addqna(no) {
 }
 
 function answerins(no) {
-    /* var cno = ${detailclass.no}; */
+    /* var cno = ${detailclass.no};
+	    
     
 	if(cno == no) {
 	    
-	}    
+	}  */   
 }
 
 function repins(no) {
