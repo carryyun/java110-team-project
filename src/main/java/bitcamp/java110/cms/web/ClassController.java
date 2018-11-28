@@ -184,12 +184,14 @@ public class ClassController {
     
     List<Timetable> clstimelist = timetableService.findByCno(no);
     
+//    List<ClassRep> clsrepcount = classrepService.countByCnoAll(no);
     
     model.addAttribute("clsreqlist",clsreqlist);
     model.addAttribute("detailclass",detailclass);
     model.addAttribute("clsqnalist",clsqnalist);
     model.addAttribute("clsfilelist",clsfilelist);
     model.addAttribute("clstimelist",clstimelist);
+//    model.addAttribute("clsrepcount",clsrepcount);
   }
   
   @RequestMapping("findByptno")
@@ -283,7 +285,7 @@ public class ClassController {
     return classrepService.repAdd(classrep);
   }
   
-  @RequestMapping(value = "clslikeins", method = {RequestMethod.POST})
+  @RequestMapping(value = "clslikeins.do", method = {RequestMethod.POST})
   public @ResponseBody int clslikeins(ClassLike classlike) {
     
     System.out.println(classlike.getMeno());

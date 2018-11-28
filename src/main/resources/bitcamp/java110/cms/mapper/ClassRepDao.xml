@@ -16,6 +16,7 @@
         <result column="rgdt" 		property="rgdt"/>
         <result column="nick"		property="mentee.nick"/>
         <result column="phot"		property="mentee.phot"/>
+        <result column="count"		property="count(*)"/>
     </resultMap>
     
     <sql id="select1">
@@ -47,6 +48,7 @@
 		where psp.cno = #{no}
 		order by psp.rno desc;
     </select>
+    
     
     <insert id="repinsert" parameterType="ClassRep"
     	useGeneratedKeys="true" keyColumn="rno" keyProperty="no">
