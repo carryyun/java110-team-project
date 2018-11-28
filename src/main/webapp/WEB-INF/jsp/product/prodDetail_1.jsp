@@ -24,7 +24,7 @@
 				</aside>
 				
 				<aside class="col-lg-7">
-					<article class="card-body p-5">
+					<article class="card-body">
 						<div class="text-left">
 							<h2 class="title mb-3">${product.titl}</h2>
 							<br>

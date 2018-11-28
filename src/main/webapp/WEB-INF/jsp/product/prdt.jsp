@@ -45,7 +45,7 @@
 					<jsp:include page="../headerMain.jsp"></jsp:include>
 				</div>
 
-				<!-- 카테고리 nav (스크립트로 임시 inclue) -->
+				<!-- 카테고리 nav -->
 				<div class="col-lg-12">
 					<jsp:include page="../headerNav.jsp"></jsp:include>
 				</div>
@@ -101,9 +101,9 @@
 											<div class="col-lg-4">
 												<article class="card-wrapper">
 													<div class="image-holder">
-														<a href="#" class="image-holder__link"></a>
+														<a href="detail?no=${pl.no}" class="image-holder__link"></a>
 														<div class="image-liquid image-holder--original">
-															<a href="#"><img alt="${i.count}" src="${pl.phot}"
+															<a href="detail?no=${pl.no}"><img alt="${i.count}" src="${pl.phot}"
 																style="width: 100%; height: 100%"></a> <img src="${pl.mentee.phot}"
 																class="mentorimg" alt="${pl.mentee.phot}">
 															<div style="padding: 0 5px; top: 75px; width: auto; height: auto; position: absolute; background-color: #f58500; color: white; border-bottom-right-radius: 10px">${pl.mentee.name}
@@ -118,7 +118,7 @@
 														<div class="product-description__title">
 															<div class="row">
 																<div class="col-lg-6 mb-2">
-																	<a href="#">${pl.titl}</a>
+																	<a href="detail?no=${pl.no}">${pl.titl}</a>
 																</div>
 																<div class="col-lg-6 mb-2 text-right">
 																	<%

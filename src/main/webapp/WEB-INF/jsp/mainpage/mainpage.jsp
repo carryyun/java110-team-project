@@ -34,11 +34,11 @@
         <div class="row">
             <!--Carousel Wrapper-->
             <div id="carousel-banner" class="carousel slide carousel-fade" data-ride="carousel">
-                <!--Indicators-->
-                <ol class="carousel-indicators">
-                    <li data-target="#carousel-banner" data-slide-to="0"></li>
-                    <li data-target="#carousel-banner" data-slide-to="1" class="active"></li>
-                    <li data-target="#carousel-banner" data-slide-to="2"></li>
+                <!--Indicators--> 
+                <ol class="carousel-indicators" id="carousel-ol">
+                    <li data-target="#carousel-banner" data-slide-to="0"><img class="w-100 h-100" src="/upload/img/banner_1.png" alt="First"></li>
+                    <li data-target="#carousel-banner" data-slide-to="1" class="active"><img class="w-100 h-100" src="/upload/img/banner_2.png" alt="Second"></li>
+                    <li data-target="#carousel-banner" data-slide-to="2"><img class="w-100 h-100" src="/upload/img/banner_3.png" alt="Third"></li>
                 </ol>
                 <!--/.Indicators-->
                 <!--Slides-->
@@ -86,7 +86,7 @@
                     <div class="col-lg-3 border-right border-secondary">
                         <div class="col">
                             <h2>카테고리</h2>
-                            <ul>
+                            <ul class="ml-4">
                                 <c:forEach items="${BTlist}" var="bt">
                                     <li><a href="#">${bt.name}</a></li>
                                 </c:forEach>
@@ -103,8 +103,8 @@
 
                                 </div>
                                 <div class="owl-btns">
-                                    <div class="cusnextCls"><i class="fas fa-caret-right"></i></div>
-                                    <div class="cusprevCls"><i class="fas fa-caret-left"></i></div>
+                                    <div class="cusnextCls"><i class="fas fa-angle-right"></i></div>
+                                    <div class="cusprevCls"><i class="fas fa-angle-left"></i></div>
                                 </div>
                             </div>
                         </div>
@@ -118,7 +118,7 @@
     <!-- 오늘의 추천작품 -->
     <div class="container">
         <hr class="Fhr" />
-        <div class="row my-3">
+        <div class="row mt-3">
             <div class="col-lg-12">
                 <h2>오늘의 추천작품</h2>
                 <a class="btn btn-primary float-right mb-3" href="../product/prdt">작품 더보기 </a>
@@ -136,8 +136,8 @@
 
                 </div>
                 <div class="owl-btns">
-                    <div class="cusnextPrdt"><i class="fas fa-caret-right"></i></div>
-                    <div class="cusprevPrdt"><i class="fas fa-caret-left"></i></div>
+                    <div class="cusnextPrdt"><i class="fas fa-angle-right"></i></div>
+                    <div class="cusprevPrdt"><i class="fas fa-angle-left"></i></div>
                 </div>
             </div>
         </div>
@@ -157,6 +157,11 @@
 	<script src="/js/clean-blog.js"></script>
     <script src="/js/owl.carousel.js"></script>
     <script>
+    function setLike(evt,cno){
+        evt.preventDefault();
+        console.log(cno);
+    }
+    
     var owlCls = $("#owl-hotCls");
     var owlPrdt = $("#owl-hotItem");
     $(document).ready(function(){
@@ -172,6 +177,8 @@
         jsonSuccess : customDataSuccessCls(dataCls),
         
       });
+      
+        
       function customDataSuccessCls(dataCls) {
           var content = "";
           for ( var i in dataCls["itemsCls"]) {
@@ -186,6 +193,7 @@
            content += "<a href='../class/detail?no="+ cno +"'>"
            content += "<div class='col-lg-12' id='owl-col'>"
            content += "<div class='row' id='owl-row'>"
+           content += "<i id='owl-i' class='far fa-star' onclick='setLike(event,"+ cno +")'></i>"
            content += "<img id='owl-img' src=\"" +cfile+ "\" alt=\"" +titl+ "\">"
            content += "<div class='col-lg-8' id='owl-col2'>" + titl + "</div>"
            content += "<div class='col-lg-4' id='owl-coltag'>" + mtname + "</div>"
@@ -206,6 +214,7 @@
           }
           owlCls.html(content);
       }
+      
       
       
       /* 아이템 카르셀 */
@@ -251,7 +260,7 @@
             }
             owlPrdt.html(content);
         }
-
+        
      });
     
       $(".cusnextCls").click(function() {

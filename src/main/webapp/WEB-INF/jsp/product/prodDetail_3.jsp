@@ -4,18 +4,35 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<div class="col-lg-12 mx-auto">
-    <div class="post-preview">
-        <a href="post.html"></a>
-<!-- 사이드바 -->
-                    <div id="STATICMENU">
-                        <aside class="col-lg-8">
-                        <article class="card-body p-3">
-                            <div class="text-center">
-                            <img style="width: 200px; height:200px;" src="ㅇㅇㅇ" alt=""/>
-                                <h3 class="title mb-3">ㅇㅇㅇ</h3>
-                                <dl class="param param-feature">
-                                    <dd>ㅇㅇㅇ</dd>
+
+                    <div id="STATICMENU" style="background-color: #fff">
+                        <aside class="col-lg-12 px-2">
+                        <article class="card-body px-2">
+                                        <c:set var="cfl" value="${product.classes.cfile}"/>
+                                        <%
+                                            String cfile = (String)pageContext.getAttribute("cfl");
+                                            if(cfile.endsWith("jpg") || cfile.endsWith("png")){
+                                        %>    
+                                          <img style="width: 100%; height:120px;" src="${product.classes.cfile}" alt="${product.classes.cfile}"/>
+                                          <%      
+                                            }else {
+                                             int cfileidx = cfile.indexOf("=");
+                                             String cfileurl = cfile.substring(cfileidx+1);
+                                        %>
+                                              <iframe width="100%" height="120px" src="https://www.youtube.com/embed/<%=cfileurl%>" 
+                                              frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                                              allowfullscreen></iframe>
+                                        <%
+                                            }
+                                        %> 
+                                          
+
+
+                                
+                                <h3 class="title mb-3">${product.classes.titl}</h3>
+                                <dl class="param param-feature row">
+                                    <dd class="col-lg-4 pr-1 text-center"><img class="clsMetoPhot" src="${product.classes.mentee.phot}" alt="${product.classes.mentee.phot}"> </dd>
+                                    <dd class="col-lg-8 pl-1"><strong>${product.classes.mentee.nick}</strong> 멘토님</dd>
                                 </dl>
                                 <dl class="param param-feature">
                                     ㅇㅇㅇㅇ원
@@ -52,17 +69,14 @@
                                 <!-- row.// -->
                                 <!---->
                                 <hr>
-                                <a href="#" class="btn btn-lg btn-primary text-uppercase"> 수업 신청하기 </a> 
-                                <a href="#" class="btn btn-lg btn-outline-primary text-uppercase"> 
-                                    <i class="fas fa-shopping-cart"></i> 찜클래스 </a>
-                            </div>
+                                <a href="#" id="prdtSidebtnGo" class="btn btn-lg btn-primary text-uppercase"><i class="fas fa-graduation-cap"></i>수업듣기</a> 
+                                <a href="#" id="prdtSidebtnLike" class="btn btn-lg btn-outline-primary text-uppercase"> 
+                                    <i class="fas fa-star"></i>찜클래스 </a>
                         </article>
                         <!-- card-body.// -->
                     </aside>
                     </div>
                     <!-- 사이드바 끝 -->
-    </div> <!-- <div class="post-preview"> -->
-</div> <!-- <div class="col-lg-12 mx-auto"> -->
 
 
 

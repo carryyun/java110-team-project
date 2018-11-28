@@ -6,8 +6,24 @@
 /*
 * 추가부분
 */
-#main-carousel .active{
- background-color: #ec5453; 
+ol#carousel-ol{
+  margin: auto;
+  display: inline-block;
+  top:19%;
+  right:14%;
+  bottom:auto;
+  left:auto;
+  
+}
+ol#carousel-ol li{
+  width: 170px;
+  height: 80px;
+  text-indent: 0;
+}
+
+#main-carousel li.active{
+ border: 2px solid #ec5453;
+ background-color: #fff; 
 }
 .cusNextCls, .cusPrevCls,
 .cusNextPrdt, .cusPrevPrdt{
@@ -24,23 +40,39 @@
 }
 
 
-.cusPrevCls,.cusPrevPrdt {
+.cusPrevCls, .cusPrevPrdt {
   left: 3rem;
 }
-.cusNextCls,.cusNextPrdt {
+.cusNextCls, .cusNextPrdt {
   right: 3rem;
 }
 
 #owl-row{
- border: 1px solid #6e6e6e;
+  border: 1px solid rgb(217, 217, 217);
+  background-color: rgb(248, 249, 251);
+  border-radius: 5px;
+  overflow: hidden;
 }
-
-#owl-col2{
+img#owl-img{
+  border-bottom: 1px solid rgb(217, 217, 217);
+}
+i#owl-i{
+  position: absolute;
+  font-size:20px;
+  color: rgb(217, 217, 217);
+  left: 85%;
+  top: 5%;
+}
+i#owl-i:hover{
+  color: #ec5453;
+}
+div#owl-col2{
+  color:#222;
   padding : 5px 10px;
+  font-weight:800;
   font-size: 14px;
   height:50px;
   cursor:pointer;
-  background-color:weat;
   text-align:left;
 } 
 #owl-coltag{
@@ -48,7 +80,6 @@
   padding : 5px 5px;
   color: gray;
   height:35px;
-  background-color:weat;
   text-align:right;
 }
 
@@ -56,7 +87,6 @@
   color:green;
   padding : 0px 5px 5px;
   cursor:pointer;
-  background-color:weat;
   text-align:right;
   margin-top: -5px;
 
@@ -66,7 +96,6 @@
   padding: 0px 10px 5px;
   color:green;
   cursor:pointer;
-  background-color:weat;
   text-align:right;
   
 }

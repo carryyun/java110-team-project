@@ -200,8 +200,6 @@ public class ProductController {
     model.addAttribute("paymentList",paymentList);
     
   }
-
-  
   
   
 }
