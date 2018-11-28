@@ -69,4 +69,14 @@ public class ProductServiceImpl implements ProductService {
     return productDao.findAllByList();
   }
 
+  @Override
+  public List<Product> listByMtno(int pageNo, int pageSize, int mtno) {
+    HashMap<String, Object> params = new HashMap<>();
+    params.put("rowNo", (pageNo - 1) * pageSize);
+    params.put("size", pageSize);
+    params.put("middleno", mtno);
+
+    return productDao.findAllByMtno(params);
+  }
+
 }

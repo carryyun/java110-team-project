@@ -37,7 +37,7 @@
 
                     </tr>
                     <tr>
-                        <td colspan="6" class="hiddenRow">
+                        <td colspan="6" class="hiddenRow" style="padding: 0;">
                             <div class="accordian-body collapse" id="demo3-1">
                                 <table class="table table-striped">
                                     <thead>
@@ -88,7 +88,7 @@
 
  <!-- page navigation -->
 <nav aria-label="Page navigation"  class="pn-center" >
-  <ul class="pagination" >
+  <ul class="pagination" style="margin-top:0;" >
     <li class="page-item">
       <a class="page-link" href="#" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>

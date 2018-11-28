@@ -145,6 +145,20 @@ public class MypageController {
     
   }
   
+  @GetMapping("menu5")
+  public void menu5(Model model) {
+    
+ List<Cs> cslist = csService.list(4, 10,5);
+    
+    model.addAttribute("cslist",cslist);
+    
+  }
+  
+  @GetMapping("menu6")
+  public void menu6(Model model) {
+    
+  }
+  
 }
 
 

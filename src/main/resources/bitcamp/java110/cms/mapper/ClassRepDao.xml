@@ -26,7 +26,7 @@
         select 
             meno,cno,titl,conts,star,phot,rgdt
         from 
-            p_cls_rip
+            p_cls_rep
         order by
             rno asc;
     </select>
@@ -48,5 +48,12 @@
 		order by psp.rno desc;
     </select>
     
+    <insert id="repinsert" parameterType="ClassRep"
+    	useGeneratedKeys="true" keyColumn="rno" keyProperty="no">
+    	insert 
+    		into p_cls_rep(meno,cno,titl,conts,star,phot,rgdt)
+    	values 
+    		(#{meno},#{cno},#{titl},#{conts},#{star},#{phot},now())
+    </insert>
     
   </mapper>

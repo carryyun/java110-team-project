@@ -1,14 +1,15 @@
 <%@page import="bitcamp.java110.cms.domain.Product"%>
 <%@page import="bitcamp.java110.cms.domain.BigTag"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
-	trimDirectiveWhitespaces="true"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 
 <head>
 
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
 
@@ -18,8 +19,10 @@
 <!-- Bootstrap core CSS -->
 <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+<link href="https://fonts.googleapis.com/css?family=Jua"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
 	integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
 	crossorigin="anonymous">
 
@@ -34,7 +37,8 @@
 
 <body>
 	<div id="wrap" style="background-color: #fff">
-		<div class="col" style="position: absolute; height: 105px; background-color: white">
+		<div class="col"
+			style="position: absolute; height: 105px; background-color: white">
 			<!-- 헤더 배경색 적용 -->
 		</div>
 
@@ -51,7 +55,8 @@
 				</div>
 
 				<!-- Main Content -->
-				<div class="container col-lg-12 my-3" style="background-color: #white">
+				<div class="container col-lg-12 my-3"
+					style="background-color: #white">
 					<div class="row">
 						<div class="col-lg-3 border-right border-secondary">
 							<div class="col">
@@ -69,7 +74,8 @@
 							<div class="row">
 								<div class="col">
 									<h2>오늘의 핫 아이템</h2>
-									<div id="owl-hotItem" class="owl-carousel col-lg-10 mt-2" style="margin: 0 auto"></div>
+									<div id="owl-hotItem" class="owl-carousel col-lg-10 mt-2"
+										style="margin: 0 auto"></div>
 									<div class="owl-btns">
 										<div class="cusnextPrdt">
 											<i class="fas fa-caret-right" style="color: #ec5453"></i>
@@ -90,9 +96,14 @@
 							<a href="post.html"></a>
 							<div class="row">
 
+
+
 								<div class="container">
 									<div class="clearfix">
-										<a class="btn btn-primary float-right mb-3" href="#">상품 등록 </a>
+										<a class="btn btn-primary float-right mb-3"
+											data-toggle="modal" data-target="#squarespaceModal" href="#"
+											onclick="showCert('${sessionScope.loginUser.no}')">상품 등록
+										</a>
 									</div>
 									<div class="row">
 
@@ -104,11 +115,14 @@
 														<a href="#" class="image-holder__link"></a>
 														<div class="image-liquid image-holder--original">
 															<a href="#"><img alt="${i.count}" src="${pl.phot}"
-																style="width: 100%; height: 100%"></a> <img src="${pl.mentee.phot}"
-																class="mentorimg" alt="${pl.mentee.phot}">
-															<div style="padding: 0 5px; top: 75px; width: auto; height: auto; position: absolute; background-color: #f58500; color: white; border-bottom-right-radius: 10px">${pl.mentee.name}
+																style="width: 100%; height: 100%"></a> <img
+																src="${pl.mentee.phot}" class="mentorimg"
+																alt="${pl.mentee.phot}">
+															<div
+																style="padding: 0 5px; top: 75px; width: auto; height: auto; position: absolute; background-color: #f58500; color: white; border-bottom-right-radius: 10px">${pl.mentee.name}
 															</div>
-															<div style="padding: 0 5px; top: 100px; width: auto; height: auto; position: absolute; background-color: #333873; color: white; border-bottom-right-radius: 10px">${pl.mentee.nick}
+															<div
+																style="padding: 0 5px; top: 100px; width: auto; height: auto; position: absolute; background-color: #333873; color: white; border-bottom-right-radius: 10px">${pl.mentee.nick}
 																멘토</div>
 														</div>
 													</div>
@@ -122,25 +136,28 @@
 																</div>
 																<div class="col-lg-6 mb-2 text-right">
 																	<%
-										                              Product p = (Product) pageContext.getAttribute("pl");
-										                              for (int i = 0; i < 5; i++) {
-										                                if (i < p.getStar()) {
-										                            %>
-																	<img alt="star-on-big" class='starimg' src="/upload/img/raty/star-on-big.png">
+																	  Product p = (Product) pageContext.getAttribute("pl");
+																					for (int i = 0; i < 5; i++) {
+																						if (i < p.getStar()) {
+																	%>
+																	<img alt="star-on-big" class='starimg'
+																		src="/upload/img/raty/star-on-big.png">
 																	<%
-										                              } else {
-										                            %>
-																	<img alt="star-off-big" class='starimg' src="/upload/img/raty/star-off-big.png">
+																	  } else {
+																	%>
+																	<img alt="star-off-big" class='starimg'
+																		src="/upload/img/raty/star-off-big.png">
 																	<%
-										                              }
-										                              }
-										                            %>
+																	  }
+																					}
+																	%>
 																</div>
 															</div>
 
 															<!-- 분류명 , 가격 -->
 															<div class="row">
-																<div class="col-lg-7 product-description__category secondary-text">
+																<div
+																	class="col-lg-7 product-description__category secondary-text">
 																	${pl.middleTagName} - ${pl.smalltag.name} <br>
 																</div>
 																<div class="col-lg-5 product-description__price">${pl.pric}원</div>
@@ -183,6 +200,21 @@
 				<jsp:include page="../footer.jsp"></jsp:include>
 			</div>
 		</footer>
+
+		<div class="modal fade" id="squarespaceModal" tabindex="-1"
+			role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="lineModalLabel">인증서 선택하기</h4>
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+						</button>
+					</div>
+					<div class="modal-body" id="modal-body"></div>
+				</div>
+			</div>
+		</div>
 	</div>
 	<!-- ===============필수포함=============== -->
 	<!-- Bootstrap core JavaScript -->
@@ -259,6 +291,41 @@
         $(".cusprevPrdt").click(function() {
             owlPrdt.trigger('prev.owl.carousel');
         });
+    </script>
+	<script>
+    function showCert(no){
+
+        $.ajax({
+            data : {
+                no : no
+            },
+            url : "getCertList.do",
+            success : function(data) {
+                console.log(data[0]);
+                
+                
+                var html= "";
+                
+                html+='<form action="prodRegister" method="post">';
+                html+='<div class="form-group">';
+                html+='<label for="exampleInputEmail1">인증서 선택하기</label> ';
+                html+='<select name="mtno">';
+                for(var i=0;i<data.length; i++){
+                    html+='<option value="'+data[i].classes.mtno+'">'+data[i].classes.titl+'</option>';
+                }
+                html+='    </select>';
+                html+='</div>';
+                html+='<button type="submit" class="btn btn-default">등록하기</button>';
+                html+='<button type="button" class="btn btn-default" data-dismiss="modal" role="button">취소</button>';
+                html+=' </form>';
+                var setDiv = document.querySelector("#modal-body");
+                console.log(setDiv);
+                setDiv.innerHTML+=html;
+            }
+            
+        });
+        
+    }
     </script>
 </body>
 

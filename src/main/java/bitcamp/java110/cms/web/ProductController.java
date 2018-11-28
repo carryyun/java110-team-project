@@ -1,14 +1,19 @@
 package bitcamp.java110.cms.web;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import bitcamp.java110.cms.domain.Cert;
@@ -19,6 +24,7 @@ import bitcamp.java110.cms.domain.ProductBakt;
 import bitcamp.java110.cms.domain.ProductPopul;
 import bitcamp.java110.cms.domain.ProductQnA;
 import bitcamp.java110.cms.domain.ProductRep;
+import bitcamp.java110.cms.domain.SmallTag;
 import bitcamp.java110.cms.service.BigTagService;
 import bitcamp.java110.cms.service.CertService;
 import bitcamp.java110.cms.service.ClassService;
@@ -28,6 +34,7 @@ import bitcamp.java110.cms.service.ProductPopulService;
 import bitcamp.java110.cms.service.ProductQnAService;
 import bitcamp.java110.cms.service.ProductRepService;
 import bitcamp.java110.cms.service.ProductService;
+import bitcamp.java110.cms.service.SmallTagService;
 
 @Controller
 @RequestMapping("/product")
@@ -42,12 +49,15 @@ public class ProductController {
   ProductQnAService productQnAService;
   ProductBaktService productBaktService;
   CertService certService;
+  SmallTagService smallTagService;
+  
+  ServletContext sc;
 
   public ProductController(ProductService productService, BigTagService bigTagService,
       MiddleTagService middleTagService, ProductPopulService productPopulService,
       ProductRepService productRepSerivce, ClassService classService,
       ProductQnAService productQnAService, ProductBaktService productBaktService,
-      CertService certService) {
+      CertService certService, SmallTagService smallTagService, ServletContext sc) {
 
     this.productService = productService;
     this.bigTagService = bigTagService;
@@ -58,6 +68,8 @@ public class ProductController {
     this.productQnAService = productQnAService;
     this.productBaktService = productBaktService;
     this.certService = certService;
+    this.smallTagService = smallTagService;
+    this.sc =sc;
   }
 
   @GetMapping("prdt")
@@ -115,18 +127,35 @@ public class ProductController {
 
   }
 
+  // 2018.11.27 수정 -> file input
+  @PostMapping("test")
+  public void test(List<MultipartFile> files) throws Exception {
+    for(MultipartFile file : files) {
+      String filename = UUID.randomUUID().toString();
+      file.transferTo(new File(sc.getRealPath("/upload/img/test/" + filename+".png")));
+    }
+  }
+  
+  // 2018.11.28 수정 -> cert list 불러오기
+  @RequestMapping(value = "getCertList.do", method = {RequestMethod.GET, RequestMethod.POST})
+  public @ResponseBody List<Cert> getCertList(int no) {
+    List<Cert> certList = certService.listByMeno(5, 5, no);
+    return certList;
+  }
+  
   // 2018.11.23 수정 -> 써머노트
-  @GetMapping("prodRegister")
-  public void prodRegister(Model model,HttpSession session) {
+  @PostMapping("prodRegister")
+  public void prodRegister(Model model,HttpSession session, int mtno) {
     Mentee loginUser = (Mentee) session.getAttribute("loginUser");
     List<Cert> certList = certService.listByMeno(5, 5, loginUser.getNo());
-    for(Cert c : certList) {
-      System.out.println(c.getClasses().getTitl());
-    }
-    
     model.addAttribute("certList", certList);
     
+    List<SmallTag> stagList = smallTagService.listMtno(10, 5, mtno);
+    model.addAttribute("stagList", stagList);
   }
+  
+ 
+  
   @RequestMapping(value = "addqna", method = RequestMethod.POST)
   public String addqna(String type, String titl, String conts) {
     ProductQnA pqna = new ProductQnA();

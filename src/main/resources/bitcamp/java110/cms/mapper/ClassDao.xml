@@ -140,6 +140,7 @@
 
 	<select id="findByCno" resultMap="classMap" parameterType="int">
 		select
+			ps.cno,
 			pe.nick,
 			ps.titl,
 			ps.conts,
@@ -157,7 +158,8 @@
 			ps.edt,
             ps.star,
             ptg.mtname,
-            pe.phot
+            pe.phot,
+            pe.meno
 		from
 			p_cls as ps inner join p_meto as po
 				on ps.mono = po.mono
