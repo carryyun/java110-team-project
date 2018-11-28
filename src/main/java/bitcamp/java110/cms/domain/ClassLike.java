@@ -9,8 +9,6 @@ public class ClassLike {
   private Mentee mentee;
   private String mentorNick;
   
-  
-  
   public Classes getClasses() {
     return classes;
   }
