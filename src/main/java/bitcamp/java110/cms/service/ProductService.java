@@ -15,6 +15,8 @@ public interface ProductService {
   
   List<Product> listByStno(int pageNo, int pageSize, int stno); // 소분류번호로 조회
   
+  List<Product> listByMtno(int pageNo, int pageSize, int mtno); // 중분류번호로 조회
+  
   int add(Product product);
 
   int update(Product product);

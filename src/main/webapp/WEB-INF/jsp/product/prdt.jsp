@@ -90,9 +90,14 @@
 							<a href="post.html"></a>
 							<div class="row">
 
+
+
 								<div class="container">
 									<div class="clearfix">
-										<a class="btn btn-primary float-right mb-3" href="#">상품 등록 </a>
+										<a class="btn btn-primary float-right mb-3"
+											data-toggle="modal" data-target="#squarespaceModal" href="#"
+											onclick="showCert('${sessionScope.loginUser.no}')">상품 등록
+										</a>
 									</div>
 									<div class="row">
 
@@ -183,6 +188,21 @@
 				<jsp:include page="../footer.jsp"></jsp:include>
 			</div>
 		</footer>
+
+		<div class="modal fade" id="squarespaceModal" tabindex="-1"
+			role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="lineModalLabel">인증서 선택하기</h4>
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+						</button>
+					</div>
+					<div class="modal-body" id="modal-body"></div>
+				</div>
+			</div>
+		</div>
 	</div>
 	<!-- ===============필수포함=============== -->
 	<!-- Bootstrap core JavaScript -->
@@ -259,6 +279,41 @@
         $(".cusprevPrdt").click(function() {
             owlPrdt.trigger('prev.owl.carousel');
         });
+    </script>
+	<script>
+    function showCert(no){
+
+        $.ajax({
+            data : {
+                no : no
+            },
+            url : "getCertList.do",
+            success : function(data) {
+                console.log(data[0]);
+                
+                
+                var html= "";
+                
+                html+='<form action="prodRegister" method="post">';
+                html+='<div class="form-group">';
+                html+='<label for="exampleInputEmail1">인증서 선택하기</label> ';
+                html+='<select name="mtno">';
+                for(var i=0;i<data.length; i++){
+                    html+='<option value="'+data[i].classes.mtno+'">'+data[i].classes.titl+'</option>';
+                }
+                html+='    </select>';
+                html+='</div>';
+                html+='<button type="submit" class="btn btn-default">등록하기</button>';
+                html+='<button type="button" class="btn btn-default" data-dismiss="modal" role="button">취소</button>';
+                html+=' </form>';
+                var setDiv = document.querySelector("#modal-body");
+                console.log(setDiv);
+                setDiv.innerHTML+=html;
+            }
+            
+        });
+        
+    }
     </script>
 </body>
 

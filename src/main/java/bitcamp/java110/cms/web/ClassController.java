@@ -184,6 +184,7 @@ public class ClassController {
     
     List<Timetable> clstimelist = timetableService.findByCno(no);
     
+    
     model.addAttribute("clsreqlist",clsreqlist);
     model.addAttribute("detailclass",detailclass);
     model.addAttribute("clsqnalist",clsqnalist);
@@ -252,14 +253,43 @@ public class ClassController {
     classqnaService.qnaupdate(classqna);
   }
   
-  @RequestMapping("ansupdate")
-  public void ansupdate(ClassQna classqna) {
+  @RequestMapping(value = "ansupdate", method = {RequestMethod.POST})
+  public @ResponseBody int ansupdate(ClassQna classqna) {
     
-    classqna.setNo(6);
-    classqna.setAnser("손님..;; 손님이 더 이상해요!!!");
+    System.out.println(classqna.getCno());
+    System.out.println(classqna.getTitl());
+    System.out.println(classqna.getConts());
+    System.out.println(classqna.getMeno());
+    System.out.println(classqna.getType());
+    System.out.println(classqna.getAnser());
+    System.out.println(classqna.getRgdt2());
     
-    classqnaService.ansupdate(classqna);
+    return classqnaService.ansupdate(classqna);
+  }
+  
+  @RequestMapping(value = "repinsert", method = {RequestMethod.POST})
+  public @ResponseBody int repinsert(ClassRep classrep) {
     
+    System.out.println(classrep.getMeno());
+    System.out.println(classrep.getCno());
+    System.out.println(classrep.getTitl());
+    System.out.println(classrep.getConts());
+    System.out.println(classrep.getStar());
+    System.out.println(classrep.getPhot());
+    System.out.println(classrep.getRgdt());
+    
+    System.out.println(classrep.toString());
+    
+    return classrepService.repAdd(classrep);
+  }
+  
+  @RequestMapping(value = "clslikeins", method = {RequestMethod.POST})
+  public @ResponseBody int clslikeins(ClassLike classlike) {
+    
+    System.out.println(classlike.getMeno());
+    System.out.println(classlike.getCno());
+    
+    return classlikeService.likeadd(classlike);
   }
   
   ///////////////// p_cls_qna 수업질문답변//////////////////

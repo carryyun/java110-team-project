@@ -1,7 +1,6 @@
 package bitcamp.java110.cms.web;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -25,6 +24,7 @@ import bitcamp.java110.cms.domain.ProductBakt;
 import bitcamp.java110.cms.domain.ProductPopul;
 import bitcamp.java110.cms.domain.ProductQnA;
 import bitcamp.java110.cms.domain.ProductRep;
+import bitcamp.java110.cms.domain.SmallTag;
 import bitcamp.java110.cms.service.BigTagService;
 import bitcamp.java110.cms.service.CertService;
 import bitcamp.java110.cms.service.ClassService;
@@ -34,6 +34,7 @@ import bitcamp.java110.cms.service.ProductPopulService;
 import bitcamp.java110.cms.service.ProductQnAService;
 import bitcamp.java110.cms.service.ProductRepService;
 import bitcamp.java110.cms.service.ProductService;
+import bitcamp.java110.cms.service.SmallTagService;
 
 @Controller
 @RequestMapping("/product")
@@ -48,6 +49,7 @@ public class ProductController {
   ProductQnAService productQnAService;
   ProductBaktService productBaktService;
   CertService certService;
+  SmallTagService smallTagService;
   
   ServletContext sc;
 
@@ -55,7 +57,7 @@ public class ProductController {
       MiddleTagService middleTagService, ProductPopulService productPopulService,
       ProductRepService productRepSerivce, ClassService classService,
       ProductQnAService productQnAService, ProductBaktService productBaktService,
-      CertService certService, ServletContext sc) {
+      CertService certService, SmallTagService smallTagService, ServletContext sc) {
 
     this.productService = productService;
     this.bigTagService = bigTagService;
@@ -66,6 +68,7 @@ public class ProductController {
     this.productQnAService = productQnAService;
     this.productBaktService = productBaktService;
     this.certService = certService;
+    this.smallTagService = smallTagService;
     this.sc =sc;
   }
 
@@ -124,36 +127,34 @@ public class ProductController {
 
   }
 
+  // 2018.11.27 수정 -> file input
+  @PostMapping("test")
+  public void test(List<MultipartFile> files) throws Exception {
+    for(MultipartFile file : files) {
+      String filename = UUID.randomUUID().toString();
+      file.transferTo(new File(sc.getRealPath("/upload/img/test/" + filename+".png")));
+    }
+  }
+  
+  // 2018.11.28 수정 -> cert list 불러오기
+  @RequestMapping(value = "getCertList.do", method = {RequestMethod.GET, RequestMethod.POST})
+  public @ResponseBody List<Cert> getCertList(int no) {
+    List<Cert> certList = certService.listByMeno(5, 5, no);
+    return certList;
+  }
+  
   // 2018.11.23 수정 -> 써머노트
-  @GetMapping("prodRegister")
-  public void prodRegister(Model model,HttpSession session) {
+  @PostMapping("prodRegister")
+  public void prodRegister(Model model,HttpSession session, int mtno) {
     Mentee loginUser = (Mentee) session.getAttribute("loginUser");
     List<Cert> certList = certService.listByMeno(5, 5, loginUser.getNo());
-    for(Cert c : certList) {
-      System.out.println(c.getClasses().getTitl());
-    }
-    
     model.addAttribute("certList", certList);
     
+    List<SmallTag> stagList = smallTagService.listMtno(10, 5, mtno);
+    model.addAttribute("stagList", stagList);
   }
   
-  @PostMapping("test")
-  public void test(MultipartFile files, MultipartFile f1) throws Exception {
-    System.out.println(files.getOriginalFilename());
-    System.out.println(f1.getOriginalFilename());
-    String filename = UUID.randomUUID().toString();
-    files.transferTo(new File(sc.getRealPath("/upload/img/test/" + f1)));
-    files.transferTo(new File(sc.getRealPath("/upload/img/test/" + filename)));
-    
-/*    for(MultipartFile m : files) {
-      String filename = UUID.randomUUID().toString();
-      m.transferTo(new File(sc.getRealPath("/upload/img/test/" + filename)));
-      System.out.println(m);
-      
-    }*/
-    
-  }
-  
+ 
   
   @RequestMapping(value = "addqna", method = RequestMethod.POST)
   public String addqna(String type, String titl, String conts) {
