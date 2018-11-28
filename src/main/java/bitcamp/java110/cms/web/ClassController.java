@@ -184,6 +184,7 @@ public class ClassController {
     
     List<Timetable> clstimelist = timetableService.findByCno(no);
     
+    
     model.addAttribute("clsreqlist",clsreqlist);
     model.addAttribute("detailclass",detailclass);
     model.addAttribute("clsqnalist",clsqnalist);

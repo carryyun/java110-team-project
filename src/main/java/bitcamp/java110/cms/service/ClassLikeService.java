@@ -8,5 +8,5 @@ public interface ClassLikeService {
   int likeadd(ClassLike classlike);
   void likesub(int no);
   List<ClassLike> listByMeno(int meno);
-  
+  /*List<ClassLike> listByCno(int cno);*/
 }

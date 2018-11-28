@@ -45,4 +45,10 @@ public class ClassLikeServiceImpl implements ClassLikeService {
     
   }
 
+  /*@Override
+  public List<ClassLike> listByCno(int cno) {
+
+    return classlikeDao.findAllByCno(cno);
+  }*/
+
 }

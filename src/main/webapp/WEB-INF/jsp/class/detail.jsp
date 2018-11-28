@@ -386,7 +386,7 @@
 
                     <hr>
                     <div class ="row">
-	                    <div class="detail_info">
+	                    <div class="col-lg-12 detail_info">
 	                    <hr class="Fhr" id="class-review">
 	                    <h3>클래스 후기</h3>
 	                
@@ -460,10 +460,26 @@
 		                                           		<div class="adddet col-lg-2" style="text-align: center;
 		                                           			vertical-align: middle;
 															display : block;">질문 답변</div>
-		                                           		<button type="button" style="background-color:aqua;" 
-		                                           		class="btn btn-default" 
-		                                           		onClick="answerins${sessionScope.loginUser.no}">답변 하기</button>
-		                                           		<input class="clickedit" type="text" />
+															
+														<c:choose>	
+															<c:when test="${sessionScope.loginUser eq null}">
+																<div class="acco" id="ans">답변이 등록되지 않았습니다.</div>
+															</c:when>
+															<c:when test="${sessionScope.loginUser.no} != ${detailclass.mentee.no}">
+																<div class="acco" id="ans">답변이 등록되지 않았습니다.</div>
+															</c:when>
+		                                           			<c:when test="${sessionScope.loginUser.no} == ${detailclass.mentee.no}">
+		                                           				<label class="pull-left">답변을 작성하시려면 클릭해주세요!</label>
+				                                           		<textarea class="clickedit" rows="5" id="anser" name="anser"
+				                                           		style ="width : 500px;"></textarea>
+				                                           		<div class="butmana" style="margin-left:10px;">
+					                                           		<button class="btn btn-default" onClick="answerins(${sessionScope.loginUser.no})"
+					                                           		 type="button" >등록</button>
+					                                           		<button class="btn btn-default" id="ansstat" type="button" >취소</button>
+					                                           	</div>
+		                                           			</c:when>
+		                                           		</c:choose>
+		                                           		
 		                                           	<%  }else{
 		                                           	%>
 		                                           		<div class="adddet col-lg-2" style="text-align: center;
@@ -511,7 +527,7 @@
 								              <div class="form-group">
 								                <label for="exampleInputconts1">Q&A 내용</label>
 								                <div>
-								                <textarea name="conts" id="conts" rows="5" class="customWidth" style="resize: none; width:100%;" 
+								                <textarea name="qnaconts" id="qnaconts" rows="5" class="customWidth" style="resize: none; width:100%;" 
 								                placeholder="내용을 입력해주세요"></textarea></div>
 								              </div>
 								              <button type="button" class="btn btn-default" 
@@ -582,8 +598,11 @@ $('.accordian-body').on('show.bs.collapse', function () {
 function addqna(no) {
     var type = $('input:radio:checked.type').val();
     var titl = $('input:text#titl').val();
-    var conts = $('textarea#conts').val();
+    var conts = $('textarea#qnaconts').val();
     var cno = ${detailclass.no};
+    
+    console.log(titl);
+    console.log(conts);
     
     if(titl == "" || conts == ""  ) {
         swal({
@@ -618,12 +637,17 @@ function addqna(no) {
 }
 
 function answerins(no) {
-    /* var cno = ${detailclass.no};
-	    
-    
-	if(cno == no) {
-	    
-	}  */   
+    var cno = ${detailclass.mentee.no};
+	
+    console.log(cno);
+    console.log(no);
+	if(cno != no) {
+	    swal({
+            text : "답변 쓰기 권한이 없습니다.",
+            button : "확인",
+          })
+        , location.href="detail?no="+${detailclass.no};
+	} 
 }
 
 function repins(no) {
@@ -659,26 +683,53 @@ function repins(no) {
 function clslikeins(no) {
     var cno = ${detailclass.no};
     
-    $.ajax({
-        type : "POST" , 
-        data : {
-            "cno" : cno , 
-            "meno" : no
-        },
-        url : "clslikeins" ,
-        success : function() {
-            swal({
-                text : "찜클래스가 등록되었습니다",
-                icon : "success",
-                button : "확인",
-              })
-            location.href="detail?no="+${detailclass.no};
-        },error : function(error,status){
-            console.log(error);
-            console.log(status);
-        }
-    });
+	    $.ajax({
+	        type : "POST" , 
+	        data : {
+	            "cno" : cno , 
+	            "meno" : no
+	        },
+	        url : "clslikeins" ,
+	        success : function() {
+	            swal({
+	                text : "찜클래스가 등록되었습니다",
+	                icon : "success",
+	                button : "확인",
+	              })
+	            location.href="detail?no="+${detailclass.no};
+	        },error : function(error,status){
+	            swal({
+	                text : "이미 찜클래스에 등록된 클래스입니다.",
+	                button : "확인",
+	              })
+	        }
+	    });
 }
+var defaultText = '질문에 대한 답변내용을 입력해주세요!';
+
+function endEdit(e) {
+    var input = $(e.target),
+        label = input && input.prev();
+
+    label.text(input.val() === '' ? defaultText : input.val());
+    input.hide();
+    label.show();
+}
+
+$('.clickedit').hide()
+.focusout(endEdit)
+.keyup(function (e) {
+    if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
+        endEdit(e);
+        return false;
+    } else {
+        return true;
+    }
+})
+.prev().click(function () {
+    $(this).hide();
+    $(this).next().show().focus();
+});
 </script>
 <script type="text/javascript">
  var stmnLEFT = 0; // 오른쪽 여백 
