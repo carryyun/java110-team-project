@@ -320,7 +320,7 @@
                 html+=' </form>';
                 var setDiv = document.querySelector("#modal-body");
                 console.log(setDiv);
-                setDiv.innerHTML+=html;
+                setDiv.innerHTML=html;
             }
             
         });

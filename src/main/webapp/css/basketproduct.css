@@ -41,7 +41,7 @@
     background-color: gainsboro;
 }
 
-.main-btn .btn{
+/* .main-btn .btn{
     border: 1px solid black;
     color: black;
     background-color: darkgray;
@@ -55,7 +55,7 @@
 
 .main-btn #btn-cl:hover{
     background-color: gainsboro;
-}
+} */
 
 .btn-all{
     position: relative;
