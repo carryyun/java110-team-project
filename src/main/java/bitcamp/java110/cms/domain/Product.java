@@ -180,4 +180,14 @@ public class Product {
     this.middletag = middletag;
   }
 
+  @Override
+  public String toString() {
+    return "Product [no=" + no + ", titl=" + titl + ", conts=" + conts + ", pric=" + pric
+        + ", rgdt=" + rgdt + ", stock=" + stock + ", phot=" + phot + ", meno=" + meno + ", ctno="
+        + ctno + ", stno=" + stno + ", deli=" + deli + ", star=" + star + ", classes=" + classes
+        + ", mentee=" + mentee + ", classRep=" + classRep + ", cert=" + cert + ", smalltag="
+        + smalltag + ", middleTagName=" + middleTagName + ", middletag=" + middletag + "]";
+  }
+
+
 }
