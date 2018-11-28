@@ -20,6 +20,9 @@ public interface ProductDao {
 
   // 소분류 번호 조회
   List<Product> findAllByStno(Map<String,Object> params); 
+  
+  // 중분류 번호 조회
+  List<Product> findAllByMtno(Map<String,Object> params); 
 
   
   // 삽입

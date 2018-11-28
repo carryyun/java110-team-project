@@ -14,6 +14,7 @@
         <result column="edt"   property="edt"/>
         <result column="ctdt"   property="ctdt"/>
         <result column="titl"   property="classes.titl"/>
+        <result column="mtno"   property="classes.mtno"/>
     </resultMap>
     
     <sql id="select1">
@@ -49,7 +50,8 @@
             p.cnt,
             p.edt,
             p.ctdt,
-            cls.titl
+            cls.titl,
+            cls.mtno
         from
             p_cert p
             join p_cls cls
