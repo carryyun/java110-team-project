@@ -23,6 +23,12 @@ public class ClassRepServiceImpl implements ClassRepService{
     
     return classRepDao.findByCno(cno);
   }
+
+  @Override
+  public int repAdd(ClassRep classRep) {
+
+    return classRepDao.repinsert(classRep);
+  }
   
   
 

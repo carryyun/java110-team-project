@@ -5,7 +5,7 @@ import bitcamp.java110.cms.domain.ClassRep;
 
 public interface ClassRepDao {
   List<ClassRep> findAll();
-//  int repInsert(ClassRep classRep);
+  int repinsert(ClassRep classRep);
 //  int repDelete(int no);
 //  int repChange(int no); // update
   List<ClassRep> findByCno(int no);

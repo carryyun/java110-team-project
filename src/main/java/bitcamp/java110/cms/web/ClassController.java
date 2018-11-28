@@ -252,14 +252,39 @@ public class ClassController {
     classqnaService.qnaupdate(classqna);
   }
   
-  @RequestMapping("ansupdate")
-  public void ansupdate(ClassQna classqna) {
+  @RequestMapping(value = "ansupdate", method = {RequestMethod.POST})
+  public @ResponseBody void ansupdate(ClassQna classqna) {
     
     classqna.setNo(6);
     classqna.setAnser("손님..;; 손님이 더 이상해요!!!");
     
     classqnaService.ansupdate(classqna);
     
+  }
+  
+  @RequestMapping(value = "repinsert", method = {RequestMethod.POST})
+  public @ResponseBody int repinsert(ClassRep classrep) {
+    
+    System.out.println(classrep.getMeno());
+    System.out.println(classrep.getCno());
+    System.out.println(classrep.getTitl());
+    System.out.println(classrep.getConts());
+    System.out.println(classrep.getStar());
+    System.out.println(classrep.getPhot());
+    System.out.println(classrep.getRgdt());
+    
+    System.out.println(classrep.toString());
+    
+    return classrepService.repAdd(classrep);
+  }
+  
+  @RequestMapping(value = "clslikeins", method = {RequestMethod.POST})
+  public @ResponseBody int clslikeins(ClassLike classlike) {
+    
+    System.out.println(classlike.getMeno());
+    System.out.println(classlike.getCno());
+    
+    return classlikeService.likeadd(classlike);
   }
   
   ///////////////// p_cls_qna 수업질문답변//////////////////

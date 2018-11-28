@@ -25,8 +25,9 @@ public class ClassLikeServiceImpl implements ClassLikeService {
   }
 
   @Override
-  public void likeadd(ClassLike classlike) {
-    classlikeDao.likeinsert(classlike);
+  public int likeadd(ClassLike classlike) {
+    
+    return classlikeDao.likeinsert(classlike);
   }
 
   @Override
