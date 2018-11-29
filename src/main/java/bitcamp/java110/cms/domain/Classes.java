@@ -29,6 +29,64 @@ public class Classes {
   private Mentor mentor;
   private ClassFile classFile;
   private ClassLike classLike;
+  
+  
+  private Mentee mentee2;
+  private BigTag bigTag;
+  private Timetable timetable;
+  private ClassOrder classOrder;
+  private Cert cert;
+  private Report report;
+  
+  
+  public Mentee getMentee2() {
+    return mentee2;
+  }
+
+  public void setMentee2(Mentee mentee2) {
+    this.mentee2 = mentee2;
+  }
+
+
+  public BigTag getBigTag() {
+    return bigTag;
+  }
+
+  public void setBigTag(BigTag bigTag) {
+    this.bigTag = bigTag;
+  }
+
+  public Timetable getTimetable() {
+    return timetable;
+  }
+
+  public void setTimetable(Timetable timetable) {
+    this.timetable = timetable;
+  }
+
+  public ClassOrder getClassOrder() {
+    return classOrder;
+  }
+
+  public void setClassOrder(ClassOrder classOrder) {
+    this.classOrder = classOrder;
+  }
+
+  public Cert getCert() {
+    return cert;
+  }
+
+  public void setCert(Cert cert) {
+    this.cert = cert;
+  }
+
+  public Report getReport() {
+    return report;
+  }
+
+  public void setReport(Report report) {
+    this.report = report;
+  }
 
   
   @Override

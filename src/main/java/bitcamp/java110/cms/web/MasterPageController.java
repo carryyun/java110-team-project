@@ -93,39 +93,7 @@ public class MasterPageController {
 
   }
   
-  @GetMapping("menu1")
-  public void menu1(Model model) {
-    Mentee mentee = menteeService.get(5);
-
-    
-    model.addAttribute("mentee", mentee);
-
-  }
   
-  
-  @GetMapping("menu2")
-  public void menu2(Model model) {
-
-    List<ClassOrder> colist = classOrderService.listByMeno(4,10,5);
-    model.addAttribute("colist", colist );
-    
-   
-    
-  }
-  
-  
-  @GetMapping("menu3-1")
-  public void menu3_1(Model model) {
-    List<ClassOrder> colist = classOrderService.listByMeno(4,10,5);
-    model.addAttribute("colist", colist );
- }
-  
-  @GetMapping("menu3-2")
-  public void menu3_2(Model model) {
-    List<ProductOrder> polist = productOrderService.listByMeno(4,10,5);
-    model.addAttribute("polist", polist );
-    
-  }
   
   @GetMapping("prdtList")
   public void prdtList(Model model){

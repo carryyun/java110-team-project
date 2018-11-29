@@ -203,6 +203,10 @@
 				</div>
 			</div>
 		</div>
+		
+		<!-- <select>
+		  <option onselect="">
+		</select> -->
 	</div>
 	<!-- ===============필수포함=============== -->
 	<!-- Bootstrap core JavaScript -->
@@ -283,6 +287,11 @@
         });
     </script>
 	<script>
+	function getCtno(){
+	    /* console.log($('#cert option:selected').attr('id')); */
+	    $('#ctno').val($('#cert option:selected').attr('id'));
+	}
+	
     function showCert(no){
 
         $.ajax({
@@ -293,17 +302,17 @@
             success : function(data) {
                 console.log(data[0]);
                 
-                
                 var html= "";
                 
                 html+='<form action="prodRegister" method="post">';
                 html+='<div class="form-group">';
                 html+='<label for="exampleInputEmail1">인증서 선택하기</label> ';
-                html+='<select name="mtno">';
+                html+='<select name="mtno" id="cert" onclick="getCtno()" >';
                 for(var i=0;i<data.length; i++){
-                    html+='<option value="'+data[i].classes.mtno+'">'+data[i].classes.titl+'</option>';
+                    html+='<option id="'+ data[i].no +'" value="'+data[i].classes.mtno+'">'+data[i].classes.titl+'</option>';
                 }
-                html+='    </select>';
+                html+='</select>';
+                html+='<input type="hidden" name="ctno" id="ctno" value=""';
                 html+='</div>';
                 html+='<button type="submit" class="btn btn-default">등록하기</button>';
                 html+='<button type="button" class="btn btn-default" data-dismiss="modal" role="button">취소</button>';

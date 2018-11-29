@@ -13,41 +13,107 @@
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
     integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    
-    <!-- js-->
-    <!-- <script src="js/master-mentorList.js"></script> -->
-    <!-- css -->
-    <!-- <link href="css/master-allpro.css" rel="stylesheet"> -->
+ <!-- Bootstrap  -->
+<link rel="stylesheet" href="/css/masterpagecss/bootstrap.css">
+<!-- Theme style  -->
+<link rel="stylesheet" href="/css/masterpagecss/style.css">
+<!-- J Query -->
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<!-- jQuery -->
+<script src="/js/masterpagejs/jquery.min.js"></script>
+<!-- Waypoints -->
+<script src="/js/masterpagejs/jquery.waypoints.min.js"></script>
+<!-- Counters -->
+<script src="/js/masterpagejs/jquery.countTo.js"></script>
 
+<!-- MAIN JS -->
+<script src="/js/masterpagejs/main.js"></script>
+<script src="/js/masterpagejs/bootstrap.min.js"></script>
+
+    <!-- css -->
+    <link href="/css/master.css" rel="stylesheet">
+
+<style>
+#colorlib-aside {
+    overflow: hidden;
+}
+
+#th-pay th, #tb-pay td {
+    vertical-align: middle;
+    text-align: center
+}
+</style>
 </head>
 
 <body>
 
-            <!-- 게시판 시작-->
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 col-lg-offset-12">
-                        <p>
-                            <span style="font-size: 45px; position: relative; right;"><strong>주문 내역</strong></span>
-                        </p>
+<div id="colorlib-page">
+        <div class="container-wrap">
 
-                        <div class="col-lg-3" id="serch-men">
+            <a href="#"
+                class="js-colorlib-nav-toggle colorlib-nav-toggle"
+                data-toggle="collapse" data-target="#navbar"
+                aria-expanded="false" aria-controls="navbar"><i></i></a>
+            <aside id="colorlib-aside" role="complementary"
+                class="border js-fullheight">
+                <div class="text-center">
+                    <div class="author-img"
+                        style="background-image: url(${mentee.phot};"></div>
+                    <h1 id="colorlib-logo">
+                        <a href="index.html">관리자</a>
+                    </h1>
+                    <br />
+                </div>
+
+                <nav id="colorlib-main-menu" role="navigation"
+                    class="navbar">
+                    <div id="navbar" class="collapse">
+                       <ul>
+                            <li><a onclick="location.href='dashBoard'" data-nav-section="1">메인
+                                    화면 </a></li>
+                            <li><a onclick="location.href='mentorreqlist'" data-nav-section="2">멘토
+                                    신청 목록</a></li>
+                            <li><a onclick="location.href='classreqlist'" data-nav-section="3">클래스
+                                    신청 목록</a></li>
+                            <li><a onclick="location.href='reportList'" data-nav-section="4">신고
+                                    접수 목록</a></li>
+                            <li><a onclick="location.href='reportFinishList'" data-nav-section="5">신고
+                                    완료 목록</a></li>
+                            <li><a onclick="location.href='prdtList'" data-nav-section="6">전체
+                                    상품 목록</a></li>
+                            <li><a onclick="location.href='classList'" data-nav-section="7">전체
+                                    클래스 목록 </a></li>
+                            <li><a onclick="location.href='prodOrderList'" data-nav-section="8">주문
+                                    내역</a></li>
+                        </ul>
+                    </div>
+                </nav>
+
+            </aside>
+            
+            <div id="colorlib-main">
+            
+            <section class="colorlib-experience" data-section="8">
+                    <div class="colorlib-narrow-content">
+                        <div class="row">
+
+                            <h2 class="colorlib-heading">주문 내역</h2>
+
+            <!-- 게시판 시작-->
+                    <div class="col-lg-12">
+                        <div class="col-lg-5" id="serch-men">
                             <form action="#" method="get">
                                 <div class="input-group">
                                     <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
                                     <input class="form-control" id="system-search" name="q" placeholder="Search for" required>
                                     <span class="input-group-btn">
-                                        <button type="submit" class="btn btn-default"><i class="fas fa-search fa-1x"></i></button>
+                                        <button type="submit" class="btn btn-default"><i class="fas fa-search fa-3x"></i></button>
                                     </span>
                                 </div>
                             </form>
                         </div>
                     </div>
-                </div><!-- 게시판 row-->
-            </div><!-- 게시판 container-->
 
-            <div class="container">
-                <div class="row">
                     <div class="col-lg-12">
                         <br />
                         <br />
@@ -80,32 +146,54 @@
                         </table>
                     </div>
 
-                    <div class="row lg-2" id="page-list1">
-                        <div class="col-lg-12">
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination" id="page-list">
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Previous">
-                                            <span aria-hidden="true">«</span>
-                                            <span class="sr-only">Previous</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Next">
-                                            <span aria-hidden="true">»</span>
-                                            <span class="sr-only">Next</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
+                    <div class="col-lg-12 text-center"
+                                    id="page-list1">
+                                    <nav
+                                        aria-label="Page navigation example">
+                                        <ul class="pagination"
+                                            id="page-list"
+                                            style="display: inline-block;">
+                                            <li class="page-item"><a
+                                                class="page-link"
+                                                href="#"
+                                                aria-label="Previous">
+                                                    <span
+                                                    aria-hidden="true">«</span>
+                                                    <span
+                                                    class="sr-only">Previous</span>
+                                            </a></li>
+                                            <li class="page-item"><a
+                                                class="page-link"
+                                                href="#">1</a></li>
+                                            <li class="page-item"><a
+                                                class="page-link"
+                                                href="#">2</a></li>
+                                            <li class="page-item"><a
+                                                class="page-link"
+                                                href="#">3</a></li>
+                                            <li class="page-item"><a
+                                                class="page-link"
+                                                href="#"
+                                                aria-label="Next"> <span
+                                                    aria-hidden="true">»</span>
+                                                    <span
+                                                    class="sr-only">Next</span>
+                                            </a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
 
                 </div>
             </div>
+                </section>
+
+
+            </div>
+            <!-- end:colorlib-main -->
+        </div>
+        <!-- end:container-wrap -->
+    </div>
+    <!-- end:colorlib-page -->
 
 
 </body>

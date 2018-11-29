@@ -83,4 +83,9 @@ public class ClassServiceImpl implements ClassService{
     return classDao.findAllByList();
   }
   
+  // 마이페이지 - 클래스 관리
+  @Override
+  public List<Classes> findByMono(int mono) {
+    return classDao.findByMono(mono);
+  }
 }

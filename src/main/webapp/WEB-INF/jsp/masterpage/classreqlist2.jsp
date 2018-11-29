@@ -2,62 +2,142 @@
     pageEncoding="UTF-8"
     trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Document</title>
+<meta charset="utf-8">
+<meta name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>클래스 신청 목록</title>
 
-    <!-- 필수-->
-    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
-    integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<!-- 부트스트랩-->
+<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+    integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+    crossorigin="anonymous">
 
-    <!-- js-->
-    <!-- <script src="js/master-mentorList.js"></script> -->
+<!-- css -->
+<link href="/css/master.css" rel="stylesheet">
+<!--<link href="/css/common.css" rel="stylesheet"> -->
 
-    <!-- css -->
-    <link href="/css/master.css" rel="stylesheet">
-    <link href="/css/common.css" rel="stylesheet">
+<!-- Bootstrap  -->
+<link rel="stylesheet" href="/css/masterpagecss/bootstrap.css">
+<!-- Theme style  -->
+<link rel="stylesheet" href="/css/masterpagecss/style.css">
+<!-- J Query -->
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<!-- jQuery -->
+<script src="/js/masterpagejs/jquery.min.js"></script>
+<!-- Waypoints -->
+<script src="/js/masterpagejs/jquery.waypoints.min.js"></script>
+<!-- Counters -->
+<script src="/js/masterpagejs/jquery.countTo.js"></script>
 
+<!-- MAIN JS -->
+<script src="/js/masterpagejs/main.js"></script>
+<script src="/js/masterpagejs/bootstrap.min.js"></script>
+
+<style>
+#colorlib-aside {
+    overflow: hidden;
+}
+
+#th-pay th, #tb-pay td {
+    vertical-align: middle;
+    text-align: center
+}
+</style>
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">
+    <div id="colorlib-page">
+        <div class="container-wrap">
 
-            <!-- 게시판 시작-->
-                    <div class="col-lg-12 col-lg-offset-12">
-                        <p>
-                            <span style="font-size: 45px; position: relative;"><strong>클래스 신청 목록</strong></span>
-                        </p>
-                        <div class="col-lg-3 mb-3" id="serch-men">
+            <a href="#"
+                class="js-colorlib-nav-toggle colorlib-nav-toggle"
+                data-toggle="collapse" data-target="#navbar"
+                aria-expanded="false" aria-controls="navbar"><i></i></a>
+            <aside id="colorlib-aside" role="complementary"
+                class="border js-fullheight">
+                <div class="text-center">
+                    <div class="author-img"
+                        style="background-image: url(${mentee.phot};"></div>
+                    <h1 id="colorlib-logo">
+                        <a href="index.html">관리자</a>
+                    </h1>
+                    <br />
+                </div>
+
+                <nav id="colorlib-main-menu" role="navigation"
+                    class="navbar">
+                    <div id="navbar" class="collapse">
+                        <ul>
+                            <li><a href="#" data-nav-section="1">메인
+                                    화면 </a></li>
+                            <li><a href="#" data-nav-section="2">멘토
+                                    신청 목록</a></li>
+                            <li><a href="#" data-nav-section="3">클래스
+                                    신청 목록</a></li>
+                            <li><a href="#" data-nav-section="4">신고
+                                    접수 목록</a></li>
+                            <li><a href="#" data-nav-section="5">신고
+                                    완료 목록</a></li>
+                            <li><a href="#" data-nav-section="6">전체
+                                    상품 목록</a></li>
+                            <li><a href="#" data-nav-section="7">전체
+                                    클래스 목록 </a></li>
+                            <li><a href="#" data-nav-section="8">주문
+                                    내역</a></li>
+                        </ul>
+                    </div>
+                </nav>
+
+            </aside>
+            
+            <div id="colorlib-main">
+
+                <section class="colorlib-skills" data-section="3">
+                    <div class="colorlib-narrow-content">
+                        <div class="row">
+
+                            <h2 class="colorlib-heading">클래스 신청 목록</h2>
+                            <hr />
+
+
+
+                            <!-- 게시판 시작-->
+                            <div class="col-lg-12">
+                        <div class="col-lg-5 mb-3" id="serch-men" style="position:relative; float:right;">
                             <form action="#" method="get">
                                 <div class="input-group">
                                     <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
                                     <input class="form-control" id="system-search" name="q" placeholder="Search for" required>
                                     <span class="input-group-btn">
-                                        <button type="submit" class="btn btn-default"><i class="fas fa-search fa-1x"></i></button>
+                                        <button type="submit" class="btn btn-default"><i class="fas fa-search fa-3x"></i></button>
                                     </span>
                                 </div>
                             </form>
                         </div>
                     </div>
 
-            <div class="col-lg-12">
-                <div class="row">
-                        <table class="table table-list-search">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th class="text-center">No</th>
-                                    <th class="text-center">멘토이름</th>
-                                    <th class="text-center">클래스 이름</th>
-                                    <th class="text-center">분야</th>
-                                    <th class="text-center">신청일</th>
-                                    <th class="text-center">처리현황</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <table
+                                        class="table table-list-search">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th class="text-center">No</th>
+                                                <th class="text-center">멘토이름</th>
+                                                <th class="text-center">휴대전화</th>
+                                                <th class="text-center">분야</th>
+                                                <th class="text-center">신청일</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
                             <c:forEach items="${ClassRequestList}" var="cl" varStatus="i">
                                 <tr id="rmv${cl.no}">
                                     <td class="text-center"><input type="checkbox" id="men-ck" class="men-ck" name="men-ck" value="${cl.no}"></td>
@@ -75,9 +155,9 @@
                                     </c:choose>
                                     </td>
                                 </tr>
-                                <!-- popup-->
+                                                <!-- popup-->
             
-            <%-- <div id="popup${i.count}" class="overlay">
+            <div id="popup${i.count}" class="overlay">
                 <div class="popup">
                     <h2> 클래스 신청 상세</h2>
                     <a class="close" href="#">×</a>
@@ -87,9 +167,7 @@
                         <div class="col-lg-12">
                             <div class="row">
                                     <div class="col-lg-5 mx-auto">
-                                        <span>
-                                            <img class="ment-pic" src="${cl.phot}">
-                                        </span>
+                                        <img class="ment-pic" src="${cl.phot}">
                                     </div>
 
                                     <div class="col-lg-6 mx-auto">
@@ -210,7 +288,7 @@
 
                     </div>
                 </div>
-            </div> --%>
+            </div>
                                 
                             </c:forEach>
                             </tbody>
@@ -236,23 +314,30 @@
                                     </li>
                                 </ul>
                             </nav>
-                     </div>
-
-                </div>
-            </div>
-
-
-            <div class="col-lg-12">
-                <div class="row">
-                    <div class="col-lg-12" id="btn">
-                        <button type="button" class="btn btn-primary" id="mas-btn" onclick="checkItem()">클래스 신청 반려</button>
                     </div>
+
                 </div>
             </div>
-        </div><!-- 메인 row-->
-    </div><!-- 메인 container-->
 
 
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-12" id="btn">
+                                        <button type="button"
+                                            class="btn btn-primary"
+                                            id="mas-btn"
+                                            onclick="checkItem()">멘토
+                                            신청 반려</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <!-- wrap -->
+        </div>
+    </div>
 </body>
 <!-- Bootstrap core JavaScript -->
 <script src="/vendor/jquery/jquery.min.js"></script>
@@ -342,5 +427,4 @@ function checkItem(){
     
 }
 </script>
-</html>
 </html>

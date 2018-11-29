@@ -32,4 +32,8 @@ public interface ClassDao {
 
   // 클래스 신청목록
   List<Classes> findByStat(String stat);
+  
+  // 마이페이지 - 클래스 관리
+  List<Classes> findByMono(int mono);
+  
 }

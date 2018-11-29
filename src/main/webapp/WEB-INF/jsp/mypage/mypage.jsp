@@ -32,7 +32,6 @@
     <link rel="stylesheet" href="/css/mypagecss/button/switchbtn.css">
     <link rel="stylesheet" href="/css/mypagecss/button/flipbtn.css">
     <link rel="stylesheet" href="/css/mypagecss/button/togglebtn.css">
-    <!--  <link rel="stylesheet" href="/css/mypagecss/button/modal.css"> -->
     <!-- <link rel="stylesheet" href="/css/mypagecss/button/slider.css"> -->
     
     <!-- Animate.css -->
@@ -186,20 +185,6 @@
     </div>
                    
                         
-                      <!--   <div>
-                        <div id="wrapper" class="wrapper-btn11">
-                            <button id="classbkt" class="fancy">클래스</button>
-                        </div>
-                        
-                        <div id="wrapper" class="wrapper-btn22" >
-                            <button id="productbkt" class="fancy">상품</button>
-                        </div>
-                          </div>  -->
-                          
-                                              
-                      <!--   <div style="margin-bottom: 100px;"></div> -->
-                        
-                        
                         <div id="menu3-1"> </div>
                         <div id="menu3-2"> </div>
                         
@@ -251,8 +236,8 @@
 
 
                         <!-- slider  -->
-                        
- <!--                        <nav class="slidemenu">
+   <!--                      
+                        <nav class="slidemenu">
   
   Item 1
   <input type="radio" name="slideItem" id="btn-menu4-1" class="slide-toggle" checked/>
@@ -275,68 +260,12 @@
     <div class="bar"></div>
   </div>
   
-</nav> -->
+</nav>  -->
 
 <!-- sldier -->
-
-
-<!-- button -->
-<!-- 
-
-
-                        <div>
-                        <div id="wrapper" class="wrapper-btn1">
-                            <button id="btn-menu4-1" class="fancy" >1:1문의</button>
-                        </div>
-                        
-                
-
-        <div class="btn-group" style="  position: absolute; left: 30%;" >
-  <button  id="btn-classqna" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
-    클래스 QnA
-  </button>
-  <div class="dropdown-menu" style="border: none;">
-       <div id="wrapper" class="wrapper-btn2" style="">
-         <button id="btn-menu4-2" class="fancy" >질문</button>
-        </div>
-                       
-       <div id="wrapper" class="wrapper-btn3">
-        <button id="btn-menu4-3" class="fancy">답변</button>
-    </div>
-  </div>
-</div>      
-                        
-                        
-                        
-                      
-<div class="btn-group" style="  position: absolute; left: 60%;">
-    <button id="btn-classqna" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
-        상품 QnA
-    </button>
-    <div class="dropdown-menu" style="border: none;">
-                                <div id="wrapper" class="wrapper-btn4">
-                            <button id="btn-menu4-4" class="fancy">질문</button>
-                        </div>
-                         <div id="wrapper" class="wrapper-btn5">
-                            <button id="btn-menu4-5" class="fancy">답변</button>
-                        </div>
-    </div>
-</div>                     
-                        
-                        
-                        
-
-                                        
-                            </div> 
-                            
-                       -->      
-<!-- button -->
-                            
-                            
                              <div style="margin-bottom: 1px;">
                             
                         </div>
-                        
                         
                         <div id="menu4-1"> </div>
                         <div id="menu4-2"> </div>
@@ -344,10 +273,6 @@
                         <div id="menu4-4"> </div>
                         <div id="menu4-5"> </div>
                         
-<!--                        <div id="menu4"></div>-->
-                        <!--   -->
-
-                   
                     </div>
                      </div>
                 </section>
