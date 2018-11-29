@@ -83,10 +83,10 @@
             <!-- 사이드바 -->
             <div class="col-12 my-3">
             <div class="row">
-                    <div class="col-lg-3 border-right border-secondary">
+                    <div class="col-lg-2 border-right border-secondary">
                         <div class="col">
-                            <h2>카테고리</h2>
-                            <ul class="ml-4">
+                            <h2 class="mb-3">카테고리</h2>
+                            <ul class="ml-3">
                                 <c:forEach items="${BTlist}" var="bt">
                                     <li><a href="#">${bt.name}</a></li>
                                 </c:forEach>
@@ -95,10 +95,10 @@
                     </div>
 
                     <!-- 인싸예감 클래스(카르셀) -->
-                    <div class="col-lg-9">
+                    <div class="col-lg-10">
                         <div class="row">
                             <div class="col">
-                                <h2>인싸예감 클래스</h2>
+                                <h2 class="mb-3">인싸예감 클래스</h2>
                                 <div id="owl-hotCls" class="owl-carousel col-lg-10 mt-2" style="margin:0 auto">
 
                                 </div>
@@ -118,9 +118,11 @@
     <!-- 오늘의 추천작품 -->
     <div class="container">
         <hr class="Fhr" />
-        <div class="row mt-3">
-            <div class="col-lg-12">
+        <div class="row  my-3">
+            <div class="col-lg-6 text-left">
                 <h2>오늘의 추천작품</h2>
+            </div>
+            <div class="col-lg-6 text-right">
                 <a class="btn btn-primary float-right mb-3" href="../product/prdt">작품 더보기 </a>
             </div>
             
@@ -154,12 +156,41 @@
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script> -->
 	<!-- js 추가 -->
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	
 	<script src="/js/clean-blog.js"></script>
     <script src="/js/owl.carousel.js"></script>
     <script>
     function setLike(evt,cno){
         evt.preventDefault();
-        console.log(cno);
+        if('${sessionScope.loginUser}' != ''){
+            $.ajax({
+                type : "POST" , 
+                data : {
+                    "cno" : cno , 
+                    "meno" : '${sessionScope.loginUser.no}'
+                },
+                url : "../class/clslikeins.do" ,
+                success : function() {
+                    swal({
+                        text : "찜클래스가 등록되었습니다",
+                        icon : "success",
+                        button : "확인",
+                      })
+                    /* location.href="detail?no="+${detailclass.no}; */
+                },error : function(error,status){
+                    swal({
+                        text : "이미 찜클래스에 등록된 클래스입니다.",
+                        button : "확인",
+                      })
+                }
+            });
+        }else{
+            swal({
+                text : "로그인 후 이용 가능합니다",
+                button : "확인",
+              })
+        }
     }
     
     var owlCls = $("#owl-hotCls");
@@ -180,6 +211,15 @@
       
         
       function customDataSuccessCls(dataCls) {
+          String.prototype.right = function(length){
+              if(this.length <= length){
+                 return this;
+              }
+              else{
+                 return this.substring(this.length - length, this.length);
+              }
+           }
+          
           var content = "";
           for ( var i in dataCls["itemsCls"]) {
            
@@ -189,11 +229,24 @@
            var pric = dataCls["itemsCls"][i].classes.pric;
            var star = dataCls["itemsCls"][i].classes.star;
            var mtname = dataCls["itemsCls"][i].middleTagName;
+           var name =  dataCls["itemsCls"][i].name;
+           var nick =  dataCls["itemsCls"][i].nick;
+           
+           if(cfile.endsWith(".jpg") || cfile.endsWith(".png")){
+               
+           }else{
+               cfile=cfile.right(11);
+               console.log(cfile);
+               cfile= "" + "https://i.ytimg.com/vi/" + cfile + "/mqdefault.jpg"
+           }
            
            content += "<a href='../class/detail?no="+ cno +"'>"
            content += "<div class='col-lg-12' id='owl-col'>"
            content += "<div class='row' id='owl-row'>"
            content += "<i id='owl-i' class='far fa-star' onclick='setLike(event,"+ cno +")'></i>"
+           content += '<div style="padding: 0 5px; top: 20px; width: auto; height: auto; position: absolute; background-color: #f58500; color: white; border-bottom-right-radius: 10px">'+nick+'</div>'
+           content += '<div style="padding: 0 5px; top: 45px; width: auto; height: auto; position: absolute; background-color: #333873; color: white; border-bottom-right-radius: 10px">'+name+' 멘토</div>'
+           
            content += "<img id='owl-img' src=\"" +cfile+ "\" alt=\"" +titl+ "\">"
            content += "<div class='col-lg-8' id='owl-col2'>" + titl + "</div>"
            content += "<div class='col-lg-4' id='owl-coltag'>" + mtname + "</div>"
@@ -238,9 +291,12 @@
              var star = dataPrdt["itemsPrdt"][i].product.star;
              var mtname = dataPrdt["itemsPrdt"][i].middleTagName;
              var stname = dataPrdt["itemsPrdt"][i].smallTagName;
+             var nick = dataPrdt["itemsPrdt"][i].nick;
+             
              content += "<a href='../product/detail?no="+ ptno +"'>"
              content += "<div class='col-lg-12' id='owl-col'>"
              content += "<div class='row' id='owl-row'>"
+                 content += '<div style="padding: 0 5px; top: 20px; width: auto; height: auto; position: absolute; background-color: #f58500; color: white; border-bottom-right-radius: 10px">'+nick+'</div>'
              content += "<img id='owl-img' src=\"" +phot+ "\" alt=\"" +titl+ "\">"
              content += "<div class='col-lg-9' id='owl-col2'>" + titl + "</div>"
              content += "<div class='col-lg-3' id='owl-coltag'>" + stname + "</div>"
@@ -278,6 +334,7 @@
       $(".cusprevPrdt").click(function() {
           owlPrdt.trigger('prev.owl.carousel');
       });
+      
       
        </script> 
 </body>

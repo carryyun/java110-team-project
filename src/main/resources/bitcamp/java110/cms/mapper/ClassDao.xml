@@ -54,7 +54,7 @@
         <result column="mtno"       property="mtno"/>
         <result column="star"       property="star"/>
         <result column="mtname"       property="middleTag.name"/>
-        <result column="name"       property="mentee.nick"/>
+        <result column="nick"       property="mentee.nick"/>
     </resultMap>
     
     <sql id="select1">
@@ -72,6 +72,8 @@
 			ps.titl,
 			ps.pric,
 			pe.name,
+            pe.nick,
+            pe.phot,
 			ps.bas_addr,
 			pg.mtname,
 			ps.cfile,
@@ -91,7 +93,7 @@
             cls.cno,
             mtag.mtname,
             cls.titl,
-            mete.nick,
+            mete.phot,
             mete.name,
             cls.pric,
             cls.rgdt

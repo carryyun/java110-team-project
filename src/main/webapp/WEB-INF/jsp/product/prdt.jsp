@@ -53,19 +53,19 @@
 				<!-- Main Content -->
 				<div class="container col-lg-12 my-3" style="background-color: #white">
 					<div class="row">
-						<div class="col-lg-3 border-right border-secondary">
+						<div class="col-lg-2 border-right border-secondary">
 							<div class="col">
 								<h2>카테고리</h2>
 								<ul>
 									<c:forEach items="${BTlist}" var="bt">
-										<li class="ml-5"><a href="#">${bt.name}</a></li>
+										<li class="ml-3"><a href="#">${bt.name}</a></li>
 									</c:forEach>
 								</ul>
 							</div>
 						</div>
 						<!-- 오늘의 핫 아이템(카르셀) -->
 
-						<div class="col-lg-9">
+						<div class="col-lg-10">
 							<div class="row">
 								<div class="col">
 									<h2>오늘의 핫 아이템</h2>
@@ -247,10 +247,12 @@
                     var pric = data["items"][i].product.pric;
                     var mtname = data["items"][i].middleTagName;
                     var stname = data["items"][i].smallTagName;
+                    var nick = data["items"][i].nick;
                     
                     content += "<a href='detail?no="+ ptno +"'>"
                     content += "<div class='col' id='owl-col'>" 
                     content += "<div class='row' id='owl-row'>"
+                    content += '<div style="padding: 0 5px; top: 20px; width: auto; height: auto; position: absolute; background-color: #f58500; color: white; border-bottom-right-radius: 10px">'+nick+'</div>'
                     content += "<img id='owl-img' src=\"" + phot + "\" alt=\"" + titl + "\">"
                     content += "<div class='col-lg-9' id='owl-col2'>" + titl + "</div>"
                     content += "<div class='col-lg-3' id='owl-coltag'>" + stname + "</div>"

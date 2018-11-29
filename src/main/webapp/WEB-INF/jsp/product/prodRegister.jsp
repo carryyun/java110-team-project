@@ -39,7 +39,7 @@ div.row.imgDiv {
 }
 
 #files {
-	color: white
+	color: white;
 }
 
 .fileImg {

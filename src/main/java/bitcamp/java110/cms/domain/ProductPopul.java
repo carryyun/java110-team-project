@@ -8,8 +8,15 @@ public class ProductPopul {
   private int star;
   private String middleTagName;
   private String smallTagName;
+  private String nick;
   
   
+  public String getNick() {
+    return nick;
+  }
+  public void setNick(String nick) {
+    this.nick = nick;
+  }
   public String getSmallTagName() {
     return smallTagName;
   }
@@ -46,4 +53,11 @@ public class ProductPopul {
   public void setProduct(Product product) {
     this.product = product;
   }
+  @Override
+  public String toString() {
+    return "ProductPopul [no=" + no + ", ptno=" + ptno + ", product=" + product + ", star=" + star
+        + ", middleTagName=" + middleTagName + ", smallTagName=" + smallTagName + ", nick=" + nick
+        + "]";
+  }
+  
 }

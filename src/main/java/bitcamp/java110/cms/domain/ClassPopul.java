@@ -7,8 +7,22 @@ public class ClassPopul {
   private Classes classes; // 제목
   private int star;
   private String middleTagName;
+  private String nick;
+  private String name;
   
   
+  public String getNick() {
+    return nick;
+  }
+  public void setNick(String nick) {
+    this.nick = nick;
+  }
+  public String getName() {
+    return name;
+  }
+  public void setName(String name) {
+    this.name = name;
+  }
   public String getMiddleTagName() {
     return middleTagName;
   }
@@ -38,6 +52,11 @@ public class ClassPopul {
   }
   public void setClasses(Classes classes) {
     this.classes = classes;
+  }
+  @Override
+  public String toString() {
+    return "ClassPopul [no=" + no + ", cno=" + cno + ", classes=" + classes + ", star=" + star
+        + ", middleTagName=" + middleTagName + ", nick=" + nick + ", name=" + name + "]";
   }
   
   
