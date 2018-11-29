@@ -84,10 +84,9 @@
     
     <update id="ansupdate" parameterType="ClassQna">
     	update p_cls_qna
-    		<set>
-    			<if test="anser != null">anser = #{anser},</if>
-    			<if test="rgdt2 != null">rgdt2 = #{rgdt2}</if>
-    		</set>
+    		set
+    			anser = #{anser},
+    			rgdt2 = now()
     	where
     		qno = #{no}
     </update>
