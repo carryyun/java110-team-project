@@ -20,6 +20,12 @@
 	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
 <link href="/css/common.css" rel="stylesheet">
 
+<!--  4줄 -->
+<link href="/css/owl.carousel.css" rel="stylesheet">
+<link href="/css/list.css" rel="stylesheet">
+<link href="/css/clean-blog.css" rel="stylesheet">
+<link href="/css/common.css" rel="stylesheet">
+
 
 <style>
 .note-editable {
@@ -39,7 +45,7 @@ div.row.imgDiv {
 }
 
 #files {
-	color: white
+	color: white;
 }
 
 .fileImg {
@@ -101,7 +107,7 @@ div.row.imgDiv {
 						</div> <!-- </div class="row"> -->
 					</div> <!-- </div class="col-lg-5"> -->
 
-					<input type="file" id="files" name="files" multiple accept="image/*"/><br />
+					<input type="file"  id="files" name="files" multiple accept="image/*"/><br />
 					<div id="selectedFiles"></div>
 				</div><!--</div class="col-lg-12"> -->
 
@@ -112,8 +118,9 @@ div.row.imgDiv {
 
 				<!-- 등록 취소버튼 -->
 				<div class="col-lg-12 text-right">
-					<input type="submit" value="등록"> 
-					<input type="reset" value="취소">
+					<input type="submit" class="btn btn-primary float-right" value="등록"> 
+					<input type="reset" class="btn" value="취소">
+					
 				</div>
 			</form>
 		</div><!-- </div class="row"> -->

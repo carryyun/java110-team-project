@@ -162,12 +162,9 @@ public class ClassController {
     return null;
   }
   
-  @RequestMapping("classform")
-  public void classform(Model model) {
-    
-    
-    List<Classes> clslist = classService.list(); // list는 전체니까 cno로 찾는게아님
-
+  @RequestMapping("cls")
+  public void cls(Model model) {
+    List<Classes> clslist = classService.list();
     model.addAttribute("clslist", clslist);
   }
   

@@ -34,6 +34,8 @@
         <result column="star" property="star"/>
         <result column="titl" property="classes.titl"/>
         <result column="cfile" property="classes.cfile"/>
+        <result column="clsmetephot" property="classes.mentee.phot"/>
+        <result column="clsmetenick" property="classes.mentee.nick"/>
         
     </resultMap>
 
@@ -102,7 +104,7 @@ order by
 
     <select id="findByNo" 
             resultMap="productMap" parameterType="int">
-        select
+select
     p.ptno,
     p.titl,
     p.conts,
@@ -126,7 +128,9 @@ order by
     stag.mtno,
     mtag.mtname,
     pcls.titl,
-    pcls.cfile
+    pcls.cfile,
+    clsmete.phot clsmetephot,
+    clsmete.nick clsmetenick
 from 
     p_prdt p
     join p_mete mete
@@ -134,12 +138,14 @@ from
     join p_stag stag
     JOIN p_mtag mtag
     join p_cls pcls
+    join p_mete clsmete
 ON
     p.meno=mete.meno AND
     p.ctno=cert.ctno AND
     p.stno=stag.stno AND
     stag.mtno = mtag.mtno AND
-    pcls.cno= cert.cno 
+    pcls.cno= cert.cno AND
+    pcls.mono = clsmete.meno
 where
     ptno=#{value}
     </select>
