@@ -17,6 +17,7 @@
         <result column="star"   property="product.star"/>
         <result column="mtname"   property="middleTagName"/>
         <result column="stname"   property="smallTagName"/>
+        <result column="nick"   property="nick"/>
     </resultMap>
     
     <select id="findAll" resultMap="productPopulMap">
@@ -28,7 +29,8 @@
             p.phot,
             p.star,
             mtag.mtname,
-            stag.stname
+            stag.stname,
+            mete.nick
         from
             p_prdt_popul popul
             JOIN p_mete mete

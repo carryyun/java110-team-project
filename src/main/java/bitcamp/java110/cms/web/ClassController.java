@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import bitcamp.java110.cms.domain.ClassBakt;
 import bitcamp.java110.cms.domain.ClassFile;
@@ -161,32 +162,33 @@ public class ClassController {
     return null;
   }
   
-  @RequestMapping("classform")
-  public void classform(Model model) {
-    
-    
-    List<Classes> clslist = classService.list(); // list는 전체니까 cno로 찾는게아님
-
+  @RequestMapping("cls")
+  public void cls(Model model) {
+    List<Classes> clslist = classService.list();
     model.addAttribute("clslist", clslist);
   }
   
   @RequestMapping("detail")
-  public void findByCno(Model model,int no) {
+  public void findByCno(Model model,int no ,HttpSession session) {
+    
     List<ClassRep> clsreqlist = classrepService.listbycno(no);
     
     Classes detailclass = classService.findBycno(no);
     
-    List<ClassQna> clsqnalist = classqnaService.listbycno(10, 10, no);
+    List<ClassQna> clsqnalist = classqnaService.listbycno(5, 5, no);
     
     List<ClassFile> clsfilelist = classFileService.findByCno(no);
     
     List<Timetable> clstimelist = timetableService.findByCno(no);
+    
+//    List<ClassRep> clsrepcount = classrepService.countByCnoAll(no);
     
     model.addAttribute("clsreqlist",clsreqlist);
     model.addAttribute("detailclass",detailclass);
     model.addAttribute("clsqnalist",clsqnalist);
     model.addAttribute("clsfilelist",clsfilelist);
     model.addAttribute("clstimelist",clstimelist);
+//    model.addAttribute("clsrepcount",clsrepcount);
   }
   
   @RequestMapping("findByptno")
@@ -218,17 +220,18 @@ public class ClassController {
     }
   }
   
-  @RequestMapping("qnainsert")
-  public void qnainsert(ClassQna classqna) {
+  @RequestMapping(value = "qnainsert", method = {RequestMethod.POST})
+  public @ResponseBody int qnainsert(ClassQna classqna) {
+    System.out.println(classqna.getCno());
+    System.out.println(classqna.getTitl());
+    System.out.println(classqna.getConts());
+    System.out.println(classqna.getMeno());
+    System.out.println(classqna.getType());
     
-    classqna.setNo(7);
-    classqna.setMeno(5);
-    classqna.setCno(7);
-    classqna.setTitl("호에에엣?");
-    classqna.setConts("히이이ㅣ이엣?");
     
+    System.out.println(classqna.toString());
     
-    classqnaService.qnaadd(classqna);
+    return classqnaService.qnaadd(classqna);
   }
   
   @RequestMapping("qnadelete")
@@ -249,14 +252,43 @@ public class ClassController {
     classqnaService.qnaupdate(classqna);
   }
   
-  @RequestMapping("ansupdate")
-  public void ansupdate(ClassQna classqna) {
+  @RequestMapping(value = "ansupdate", method = {RequestMethod.POST})
+  public @ResponseBody int ansupdate(ClassQna classqna) {
     
-    classqna.setNo(6);
-    classqna.setAnser("손님..;; 손님이 더 이상해요!!!");
+    System.out.println(classqna.getCno());
+    System.out.println(classqna.getTitl());
+    System.out.println(classqna.getConts());
+    System.out.println(classqna.getMeno());
+    System.out.println(classqna.getType());
+    System.out.println(classqna.getAnser());
+    System.out.println(classqna.getRgdt2());
     
-    classqnaService.ansupdate(classqna);
+    return classqnaService.ansupdate(classqna);
+  }
+  
+  @RequestMapping(value = "repinsert", method = {RequestMethod.POST})
+  public @ResponseBody int repinsert(ClassRep classrep) {
     
+    System.out.println(classrep.getMeno());
+    System.out.println(classrep.getCno());
+    System.out.println(classrep.getTitl());
+    System.out.println(classrep.getConts());
+    System.out.println(classrep.getStar());
+    System.out.println(classrep.getPhot());
+    System.out.println(classrep.getRgdt());
+    
+    System.out.println(classrep.toString());
+    
+    return classrepService.repAdd(classrep);
+  }
+  
+  @RequestMapping(value = "clslikeins.do", method = {RequestMethod.POST})
+  public @ResponseBody int clslikeins(ClassLike classlike) {
+    
+    System.out.println(classlike.getMeno());
+    System.out.println(classlike.getCno());
+    
+    return classlikeService.likeadd(classlike);
   }
   
   ///////////////// p_cls_qna 수업질문답변//////////////////

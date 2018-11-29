@@ -46,6 +46,11 @@
 
 </head>
 <body style="background-color: #F2F4F7" onload="InitializeStaticMenu()">
+<div id="wrap" style="background-color: #fff">
+        <div class="col" style="position: absolute; height: 105px; background-color: white">
+            <!-- 헤더 배경색 적용 -->
+        </div>
+        
     <div class="container">
     <div class="row">
     
@@ -58,15 +63,11 @@
             </div>
 
         <div class="col-lg-9">
-            <hr>
-
             <!-- 상품 상세보기 -->
             <jsp:include page="prodDetail_1.jsp"></jsp:include>
 
             <!-- 상품 상세정보, 상품평, QnA-->
             <jsp:include page="prodDetail_2.jsp"></jsp:include>
-
-            <hr>
         </div>
 
         <div class="col-lg-3">
@@ -76,6 +77,7 @@
         </div>
 
     </div>
+</div>
 </div>
     <script type="text/javascript">
     var testtTop;
@@ -98,10 +100,10 @@
     <script type="text/javascript">
  var stmnLEFT = 0; // 오른쪽 여백 
  var stmnGAP1 = 0; // 위쪽 여백 
- var stmnGAP2 = 150; // 스크롤시 브라우저 위쪽과 떨어지는 거리 
- var stmnBASE = 150; // 스크롤 시작위치 
- var stmnActivateSpeed = 35; //스크롤을 인식하는 딜레이 (숫자가 클수록 느리게 인식)
- var stmnScrollSpeed = 20; //스크롤 속도 (클수록 느림)
+ var stmnGAP2 = 50; // 스크롤시 브라우저 위쪽과 떨어지는 거리 
+ var stmnBASE = 50; // 스크롤 시작위치 
+ var stmnActivateSpeed = 30; //스크롤을 인식하는 딜레이 (숫자가 클수록 느리게 인식)
+ var stmnScrollSpeed = 1; //스크롤 속도 (클수록 느림)
  var stmnTimer; 
  
  function RefreshStaticMenu() { 

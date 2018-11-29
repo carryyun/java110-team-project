@@ -45,7 +45,7 @@
 					<jsp:include page="../headerMain.jsp"></jsp:include>
 				</div>
 
-				<!-- 카테고리 nav (스크립트로 임시 inclue) -->
+				<!-- 카테고리 nav -->
 				<div class="col-lg-12">
 					<jsp:include page="../headerNav.jsp"></jsp:include>
 				</div>
@@ -53,19 +53,19 @@
 				<!-- Main Content -->
 				<div class="container col-lg-12 my-3" style="background-color: #white">
 					<div class="row">
-						<div class="col-lg-3 border-right border-secondary">
+						<div class="col-lg-2 border-right border-secondary">
 							<div class="col">
 								<h2>카테고리</h2>
 								<ul>
 									<c:forEach items="${BTlist}" var="bt">
-										<li class="ml-5"><a href="#">${bt.name}</a></li>
+										<li class="ml-3"><a href="#">${bt.name}</a></li>
 									</c:forEach>
 								</ul>
 							</div>
 						</div>
 						<!-- 오늘의 핫 아이템(카르셀) -->
 
-						<div class="col-lg-9">
+						<div class="col-lg-10">
 							<div class="row">
 								<div class="col">
 									<h2>오늘의 핫 아이템</h2>
@@ -90,9 +90,14 @@
 							<a href="post.html"></a>
 							<div class="row">
 
+
+
 								<div class="container">
 									<div class="clearfix">
-										<a class="btn btn-primary float-right mb-3" href="#">상품 등록 </a>
+										<a class="btn btn-primary float-right mb-3"
+											data-toggle="modal" data-target="#squarespaceModal" href="#"
+											onclick="showCert('${sessionScope.loginUser.no}')">상품 등록
+										</a>
 									</div>
 									<div class="row">
 
@@ -101,9 +106,9 @@
 											<div class="col-lg-4">
 												<article class="card-wrapper">
 													<div class="image-holder">
-														<a href="#" class="image-holder__link"></a>
+														<a href="detail?no=${pl.no}" class="image-holder__link"></a>
 														<div class="image-liquid image-holder--original">
-															<a href="#"><img alt="${i.count}" src="${pl.phot}"
+															<a href="detail?no=${pl.no}"><img alt="${i.count}" src="${pl.phot}"
 																style="width: 100%; height: 100%"></a> <img src="${pl.mentee.phot}"
 																class="mentorimg" alt="${pl.mentee.phot}">
 															<div style="padding: 0 5px; top: 75px; width: auto; height: auto; position: absolute; background-color: #f58500; color: white; border-bottom-right-radius: 10px">${pl.mentee.name}
@@ -118,7 +123,7 @@
 														<div class="product-description__title">
 															<div class="row">
 																<div class="col-lg-6 mb-2">
-																	<a href="#">${pl.titl}</a>
+																	<a href="detail?no=${pl.no}">${pl.titl}</a>
 																</div>
 																<div class="col-lg-6 mb-2 text-right">
 																	<%
@@ -183,6 +188,21 @@
 				<jsp:include page="../footer.jsp"></jsp:include>
 			</div>
 		</footer>
+
+		<div class="modal fade" id="squarespaceModal" tabindex="-1"
+			role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="lineModalLabel">인증서 선택하기</h4>
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+						</button>
+					</div>
+					<div class="modal-body" id="modal-body"></div>
+				</div>
+			</div>
+		</div>
 	</div>
 	<!-- ===============필수포함=============== -->
 	<!-- Bootstrap core JavaScript -->
@@ -227,10 +247,12 @@
                     var pric = data["items"][i].product.pric;
                     var mtname = data["items"][i].middleTagName;
                     var stname = data["items"][i].smallTagName;
+                    var nick = data["items"][i].nick;
                     
                     content += "<a href='detail?no="+ ptno +"'>"
                     content += "<div class='col' id='owl-col'>" 
                     content += "<div class='row' id='owl-row'>"
+                    content += '<div style="padding: 0 5px; top: 20px; width: auto; height: auto; position: absolute; background-color: #f58500; color: white; border-bottom-right-radius: 10px">'+nick+'</div>'
                     content += "<img id='owl-img' src=\"" + phot + "\" alt=\"" + titl + "\">"
                     content += "<div class='col-lg-9' id='owl-col2'>" + titl + "</div>"
                     content += "<div class='col-lg-3' id='owl-coltag'>" + stname + "</div>"
@@ -259,6 +281,41 @@
         $(".cusprevPrdt").click(function() {
             owlPrdt.trigger('prev.owl.carousel');
         });
+    </script>
+	<script>
+    function showCert(no){
+
+        $.ajax({
+            data : {
+                no : no
+            },
+            url : "getCertList.do",
+            success : function(data) {
+                console.log(data[0]);
+                
+                
+                var html= "";
+                
+                html+='<form action="prodRegister" method="post">';
+                html+='<div class="form-group">';
+                html+='<label for="exampleInputEmail1">인증서 선택하기</label> ';
+                html+='<select name="mtno">';
+                for(var i=0;i<data.length; i++){
+                    html+='<option value="'+data[i].classes.mtno+'">'+data[i].classes.titl+'</option>';
+                }
+                html+='    </select>';
+                html+='</div>';
+                html+='<button type="submit" class="btn btn-default">등록하기</button>';
+                html+='<button type="button" class="btn btn-default" data-dismiss="modal" role="button">취소</button>';
+                html+=' </form>';
+                var setDiv = document.querySelector("#modal-body");
+                console.log(setDiv);
+                setDiv.innerHTML=html;
+            }
+            
+        });
+        
+    }
     </script>
 </body>
 

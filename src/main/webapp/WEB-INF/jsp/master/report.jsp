@@ -148,7 +148,8 @@ function addRept(){
     var titl = $('input:text#titl').val();
     var conts = $('textarea#conts').val();
     var url = $('input:text#url').val();
-    
+    console.log(titl);
+    console.log(conts);
     if(checknick() == false){
         swal ( "Oops" ,  "유효한 닉네임이 아닙니다." ,  "error" );
     }else{

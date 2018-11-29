@@ -6,7 +6,11 @@ import bitcamp.java110.cms.domain.ClassLike;
 
 public interface ClassLikeDao {
   List<ClassLike> likelist(Map<String, Object> params);
+  
   int likeinsert(ClassLike classlike);
   int likedelete(int no);
+
   List<ClassLike> findAllByMeno(int no);
+ /* List<ClassLike> findAllByCno(int no);*/
+  
 }

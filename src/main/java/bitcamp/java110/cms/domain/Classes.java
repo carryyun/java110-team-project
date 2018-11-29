@@ -27,7 +27,7 @@ public class Classes {
   private MiddleTag middleTag;
   private Mentor mentor;
   private ClassFile classFile;
-  
+  private ClassLike classLike;
   
   
   private Mentee mentee2;
@@ -92,7 +92,9 @@ public class Classes {
     return "Classes [no=" + no + ", titl=" + titl + ", conts=" + conts + ", pric=" + pric
         + ", rgdt=" + rgdt + ", time=" + time + ", capa=" + capa + ", cfile=" + cfile + ", tinfo="
         + tinfo + ", cinfo=" + cinfo + ", pstno=" + pstno + ", basAddr=" + basAddr + ", detAddr="
-        + detAddr + ", edt=" + edt + ", mono=" + mono + ", mtno=" + mtno + ", star=" + star + "]";
+        + detAddr + ", edt=" + edt + ", mono=" + mono + ", mtno=" + mtno + ", star=" + star
+        + ", stat=" + stat + ", mentee=" + mentee + ", middleTag=" + middleTag + ", mentor="
+        + mentor + ", classFile=" + classFile + ", classLike=" + classLike + "]";
   }
 
   public String getStat() {
@@ -269,6 +271,14 @@ public class Classes {
 
   public void setClassFile(ClassFile classFile) {
     this.classFile = classFile;
+  }
+
+  public ClassLike getClassLike() {
+    return classLike;
+  }
+
+  public void setClassLike(ClassLike classLike) {
+    this.classLike = classLike;
   }
   
   

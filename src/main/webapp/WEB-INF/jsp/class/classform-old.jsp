@@ -112,8 +112,9 @@
 						        <span class="no">전체</span>
 						    </label>
 						</div>
-						</div><br><br>
-						<div> <h2>요일 선택</h2> <br>
+						</div>
+						<div>
+						<h2>요일 선택</h2> <br>
 						<div>
 							<label for="default1" class="btn btn-default1">
 							<strong style="font-size: 16px">월</strong> 

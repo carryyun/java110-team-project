@@ -18,30 +18,44 @@
 	rel="stylesheet">
 <script
 	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
-	<link href="/css/common.css" rel="stylesheet">
+<link href="/css/common.css" rel="stylesheet">
+
+<!--  4줄 -->
+<link href="/css/owl.carousel.css" rel="stylesheet">
+<link href="/css/list.css" rel="stylesheet">
+<link href="/css/clean-blog.css" rel="stylesheet">
+<link href="/css/common.css" rel="stylesheet">
+
+
 <style>
-.note-editable{
-    height: 300px;
-}
-/* layout.css Style */
-.upload-drop-zone {
-	height: 200px;
-	border-width: 2px;
-	margin-bottom: 20px;
+.note-editable {
+	height: 300px;
 }
 
-/* skin.css Style*/
-.upload-drop-zone {
-	color: #ccc;
-	border-style: dashed;
-	border-color: #ccc;
-	line-height: 200px;
-	text-align: center
+div#imgBind {
+	border: 2px solid silver;
+	padding-top: 15px;
+	height: 300px;
+	overflow: auto;
+	display: block;
 }
 
-.upload-drop-zone.drop {
-	color: #222;
-	border-color: #222;
+div.row.imgDiv {
+	margin-bottom: 15px;
+}
+
+#files {
+	color: white;
+}
+
+.fileImg {
+	width: 120px;
+	height: 70px;
+}
+
+/* div 안에 placeholder쓰기 위해*/
+[contenteditable=true]:empty:before {
+	content: attr(placeholder);
 }
 </style>
 
@@ -49,167 +63,197 @@
 <body>
 	<div class="container">
 		<div class="row">
+			<form id="myForm" action="test" method="post" enctype="multipart/form-data">
 
 
-			
-			<div class="col-lg-12">
-			상품이미지
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<strong>Upload Files</strong> <small>Bootstrap files
-							upload</small>
-					</div>
-					<div class="panel-body">
+				<!-- file input -->
+				<div class="col-lg-12">
+				
+					<div class="col-lg-7">
+						<div class="row">
+							<!-- 상품명 -->
+							<div style="margin-top: 30px">
+								<div
+									style="color: white; background-color: gray; padding: 5px; display: inline; border-radius: 3px;">상품명</div>
+								<p>
+									<input name="titl" placeholder="상품명을 입력하세요"
+										style="width: 100%; height: 50px; font-size: 25px">
+								</p>
+							</div><!-- </div class="col-lg-12"> -->
+						</div><!-- </div class="row">  -->
+					</div><!-- </div class="col-lg-7"> -->
 
 
-						<!-- Standar Form -->
-						<h4>Select files from your computer</h4>
-						<form action="" method="post" enctype="multipart/form-data"
-							id="js-upload-form">
-							<div class="form-inline">
-								<div class="form-group">
-									<input type="file" name="files[]" id="js-upload-files" multiple>
+					<div class="col-lg-5">
+						<div class="row">
+							<!-- summernote -->
+							<div class="col-lg-12" style="margin-top: 30px">
+								
+								<!-- 가격, 택배비(무료배송), 인증서  -->
+								<div class="col-lg-12">
+									재고　 <input type="text" id="stock" name="stock" style="margin-bottom: 10px"><br>
+									가격　 <input type="text" name="pric" style="margin-bottom: 10px"><br>
+									택배비 <input type="text" class="inputid" style="margin-bottom: 10px"/>
+									무료배송<input type='checkbox' data-toggle='inputid'/><br>
+                                    
+									소분류 <select name="certs">
+										<c:forEach items="${stagList}" var="sl">
+											<option value="">${sl.name}</option>
+										</c:forEach>
+									   </select>
+									   
 								</div>
-								<button type="submit" class="btn btn-sm btn-primary"
-									id="js-upload-submit">Upload files</button>
-							</div>
-						</form>
+							</div><!-- </div class="col-lg-12" style="margin-top: 30px"> -->
+						</div> <!-- </div class="row"> -->
+					</div> <!-- </div class="col-lg-5"> -->
 
-						<!-- Drop Zone -->
-						<h4>Or drag and drop files below</h4>
-						<div class="upload-drop-zone" id="drop-zone">Just drag and
-							drop files here</div>
+					<input type="file"  id="files" name="files" multiple accept="image/*"/><br />
+					<div id="selectedFiles"></div>
+				</div><!--</div class="col-lg-12"> -->
 
-						<!-- Progress Bar -->
-						<div class="progress">
-							<div class="progress-bar" role="progressbar" aria-valuenow="60"
-								aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-								<span class="sr-only">60% Complete</span>
-							</div>
-						</div>
-
-						<!-- Upload Finished -->
-						<div class="js-upload-finished">
-							<h3>Processed files</h3>
-							<div class="list-group">
-								<a href="#" class="list-group-item list-group-item-success"><span
-									class="badge alert-success pull-right">Success</span>image-01.jpg</a>
-								<a href="#" class="list-group-item list-group-item-success"><span
-									class="badge alert-success pull-right">Success</span>image-02.jpg</a>
-							</div>
-						</div>
-					</div>
-
+				<div class="col-lg-12">
+					<div style="color: white; background-color: gray; padding: 5px; display: inline; border-radius: 3px;">상품소개</div>
+					<textarea id="summernote" style="position: auto"></textarea> 
 				</div>
-				<!-- /container -->
 
-
-
-
-
-            <p><input placeholder="상품명을 입력하세요" style="width :100%; height:50px; font-size: 25px" ></p>
-
-
-			</div>
-
-           
-			<div class="col-lg-12">
-			 상품소개
-				<div id="summernote" style="position: auto">
-					<p>Hello Summernote</p>
+				<!-- 등록 취소버튼 -->
+				<div class="col-lg-12 text-right">
+					<input type="submit" class="btn btn-primary float-right" value="등록"> 
+					<input type="reset" class="btn" value="취소">
+					
 				</div>
-			</div>
+			</form>
+		</div><!-- </div class="row"> -->
+	</div><!-- </div class="container"> -->
 
-
-		</div>
-		
-    가격　 <input type="text"><br>
-   <form>
-        택배비 <input name="textbox" type="text">
-        무료배송<input name="chkbox" type="checkbox" onClick="checkDisable(this.form)">
-   </form>
-    인증서 <select name="cert">
-          <c:forEach items="${certList}" var="cl">
-          <option value="">${cl.classes.titl}</option>
-          </c:forEach>
-      </select>
-    
-	    <div class="text-right">
-	    <input type="submit" value="등록">
-	    <input type="reset" value="취소">
-	    </div>
-	</div>
-	
 	<footer>
-            <div class="col px-0">
-                <jsp:include page="../footer.jsp"></jsp:include>
-            </div>
-        </footer>
-
+		<div class="col px-0">
+			<jsp:include page="../footer.jsp"></jsp:include>
+		</div>
+	</footer>
 
 </body>
 
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script> -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"
+	integrity="sha384-r6jjWwxAypHaESwS5an5J9dkfzwQuKVNV9FZM9B6fnt8PFuY0cVwLhV7BltCZhLy"
+	crossorigin="anonymous"></script>
+<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+<script
+	src="https://blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
+<!-- The Canvas to Blob plugin is included for image resizing functionality -->
+<script
+	src="https://blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
+<!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
+<!-- blueimp Gallery script -->
+<script
+	src="https://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
+<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+
+
+<!-- summernote -->
 <script>
     $(document).ready(function() {
         $('#summernote').summernote();
     });
+
 </script>
+
+<!-- multiple file input -->
 <script>
+    var selDiv = "";
 
-$(document).ready(function() {
-    $('#summernote').summernote();
-});
+    document.addEventListener("DOMContentLoaded", init, false);
 
-function($) {
-    'use strict';
-
-    // UPLOAD CLASS DEFINITION
-    // ======================
-
-    var dropZone = document.getElementById('drop-zone');
-    var uploadForm = document.getElementById('js-upload-form');
-
-    var startUpload = function(files) {
-        console.log(files)
+    function init() {
+        document.querySelector('#files').addEventListener('change',
+                handleFileSelect, false);
+        selDiv = document.querySelector("#selectedFiles");
     }
 
-    uploadForm.addEventListener('submit', function(e) {
-        var uploadFiles = document.getElementById('js-upload-files').files;
-        e.preventDefault()
+    function handleFileSelect(e) {
 
-        startUpload(uploadFiles)
-    })
+        if (!e.target.files || !window.FileReader)
+            return;
 
-    dropZone.ondrop = function(e) {
-        e.preventDefault();
-        this.className = 'upload-drop-zone';
+        selDiv.innerHTML = "";
 
-        startUpload(e.dataTransfer.files)
+        var files = e.target.files;
+        var filesArr = Array.prototype.slice.call(files);
+        var html = "";
+        html += "<div class='col-lg-12' id='imgBind'>";
+        for (var i = 0; i < filesArr.length; i++) {
+
+            var f = files[i];
+            if (!f.type.match("image.*")) {
+                return;
+            }
+            var j = 0;
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                f = filesArr[j];
+                console.log(f);
+                console.log(e);
+                html += "<div class='row imgDiv' id='imgDiv"+j + "'>";
+
+                html += "<div class='col-lg-5'>";
+                html += "<img class='fileImg' src=\"" + e.target.result + "\">";
+                html += "</div>";
+
+                html += "<div class='col-lg-3'>";
+                html += f.name + "<br clear=\"left\"/>";
+                html += "</div>";
+
+                html += "<div class='col-lg-2'>";
+                var kb = (f.size / 1024);
+                html += kb.toFixed(2) + "kb <br clear=\"left\"/>";
+                html += "</div>";
+
+                html += "<div class='col-lg-2'>";
+                html += "<button onclick='removeImg(" + j + ")'>" + "삭제"
+                        + "</button>";
+                html += "</div>";
+                if (j < filesArr.length - 1) {
+                    html += "<div class='col-lg-12'>";
+                    html += "<hr>";
+                    html += "</div>";
+
+                }
+                html += "</div>";
+
+                selDiv.innerHTML = html;
+                j++;
+            }
+            reader.readAsDataURL(f);
+        }
+        selDiv.innerHTML += "</div>";
+
     }
-
-    dropZone.ondragover = function() {
-        this.className = 'upload-drop-zone drop';
-        return false;
+    function removeImg(no) {
+        event.preventDefault(); /* 스크립트 기본동작 중지 */
+        console.log(no);
+        $("div#imgDiv" + no).remove();
     }
-
-    dropZone.ondragleave = function() {
-        this.className = 'upload-drop-zone';
-        return false;
-    }
-
-}(jQuery);
 </script>
 
-<script language="javascript">
-
-function checkDisable(frm)
-{
-    if( frm.chkbox.checked == true ){
-       frm.textbox.disabled = true;
-    } else 
-    {
-       frm.textbox.disabled = false;
+<!-- checkbox disable input -->
+<script>
+function toggle(target) {
+    var toggle = $(target).data("toggle");
+    if (toggle) {
+        var obj = $("." + toggle);
+        if (target.checked) {
+            obj.attr("disabled", "disabled");
+            $('.inputid').val(""); 
+            
+        } else {
+            obj.removeAttr("disabled");
+        }
     }
 }
+$("input:checkbox").each(function(){toggle(this);}).on('input',function(){toggle(this);});
 </script>
 </html>

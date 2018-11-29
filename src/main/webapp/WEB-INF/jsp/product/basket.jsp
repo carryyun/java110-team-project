@@ -11,7 +11,7 @@
 <%-- 부트스트랩 --%>
 <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <%-- css --%>
-<link href="/css/basketproduct.css" rel="stylesheet">
+ <link href="/css/basketproduct.css" rel="stylesheet">
 <link href="/css/common.css" rel="stylesheet">
 <%-- js --%>
 <script src="/vendor/jquery/jquery.min.js"></script>
@@ -47,8 +47,8 @@
 				<div class="col-lg-12 mt-5">
 					<div class="row">
 						<div class="main-btn col-lg-6 text-left">
-							<button type="button" class="btn btn-default btn-lg" id="btn-cl" onclick="location.href='/app/class/basket'">장바구니(클래스)</button>
-							<button type="button" class="btn btn-default btn-lg"
+							<button type="button" class="btn btn-outline-secondary btn-lg" id="btn-cl" onclick="location.href='/app/class/basket'">장바구니(클래스)</button>
+							<button type="button" class="btn btn-outline-secondary btn-lg"
 								onclick="location.href='/app/product/basket'">장바구니(공예품)</button>
 						</div>
 						<div class="col-lg-6 text-right">

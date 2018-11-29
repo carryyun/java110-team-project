@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <html>
 <head>
 <meta charset="utf-8">
@@ -103,7 +103,7 @@
                                              String cfileurl = cfile.substring(cfileidx+1);
                                         %>
                                             <div class="carousel-item active" style="margin-bottom: -5px;">
-                                              <iframe width="1110px" height="450" style="margin-left:-10px;" src="https://www.youtube.com/embed/<%=cfileurl%>" 
+                                              <iframe width="1100px" height="450" style="margin-left:-10px;" src="https://www.youtube.com/embed/<%=cfileurl%>" 
                                               frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
                                               allowfullscreen></iframe>
                                         <%
@@ -202,8 +202,10 @@
                                 <!-- row.// -->
                                 <!---->
                                 <hr>
-                                <a href="#" class="btn btn-lg btn-primary text-uppercase"> 수업 신청하기 </a> 
-                                <a href="#" class="btn btn-lg btn-outline-primary text-uppercase"> 
+                                <a href="#" class="btn btn-lg btn-primary text-uppercase"
+                                onClick="cls"> 수업 신청하기 </a>
+                                <a href="#" class="btn btn-lg btn-outline-primary text-uppercase"
+                                onClick="clslikeins(${sessionScope.loginUser.no});"> 
                                     <i class="fas fa-shopping-cart"></i> 찜클래스 </a>
                             </div>
                         </article>
@@ -309,8 +311,8 @@
                     <div class="row" style="margin: 0 auto">    
                         <div class="col text-center">   
                             <c:set var="starint" value="${detailclass.star}"/>
-                            <strong>별점:</strong>
-                            <div class="rating col">    
+                            <strong>별점</strong>
+                            <div class="rating col">
                                 <% int star = (int)pageContext.getAttribute("starint"); 
                                 for( int i=0;i<5;i++){
                                   if(i<star){
@@ -324,19 +326,18 @@
                                 }
                                 %>
                             </div>  
-                            <div>   
-                                <span class="glyphicon glyphicon-user"></span>12 total  
+                            <div>
+                            	 
+                                	<span class="glyphicon glyphicon-user"></span>후기인원 : ${fn:length(clsreqlist)} 
                             </div>  
                         </div>  
                     </div>  
                 </div>  
                 
-                
-                
                 <div class="container col-lg-12" id="prod_review">
                     <div class="row">
                         <div class="col">
-				<form class="form-horizontal" action="send.php" method="post">
+				<form class="form-horizontal" action="detail?no=${detailclass.no}" method="post">
                     <fieldset>
 					<table class="fixed-table w-100" >
 							<tr>
@@ -346,7 +347,10 @@
 											<!-- Message body -->
 											<div class="form-group">
 												<div class="col-lg-12">
-													<textarea class="form-control" id="message" name="message"
+													<input type="file" id="phot" name="phot">사진만 가능합니다.</input>
+												</div>
+												<div class="col-lg-12">
+													<textarea class="form-control" id="conts" name="conts"
 														placeholder="클래스평을 등록해주세요." rows="5"></textarea>
 												</div>
 											</div>
@@ -354,21 +358,20 @@
                                 </tr>
                                 <tr>
                                             <td>
-												<label class="control-label my-0" for="message">별점</label>
+												<label class="control-label my-0" id="star" name="star" for="message">별점</label>
                                             </td>
                                             <td>
 												<div id="star1"></div>
 											<!-- </div> -->
 											<!-- <div class=""> -->
                                             </td>
-								
 								<td align="right" valign="top">
 									<!-- Form actions -->
 										<!--col-lg-12추가했음-->
 										<div class="col-md-12 col-lg-12 text-right" style="vertical-align: middle;">
-											<button id="repbtn" type="submit" class="btn btn-primary btn-md"
+											<button id="repbtn" type="button" onClick="repins(${sessionScope.loginUser.no});" 
+											class="btn btn-primary btn-md"
 												style="background-color: #606066; color: #ffffff">등록</button>
-											<button type="reset" class="btn btn-default btn-md">취소</button>
 										</div>
 								</td>
 							</tr>
@@ -381,7 +384,7 @@
 
                     <hr>
                     <div class ="row">
-	                    <div class="detail_info">
+	                    <div class="col-lg-12 detail_info">
 	                    <hr class="Fhr" id="class-review">
 	                    <h3>클래스 후기</h3>
 	                
@@ -414,7 +417,6 @@
                                             <th scope="col" class="col-lg-3" id="qna_th">질문 제목</th>
                                             <th scope="col" class="col-lg-2" id="qna_th">작성자</th>
                                             <th scope="col" class="col-lg-2" id="qna_th">작성일</th>
-
                                         </tr>
                                     </thead>
                                     
@@ -422,7 +424,7 @@
                                     <c:forEach items="${clsqnalist}" var="cq" varStatus="i">
                                         <tr data-toggle="collapse" 
                                         data-target="#demo1-${i.count}" class="accordion-toggle row">
-                                            <td class="col-lg-1" scope="row" id="qna_th"> ${cq.no}</td>
+                                            <td class="col-lg-1" scope="row" id="qna_th">${i.count}</td>
                                             <td class="col-lg-2">${cq.type}</td>
                                             <c:set var="yn" value="${cq.anser}"/>
                                             <%
@@ -455,7 +457,26 @@
 		                                           		<div class="adddet col-lg-2" style="text-align: center;
 		                                           			vertical-align: middle;
 															display : block;">질문 답변</div>
-		                                           		<div class="acco" id="ans">답변이 등록되지 않았습니다.</div>
+															
+														<c:choose>	
+															<c:when test="${sessionScope.loginUser eq null}">
+																<div class="acco" id="ans">답변이 등록되지 않았습니다.</div>
+															</c:when>
+		                                           			<c:when test="${sessionScope.loginUser.no eq detailclass.mentee.no}">
+		                                           				<label class="pull-left">답변을 작성하시려면 클릭해주세요!</label>
+				                                           		<textarea class="clickedit" rows="5" id="anser" name="anser"
+				                                           		style ="width : 500px;"></textarea>
+				                                           		<div class="butmana" style="margin-left:10px;">
+					                                           		<button class="btn btn-default" onClick="answerins(${sessionScope.loginUser.no})"
+					                                           		 type="button" >등록</button>
+					                                           		<button class="btn btn-default" id="ansstat" type="button" >취소</button>
+					                                           	</div>
+		                                           			</c:when>
+															<c:otherwise>
+																<div class="acco" id="ans">답변이 등록되지 않았습니다.</div>
+															</c:otherwise>
+		                                           		</c:choose>
+		                                           		
 		                                           	<%  }else{
 		                                           	%>
 		                                           		<div class="adddet col-lg-2" style="text-align: center;
@@ -471,8 +492,50 @@
                                     </c:forEach>
                                     </tbody>
                                 </table>
-		                        <button style="width: 120px; height: 40px; float : right;
-		                        background-color: #606066; color: #ffffff">클래스문의</button>
+                                
+		                        <div class="center"><button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block"
+								style="width: 120px; height: 40px; float : right; background-color: #606066; color: #ffffff;">클래스 문의</button></div>
+								<div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+								  <div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h4 class="modal-title" id="lineModalLabel">클래스 명: ${detailclass.titl}</h3>
+											<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+										</div>
+										<div class="modal-body">
+											
+								            <!-- content goes here -->
+											<form action="detail?no=${detailclass.no}" method="post">
+											  <div class="form-group">
+								                <label for="exampleInputEmail1">문의 유형</label>
+								                		<input type="radio" name="type" class="type" value="환불" id="opt1" checked="checked"/>
+													    <label for="opt1">환불</label>
+													    <input type="radio" name="type" class="type" value="위치" id="opt2"/>
+													    <label for="opt2">위치</label>
+													    <input type="radio" name="type" class="type" value="강의" id="opt3"/>
+													    <label for="opt2">강의</label>
+													    <input type="radio" name="type" class="type" value="기타" id="opt4"/>
+													    <label for="opt2">기타</label>
+								              </div>
+								              <div class="form-group">
+								                <label for="exampleInputEmail1">Q&A 제목</label>
+								                <input type="text" class="form-control" name="titl" id="titl" placeholder="제목을 입력해주세요">
+								              </div>
+								              <div class="form-group">
+								                <label for="exampleInputconts1">Q&A 내용</label>
+								                <div>
+								                <textarea name="qnaconts" id="qnaconts" rows="5" class="customWidth" style="resize: none; width:100%;" 
+								                placeholder="내용을 입력해주세요"></textarea></div>
+								              </div>
+								              <button type="button" class="btn btn-default" 
+													onClick="addqna(${sessionScope.loginUser.no});">등록하기</button>
+											  <button type="button" class="btn btn-default" data-dismiss="modal"  role="button">취소</button>
+								            </form>
+								
+										</div>
+									</div>
+								  </div>
+								</div>
                             </div>
                             <!-- <div class="col-lg-12"> -->
                         </div>
@@ -517,29 +580,172 @@
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script>
 $('.accordian-body').on('show.bs.collapse', function () {
-    console.log($(this).closest("table")
-            .find(".collapse.in")
-            .not(this));
-    
     $(this).closest("table")
         .find(".collapse.in")
         .not(this)
-        .collapse('toggle')
+        .collapse("toggle")
 })
 </script>
 	<script src="/vendor/jquery/jquery.min.js"></script>
-    
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="/js/jquery.raty.min.js"></script>
     <script src="/js/clean-blog.js"></script>
+    
+<script>
+function addqna(no) {
+    var type = $('input:radio:checked.type').val();
+    var titl = $('input:text#titl').val();
+    var conts = $('textarea#qnaconts').val();
+    var cno = ${detailclass.no};
+    
+    console.log(titl);
+    console.log(conts);
+    
+    if(titl == "" || conts == ""  ) {
+        swal({
+            title: "필수 입력항목을 입력안하셨습니다.",
+            button : "확인",
+          })
+    } else {
+        $.ajax({
+            type:"POST",
+            data : {
+	            "type" : type,
+	            "titl" : titl,
+	            "conts" : conts,
+	            "cno" : cno,
+	            "meno" : no
+	        },
+	        url : "qnainsert",
+	        success : function() {
+	            swal({
+	                title : "Q&A 질문이 등록되었습니다",
+	                text : "축하드립니다.",
+	                icon : "success",
+	                button : "확인",
+	              })
+	            location.href="detail?no="+${detailclass.no};
+	        },error : function(error,status){
+	            console.log(error);
+	            console.log(status);
+	        }
+        });
+    }
+}
+
+function answerins(no) {
+    var cno = ${detailclass.mentee.no};
+	
+    console.log(cno);
+    console.log(no);
+	if(cno != no) {
+	    swal({
+            text : "답변 쓰기 권한이 없습니다.",
+            button : "확인",
+          })
+        , location.href="detail?no="+${detailclass.no};
+	} 
+}
+
+function repins(no) {
+    var cno = ${detailclass.no};
+    var conts = $('textarea#conts').val();
+    var star = $('#star1-score').val();
+    var phot = $('input:file#phot').val();
+
+    if(conts == ""){
+        swal({
+            text : "내용이 비어있으면 후기가 등록이 안됩니다.",
+            button : "확인",
+          })
+    } else {
+	    $.ajax({
+	        type : "POST",
+	        data : {
+	            "meno" : no ,
+	            "cno" : cno , 
+	            "conts" : conts , 
+	            "star" : star ,
+	            "phot" : phot 
+	        },
+	        url : "repinsert",
+	        success : function() {
+	            swal({
+	                text : "클래스 후기가 등록되었습니다",
+	                icon : "success",
+	                button : "확인",
+	              })
+	            location.href="detail?no="+${detailclass.no};
+	        },error : function(error,status){
+	            swal({
+	                text : "이미 후기를 등록을 하셨습니다.",
+	                button : "확인",
+	              })
+	        }
+	    });
+    }
+}
+
+function clslikeins(no) {
+    var cno = ${detailclass.no};
+    
+	    $.ajax({
+	        type : "POST" , 
+	        data : {
+	            "cno" : cno , 
+	            "meno" : no
+	        },
+	        url : "clslikeins.do" ,
+	        success : function() {
+	            swal({
+	                text : "찜클래스가 등록되었습니다",
+	                icon : "success",
+	                button : "확인",
+	              })
+	            location.reload();
+	        },error : function(error,status){
+	            swal({
+	                text : "이미 찜클래스에 등록된 클래스입니다.",
+	                button : "확인",
+	              })
+	        }
+	    });
+}
+var defaultText = '질문에 대한 답변내용을 입력해주세요!';
+
+function endEdit(e) {
+    var input = $(e.target),
+        label = input && input.prev();
+
+    label.text(input.val() === '' ? defaultText : input.val());
+    input.hide();
+    label.show();
+}
+
+$('.clickedit').hide()
+.focusout(endEdit)
+.keyup(function (e) {
+    if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
+        endEdit(e);
+        return false;
+    } else {
+        return true;
+    }
+})
+.prev().click(function () {
+    $(this).hide();
+    $(this).next().show().focus();
+});
+</script>
 <script type="text/javascript">
  var stmnLEFT = 0; // 오른쪽 여백 
- var stmnGAP1 = 0; // 위쪽 여백 
+ var stmnGAP1 = -200; // 위쪽 여백 
  var stmnGAP2 = 50; // 스크롤시 브라우저 위쪽과 떨어지는 거리 
- var stmnBASE = 150; // 스크롤 시작위치 
+ var stmnBASE = 0; // 스크롤 시작위치 
  var stmnActivateSpeed = 35; //스크롤을 인식하는 딜레이 (숫자가 클수록 느리게 인식)
  var stmnScrollSpeed = 20; //스크롤 속도 (클수록 느림)
  var stmnTimer; 
- var stmnsub = 150; // stmtEndPoint 맞춰줄 때 쓴다.
+ var stmnsub = 300; // stmtEndPoint 맞춰줄 때 쓴다.
  
  function RefreshStaticMenu() { 
   var stmnStartPoint, stmnEndPoint; 
@@ -623,14 +829,14 @@ geocoder.addressSearch('${detailclass.basAddr}', function(result, status) {
             console.log("toggle2");
             $(setId).css("position", "absolute");
             $(setId).css("top", (testtTop) + "px");
-
+            
             $('#star1').raty({
                 path : "/upload/img/raty/",
                 start : 1,
                 starOff : 'star-off-big.png',
                 starOn : 'star-on-big.png',
                 width : 200
-            });
+            }); 
         });
 
         function scroll_follow(id) {
@@ -647,19 +853,13 @@ geocoder.addressSearch('${detailclass.basAddr}', function(result, status) {
                     $(id).css("position", "absolute");
                     $(id).css("width", "1110px");
                 }
-
             });
         }
         scroll_follow(setId);
-
-        function click_button() {
-
-        }
-
-        $('#click').raty(
-                {
-                    click : function(score, evt) {
-                        alert('ID: ' + this.attr('id') + '\nscore: ' + score
+        
+        $('#click').raty({
+            click : function(score, evt) {
+                alert('ID: ' + this.attr('id') + '\nscore: ' + score
                                 + '\nevent: ' + evt);
                     }
                 });
