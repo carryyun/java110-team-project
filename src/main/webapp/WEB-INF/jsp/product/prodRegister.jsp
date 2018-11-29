@@ -63,68 +63,83 @@ div.row.imgDiv {
 <body>
 	<div class="container">
 		<div class="row">
-			<form id="myForm" action="test" method="post" enctype="multipart/form-data">
+
+            <form id="myForm" action="addProduct.do" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="ctno" value="${ctno}">
+            <input type="hidden" name="meno" value="${sessionScope.loginUser.no}">
+            
+			<!-- file input -->
+			<div class="col-lg-12">
+
+				<div class="col-lg-7">
+					<div class="row">
+						<!-- 상품명 -->
+						<div style="margin-top: 30px">
+							<div
+								style="color: white; background-color: gray; padding: 5px; display: inline; border-radius: 3px;">상품명</div>
+							<p>
+							
+								<input name="titl" placeholder="상품명을 입력하세요"
+									style="width: 100%; height: 50px; font-size: 25px">
+							</p>
+						</div>
+						<!-- </div class="col-lg-12"> -->
+					</div>
+					<!-- </div class="row">  -->
+				</div>
+				<!-- </div class="col-lg-7"> -->
 
 
-				<!-- file input -->
-				<div class="col-lg-12">
+				<div class="col-lg-5">
+					<div class="row">
+						<!-- summernote -->
+						<div class="col-lg-12" style="margin-top: 30px">
+
+							<!-- 가격, 택배비(무료배송), 인증서  -->
+							<div class="col-lg-12">
+								재고 <input type="text" id="stock" name="stock"
+									style="margin-bottom: 10px"><br> 가격 <input
+									type="text" name="pric" style="margin-bottom: 10px"><br>
+								택배비 <input type="text" name="deli" class="inputid"
+									style="margin-bottom: 10px" /> 무료배송<input type='checkbox'
+									data-toggle='inputid' /><br> 소분류 <select name="stno">
+									<c:forEach items="${stagList}" var="sl">
+										<option value="${sl.no}">${sl.name}</option>
+									</c:forEach>
+								</select>
+
+							</div>
+						</div>
+						<!-- </div class="col-lg-12" style="margin-top: 30px"> -->
+					</div>
+					<!-- </div class="row"> -->
+				</div>
+				<!-- </div class="col-lg-5"> -->
+
 				
-					<div class="col-lg-7">
-						<div class="row">
-							<!-- 상품명 -->
-							<div style="margin-top: 30px">
-								<div
-									style="color: white; background-color: gray; padding: 5px; display: inline; border-radius: 3px;">상품명</div>
-								<p>
-									<input name="titl" placeholder="상품명을 입력하세요"
-										style="width: 100%; height: 50px; font-size: 25px">
-								</p>
-							</div><!-- </div class="col-lg-12"> -->
-						</div><!-- </div class="row">  -->
-					</div><!-- </div class="col-lg-7"> -->
 
+					<input type="file" id="files" name="files" multiple
+						accept="image/*" /><br />
+				<div id="selectedFiles"></div>
+			</div>
+			<!--</div class="col-lg-12"> -->
 
-					<div class="col-lg-5">
-						<div class="row">
-							<!-- summernote -->
-							<div class="col-lg-12" style="margin-top: 30px">
-								
-								<!-- 가격, 택배비(무료배송), 인증서  -->
-								<div class="col-lg-12">
-									재고　 <input type="text" id="stock" name="stock" style="margin-bottom: 10px"><br>
-									가격　 <input type="text" name="pric" style="margin-bottom: 10px"><br>
-									택배비 <input type="text" class="inputid" style="margin-bottom: 10px"/>
-									무료배송<input type='checkbox' data-toggle='inputid'/><br>
-                                    
-									소분류 <select name="certs">
-										<c:forEach items="${stagList}" var="sl">
-											<option value="">${sl.name}</option>
-										</c:forEach>
-									   </select>
-									   
-								</div>
-							</div><!-- </div class="col-lg-12" style="margin-top: 30px"> -->
-						</div> <!-- </div class="row"> -->
-					</div> <!-- </div class="col-lg-5"> -->
+			<div class="col-lg-12">
+				<div
+					style="color: white; background-color: gray; padding: 5px; display: inline; border-radius: 3px;">상품소개</div>
+				<textarea id="summernote" name="conts" style="position: auto"></textarea>
+			</div>
 
-					<input type="file"  id="files" name="files" multiple accept="image/*"/><br />
-					<div id="selectedFiles"></div>
-				</div><!--</div class="col-lg-12"> -->
-
-				<div class="col-lg-12">
-					<div style="color: white; background-color: gray; padding: 5px; display: inline; border-radius: 3px;">상품소개</div>
-					<textarea id="summernote" style="position: auto"></textarea> 
-				</div>
-
-				<!-- 등록 취소버튼 -->
-				<div class="col-lg-12 text-right">
-					<input type="submit" class="btn btn-primary float-right" value="등록"> 
-					<input type="reset" class="btn" value="취소">
-					
-				</div>
+			<!-- 등록 취소버튼 -->
+			<div class="col-lg-12 text-right">
+				<input type="submit" class="btn btn-primary float-right" value="등록"> 
+				<input type="button" class="btn" onclick="test()" value="취소">
+			</div>
 			</form>
-		</div><!-- </div class="row"> -->
-	</div><!-- </div class="container"> -->
+		</div>
+		<!-- </div class="row"> -->
+	</div>
+	<!-- </div class="container"> -->
 
 	<footer>
 		<div class="col px-0">
@@ -152,18 +167,20 @@ div.row.imgDiv {
 <script
 	src="https://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
 <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <!-- summernote -->
 <script>
     $(document).ready(function() {
         $('#summernote').summernote();
     });
-
 </script>
 
 <!-- multiple file input -->
 <script>
+    function test() {
+
+    }
     var selDiv = "";
 
     document.addEventListener("DOMContentLoaded", init, false);
@@ -241,19 +258,88 @@ div.row.imgDiv {
 
 <!-- checkbox disable input -->
 <script>
-function toggle(target) {
-    var toggle = $(target).data("toggle");
-    if (toggle) {
-        var obj = $("." + toggle);
-        if (target.checked) {
-            obj.attr("disabled", "disabled");
-            $('.inputid').val(""); 
-            
-        } else {
-            obj.removeAttr("disabled");
+    function toggle(target) {
+        var toggle = $(target).data("toggle");
+        if (toggle) {
+            var obj = $("." + toggle);
+            if (target.checked) {
+                obj.attr("disabled", "disabled");
+                $('.inputid').val("");
+
+            } else {
+                obj.removeAttr("disabled");
+            }
         }
     }
-}
-$("input:checkbox").each(function(){toggle(this);}).on('input',function(){toggle(this);});
+    $("input:checkbox").each(function() {
+        toggle(this);
+    }).on('input', function() {
+        toggle(this);
+    });
+
+    function addProduct(no) {
+        /* var titl = $('input:text#titl').val(); */
+        var conts = $('#summernote').summernote('code');
+        /* var stock = $('input:text#stock').val();
+        var pric = $('input:text#pric').val();
+        var deli = $('input:text#deli').val(); */
+        var ctno = ${ctno};
+
+        console.log(titl);
+        console.log(conts);
+        console.log(stock);
+        console.log(pric);
+        console.log(deli);
+        console.log(ctno);
+        if (titl == "" || conts == "") {
+            swal({
+                title : "필수 항목을 입력하지 않으셨습니다.",
+                button : "확인"
+            })
+        } else {
+            $.ajax({
+                type : "POST",
+                data : {
+                    "titl" : titl,
+                    "conts" : conts,
+                    "stock" : stock,
+                    "pric" : pric,
+                    "deli" : deli,
+                    "meno" : no,
+                    "ctno" : ctno,
+                    "stno" : 1,
+                    "phot" : "phot"
+                },
+                url : "addProduct.do",
+                success : function(result) {
+                    
+                    $.ajax({
+                        type : "POST",
+                        processData : false,
+                        contentType : false,
+                        data : formData,
+                        url : "addProductFile.do",
+                        success : function() {
+                            swal({
+                                title : "상품이 등록되었습니다",
+                                text : "뭐라써",
+                                icon : "success",
+                                button : "확인",
+                            })
+                        },
+                        error : function(error, status) {
+                            console.log(error);
+                            console.log(status);
+                        }
+                    });
+                    /* location.href="detail?no="+${detailclass.no}; */
+                },
+                error : function(error, status) {
+                    console.log(error);
+                    console.log(status);
+                }
+            });
+        }
+    }
 </script>
 </html>
