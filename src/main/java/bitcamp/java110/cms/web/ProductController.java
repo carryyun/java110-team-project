@@ -191,7 +191,7 @@ public class ProductController {
     model.addAttribute("total", total);
     model.addAttribute("basketList", basketList);
   }
-
+ 
   @ResponseBody
   @RequestMapping("removeDate")
   public String removeDate(int no) throws Exception {
@@ -207,8 +207,6 @@ public class ProductController {
     model.addAttribute("paymentList", paymentList);
 
   }
-
-
 
 }
 
