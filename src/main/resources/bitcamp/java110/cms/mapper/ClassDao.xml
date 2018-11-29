@@ -57,6 +57,19 @@
         <result column="nick"       property="mentee.nick"/>
     </resultMap>
     
+    <resultMap type="Classes" id="classMapMypage">
+        <id     column="cno"        property="no"/>
+        <result column="titl"       property="titl"/>
+        <result column="btname"     property="bigTag.name"/>
+        <result column="mtname"     property="middleTag.name"/>
+        <result column="capa"       property="capa"/>
+        <result column="ctcapa"     property="timetable.capa"/>
+        <result column="me2name"    property="mentee2.name"/>
+        <result column="me2nick"    property="mentee2.nick"/>
+        <result column="me2phone"   property="mentee2.phone"/>
+    </resultMap>
+    
+    
     <sql id="select1">
     	select 
 			ps.cno,ps.titl,ps.pric,ps.bas_addr,pg.mtno,pe.meno
@@ -227,6 +240,40 @@
         order by
             cno DESC;
     </select>
+    
+    
+    
+    
+    <select id="findByMono" resultMap="classMapMypage" parameterType="map">
+    
+       SELECT
+            c.titl,
+            btg.btname,
+            mtg.mtname,
+            c.capa,
+            ct.capa as ctcapa,
+            me2.name as me2name,
+            me2.nick as me2nick,
+            me2.phone as me2phone
+       <!--  cert.*,
+            rept.* -->
+
+       FROM  p_cls c
+            JOIN p_meto mo ON c.mono = mo.mono
+            JOIN p_mete me ON mo.mono = me.meno
+            JOIN p_mtag mtg ON c.mtno = mtg.mtno
+            JOIN p_btag btg ON mtg.btno = btg.btno
+            JOIN p_cls_ttab ct ON c.cno = ct.cno
+            JOIN p_cls_order co ON ct.cno = co.ctno
+            JOIN p_mete me2 ON co.meno = me2.meno
+            JOIN p_cert cert ON me2.meno = cert.meno
+            JOIN p_rept rept ON me.meno = rept.meno
+            
+       where
+            mo.mono=5;
+       
+    </select>
+    
     
 </mapper>
 

@@ -33,4 +33,10 @@ public class ClassRepServiceImpl implements ClassRepService{
     return classRepDao.repinsert(classRep);
   }
 
+  @Override
+  public int repDelete(int no) {
+
+    return classRepDao.repDelete(no);
+  }
+
 }

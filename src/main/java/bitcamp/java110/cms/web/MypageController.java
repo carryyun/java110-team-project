@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import bitcamp.java110.cms.domain.ClassOrder;
 import bitcamp.java110.cms.domain.ClassQna;
+import bitcamp.java110.cms.domain.Classes;
 import bitcamp.java110.cms.domain.Cs;
 import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.Mentor;
@@ -14,6 +15,7 @@ import bitcamp.java110.cms.domain.ProductOrder;
 import bitcamp.java110.cms.domain.ProductQnA;
 import bitcamp.java110.cms.service.ClassOrderService;
 import bitcamp.java110.cms.service.ClassQnaService;
+import bitcamp.java110.cms.service.ClassService;
 import bitcamp.java110.cms.service.CsService;
 import bitcamp.java110.cms.service.MenteeService;
 import bitcamp.java110.cms.service.MentorService;
@@ -31,6 +33,7 @@ public class MypageController {
   ProductQnAService productQnAService;
   ClassOrderService classOrderService;
   ProductOrderService productOrderSerivce;
+  ClassService classService; 
   
 
   public MypageController(
@@ -40,7 +43,8 @@ public class MypageController {
       ClassQnaService classQnaService,
       ProductQnAService productQnAService,
       ClassOrderService classOrderService,
-      ProductOrderService productOrderService) {
+      ProductOrderService productOrderService,
+      ClassService classService) {
    this.menteeService = menteeService;
    this.mentorService = mentorService;
    this.csService = csService;
@@ -48,6 +52,7 @@ public class MypageController {
    this.productQnAService = productQnAService;
    this.classOrderService = classOrderService;
    this.productOrderSerivce = productOrderService;
+   this.classService = classService;
    
    
   }
@@ -148,9 +153,9 @@ public class MypageController {
   @GetMapping("menu5")
   public void menu5(Model model) {
     
- List<Cs> cslist = csService.list(4, 10,5);
+ List<Classes> cmanage = classService.findByMono(5);
     
-    model.addAttribute("cslist",cslist);
+    model.addAttribute("cmanage",cmanage);
     
   }
   

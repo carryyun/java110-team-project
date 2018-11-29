@@ -396,7 +396,29 @@
 	                                <img src='${r.mentee.phot}' alt="singup" id="circle">
 	                                ${r.mentee.nick}
 	                            </div>
-	                            <div class="col-lg-11 media-body">${r.conts}</div>
+	                            <div class="col-lg-10 media-body">${r.conts}</div>
+	                            <button type="button" data-toggle="modal" data-target="#deleteModal"
+	                             class="delebtn">삭제</button>
+	                            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+								  <div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h4 class="modal-title" id="lineModalLabel">해당 게시글 삭제하시겠습니까?</h3>
+											<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+										</div>
+										<div class="modal-body">
+											
+								            <!-- content goes here -->
+											<form action="detail?no=${detailclass.no}" method="post">
+								              <button type="button" class="btn btn-default" 
+													onClick="delerep(${sessionScope.loginUser.no} , ${r.no} , ${r.meno});">삭제하기</button>
+											  <button type="button" class="btn btn-default" data-dismiss="modal"  role="button">취소</button>
+								            </form>
+										</div>
+									</div>
+								  </div>
+								</div>
+	                            <button type="button" onClick="derep(${sessionScope.loginUser.no});" class="edbtn">수정</button>
 	                        </div>
 	                    </c:forEach>
 	                    </div>
@@ -463,14 +485,17 @@
 																<div class="acco" id="ans">답변이 등록되지 않았습니다.</div>
 															</c:when>
 		                                           			<c:when test="${sessionScope.loginUser.no eq detailclass.mentee.no}">
-		                                           				<label class="pull-left">답변을 작성하시려면 클릭해주세요!</label>
-				                                           		<textarea class="clickedit" rows="5" id="anser" name="anser"
-				                                           		style ="width : 500px;"></textarea>
-				                                           		<div class="butmana" style="margin-left:10px;">
-					                                           		<button class="btn btn-default" onClick="answerins(${sessionScope.loginUser.no})"
-					                                           		 type="button" >등록</button>
-					                                           		<button class="btn btn-default" id="ansstat" type="button" >취소</button>
-					                                           	</div>
+		                                           				<form class="ansinss" action="detail?no=${detailclass.no}" method="post">
+			                                           				<label onClick="ansbtn()" class="allbtn">답변을 작성하시려면 클릭해주세요!</label>
+					                                           		<textarea class="clsanser" id="cls${i.index}" rows="5" name="clsanser"
+					                                           		style ="width : 500px; display: none;"></textarea>
+					                                           		<div class="butmana" style="margin-left:10px;">
+						                                           		<button class="btn btn-default" 
+						                                           		onClick="answerins(${sessionScope.loginUser.no},cls${i.index},${cq.no})"
+						                                           		 type="button" >등록</button>
+						                                           		<button class="btn btn-default" id="ansstat" type="button" >취소</button>
+						                                           	</div>
+						                                        </form>
 		                                           			</c:when>
 															<c:otherwise>
 																<div class="acco" id="ans">답변이 등록되지 않았습니다.</div>
@@ -633,18 +658,41 @@ function addqna(no) {
     }
 }
 
-function answerins(no) {
+function answerins(no,clsno,qno) {
     var cno = ${detailclass.mentee.no};
-	
+    
     console.log(cno);
-    console.log(no);
-	if(cno != no) {
+    console.log(clsno.value);
+    console.log(qno);
+    
+	if(clsno.value == ""){
 	    swal({
-            text : "답변 쓰기 권한이 없습니다.",
+            text : "내용이 비어있으면 답변이 등록이 안됩니다.",
             button : "확인",
           })
-        , location.href="detail?no="+${detailclass.no};
-	} 
+	} else {
+	    $.ajax({
+	        type : "POST" ,
+	        data : {
+	            "anser" : clsno.value ,
+	            "no" : qno
+	        },
+	        url : "ansupdate.do",
+	        success : function() {
+	            swal({
+	                text : "해당후기에 해당하는 답변이 등록되었습니다",
+	                icon : "success",
+	                button : "확인",
+	              })
+	            location.href="detail?no="+${detailclass.no};
+	        },error : function(error,status){
+	            swal({
+	                text : "해당 Q&A는 삭제되었거나 존재하지 않는 글입니다.",
+	                button : "확인",
+	              })
+	        }
+	    });
+	}
 }
 
 function repins(no) {
@@ -656,6 +704,11 @@ function repins(no) {
     if(conts == ""){
         swal({
             text : "내용이 비어있으면 후기가 등록이 안됩니다.",
+            button : "확인",
+          })
+    } else if(cno != no){
+        swal({
+            text : "로그인 후 이용해주세욧!!",
             button : "확인",
           })
     } else {
@@ -711,31 +764,23 @@ function clslikeins(no) {
 	        }
 	    });
 }
-var defaultText = '질문에 대한 답변내용을 입력해주세요!';
 
-function endEdit(e) {
-    var input = $(e.target),
-        label = input && input.prev();
-
-    label.text(input.val() === '' ? defaultText : input.val());
-    input.hide();
-    label.show();
+function ansbtn(){
+    if($(".clsanser").css("display") == "none"){
+		$(".clsanser").show();
+		$(".allbtn").hide();
+	}else{
+		$(".clsanser").hide();
+		$(".allbtn").show();
+	}
 }
 
-$('.clickedit').hide()
-.focusout(endEdit)
-.keyup(function (e) {
-    if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
-        endEdit(e);
-        return false;
-    } else {
-        return true;
-    }
-})
-.prev().click(function () {
-    $(this).hide();
-    $(this).next().show().focus();
-});
+function delerep(no , rno , repmeno){
+    console.log(no);
+    console.log(rno);
+    console.log(repmeno);
+    
+}
 </script>
 <script type="text/javascript">
  var stmnLEFT = 0; // 오른쪽 여백 

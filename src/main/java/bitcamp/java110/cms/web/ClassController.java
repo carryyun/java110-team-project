@@ -181,14 +181,11 @@ public class ClassController {
     
     List<Timetable> clstimelist = timetableService.findByCno(no);
     
-//    List<ClassRep> clsrepcount = classrepService.countByCnoAll(no);
-    
     model.addAttribute("clsreqlist",clsreqlist);
     model.addAttribute("detailclass",detailclass);
     model.addAttribute("clsqnalist",clsqnalist);
     model.addAttribute("clsfilelist",clsfilelist);
     model.addAttribute("clstimelist",clstimelist);
-//    model.addAttribute("clsrepcount",clsrepcount);
   }
   
   @RequestMapping("findByptno")
@@ -234,11 +231,6 @@ public class ClassController {
     return classqnaService.qnaadd(classqna);
   }
   
-  @RequestMapping("qnadelete")
-  public void qnadelete(int no) {
-    
-    classqnaService.qnadelete(no);
-  }
   
   @RequestMapping("qnaupdate")
   public void qnaupdate(ClassQna classqna) {
@@ -252,7 +244,7 @@ public class ClassController {
     classqnaService.qnaupdate(classqna);
   }
   
-  @RequestMapping(value = "ansupdate", method = {RequestMethod.POST})
+  @RequestMapping(value = "ansupdate.do", method = {RequestMethod.POST})
   public @ResponseBody int ansupdate(ClassQna classqna) {
     
     System.out.println(classqna.getCno());
@@ -291,6 +283,12 @@ public class ClassController {
     return classlikeService.likeadd(classlike);
   }
   
+  @RequestMapping(value = "clsrepdele.do", method = {RequestMethod.POST})
+  public @ResponseBody int clslikeins(int no) {
+    
+    return classrepService.repDelete(no);
+  }
+  
   ///////////////// p_cls_qna 수업질문답변//////////////////
   @PostMapping("orderinsert")
   public int orderinsert(ClassOrder classorder) {
@@ -299,7 +297,12 @@ public class ClassController {
     
     return 1;
   }
-  
+
+  @RequestMapping("qnadelete")
+  public void qnadelete(int no) {
+    
+    classqnaService.qnadelete(no);
+  }
  /* @GetMapping("corderlist")
   public List<ClassOrder> orderlist() {
     

@@ -16,7 +16,6 @@
         <result column="rgdt" 		property="rgdt"/>
         <result column="nick"		property="mentee.nick"/>
         <result column="phot"		property="mentee.phot"/>
-        <result column="count"		property="count(*)"/>
     </resultMap>
     
     <sql id="select1">
@@ -34,12 +33,14 @@
     
     <select id="findByCno" resultMap="crepMap" parameterType="int">
         select 
+        	psp.rno,
 			pe.nick,
 			pe.phot,
 			psp.conts,
 			psp.phot,
 			psp.star,
-			psp.rgdt
+			psp.rgdt,
+			psp.meno
 		from
 			p_mete as pe inner join p_cls_rep as psp
 				on pe.meno = psp.meno
@@ -58,4 +59,8 @@
     		(#{meno},#{cno},#{titl},#{conts},#{star},#{phot},now())
     </insert>
     
+	<delete id="repDelete" parameterType="int">
+        delete from p_cls_rep
+        where rno = #{no}
+  	</delete> 
   </mapper>
