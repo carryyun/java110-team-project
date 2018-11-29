@@ -14,28 +14,96 @@
     href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
     integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
     crossorigin="anonymous">
+    <!-- css -->
+    <link href="/css/master.css" rel="stylesheet">
 
-<!-- js-->
-<!-- <script src="js/master-mentorList.js"></script> -->
-<!-- css -->
-<!-- <link href="css/master-allpro.css" rel="stylesheet"> -->
+<!-- Bootstrap  -->
+<link rel="stylesheet" href="/css/masterpagecss/bootstrap.css">
+<!-- Theme style  -->
+<link rel="stylesheet" href="/css/masterpagecss/style.css">
+<!-- J Query -->
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<!-- jQuery -->
+<script src="/js/masterpagejs/jquery.min.js"></script>
+<!-- Waypoints -->
+<script src="/js/masterpagejs/jquery.waypoints.min.js"></script>
+<!-- Counters -->
+<script src="/js/masterpagejs/jquery.countTo.js"></script>
+
+<!-- MAIN JS -->
+<script src="/js/masterpagejs/main.js"></script>
+<script src="/js/masterpagejs/bootstrap.min.js"></script>
+
+<style>
+#colorlib-aside {
+    overflow: hidden;
+}
+
+#th-pay th, #tb-pay td {
+    vertical-align: middle;
+    text-align: center
+}
+</style>
 
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">
 
-            <!-- 게시판 시작-->
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 col-lg-offset-12">
-                        <p>
-                            <span style="font-size: 45px; position: relative;"><strong>전체
-                                    상품 목록</strong></span>
-                        </p>
+    <div id="colorlib-page">
+        <div class="container-wrap">
 
-                        <div class="col-lg-3" id="serch-men">
+<a href="#"
+                class="js-colorlib-nav-toggle colorlib-nav-toggle"
+                data-toggle="collapse" data-target="#navbar"
+                aria-expanded="false" aria-controls="navbar"><i></i></a>
+            <aside id="colorlib-aside" role="complementary"
+                class="border js-fullheight">
+                <div class="text-center">
+                    <div class="author-img"
+                        style="background-image: url(${mentee.phot};"></div>
+                    <h1 id="colorlib-logo">
+                        <a href="index.html">관리자</a>
+                    </h1>
+                    <br />
+                </div>
+
+                <nav id="colorlib-main-menu" role="navigation"
+                    class="navbar">
+                    <div id="navbar" class="collapse">
+                       <ul>
+                            <li><a onclick="location.href='dashBoard'" data-nav-section="1">메인
+                                    화면 </a></li>
+                            <li><a onclick="location.href='mentorreqlist'" data-nav-section="2">멘토
+                                    신청 목록</a></li>
+                            <li><a onclick="location.href='classreqlist'" data-nav-section="3">클래스
+                                    신청 목록</a></li>
+                            <li><a onclick="location.href='reportList'" data-nav-section="4">신고
+                                    접수 목록</a></li>
+                            <li><a onclick="location.href='reportFinishList'" data-nav-section="5">신고
+                                    완료 목록</a></li>
+                            <li><a onclick="location.href='prdtList'" data-nav-section="6">전체
+                                    상품 목록</a></li>
+                            <li><a onclick="location.href='classList'" data-nav-section="7">전체
+                                    클래스 목록 </a></li>
+                            <li><a onclick="location.href='prodOrderList'" data-nav-section="8">주문
+                                    내역</a></li>
+                        </ul>
+                    </div>
+                </nav>
+
+            </aside>
+            
+            <div id="colorlib-main">
+            
+            <section class="colorlib-experience" data-section="6">
+                    <div class="colorlib-narrow-content">
+                        <div class="row">
+                        
+                        <h2 class="colorlib-heading">전체 상품 목록</h2>
+                            <hr />
+                            
+                    <div class="col-lg-12">
+                        <div class="col-lg-5" id="serch-men">
                             <form action="#" method="get">
                                 <div class="input-group">
                                     <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
@@ -43,20 +111,16 @@
                                         placeholder="Search for" required> <span
                                         class="input-group-btn">
                                         <button type="submit" class="btn btn-default">
-                                            <i class="fas fa-search fa-1x"></i>
+                                            <i class="fas fa-search fa-3x"></i>
                                         </button>
                                     </span>
                                 </div>
                             </form>
                         </div>
                     </div>
-                </div>
-                <!-- 게시판 row-->
-            </div>
-            <!-- 게시판 container-->
+            
 
-            <div class="container">
-                <div class="row">
+
                     <div class="col-lg-12">
                         <br /> <br />
                         <table class="table table-list-search">
@@ -107,14 +171,17 @@
                             </nav>
                         </div>
                     </div>
-
+                    
+                    </div>
+                    </div>
+                </section>
                 </div>
-            </div>
+                </div>
+                </div>
 
-        </div>
-        <!-- 메인 row-->
-    </div>
-    <!-- 메인 container-->
+
+
+
 
 
 </body>

@@ -13,155 +13,306 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
     integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
-    <!-- js-->
-    <!-- <script src="js/master-mentorList.js"></script> -->
-
     <!-- css -->
     <link href="/css/master.css" rel="stylesheet">
-    <link href="/css/common.css" rel="stylesheet">
+    
+    <!-- Bootstrap  -->
+<link rel="stylesheet" href="/css/masterpagecss/bootstrap.css">
+<!-- Theme style  -->
+<link rel="stylesheet" href="/css/masterpagecss/style.css">
+<!-- J Query -->
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<!-- jQuery -->
+<script src="/js/masterpagejs/jquery.min.js"></script>
+<!-- Waypoints -->
+<script src="/js/masterpagejs/jquery.waypoints.min.js"></script>
+<!-- Counters -->
+<script src="/js/masterpagejs/jquery.countTo.js"></script>
 
+<!-- MAIN JS -->
+<script src="/js/masterpagejs/main.js"></script>
+<script src="/js/masterpagejs/bootstrap.min.js"></script>
+
+<style>
+#colorlib-aside {
+    overflow: hidden;
+}
+
+#th-pay th, #tb-pay td {
+    vertical-align: middle;
+    text-align: center
+}
+</style>
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">
 
-            <!-- 게시판 시작-->
-			<div class="col-lg-12 col-lg-offset-12">
-			    <p><span style="font-size: 45px; position: relative; right;"><strong>신고 완료 목록</strong></span></p>
-			
-			<div class="col-lg-3" id="serch-men">
-			    <form action="#" method="get">
-			        <div class="input-group">
-		                <input class="form-control" id="system-search" name="q" placeholder="Search for" required>
-		                <span class="input-group-btn">
-		                    <button type="submit" class="btn btn-default"><i class="fas fa-search fa-1x"></i></button>
-		                </span>
-		            </div>
-		        </form>
-			    </div>
-			</div>
+    <div id="colorlib-page">
+        <div class="container-wrap">
 
-            <div class="col-lg-12">
-                <br />
-                <br />
-                <table class="table table-list-search">
-                    <thead>
-                        <tr>
-                            <th class="text-center">No</th>
-                            <th class="text-center">최근 신고 날짜</th>
-                            <th class="text-center">회원 ID</th>
-                            <th class="text-center">회원 닉네임</th>
-                            <th class="text-center">신고 누적 횟수</th>
-                            <th class="text-center">상세보기</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach items="${ReportList}" var="rl" varStatus="i">
-                        <tr>
-                            <td class="text-center">${i.count}</td>
-                            <td class="text-center">${rl.rtdt}</td>
-                            <td class="text-center">${rl.mentee2Email}</td>
-                            <td class="text-center">${rl.mentee2Nick}</td>
-                            <td class="text-center">${rl.cnt}</td>
-                            <td class="text-center"><button id="block-cho" name="${rl.meno2}" onclick="location.href='#popup${rl.meno2}'" >상세 보기</button></td>
-                        </tr>
-            
-                    </c:forEach>
-                    </tbody>
-                </table>
-            </div>
+            <a href="#"
+                class="js-colorlib-nav-toggle colorlib-nav-toggle"
+                data-toggle="collapse" data-target="#navbar"
+                aria-expanded="false" aria-controls="navbar"><i></i></a>
+            <aside id="colorlib-aside" role="complementary"
+                class="border js-fullheight">
+                <div class="text-center">
+                    <div class="author-img"
+                        style="background-image: url(${mentee.phot};"></div>
+                    <h1 id="colorlib-logo">
+                        <a href="index.html">관리자</a>
+                    </h1>
+                    <br />
+                </div>
 
-            <div class="col-lg-12 text-center" id="page-list1">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination" id="page-list" style="display: inline-block;">
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">«</span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">»</span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </li>
+                <nav id="colorlib-main-menu" role="navigation"
+                    class="navbar">
+                    <div id="navbar" class="collapse">
+                        <ul>
+                            <li><a
+                                onclick="location.href='dashBoard'"
+                                data-nav-section="1">메인 화면 </a></li>
+                            <li><a
+                                onclick="location.href='mentorreqlist'"
+                                data-nav-section="2">멘토 신청 목록</a></li>
+                            <li><a
+                                onclick="location.href='classreqlist'"
+                                data-nav-section="3">클래스 신청 목록</a></li>
+                            <li><a
+                                onclick="location.href='reportList'"
+                                data-nav-section="4">신고 접수 목록</a></li>
+                            <li><a
+                                onclick="location.href='reportFinishList'"
+                                data-nav-section="5">신고 완료 목록</a></li>
+                            <li><a
+                                onclick="location.href='prdtList'"
+                                data-nav-section="6">전체 상품 목록</a></li>
+                            <li><a
+                                onclick="location.href='classList'"
+                                data-nav-section="7">전체 클래스 목록 </a></li>
+                            <li><a
+                                onclick="location.href='prodOrderList'"
+                                data-nav-section="8">주문 내역</a></li>
                         </ul>
-                    </nav>
-            </div>
+                    </div>
+                </nav>
+
+            </aside>
+
+            <div id="colorlib-main">
+
+                <section class="colorlib-experience" data-section="5">
+                    <div class="colorlib-narrow-content">
+                        <div class="row">
+
+                            <div class="about-desc">
+
+                                <h2 class="colorlib-heading">신고 완료 목록</h2>
 
 
-        <!-- popup-->
-        <c:forEach items="${ReportList}" var="rl" varStatus="i">
-            
-            <div id="popup${rl.meno2}" class="overlay">
-                <div class="popupH">
-                    <h2> 신고 누적 목록</h2>
-                    <a class="close" href="#">×</a>
-                    <div class="content">
-                        <br />
-                        <div class="container">
-                            <div class="row">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th width="5%">No</th>
-                                            <th width="10%">신고자</th>
-                                            <th width="8%">분류</th>
-                                            <th width="13%">유형</th>
-                                            <th width="16%">제목</th>
-                                            <th width="18%">내용</th>
-                                            <th width="15%">URL</th>
-                                            <th width="15%">신고날짜</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    <c:forEach items="${rl.finishlist}" var="fl" varStatus="j">
-                                        <tr>
-                                            <td>${j.count}</td>
-                                            <td>${fl.mentee2Nick}</td>
-                                            <td>${fl.type}</td>
-                                            <td>${fl.type_detail}</td>
-                                            <td>${fl.titl}</td>
-                                            <td>
-                                            <c:choose>
-	                                            <c:when test="${fn:length(fl.conts) >10}">
-	                                              <a class="button" style="color: #007bff;cursor: pointer;" onclick="viewConts('#visible${j.index}');">
-	                                              ${fn:substring(fl.conts,0,10)} ...
-	                                              </a>
-	                                            </c:when>
-	                                            <c:otherwise>
+                                <!-- 게시판 시작-->
+                                <div class="col-lg-12">
+                                    <div class="col-lg-5" id="serch-men">
+                                        <form action="#" method="get">
+                                            <div class="input-group">
+                                                <input
+                                                    class="form-control"
+                                                    id="system-search"
+                                                    name="q"
+                                                    placeholder="Search for"
+                                                    required> <span
+                                                    class="input-group-btn">
+                                                    <button
+                                                        type="submit"
+                                                        class="btn btn-default">
+                                                        <i
+                                                            class="fas fa-search fa-3x"></i>
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12">
+                                    <br /> <br />
+                                    <table
+                                        class="table table-list-search">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">No</th>
+                                                <th class="text-center">최근
+                                                    신고 날짜</th>
+                                                <th class="text-center">회원
+                                                    ID</th>
+                                                <th class="text-center">회원
+                                                    닉네임</th>
+                                                <th class="text-center">신고
+                                                    누적 횟수</th>
+                                                <th class="text-center">상세보기</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach
+                                                items="${ReportList}"
+                                                var="rl" varStatus="i">
+                                                <tr>
+                                                    <td
+                                                        class="text-center">${i.count}</td>
+                                                    <td
+                                                        class="text-center">${rl.rtdt}</td>
+                                                    <td
+                                                        class="text-center">${rl.mentee2Email}</td>
+                                                    <td
+                                                        class="text-center">${rl.mentee2Nick}</td>
+                                                    <td
+                                                        class="text-center">${rl.cnt}</td>
+                                                    <td
+                                                        class="text-center"><button
+                                                            id="block-cho"
+                                                            name="${rl.meno2}"
+                                                            onclick="location.href='#popup${rl.meno2}'">상세
+                                                            보기</button></td>
+                                                </tr>
+
+                                            </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="col-lg-12 text-center"
+                                    id="page-list1">
+                                    <nav
+                                        aria-label="Page navigation example">
+                                        <ul class="pagination"
+                                            id="page-list"
+                                            style="display: inline-block;">
+                                            <li class="page-item"><a
+                                                class="page-link"
+                                                href="#"
+                                                aria-label="Previous">
+                                                    <span
+                                                    aria-hidden="true">«</span>
+                                                    <span
+                                                    class="sr-only">Previous</span>
+                                            </a></li>
+                                            <li class="page-item"><a
+                                                class="page-link"
+                                                href="#">1</a></li>
+                                            <li class="page-item"><a
+                                                class="page-link"
+                                                href="#">2</a></li>
+                                            <li class="page-item"><a
+                                                class="page-link"
+                                                href="#">3</a></li>
+                                            <li class="page-item"><a
+                                                class="page-link"
+                                                href="#"
+                                                aria-label="Next"> <span
+                                                    aria-hidden="true">»</span>
+                                                    <span
+                                                    class="sr-only">Next</span>
+                                            </a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+
+
+                                <!-- popup-->
+                                <c:forEach items="${ReportList}"
+                                    var="rl" varStatus="i">
+
+                                    <div id="popup${rl.meno2}"
+                                        class="overlay">
+                                        <div class="popupH">
+                                            <h2>신고 누적 목록</h2>
+                                            <a class="close" href="#">×</a>
+                                            <div class="content">
+                                                <br />
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <table
+                                                            class="table table-bordered">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th
+                                                                        width="5%">No</th>
+                                                                    <th
+                                                                        width="10%">신고자</th>
+                                                                    <th
+                                                                        width="8%">분류</th>
+                                                                    <th
+                                                                        width="13%">유형</th>
+                                                                    <th
+                                                                        width="16%">제목</th>
+                                                                    <th
+                                                                        width="18%">내용</th>
+                                                                    <th
+                                                                        width="15%">URL</th>
+                                                                    <th
+                                                                        width="15%">신고날짜</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <c:forEach
+                                                                    items="${rl.finishlist}"
+                                                                    var="fl"
+                                                                    varStatus="j">
+                                                                    <tr>
+                                                                        <td>${j.count}</td>
+                                                                        <td>${fl.mentee2Nick}</td>
+                                                                        <td>${fl.type}</td>
+                                                                        <td>${fl.type_detail}</td>
+                                                                        <td>${fl.titl}</td>
+                                                                        <td>
+                                                                            <c:choose>
+                                                                                <c:when
+                                                                                    test="${fn:length(fl.conts) >10}">
+                                                                                    <a
+                                                                                        class="button"
+                                                                                        style="color: #007bff; cursor: pointer;"
+                                                                                        onclick="viewConts('#visible${j.index}');">
+                                                                                        ${fn:substring(fl.conts,0,10)}
+                                                                                        ...
+                                                                                    </a>
+                                                                                </c:when>
+                                                                                <c:otherwise>
 	                                              ${fl.conts}
 	                                            </c:otherwise>
-                                            </c:choose>
-                                            </td>
-                                            <td><a href="${fl.url}">${fl.url}</a></td>
-                                            <td>${fl.rtdt}</td>
-                                        </tr>
-                                        <tr id="visible${j.index}" style="display: none">
-                                            <td colspan="2">내용</td>
-                                            <td colspan="6">${fl.conts}</td>
-                                        </tr>
-                                    </c:forEach>
-                                    </tbody>
-                                </table>
-                            </div><!-- popup row-->
-                        </div><!-- popup container -->
+                                                                            </c:choose>
+                                                                        </td>
+                                                                        <td><a
+                                                                            href="${fl.url}">${fl.url}</a></td>
+                                                                        <td>${fl.rtdt}</td>
+                                                                    </tr>
+                                                                    <tr
+                                                                        id="visible${j.index}"
+                                                                        style="display: none">
+                                                                        <td
+                                                                            colspan="2">내용</td>
+                                                                        <td
+                                                                            colspan="6">${fl.conts}</td>
+                                                                    </tr>
+                                                                </c:forEach>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <!-- popup row-->
+                                                </div>
+                                                <!-- popup container -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </c:forEach>
 
+                            </div>
+                        </div>
                     </div>
-                </div>
+
+                </section>
             </div>
-            </c:forEach>
-        
-
-        </div><!-- 메인 row-->
-    </div><!-- 메인 container-->
-
-
+        </div>
+    </div>
 </body>
 <!-- Bootstrap core JavaScript -->
 <script src="/vendor/jquery/jquery.min.js"></script>

@@ -103,9 +103,6 @@
                         <div class="row">
 
                             <h2 class="colorlib-heading">멘토 신청 목록</h2>
-                            <hr />
-
-
 
                             <!-- 게시판 시작-->
                             <div class="col-lg-12">
