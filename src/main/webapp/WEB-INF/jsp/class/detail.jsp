@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <html>
 <head>
 <meta charset="utf-8">
@@ -103,7 +103,7 @@
                                              String cfileurl = cfile.substring(cfileidx+1);
                                         %>
                                             <div class="carousel-item active" style="margin-bottom: -5px;">
-                                              <iframe width="1110px" height="450" style="margin-left:-10px;" src="https://www.youtube.com/embed/<%=cfileurl%>" 
+                                              <iframe width="1100px" height="450" style="margin-left:-10px;" src="https://www.youtube.com/embed/<%=cfileurl%>" 
                                               frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
                                               allowfullscreen></iframe>
                                         <%
@@ -311,8 +311,8 @@
                     <div class="row" style="margin: 0 auto">    
                         <div class="col text-center">   
                             <c:set var="starint" value="${detailclass.star}"/>
-                            <strong>별점:</strong>
-                            <div class="rating col">    
+                            <strong>별점</strong>
+                            <div class="rating col">
                                 <% int star = (int)pageContext.getAttribute("starint"); 
                                 for( int i=0;i<5;i++){
                                   if(i<star){
@@ -326,14 +326,13 @@
                                 }
                                 %>
                             </div>  
-                            <div>   
-                                <span class="glyphicon glyphicon-user"></span>12 total  
+                            <div>
+                            	 
+                                	<span class="glyphicon glyphicon-user"></span>후기인원 : ${fn:length(clsreqlist)} 
                             </div>  
                         </div>  
                     </div>  
                 </div>  
-                
-                
                 
                 <div class="container col-lg-12" id="prod_review">
                     <div class="row">
@@ -373,7 +372,6 @@
 											<button id="repbtn" type="button" onClick="repins(${sessionScope.loginUser.no});" 
 											class="btn btn-primary btn-md"
 												style="background-color: #606066; color: #ffffff">등록</button>
-											<button type="reset" class="btn btn-default btn-md">취소</button>
 										</div>
 								</td>
 							</tr>
@@ -419,7 +417,6 @@
                                             <th scope="col" class="col-lg-3" id="qna_th">질문 제목</th>
                                             <th scope="col" class="col-lg-2" id="qna_th">작성자</th>
                                             <th scope="col" class="col-lg-2" id="qna_th">작성일</th>
-
                                         </tr>
                                     </thead>
                                     
@@ -427,7 +424,7 @@
                                     <c:forEach items="${clsqnalist}" var="cq" varStatus="i">
                                         <tr data-toggle="collapse" 
                                         data-target="#demo1-${i.count}" class="accordion-toggle row">
-                                            <td class="col-lg-1" scope="row" id="qna_th"> ${cq.no}</td>
+                                            <td class="col-lg-1" scope="row" id="qna_th">${i.count}</td>
                                             <td class="col-lg-2">${cq.type}</td>
                                             <c:set var="yn" value="${cq.anser}"/>
                                             <%
@@ -465,10 +462,7 @@
 															<c:when test="${sessionScope.loginUser eq null}">
 																<div class="acco" id="ans">답변이 등록되지 않았습니다.</div>
 															</c:when>
-															<c:when test="${sessionScope.loginUser.no} != ${detailclass.mentee.no}">
-																<div class="acco" id="ans">답변이 등록되지 않았습니다.</div>
-															</c:when>
-		                                           			<c:when test="${sessionScope.loginUser.no} == ${detailclass.mentee.no}">
+		                                           			<c:when test="${sessionScope.loginUser.no eq detailclass.mentee.no}">
 		                                           				<label class="pull-left">답변을 작성하시려면 클릭해주세요!</label>
 				                                           		<textarea class="clickedit" rows="5" id="anser" name="anser"
 				                                           		style ="width : 500px;"></textarea>
@@ -478,6 +472,9 @@
 					                                           		<button class="btn btn-default" id="ansstat" type="button" >취소</button>
 					                                           	</div>
 		                                           			</c:when>
+															<c:otherwise>
+																<div class="acco" id="ans">답변이 등록되지 않았습니다.</div>
+															</c:otherwise>
 		                                           		</c:choose>
 		                                           		
 		                                           	<%  }else{
@@ -656,28 +653,37 @@ function repins(no) {
     var star = $('#star1-score').val();
     var phot = $('input:file#phot').val();
 
-    $.ajax({
-        type : "POST",
-        data : {
-            "meno" : no ,
-            "cno" : cno , 
-            "conts" : conts , 
-            "star" : star ,
-            "phot" : phot 
-        },
-        url : "repinsert",
-        success : function() {
-            swal({
-                text : "클래스 후기가 등록되었습니다",
-                icon : "success",
-                button : "확인",
-              })
-            location.href="detail?no="+${detailclass.no};
-        },error : function(error,status){
-            console.log(error);
-            console.log(status);
-        }
-    });
+    if(conts == ""){
+        swal({
+            text : "내용이 비어있으면 후기가 등록이 안됩니다.",
+            button : "확인",
+          })
+    } else {
+	    $.ajax({
+	        type : "POST",
+	        data : {
+	            "meno" : no ,
+	            "cno" : cno , 
+	            "conts" : conts , 
+	            "star" : star ,
+	            "phot" : phot 
+	        },
+	        url : "repinsert",
+	        success : function() {
+	            swal({
+	                text : "클래스 후기가 등록되었습니다",
+	                icon : "success",
+	                button : "확인",
+	              })
+	            location.href="detail?no="+${detailclass.no};
+	        },error : function(error,status){
+	            swal({
+	                text : "이미 후기를 등록을 하셨습니다.",
+	                button : "확인",
+	              })
+	        }
+	    });
+    }
 }
 
 function clslikeins(no) {
@@ -689,14 +695,14 @@ function clslikeins(no) {
 	            "cno" : cno , 
 	            "meno" : no
 	        },
-	        url : "clslikeins" ,
+	        url : "clslikeins.do" ,
 	        success : function() {
 	            swal({
 	                text : "찜클래스가 등록되었습니다",
 	                icon : "success",
 	                button : "확인",
 	              })
-	            location.href="detail?no="+${detailclass.no};
+	            location.reload();
 	        },error : function(error,status){
 	            swal({
 	                text : "이미 찜클래스에 등록된 클래스입니다.",
@@ -733,13 +739,13 @@ $('.clickedit').hide()
 </script>
 <script type="text/javascript">
  var stmnLEFT = 0; // 오른쪽 여백 
- var stmnGAP1 = 0; // 위쪽 여백 
+ var stmnGAP1 = -200; // 위쪽 여백 
  var stmnGAP2 = 50; // 스크롤시 브라우저 위쪽과 떨어지는 거리 
- var stmnBASE = 150; // 스크롤 시작위치 
+ var stmnBASE = 0; // 스크롤 시작위치 
  var stmnActivateSpeed = 35; //스크롤을 인식하는 딜레이 (숫자가 클수록 느리게 인식)
  var stmnScrollSpeed = 20; //스크롤 속도 (클수록 느림)
  var stmnTimer; 
- var stmnsub = 190; // stmtEndPoint 맞춰줄 때 쓴다.
+ var stmnsub = 300; // stmtEndPoint 맞춰줄 때 쓴다.
  
  function RefreshStaticMenu() { 
   var stmnStartPoint, stmnEndPoint; 

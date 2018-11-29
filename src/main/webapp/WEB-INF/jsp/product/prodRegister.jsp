@@ -57,85 +57,67 @@ div.row.imgDiv {
 <body>
 	<div class="container">
 		<div class="row">
-		
-		<!-- 상품명 -->
-            <div class="col-lg-12" style="margin-top: 30px">
-                <div
-                    style="color: white; background-color: gray; padding: 5px; display: inline; border-radius: 3px;">상품명</div>
-                <p>
-                    <input placeholder="상품명을 입력하세요"
-                        style="width: 100%; height: 50px; font-size: 25px">
-                </p>
-            </div>
-            <!-- </div class="col-lg-12"> -->
-		
+			<form id="myForm" action="test" method="post" enctype="multipart/form-data">
 
-            <!-- file input -->
-			<div class="col-lg-12">
-				<form id="myForm" action="test" method="post"
-					enctype="multipart/form-data">
 
-					<input type="file" id="files" name="files" multiple
-						accept="image/*"><br />
+				<!-- file input -->
+				<div class="col-lg-12">
+				
+					<div class="col-lg-7">
+						<div class="row">
+							<!-- 상품명 -->
+							<div style="margin-top: 30px">
+								<div
+									style="color: white; background-color: gray; padding: 5px; display: inline; border-radius: 3px;">상품명</div>
+								<p>
+									<input name="titl" placeholder="상품명을 입력하세요"
+										style="width: 100%; height: 50px; font-size: 25px">
+								</p>
+							</div><!-- </div class="col-lg-12"> -->
+						</div><!-- </div class="row">  -->
+					</div><!-- </div class="col-lg-7"> -->
 
+
+					<div class="col-lg-5">
+						<div class="row">
+							<!-- summernote -->
+							<div class="col-lg-12" style="margin-top: 30px">
+								
+								<!-- 가격, 택배비(무료배송), 인증서  -->
+								<div class="col-lg-12">
+									재고　 <input type="text" id="stock" name="stock" style="margin-bottom: 10px"><br>
+									가격　 <input type="text" name="pric" style="margin-bottom: 10px"><br>
+									택배비 <input type="text" class="inputid" style="margin-bottom: 10px"/>
+									무료배송<input type='checkbox' data-toggle='inputid'/><br>
+                                    
+									소분류 <select name="certs">
+										<c:forEach items="${stagList}" var="sl">
+											<option value="">${sl.name}</option>
+										</c:forEach>
+									   </select>
+									   
+								</div>
+							</div><!-- </div class="col-lg-12" style="margin-top: 30px"> -->
+						</div> <!-- </div class="row"> -->
+					</div> <!-- </div class="col-lg-5"> -->
+
+					<input type="file" id="files" name="files" multiple accept="image/*"/><br />
 					<div id="selectedFiles"></div>
+				</div><!--</div class="col-lg-12"> -->
 
-					<!-- 위치라눙 -->
-					<input type="submit" value="보내기">
-				</form>
-
-			</div>
-
-
-			
-
-
-			<!-- summernote -->
-			<div class="col-lg-12" style="margin-top: 30px">
-				<!-- 밑에 div에  class="category-list" <<이거생략함 -->
-				<div
-					style="color: white; background-color: gray; padding: 5px; display: inline; border-radius: 3px;">상품소개</div>
-				<div id="summernote" style="position: auto">
-					<div contenteditable="true" placeholder="이곳에 내용을 입력해주세요."></div>
+				<div class="col-lg-12">
+					<div style="color: white; background-color: gray; padding: 5px; display: inline; border-radius: 3px;">상품소개</div>
+					<textarea id="summernote" style="position: auto"></textarea> 
 				</div>
 
-				<!-- 가격, 택배비(무료배송), 인증서  -->
-				<div>
-				       재고　 <input type="text" style="margin-bottom: 10px"><br>      
-				          
-					가격　 <input type="text" style="margin-bottom: 10px"><br>
-					<form>
-						택배비 <input name="textbox" type="text" style="margin-bottom: 10px">
-						무료배송<input name="chkbox" type="checkbox"
-							onClick="checkDisable(this.form)">
-					</form>
-					소분류 <select name="cert">
-						<c:forEach items="${stagList}" var="sl">
-							<option value="">${sl.name}</option>
-						</c:forEach>
-					</select>
-					
-					<%-- 소분류 <select name="cert">
-                        <c:forEach items="${certList}" var="cl">
-                            <option value="">${cl.classes.titl}</option>
-                        </c:forEach>
-                    </select> --%>
+				<!-- 등록 취소버튼 -->
+				<div class="col-lg-12 text-right">
+					<input type="submit" value="등록"> 
+					<input type="reset" value="취소">
 				</div>
-			</div>
-			<!-- </div class="col-lg-12"> -->
-		</div>
-		<!-- </div class="row"> -->
-
-		<!-- 등록 취소버튼 -->
-		<div class="text-right">
-
-			<input type="submit" value="등록"> <input type="reset"
-				value="취소">
-		</div>
-
-
-	</div>
-	<!-- </div class="container"> -->
+			</form>
+		</div><!-- </div class="row"> -->
+	</div><!-- </div class="container"> -->
 
 	<footer>
 		<div class="col px-0">
@@ -165,22 +147,15 @@ div.row.imgDiv {
 <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
 
 
-
-
-
+<!-- summernote -->
 <script>
     $(document).ready(function() {
         $('#summernote').summernote();
     });
 
-    function checkDisable(frm) {
-        if (frm.chkbox.checked == true) {
-            frm.textbox.disabled = true;
-        } else {
-            frm.textbox.disabled = false;
-        }
-    }
 </script>
+
+<!-- multiple file input -->
 <script>
     var selDiv = "";
 
@@ -234,7 +209,7 @@ div.row.imgDiv {
                 html += "<button onclick='removeImg(" + j + ")'>" + "삭제"
                         + "</button>";
                 html += "</div>";
-                if (j < filesArr.length-1) {
+                if (j < filesArr.length - 1) {
                     html += "<div class='col-lg-12'>";
                     html += "<hr>";
                     html += "</div>";
@@ -255,5 +230,23 @@ div.row.imgDiv {
         console.log(no);
         $("div#imgDiv" + no).remove();
     }
+</script>
+
+<!-- checkbox disable input -->
+<script>
+function toggle(target) {
+    var toggle = $(target).data("toggle");
+    if (toggle) {
+        var obj = $("." + toggle);
+        if (target.checked) {
+            obj.attr("disabled", "disabled");
+            $('.inputid').val(""); 
+            
+        } else {
+            obj.removeAttr("disabled");
+        }
+    }
+}
+$("input:checkbox").each(function(){toggle(this);}).on('input',function(){toggle(this);});
 </script>
 </html>

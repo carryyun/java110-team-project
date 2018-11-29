@@ -32,7 +32,5 @@ public class ClassRepServiceImpl implements ClassRepService{
 
     return classRepDao.repinsert(classRep);
   }
-  
-  
 
 }

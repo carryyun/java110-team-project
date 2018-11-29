@@ -181,12 +181,14 @@ public class ClassController {
     
     List<Timetable> clstimelist = timetableService.findByCno(no);
     
+//    List<ClassRep> clsrepcount = classrepService.countByCnoAll(no);
     
     model.addAttribute("clsreqlist",clsreqlist);
     model.addAttribute("detailclass",detailclass);
     model.addAttribute("clsqnalist",clsqnalist);
     model.addAttribute("clsfilelist",clsfilelist);
     model.addAttribute("clstimelist",clstimelist);
+//    model.addAttribute("clsrepcount",clsrepcount);
   }
   
   @RequestMapping("findByptno")
