@@ -27,20 +27,20 @@
         <div class="row">
 
             <!-- 게시판 시작-->
-			<div class="col-lg-12 col-lg-offset-12">
-			    <p><span style="font-size: 45px; position: relative; right;"><strong>신고 완료 목록</strong></span></p>
-			
-			<div class="col-lg-3" id="serch-men">
-			    <form action="#" method="get">
-			        <div class="input-group">
-		                <input class="form-control" id="system-search" name="q" placeholder="Search for" required>
-		                <span class="input-group-btn">
-		                    <button type="submit" class="btn btn-default"><i class="fas fa-search fa-1x"></i></button>
-		                </span>
-		            </div>
-		        </form>
-			    </div>
-			</div>
+            <div class="col-lg-12 col-lg-offset-12">
+                <p><span style="font-size: 45px; position: relative; right;"><strong>신고 완료 목록</strong></span></p>
+            
+            <div class="col-lg-3" id="serch-men">
+                <form action="#" method="get">
+                    <div class="input-group">
+                        <input class="form-control" id="system-search" name="q" placeholder="Search for" required>
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-default"><i class="fas fa-search fa-1x"></i></button>
+                        </span>
+                    </div>
+                </form>
+                </div>
+            </div>
 
             <div class="col-lg-12">
                 <br />
@@ -129,14 +129,14 @@
                                             <td>${fl.titl}</td>
                                             <td>
                                             <c:choose>
-	                                            <c:when test="${fn:length(fl.conts) >10}">
-	                                              <a class="button" style="color: #007bff;cursor: pointer;" onclick="viewConts('#visible${j.index}');">
-	                                              ${fn:substring(fl.conts,0,10)} ...
-	                                              </a>
-	                                            </c:when>
-	                                            <c:otherwise>
-	                                              ${fl.conts}
-	                                            </c:otherwise>
+                                                <c:when test="${fn:length(fl.conts) >10}">
+                                                  <a class="button" style="color: #007bff;cursor: pointer;" onclick="viewConts('#visible${j.index}');">
+                                                  ${fn:substring(fl.conts,0,10)} ...
+                                                  </a>
+                                                </c:when>
+                                                <c:otherwise>
+                                                  ${fl.conts}
+                                                </c:otherwise>
                                             </c:choose>
                                             </td>
                                             <td><a href="${fl.url}">${fl.url}</a></td>
