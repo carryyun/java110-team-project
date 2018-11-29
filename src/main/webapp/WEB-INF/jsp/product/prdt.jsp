@@ -309,7 +309,6 @@
                 html+='<button type="button" class="btn btn-default" data-dismiss="modal" role="button">취소</button>';
                 html+=' </form>';
                 var setDiv = document.querySelector("#modal-body");
-                console.log(setDiv);
                 setDiv.innerHTML=html;
             }
             

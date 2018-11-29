@@ -42,15 +42,7 @@ public class ProductServiceImpl implements ProductService {
     return productDao.findAllByMeno(params);
   }
 
-  @Override
-  public List<Product> listByStno(int pageNo, int pageSize, int stno) {
-    HashMap<String, Object> params = new HashMap<>();
-    params.put("rowNo", (pageNo - 1) * pageSize);
-    params.put("size", pageSize);
-    params.put("smallno", stno);
 
-    return productDao.findAllByStno(params);
-  }
 
   @Override
   public int add(Product product) {
@@ -65,7 +57,7 @@ public class ProductServiceImpl implements ProductService {
 
   @Override
   public List<Product> findAllByList() {
-
+    
     return productDao.findAllByList();
   }
 
@@ -74,9 +66,19 @@ public class ProductServiceImpl implements ProductService {
     HashMap<String, Object> params = new HashMap<>();
     params.put("rowNo", (pageNo - 1) * pageSize);
     params.put("size", pageSize);
-    params.put("middleno", mtno);
+    params.put("mtno", mtno);
 
     return productDao.findAllByMtno(params);
+  }
+  
+  @Override
+  public List<Product> listByStno(int pageNo, int pageSize, int stno) {
+    HashMap<String, Object> params = new HashMap<>();
+    params.put("rowNo", (pageNo - 1) * pageSize);
+    params.put("size", pageSize);
+    params.put("smallno", stno);
+
+    return productDao.findAllByStno(params);
   }
 
 }

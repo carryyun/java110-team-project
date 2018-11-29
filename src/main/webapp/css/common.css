@@ -62,3 +62,7 @@ li a{
 div a{
     text-decoration: none !important;
 }
+
+a.selected{
+  font-weight: 800;
+}

@@ -96,6 +96,31 @@ public class ProductController {
 
     model.addAttribute("productList", productList);
   }
+  @GetMapping("prdtCate")
+  public void prdt(int mtno, Model model) {
+    List<Product> productList = productService.listByMtno(10, 5, mtno);
+    
+    
+    List<ProductPopul> pp_list = productPopulService.list();
+    List<ProductPopul> pp_product = new ArrayList<>();
+
+    for (ProductPopul p : pp_list) {
+
+      pp_product.add(p);
+    }
+
+    ObjectMapper mapper = new ObjectMapper();
+    String jsonText = "";
+    try {
+
+      jsonText = mapper.writeValueAsString(pp_product);
+      model.addAttribute("pp_list", jsonText);
+    } catch (JsonProcessingException e) {
+      System.out.println(e.getMessage());
+    }
+
+    model.addAttribute("productList", productList);
+  }
 
 
 

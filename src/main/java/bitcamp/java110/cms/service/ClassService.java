@@ -5,6 +5,8 @@ import bitcamp.java110.cms.domain.Classes;
 
 public interface ClassService {
   List<Classes> list();
+  List<Classes> listByBtno(int pageNo, int pageSize, int btno);
+  List<Classes> listByMtno(int pageNo, int pageSize, int mtno);
   List<Classes> classList(int no);
   List<Classes> findAllByList();
   Classes findbyptno(int ptno);

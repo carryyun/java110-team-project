@@ -27,7 +27,7 @@
           <ul class="navbar-nav" id="mainUl" style="float: left;">
             <c:forEach  items="${BTlist}" var="bt" varStatus="i">
               <li class="nav-item" style="margin:0 auto;display: inline-block;">
-                <a class="nav-link" href="index.html" id="menu0${i.count}">${bt.name}</a>
+                <a class="nav-link" href="../class/clsCate?no=${bt.no}" id="menu0${i.count}">${bt.name}</a>
               </li>
             </c:forEach>
           </ul>
@@ -69,7 +69,7 @@
 
     <!-- 카테고리 서브메뉴 -->
     <script>
-    var timeset=1;
+    /* var timeset=1;
         $(document).ready(function(){
       var submenu=new Array();
       var sub_tmps=document.getElementById("menusubs").getElementsByTagName("ul");
@@ -112,6 +112,6 @@
             }
          }
       }
-        });
+        }); */
 </script>
 </html>

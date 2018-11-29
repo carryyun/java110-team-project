@@ -25,18 +25,29 @@ public class Classes {
   
   private Mentee mentee;
   private MiddleTag middleTag;
+  private BigTag bigTag;
   private Mentor mentor;
   private ClassFile classFile;
   private ClassLike classLike;
 
+  
   @Override
   public String toString() {
     return "Classes [no=" + no + ", titl=" + titl + ", conts=" + conts + ", pric=" + pric
         + ", rgdt=" + rgdt + ", time=" + time + ", capa=" + capa + ", cfile=" + cfile + ", tinfo="
         + tinfo + ", cinfo=" + cinfo + ", pstno=" + pstno + ", basAddr=" + basAddr + ", detAddr="
         + detAddr + ", edt=" + edt + ", mono=" + mono + ", mtno=" + mtno + ", star=" + star
-        + ", stat=" + stat + ", mentee=" + mentee + ", middleTag=" + middleTag + ", mentor="
-        + mentor + ", classFile=" + classFile + ", classLike=" + classLike + "]";
+        + ", stat=" + stat + ", mentee=" + mentee + ", middleTag=" + middleTag + ", bigTag="
+        + bigTag + ", mentor=" + mentor + ", classFile=" + classFile + ", classLike=" + classLike
+        + "]";
+  }
+
+  public BigTag getBigTag() {
+    return bigTag;
+  }
+
+  public void setBigTag(BigTag bigTag) {
+    this.bigTag = bigTag;
   }
 
   public String getStat() {
