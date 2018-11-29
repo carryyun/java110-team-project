@@ -1,4 +1,4 @@
-<%@ page import="bitcamp.java110.cms.domain.ClassOrder"%>
+<%@ page import="bitcamp.java110.cms.domain.Classes"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -13,24 +13,24 @@
 					<tr id="th-pay">
 						<th width="5%">No.</th>
 						<th width="40%">클래스</th>
-						<th width="20%">카테고리</th>
-						<th width="20%">수업기간</th>
-						<th width="15%">멘티보기</th>
+						<th width="30%">카테고리</th>
+						<th width="25%">멘티</th>
 					</tr>
 				</thead>
 				<tbody>
-					<%--  <c:forEach items="${colist}" var="c" varStatus="i"> --%>
+					 <c:forEach items="${cmanage}" var="c" varStatus="i">
 					<tr id="tb-pay">
-						<td>${i.count}1</td>
-						<td><a href='#'>2${c.classes.titl}</a></td>
-						<td>${c.mentornick}3</td>
-						<td>${c.timetable.date}4</td>
-						<td> <button class="btn-primary" style="width:70px;">멘티!</button></td>
+						<td>${i.count}</td>
+						<td><a href='#'>${c.titl}</a></td>
+						<td>${c.bigTag.name}-${c.bigTag.name}</td>
+						<td> <button class="btn-primary" style="width:100px;"> ${c.timetable.capa}/ ${c.capa} 명</button></td>
+						<!-- capa - timetalbe.capa  jstl 연산 해야함 바탕화면 조인킹 ㄱㄱ   -->
 					</tr>
-					<%--         </c:forEach>      --%>
+					        </c:forEach>     
  
 				</tbody>
-			</table>
+				
+			<%-- </table>
 		</div>
 		
 		<div class="panel-body">
@@ -46,7 +46,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <%--  <c:forEach items="${colist}" var="c" varStatus="i"> --%>
+                     <c:forEach items="${colist}" var="c" varStatus="i">
                     <tr id="tb-pay">
                         <td>${i.count}1</td>
                         <td><a href='#'>멘티예티</a></td>
@@ -59,11 +59,11 @@
                         </td>
                         <td><img src="/upload/img/rpt-before.png" style=" width:50%; height:auto;"></td>
                     </tr>
-                    <%--         </c:forEach>      --%>
+                            </c:forEach>     
                 </tbody>
                 
                 <tbody>
-                    <%--  <c:forEach items="${colist}" var="c" varStatus="i"> --%>
+                     <c:forEach items="${colist}" var="c" varStatus="i">
                     <tr id="tb-pay">
                         <td>${i.count}2</td>
                         <td><a href='#'>멘티예티2</a></td>
@@ -76,14 +76,17 @@
                         </td>
                         <td><img src="/upload/img/rpt-after.png" style=" width:50%; height:auto;"></td>
                     </tr>
-                    <%--         </c:forEach>      --%>
+                            </c:forEach>     
                 </tbody>
+                
+                 --%>
             </table>
+            
 		</div>
 		
 		
 	</div>
-</div>
+</div> 
 
 
 

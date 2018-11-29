@@ -153,24 +153,24 @@ function addRept(){
         swal ( "Oops" ,  "유효한 닉네임이 아닙니다." ,  "error" );
     }else{
         
-	    $.ajax({
-	        data : {
-	            type : type,
-	            type_detail : type_detail,
-	            nick : nick,
-	            titl : titl,
-	            conts : conts,
-	            url : url,
-	            meno : 1
-	        },
-	        url : "addreport.do",
-	        success : function() {
-	            /* location.href="#"; */
-	            /* 창닫기 (익스플로러는 작동하는데 크롬에서 디버깅뜸)
-	            window.open("about:blank","_self").close(); */
-	        }
-	        
-	    });
+        $.ajax({
+            data : {
+                type : type,
+                type_detail : type_detail,
+                nick : nick,
+                titl : titl,
+                conts : conts,
+                url : url,
+                meno : 1
+            },
+            url : "addreport.do",
+            success : function() {
+                /* location.href="#"; */
+                /* 창닫기 (익스플로러는 작동하는데 크롬에서 디버깅뜸)
+                window.open("about:blank","_self").close(); */
+            }
+            
+        });
         
     }
     

@@ -9,31 +9,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Jackson Template</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <meta name="author" content="" />
+    <title>관리자 페이지 </title>
 
-    <!-- Facebook and Twitter integration -->
-    <meta property="og:title" content="" />
-    <meta property="og:image" content="" />
-    <meta property="og:url" content="" />
-    <meta property="og:site_name" content="" />
-    <meta property="og:description" content="" />
-    <meta name="twitter:title" content="" />
-    <meta name="twitter:image" content="" />
-    <meta name="twitter:url" content="" />
-    <meta name="twitter:card" content="" />
-
-
-    <!--    버튼-->
-    <link rel="stylesheet" href="/css/mypagecss/button/skyblue-gradient.css">
-    <link rel="stylesheet" href="/css/mypagecss/button/switchbtn.css">
-    <link rel="stylesheet" href="/css/mypagecss/button/flipbtn.css">
-    <link rel="stylesheet" href="/css/mypagecss/button/togglebtn.css">
-    <!--  <link rel="stylesheet" href="/css/mypagecss/button/modal.css"> -->
-    <!-- <link rel="stylesheet" href="/css/mypagecss/button/slider.css"> -->
     
     <!-- Animate.css -->
     <link rel="stylesheet" href="/css/mypagecss/animate.css">
@@ -45,31 +22,16 @@
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <!-- Load JS-->
     <script src=/js/mypagejs/hideshow.js></script> 
-        
+    <!-- jQuery -->
+    <script src="/js/mypagejs/jquery.min.js"></script>
+    <!-- Waypoints -->
+    <script src="/js/mypagejs/jquery.waypoints.min.js"></script>
+    <!-- Counters -->
+    <script src="/js/mypagejs/jquery.countTo.js"></script>
     
-    <script>
-    
-     /* menu4 btn 스크립트 */ 
-    function div_OnOff(v){
-        // 라디오 버튼 value 값 조건 비교
-        if(v == "3"){
-         document.getElementById(id="con3").style.display = ""; // 보여줌
-         document.getElementById(id="con2").style.display = "none"; // 숨김
-         
-        }
-        else if(v == "2"){
-            document.getElementById(id="con2").style.display = ""; // 보여줌
-            document.getElementById(id="con3").style.display = "none"; // 숨김
-            
-           }
-        else{
-         document.getElementById(id="con3").style.display = "none"; // 숨김
-         document.getElementById(id="con2").style.display = "none"; // 숨김
-        }
-        
-        
-       }
-    </script>
+    <!-- MAIN JS -->
+    <script src="/js/mypagejs/main.js"></script>
+    <script src="/js/mypagejs/bootstrap.min.js"></script>
 
     <style>
 
@@ -765,14 +727,5 @@
 
 
 </body>
-    <!-- jQuery -->
-    <script src="/js/mypagejs/jquery.min.js"></script>
-    <!-- Waypoints -->
-    <script src="/js/mypagejs/jquery.waypoints.min.js"></script>
-    <!-- Counters -->
-    <script src="/js/mypagejs/jquery.countTo.js"></script>
-    
-    <!-- MAIN JS -->
-    <script src="/js/mypagejs/main.js"></script>
-    <script src="/js/mypagejs/bootstrap.min.js"></script>
+ 
 </html>
