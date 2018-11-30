@@ -102,12 +102,13 @@ div.row.imgDiv {
 				<div class="col-lg-5">
 					<div class="row">
 						<!-- summernote -->
-						<div class="col-lg-12" style="margin-top: 30px">
+						<div class="col-lg-12 px-0" style="margin-top: 30px">
 
-							<!-- 가격, 택배비(무료배송), 인증서  -->
-							<div class="col-lg-12 text-right">
+							<!-- 가격, 택배비(무료배송), 인증서  --><!-- text-right 일단 지워봄 -->
+							<div class="col-lg-8 px-4 py-3" style="border : 1px solid silver; float:right">
+							    <div style="text-align: left;">      
 							         재고　 <input type="text" class="detailInfo" id="stock" name="stock"> 
-							         가격　 <input type="text" class="detailInfo" name="pric"><br>
+							         가격 <input type="text" class="detailInfo" name="pric"><br>
 							         택배비 <input type="text" class="inputid detailInfo" name="deli" />
 							         무료배송<input type='checkbox' data-toggle='inputid'/><br>
 								소분류 <select name="stno">
@@ -115,6 +116,7 @@ div.row.imgDiv {
 										<option value="${sl.no}">${sl.name}</option>
 									</c:forEach>
 								</select>
+								</div>
 
 							</div>
 						</div>
@@ -176,6 +178,7 @@ div.row.imgDiv {
 	src="https://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
 <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
 <!-- summernote -->
 <script>
@@ -270,8 +273,11 @@ div.row.imgDiv {
     }
 </script>
 
+
+
 <!-- checkbox disable input -->
 <script>
+
     function toggle(target) {
         var toggle = $(target).data("toggle");
         if (toggle) {
