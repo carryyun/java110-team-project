@@ -27,8 +27,9 @@
 <link href="/css/common.css" rel="stylesheet">
 
 
+
 <style>
-.note-editable {
+div.note-editable {
 	height: 300px;
 }
 
@@ -53,20 +54,28 @@ div.row.imgDiv {
 	height: 70px;
 }
 
-/* div 안에 placeholder쓰기 위해*/
-[contenteditable=true]:empty:before {
-	content: attr(placeholder);
+.detailInfo{
+    margin-bottom: 10px;
+    width: 70px;
+    
 }
+
 </style>
 
 </head>
 <body>
 	<div class="container">
 		<div class="row">
-
+		
+		
+            <div class="col-lg-12">
+                <jsp:include page="../headerMain.jsp"></jsp:include>
+            </div>
+	
             <form id="myForm" action="addProduct.do" method="post" enctype="multipart/form-data">
             <input type="hidden" name="ctno" value="${ctno}">
             <input type="hidden" name="meno" value="${sessionScope.loginUser.no}">
+            
             
 			<!-- file input -->
 			<div class="col-lg-12">
@@ -74,7 +83,7 @@ div.row.imgDiv {
 				<div class="col-lg-7">
 					<div class="row">
 						<!-- 상품명 -->
-						<div style="margin-top: 30px">
+						<div class="col-lg-12 px-0" style="margin-top: 30px">
 							<div
 								style="color: white; background-color: gray; padding: 5px; display: inline; border-radius: 3px;">상품명</div>
 							<p>
@@ -96,13 +105,12 @@ div.row.imgDiv {
 						<div class="col-lg-12" style="margin-top: 30px">
 
 							<!-- 가격, 택배비(무료배송), 인증서  -->
-							<div class="col-lg-12">
-								재고 <input type="text" id="stock" name="stock"
-									style="margin-bottom: 10px"><br> 가격 <input
-									type="text" name="pric" style="margin-bottom: 10px"><br>
-								택배비 <input type="text" name="deli" class="inputid"
-									style="margin-bottom: 10px" /> 무료배송<input type='checkbox'
-									data-toggle='inputid' /><br> 소분류 <select name="stno">
+							<div class="col-lg-12 text-right">
+							         재고　 <input type="text" class="detailInfo" id="stock" name="stock"> 
+							         가격　 <input type="text" class="detailInfo" name="pric"><br>
+							         택배비 <input type="text" class="inputid detailInfo" name="deli" />
+							         무료배송<input type='checkbox' data-toggle='inputid'/><br>
+								소분류 <select name="stno">
 									<c:forEach items="${stagList}" var="sl">
 										<option value="${sl.no}">${sl.name}</option>
 									</c:forEach>
@@ -119,13 +127,13 @@ div.row.imgDiv {
 				
 
 					<input type="file" id="files" name="files" multiple
-						accept="image/*" /><br />
+						accept="image/*" />
 				<div id="selectedFiles"></div>
 			</div>
 			<!--</div class="col-lg-12"> -->
 
 			<div class="col-lg-12">
-				<div
+				<br><div
 					style="color: white; background-color: gray; padding: 5px; display: inline; border-radius: 3px;">상품소개</div>
 				<textarea id="summernote" name="conts" style="position: auto"></textarea>
 			</div>
@@ -173,6 +181,10 @@ div.row.imgDiv {
 <script>
     $(document).ready(function() {
         $('#summernote').summernote();
+        $('div.note-popover.popover.in.note-link-popover.bottom').remove();
+        $('div.note-popover.popover.in.note-image-popover.bottom').remove();
+        $('div.popover-content.note-children-container').remove();
+        $('div.arrow').remove();
     });
 </script>
 
