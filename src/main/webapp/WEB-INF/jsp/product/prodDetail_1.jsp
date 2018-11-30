@@ -56,6 +56,7 @@
 										<dt><h4 class="mt-0">수량</h4></dt>
 										<dd>
 											<select class="form-control form-control-lg col-8">
+												
 												<option>1</option>
 												<option>2</option>
 												<option>3</option>
