@@ -76,7 +76,7 @@
                                 data-nav-section="1">메인 화면 </a></li>
                                 <li><a
                                 onclick="location.href='csList'"
-                                data-nav-section="10">문의 목록 </a></li>
+                                data-nav-section="10" style=" color: #2c98f0; font-weight:bold;">문의 목록 </a></li>
                             <li><a
                                 onclick="location.href='mentorreqlist'"
                                 data-nav-section="2">멘토 신청 목록</a></li>
@@ -85,7 +85,7 @@
                                 data-nav-section="3">클래스 신청 목록</a></li>
                             <li><a
                                 onclick="location.href='reportList'"
-                                data-nav-section="4" style=" color: #2c98f0; font-weight:bold;">신고 접수 목록</a></li>
+                                data-nav-section="4" >신고 접수 목록</a></li>
                             <li><a
                                 onclick="location.href='reportFinishList'"
                                 data-nav-section="5">신고 완료 목록</a></li>
@@ -108,14 +108,13 @@
 
             <div id="colorlib-main">
 
-                <section class="colorlib-experience" data-section="4">
+                <section class="colorlib-experience" data-section="10">
                     <div class="colorlib-narrow-content">
                         <div class="row">
 
                             <div class="about-desc">
 
-                                <h2 class="colorlib-heading">신고 접수
-                                    화면</h2>
+                                <h2 class="colorlib-heading">문의 목록</h2>
 
                                 <div class="col-lg-12">
                                     <div class="col-lg-5" id="serch-men">
@@ -147,11 +146,11 @@
                                         <thead>
                                             <tr>
                                                 <th class="text-center">게시글번호</th>
-                                                <th class="text-center">신고유형</th>
-                                                <th class="text-center">분류</th>
                                                 <th class="text-center">제목</th>
+                                                <th class="text-center">내용</th>
                                                 <th class="text-center">글쓴이</th>
-                                                <th class="text-center">신고날짜</th>
+                                                <th class="text-center">질문 등록일</th>
+                                                <th class="text-center">답변 유무</th>
                                                 <th class="text-center">상세보기</th>
                                             </tr>
                                         </thead>
@@ -163,15 +162,14 @@
                                                     <td
                                                         class="text-center">${i.count}</td>
                                                     <td
-                                                        class="text-center">${rl.type}</td>
+                                                        class="text-center">${rl.titl}</td>
                                                     <td
                                                         class="text-center">${rl.type_detail}</td>
-                                                    <td
-                                                        class="text-center">${rl.titl}</td>
                                                     <td
                                                         class="text-center">${rl.menteeNick}</td>
                                                     <td
                                                         class="text-center">${rl.rtdt}</td>
+                                                    <td class="text-center">답변 유무</td>
                                                     <td
                                                         class="text-center"><button
                                                             class="btn btn-light" id="block-cho">
@@ -230,7 +228,7 @@
                                     <div id="popup${i.index}"
                                         class="overlay">
                                         <div class="popupH">
-                                            <h2>신고 상세 목록</h2>
+                                            <h2>문의 상세 보기</h2>
                                             <a class="close" href="#">×</a>
                                             <div class="content">
                                                 <br />
@@ -245,42 +243,14 @@
                                                                 style="list-style-type: none;">
                                                                 <tbody>
                                                                     <tr>
-                                                                        <td><li><span
-                                                                                style="font-size: 20px;">신고자:
+                                                                        <td colspan="2"><li><span
+                                                                                style="font-size: 20px;">글쓴이:
                                                                             </span>
                                                                                 <span
                                                                                 class="pop-type">${rl.menteeNick}</span></li></td>
-                                                                        <td><li><span
-                                                                                style="font-size: 20px;">피신고자:
-                                                                            </span>
-                                                                                <span
-                                                                                class="pop-type">${rl.mentee2Nick}</span></li></td>
-                                                                        <td><li><span
-                                                                                style="font-size: 20px;">신고유형:
-                                                                            </span>
-                                                                                <span
-                                                                                class="pop-type">${rl.type}</span></li></td>
-                                                                        <td><li><span
-                                                                                style="font-size: 20px;">분류:
-                                                                            </span>
-                                                                                <span
-                                                                                class="pop-type">${rl.type_detail}</span></li></td>
-                                                                    </tr>
-
-                                                                    <tr>
+                                                                        
                                                                         <td
-                                                                            colspan="4"><li><span
-                                                                                style="font-size: 20px;">클래스URL:
-                                                                            </span>
-                                                                                <a
-                                                                                href="${rl.url}"><span
-                                                                                    class="pop-type">${rl.url}</span></a></li></td>
-                                                                    </tr>
-
-
-                                                                    <tr>
-                                                                        <td
-                                                                            colspan="3"><li><span
+                                                                            colspan="7"><li><span
                                                                                 style="font-size: 20px;">제목:
                                                                             </span>
                                                                                 <span
@@ -294,7 +264,7 @@
                                                                     </tr>
                                                                     <tr>
                                                                         <td
-                                                                            colspan="4"
+                                                                            colspan="12"
                                                                             style="height: auto"><li><span
                                                                                 style="font-size: 20px;">내용:
                                                                             </span>

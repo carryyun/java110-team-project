@@ -1,19 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"
-    trimDirectiveWhitespaces="true"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+    pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
-
 <head>
-    <meta charset="UTF-8">
-    <title>Document</title>
+<meta charset="UTF-8">
+<title>Document</title>
 
-    <!-- 부트스트랩-->
-    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
-    integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
- <!-- Bootstrap  -->
+<!-- 필수-->
+<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+    integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+    crossorigin="anonymous">
+
+<!-- css -->
+<link href="/css/master.css" rel="stylesheet">
+
+<!-- Bootstrap  -->
 <link rel="stylesheet" href="/css/masterpagecss/bootstrap.css">
 <!-- Theme style  -->
 <link rel="stylesheet" href="/css/masterpagecss/style.css">
@@ -30,9 +33,6 @@
 <script src="/js/masterpagejs/main.js"></script>
 <script src="/js/masterpagejs/bootstrap.min.js"></script>
 
-    <!-- css -->
-    <link href="/css/master.css" rel="stylesheet">
-
 <style>
 #colorlib-aside {
     overflow: hidden;
@@ -43,11 +43,13 @@
     text-align: center
 }
 </style>
+
+
 </head>
 
 <body>
 
-<div id="colorlib-page">
+    <div id="colorlib-page">
         <div class="container-wrap">
 
             <a href="#"
@@ -58,7 +60,7 @@
                 class="border js-fullheight">
                 <div class="text-center">
                     <div class="author-img"
-                        style="background-image: url(${mentee.phot};"></div>
+                        style="background-image: url(/img/1.jpg);"></div>
                     <h1 id="colorlib-logo">
                         <a href="index.html">관리자</a>
                     </h1>
@@ -68,85 +70,114 @@
                 <nav id="colorlib-main-menu" role="navigation"
                     class="navbar">
                     <div id="navbar" class="collapse">
-                       <ul>
-                            <li><a onclick="location.href='dashBoard'" data-nav-section="1">메인
-                                    화면 </a></li>
-                            <li><a onclick="location.href='mentorreqlist'" data-nav-section="2">멘토
-                                    신청 목록</a></li>
-                            <li><a onclick="location.href='classreqlist'" data-nav-section="3">클래스
-                                    신청 목록</a></li>
-                            <li><a onclick="location.href='reportList'" data-nav-section="4">신고
-                                    접수 목록</a></li>
-                            <li><a onclick="location.href='reportFinishList'" data-nav-section="5">신고
-                                    완료 목록</a></li>
-                            <li><a onclick="location.href='prdtList'" data-nav-section="6">전체
-                                    상품 목록</a></li>
-                            <li><a onclick="location.href='classList'" data-nav-section="7">전체
-                                    클래스 목록 </a></li>
-                            <li><a onclick="location.href='prodOrderList'" data-nav-section="8">주문
-                                    내역</a></li>
+                        <ul>
+                            <li><a
+                                onclick="location.href='dashBoard'"
+                                data-nav-section="1">메인 화면 </a></li>
+                                <li><a
+                                onclick="location.href='csList'"
+                                data-nav-section="10">문의 목록 </a></li>
+                            <li><a
+                                onclick="location.href='mentorreqlist'"
+                                data-nav-section="2">멘토 신청 목록</a></li>
+                            <li><a
+                                onclick="location.href='classreqlist'"
+                                data-nav-section="3">클래스 신청 목록</a></li>
+                            <li><a
+                                onclick="location.href='reportList'"
+                                data-nav-section="4" >신고 접수 목록</a></li>
+                            <li><a
+                                onclick="location.href='reportFinishList'"
+                                data-nav-section="5">신고 완료 목록</a></li>
+                            <li><a
+                                onclick="location.href='prdtList'"
+                                data-nav-section="6">전체 상품 목록</a></li>
+                            <li><a
+                                onclick="location.href='classList'"
+                                data-nav-section="7">전체 클래스 목록 </a></li>
+                            <li><a
+                                onclick="location.href='prodOrderList'"
+                                data-nav-section="8"  style=" color: #2c98f0; font-weight:bold;">상품 주문 내역</a></li>
+                                <li><a onclick="location.href='classOrderList'" data-nav-section="9">
+                                    클래스 신청 목록 </a></li>
                         </ul>
                     </div>
                 </nav>
 
             </aside>
-            
+
             <div id="colorlib-main">
-            
-            <section class="colorlib-experience" data-section="8">
+
+                <section class="colorlib-experience" data-section="8">
                     <div class="colorlib-narrow-content">
                         <div class="row">
 
-                            <h2 class="colorlib-heading">주문 내역</h2>
+                            <div class="about-desc">
 
-            <!-- 게시판 시작-->
-                    <div class="col-lg-12">
-                        <div class="col-lg-5" id="serch-men">
-                            <form action="#" method="get">
-                                <div class="input-group">
-                                    <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
-                                    <input class="form-control" id="system-search" name="q" placeholder="Search for" required>
-                                    <span class="input-group-btn">
-                                        <button type="submit" class="btn btn-default"><i class="fas fa-search fa-3x"></i></button>
-                                    </span>
+                                <h2 class="colorlib-heading">상품 주문 내역</h2>
+
+                                <div class="col-lg-12">
+                                    <div class="col-lg-5" id="serch-men">
+                                        <form action="#" method="get">
+                                            <div class="input-group">
+                                                <input
+                                                    class="form-control"
+                                                    id="system-search"
+                                                    name="q"
+                                                    placeholder="Search for"
+                                                    required> <span
+                                                    class="input-group-btn">
+                                                    <button
+                                                        type="submit"
+                                                        class="btn btn-default">
+                                                        <i
+                                                            class="fas fa-search fa-3x"></i>
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
-                            </form>
-                        </div>
-                    </div>
 
-                    <div class="col-lg-12">
-                        <br />
-                        <br />
-                        <table class="table table-list-search">
-                            <thead>
-                                <tr>
-                                    <th class="text-center">No</th>
-                                    <th class="text-center">카테고리</th>
-                                    <th class="text-center">상품명</th>
-                                    <th class="text-center">구매자</th>
-                                    <th class="text-center">판매자</th>
-                                    <th class="text-center">가격</th>
-                                    <th class="text-center">결제일</th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
+                                <div class="col-lg-12">
+                                    <br /> <br />
+                                    <table
+                                        class="table table-list-search">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">No</th>
+                                                <th class="text-center">카테고리</th>
+                                                <th class="text-center">상품명</th>
+                                                <th class="text-center">구매자</th>
+                                                <th class="text-center">가격</th>
+                                                <th class="text-center">결제일</th>
+                                                <th class="text-center">상세보기</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
                             <c:forEach items="${productOrderList}" var="pl" varStatus="i">
                                 <tr>
                                     <td class="text-center">${i.count}</td>
                                     <td class="text-center">${pl.stname}</td> <!-- 카테고리 -->
-                                    <td class="text-center"><a class="button" href="#">${pl.prdt_titl}</a></td> <!-- 상품명 -->
+                                    <td class="text-center">${pl.prdt_titl}</td> <!-- 상품명 -->
                                     <td class="text-center">${pl.mete_nick}</td><!-- 구매자 -->
-                                    <td class="text-center">${pl.mete2_nick}</td><!-- 판매자 -->
-                                    <td class="text-center">￦${pl.prdt_pric}</td><!-- 가격 -->
+                                    <td class="text-center">${pl.prdt_pric}원</td><!-- 가격 -->
                                     <td class="text-center bold">${pl.paydt}</td><!--결제일 -->
+                                    <td
+                                                        class="text-center"><button
+                                                            class="btn btn-light" id="block-cho">
+                                                            <a
+                                                                class="button"
+                                                                href="#popup${i.index}" style="color:black;">상세
+                                                                보기</a>
+                                                        </button></td>
                                 </tr>
                             </c:forEach>
                             </tbody>
                         </table>
                     </div>
 
-                    <div class="col-lg-12 text-center"
+                                <div class="col-lg-12 text-center"
                                     id="page-list1">
                                     <nav
                                         aria-label="Page navigation example">
@@ -183,25 +214,115 @@
                                     </nav>
                                 </div>
 
-                </div>
-            </div>
+
+                                <!-- popup-->
+                                <c:forEach items="${productOrderList}"
+                                    var="pl" varStatus="i">
+                                    <div id="popup${i.index}"
+                                        class="overlay">
+                                        <div class="popupH">
+                                            <h2>상품 주문 내역</h2>
+                                            <a class="close" href="#">×</a>
+                                            <div class="content">
+                                                <br />
+                                                <div class="container">
+                                                    <div class="row">
+
+                                                        <div
+                                                            class="col-lg-12">
+                                                            <table
+                                                                class="table table-bordered"
+                                                                id="block-tab"
+                                                                style="list-style-type: none;">
+                                                                <tbody>
+                                                                    <tr>
+                                                                    <td><li><span
+                                                                                style="font-size: 20px;">구매번호:
+                                                                            </span>
+                                                                                <span
+                                                                                class="pop-type">${pl.no }</span></li></td>
+                                                                        <td><li><span
+                                                                                style="font-size: 20px;">구매자:
+                                                                            </span>
+                                                                                <span
+                                                                                class="pop-type">${pl.mete_name }(${pl.mete_nick})</span></li></td>
+                                                                        <td><li><span
+                                                                                style="font-size: 20px;">판매자:
+                                                                            </span>
+                                                                                <span
+                                                                                class="pop-type">${pl.mete2_name }(${pl.mete2_nick})</span></li></td>
+                                                                        <td><li><span
+                                                                                style="font-size: 20px;">판매자 연락처:
+                                                                            </span>
+                                                                                <span
+                                                                                class="pop-type">${pl.mete2_phone}</span></li></td>
+                                                                        
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <td><li><span style="font-size: 20px;">가격:
+                                                                            </span>
+                                                                                <span class="pop-type">${pl.prdt_pric}원</span></li></td>
+                                                                                <td><li><span style="font-size: 20px;">수량:
+                                                                            </span>
+                                                                                <span class="pop-type">${pl.cnt}개</span></li></td>
+                                                                                <td><li><span style="font-size: 20px;">결제방법:
+                                                                            </span>
+                                                                                <span class="pop-type">${pl.payopt}</span></li></td>
+                                                                                <td><li><span style="font-size: 20px;">결제날짜:
+                                                                            </span>
+                                                                                <span class="pop-type">${pl.paydt}</span></li></td>
+                                                                    </tr>
+
+
+                                                                    <tr>
+                                                                        <td
+                                                                            colspan="3"><li><span
+                                                                                style="font-size: 20px;">택배사:
+                                                                            </span>
+                                                                                <span
+                                                                                class="pop-type">${pl.parc_name}</span></li></td>
+                                                                        <td
+                                                                            colspan="3"><li><span
+                                                                                style="font-size: 20px;">송장번호:
+                                                                            </span>
+                                                                                <span
+                                                                                class="pop-type">${pl.parc_no}</span></li></td>
+                                                                    </tr>
+                                                                    
+                                                                   
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        <!-- 12 -->
+                                                        
+                                                    </div>
+                                                    <!-- popup row-->
+                                                </div>
+                                                <!-- popup container -->
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </c:forEach>
+
+                            </div>
+                            <!-- 메인 row-->
+
+                        </div>
+                    </div>
                 </section>
 
-
             </div>
-            <!-- end:colorlib-main -->
         </div>
-        <!-- end:container-wrap -->
     </div>
-    <!-- end:colorlib-page -->
-
-
 </body>
 
 <!-- Bootstrap core JavaScript -->
 <script src="/vendor/jquery/jquery.min.js"></script>
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+<!-- 181121고친거 -->
 <script>
 $(document).ready(function() {
     var activeSystemClass = $('.list-group-item.active');
@@ -249,5 +370,43 @@ $(document).ready(function() {
         }
     });
 });
+
+
+var stopHref = function(event) {
+event.stopPropagation();
+}
+
+var fadeTime = 200;
+function stat(no,name){
+    removeItem(no)
+    $.ajax({
+        data : {
+            meno : no,
+            stat : name
+        },
+        url : "mtstat.do",
+        success : location.href="#"
+    });
+}
+function removeItem(no) {
+    /* Remove row from DOM and recalc cart total */
+    var getRow = document.getElementById("rmv"+no);
+    getRow = $(getRow);
+    getRow.slideUp(fadeTime, function () {
+        getRow.remove();
+    });
+}
+
+function checkItem(){
+    var arr = new Array();
+    var check = $('input:checkbox:checked.men-ck').map(function(){
+        return this.value; }).get().join(",");
+    arr=check.split(',');
+    for(i in arr){
+        stat(arr[i],'N');
+    }
+    
+}
 </script>
+
 </html>

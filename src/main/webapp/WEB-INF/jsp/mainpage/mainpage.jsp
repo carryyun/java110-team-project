@@ -5,7 +5,7 @@
 
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8">  
 <title>하루 - Haru</title>
 
 <%-- 부트스트랩 --%>

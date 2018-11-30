@@ -125,6 +125,7 @@
             cls.titl,
             mete.phot,
             mete.name,
+            mete.nick,
             cls.pric,
             cls.rgdt
         from

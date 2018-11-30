@@ -141,6 +141,7 @@
     <select id="findByMeno2" resultMap="reportMap" parameterType="map">
         SELECT
             mete2.nick as mete2nick,
+            rept.rtno,
             rept.type,
             rept.type_detail,
             rept.titl,
