@@ -28,6 +28,7 @@
         <result column="name"  		property="mentee.name"/>
         <result column="nick"		property="mentee.nick"/>
         <result column="phot"		property="mentee.phot"/>
+        <result column="phone"      property="mentee.phone"/>
         
         <result column="mtno"		property="middleTag.mtno"/>
         <result column="mtname"		property="middleTag.name"/>
@@ -53,10 +54,11 @@
         <result column="mono"       property="mono"/>
         <result column="mtno"       property="mtno"/>
         <result column="star"       property="star"/>
-        <result column="mtname"       property="middleTag.name"/>
+        <result column="mtname"     property="middleTag.name"/>
         <result column="btno"       property="bigTag.no"/>
-        <result column="btname"       property="bigTag.name"/>
+        <result column="btname"     property="bigTag.name"/>
         <result column="nick"       property="mentee.nick"/>
+        <result column="name"       property="mentee.name"/>
     </resultMap>
     
     <resultMap type="Classes" id="classMapMypage">
@@ -126,6 +128,7 @@
             mete.phot,
             mete.name,
             mete.nick,
+            mete.phone,
             cls.pric,
             cls.rgdt
         from
@@ -248,14 +251,13 @@
     </update>
     
     <select id="findByStat" resultMap="classMapOrigin" parameterType="string">
-        SELECT
-            *
-        FROM
-            p_cls
-        where
-            stat = #{stat}
-        order by
-            cno DESC;
+        select *
+        from p_cls cls inner join p_mete mete
+            on cls.mtno = mete.meno
+        inner join p_mtag mtag
+            on cls.mtno = mtag.mtno
+        where cls.stat=#{stat}
+        order by cno DESC;
     </select>
     
     
@@ -291,6 +293,14 @@
        
     </select>
     
+    <update id="statupdate" parameterType="Classes">
+    update p_cls
+        <set>
+            <if test="stat != null">stat = #{stat}</if>
+        </set>
+       where 
+        cno = #{no}
+    </update>
     
 </mapper>
 

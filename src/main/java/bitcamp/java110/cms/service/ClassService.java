@@ -21,4 +21,6 @@ public interface ClassService {
   
   //마이페이지 - 클래스 관리
   List<Classes> findByMono(int mono);
+  int statupdate(Classes classes);
+  
 }

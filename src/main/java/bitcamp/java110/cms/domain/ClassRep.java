@@ -15,12 +15,14 @@ public class ClassRep {
   
   private Classes classes;
   private Mentee mentee;
+  private Mentor mentor;
   
   
-  @Override
-  public String toString() {
-    return "ClassRep [no=" + no + ", meno=" + meno + ", cno=" + cno + ", titl=" + titl + ", conts="
-        + conts + ", star=" + star + ", phot=" + phot + ", rgdt=" + rgdt + "]";
+  public Mentor getMentor() {
+    return mentor;
+  }
+  public void setMentor(Mentor mentor) {
+    this.mentor = mentor;
   }
   public int getNo() {
     return no;
@@ -82,6 +84,14 @@ public class ClassRep {
   public void setMentee(Mentee mentee) {
     this.mentee = mentee;
   }
+  
+  @Override
+  public String toString() {
+    return "ClassRep [no=" + no + ", meno=" + meno + ", cno=" + cno + ", titl=" + titl + ", conts="
+        + conts + ", star=" + star + ", phot=" + phot + ", rgdt=" + rgdt + ", classes=" + classes
+        + ", mentee=" + mentee + ", mentor=" + mentor + "]";
+  }
+  
   
 
 }

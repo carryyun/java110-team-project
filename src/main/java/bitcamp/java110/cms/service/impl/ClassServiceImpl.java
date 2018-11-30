@@ -88,4 +88,9 @@ public class ClassServiceImpl implements ClassService{
   public List<Classes> findByMono(int mono) {
     return classDao.findByMono(mono);
   }
+
+  @Override
+  public int statupdate(Classes classes) {
+    return classDao.statupdate(classes);
+  }
 }
