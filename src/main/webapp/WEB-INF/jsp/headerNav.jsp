@@ -74,9 +74,9 @@
       var submenu=new Array();
       var sub_tmps=document.getElementById("menusubs").getElementsByTagName("ul");
       for (var i=0, len=sub_tmps.length; i<len; i++) {
-         /* if (sub_tmps[i].className=="localNav"){ */
+         // if (sub_tmps[i].className=="localNav"){ 
             submenu.push(sub_tmps[i]);
-         /* } */
+         // } 
       }
       var menu_tmps=document.getElementById("mainUl").getElementsByTagName("a");
       for (var i=0, len=menu_tmps.length; i<len; i++) {
