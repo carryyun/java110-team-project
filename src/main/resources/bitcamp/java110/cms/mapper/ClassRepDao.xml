@@ -19,10 +19,6 @@
         <result column="phone"      property="mentee.phone"/>
     </resultMap>
     
-    <sql id="select1">
-        
-    </sql>
-    
     <select id="findAll" resultMap="crepMap">
         select 
             meno,cno,titl,conts,star,phot,rgdt
@@ -41,7 +37,7 @@
 			psp.phot,
 			psp.star,
 			psp.rgdt,
-			psp.meno
+			pe.meno
 		from
 			p_mete as pe inner join p_cls_rep as psp
 				on pe.meno = psp.meno
@@ -63,5 +59,14 @@
 	<delete id="repDelete" parameterType="int">
         delete from p_cls_rep
         where rno = #{no}
-  	</delete> 
+  	</delete>
+  	
+  	<update id="repChange" parameterType="ClassRep">
+    	update p_cls_rep
+    		set
+    			conts = #{conts},
+    			rgdt = now()
+    	where
+    		rno = #{no}
+    </update>
   </mapper>

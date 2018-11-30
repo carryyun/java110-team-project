@@ -23,7 +23,7 @@ function mover(){
         var parsecontentwid = getcontentwid.replace('px','');
         var resultwid = parsecontentwid-parsewid;
         $('#dropdown-content').css('left',-(resultwid/2) + 'px');
-    }
+    } 
 }
 
 </script>
@@ -46,7 +46,7 @@ function mover(){
 
 					<c:choose>
 						<c:when test="${sessionScope.loginUser eq null}">
-							<a class="nav-link" href="../auth/form"> <i class="fas fa-power-off fa-2x"></i><br>로그인
+							<a class="nav-link" href="../auth/form"> <i class="fas fa-power-off fa-3x"></i><br>로그인
 							</a>
 
 						</c:when>
@@ -76,12 +76,12 @@ function mover(){
 				<div id="row">
 					<c:choose>
 						<c:when test="${sessionScope.loginUser eq null}">
-							<a class="nav-link " href="../mentee/signup"> <i class="fas fa-user-plus fa-2x"></i></i><br>회원가입
+							<a class="nav-link " href="../mentee/signup"> <i class="fas fa-user-plus fa-3x"></i></i><br>회원가입
 							</a>
 						</c:when>
 						
 						<c:otherwise>
-							<a class="nav-link " href="../class/basket"> <i class="fas fa-shopping-cart fa-2x"></i><br>장바구니
+							<a class="nav-link " href="../class/basket"> <i class="fas fa-shopping-cart fa-3x"></i><br>장바구니
 							</a>
 						</c:otherwise>
 					</c:choose>
@@ -94,7 +94,7 @@ function mover(){
                         </c:when>
                         
                         <c:otherwise>
-                            <a class="nav-link" href="../class/like"> <i class="fas fa-star fa-2x"></i><br>찜클래스
+                            <a class="nav-link" href="../class/like"> <i class="fas fa-star fa-3x"></i><br>찜클래스
                             </a>
                         </c:otherwise>
                     </c:choose>
