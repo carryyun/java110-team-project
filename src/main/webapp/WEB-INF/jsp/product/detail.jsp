@@ -34,6 +34,7 @@
 <link href="/css/common.css" rel="stylesheet">
 <link href="/css/prod_detail.css" rel="stylesheet">
 
+    
 <style type="text/css">
 #STATICMENU { 
     margin: 0pt; padding: 0pt;  
@@ -46,6 +47,8 @@
 
 </head>
 <body style="background-color: #F2F4F7" onload="InitializeStaticMenu()">
+
+
 <div id="wrap" style="background-color: #fff">
         <div class="col" style="position: absolute; height: 105px; background-color: white">
             <!-- 헤더 배경색 적용 -->
@@ -90,12 +93,12 @@
     $(setId).css("width", "94.6%");
     </script>
 </body>
-
-<!-- Script 시작 -->
-    <script src="/vendor/jquery/jquery.min.js"></script>
-    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/js/jquery.raty.min.js"></script>
-    <script src="/js/clean-blog.js"></script>
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/js/jquery.raty.min.js"></script>
+<script src="/js/clean-blog.js"></script>
+    <!-- Script 시작 -->
+    
     <!-- Custom scripts for this template -->
     
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
@@ -134,6 +137,7 @@ $("img.lazy").lazyload({
   RefreshStaticMenu();
   }
 </script>
+
     <script>
         $(document).ready(function() {
             $('#star1').raty({

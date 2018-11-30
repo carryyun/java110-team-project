@@ -3,6 +3,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<html>
+<head>
+<script src="/vendor/jquery/jquery.min.js"></script>
+<!-- </head> -->
+<body>
 <div class="container">
 	<div class="row">
 
@@ -32,6 +37,7 @@
 							<dl class="param param-feature">
 								<dt><h4>가격</h4></dt>
 								<dd>${product.pric}원</dd>
+								<input type="hidden" id="pric" value="${product.pric}">
 							</dl>
 
 							<dl class="param param-feature">
@@ -61,16 +67,18 @@
 												<option>2</option>
 												<option>3</option>
 											</select>
+										<button onclick="cntP()" style="width: 20px; height: 26px">+</button>
+									    <input type="text" id="inputCnt" style="text-align:center ;width:35px; height:26px; margin-left: -5px; margin-right: -5px" maxlength="3" onchange="changePric(value)">
+										<button onclick="cntM()" style="width: 20px; height: 26px">-</button>
+				
 										</dd>
 									</dl>
 								</div>
 								
 								<div class="col-lg-9 align-middle">
-									<p class="price-detail-wrap mt-5">
-										<span class="price h3 text-warning"> <span
-											class="currency">총 합계 : </span><span class="num">200,000원</span>
-										</span>
-									</p>
+										<div class="price h4 text-warning">
+										<div class="currency mb-3">총 상품금액</div>
+										<div id="num">${product.pric + product.deli}원</div>
 									<!-- price-detail-wrap .// -->
 								</div>
 								
@@ -78,9 +86,9 @@
 
 
 							<hr>
-							<a href="#" class="btn btn-lg btn-primary text-uppercase">
+							<a href="#" class="btn btn-lg btn-primary">
 								구매하기 </a> 
-							<a href="#" class="btn btn-lg btn-outline-primary text-uppercase">
+							<a href="#" class="btn btn-lg btn-outline-primary">
 							<i class="fas fa-shopping-cart"></i> 장바구니</a>
 						</div> <!-- <div class="text-left"> -->
 					</article>
@@ -89,3 +97,18 @@
 		</div> <!-- <div class="col-lg-12 col-md-12 text-center"> -->
 	</div><!-- <div class="row"> -->
 </div><!-- <div class="container"> -->
+<script>
+function cntP(){
+    console.log($('input#inputCnt').val());
+}
+function cntM(){
+    
+}
+
+function changePric(value){
+    console.log($('input#pric').val());
+    document.getElementById('num').innerHTML;
+}
+</script>
+</body>
+</html>
