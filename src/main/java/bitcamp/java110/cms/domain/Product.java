@@ -15,7 +15,6 @@ public class Product {
   private int ctno; // 인증서번호
   private int stno; // 소분류번호
 
-
   private int deli; // 택배비
   private int star; // 별점
   private Classes classes; // 클래스정보
@@ -26,6 +25,15 @@ public class Product {
   private SmallTag smalltag;
   private String middleTagName;
   private MiddleTag middletag;
+  private BigTag bigTag;
+  
+  
+  public BigTag getBigTag() {
+    return bigTag;
+  }
+  public void setBigTag(BigTag bigTag) {
+    this.bigTag = bigTag;
+  }
 
   public ClassRep getClassRep() {
     return classRep;

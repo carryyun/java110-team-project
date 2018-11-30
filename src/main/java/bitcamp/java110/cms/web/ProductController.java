@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -79,8 +80,35 @@ public class ProductController {
   }
 
   @GetMapping("prdt")
-  public void prdt(Model model) {
+  public void prdt(@RequestParam(defaultValue = "1") int pageNo,
+      @RequestParam(defaultValue = "3") int pageSize, Model model) {
     List<Product> productList = productService.list();
+
+    List<ProductPopul> pp_list = productPopulService.list();
+    List<ProductPopul> pp_product = new ArrayList<>();
+
+    for (ProductPopul p : pp_list) {
+
+      pp_product.add(p);
+    }
+
+    ObjectMapper mapper = new ObjectMapper();
+    String jsonText = "";
+    try {
+
+      jsonText = mapper.writeValueAsString(pp_product);
+      model.addAttribute("pp_list", jsonText);
+    } catch (JsonProcessingException e) {
+      System.out.println(e.getMessage());
+    }
+
+    model.addAttribute("productList", productList);
+  }
+
+  @GetMapping("prdtCate")
+  public void prdt(int mtno, Model model) {
+    List<Product> productList = productService.listByMtno(10, 5, mtno);
+
 
     List<ProductPopul> pp_list = productPopulService.list();
     List<ProductPopul> pp_product = new ArrayList<>();
@@ -215,7 +243,7 @@ public class ProductController {
       if (!file.getOriginalFilename().equals("")) {
         String filename = UUID.randomUUID().toString();
         file.transferTo(new File(sc.getRealPath("/upload/img/prdtImg/" + filename + ".png")));
-        String fname="/upload/img/prdtImg/" + filename + ".png";
+        String fname = "/upload/img/prdtImg/" + filename + ".png";
         System.out.println(fname);
         if (index == 0) {
           product.setPhot(fname);
@@ -228,6 +256,11 @@ public class ProductController {
         productFileService.add(productFile);
         index++;
       }
+    }
+    try {
+      Thread.sleep(3000);
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
     }
     return "redirect:detail?no=" + result;
   }

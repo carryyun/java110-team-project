@@ -20,15 +20,13 @@
 	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
 <link href="/css/common.css" rel="stylesheet">
 
-<!--  4줄 -->
-<link href="/css/owl.carousel.css" rel="stylesheet">
-<link href="/css/list.css" rel="stylesheet">
-<link href="/css/clean-blog.css" rel="stylesheet">
-<link href="/css/common.css" rel="stylesheet">
-
 
 <style>
-.note-editable {
+html {
+	font-size: 16px;
+}
+
+div.note-editable {
 	height: 300px;
 }
 
@@ -53,88 +51,105 @@ div.row.imgDiv {
 	height: 70px;
 }
 
-/* div 안에 placeholder쓰기 위해*/
-[contenteditable=true]:empty:before {
-	content: attr(placeholder);
+.detailInfo {
+	margin-bottom: 10px;
+	width: 90px;
 }
 </style>
 
 </head>
 <body>
+	<div class="col"
+		style="position: absolute; height: 105px; background-color: white">
+		<!-- 헤더 배경색 적용 -->
+	</div>
 	<div class="container">
 		<div class="row">
 
-            <form id="myForm" action="addProduct.do" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="ctno" value="${ctno}">
-            <input type="hidden" name="meno" value="${sessionScope.loginUser.no}">
-            
-			<!-- file input -->
+			<!-- <a class="navbar-brand py-0" 
+		href="/app/mainpage/mainpage" style="margin:auto">하루</a> -->
 			<div class="col-lg-12">
+				<jsp:include page="../headerMain.jsp"></jsp:include>
+			</div>
 
-				<div class="col-lg-7">
-					<div class="row">
-						<!-- 상품명 -->
-						<div style="margin-top: 30px">
-							<div
-								style="color: white; background-color: gray; padding: 5px; display: inline; border-radius: 3px;">상품명</div>
-							<p>
-							
-								<input name="titl" placeholder="상품명을 입력하세요"
-									style="width: 100%; height: 50px; font-size: 25px">
-							</p>
-						</div>
-						<!-- </div class="col-lg-12"> -->
-					</div>
-					<!-- </div class="row">  -->
-				</div>
-				<!-- </div class="col-lg-7"> -->
+			<form id="myForm" action="addProduct.do" method="post"
+				enctype="multipart/form-data">
+				<input type="hidden" name="ctno" value="${ctno}"> <input
+					type="hidden" name="meno" value="${sessionScope.loginUser.no}">
 
 
-				<div class="col-lg-5">
-					<div class="row">
-						<!-- summernote -->
-						<div class="col-lg-12" style="margin-top: 30px">
+				<!-- file input -->
+				<div class="col-lg-12">
 
-							<!-- 가격, 택배비(무료배송), 인증서  -->
-							<div class="col-lg-12">
-								재고 <input type="text" id="stock" name="stock"
-									style="margin-bottom: 10px"><br> 가격 <input
-									type="text" name="pric" style="margin-bottom: 10px"><br>
-								택배비 <input type="text" name="deli" class="inputid"
-									style="margin-bottom: 10px" /> 무료배송<input type='checkbox'
-									data-toggle='inputid' /><br> 소분류 <select name="stno">
-									<c:forEach items="${stagList}" var="sl">
-										<option value="${sl.no}">${sl.name}</option>
-									</c:forEach>
-								</select>
+					<div class="col-lg-7">
+						<div class="row">
+							<!-- 상품명 -->
+							<div class="col-lg-12 px-0" style="margin-top: 30px">
+								<div
+									style="color: white; background-color: gray; padding: 5px; display: inline; border-radius: 3px;">상품명</div>
+								<p>
 
+									<input name="titl" placeholder="상품명을 입력하세요"
+										style="width: 100%; height: 50px; font-size: 25px">
+								</p>
 							</div>
+							<!-- </div class="col-lg-12"> -->
 						</div>
-						<!-- </div class="col-lg-12" style="margin-top: 30px"> -->
+						<!-- </div class="row">  -->
 					</div>
-					<!-- </div class="row"> -->
-				</div>
-				<!-- </div class="col-lg-5"> -->
+					<!-- </div class="col-lg-7"> -->
 
-				
+
+					<div class="col-lg-5">
+						<div class="row">
+							<!-- summernote -->
+							<div class="col-lg-12 px-0" style="margin-top: 30px">
+
+								<!-- 가격, 택배비(무료배송), 인증서  -->
+								<!-- text-right 일단 지워봄 -->
+								<div class="col-lg-8 px-3 py-3"
+									style="border: 1px solid silver; float: right">
+									<div style="text-align: left;">
+										재고　 <input type="text" class="detailInfo" id="stock"
+											name="stock"> 가격 <input type="text"
+											class="detailInfo" name="pric"><br> 택배비 <input
+											type="text" class="inputid detailInfo" name="deli" /> 무료배송<input
+											type='checkbox' data-toggle='inputid' /><br> 소분류 <select
+											name="stno">
+											<c:forEach items="${stagList}" var="sl">
+												<option value="${sl.no}">${sl.name}</option>
+											</c:forEach>
+										</select>
+									</div>
+
+								</div>
+							</div>
+							<!-- </div class="col-lg-12" style="margin-top: 30px"> -->
+						</div>
+						<!-- </div class="row"> -->
+					</div>
+					<!-- </div class="col-lg-5"> -->
+
+
 
 					<input type="file" id="files" name="files" multiple
-						accept="image/*" /><br />
-				<div id="selectedFiles"></div>
-			</div>
-			<!--</div class="col-lg-12"> -->
+						accept="image/*" />
+					<div id="selectedFiles"></div>
+				</div>
+				<!--</div class="col-lg-12"> -->
 
-			<div class="col-lg-12">
-				<div
-					style="color: white; background-color: gray; padding: 5px; display: inline; border-radius: 3px;">상품소개</div>
-				<textarea id="summernote" name="conts" style="position: auto"></textarea>
-			</div>
+				<div class="col-lg-12">
+					<br>
+					<div
+						style="color: white; background-color: gray; padding: 5px; display: inline; border-radius: 3px;">상품소개</div>
+					<textarea id="summernote" name="conts" style="position: auto"></textarea>
+				</div>
 
-			<!-- 등록 취소버튼 -->
-			<div class="col-lg-12 text-right">
-				<input type="submit" class="btn btn-primary float-right" value="등록"> 
-				<input type="button" class="btn" onclick="test()" value="취소">
-			</div>
+				<!-- 등록 취소버튼 -->
+				<div class="col-lg-12 text-right">
+					<input type="submit" class="btn btn-primary" value="등록" >
+					<input type="button" class="btn" onclick="test()" value="취소">
+				</div>
 			</form>
 		</div>
 		<!-- </div class="row"> -->
@@ -169,10 +184,20 @@ div.row.imgDiv {
 <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+
 <!-- summernote -->
 <script>
     $(document).ready(function() {
         $('#summernote').summernote();
+        $('div.note-popover.popover.in.note-link-popover.bottom').remove();
+        $('div.note-popover.popover.in.note-image-popover.bottom').remove();
+        $('div.popover-content.note-children-container').remove();
+        $('div.arrow').remove();
+        $('div.note-popover.popover.in.note-table-popover.bottom').remove();
+        $('a.navbar-brand').css("margin-top","-45px");
+        $('#mainNav').css("padding","0");
+        $('#mainNav').css("border","0");
+        $('#mainNav').css("margin-top","21"); 
     });
 </script>
 
@@ -230,7 +255,7 @@ div.row.imgDiv {
                 html += "</div>";
 
                 html += "<div class='col-lg-2'>";
-                html += "<button onclick='removeImg(" + j + ")'>" + "삭제"
+                html += "<button onclick='removeImg("+j+")'>" + "삭제"
                         + "</button>";
                 html += "</div>";
                 if (j < filesArr.length - 1) {
@@ -255,6 +280,8 @@ div.row.imgDiv {
         $("div#imgDiv" + no).remove();
     }
 </script>
+
+
 
 <!-- checkbox disable input -->
 <script>
@@ -283,7 +310,11 @@ div.row.imgDiv {
         /* var stock = $('input:text#stock').val();
         var pric = $('input:text#pric').val();
         var deli = $('input:text#deli').val(); */
-        var ctno = ${ctno};
+        var ctno = $
+        {
+            ctno
+        }
+        ;
 
         console.log(titl);
         console.log(conts);
@@ -312,7 +343,7 @@ div.row.imgDiv {
                 },
                 url : "addProduct.do",
                 success : function(result) {
-                    
+
                     $.ajax({
                         type : "POST",
                         processData : false,

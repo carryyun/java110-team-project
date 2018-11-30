@@ -14,6 +14,19 @@
 	crossorigin="anonymous">
 <link href="/css/mainheader.css" rel="stylesheet">
 
+<script>
+function mover(){
+    var getwid = $('#dropdown').css('width');
+    if(getwid != undefined){
+        var getcontentwid = $('#dropdown-content').css('width');
+        var parsewid = getwid.replace('px','');
+        var parsecontentwid = getcontentwid.replace('px','');
+        var resultwid = parsecontentwid-parsewid;
+        $('#dropdown-content').css('left',-(resultwid/2) + 'px');
+    }
+}
+
+</script>
 </head>
 <nav class="navbar navbar-expand-lg mx-auto fixed-top mb-2" id="mainNav">
 	<a class="navbar-brand" href="/app/mainpage/mainpage">하루</a>
@@ -39,8 +52,11 @@
 						</c:when>
 						<c:otherwise>
 							<div class="dropdown" id="dropdown">
-								<img src="${sessionScope.loginUser.phot}" alt="userIMG"
+								<img onload="mover()" src="${sessionScope.loginUser.phot}" alt="userIMG"
 									style="margin: 8px 23px; width: 56px; height: 56px; border-radius: 28px; border: 3px solid #ec5453"><br>
+
+
+								
 								<div class="dropdown-content text-left" id="dropdown-content">
 									<a href="../mypage/mypage"><span><i class="fas fa-user"></i></span><span class="ml-3">마이페이지</span></a>
 									<a href="../master/notice"><span><i class="fas fa-bell"></i></span><span class="ml-3">알림</span></a>
@@ -87,25 +103,5 @@
 		</ul>
 	</div>
 </nav>
-
-<!-- ===============필수포함=============== -->
-<!-- Bootstrap core JavaScript -->
-<script src="/vendor/jquery/jquery.min.js"></script>
-<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- ===============필수포함=============== -->
-<script>
-$(document).ready(function() {
-    // 드롭다운을 프로필사진 가운데배치
-    var getwid = $('#dropdown').css('width');
-    if(getwid != undefined){
-	    var getcontentwid = $('#dropdown-content').css('width');
-	    var parsewid = getwid.replace('px','');
-	    var parsecontentwid = getcontentwid.replace('px','');
-	    var resultwid = parsecontentwid-parsewid;
-	    $('#dropdown-content').css('left',-(resultwid/2) + 'px');
-    }
-});
-
-</script>
 
 </html>

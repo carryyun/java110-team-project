@@ -1,7 +1,7 @@
 /* 카테고리 nav 관련 */
 nav.navbar{
     padding: 0;
-    z-index: 5;
+    /* z-index: 4; */
 }
 #categoryNav{
   /* 카테고리 가로정렬 ? */
