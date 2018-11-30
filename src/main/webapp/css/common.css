@@ -23,7 +23,7 @@ hr.MiddleMarginHr{
 hr.Fhr{
     border: 0; 
     height: 2px;
-    background: #ccc; 
+    background: rgb(217, 217, 217); 
     width: 100%; 
     margin: 0 auto;
 }
@@ -31,7 +31,7 @@ hr.Fhr{
 hr.FhrMargin{
     border: 0; 
     height: 2px;
-    background: #ccc; 
+    background: rgb(217, 217, 217); 
     width: 100%; 
     margin: 20px 0;
 }
@@ -39,14 +39,14 @@ hr.FhrMargin{
 hr.FhrBotMargin{
     border: 0; 
     height: 2px;
-    background: #ccc; 
+    background: rgb(217, 217, 217); 
     width: 100%; 
     margin: 0 0 15px 0;
 }
 hr.Hhr{
     border: 0; 
     height: 2px;
-    background: #ccc; 
+    background: rgb(217, 217, 217); 
     width: 90%; 
     margin: 0 auto;
 }
