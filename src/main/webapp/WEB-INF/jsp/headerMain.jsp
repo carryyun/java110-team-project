@@ -23,7 +23,7 @@ function mover(){
         var parsecontentwid = getcontentwid.replace('px','');
         var resultwid = parsecontentwid-parsewid;
         $('#dropdown-content').css('left',-(resultwid/2) + 'px');
-    }
+    } 
 }
 
 </script>
