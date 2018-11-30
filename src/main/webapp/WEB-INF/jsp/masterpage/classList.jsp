@@ -58,7 +58,7 @@
                 class="border js-fullheight">
                 <div class="text-center">
                     <div class="author-img"
-                        style="background-image: url(${mentee.phot};"></div>
+                        style="background-image: url(/img/1.jpg);"></div>
                     <h1 id="colorlib-logo">
                         <a href="index.html">관리자</a>
                     </h1>
@@ -72,6 +72,9 @@
                             <li><a
                                 onclick="location.href='dashBoard'"
                                 data-nav-section="1">메인 화면 </a></li>
+                                <li><a
+                                onclick="location.href='csList'"
+                                data-nav-section="10">문의 목록 </a></li>
                             <li><a
                                 onclick="location.href='mentorreqlist'"
                                 data-nav-section="2">멘토 신청 목록</a></li>
@@ -89,10 +92,12 @@
                                 data-nav-section="6">전체 상품 목록</a></li>
                             <li><a
                                 onclick="location.href='classList'"
-                                data-nav-section="7">전체 클래스 목록 </a></li>
+                                data-nav-section="7" style=" color: #2c98f0; font-weight:bold;">전체 클래스 목록 </a></li>
                             <li><a
                                 onclick="location.href='prodOrderList'"
-                                data-nav-section="8">주문 내역</a></li>
+                                data-nav-section="8">상품 주문 내역</a></li>
+                            <li><a onclick="location.href='classOrderList'" data-nav-section="9">
+                                    클래스 신청 목록 </a></li>
                         </ul>
                     </div>
                 </nav>
