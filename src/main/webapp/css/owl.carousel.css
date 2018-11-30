@@ -13,6 +13,7 @@ ol#carousel-ol{
   right:14%;
   bottom:auto;
   left:auto;
+  z-index: 1;
   
 }
 ol#carousel-ol li{

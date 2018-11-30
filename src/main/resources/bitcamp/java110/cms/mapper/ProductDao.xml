@@ -30,6 +30,10 @@
         <result column="mtno"   property="smalltag.mtno"/>
         
         <result column="mtname"   property="middleTagName"/>
+        
+        <result column="btno"   property="bigTag.no"/>
+        <result column="btname"   property="bigTag.name"/>
+        
         <result column="deli" property="deli"/>
         <result column="star" property="star"/>
         <result column="titl" property="classes.titl"/>
@@ -38,10 +42,9 @@
         <result column="clsmetenick" property="classes.mentee.nick"/>
         
     </resultMap>
-
     
-    <select id="findAll_list" resultMap="productMap">
-        select
+<sql id="selectAll">
+select
     p.ptno,
     p.titl,
     p.conts,
@@ -64,20 +67,43 @@
     stag.stno,
     stag.stname,
     stag.mtno,
-    mtag.mtname
+    mtag.mtname,
+    btag.btno,
+    btag.btname
 from 
     p_prdt p
     join p_mete mete
     join p_cert cert
     join p_stag stag
     JOIN p_mtag mtag
+    JOIN p_btag btag
 ON
     p.meno=mete.meno AND
     p.ctno=cert.ctno AND
     p.stno=stag.stno AND
-    stag.mtno = mtag.mtno
-order by 
-    ptno DESC
+    stag.mtno = mtag.mtno AND
+    mtag.btno = btag.btno
+</sql>
+    <select id="findAllByMtno" resultMap="productMap" parameterType="map">
+    <include refid="selectAll" />
+    where
+        stag.mtno=#{mtno}
+    order by 
+        ptno DESC
+    </select>
+    
+    <select id="findAllByStno" resultMap="productMap" parameterType="map">
+    <include refid="selectAll" />
+    where
+        stag.stno=#{stno}
+    order by 
+        ptno DESC
+    </select>
+    
+    <select id="findAll_list" resultMap="productMap">
+    <include refid="selectAll" />
+    order by 
+        ptno DESC
     </select>
     
     <select id="findAllByList" resultMap="productMap">
@@ -172,7 +198,7 @@ where
     </select>
     
     
-    <select id="findAllByStno" 
+<!--     <select id="findAllByStno" 
             resultMap="productMap" parameterType="Map">
         select
             ptno,
@@ -191,7 +217,7 @@ where
             p_prdt
         where 
             stno=#{smallno}
-    </select>
+    </select> -->
     
     <insert id="insert" parameterType="product"
             useGeneratedKeys="true" keyColumn="ptno" keyProperty="no">

@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
 
 <%-- 부트스트랩 --%>
 <link
@@ -28,302 +33,448 @@
 <script
     src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
 
+<!-- Bootstrap  -->
+<link href="/css/masterpagecss/bootstrap.css" rel="stylesheet">
+<!-- Theme style  -->
+<link rel="stylesheet" href="/css/masterpagecss/style.css">
+<!-- J Query -->
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<!-- jQuery -->
+<script src="/js/masterpagejs/jquery.min.js"></script>
+<!-- Counters -->
+<script src="/js/masterpagejs/jquery.countTo.js"></script>
+<!-- MAIN JS -->
+<script src="/js/masterpagejs/main.js"></script>
+<script src="/js/masterpagejs/bootstrap.min.js"></script>
 
-<body style="background-color: #F2F4F7">
+<style>
+#colorlib-aside {
+    overflow: hidden;
+}
 
-    <div class="chart row">
-        <div class="col-lg-12">
-            <hr />
-            <!-- 그래프-->
+#th-pay th, #tb-pay td {
+    vertical-align: middle;
+    text-align: center
+}
 
-            <div class="payment col-lg-6">
-                <canvas id="payment-graph"></canvas>
-            </div>
-            <!-- 그래프 6-->
-            <div class="person col-lg-6">
-                <canvas id="person-graph"></canvas>
-            </div>
-            <!-- 그래프 6-->
-            <!-- chart -->
+a#cli{
+color: #2c98f0;
+text-weight: bold;
+}
 
-            <div class="cls row">
-                <div class="col-lg-12">
-                    <div class="header">
-                        <span class="h3">최근 클래스신청</span>
-                        <button class="btn btn-outline-light"
-                            type="button"
-                            style="position: relative; float: right;"
-                            onclick="location.href='classreqlist'">
-                            <i class="far fa-plus-square fa-lg"></i>
-                        </button>
-                    </div>
-                    <table class="table text-center table-sm">
-                        <thead>
-                            <tr>
-                                <th scope="row">No</th>
-                                <th scope="row">카테고리</th>
-                                <th scope="row">멘토</th>
-                                <th scope="row">신청일</th>
-                            </tr>
-                        </thead>
 
-                        <tbody class="table-hover">
-                            <c:forEach items="${ClassesFindAll }"
-                                var="r" begin="1" end="3" step="1"
-                                varStatus="status">
-                                <tr>
-                                    <th scope="row">${status.count }</th>
-                                    <td>${r.middleTag.name }</td>
-                                    <td>${r.mentee.nick }</td>
-                                    <td>${r.rgdt }</td>
-                                </tr>
-                            </c:forEach>
-                        </tbody>
-                    </table>
+
+</style>
+
+</head>
+
+<body>
+
+    <div id="colorlib-page">
+        <div class="container-wrap">
+
+            <a href="#"
+                class="js-colorlib-nav-toggle colorlib-nav-toggle"
+                data-toggle="collapse" data-target="#navbar"
+                aria-expanded="false" aria-controls="navbar"><i></i></a>
+            <aside id="colorlib-aside" role="complementary"
+                class="border js-fullheight">
+                <div class="text-center">
+                    <div class="author-img"
+                        style="background-image: url(/img/1.jpg);"></div>
+                    <h1 id="colorlib-logo">
+                        <a href="index.html">관리자</a>
+                    </h1>
+                    <br />
                 </div>
-            </div>
-            <!-- class-->
 
-            <div class="block row">
-                <div class="col-lg-12">
-                    <div class="header">
-                        <span class="h3">최근 신고접수</span>
-                        <button class="btn btn-outline-light"
-                            type="button"
-                            style="position: relative; float: right;"
-                            onclick="location.href='reportList'">
-                            <i class="far fa-plus-square fa-lg"></i>
-                        </button>
+                <nav id="colorlib-main-menu" role="navigation"
+                    class="navbar">
+                    <div id="navbar" class="collapse">
+                        <ul>
+                            <li><a onclick="location.href='dashBoard'" data-nav-section="1" style=" color: #2c98f0; font-weight:bold;">메인
+                                    화면</a></li>
+                                    <li><a
+                                onclick="location.href='csList'"
+                                data-nav-section="10">문의 목록 </a></li>
+                            <li><a onclick="location.href='mentorreqlist'" data-nav-section="2">멘토
+                                    신청 목록</a></li>
+                            <li><a onclick="location.href='classreqlist'" data-nav-section="3">클래스
+                                    신청 목록</a></li>
+                            <li><a onclick="location.href='reportList'" data-nav-section="4">신고
+                                    접수 목록</a></li>
+                            <li><a onclick="location.href='reportFinishList'" data-nav-section="5">신고
+                                    완료 목록</a></li>
+                            <li><a onclick="location.href='prdtList'" data-nav-section="6">전체
+                                    상품 목록</a></li>
+                            <li><a onclick="location.href='classList'" data-nav-section="7">전체
+                                    클래스 목록 </a></li>
+                            <li><a onclick="location.href='prodOrderList'" data-nav-section="8">상품 주문
+                                    내역</a></li>
+                                    <li><a onclick="location.href='classOrderList'" data-nav-section="9">
+                                    클래스 신청 목록 </a></li>
+                        </ul>
                     </div>
-                    <table class="table text-center table-sm">
-                        <thead>
-                            <tr>
-                                <th scope="row">No</th>
-                                <th scope="row">신고유형</th>
-                                <th scope="row">회원</th>
-                                <th scope="row">신고일</th>
-                            </tr>
-                        </thead>
+                </nav>
 
-                        <tbody class="table-hover">
-                            <c:forEach items="${ReportFindAll }" var="r"
-                                begin="1" end="3" step="1"
-                                varStatus="status">
-                                <tr>
-                                    <th scope="row">${status.count }</th>
-                                    <td>${r.type }</td>
-                                    <td>${r.mentee2Nick }</td>
-                                    <td>${r.rtdt }</td>
-                                </tr>
+            </aside>
 
-                            </c:forEach>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <!-- block-->
+            <div id="colorlib-main">
 
-            <div class="pro row">
-                <div class="col-lg-12">
-                    <div class="header">
-                        <span class="h3">최근 상품등록</span>
-                        <button class="btn btn-outline-light"
-                            type="button"
-                            style="position: relative; float: right;"
-                            onclick="location.href='prdtlist'">
-                            <i class="far fa-plus-square fa-lg"></i>
-                        </button>
-                    </div>
-                    <table class="table text-center table-sm">
-                        <thead>
-                            <tr>
-                                <th scope="row">No</th>
-                                <th scope="row">카테고리</th>
-                                <th scope="row">판매자</th>
-                                <th scope="row">신청일</th>
-                            </tr>
-                        </thead>
+                <section class="colorlib-about" data-section="1">
+                    <div class="colorlib-narrow-content">
+                        <div class="row">
 
-                        <tbody class="table-hover">
-                            <c:forEach items="${ProductFindAll }"
-                                var="r" begin="1" end="3" step="1"
-                                varStatus="status">
-                                <tr>
-                                    <th scope="row">${status.count }</th>
-                                    <td>${r.smalltag.name }</td>
-                                    <td>${r.mentee.nick }</td>
-                                    <td>${r.rgdt }</td>
-                                </tr>
+                            <div class="about-desc">
 
-                            </c:forEach>
-                        </tbody>
-                    </table>
+                                <h2 class="colorlib-heading">메인 화면</h2>
 
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <!-- 그래프-->
 
-                </div>
-                </div>
-                <!-- pro-->
-                
-                <div class="mentor row">
-                <div class="col-lg-6">
-                    <div class="header">
-                        <span class="h3">최근 멘토신청</span>
-                        <button class="btn btn-outline-light"
-                            type="button"
-                            style="position: relative; float: right;"
-                            onclick="location.href='mentorreqlist'">
-                            <i class="far fa-plus-square fa-lg"></i>
-                        </button>
-                    </div>
-                    <table class="table text-center table-sm">
-                        <thead>
-                            <tr>
-                                <th scope="row">No</th>
-                                <th scope="row">카테고리</th>
-                                <th scope="row">멘토</th>
-                                <th scope="row">신청일</th>
-                            </tr>
-                        </thead>
+                                        <div class="chart row">
+                                            <div
+                                                class="payment col-lg-6">
+                                                <canvas id="payment-graph"></canvas>
+                                            </div>
+                                            <!-- 그래프 6-->
+                                            <div class="person col-lg-6">
+                                                <canvas id="person-graph"></canvas>
+                                            </div>
+                                            <!-- 그래프 6-->
+                                        </div>
+                                        <!-- chart -->
 
-                        <tbody class="table-hover">
-                            <c:forEach items="${MentorFindAll }" var="r"
-                                begin="1" end="3" step="1"
-                                varStatus="status">
-                                <tr>
-                                    <th scope="row">${status.count }</th>
-                                    <td><c:forEach
-                                            items="${r.mentorTag }"
-                                            var="mt">
+                                        <div class="row" style="margin-top:1%;">
+                                            <div class="cls col-lg-12" style="border: 1px solid black;">
+                                                <div class="header" style="margin-top:1%;">
+                                                    <span class="h3">최근 클래스신청</span>
+                                                    <button
+                                                        type="button"
+                                                        class="btn btn-outline-light"
+                                                        style="position: relative; float: right;"
+                                                        onclick="location.href='classreqlist'">
+                                                        <i class="far fa-plus-square fa-lg"
+                                                            style="color: black;"></i>
+                                                    </button>
+                                                </div>
+
+                                                <table class="table text-center">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-center">No</th>
+                                                            <th
+                                                                class="text-center">카테고리</th>
+                                                            <th
+                                                                class="text-center">멘토</th>
+                                                            <th
+                                                                class="text-center">신청일</th>
+                                                        </tr>
+                                                    </thead>
+
+                                                    <tbody class="table-hover">
+                                                        <c:forEach
+                                                            items="${ClassesFindAll }"
+                                                            var="r"
+                                                            begin="0"
+                                                            end="1"
+                                                            step="1"
+                                                            varStatus="status">
+                                                            <tr>
+                                                                <th class="text-center">${status.count }</th>
+                                                                <td>${r.middleTag.name }</td>
+                                                                <td>${r.mentee.name}(${r.mentee.nick })</td>
+                                                                <td>${r.rgdt }</td>
+                                                            </tr>
+                                                        </c:forEach>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <!-- class-->
+                                        </div>
+                                        <!-- board1-->
+
+                                        <div class="row" style="margin-top:1%;">
+                                            <div class="pro col-lg-12" style="border: 1px solid black;">
+                                                <div class="header" style="margin-top:1%;">
+                                                    <span class="h3">최근 상품등록</span>
+                                                    <button
+                                                        type="button"
+                                                        class="btn btn-outline-light"
+                                                        style="position: relative; float: right;"
+                                                        onclick="location.href='prdtlist'">
+                                                        <i class="far fa-plus-square fa-lg"
+                                                            style="color: black;"></i>
+                                                    </button>
+                                                </div>
+                                                <table
+                                                    class="table text-center">
+                                                    <thead>
+                                                        <tr>
+                                                            <th
+                                                                class="text-center">No</th>
+                                                            <th
+                                                                class="text-center">카테고리</th>
+                                                            <th
+                                                                class="text-center">판매자</th>
+                                                            <th
+                                                                class="text-center">신청일</th>
+                                                        </tr>
+                                                    </thead>
+
+                                                    <tbody
+                                                        class="table-hover">
+                                                        <c:forEach
+                                                            items="${ProductFindAll }"
+                                                            var="r"
+                                                            begin="0"
+                                                            end="1"
+                                                            step="1"
+                                                            varStatus="status">
+                                                            <tr>
+                                                                <th class="text-center">${status.count }</th>
+                                                                <td class="text-center">${r.smalltag.name }</td>
+                                                                <td class="text-center">${r.mentee.name}(${r.mentee.nick })</td>
+                                                                <td class="text-center">${r.rgdt }</td>
+                                                            </tr>
+
+                                                        </c:forEach>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <!-- pro-->
+                                        </div>
+                                        
+                                        <div class=row style="margin-top:1%;">
+                                            <div class="mentor col-lg-12" style="border: 1px solid black;">
+                                                <div class="header" style="margin-top:1%;">
+                                                    <span class="h3">최근
+                                                        멘토신청</span>
+                                                    <button
+                                                        type="button"
+                                                        class="btn btn-outline-light"
+                                                        style="position: relative; float: right;"
+                                                        onclick="location.href='mentorreqlist'">
+                                                        <i
+                                                            class="far fa-plus-square fa-lg"
+                                                            style="color: black;"></i>
+                                                    </button>
+                                                    <table class="table text-center">
+                                                        <thead>
+                                                            <tr>
+                                                                <th
+                                                                    class="text-center">No</th>
+                                                                <th
+                                                                    class="text-center">카테고리</th>
+                                                                <th
+                                                                    class="text-center">멘토</th>
+                                                                <th
+                                                                    class="text-center">신청일</th>
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody
+                                                            class="table-hover">
+                                                            <c:forEach
+                                                                items="${MentorFindAll }"
+                                                                var="r"
+                                                                begin="0"
+                                                                end="1"
+                                                                step="1"
+                                                                varStatus="status">
+                                                                <tr>
+                                                                    <th
+                                                                        class="text-center">${status.count }</th>
+                                                                    <td class="text-center"><c:forEach
+                                                                            items="${r.mentorTag }"
+                                                                            var="mt">
                                         ${mt.name }
                                         </c:forEach></td>
 
-                                    <td>${r.nick }</td>
-                                    <td>${r.rgdtmt }</td>
-                                </tr>
+                                                                    <td class="text-center">${r.name}(${r.nick })</td>
+                                                                    <td class="text-center">${r.rgdtmt }</td>
+                                                                </tr>
+                                                            </c:forEach>
+                                                        </tbody>
+                                                    </table>
 
-                            </c:forEach>
-                        </tbody>
-                    </table>
-                </div>
-                </div>
-                <!-- mentor-->
+                                                </div>
+                                                <!-- mentor-->
+                                            </div>
+                                            <!-- board2-->
+
+                                        </div>
+                                        <!-- 전체 12-->
+                                    </div>
+                                    <!-- 전체 row-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+                <!--section1 -->
+
+                <!-- payment script 시작 -->
+                <script>
+                                                                    window.onload = function() {
+                                                                        ctx = document
+                                                                                .getElementById("person-graph");
+                                                                        window.myBar = new Chart(
+                                                                                ctx,
+                                                                                {
+                                                                                    type : 'line',
+                                                                                    data : lineChartData,
+                                                                                    options : lineChartOption
+                                                                                });
+
+                                                                        ctx = document
+                                                                                .getElementById("payment-graph");
+                                                                        window.myBar = new Chart(
+                                                                                ctx,
+                                                                                {
+                                                                                    type : 'bar',
+                                                                                    data : barChartData,
+                                                                                    options : barChartOption
+                                                                                });
+                                                                    };
+
+                                                                    var lineChartData = {
+                                                                        labels : [
+                                                                                '2018.01',
+                                                                                '2018.02',
+                                                                                '2018.03'//라벨
+                                                                        ],
+                                                                        datasets : [
+                                                                                {
+                                                                                    type : 'line',
+                                                                                    label : '유입자수',
+                                                                                    // 유입자 데이터
+                                                                                    data : [
+                                                                                            '100',
+                                                                                            '200',
+                                                                                            '300' ],
+                                                                                    borderColor : 'rgba(255,99,132,1)',
+                                                                                    backgroundColor : 'rgba(255, 99, 132, 0.2)',
+                                                                                    fill : false,
+                                                                                    yAxisID : "y-axis-1",
+                                                                                },
+                                                                                {
+                                                                                    type : 'line',
+                                                                                    label : '가입 회원수',
+                                                                                    // 가입자 데이터
+                                                                                    data : [
+                                                                                            '200',
+                                                                                            '500',
+                                                                                            '300' ],
+                                                                                    borderColor : 'rgba(54, 162, 235, 1)',
+                                                                                    backgroundColor : 'rgba(54, 162, 235, 0.2)',
+                                                                                    fill : false,
+                                                                                    yAxisID : "y-axis-1",
+                                                                                } ]
+                                                                    };
+
+                                                                    var lineChartOption = {
+                                                                        responsive : true,
+                                                                        scales : {
+                                                                            yAxes : [ {
+                                                                                id : "y-axis-1",
+                                                                                type : "linear",
+                                                                                position : "left",
+                                                                                ticks : {
+                                                                                    max : 1000,
+                                                                                    min : 0,
+                                                                                    stepSize : 100
+                                                                                },
+                                                                            } ],
+                                                                        }
+                                                                    };
+                                                                </script>
+
+                <script>
+                                                                    var barChartData = {
+                                                                        labels : [
+                                                                                '9/20',
+                                                                                '9/21',
+                                                                                '9/22' ],
+                                                                        datasets : [
+                                                                                {
+                                                                                    type : 'line',
+                                                                                    label : '총 수입',
+                                                                                    data : [
+                                                                                            '0.111',
+                                                                                            '0.125',
+                                                                                            '0.116' ],
+                                                                                    borderColor : 'rgba(255, 159, 64, 1)',
+                                                                                    pointBackgroundColor : 'rgba(255, 159, 64, 0.2)',
+                                                                                    fill : false,
+                                                                                    yAxisID : "y-axis-1",
+                                                                                },
+                                                                                {
+                                                                                    type : 'bar',
+                                                                                    label : '멘토',
+                                                                                    data : [
+                                                                                            '0.4',
+                                                                                            '0.7',
+                                                                                            '0.8' ],
+                                                                                    borderColor : 'rgba(54, 162, 235, 1)',
+                                                                                    backgroundColor : 'rgba(54, 162, 235, 0.2)',
+                                                                                    yAxisID : "y-axis-2",
+                                                                                },
+                                                                                {
+                                                                                    type : 'bar',
+                                                                                    label : '멘티',
+                                                                                    data : [
+                                                                                            '0.3',
+                                                                                            '0.9',
+                                                                                            '0.1' ],
+                                                                                    borderColor : 'rgba(255,99,132,1)',
+                                                                                    backgroundColor : 'rgba(255, 99, 132, 0.2)',
+                                                                                    yAxisID : "y-axis-2",
+                                                                                } ]
+                                                                    };
+
+                                                                    var barChartOption = {
+                                                                        responsive : true,
+                                                                        scales : {
+                                                                            yAxes : [
+                                                                                    {
+                                                                                        id : "y-axis-1",
+                                                                                        type : "linear",
+                                                                                        position : "left",
+                                                                                        ticks : {
+                                                                                            max : 0.2,
+                                                                                            min : 0,
+                                                                                            stepSize : 0.1
+                                                                                        },
+                                                                                    },
+                                                                                    {
+                                                                                        id : "y-axis-2",
+                                                                                        type : "linear",
+                                                                                        position : "right",
+                                                                                        ticks : {
+                                                                                            max : 1.5,
+                                                                                            min : 0,
+                                                                                            stepSize : .5
+                                                                                        },
+                                                                                        gridLines : {
+                                                                                            drawOnChartArea : false,
+                                                                                        },
+                                                                                    } ],
+                                                                        }
+                                                                    };
+                                                                </script>
+
+
+
+
             </div>
-            <!-- board2-->
+            <!-- colorlib-main -->
         </div>
-        <!-- 전체 12-->
+        <!-- container-wrap -->
+    </div>
+    <!-- colorlib-page -->
 
-    <!-- payment script 시작 -->
-    <script>
-                    window.onload = function() {
-                        ctx = document.getElementById("person-graph");
-                        window.myBar = new Chart(ctx, {
-                            type : 'line',
-                            data : lineChartData,
-                            options : lineChartOption
-                        });
-
-                        ctx = document.getElementById("payment-graph");
-                        window.myBar = new Chart(ctx, {
-                            type : 'bar',
-                            data : barChartData,
-                            options : barChartOption
-                        });
-                    };
-
-                    var lineChartData = {
-                        labels : [ '2018.01', '2018.02', '2018.03'//라벨
-                        ],
-                        datasets : [ {
-                            type : 'line',
-                            label : '유입자수',
-                            // 유입자 데이터
-                            data : [ '100', '200', '300' ],
-                            borderColor : 'rgba(255,99,132,1)',
-                            backgroundColor : 'rgba(255, 99, 132, 0.2)',
-                            fill : false,
-                            yAxisID : "y-axis-1",
-                        }, {
-                            type : 'line',
-                            label : '가입 회원수',
-                            // 가입자 데이터
-                            data : [ '200', '500', '300' ],
-                            borderColor : 'rgba(54, 162, 235, 1)',
-                            backgroundColor : 'rgba(54, 162, 235, 0.2)',
-                            fill : false,
-                            yAxisID : "y-axis-1",
-                        } ]
-                    };
-
-                    var lineChartOption = {
-                        responsive : true,
-                        scales : {
-                            yAxes : [ {
-                                id : "y-axis-1",
-                                type : "linear",
-                                position : "left",
-                                ticks : {
-                                    max : 1000,
-                                    min : 0,
-                                    stepSize : 100
-                                },
-                            } ],
-                        }
-                    };
-                </script>
-
-    <script>
-                    var barChartData = {
-                        labels : [ '9/20', '9/21', '9/22' ],
-                        datasets : [ {
-                            type : 'line',
-                            label : '총 수입',
-                            data : [ '0.111', '0.125', '0.116' ],
-                            borderColor : 'rgba(255, 159, 64, 1)',
-                            pointBackgroundColor : 'rgba(255, 159, 64, 0.2)',
-                            fill : false,
-                            yAxisID : "y-axis-1",
-                        }, {
-                            type : 'bar',
-                            label : '멘토',
-                            data : [ '0.4', '0.7', '0.8' ],
-                            borderColor : 'rgba(54, 162, 235, 1)',
-                            backgroundColor : 'rgba(54, 162, 235, 0.2)',
-                            yAxisID : "y-axis-2",
-                        }, {
-                            type : 'bar',
-                            label : '멘티',
-                            data : [ '0.3', '0.9', '0.1' ],
-                            borderColor : 'rgba(255,99,132,1)',
-                            backgroundColor : 'rgba(255, 99, 132, 0.2)',
-                            yAxisID : "y-axis-2",
-                        } ]
-                    };
-
-                    var barChartOption = {
-                        responsive : true,
-                        scales : {
-                            yAxes : [ {
-                                id : "y-axis-1",
-                                type : "linear",
-                                position : "left",
-                                ticks : {
-                                    max : 0.2,
-                                    min : 0,
-                                    stepSize : 0.1
-                                },
-                            }, {
-                                id : "y-axis-2",
-                                type : "linear",
-                                position : "right",
-                                ticks : {
-                                    max : 1.5,
-                                    min : 0,
-                                    stepSize : .5
-                                },
-                                gridLines : {
-                                    drawOnChartArea : false,
-                                },
-                            } ],
-                        }
-                    };
-                </script>
+</body>
+</html>

@@ -56,12 +56,22 @@
 					<div class="row">
 						<div class="col-lg-2 border-right border-secondary">
 							<div class="col">
-								<h2>카테고리</h2>
+								<h2>${bigTag.name}</h2>
 								<ul>
-									<c:forEach items="${BTlist}" var="bt">
-										<li class="ml-3"><a href="../class/clsCate?no=${bt.no}">${bt.name}</a></li>
-									</c:forEach>
-								</ul> 
+                                    <c:forEach  items="${MTlist}" varStatus="j">
+                                        <c:if test="${bigTag.no == MTlist[j.index].btno}">
+                                            <c:choose>
+                                                <c:when test="${selectedNo > 0 && MTlist[j.index].no == selectedNo}">
+                                                    <li class="ml-3"><a class="selected" href="../class/clsCate?type=mtag&no=${MTlist[j.index].no}">${MTlist[j.index].name}</a></li>  
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <li class="ml-3"><a href="../class/clsCate?type=mtag&no=${MTlist[j.index].no}">${MTlist[j.index].name}</a></li>
+                                                </c:otherwise>
+                                            </c:choose>
+                                          
+                                        </c:if>
+                                    </c:forEach>
+								</ul>
 							</div>
 						</div>
 						<!-- 오늘의 핫 아이템(카르셀) -->

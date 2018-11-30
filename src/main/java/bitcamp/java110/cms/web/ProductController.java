@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -21,6 +22,7 @@ import bitcamp.java110.cms.domain.Classes;
 import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.Product;
 import bitcamp.java110.cms.domain.ProductBakt;
+import bitcamp.java110.cms.domain.ProductFile;
 import bitcamp.java110.cms.domain.ProductPopul;
 import bitcamp.java110.cms.domain.ProductQnA;
 import bitcamp.java110.cms.domain.ProductRep;
@@ -30,6 +32,7 @@ import bitcamp.java110.cms.service.CertService;
 import bitcamp.java110.cms.service.ClassService;
 import bitcamp.java110.cms.service.MiddleTagService;
 import bitcamp.java110.cms.service.ProductBaktService;
+import bitcamp.java110.cms.service.ProductFileService;
 import bitcamp.java110.cms.service.ProductPopulService;
 import bitcamp.java110.cms.service.ProductQnAService;
 import bitcamp.java110.cms.service.ProductRepService;
@@ -51,13 +54,16 @@ public class ProductController {
   CertService certService;
   SmallTagService smallTagService;
 
+  ProductFileService productFileService;
+
   ServletContext sc;
 
   public ProductController(ProductService productService, BigTagService bigTagService,
       MiddleTagService middleTagService, ProductPopulService productPopulService,
       ProductRepService productRepSerivce, ClassService classService,
       ProductQnAService productQnAService, ProductBaktService productBaktService,
-      CertService certService, SmallTagService smallTagService, ServletContext sc) {
+      CertService certService, SmallTagService smallTagService,
+      ProductFileService productFileService, ServletContext sc) {
 
     this.productService = productService;
     this.bigTagService = bigTagService;
@@ -69,12 +75,40 @@ public class ProductController {
     this.productBaktService = productBaktService;
     this.certService = certService;
     this.smallTagService = smallTagService;
+    this.productFileService = productFileService;
     this.sc = sc;
   }
 
   @GetMapping("prdt")
-  public void prdt(Model model) {
+  public void prdt(@RequestParam(defaultValue = "1") int pageNo,
+      @RequestParam(defaultValue = "3") int pageSize, Model model) {
     List<Product> productList = productService.list();
+
+    List<ProductPopul> pp_list = productPopulService.list();
+    List<ProductPopul> pp_product = new ArrayList<>();
+
+    for (ProductPopul p : pp_list) {
+
+      pp_product.add(p);
+    }
+
+    ObjectMapper mapper = new ObjectMapper();
+    String jsonText = "";
+    try {
+
+      jsonText = mapper.writeValueAsString(pp_product);
+      model.addAttribute("pp_list", jsonText);
+    } catch (JsonProcessingException e) {
+      System.out.println(e.getMessage());
+    }
+
+    model.addAttribute("productList", productList);
+  }
+
+  @GetMapping("prdtCate")
+  public void prdt(int mtno, Model model) {
+    List<Product> productList = productService.listByMtno(10, 5, mtno);
+
 
     List<ProductPopul> pp_list = productPopulService.list();
     List<ProductPopul> pp_product = new ArrayList<>();
@@ -127,20 +161,7 @@ public class ProductController {
 
   }
 
-  // 2018.11.27 수정 -> file input
-  @PostMapping("test")
-  public void test(Product product, List<MultipartFile> files) throws Exception {
 
-    for (MultipartFile file : files) {
-      if (!file.getOriginalFilename().equals("")) {
-        System.out.println(file.getOriginalFilename());
-
-        String filename = UUID.randomUUID().toString();
-        file.transferTo(new File(sc.getRealPath("/upload/img/test/" + filename + ".png")));
-      }
-    }
-    System.out.println(product);
-  }
 
   // 2018.11.28 수정 -> cert list 불러오기
   @RequestMapping(value = "getCertList.do", method = {RequestMethod.GET, RequestMethod.POST})
@@ -151,13 +172,14 @@ public class ProductController {
 
   // 2018.11.23 수정 -> 18.11.28수정
   @PostMapping("prodRegister")
-  public void prodRegister(Model model, HttpSession session, int mtno) {
+  public void prodRegister(Model model, HttpSession session, int mtno, int ctno) {
     Mentee loginUser = (Mentee) session.getAttribute("loginUser");
     List<Cert> certList = certService.listByMeno(5, 5, loginUser.getNo());
     model.addAttribute("certList", certList);
 
     List<SmallTag> stagList = smallTagService.listMtno(10, 5, mtno);
     model.addAttribute("stagList", stagList);
+    model.addAttribute("ctno", ctno);
   }
 
 
@@ -191,7 +213,7 @@ public class ProductController {
     model.addAttribute("total", total);
     model.addAttribute("basketList", basketList);
   }
- 
+
   @ResponseBody
   @RequestMapping("removeDate")
   public String removeDate(int no) throws Exception {
@@ -208,5 +230,39 @@ public class ProductController {
 
   }
 
+
+  // 2018.11.29 -> ?.?
+  @PostMapping(value = "addProduct.do")
+  public String addProduct(Product product, List<MultipartFile> files, HttpSession session)
+      throws Exception {
+    product.setPhot("temp");
+    productService.add(product);
+    int result = product.getNo();
+    int index = 0;
+    for (MultipartFile file : files) {
+      if (!file.getOriginalFilename().equals("")) {
+        String filename = UUID.randomUUID().toString();
+        file.transferTo(new File(sc.getRealPath("/upload/img/prdtImg/" + filename + ".png")));
+        String fname = "/upload/img/prdtImg/" + filename + ".png";
+        System.out.println(fname);
+        if (index == 0) {
+          product.setPhot(fname);
+          productService.update(product);
+        }
+        ProductFile productFile = new ProductFile();
+        productFile.setPfname(fname);
+        productFile.setPtno(result);
+
+        productFileService.add(productFile);
+        index++;
+      }
+    }
+    try {
+      Thread.sleep(3000);
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+    return "redirect:detail?no=" + result;
+  }
 }
 
