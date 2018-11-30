@@ -56,6 +56,14 @@
     vertical-align: middle;
     text-align: center
 }
+
+a#cli{
+color: #2c98f0;
+text-weight: bold;
+}
+
+
+
 </style>
 
 </head>
@@ -73,7 +81,7 @@
                 class="border js-fullheight">
                 <div class="text-center">
                     <div class="author-img"
-                        style="background-image: url(${mentee.phot};"></div>
+                        style="background-image: url(/img/1.jpg);"></div>
                     <h1 id="colorlib-logo">
                         <a href="index.html">관리자</a>
                     </h1>
@@ -84,8 +92,11 @@
                     class="navbar">
                     <div id="navbar" class="collapse">
                         <ul>
-                            <li><a onclick="location.href='dashBoard'" data-nav-section="1">메인
-                                    화면 </a></li>
+                            <li><a onclick="location.href='dashBoard'" data-nav-section="1" style=" color: #2c98f0; font-weight:bold;">메인
+                                    화면</a></li>
+                                    <li><a
+                                onclick="location.href='csList'"
+                                data-nav-section="10">문의 목록 </a></li>
                             <li><a onclick="location.href='mentorreqlist'" data-nav-section="2">멘토
                                     신청 목록</a></li>
                             <li><a onclick="location.href='classreqlist'" data-nav-section="3">클래스
@@ -98,8 +109,10 @@
                                     상품 목록</a></li>
                             <li><a onclick="location.href='classList'" data-nav-section="7">전체
                                     클래스 목록 </a></li>
-                            <li><a onclick="location.href='prodOrderList'" data-nav-section="8">주문
+                            <li><a onclick="location.href='prodOrderList'" data-nav-section="8">상품 주문
                                     내역</a></li>
+                                    <li><a onclick="location.href='classOrderList'" data-nav-section="9">
+                                    클래스 신청 목록 </a></li>
                         </ul>
                     </div>
                 </nav>
@@ -123,13 +136,11 @@
                                         <div class="chart row">
                                             <div
                                                 class="payment col-lg-6">
-                                                <canvas
-                                                    id="payment-graph"></canvas>
+                                                <canvas id="payment-graph"></canvas>
                                             </div>
                                             <!-- 그래프 6-->
                                             <div class="person col-lg-6">
-                                                <canvas
-                                                    id="person-graph"></canvas>
+                                                <canvas id="person-graph"></canvas>
                                             </div>
                                             <!-- 그래프 6-->
                                         </div>
@@ -138,48 +149,42 @@
                                         <div class="row" style="margin-top:1%;">
                                             <div class="cls col-lg-12" style="border: 1px solid black;">
                                                 <div class="header" style="margin-top:1%;">
-                                                    <span class="h3">최근
-                                                        클래스신청</span>
+                                                    <span class="h3">최근 클래스신청</span>
                                                     <button
                                                         type="button"
                                                         class="btn btn-outline-light"
                                                         style="position: relative; float: right;"
                                                         onclick="location.href='classreqlist'">
-                                                        <i
-                                                            class="far fa-plus-square fa-lg"
+                                                        <i class="far fa-plus-square fa-lg"
                                                             style="color: black;"></i>
                                                     </button>
                                                 </div>
 
-                                                <table
-                                                    class="table text-center table-sm">
+                                                <table class="table text-center">
                                                     <thead>
                                                         <tr>
+                                                            <th class="text-center">No</th>
                                                             <th
-                                                                scope="row">No</th>
+                                                                class="text-center">카테고리</th>
                                                             <th
-                                                                scope="row">카테고리</th>
+                                                                class="text-center">멘토</th>
                                                             <th
-                                                                scope="row">멘토</th>
-                                                            <th
-                                                                scope="row">신청일</th>
+                                                                class="text-center">신청일</th>
                                                         </tr>
                                                     </thead>
 
-                                                    <tbody
-                                                        class="table-hover">
+                                                    <tbody class="table-hover">
                                                         <c:forEach
                                                             items="${ClassesFindAll }"
                                                             var="r"
-                                                            begin="1"
-                                                            end="2"
+                                                            begin="0"
+                                                            end="1"
                                                             step="1"
                                                             varStatus="status">
                                                             <tr>
-                                                                <th
-                                                                    scope="row">${status.count }</th>
+                                                                <th class="text-center">${status.count }</th>
                                                                 <td>${r.middleTag.name }</td>
-                                                                <td>${r.mentee.nick }</td>
+                                                                <td>${r.mentee.name}(${r.mentee.nick })</td>
                                                                 <td>${r.rgdt }</td>
                                                             </tr>
                                                         </c:forEach>
@@ -193,30 +198,28 @@
                                         <div class="row" style="margin-top:1%;">
                                             <div class="pro col-lg-12" style="border: 1px solid black;">
                                                 <div class="header" style="margin-top:1%;">
-                                                    <span class="h3">최근
-                                                        상품등록</span>
+                                                    <span class="h3">최근 상품등록</span>
                                                     <button
                                                         type="button"
                                                         class="btn btn-outline-light"
                                                         style="position: relative; float: right;"
                                                         onclick="location.href='prdtlist'">
-                                                        <i
-                                                            class="far fa-plus-square fa-lg"
+                                                        <i class="far fa-plus-square fa-lg"
                                                             style="color: black;"></i>
                                                     </button>
                                                 </div>
                                                 <table
-                                                    class="table text-center table-sm">
+                                                    class="table text-center">
                                                     <thead>
                                                         <tr>
                                                             <th
-                                                                scope="row">No</th>
+                                                                class="text-center">No</th>
                                                             <th
-                                                                scope="row">카테고리</th>
+                                                                class="text-center">카테고리</th>
                                                             <th
-                                                                scope="row">판매자</th>
+                                                                class="text-center">판매자</th>
                                                             <th
-                                                                scope="row">신청일</th>
+                                                                class="text-center">신청일</th>
                                                         </tr>
                                                     </thead>
 
@@ -225,16 +228,15 @@
                                                         <c:forEach
                                                             items="${ProductFindAll }"
                                                             var="r"
-                                                            begin="1"
-                                                            end="2"
+                                                            begin="0"
+                                                            end="1"
                                                             step="1"
                                                             varStatus="status">
                                                             <tr>
-                                                                <th
-                                                                    scope="row">${status.count }</th>
-                                                                <td>${r.smalltag.name }</td>
-                                                                <td>${r.mentee.nick }</td>
-                                                                <td>${r.rgdt }</td>
+                                                                <th class="text-center">${status.count }</th>
+                                                                <td class="text-center">${r.smalltag.name }</td>
+                                                                <td class="text-center">${r.mentee.name}(${r.mentee.nick })</td>
+                                                                <td class="text-center">${r.rgdt }</td>
                                                             </tr>
 
                                                         </c:forEach>
@@ -258,18 +260,17 @@
                                                             class="far fa-plus-square fa-lg"
                                                             style="color: black;"></i>
                                                     </button>
-                                                    <table
-                                                        class="table text-center table-sm">
+                                                    <table class="table text-center">
                                                         <thead>
                                                             <tr>
                                                                 <th
-                                                                    scope="row">No</th>
+                                                                    class="text-center">No</th>
                                                                 <th
-                                                                    scope="row">카테고리</th>
+                                                                    class="text-center">카테고리</th>
                                                                 <th
-                                                                    scope="row">멘토</th>
+                                                                    class="text-center">멘토</th>
                                                                 <th
-                                                                    scope="row">신청일</th>
+                                                                    class="text-center">신청일</th>
                                                             </tr>
                                                         </thead>
 
@@ -278,21 +279,21 @@
                                                             <c:forEach
                                                                 items="${MentorFindAll }"
                                                                 var="r"
-                                                                begin="1"
-                                                                end="2"
+                                                                begin="0"
+                                                                end="1"
                                                                 step="1"
                                                                 varStatus="status">
                                                                 <tr>
                                                                     <th
-                                                                        scope="row">${status.count }</th>
-                                                                    <td><c:forEach
+                                                                        class="text-center">${status.count }</th>
+                                                                    <td class="text-center"><c:forEach
                                                                             items="${r.mentorTag }"
                                                                             var="mt">
                                         ${mt.name }
                                         </c:forEach></td>
 
-                                                                    <td>${r.nick }</td>
-                                                                    <td>${r.rgdtmt }</td>
+                                                                    <td class="text-center">${r.name}(${r.nick })</td>
+                                                                    <td class="text-center">${r.rgdtmt }</td>
                                                                 </tr>
                                                             </c:forEach>
                                                         </tbody>

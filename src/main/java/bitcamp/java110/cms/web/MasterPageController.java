@@ -75,26 +75,7 @@ public class MasterPageController {
    this.noticeService = noticeService;
   }
 
-  @GetMapping("masterpage")
-  public void masterpage(Model model) {
-    Mentee mentee = menteeService.get(5);
-    Mentor mentor = mentorService.get(5);
-    
-    System.out.println(mentee);
-    System.out.println(mentor);
-  
-    
-    model.addAttribute("mentee", mentee);
-//    model.addAttribute("mentor", mentor);
-    
-    
 
-    
-
-  }
-  
-  
-  
   @GetMapping("prdtList")
   public void prdtList(Model model){
     List<Product> findAllByList = productService.findAllByList();
@@ -165,8 +146,13 @@ public class MasterPageController {
   /*
    * 신고목록 관련(미완성)
   */
-  @GetMapping("report")
-  public void report() {
+  @GetMapping("csList")
+  public void csList(Model model) {
+    List<Report> ReportList = reportService.listByStat(10, 3);
+    for(Report r: ReportList) {
+      r.setCnt(reportService.getMeno2Cnt(r.getMeno2()));
+    }
+    model.addAttribute("ReportList",ReportList);
     
   }
   

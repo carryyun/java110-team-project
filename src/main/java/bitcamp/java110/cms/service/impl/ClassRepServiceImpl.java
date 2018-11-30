@@ -39,4 +39,10 @@ public class ClassRepServiceImpl implements ClassRepService{
     return classRepDao.repDelete(no);
   }
 
+  @Override
+  public int repupdate(ClassRep classRep) {
+    
+    return classRepDao.repChange(classRep);
+  }
+
 }

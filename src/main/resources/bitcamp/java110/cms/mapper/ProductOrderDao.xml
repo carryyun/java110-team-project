@@ -23,8 +23,11 @@
         <result column="stname" property="stname"/>
         <result column="titl" property="prdt_titl"/>
         <result column="nick" property="mete_nick"/>
+        <result column="name1" property="mete_name"/>
         <result column="nick2" property="mete2_nick"/>
+         <result column="name2" property="mete2_name"/>
         <result column="pric" property="prdt_pric"/>
+        <result column="phone" property="mete2_phone"/>
  
         
         
@@ -80,10 +83,18 @@
 	        stag.stname,
 	        prdt.titl, 
 	        mete.nick nick,
+            mete.name name1, <!-- 구매자-->
 	        mete2.nick nick2,
-	        prdt.pric, 
-	        paydt,
-	        porder.ono
+            mete2.name name2,
+            mete2.phone,
+            porder.cnt,
+	        prdt.pric,
+            porder.payopt,
+	        porder.paydt,
+	        porder.ono,
+            parc_name,
+            parc_no
+            
 		from
 		    p_prdt_order as porder 
 		    inner join p_prdt as prdt 
