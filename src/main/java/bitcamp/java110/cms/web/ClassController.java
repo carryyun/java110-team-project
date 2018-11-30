@@ -284,9 +284,15 @@ public class ClassController {
   }
   
   @RequestMapping(value = "clsrepdele.do", method = {RequestMethod.POST})
-  public @ResponseBody int clslikeins(int no) {
+  public @ResponseBody int clsrepdele(int no) {
     
     return classrepService.repDelete(no);
+  }
+  
+  @RequestMapping(value = "clsrepchange.do", method = {RequestMethod.POST})
+  public @ResponseBody int clsrepchange(ClassRep classRep) {
+    
+    return classrepService.repupdate(classRep);
   }
   
   ///////////////// p_cls_qna 수업질문답변//////////////////
