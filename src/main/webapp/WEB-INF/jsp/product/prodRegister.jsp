@@ -147,7 +147,7 @@ div.row.imgDiv {
 
 				<!-- 등록 취소버튼 -->
 				<div class="col-lg-12 text-right">
-					<input type="submit" class="btn btn-primary float-right" value="등록">
+					<input type="submit" class="btn btn-primary" value="등록" >
 					<input type="button" class="btn" onclick="test()" value="취소">
 				</div>
 			</form>
