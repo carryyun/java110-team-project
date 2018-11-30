@@ -100,6 +100,16 @@
     <!-- Script 시작 -->
     
     <!-- Custom scripts for this template -->
+    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+<script>
+$("img.lazy").lazyload({
+    threshold : 500,        //뷰포트에 보이기 300px 전에 미리 로딩
+    effect : "fadeIn"       //효과
+});
+</script>
+    
     <script type="text/javascript">
  var stmnLEFT = 0; // 오른쪽 여백 
  var stmnGAP1 = 0; // 위쪽 여백 

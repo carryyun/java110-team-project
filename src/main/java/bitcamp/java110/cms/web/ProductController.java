@@ -80,10 +80,8 @@ public class ProductController {
   }
 
   @GetMapping("prdt")
-  public void prdt(
-      @RequestParam(defaultValue="1") int pageNo,
-      @RequestParam(defaultValue="3") int pageSize,
-      Model model) {
+  public void prdt(@RequestParam(defaultValue = "1") int pageNo,
+      @RequestParam(defaultValue = "3") int pageSize, Model model) {
     List<Product> productList = productService.list();
 
     List<ProductPopul> pp_list = productPopulService.list();
@@ -106,11 +104,12 @@ public class ProductController {
 
     model.addAttribute("productList", productList);
   }
+
   @GetMapping("prdtCate")
   public void prdt(int mtno, Model model) {
     List<Product> productList = productService.listByMtno(10, 5, mtno);
-    
-    
+
+
     List<ProductPopul> pp_list = productPopulService.list();
     List<ProductPopul> pp_product = new ArrayList<>();
 
@@ -244,7 +243,7 @@ public class ProductController {
       if (!file.getOriginalFilename().equals("")) {
         String filename = UUID.randomUUID().toString();
         file.transferTo(new File(sc.getRealPath("/upload/img/prdtImg/" + filename + ".png")));
-        String fname="/upload/img/prdtImg/" + filename + ".png";
+        String fname = "/upload/img/prdtImg/" + filename + ".png";
         System.out.println(fname);
         if (index == 0) {
           product.setPhot(fname);
@@ -257,6 +256,11 @@ public class ProductController {
         productFileService.add(productFile);
         index++;
       }
+    }
+    try {
+      Thread.sleep(3000);
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
     }
     return "redirect:detail?no=" + result;
   }

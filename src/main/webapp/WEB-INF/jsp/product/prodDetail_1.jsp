@@ -21,7 +21,7 @@
 					<article class="gallery-wrap">
 						<div class="img-big-wrap">
 							<div>
-								<img id="prod_img" src="${product.phot}" alt="${product.phot}">
+								<img id="prod_img" class="lazy" data-original="${product.phot}" alt="${product.phot}">
 									<!-- <a href="#" style="width: 100%"></a> -->
 							</div>
 						</div>
