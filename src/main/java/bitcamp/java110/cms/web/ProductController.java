@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -79,7 +80,10 @@ public class ProductController {
   }
 
   @GetMapping("prdt")
-  public void prdt(Model model) {
+  public void prdt(
+      @RequestParam(defaultValue="1") int pageNo,
+      @RequestParam(defaultValue="3") int pageSize,
+      Model model) {
     List<Product> productList = productService.list();
 
     List<ProductPopul> pp_list = productPopulService.list();
