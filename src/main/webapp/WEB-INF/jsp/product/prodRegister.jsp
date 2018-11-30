@@ -185,6 +185,8 @@ div.row.imgDiv {
         $('div.note-popover.popover.in.note-image-popover.bottom').remove();
         $('div.popover-content.note-children-container').remove();
         $('div.arrow').remove();
+        $('div.note-popover.popover.in.note-table-popover.bottom').remove();
+        
     });
 </script>
 
