@@ -321,6 +321,7 @@
                 html+=' </form>';
                 var setDiv = document.querySelector("#modal-body");
                 setDiv.innerHTML=html;
+                $('#ctno').val($('#cert option:selected').attr('id'));
             }
             
         });
