@@ -45,7 +45,7 @@
 							    if (i < p2.getStar()) {
 							%>
 							<img alt="star-on-big" src="/upload/img/raty/star-on-big.png">
-							<%
+							<% 
 							  } else {
 							%>
 							<img alt="star-off-big" src="/upload/img/raty/star-off-big.png">
