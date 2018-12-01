@@ -16,6 +16,7 @@
         <result column="rgdt" 		property="rgdt"/>
         <result column="nick"		property="mentee.nick"/>
         <result column="phot"		property="mentee.phot"/>
+        <result column="phone"      property="mentee.phone"/>
     </resultMap>
     
     <select id="findAll" resultMap="crepMap">

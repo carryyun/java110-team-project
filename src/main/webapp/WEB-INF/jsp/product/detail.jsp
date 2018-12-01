@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
+
 <html>
 <head>
 <meta charset="utf-8">
@@ -82,26 +82,21 @@
     </div>
 </div>
 </div>
-    <script type="text/javascript">
+<script type="text/javascript">
     var testtTop;
     var setId = "#testt";
-    testtTop = $("#detail").offset().top - $("#headermain").offset().top - $("#headernav").offset().top;
+    testtTop = $("#detail").offset().top - 120 - $("#headermain").offset().top - $("#headernav").offset().top;
     
     console.log(testtTop);
     $(setId).css("position", "absolute");
     $(setId).css("top", (testtTop) + "px");
     $(setId).css("width", "94.6%");
-    </script>
-</body>
+</script>
 <script src="/vendor/jquery/jquery.min.js"></script>
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/js/jquery.raty.min.js"></script>
 <script src="/js/clean-blog.js"></script>
-    <!-- Script 시작 -->
-    
-    <!-- Custom scripts for this template -->
-    
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
 
 <script>
 $("img.lazy").lazyload({
@@ -110,13 +105,13 @@ $("img.lazy").lazyload({
 });
 </script>
     
-    <script type="text/javascript">
+<script type="text/javascript">
  var stmnLEFT = 0; // 오른쪽 여백 
  var stmnGAP1 = 0; // 위쪽 여백 
  var stmnGAP2 = 50; // 스크롤시 브라우저 위쪽과 떨어지는 거리 
  var stmnBASE = 50; // 스크롤 시작위치 
  var stmnActivateSpeed = 30; //스크롤을 인식하는 딜레이 (숫자가 클수록 느리게 인식)
- var stmnScrollSpeed = 1; //스크롤 속도 (클수록 느림)
+ var stmnScrollSpeed = 10; //스크롤 속도 (클수록 느림)
  var stmnTimer; 
  
  function RefreshStaticMenu() { 
@@ -138,44 +133,44 @@ $("img.lazy").lazyload({
   }
 </script>
 
-    <script>
-        $(document).ready(function() {
-            $('#star1').raty({
-                path : "/upload/img/raty/",
-                start : 1,
-                starOff : 'star-off-big.png',
-                starOn : 'star-on-big.png',
-                width : 200
-            });
+<script>
+    $(document).ready(function() {
+        $('#star1').raty({
+            path : "/upload/img/raty/",
+            start : 1,
+            starOff : 'star-off-big.png',
+            starOn : 'star-on-big.png',
+            width : 200
         });
+    });
 
-        function scroll_follow(id) {
-            $(window).scroll(function() //스크롤이 움직일때마다 이벤트 발생
-            {
-                var position = $(window).scrollTop()- $("#headermain").offset().top - $("#headernav").offset().top - 48; // 현재 스크롤바의 위치값을 반환합니다.
-                if (position > testtTop) {
-                    $(id).css("position", "fixed-top");
-                    $(id).css("top", position + "px");
-                    $(id).css("width", "94.6%");
+    function scroll_follow(id) {
+        $(window).scroll(function() //스크롤이 움직일때마다 이벤트 발생
+        {
+            var position = $(window).scrollTop()- $("#headermain").offset().top - $("#headernav").offset().top - 48; // 현재 스크롤바의 위치값을 반환합니다.
+            if (position > testtTop) {
+                $(id).css("position", "fixed-top");
+                $(id).css("top", position + "px");
+                $(id).css("width", "94.6%");
 
-                } else {
-                    $(id).css("top", (testtTop) + "px");
-                    $(id).css("position", "absolute");
-                    $(id).css("width", "94.6%");
-                }
+            } else {
+                $(id).css("top", (testtTop) + "px");
+                $(id).css("position", "absolute");
+                $(id).css("width", "94.6%");
+            }
 
-            });
+        });
+    }
+    scroll_follow(setId);
+
+
+    $('#click').raty({
+        click : function(score, evt) {
+            alert('ID: ' + this.attr('id') + '\nscore: ' + score
+                    + '\nevent: ' + evt);
         }
-        scroll_follow(setId);
-
-    
-        $('#click').raty(
-                {
-                    click : function(score, evt) {
-                        alert('ID: ' + this.attr('id') + '\nscore: ' + score
-                                + '\nevent: ' + evt);
-                    }
-                });
-    </script>
+    });
+</script>
+</body>
 
 </html>

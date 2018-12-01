@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
 	trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <html>
 
 <head>
@@ -12,7 +13,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Clean Blog - Start Bootstrap Theme</title>
+<title>하루 - 전체 상품목록</title>
 
 <!-- ===============필수포함=============== -->
 <!-- Bootstrap core CSS -->
@@ -122,31 +123,36 @@
 
 														<div class="product-description__title">
 															<div class="row">
-																<div class="col-lg-6 mb-2">
-																	<a href="detail?no=${pl.no}">${pl.titl}</a>
-																</div>
-																<div class="col-lg-6 mb-2 text-right">
-																	<%
-										                              Product p = (Product) pageContext.getAttribute("pl");
-										                              for (int i = 0; i < 5; i++) {
-										                                if (i < p.getStar()) {
-										                            %>
-																	<img alt="star-on-big" class='starimg' src="/upload/img/raty/star-on-big.png">
-																	<%
-										                              } else {
-										                            %>
-																	<img alt="star-off-big" class='starimg' src="/upload/img/raty/star-off-big.png">
-																	<%
-										                              }
-										                              }
-										                            %>
+																<div class="col-lg-12 mb-2">
+																<c:choose>
+																	<c:when test="${fn:length(pl.titl) > 20}">
+																	   <a href="detail?no=${pl.no}">${fn:substring(pl.titl,0,20)}...</a>
+														            </c:when>
+														            <c:otherwise>
+														              <a href="detail?no=${pl.no}">${pl.titl}</a>
+														            </c:otherwise> 
+																</c:choose>
+																	
 																</div>
 															</div>
 
 															<!-- 분류명 , 가격 -->
 															<div class="row">
 																<div class="col-lg-7 product-description__category secondary-text">
-																	${pl.middleTagName} - ${pl.smalltag.name} <br>
+																	<%
+                                                                      Product p = (Product) pageContext.getAttribute("pl");
+                                                                      for (int i = 0; i < 5; i++) {
+                                                                        if (i < p.getStar()) {
+                                                                    %>
+                                                                    <img alt="star-on-big" class='starimg' src="/upload/img/raty/star-on-big.png">
+                                                                    <%
+                                                                      } else {
+                                                                    %>
+                                                                    <img alt="star-off-big" class='starimg' src="/upload/img/raty/star-off-big.png">
+                                                                    <%
+                                                                      }
+                                                                      }
+                                                                    %>
 																</div>
 																<div class="col-lg-5 product-description__price">${pl.pric}원</div>
 															</div>
@@ -154,10 +160,6 @@
 															<!-- 멘토 이름 -->
 															<div class="sizes-wrapper">
 																<b>판매자 - ${pl.mentee.name}</b>
-															</div>
-															<!-- 주소 -->
-															<div class="color-wrapper">
-																<b>기본 주소</b>
 															</div>
 														</div>
 													</div>
@@ -321,6 +323,7 @@
                 html+=' </form>';
                 var setDiv = document.querySelector("#modal-body");
                 setDiv.innerHTML=html;
+                $('#ctno').val($('#cert option:selected').attr('id'));
             }
             
         });

@@ -120,6 +120,14 @@ public class MasterPageController {
     report.setStat(stat);
     return reportService.updateReptstat(report);
   }
+  
+  // 클래스 삭제
+  @RequestMapping(value = "clsstat.do", method = {RequestMethod.GET, RequestMethod.POST})
+  public @ResponseBody int clsstat(int no, String stat) {
+    Classes classes = classService.findBycno(no);
+    classes.setStat(stat);
+    return classService.statupdate(classes);
+  }
 
   @GetMapping("mentorreqlist")
   public void mentorlist(Model model) {
