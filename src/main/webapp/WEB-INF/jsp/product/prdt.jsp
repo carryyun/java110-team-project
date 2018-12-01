@@ -73,10 +73,10 @@
 									<div id="owl-hotItem" class="owl-carousel col-lg-10 mt-2" style="margin: 0 auto"></div>
 									<div class="owl-btns">
 										<div class="cusnextPrdt">
-											<i class="fas fa-caret-right" style="color: #ec5453"></i>
+											<i class="fas fa-angle-right" style="color: #ec5453"></i>
 										</div>
 										<div class="cusprevPrdt">
-											<i class="fas fa-caret-left" style="color: #ec5453"></i>
+											<i class="fas fa-angle-left" style="color: #ec5453"></i>
 										</div>
 									</div>
 								</div>

@@ -9,20 +9,20 @@
     <meta name="author" content="">
     <!-- Bootstrap core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- 폰트 추가 -->
-    <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
+    
     <!-- Custom fonts for this template -->
     <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-
     <!-- Custom styles for this template -->
     <link href="/css/category.css" rel="stylesheet">
     
+    <!-- 폰트 추가 -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
     </head>
     <!-- Category Navigation -->
     <!-- <hr class="Fhr"> -->
     
     <nav class="navbar navbar-expand-lg">
+    
         <div class="navbar-nav" id="categoryNav">
           <ul class="navbar-nav" id="mainUl" style="float: left;">
             <c:forEach  items="${BTlist}" var="bt" varStatus="i">

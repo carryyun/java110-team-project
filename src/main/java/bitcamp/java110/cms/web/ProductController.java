@@ -136,17 +136,12 @@ public class ProductController {
   @GetMapping("detail")
   public void detail(Model model, int no) {
     Product product = productService.get(no);
-
+    product.setProductFile(productFileService.listByPtno(no));
+    
     List<ProductRep> replyList = productRepSerivce.listByPtno(no);
     Classes prdtcls = classService.findbyptno(no);
     List<ProductQnA> prodQnaList = productQnAService.listByPtno(3, 5, no);
-
-
-    /*
-     * for(ProductRep p : list) { System.out.println(p.getConts());
-     * System.out.println(p.getMentee().getNick()); System.out.println(p.getMentee().getPhot()); }
-     */
-
+    
     model.addAttribute("product", product);
     // product - 웹에서 쓸 이름(아무거나 써도됨)
     model.addAttribute("replyList", replyList);

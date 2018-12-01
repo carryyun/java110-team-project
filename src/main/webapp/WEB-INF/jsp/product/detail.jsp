@@ -36,21 +36,17 @@
 
     
 <style type="text/css">
-#STATICMENU { 
-    margin: 0pt; padding: 0pt;  
-    position: absolute; right: 0px; top: 0px;
-    border-top: 1px solid silver;
-    }
+
 </style>
 
 
 
 </head>
-<body style="background-color: #F2F4F7" onload="InitializeStaticMenu()">
+<body onload="InitializeStaticMenu()">
 
 
-<div id="wrap" style="background-color: #fff">
-        <div class="col" style="position: absolute; height: 105px; background-color: white">
+<div id="wrap" style="background-color: #F2F4F7">
+        <div class="col" style="position: absolute; height: 150px; background-color: #fff">
             <!-- 헤더 배경색 적용 -->
         </div>
         
@@ -64,8 +60,8 @@
             <div class="col-lg-12" id="headernav">
                 <jsp:include page="../headerNav.jsp"></jsp:include>
             </div>
-
-        <div class="col-lg-9">
+         <!-- background-color: white; background-clip: content-box; -->
+        <div class="col-lg-9" style="padding-top: 50px;">
             <!-- 상품 상세보기 -->
             <jsp:include page="prodDetail_1.jsp"></jsp:include>
 
@@ -85,12 +81,11 @@
 <script type="text/javascript">
     var testtTop;
     var setId = "#testt";
-    testtTop = $("#detail").offset().top - 120 - $("#headermain").offset().top - $("#headernav").offset().top;
+    testtTop = $("#detail").offset().top - 105 - $("#headermain").offset().top - $("#headernav").offset().top;
     
-    console.log(testtTop);
     $(setId).css("position", "absolute");
     $(setId).css("top", (testtTop) + "px");
-    $(setId).css("width", "94.6%");
+    /* $(setId).css("width", "94.6%"); */
 </script>
 <script src="/vendor/jquery/jquery.min.js"></script>
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -108,8 +103,8 @@ $("img.lazy").lazyload({
 <script type="text/javascript">
  var stmnLEFT = 0; // 오른쪽 여백 
  var stmnGAP1 = 0; // 위쪽 여백 
- var stmnGAP2 = 50; // 스크롤시 브라우저 위쪽과 떨어지는 거리 
- var stmnBASE = 50; // 스크롤 시작위치 
+ var stmnGAP2 = 52; // 스크롤시 브라우저 위쪽과 떨어지는 거리 
+ var stmnBASE = 52; // 스크롤 시작위치 
  var stmnActivateSpeed = 30; //스크롤을 인식하는 딜레이 (숫자가 클수록 느리게 인식)
  var stmnScrollSpeed = 10; //스크롤 속도 (클수록 느림)
  var stmnTimer; 
@@ -151,12 +146,12 @@ $("img.lazy").lazyload({
             if (position > testtTop) {
                 $(id).css("position", "fixed-top");
                 $(id).css("top", position + "px");
-                $(id).css("width", "94.6%");
+                /* $(id).css("width", "100%"); */
 
             } else {
                 $(id).css("top", (testtTop) + "px");
                 $(id).css("position", "absolute");
-                $(id).css("width", "94.6%");
+                /* $(id).css("width", "100%"); */
             }
 
         });

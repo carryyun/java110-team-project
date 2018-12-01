@@ -33,13 +33,8 @@ public class ProductFileServiceImpl implements ProductFileService {
 
   // 공예품 번호로 조회
   @Override
-  public List<ProductFile> listByPtno(int pageNo, int pageSize, int ptno) {
-    HashMap<String, Object> params = new HashMap<>();
-    params.put("rowNo", (pageNo - 1) * pageSize);
-    params.put("size", pageSize);
-    params.put("productno", ptno);
-
-    return productFileDao.findByPtno(params);
+  public List<ProductFile> listByPtno(int ptno) {
+    return productFileDao.findAllByPtno(ptno);
   }
 
   // insert
