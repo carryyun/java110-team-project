@@ -29,8 +29,16 @@ public class Product {
   private BigTag bigTag;
   
   private List<ProductFile> productFile;
+  private List<ProductRep> productReps;
   
   
+  
+  public List<ProductRep> getProductReps() {
+    return productReps;
+  }
+  public void setProductReps(List<ProductRep> productReps) {
+    this.productReps = productReps;
+  }
   public List<ProductFile> getProductFile() {
     return productFile;
   }

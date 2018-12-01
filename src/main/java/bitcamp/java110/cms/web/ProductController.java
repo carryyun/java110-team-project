@@ -177,7 +177,13 @@ public class ProductController {
     model.addAttribute("ctno", ctno);
   }
 
-
+  //상품평 등록
+  @RequestMapping(value = "addrep.do", method = {RequestMethod.GET, RequestMethod.POST})
+  public @ResponseBody List<ProductRep> getCertList(ProductRep productRep) {
+    productRepSerivce.add(productRep);
+    List<ProductRep> productRepList = productRepSerivce.listByPtno(productRep.getPtno());
+    return productRepList;
+  }
 
   @RequestMapping(value = "addqna", method = RequestMethod.POST)
   public String addqna(String type, String titl, String conts) {
@@ -252,11 +258,11 @@ public class ProductController {
         index++;
       }
     }
-    try {
+    /*try {
       Thread.sleep(3000);
     } catch (Exception e) {
       System.out.println(e.getMessage());
-    }
+    }*/
     return "redirect:detail?no=" + result;
   }
 }

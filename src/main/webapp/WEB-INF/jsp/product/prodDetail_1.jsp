@@ -144,58 +144,7 @@ input[type="number"]::-webkit-inner-spin-button {
 		</div> <!-- <div class="col-lg-12 col-md-12 text-center"> -->
 	</div><!-- <div class="row"> -->
 </div><!-- <div class="container"> -->
-<script>
-$(document).ready(function(){
-    var check = parseInt($('input#inputCnt').val());
-    
-    var getPric = parseInt(${product.pric});
-    var getDeli = parseInt(${product.deli});
-    var total =  String(getPric+getDeli);
-    total = total.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
-    document.getElementById('num').innerHTML=(total+"원");
-});
 
-function cntP(){
-    var cnt = parseInt($('input#inputCnt').val()) +1;
-    if(cnt>${product.stock}) cnt = ${product.stock};
-    if(cnt>99) cnt=99;
-    
-    $('input#inputCnt').val(cnt);
-    changePric(cnt);
-}
-function cntM(){
-    var cnt = parseInt($('input#inputCnt').val()) -1;
-    if(cnt<1) cnt=1;
-    $('input#inputCnt').val(cnt);
-    changePric(cnt);
-}
-
-function changePric(cnt){
-    var check = parseInt($('input#inputCnt').val());
-    if(check<1) check=1;
-    
-    check = parseInt($('input#inputCnt').val());
-    if(check>${product.stock}) check = ${product.stock};
-    if(check>99) check=99;
-    
-    var getPric = parseInt(${product.pric}) * cnt;
-    var getDeli = parseInt(${product.deli});
-    var total =  String(getPric+getDeli);
-    total = total.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
-    document.getElementById('num').innerHTML=(total+"원");
-}
-function checkLeng(obj){
-    if (obj.value.length > obj.maxLength){
-        obj.value = obj.value.slice(0, obj.maxLength);
-      }  
-    if( obj.value > ${product.stock}){
-        obj.value = ${product.stock};
-    }
-    if( obj.value < 1){
-        obj.value = 1;
-    }
-}
-</script>
 
 </body>
 </html>

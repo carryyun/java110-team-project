@@ -78,6 +78,13 @@
     </div>
 </div>
 </div>
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/js/jquery.raty.min.js"></script>
+<script src="/js/clean-blog.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 <script type="text/javascript">
     var testtTop;
     var setId = "#testt";
@@ -85,14 +92,7 @@
     
     $(setId).css("position", "absolute");
     $(setId).css("top", (testtTop) + "px");
-    /* $(setId).css("width", "94.6%"); */
 </script>
-<script src="/vendor/jquery/jquery.min.js"></script>
-<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="/js/jquery.raty.min.js"></script>
-<script src="/js/clean-blog.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
-
 <script>
 $("img.lazy").lazyload({
     threshold : 500,        //뷰포트에 보이기 300px 전에 미리 로딩
@@ -137,6 +137,66 @@ $("img.lazy").lazyload({
             starOn : 'star-on-big.png',
             width : 200
         });
+        
+        if("${sessionScope.loginUser}" == ""){
+            $('button#repbtn').click(function(){
+                swal({
+                    text : "로그인 후 이용가능합니다..",
+                    button : "확인",
+                  })
+            });
+        }else{
+	        $('button#repbtn').click(function(){
+	            var repconts = $('#repconts').val();
+	            var repstar = $('#star1-score').val();
+	            var repptno = ${product.no};
+	            $.ajax({
+	                type : "POST",
+	                data : {
+	                    "conts" : repconts,
+	                    "meno" : "${sessionScope.loginUser.no}",
+	                    "ptno" : repptno,
+	                    "star" : repstar
+	                },
+	                url : "addrep.do",
+	                success : function(result) {
+	                    $('#repconts').val("");
+	                    $('#star1').empty();
+	                    $('#star1').raty({
+	                        path : "/upload/img/raty/",
+	                        start : 1,
+	                        starOff : 'star-off-big.png',
+	                        starOn : 'star-on-big.png',
+	                        width : 200
+	                    });
+	                    var html="";
+	                    var addrep_target = $('div#addrep_target');
+	                    for(var item in result){
+		                    html+= '<div class="col-lg-12 my-3">';
+		                    html+= '    <div class="container pb-3" style="border-bottom: 0.5px solid rgba(0, 0, 0, 0.5)">';
+		                    html+= '    <div class="row">';
+		                    html+= '        <div class="col-lg-2 text-center">';
+		                    html+= '            <img src="' + result[item].mentee.phot + '" alt="singup" id="circle"><br>';
+		                    html+=                result[item].mentee.nick;
+		                    html+= '        </div>';
+		                    html+= '        <div class="col-lg-10 media-body">'+ result[item].conts +'</div>';
+		                    html+= '        </div>';
+		                    html+= '    </div>';
+		                    html+= '</div>';
+	                    }
+	                    addrep_target.html(html);
+	                },
+	                error : function(error, status) {
+	                    if(error.status == "500"){
+	                        swal({
+	                            text : "이미 상품평을 등록하셨습니다.",
+	                            button : "확인",
+	                          })
+	                    }
+	                }
+	            });
+	        });
+        }
     });
 
     function scroll_follow(id) {
@@ -165,6 +225,61 @@ $("img.lazy").lazyload({
                     + '\nevent: ' + evt);
         }
     });
+</script>
+
+
+<script>
+/* 디테일1 스크립트 */
+$(document).ready(function(){
+    var check = parseInt($('input#inputCnt').val());
+    
+    var getPric = parseInt(${product.pric});
+    var getDeli = parseInt(${product.deli});
+    var total =  String(getPric+getDeli);
+    total = total.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+    document.getElementById('num').innerHTML=(total+"원");
+});
+
+function cntP(){
+    var cnt = parseInt($('input#inputCnt').val()) +1;
+    if(cnt>${product.stock}) cnt = ${product.stock};
+    if(cnt>99) cnt=99;
+    
+    $('input#inputCnt').val(cnt);
+    changePric(cnt);
+}
+function cntM(){
+    var cnt = parseInt($('input#inputCnt').val()) -1;
+    if(cnt<1) cnt=1;
+    $('input#inputCnt').val(cnt);
+    changePric(cnt);
+}
+
+function changePric(cnt){
+    var check = parseInt($('input#inputCnt').val());
+    if(check<1) check=1;
+    
+    check = parseInt($('input#inputCnt').val());
+    if(check>${product.stock}) check = ${product.stock};
+    if(check>99) check=99;
+    
+    var getPric = parseInt(${product.pric}) * cnt;
+    var getDeli = parseInt(${product.deli});
+    var total =  String(getPric+getDeli);
+    total = total.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+    document.getElementById('num').innerHTML=(total+"원");
+}
+function checkLeng(obj){
+    if (obj.value.length > obj.maxLength){
+        obj.value = obj.value.slice(0, obj.maxLength);
+      }  
+    if( obj.value > ${product.stock}){
+        obj.value = ${product.stock};
+    }
+    if( obj.value < 1){
+        obj.value = 1;
+    }
+}
 </script>
 </body>
 

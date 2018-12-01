@@ -59,18 +59,14 @@
 						</div>
 					</div>
 				</div>
+				
                     <div class="col mt-3">
-                        <form class="form-horizontal" action="send.php" method="post">
-                            <fieldset>
                                 <table class="fixed-table w-100">
                                     <tr>
                                         <td colspan="3">
-                                            <!-- <div class=""> --> <!-- Message body -->
-                                            <div class="form-group">
-                                                <div class="col-lg-12">
-                                                    <textarea class="form-control" id="message" name="message"
-                                                        placeholder="상품평을 등록해주세요." rows="5"></textarea>
-                                                </div>
+                                            <div class="col-lg-12">
+                                                <textarea class="form-control" id="repconts" name="conts"
+                                                    placeholder="상품평을 등록해주세요." rows="4"></textarea>
                                             </div>
                                         </td>
                                     </tr>
@@ -85,18 +81,16 @@
                                             <!-- Form actions --> <!--col-lg-12추가했음-->
                                             <div class="col-md-12 col-lg-12 text-right"
                                                 style="vertical-align: middle;">
-                                                <button type="submit" class="btn btn-primary btn-md"
+                                                <button type="button" id="repbtn" class="btn btn-primary btn-md"
                                                     style="background-color: #606066; color: #ffffff">등록</button>
-                                                <button type="reset" class="btn btn-default btn-md">취소</button>
+                                                <!-- <button type="reset" class="btn btn-default btn-md">취소</button> -->
                                             </div>
                                         </td>
                                     </tr>
                                     <!-- <div class="col-md-9 col-md-offset-0"> -->
                                 </table>
-                            </fieldset>
-                        </form>
                     </div>
-                    <div class="row">
+                    <div class="row" id="addrep_target">
                     <div class="col-lg-12">
 	                    <hr class="Fhr">
                     </div>
