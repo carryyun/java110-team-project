@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>관리자 페이지</title>
 
 <!-- 필수-->
 <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -79,10 +79,10 @@
                                 data-nav-section="10">문의 목록 </a></li>
                             <li><a
                                 onclick="location.href='mentorreqlist'"
-                                data-nav-section="2">멘토 신청 목록</a></li>
+                                data-nav-section="2">멘토 신청</a></li>
                             <li><a
                                 onclick="location.href='classreqlist'"
-                                data-nav-section="3">클래스 신청 목록</a></li>
+                                data-nav-section="3">클래스 신청</a></li>
                             <li><a
                                 onclick="location.href='reportList'"
                                 data-nav-section="4">신고 접수 목록</a></li>
@@ -102,7 +102,7 @@
                                     주문 내역</a></li>
                             <li><a
                                 onclick="location.href='classOrderList'"
-                                data-nav-section="9" style="color: #2c98f0; font-weight: bold;"> 클래스 신청 목록 </a></li>
+                                data-nav-section="9" style="color: #2c98f0; font-weight: bold;"> 클래스 등록 내역 </a></li>
 
                         </ul>
                     </div>
@@ -118,7 +118,7 @@
 
                             <div class="about-desc">
 
-                                <h2 class="colorlib-heading">클래스 신청 내역</h2>
+                                <h2 class="colorlib-heading">클래스 등록 내역</h2>
 
                                 <div class="col-lg-12">
                                     <div class="col-lg-5" id="serch-men">

@@ -10,7 +10,7 @@
     content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>클래스 신청 목록</title>
+<title>관리자 페이지 </title>
 
 <!-- 부트스트랩-->
 <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -81,9 +81,9 @@
                                 onclick="location.href='csList'"
                                 data-nav-section="10">문의 목록 </a></li>
                             <li><a onclick="location.href='mentorreqlist'" data-nav-section="2">멘토
-                                    신청 목록</a></li>
+                                    등록</a></li>
                             <li><a onclick="location.href='classreqlist'" data-nav-section="3" style=" color: #2c98f0; font-weight:bold;">클래스
-                                    신청 목록</a></li>
+                                    등록</a></li>
                             <li><a onclick="location.href='reportList'" data-nav-section="4">신고
                                     접수 목록</a></li>
                             <li><a onclick="location.href='reportFinishList'" data-nav-section="5">신고
@@ -95,7 +95,7 @@
                             <li><a onclick="location.href='prodOrderList'" data-nav-section="8">상품 주문
                                     내역</a></li>
                                     <li><a onclick="location.href='classOrderList'" data-nav-section="9">
-                                    클래스 신청 목록 </a></li>
+                                    클래스 신청 내역 </a></li>
                         </ul>
                     </div>
                 </nav>
@@ -107,7 +107,7 @@
                     <div class="colorlib-narrow-content">
                         <div class="row">
 
-                            <h2 class="colorlib-heading">클래스 신청 목록</h2>
+                            <h2 class="colorlib-heading">클래스 등록</h2>
                             <hr />
 
 
@@ -197,7 +197,7 @@
                                             class="btn btn-primary"
                                             id="mas-btn"
                                             onclick="checkItem()">클래스
-                                            신청 반려</button>
+                                            등록 반려</button>
                                     </div>
                                 </div>
                             </div>

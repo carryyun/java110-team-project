@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>관리자 페이지</title>
 
 <!-- 필수-->
 <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -80,10 +80,10 @@
                                 data-nav-section="10" style=" color: #2c98f0; font-weight:bold;">문의 목록 </a></li>
                             <li><a
                                 onclick="location.href='mentorreqlist'"
-                                data-nav-section="2">멘토 신청 목록</a></li>
+                                data-nav-section="2">멘토 등록</a></li>
                             <li><a
                                 onclick="location.href='classreqlist'"
-                                data-nav-section="3">클래스 신청 목록</a></li>
+                                data-nav-section="3">클래스 등록</a></li>
                             <li><a
                                 onclick="location.href='reportList'"
                                 data-nav-section="4" >신고 접수 목록</a></li>
@@ -100,7 +100,7 @@
                                 onclick="location.href='prodOrderList'"
                                 data-nav-section="8">상품 주문 내역</a></li>
                                 <li><a onclick="location.href='classOrderList'" data-nav-section="9">
-                                    클래스 신청 목록 </a></li>
+                                    클래스 신청 내역 </a></li>
                         </ul>
                     </div>
                 </nav>
@@ -306,7 +306,7 @@
                                                                     <textarea
                                                                         class="form-control z-depth-1"
                                                                         rows="6"
-                                                                        id="anser" placeholder="답변 작성하기.." style="width: 100%; border:1px solid black;"></textarea>
+                                                                        id="anser${i.index}" placeholder="답변 작성하기.." style="width: 100%; border:1px solid black;"></textarea>
                                                                 </div>
                                                             </div>
                                                         <!-- 12 -->
@@ -320,7 +320,8 @@
                                                                 class="btn btn-primary"
                                                                 id="mas-p2"
                                                                 name="Y"
-                                                                value="${rl.no}"
+                                                                onclick="anserclick(${i.index}, ${rl.no})"
+                                                                
                                                                 >답변하기</button>
                                                         
                                                         </div>
@@ -351,10 +352,38 @@
 <!-- Bootstrap core JavaScript -->
 <script src="/vendor/jquery/jquery.min.js"></script>
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!-- 181121고친거 -->
 <script>
+
+//답변하기 버튼 클릭
+function anserclick(index, csno){
+    var anserfn = $("#anser"+index).val();
+
+    
+    $.ajax({
+        type: "POST",
+        data: {
+            no: csno,
+            anser: anserfn
+            
+        },
+        url: "masterans.do",
+        success : function() {
+           location.href="csList";
+            },error : function(error,status){
+                swal({
+                    text : "이미 답변한 문의이거나 삭제된 문의입니다.",
+                    button : "확인",
+                  })
+            }
+    })
+}
+
 $(document).ready(function() {
     var activeSystemClass = $('.list-group-item.active');
+    
+    
 
     //something is entered in search form
     $('#system-search').keyup( function() {
@@ -413,7 +442,7 @@ function stat(no,name){
             meno : no,
             stat : name
         },
-        url : "mtstat.do",
+        url : "masterans.do",
         success : location.href="#"
     });
 }

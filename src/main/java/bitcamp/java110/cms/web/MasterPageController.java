@@ -163,7 +163,12 @@ public class MasterPageController {
   public void csList(Model model) {
     List<Cs> csList = csService.findByMaster();
     model.addAttribute("csList",csList);
-    
+   
+  }
+  
+  @RequestMapping(value = "masterans.do", method= {RequestMethod.POST})
+  public @ResponseBody int update(Cs cs) {
+    return csService.update(cs);
   }
   
   
