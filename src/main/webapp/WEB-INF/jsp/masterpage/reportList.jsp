@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>관리자 페이지</title>
 
 <!-- 필수-->
 <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -79,10 +79,10 @@
                                 data-nav-section="10">문의 목록 </a></li>
                             <li><a
                                 onclick="location.href='mentorreqlist'"
-                                data-nav-section="2">멘토 신청 목록</a></li>
+                                data-nav-section="2">멘토 등록</a></li>
                             <li><a
                                 onclick="location.href='classreqlist'"
-                                data-nav-section="3">클래스 신청 목록</a></li>
+                                data-nav-section="3">클래스 등록</a></li>
                             <li><a
                                 onclick="location.href='reportList'"
                                 data-nav-section="4" style=" color: #2c98f0; font-weight:bold;">신고 접수 목록</a></li>
@@ -99,7 +99,7 @@
                                 onclick="location.href='prodOrderList'"
                                 data-nav-section="8">상품 주문 내역</a></li>
                                 <li><a onclick="location.href='classOrderList'" data-nav-section="9">
-                                    클래스 신청 목록 </a></li>
+                                    클래스 신청 내역 </a></li>
                         </ul>
                     </div>
                 </nav>
@@ -146,7 +146,7 @@
                                         class="table table-list-search">
                                         <thead>
                                             <tr>
-                                                <th class="text-center">게시글번호</th>
+                                                <th class="text-center">No</th>
                                                 <th class="text-center">신고유형</th>
                                                 <th class="text-center">분류</th>
                                                 <th class="text-center">제목</th>
@@ -167,7 +167,7 @@
                                                     <td
                                                         class="text-center">${rl.type_detail}</td>
                                                     <td
-                                                        class="text-center">${rl.titl}</td>
+                                                        class="text-center" style="overflow: hidden;">${rl.titl}</td>
                                                     <td
                                                         class="text-center">${rl.menteeNick}</td>
                                                     <td
@@ -408,10 +408,10 @@ function stat(no,name){
     removeItem(no)
     $.ajax({
         data : {
-            meno : no,
+            rtno : no,
             stat : name
         },
-        url : "mtstat.do",
+        url : "reptstat.do",
         success : location.href="#"
     });
 }

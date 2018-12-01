@@ -9,5 +9,6 @@ public interface CsService {
   Cs get(int no);
   void delete(int no);
   int update(Cs cs);
+  List<Cs>findByMaster();
 
 }

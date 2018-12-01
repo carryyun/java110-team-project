@@ -6,7 +6,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>관리자 페이지</title>
 
 <!-- 필수-->
 <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -77,9 +77,9 @@
                                 onclick="location.href='csList'"
                                 data-nav-section="10">문의 목록 </a></li>
                             <li><a onclick="location.href='mentorreqlist'" data-nav-section="2">멘토
-                                    신청 목록</a></li>
+                                    등록</a></li>
                             <li><a onclick="location.href='classreqlist'" data-nav-section="3">클래스
-                                    신청 목록</a></li>
+                                    등록</a></li>
                             <li><a onclick="location.href='reportList'" data-nav-section="4">신고
                                     접수 목록</a></li>
                             <li><a onclick="location.href='reportFinishList'" data-nav-section="5">신고
@@ -91,7 +91,7 @@
                             <li><a onclick="location.href='prodOrderList'" data-nav-section="8">상품 주문
                                     내역</a></li>
                                     <li><a onclick="location.href='classOrderList'" data-nav-section="9">
-                                    클래스 신청 목록 </a></li>
+                                    클래스 신청 내역 </a></li>
                         </ul>
                     </div>
                 </nav>
@@ -146,7 +146,7 @@
                                     <tr>
                                         <td class="text-center">${i.count}</td> <!-- no -->
                                         <td class="text-center">${pl.smalltag.name}</td> <!-- 카테고리 -->
-                                        <td class="text-center"><a class="button" href="#">${pl.titl}</a></td> <!-- 상품명-->
+                                        <td class="text-center"><a class="button" href="../product/detail?no=${pl.no }">${pl.titl}</a></td> <!-- 상품명-->
                                         <td class="text-center">${pl.mentee.name}(${pl.mentee.nick})</td><!-- 판매자명 -->
                                         <td class="text-center">￦${pl.pric}</td> <!-- 가격 -->
                                         <td class="text-center bold">${pl.stock}</td> <!-- 재고 -->
