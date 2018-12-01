@@ -10,5 +10,5 @@ public interface CsDao {
   Cs findByNo(int no);
   int delete(int no);
   int update(Cs cs);
-
+  List<Cs> findByMaster();//마스터 페이지 문의
 }

@@ -14,7 +14,24 @@ public class Cs {
   
   private Mentee mentee;
   
+  private String mete_nick;
+  private String mete_name;
   
+  
+  
+  
+  public String getMete_nick() {
+    return mete_nick;
+  }
+  public void setMete_nick(String mete_nick) {
+    this.mete_nick = mete_nick;
+  }
+  public String getMete_name() {
+    return mete_name;
+  }
+  public void setMete_name(String mete_name) {
+    this.mete_name = mete_name;
+  }
   public Mentee getMentee() {
     return mentee;
   }
@@ -69,5 +86,13 @@ public class Cs {
   public void setRgdt2(Date rgdt2) {
     this.rgdt2 = rgdt2;
   }
+  @Override
+  public String toString() {
+    return "Cs [no=" + no + ", meno=" + meno + ", cstype=" + cstype + ", titl=" + titl + ", conts="
+        + conts + ", rgdt=" + rgdt + ", anser=" + anser + ", rgdt2=" + rgdt2 + ", mentee=" + mentee
+        + "]";
+  }
+  
+  
  
 }

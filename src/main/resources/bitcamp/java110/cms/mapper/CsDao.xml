@@ -14,6 +14,9 @@
         <result column="rgdt" property="rgdt"/>
         <result column="anser" property="anser"/>
         <result column="rgdt2" property="rgdt2"/>
+        
+        <result column="name" property="mete_name"/>
+        <result column="nick" property="mete_nick"/>
     </resultMap>
     
     <sql id="select1">
@@ -30,6 +33,25 @@
             p_cs
     
     </sql>
+    
+    <select id="findByMaster" resultMap="csMap" parameterType="Map">
+    select
+            cs.csno,
+            cs.cstype,
+            cs.titl,
+            cs.rgdt,
+            cs.conts,
+            cs.anser,
+            cs.rgdt2,
+            cs.meno as meno,
+            mete.name,
+            mete.nick
+        from
+            p_cs cs join p_mete mete 
+            on cs.meno = mete.meno
+       order by
+            csno
+    </select>
     
     <select id="findAll" resultMap="csMap" parameterType="Map" >
        select
@@ -64,6 +86,7 @@
         delete from p_cs
         where csno=#{value}
     </delete>
+    
     <update id="update" parameterType="Cs">
     update p_cs
     
