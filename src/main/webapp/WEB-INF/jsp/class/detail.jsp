@@ -195,28 +195,9 @@
                                 <hr>
                                 <a href="#" class="btn btn-lg btn-primary text-uppercase"
                                 onClick="cls"> 수업 신청하기 </a>
-                                <c:choose>
-                                	<c:when test="${sessionScope.loginUser eq null}">
-                                		<p><button class="btn btn-lg btn-outline-primary"
-	                                	  data-toggle="modal" data-target="#jjimnull"> 
-	                                    	<i class="fas fa-shopping-cart" data-toggle="modal" data-target="#jjimnull"></i> 찜클래스 </button></p>
-                                		<div class="modal fade" id="jjimnull" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-											<div class="modal-dialog">
-												<div class="modal-content">
-													<div class="modal-header">
-														<h4 class="modal-title" class="replogin">로그인 후 이용가능합니다.</h4>
-														<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-													</div>
-												</div>
-											</div>
-										</div>
-                                	</c:when>
-                                	<c:otherwise>
-	                                	<a href="#" class="btn btn-lg btn-outline-primary text-uppercase"
+                                <a href="#" class="btn btn-lg btn-outline-primary text-uppercase"
 	                                	onClick="clslikeins(${sessionScope.loginUser.no});"> 
 	                                    	<i class="fas fa-shopping-cart"></i> 찜클래스 </a>
-	                                </c:otherwise>
-	                            </c:choose>
                             </div>
                         </article>
                         <!-- card-body.// -->
@@ -367,32 +348,11 @@
 								<td align="right" valign="top">
 									<!-- Form actions -->
 										<!--col-lg-12추가했음-->
-									<c:choose>	
-										<c:when test="${sessionScope.loginUser eq null}">
 										<div class="col-md-12 col-lg-12 text-right" style="vertical-align: middle;">
-											<button id="repbtn" type="button" 
-											class="btn btn-primary btn-md"  data-toggle="modal" data-target="#usernul"
-												style="background-color: #606066; color: #ffffff">등록</button>
-										</div>
-											<div class="modal fade" id="usernul" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-											  <div class="modal-dialog">
-												<div class="modal-content">
-													<div class="modal-header">
-														<h4 class="modal-title" class="replogin">로그인 후 이용가능합니다.</h4>
-														<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-													</div>
-												</div>
-											  </div>
-											</div>
-										</c:when>
-										<c:otherwise>
-											<div class="col-md-12 col-lg-12 text-right" style="vertical-align: middle;">
 												<button id="repbtn" type="button" onClick="repins(${sessionScope.loginUser.no});" 
 												class="btn btn-primary btn-md"
 													style="background-color: #606066; color: #ffffff">등록</button>
 											</div>
-										</c:otherwise>
-									</c:choose>
 								</td>
 							</tr>
 						<!-- <div class="col-md-9 col-md-offset-0"> -->
@@ -419,22 +379,17 @@
 	                            <div id="rcont${i.index}" class="col-lg-10 media-body">${r.conts}</div>
 	                            <textarea class="repupda col-lg-9 media-body" id="repup${i.index}" rows="5" name="repup"
 					                       style =" margin-left:10px; width : 500px; display: none;"></textarea>
+					            <c:choose>
+					            <c:when test="${sessionScope.loginUser eq null}">
+					            	<button type="button" onClick="deleterepnull()"
+	                             class="delebtn" id="delebtn${i.index}">삭제</button>
+					            </c:when>
+					            <c:otherwise>         
 	                            <button type="button" data-toggle="modal" data-target="#deleteModal_${r.no}"
 	                             class="delebtn" id="delebtn${i.index}">삭제</button>
-	                            <c:choose>
-	                            	<c:when test="${sessionScope.loginUser eq null}">
-	                            		<div class="modal fade" id="deleteModal_${r.no}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-											  <div class="modal-dialog">
-												<div class="modal-content">
-													<div class="modal-header">
-														<h4 class="modal-title" class="replogin">로그인 후 이용가능합니다.</h4>
-														<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-													</div>
-												</div>
-											  </div>
-											</div>
-	                            	</c:when>
-	                            	<c:otherwise>
+	                             </c:otherwise>
+	                             </c:choose>
+	                            
 			                            <div class="modal fade" id="deleteModal_${r.no}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
 										  <div class="modal-dialog">
 											<div class="modal-content">
@@ -454,35 +409,21 @@
 											</div>
 										  </div>
 										</div>
-									</c:otherwise>
-								</c:choose>
+										
 								<c:choose>
 									<c:when test="${sessionScope.loginUser eq null}">
 										<button type="button" class="edbtn" id="edbtn${i.index}" 
-	                            data-toggle="modal" data-target="#updateModal_${r.no}" >수정</button>
+	                            onClick="deleterepnull()" >수정</button>
 									</c:when>
 									<c:otherwise>
 										<button type="button" class="edbtn" id="edbtn${i.index}" 
 	                            onClick="updarep(${sessionScope.loginUser.no} , ${r.no} , ${r.meno} ,${i.index});" >수정</button>
 									</c:otherwise>
 								</c:choose>
+								
 	                            <button type="button" class="updabtn" id="updabtn${i.index}" data-toggle="modal" 
 	                            data-target="#updateModal_${r.no}" 
 	                             style="display:none;">수정완료</button>
-	                            <c:choose>
-	                            	<c:when test="${sessionScope.loginUser eq null}">
-	                            		<div class="modal fade" id="updateModal_${r.no}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-											<div class="modal-dialog">
-												<div class="modal-content">
-													<div class="modal-header">
-														<h4 class="modal-title" class="replogin">로그인 후 이용가능합니다.</h4>
-														<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-													</div>
-												</div>
-											</div>
-										</div>
-	                            	</c:when>
-	                            	<c:otherwise>
 			                            <div class="modal fade" id="updateModal_${r.no}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
 										  <div class="modal-dialog">
 											<div class="modal-content">
@@ -502,14 +443,25 @@
 											</div>
 										  </div>
 										</div>
-									</c:otherwise>
-								</c:choose>
 	                        </div>
 	                    </c:forEach>
 	                    </div>
                     </div>
-	
                     <hr class="Fhr" id="qna">
+                    <br><br>
+				 <nav aria-label="Page navigation example" id="product-pn" 
+		            style="margin : auto; margin-top: -40px;">
+		                <ul class="pagination justify-content-center">
+		                    <li class="page-item disabled "><a class="page-link" href="#"
+		                        tabindex="-1"> <</a></li>
+		                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+		                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+		                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+		                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+		                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+		                    <li class="page-item"><a class="page-link" href="#">></a></li>
+		                </ul>
+		          </nav>
                     <div class="detail_info">
                         <h3>Q&A</h3>
                         <div class="row">
@@ -567,23 +519,25 @@
 															
 														<c:choose>	
 															<c:when test="${sessionScope.loginUser eq null}">
-																<div class="acco" id="ans">답변이 등록되지 않았습니다.</div>
+																<div class="acco" id="ans${i.index}">답변이 등록되지 않았습니다.</div>
 															</c:when>
 		                                           			<c:when test="${sessionScope.loginUser.no eq detailclass.mentee.no}">
 		                                           				<form class="ansinss" action="detail?no=${detailclass.no}" method="post">
-			                                           				<label onClick="ansbtn()" class="allbtn">답변을 작성하시려면 클릭해주세요!</label>
+			                                           				<label onClick="ansbtn(${i.index})" class="allbtn"
+			                                           				id="allbtn${i.index}">답변을 작성하시려면 클릭해주세요!</label>
 					                                           		<textarea class="clsanser" id="cls${i.index}" rows="5" name="clsanser"
 					                                           		style ="width : 500px; display: none;"></textarea>
 					                                           		<div class="butmana" style="margin-left:10px;">
 						                                           		<button class="btn btn-default" 
 						                                           		onClick="answerins(${sessionScope.loginUser.no},cls${i.index},${cq.no})"
 						                                           		 type="button" >등록</button>
-						                                           		<button class="btn btn-default" id="ansstat" type="button" >취소</button>
+						                                           		<button class="btn btn-default" id="ansstat" type="button" 
+						                                           		onClick="answercansle(${i.index})">취소</button>
 						                                           	</div>
 						                                        </form>
 		                                           			</c:when>
 															<c:otherwise>
-																<div class="acco" id="ans">답변이 등록되지 않았습니다.</div>
+																<div class="acco" id="ans${i.index}">답변이 등록되지 않았습니다.</div>
 															</c:otherwise>
 		                                           		</c:choose>
 		                                           		
@@ -592,7 +546,7 @@
 		                                           		<div class="adddet col-lg-2" style="text-align: center;
 		                                           		vertical-align: middle;
 															display : block;">질문 답변</div>
-		                                           		<div class="acco" id="ans">${cq.anser}</div>
+		                                           		<div class="acco" id="ans${i.index}">${cq.anser}</div>
 		                                           	<%  
 		                                           	}
 		                                            %>
@@ -710,7 +664,6 @@ $('.accordian-body').on('show.bs.collapse', function () {
     $(this).closest("table")
         .find(".collapse.in")
         .not(this)
-        .collapse("toggle")
 })
 </script>
 	<script src="/vendor/jquery/jquery.min.js"></script>
@@ -796,7 +749,12 @@ function answerins(no,clsno,qno) {
 	    });
 	}
 }
-
+function deleterepnull(){
+        swal({
+            text : "로그인 후 이용가능합니다..",
+            button : "확인",
+          })
+}
 function repins(no) {
     var cno = ${detailclass.no};
     var conts = $('textarea#conts').val();
@@ -808,7 +766,12 @@ function repins(no) {
             text : "내용이 비어있으면 후기가 등록이 안됩니다.",
             button : "확인",
           })
-    }else {
+    }else if("${sessionScope.loginUser}" == ""){
+        swal({
+            text : "로그인 후 이용가능합니다..",
+            button : "확인",
+          })
+    } else {
 	    $.ajax({
 	        type : "POST",
 	        data : {
@@ -825,7 +788,8 @@ function repins(no) {
 	                icon : "success",
 	                button : "확인",
 	              })
-	            location.href="detail?no="+${detailclass.no};
+	            /* location.href="detail?no="+${detailclass.no}; */
+	            location.reload();
 	        },error : function(error,status){
 	            swal({
 	                text : "이미 후기를 등록을 하셨습니다.",
@@ -839,6 +803,12 @@ function repins(no) {
 function clslikeins(no) {
     var cno = ${detailclass.no};
     
+    if("${sessionScope.loginUser}" == ""){
+        swal({
+            text : "로그인 후 이용가능합니다..",
+            button : "확인",
+          })
+    } else{
 	    $.ajax({
 	        type : "POST" , 
 	        data : {
@@ -852,7 +822,6 @@ function clslikeins(no) {
 	                icon : "success",
 	                button : "확인",
 	              })
-	            location.reload();
 	        },error : function(error,status){
 	            swal({
 	                text : "이미 찜클래스에 등록된 클래스입니다.",
@@ -860,16 +829,24 @@ function clslikeins(no) {
 	              })
 	        }
 	    });
+	}
 }
 
-function ansbtn(){  /* QnA 나타나는 답변 버튼*/
-    if($(".clsanser").css("display") == "none"){
-		$(".clsanser").show();
-		$(".allbtn").hide();
+function ansbtn(indexno){  /* QnA 나타나는 답변 버튼*/
+    if($("#cls"+indexno).css("display") == "none"){
+		$("#cls"+indexno).show();
+		$("#allbtn"+indexno).hide();
 	}else{
-		$(".clsanser").hide();
-		$(".allbtn").show();
+		$("#cls"+indexno).hide();
+		$("#allbtn"+indexno).show();
 	}
+}
+
+function answercansle(indexno) {
+    $("#cls"+indexno).val("");
+    $("#cls"+indexno).hide();
+    $("#ans"+indexno).show();
+    $("#allbtn"+indexno).show();
 }
 
 function updano(teno) {  /* 댓글 수정 취소 버튼 */

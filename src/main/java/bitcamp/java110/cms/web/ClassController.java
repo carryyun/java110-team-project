@@ -299,16 +299,18 @@ public class ClassController {
     
     System.out.println(classrep.toString());
     
+    
     return classrepService.repAdd(classrep);
   }
   
   @RequestMapping(value = "clslikeins.do", method = {RequestMethod.POST})
-  public @ResponseBody int clslikeins(ClassLike classlike) {
+  public @ResponseBody String clslikeins(ClassLike classlike) {
     
     System.out.println(classlike.getMeno());
     System.out.println(classlike.getCno());
+    classlikeService.likeadd(classlike);
     
-    return classlikeService.likeadd(classlike);
+    return "redirect:detail?no="+classlike.getCno();
   }
   
   @RequestMapping(value = "clsrepdele.do", method = {RequestMethod.POST})
