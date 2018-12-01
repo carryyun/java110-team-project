@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>관리자 페이지</title>
 
 <!-- 필수-->
 <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -146,7 +146,7 @@
                                         class="table table-list-search">
                                         <thead>
                                             <tr>
-                                                <th class="text-center">게시글번호</th>
+                                                <th class="text-center">No</th>
                                                 <th class="text-center">신고유형</th>
                                                 <th class="text-center">분류</th>
                                                 <th class="text-center">제목</th>
@@ -167,7 +167,7 @@
                                                     <td
                                                         class="text-center">${rl.type_detail}</td>
                                                     <td
-                                                        class="text-center">${rl.titl}</td>
+                                                        class="text-center" style="overflow: hidden;">${rl.titl}</td>
                                                     <td
                                                         class="text-center">${rl.menteeNick}</td>
                                                     <td

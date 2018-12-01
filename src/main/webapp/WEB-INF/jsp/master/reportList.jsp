@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>관리자 페이지</title>
 
 <!-- 필수-->
 <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -29,8 +29,8 @@
             <!-- 게시판 시작-->
             <div class="col-lg-12 col-lg-offset-12">
                 <p>
-                    <span style="font-size: 45px; position: relative;"><strong>신고
-                            신청 목록</strong></span>
+                    <span style="font-size: 45px; position: relative;"><strong>신고 접수 목록
+                            </strong></span>
                 </p>
 
                 <div class="col-lg-3" id="serch-men">
@@ -53,10 +53,9 @@
                 <table class="table table-list-search">
                     <thead>
                         <tr>
-                            <th class="text-center">게시글번호</th>
+                            <th class="text-center">No</th>
                             <th class="text-center">신고유형</th>
                             <th class="text-center">분류</th>
-                            <th class="text-center">제목</th>
                             <th class="text-center">글쓴이</th>
                             <th class="text-center">신고날짜</th>
                             <th class="text-center">상세보기</th>
@@ -68,7 +67,6 @@
                                 <td class="text-center">${i.count}</td>
                                 <td class="text-center">${rl.type}</td>
                                 <td class="text-center">${rl.type_detail}</td>
-                                <td class="text-center">${rl.titl}</td>
                                 <td class="text-center">${rl.menteeNick}</td>
                                 <td class="text-center">${rl.rtdt}</td>
                                 <td class="text-center"><button id="block-cho">
