@@ -1,10 +1,14 @@
 package bitcamp.java110.cms.web;
 
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import bitcamp.java110.cms.domain.ClassLike;
 import bitcamp.java110.cms.domain.ClassOrder;
 import bitcamp.java110.cms.domain.ClassQna;
 import bitcamp.java110.cms.domain.Classes;
@@ -151,19 +155,38 @@ public class MypageController {
   }
   
   @GetMapping("menu5")
-  public void menu5(Model model) {
+  public void menu5(Model model,HttpSession session) { 
     
- List<Classes> cmanage = classService.findByMono(5);
+ List<Classes> cmanage = classService.manageByMono(5);
     
     model.addAttribute("cmanage",cmanage);
     
+    
+ /*   List<Classes> cm = classService.manageByCno(cno);
+    
+    model.addAttribute("cm", cm);*/
+        
   }
+  
+  
   
   @GetMapping("menu6")
   public void menu6(Model model) {
     
   }
   
+  
+  @RequestMapping(value = "getMenteeList.do", method = {RequestMethod.POST})
+  public @ResponseBody List<Classes> getMenteeList(int cno) {
+    
+    
+    return classService.manageByCno(cno);
+  }
+  
+  
 }
+
+
+
 
 
