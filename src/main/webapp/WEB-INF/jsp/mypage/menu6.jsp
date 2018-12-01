@@ -40,35 +40,11 @@
                             <button type="button" class="btn btn-primary" style="width:100px; margin:2px;">판매종료</button>
                             <button type="button" class="btn btn-primary" style="width:100px; margin:2px;">주문자 목록</button>
                             <button type="button" class="btn btn-primary"
-                                    data-toggle="modal" data-target="#exampleModal" style="width:100px; margin:2px;">배송정보</button>
+                                    style="width:100px; margin:2px;">배송정보</button>
                             </td>
                             </tr>
 
-                            <!-- Modal 스타또-->
-                            <div class="modal fade" id="exampleModal" tabindex="-1"
-                                role="dialog" aria-labelledby="exampleModalLabel"
-                                aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">배송정보</h5>
-                                            <button type="button" class="close" data-dismiss="modal"
-                                                aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">배송업체&nbsp;:&nbsp;${p.parc_name }<br>송장번호&nbsp;:&nbsp;${p.parc_no}</div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary"
-                                                data-dismiss="modal"> 입력/수정 </button>
-                                            <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">확인</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- modal 끝 -->
+                           
 
         
 
@@ -82,7 +58,19 @@
 
 </div>
 
+<script>
 
+function writeparc(){
+    
+swal("송장번호를 입력하세요", {
+    content: "input",
+  })
+  .then((value) => {
+    swal(`You typed: ${value}`);
+  });
+  
+}
+</script>
 
 
 

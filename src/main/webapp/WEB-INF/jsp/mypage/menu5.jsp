@@ -124,12 +124,22 @@ function certi(v){
     var textareaVal = $("button[name='btn-certi']:button[value='"+v+"']").text();
 
     if(textareaVal=="미수료"){
-             /* alert("수료 처리하시겠습니까? 알렛 or 컨펌창으로 대체"); */
              
-             
-        
-         $("button[name='btn-certi']:button[value='"+v+"']").attr('class','btn-primary');
-         $("button[name='btn-certi']:button[value='"+v+"']").text('수료');
+            swal({
+                 title: "수료증을 발급하시겠어요?",
+                 text: "멘티에게 수료증을 발급합니다.\n수료처리후에는 취소가 불가능합니다.",
+                 icon: "warning",
+                 buttons: true,
+                 dangerMode: true,
+                 })
+                 
+            .then((willCerti) => {
+                     if (willCerti) {
+                         swal("수료처리 하였습니다!", {icon: "success", });
+                         $("button[name='btn-certi']:button[value='"+v+"']").attr('class','btn-primary');
+                         $("button[name='btn-certi']:button[value='"+v+"']").text('수료');
+                     }
+                 });
          
          }
 }

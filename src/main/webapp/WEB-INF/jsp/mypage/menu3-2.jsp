@@ -40,33 +40,16 @@
                             <td>${p.tot_pric}(${p.cnt})개<br>${p.payopt}</td>
                             <td>
                                 <button type="button" class="btn btn-primary"
-                                    data-toggle="modal" data-target="#exampleModal">배송조회</button>
+                                    onclick="searchparc()">배송조회</button>
+                                    
+                                    <script>
+                                    function searchparc(){
+                                        swal("배송조회", "배송업체 : ${p.parc_name }\n송장번호 : ${p.parc_no}");
+                                        }
+                                    </script>
+                                    
                             </td>
                             </tr>
-
-                            <!-- Modal 스타또-->
-                            <div class="modal fade" id="exampleModal" tabindex="-1"
-                                role="dialog" aria-labelledby="exampleModalLabel"
-                                aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">배송조회</h5>
-                                            <button type="button" class="close" data-dismiss="modal"
-                                                aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">배송업체&nbsp;:&nbsp;${p.parc_name }<br>송장번호&nbsp;:&nbsp;${p.parc_no}</div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">닫기</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- modal 끝 -->
 
                     </c:forEach>
 
@@ -102,6 +85,7 @@
 		</a></li>
 	</ul>
 </nav>
+
 
 
 

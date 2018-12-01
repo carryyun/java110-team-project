@@ -34,6 +34,9 @@
     <link rel="stylesheet" href="/css/mypagecss/button/togglebtn.css">
     <!-- <link rel="stylesheet" href="/css/mypagecss/button/slider.css"> -->
     
+    <!--  sweetalert   -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    
     <!-- Animate.css -->
     <link rel="stylesheet" href="/css/mypagecss/animate.css">
     <!-- Bootstrap  -->

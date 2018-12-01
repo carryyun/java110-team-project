@@ -28,7 +28,7 @@
                     <tr data-toggle="collapse" data-target="#demo4-${i.count}" class="accordion-toggle">
                         <td>${i.count}</td>
                         <td>${p.type}</td>
-                        <td>aa</td>
+                        <td>${p.product.titl}</td>
                         <td>${p.titl}</td>
                         <td>${p.rgdt}</td>
                         <td>처리상태</td>

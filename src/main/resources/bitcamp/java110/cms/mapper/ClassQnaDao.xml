@@ -18,8 +18,10 @@
         
         <result column="nick"		property="mentee.nick"/>
         
-        <result column="ctitl"       property="classes.titl"/>
-        
+        <result column="ctitl"      property="classes.titl"/>
+        <result column="me2name"    property="mentee2.name"/>
+        <result column="me2nick"    property="mentee2.nick"/>
+              
     </resultMap>
     
     <select id="classqnalist" resultMap="cqnaMap" parameterType="Map">
@@ -31,9 +33,33 @@
             p_cls_qna cq JOIN p_cls c ON cq.cno = c.cno
             JOIN p_mete m ON cq.meno = m.meno
        WHERE
-            m.meno = 5
+            m.meno = #{no}
        order by
             qno desc;
+    </select>
+    
+    <select id="classqnalist2" resultMap="cqnaMap" parameterType="Map">
+      
+       SELECT
+            c.titl ctitl,
+            cq.titl,
+            cq.conts,
+            cq.rgdt,
+            cq.anser,
+            cq.rgdt2,
+            me2.name as me2name,
+            me2.nick as me2nick
+           
+       FROM
+            p_cls_qna cq JOIN p_cls c ON cq.cno = c.cno
+            JOIN p_meto mo ON c.mono = mo.mono 
+            JOIN p_mete me2 ON cq.meno = me2.meno
+       WHERE
+            mo.mono = #{no}
+       order by
+            qno desc;
+
+
     </select>
     
     <select id="findByCno" resultMap="cqnaMap" parameterType="int">

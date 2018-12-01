@@ -49,6 +49,17 @@ public class ClassQnaServiceImpl implements ClassQnaService{
   }
 
   @Override
+  public List<ClassQna> classqnalist2(int pageNo,int pageSize,int no){
+    
+    HashMap<String, Object> params = new HashMap<>();
+    params.put("pageNo", pageNo);
+    params.put("pageSize", pageSize);
+    params.put("no", no);
+    
+    return classqnaDao.classqnalist2(params);
+  }
+  
+  @Override
   public List<ClassQna> listbycno(int pageNo,int pageSize ,int cno) {
     HashMap<String, Object> params = new HashMap<>();
     params.put("pageNo", (pageNo - 1) * pageSize);

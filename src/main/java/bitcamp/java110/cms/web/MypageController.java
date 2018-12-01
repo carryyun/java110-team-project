@@ -139,6 +139,8 @@ public class MypageController {
   
   @GetMapping("menu4-3")
   public void menu4_3(Model model) {
+    List<ClassQna> cqlist2 = classQnaService.classqnalist2(4,10,5);
+    model.addAttribute("cqlist2", cqlist2 );
     
   }
   
@@ -151,7 +153,8 @@ public class MypageController {
   
   @GetMapping("menu4-5")
   public void menu4_5(Model model) {
-    
+    List<ProductQnA> pqlist2 = productQnAService.listByMeno2(4, 10, 5);
+    model.addAttribute("pqlist2", pqlist2 );
   }
   
   @GetMapping("menu5")
