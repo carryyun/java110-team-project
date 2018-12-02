@@ -9,5 +9,4 @@ public interface ClassRepDao {
   int repDelete(int no);
   int repChange(ClassRep classRep); // update
   List<ClassRep> findByCno(int no);
-  
 }

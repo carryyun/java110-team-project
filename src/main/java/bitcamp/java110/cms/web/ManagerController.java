@@ -30,8 +30,6 @@ public class ManagerController {
         this.managerService = managerService;
         this.sc = sc;
     }
-
-
     
     @GetMapping("list")
     public void list(

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import bitcamp.java110.cms.domain.BigTag;
 import bitcamp.java110.cms.domain.ClassBakt;
@@ -197,7 +198,8 @@ public class ClassController {
   }
   
   @RequestMapping("detail")
-  public void findByCno(Model model,int no ,HttpSession session) {
+  public void findByCno(@RequestParam(defaultValue="1") int pageNo, @RequestParam(defaultValue="3") int pageSize, 
+      Model model,int no ,HttpSession session) {
     
     List<ClassRep> clsreqlist = classrepService.listbycno(no);
     

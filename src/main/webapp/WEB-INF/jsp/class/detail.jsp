@@ -555,6 +555,11 @@
                                         </tr>
                                     </c:forEach>
                                     </tbody>
+                                    <!-- <tfoot>
+                                    	<tr>
+                                    		<td>1</td><td>2</td><td>3</td><td>4</td>
+                                    	</tr>
+                                    </tfoot> -->
                                 </table>
                                 
 		                        <div class="center"><button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block"
@@ -639,6 +644,7 @@
 		                    <li class="page-item"><a class="page-link" href="#">></a></li>
 		                </ul>
 		            </nav>
+				
                 </div>
                 <!-- <div class="row"> -->
             </div>
@@ -670,7 +676,6 @@ $('.accordian-body').on('show.bs.collapse', function () {
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="/js/jquery.raty.min.js"></script>
     <script src="/js/clean-blog.js"></script>
-    
 <script>
 function addqna(no) {
     var type = $('input:radio:checked.type').val();
@@ -966,6 +971,17 @@ function updabtn(rno , teno) { /* 회원 인식해서 댓글 수정해주는 버
     }
 }
 </script>
+<!-- <script type="text/javascript">
+	var totalcount = 0; // 게시물 갯수
+	var pageNo = 0; // 페이지 번호
+	var pageSize = 0; // 페이지 나오는 사이즈
+	var startPage = 0; // 페이지 시작번호
+	var endPage = 0; // 끝나는 페이지 번호
+	var prev = 0; // 전으로 돌아가기
+	var next = 0; // 다음으로 가기
+	var currentPage = 0; // 현재 페이지
+	var lastPage = 0; // 마지막 페이지
+</script> -->
 <script type="text/javascript">
  var stmnLEFT = 0; // 오른쪽 여백 
  var stmnGAP1 = 0; // 위쪽 여백 
