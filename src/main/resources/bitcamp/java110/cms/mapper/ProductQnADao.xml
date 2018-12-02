@@ -11,14 +11,17 @@
         <result column="meno"   property="meno"/>
         <result column="ptno"   property="ptno"/>
         <result column="titl"   property="titl"/>
-        <result column="conts"   property="conts"/>
+        <result column="conts"  property="conts"/>
         <result column="rgdt"   property="rgdt"/>
-        <result column="anser"   property="anser"/>
-        <result column="rgdt2"   property="rgdt2"/>
-        <result column="nick" property="mentee.nick"/>
+        <result column="anser"  property="anser"/>
+        <result column="rgdt2"  property="rgdt2"/>
+        <result column="nick"   property="mentee.nick"/>
         <result column="type"   property="type"/>
         
-        <result column="ptitl"   property="product.titl"/>
+        <result column="ptitl"    property="product.titl"/>
+        <result column="me2nick"  property="mentee2.nick"/>
+        <result column="me2name"  property="mentee2.name"/>
+        
     </resultMap>
     
     <select id="findAll" resultMap="productQnAMap">
@@ -68,6 +71,32 @@
             JOIN p_mete m ON pq.meno = m.meno
         WHERE
             m.meno = #{meno}
+        order by
+            qno desc
+        
+    </select>
+    
+    <select id="findAllByMeno2" 
+            resultMap="productQnAMap" parameterType="Map">
+        
+        SELECT
+            pq.type,
+            p.titl as ptitl,
+            pq.titl,
+            me2.nick as me2nick,
+            me2.name as me2name,
+            pq.rgdt,
+            pq.rgdt2,
+            pq.conts,
+            pq.anser
+           
+        FROM 
+            p_prdt_qna pq 
+            JOIN p_prdt p ON pq.ptno= p.ptno
+            JOIN p_mete me ON p.meno = me.meno
+            join p_mete me2 ON pq.meno = me2.meno
+        WHERE
+            me.meno = #{meno}
         order by
             qno desc
         

@@ -19,6 +19,7 @@
         
         <result column="ptitl"   property="product.titl"/>
         <result column="sellernick"   property="sellernick"/>
+        <result column="pphot"   property="product.phot"/>
         
         <result column="stname" property="stname"/>
         <result column="titl" property="prdt_titl"/>
@@ -124,7 +125,8 @@
             po.cnt,
             po.ptno,
             p.titl as ptitl,
-            me2.nick as sellernick
+            me2.nick as sellernick,
+            p.phot as pphot
          FROM
             p_prdt_order po
             JOIN p_mete me on po.meno = me.meno

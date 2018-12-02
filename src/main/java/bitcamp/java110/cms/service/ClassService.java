@@ -19,6 +19,12 @@ public interface ClassService {
   // 클래스 신청목록
   List<Classes> listByStat(String stat);
   
+  //마이페이지 - 클래스 관리 - 멘토의 클래스들
+  List<Classes> manageByMono(int mono);
+  
+  //마이페이지 - 클래스 관리 - 멘토 클래스의 멘티들
+  List<Classes> manageByCno(int cno);
+
   //마이페이지 - 클래스 관리
   List<Classes> findByMono(int mono);
   int statupdate(Classes classes);

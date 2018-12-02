@@ -23,6 +23,21 @@ public class ClassQna {
   private Mentee mentee;
   private Classes classes;
   
+  private Mentee mentee2;
+  private Mentor mentor;
+  
+  public Mentee getMentee2() {
+    return mentee2;
+  }
+  public void setMentee2(Mentee mentee2) {
+    this.mentee2 = mentee2;
+  }
+  public Mentor getMentor() {
+    return mentor;
+  }
+  public void setMentor(Mentor mentor) {
+    this.mentor = mentor;
+  }
   public int getNo() {
     return no;
   }

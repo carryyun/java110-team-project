@@ -13,6 +13,8 @@ public interface ProductQnAService {
   // 질문자 번호로 조회
   List<ProductQnA> listByMeno(int pageNo, int pageSize, int meno);
   
+  List<ProductQnA> listByMeno2(int pageNo, int pageSize, int meno);
+  
   // 공예품 번호로 조회
   List<ProductQnA> listByPtno(int pageNo, int pageSize, int ptno); 
   

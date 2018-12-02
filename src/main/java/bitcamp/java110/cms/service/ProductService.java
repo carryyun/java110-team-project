@@ -17,6 +17,10 @@ public interface ProductService {
   
   List<Product> listByMtno(int pageNo, int pageSize, int mtno); // 중분류번호로 조회
   
+  List<Product> listBySeller(int pageNo, int pageSize, int meno); // 판매자번호로 조회 - 마이페이지
+  
+  List<Product> listBySeller2(int pageNo, int pageSize, int meno); // 판매자번호로 조회2 - 마이페이지
+  
   int add(Product product);
 
   int update(Product product);

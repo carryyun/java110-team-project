@@ -83,14 +83,26 @@ public class ClassServiceImpl implements ClassService{
     return classDao.findAllByList();
   }
   
-  // 마이페이지 - 클래스 관리
+  // 마이페이지 - 클래스 관리 - 멘토의 클래스들
   @Override
-  public List<Classes> findByMono(int mono) {
-    return classDao.findByMono(mono);
+  public List<Classes> manageByMono(int mono) {
+    return classDao.manageByMono(mono);
+  }
+  
+  // 마에피이지 - 클래스관리 - 클래스의 멘티들
+  @Override
+  public List<Classes> manageByCno(int cno) {
+    return classDao.manageByCno(cno);
   }
 
   @Override
   public int statupdate(Classes classes) {
     return classDao.statupdate(classes);
+  }
+
+  @Override
+  public List<Classes> findByMono(int mono) {
+    // TODO Auto-generated method stub
+    return null;
   }
 }

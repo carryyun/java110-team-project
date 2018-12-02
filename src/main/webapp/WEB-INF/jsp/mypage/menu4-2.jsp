@@ -53,15 +53,11 @@
                                         
                                     </thead>
                                     <tbody>
-                                    
-                                    
 
                                         <tr>
                                             <td class="qcontents">답변내용</td>
                                             <td>${c.anser}</td>
                                         </tr>
-
-
 
                                     </tbody>
                                 </table>
