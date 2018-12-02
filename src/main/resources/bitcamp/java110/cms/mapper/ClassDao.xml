@@ -19,9 +19,11 @@
         <result column="pstno"   	property="pstno"/>
         <result column="bas_addr"   property="basAddr"/>
         <result column="det_addr"   property="detAddr"/>
+        <result column="type" 		property="type"/>
         <result column="edt"  		property="edt"/>
         <result column="mono"  		property="mono"/>
         <result column="mtno"  		property="mtno"/>
+        <result column="stat"       property="stat"/>
         <result column="star"		property="star"/>
         
         <result column="meno"		property="mentee.no"/>
@@ -221,11 +223,11 @@
     useGeneratedKeys="true" keyColumn="cno" keyProperty="no" >
         insert
         	into p_cls(titl,conts,pric,rgdt,time,capa,cfile
-        	,tinfo,cinfo,pstno,bas_addr,det_addr,edt,mono,mtno)
+        	,tinfo,cinfo,pstno,bas_addr,det_addr,edt,mono,mtno,type,stat)
         values
-        	(#{titl},#{conts},#{pric},now(),#{time},#{capa}
+        	(#{titl},"안녕하세요",#{pric},now(),#{time},#{capa}
         	,#{cfile},#{tinfo},#{cinfo},#{pstno},#{basAddr}
-        	,#{detAddr},#{edt},#{mono},#{mtno})
+        	,#{detAddr},#{edt},#{mono},#{mtno},#{type},'I')
     </insert> 
     
     <update id="classupdate" parameterType="Classes" >

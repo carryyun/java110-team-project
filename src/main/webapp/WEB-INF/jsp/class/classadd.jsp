@@ -90,7 +90,7 @@
                     <input type="text" name="detAddr" id="sample6_address2" placeholder="상세주소">
                  </div>
                  <div id="file-box">
-                     <input type="text" class="view" readonly id="mainphot" value="메인 사진"><br>
+                     <input type="text" class="view" readonly value="동영상  URL"><br>
                      <input type="url" name="cfile" id="imgInput"  />
                  </div> 
                  <div id="filetable">
@@ -403,9 +403,6 @@ function readURL(input) {
     }
 }
  
-$("#imgInput").change(function(){
-    readURL(this);
-});
 
  function sample6_execDaumPostcode() {
     new daum.Postcode({
