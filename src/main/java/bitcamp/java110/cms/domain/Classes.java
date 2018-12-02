@@ -25,9 +25,9 @@ public class Classes {
   private String type;
   
   private Mentee mentee;
+  private Mentor mentor;
   private MiddleTag middleTag;
   private ClassFile classFile;
-
   private ClassLike classLike;
 
   private Mentee mentee2;
@@ -36,6 +36,13 @@ public class Classes {
   private ClassOrder classOrder;
   private Cert cert;
   private Report report;
+  
+  public Mentor getMentor() {
+    return mentor;
+  }
+  public void setMentor(Mentor mentor) {
+    this.mentor = mentor;
+  }
   public int getNo() {
     return no;
   }

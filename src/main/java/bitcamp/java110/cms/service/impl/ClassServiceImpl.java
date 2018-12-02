@@ -18,14 +18,9 @@ import bitcamp.java110.cms.service.ClassService;
 public class ClassServiceImpl implements ClassService{
 
   @Autowired ClassDao classDao;
-<<<<<<< HEAD
-  @Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
-  
-  @Override
-  public int classadd(Classes classes) {
-=======
   @Autowired ClassFileDao classFileDao;
   @Autowired TimetableDao timetableDao;
+  @Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
   
   
   @Override
@@ -34,7 +29,6 @@ public class ClassServiceImpl implements ClassService{
       classes.setDetAddr(null);
       classDao.classinsert(classes);
     }
->>>>>>> song
     
     if(classes.getType().equals("단기")) {
       Map<String,Object> paramst = new HashMap<>();
@@ -135,6 +129,12 @@ public class ClassServiceImpl implements ClassService{
 
   @Override
   public List<Classes> findByMono(int mono) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public Classes findAllBycno(int no) {
     // TODO Auto-generated method stub
     return null;
   }

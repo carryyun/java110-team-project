@@ -2,25 +2,19 @@ package bitcamp.java110.cms.web;
 
 import java.io.File;
 import java.util.List;
-<<<<<<< HEAD
-import javax.servlet.http.HttpSession;
-=======
 import java.util.UUID;
 import javax.servlet.ServletContext;
->>>>>>> song
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-<<<<<<< HEAD
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import bitcamp.java110.cms.domain.BigTag;
-=======
 import org.springframework.web.multipart.MultipartFile;
->>>>>>> song
+import bitcamp.java110.cms.domain.BigTag;
 import bitcamp.java110.cms.domain.ClassBakt;
 import bitcamp.java110.cms.domain.ClassFile;
 import bitcamp.java110.cms.domain.ClassLike;
@@ -58,6 +52,7 @@ public class ClassController {
   MenteeService menteeService;
   BigTagService bigTagService;
   MiddleTagService middleTagService;
+  ServletContext sc;
   
   public ClassController(
       ClassService classService,ClassQnaService classqnaService,
@@ -65,7 +60,7 @@ public class ClassController {
       ,ClassBaktService classBaktService,MenteeService menteeService,
       ClassRepService classrepService,ClassFileService classFileService,
       TimetableService timetableService,BigTagService bigTagService,
-      MiddleTagService middleTagService) {
+      MiddleTagService middleTagService, ServletContext sc) {
     this.classService = classService;
     this.classqnaService = classqnaService;
     this.classorderService = classorderService;
@@ -77,10 +72,12 @@ public class ClassController {
     this.timetableService = timetableService;
     this.bigTagService = bigTagService;
     this.middleTagService = middleTagService;
+    this.sc = sc;
   }
 
   @GetMapping("form") 
   public void form() {
+    
   }
   
   @PostMapping("findAll")
@@ -135,6 +132,7 @@ public class ClassController {
       }
   //  classService.classadd(c, files, removefiles, days,date, edate);
   }
+  
   
   @RequestMapping("classupdate")
   public void classupdate(Classes c) {
@@ -198,7 +196,6 @@ public class ClassController {
     return null;
   }
   
-<<<<<<< HEAD
   @RequestMapping("cls")
   public void cls(Model model) {
     List<Classes> clslist = classService.list();
@@ -220,13 +217,6 @@ public class ClassController {
       model.addAttribute("selectedNo", no);
     }
     
-=======
-  @RequestMapping("classform")
-  public void classform(Model model) {
-    
-    List<Classes> clslist = classService.list(); // list는 전체니까 cno로 찾는게아님
-
->>>>>>> song
     model.addAttribute("clslist", clslist);
     model.addAttribute("bigTag", bigtag);
   }
@@ -245,11 +235,14 @@ public class ClassController {
     
     List<Timetable> clstimelist = timetableService.findByCno(no);
     
+    int countrep = classrepService.countbycno(no);
+    
     model.addAttribute("clsreqlist",clsreqlist);
     model.addAttribute("detailclass",detailclass);
     model.addAttribute("clsqnalist",clsqnalist);
     model.addAttribute("clsfilelist",clsfilelist);
     model.addAttribute("clstimelist",clstimelist);
+    model.addAttribute("countrep",countrep);
   }
   
   @RequestMapping("findByptno")
