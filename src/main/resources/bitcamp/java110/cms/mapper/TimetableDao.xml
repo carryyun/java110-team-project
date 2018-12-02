@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- MemberDao 클래스가 사용할 SQL이 들어 있는 파일 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.java110.cms.dao.TimetableDao">
+
+	<resultMap type="Timetable" id="timetableMap">
+        <id column="cfno" property="no"/>
+        <result column="cno" property="cno"/>
+        <result column="date" property="date"/>
+        <result column="stime" property="stime"/>
+        <result column="capa" property="capa"/>
+    </resultMap>
+    
+
+    <insert id="insert" parameterType="Timetable" useGeneratedKeys="true" keyColumn="cfno" keyProperty="no">
+        insert into p1_cls_ttab(cno,date,stime) 
+        values(#{no},#{date},#{stime})
+    </insert> 
+    
+    <delete id="delete" parameterType="int">
+        delete from p1_memb_phot 
+        where mno=#{value}
+    </delete>
+    
+</mapper>
+
+
+
+
+
+
+
+
+

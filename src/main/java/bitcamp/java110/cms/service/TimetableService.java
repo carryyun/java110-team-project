@@ -7,7 +7,6 @@ public interface TimetableService {
   
   
   
-  void add(Timetable timetable);
   List<Timetable> list(int pageNo, int pageSize);
   Timetable get(int no);
   void update(Timetable timetable);

@@ -15,18 +15,9 @@ public class TimetableServiceImpl implements TimetableService {
 
   @Autowired TimetableDao timetableDao;
 
-  @Transactional(
-      rollbackFor=Exception.class)
-  @Override
-  public void add(Timetable timetable) {
-
-    timetableDao.insert(timetable);
-  }
-
   @Override
   public void update(Timetable timetable) {
     timetableDao.update(timetable);
-
   }
 
 

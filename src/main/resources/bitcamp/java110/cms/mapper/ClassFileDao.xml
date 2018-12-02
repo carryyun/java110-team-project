@@ -6,7 +6,7 @@
   <mapper namespace="bitcamp.java110.cms.dao.ClassFileDao">
     
     <resultMap type="ClassFile" id="cfileMap">
-        <id column="cfno" property="no"/>
+        <id column="ctno" property="no"/>
         <result column="cno" property="cno"/>
         <result column="fname" property="fname"/>
     </resultMap>
@@ -32,8 +32,7 @@
     
     <insert id="insert" parameterType="ClassFile" useGeneratedKeys="true" keyColumn="cfno" keyProperty="no">
         insert into p_cls_file(fname, cno)
-        values(#{fname},3)
-        <!-- cno에 임의로 값을 3 넣었기 때문에 나중에 변경해 주어야 함  -->
+        values(#{fname},#{cno})
     </insert>
     
     <delete id="delete" parameterType="int">

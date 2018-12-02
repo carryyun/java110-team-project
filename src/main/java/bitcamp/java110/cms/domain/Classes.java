@@ -21,11 +21,15 @@ public class Classes {
   private int mono;
   private int mtno;
   private int star;
+  private String stat;
+  private String type;
   
   private Mentee mentee;
   private MiddleTag middleTag;
-  private Mentor mentor;
   private ClassFile classFile;
+  private Timetable timetable;
+  
+  
   
   public Date getRgdt() {
     return rgdt;
@@ -135,12 +139,7 @@ public class Classes {
   public void setMiddleTag(MiddleTag middleTag) {
     this.middleTag = middleTag;
   }
-  public Mentor getMentor() {
-    return mentor;
-  }
-  public void setMentor(Mentor mentor) {
-    this.mentor = mentor;
-  }
+  
   public ClassFile getClassFile() {
     return classFile;
   }
@@ -153,4 +152,24 @@ public class Classes {
   public void setStar(int star) {
     this.star = star;
   }
+  public Timetable getTimetable() {
+    return timetable;
+  }
+  public void setTimetable(Timetable timetable) {
+    this.timetable = timetable;
+  }
+  public String getStat() {
+    return stat;
+  }
+  public void setStat(String stat) {
+    this.stat = stat;
+  }
+  public String getType() {
+    return type;
+  }
+  public void setType(String type) {
+    this.type = type;
+  }
+ 
+  
 }

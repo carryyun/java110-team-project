@@ -40,10 +40,6 @@ public class ClassFileServiceImpl implements ClassFileService {
     
   }
 
-  @Override
-  public int add(ClassFile cfile) {
-    return cfileDao.insert(cfile);
-  }
 
   @Override
   public int update(ClassFile cfile) {

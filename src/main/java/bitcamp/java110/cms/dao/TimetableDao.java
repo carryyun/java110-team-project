@@ -5,8 +5,7 @@ import java.util.Map;
 import bitcamp.java110.cms.domain.Timetable;
 
 public interface TimetableDao {
-
-  int insert(Timetable timetable);
+  int insert(Map<String,Object> params);
   List<Timetable> findAll(Map<String,Object> params);
   Timetable findByCtno(int no);
   Timetable findByCno(int no);
