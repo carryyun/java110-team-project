@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import bitcamp.java110.cms.domain.ClassOrder;
 import bitcamp.java110.cms.domain.Classes;
+import bitcamp.java110.cms.domain.Cs;
 import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.Mentor;
 import bitcamp.java110.cms.domain.Notice;
@@ -19,6 +20,7 @@ import bitcamp.java110.cms.domain.Report;
 import bitcamp.java110.cms.service.BigTagService;
 import bitcamp.java110.cms.service.ClassOrderService;
 import bitcamp.java110.cms.service.ClassService;
+import bitcamp.java110.cms.service.CsService;
 import bitcamp.java110.cms.service.MenteeService;
 import bitcamp.java110.cms.service.MentorFileService;
 import bitcamp.java110.cms.service.MentorLicenseService;
@@ -45,6 +47,7 @@ public class MasterPageController {
   MentorLicenseService mentorlicenseService;
   ReportService reportService;
   NoticeService noticeService;
+  CsService csService;
   
 
   public MasterPageController(
@@ -59,7 +62,8 @@ public class MasterPageController {
       MentorFileService mentorFileService,
       MentorLicenseService mentorlicenseService,
       ReportService reportService,
-      NoticeService noticeService) {
+      NoticeService noticeService,
+      CsService csService) {
     
    this.menteeService = menteeService;
    this.mentorService = mentorService;
@@ -73,6 +77,7 @@ public class MasterPageController {
    this.mentorlicenseService = mentorlicenseService;
    this.reportService = reportService;
    this.noticeService = noticeService;
+   this.csService = csService;
   }
 
 
@@ -152,17 +157,20 @@ public class MasterPageController {
   }
 
   /*
-   * 신고목록 관련(미완성)
+   * 1:1 문의
   */
   @GetMapping("csList")
   public void csList(Model model) {
-    List<Report> ReportList = reportService.listByStat(10, 3);
-    for(Report r: ReportList) {
-      r.setCnt(reportService.getMeno2Cnt(r.getMeno2()));
-    }
-    model.addAttribute("ReportList",ReportList);
-    
+    List<Cs> csList = csService.findByMaster();
+    model.addAttribute("csList",csList);
+   
   }
+  
+  @RequestMapping(value = "masterans.do", method= {RequestMethod.POST})
+  public @ResponseBody int update(Cs cs) {
+    return csService.update(cs);
+  }
+  
   
   @GetMapping("reportFinishList")
   public void reportFinishList(Model model) {

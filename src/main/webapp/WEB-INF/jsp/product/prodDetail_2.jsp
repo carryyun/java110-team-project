@@ -4,33 +4,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<div class="container">
 
+<div class="container">
 	<!-- 상세정보, 상품평, QnA navi바 -->
 	<div id="testt">
 		<ul class="under-navbar-nav">
 			<li class="under-nav-item"><a class="nav-link"
-				href="#target_detail"><h5>상세정보</h4></a></li>
+				href="#target_detail"><h5>상세정보</h5></a></li>
 
 			<li class="under-nav-item"><a class="nav-link"
-				href="#target_review"><h5>상품평</h4></a></li>
+				href="#target_review"><h5>상품평</h5></a></li>
 
 			<li class="under-nav-item"><a class="nav-link"
-			     href="#target_qna"><h5>Q&A</h4></a></li>
+			     href="#target_qna"><h5>Q&A</h5></a></li>
 		</ul>
 	</div>
 
 	<!-- 상세정보, 수업정보, 상품평, QnA -->
 	<div class="row">
-		<div class="col-lg-12 col-md-12 mx-auto" id="detail">
-
-			<h3 id="target_detail" style="margin-bottom: 25px">상세정보</h3>
-			<div class="detail_info">
-				<hr class="Fhr" id="prod_detail">
+		<div class="col-lg-12 mx-auto mb-4 px-5 pt-3" style="background-color: #fff;" id="detail">
+            
+			<h3 id="target_detail">상세정보</h3>
+			<hr class="Fhr" id="prod_detail" style="margin-bottom: 25px">
+			<div class="detail_info px-4">
 				${product.conts}
 			</div>
-
-			<h3 id="target_review" style="margin-bottom: 25px">상품평</h3>
+        </div> 
+        <div class="col-lg-12 mx-auto mb-4 px-5 pt-3" style="background-color: #fff;">
+			<h3 id="target_review">상품평</h3>
 			<hr class="Fhr" id="prod_review">
 			
 			<div class="detail_review">
@@ -44,7 +45,7 @@
 							    if (i < p2.getStar()) {
 							%>
 							<img alt="star-on-big" src="/upload/img/raty/star-on-big.png">
-							<%
+							<% 
 							  } else {
 							%>
 							<img alt="star-off-big" src="/upload/img/raty/star-off-big.png">
@@ -58,18 +59,14 @@
 						</div>
 					</div>
 				</div>
+				
                     <div class="col mt-3">
-                        <form class="form-horizontal" action="send.php" method="post">
-                            <fieldset>
                                 <table class="fixed-table w-100">
                                     <tr>
                                         <td colspan="3">
-                                            <!-- <div class=""> --> <!-- Message body -->
-                                            <div class="form-group">
-                                                <div class="col-lg-12">
-                                                    <textarea class="form-control" id="message" name="message"
-                                                        placeholder="상품평을 등록해주세요." rows="5"></textarea>
-                                                </div>
+                                            <div class="col-lg-12">
+                                                <textarea class="form-control" id="repconts" name="conts"
+                                                    placeholder="상품평을 등록해주세요." rows="4"></textarea>
                                             </div>
                                         </td>
                                     </tr>
@@ -84,18 +81,16 @@
                                             <!-- Form actions --> <!--col-lg-12추가했음-->
                                             <div class="col-md-12 col-lg-12 text-right"
                                                 style="vertical-align: middle;">
-                                                <button type="submit" class="btn btn-primary btn-md"
+                                                <button type="button" id="repbtn" class="btn btn-primary btn-md"
                                                     style="background-color: #606066; color: #ffffff">등록</button>
-                                                <button type="reset" class="btn btn-default btn-md">취소</button>
+                                                <!-- <button type="reset" class="btn btn-default btn-md">취소</button> -->
                                             </div>
                                         </td>
                                     </tr>
                                     <!-- <div class="col-md-9 col-md-offset-0"> -->
                                 </table>
-                            </fieldset>
-                        </form>
                     </div>
-                    <div class="row">
+                    <div class="row" id="addrep_target">
                     <div class="col-lg-12">
 	                    <hr class="Fhr">
                     </div>
@@ -115,12 +110,12 @@
                     </div>
                     <!-- <table width="100%" border="0"> -->
 			</div>
+            </div>
 
-
-
+            <div class="col-lg-12 mx-auto mb-4 px-5 pt-3" style="background-color: #fff;">
 			<div id="prod_review">
-				<div class="detail_info px-3 py-3">
-					<h3 id="target_qna" style="margin-bottom: 25px">Q&A</h3>
+				<div class="detail_info px-0 py-3">
+					<h3 id="target_qna">Q&A</h3>
 					<div class="row">
 						<div class="col-lg-12">
 
@@ -167,9 +162,6 @@
 						<!-- <div class="col-lg-12"> -->
 					</div>
 					<!-- <div class="row"> -->
-
-
-
 
 				</div>
 				<!-- <div class="detail_info"> -->

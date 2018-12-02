@@ -10,7 +10,7 @@ public interface ProductFileDao {
   List<ProductFile> findAll(Map<String,Object> params);
   
   // 공예품 번호로 조회
-  List<ProductFile> findByPtno(Map<String, Object> params);
+  List<ProductFile> findAllByPtno(int ptno);
   
   // 일단 만들어 놨음
   int insert(ProductFile profile);

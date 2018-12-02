@@ -26,7 +26,7 @@
 
     <!-- 공예품 번호로 조회 -->
     <select id="findAllByPtno" 
-            resultMap="productFileMap" parameterType="Map">
+            resultMap="productFileMap" parameterType="int">
         select
             pfno,
             pfname,
@@ -34,7 +34,7 @@
         from
             p_prdt_file
         where 
-            ptno=#{productno}
+            ptno=#{value}
     </select>
     
     

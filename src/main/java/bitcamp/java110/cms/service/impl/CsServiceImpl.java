@@ -53,4 +53,8 @@ public class CsServiceImpl implements CsService {
     return csDao.update(cs);
   }
 
+  @Override
+  public List<Cs> findByMaster() {
+    return csDao.findByMaster();
+  }
 }

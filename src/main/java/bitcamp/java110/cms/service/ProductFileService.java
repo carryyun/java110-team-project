@@ -9,7 +9,7 @@ public interface ProductFileService {
   List<ProductFile> list(int pageNo, int pageSize); 
   
   // 공예품 번호로 조회
-  List<ProductFile> listByPtno(int pageNo, int pageSize, int ptno);
+  List<ProductFile> listByPtno(int ptno);
   
   int add(ProductFile profile); // insert
   int update(ProductFile profile); // update

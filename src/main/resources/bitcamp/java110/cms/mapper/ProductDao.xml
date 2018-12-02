@@ -36,7 +36,7 @@
         
         <result column="deli" property="deli"/>
         <result column="star" property="star"/>
-        <result column="titl" property="classes.titl"/>
+        <result column="clstitl" property="classes.titl"/>
         <result column="cfile" property="classes.cfile"/>
         <result column="clsmetephot" property="classes.mentee.phot"/>
         <result column="clsmetenick" property="classes.mentee.nick"/>
@@ -153,7 +153,7 @@ select
     stag.stname,
     stag.mtno,
     mtag.mtname,
-    pcls.titl,
+    pcls.titl clstitl,
     pcls.cfile,
     clsmete.phot clsmetephot,
     clsmete.nick clsmetenick

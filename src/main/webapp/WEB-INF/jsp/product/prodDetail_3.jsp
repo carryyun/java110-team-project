@@ -6,14 +6,15 @@
 
 
                     <div id="STATICMENU" style="background-color: #fff">
-                        <aside class="col-lg-12 px-2">
-                        <article class="card-body px-2">
+                        <div class="col-lg-12 px-2">
+                        <div class="card-body px-2">
+                        <div class="mb-3" id="cfile">
                                         <c:set var="cfl" value="${product.classes.cfile}"/>
                                         <%
                                             String cfile = (String)pageContext.getAttribute("cfl");
                                             if(cfile.endsWith("jpg") || cfile.endsWith("png")){
                                         %>    
-                                          <img style="width: 100%; height:120px;" src="${product.classes.cfile}" alt="${product.classes.cfile}"/>
+                                          <img style="width: 100%; height:130px;" src="${product.classes.cfile}" alt="${product.classes.cfile}"/>
                                           <%      
                                             }else {
                                              int cfileidx = cfile.indexOf("=");
@@ -25,22 +26,16 @@
                                         <%
                                             }
                                         %> 
-                                          
-
-
+                        </div>
                                 
-                                <h3 class="title mb-3">${product.classes.titl}</h3>
+                                <h5 class="title mb-3">${product.classes.titl}</h5>
                                 <dl class="param param-feature row">
                                     <dd class="col-lg-4 pr-1 text-center"><img class="clsMetoPhot" src="${product.classes.mentee.phot}" alt="${product.classes.mentee.phot}"> </dd>
                                     <dd class="col-lg-8 pl-1"><strong>${product.classes.mentee.nick}</strong> 멘토님</dd>
                                 </dl>
-                                <dl class="param param-feature">
-                                    ㅇㅇㅇㅇ원
-                                </dl>
+                                <dl class="param param-feature">ㅇㅇㅇㅇ원</dl>
 
-                                <dl class="param param-feature">
-                                        ㅇㅇㅇ멘토
-                                </dl>
+                                <dl class="param param-feature">ㅇㅇㅇ멘토</dl>
                                         <dl class="param param-feature">
                                             <dd>ㅇㅇㄴㅇ</dd>
                                         </dl>
@@ -72,9 +67,9 @@
                                 <a href="#" id="prdtSidebtnGo" class="btn btn-lg btn-primary text-uppercase"><i class="fas fa-graduation-cap"></i>수업듣기</a> 
                                 <a href="#" id="prdtSidebtnLike" class="btn btn-lg btn-outline-primary text-uppercase"> 
                                     <i class="fas fa-star"></i>찜클래스 </a>
-                        </article>
+                        </div>
                         <!-- card-body.// -->
-                    </aside>
+                    </div>
                     </div>
                     <!-- 사이드바 끝 -->
 

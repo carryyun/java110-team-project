@@ -26,10 +26,11 @@ a#prdtSidebtnLike{
   font-size: 16px;
 }
 div#STATICMENU{
-    border: 1px solid silver;
+    /* border: 1px solid silver; */
     font-size: 16px;
+    margin: 0pt; padding: 0pt;  
+    position: absolute; right: 0px; top: 0px;
 }
-
 
 
 /*ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd*/
@@ -127,7 +128,7 @@ div#STATICMENU{
     display: inline-block;
 }
 
-div.detail_info{
+/* div.detail_info{
     position: relative;
     display: -ms-flexbox;
     display: flex;
@@ -141,14 +142,15 @@ div.detail_info{
     border-radius: .25rem;
     margin-top:25px;
     margin-bottom: 100px;
-}
+} */
 div.detail_review{
  
 }
 
 #testt{
-    width:94.6%;
+    width:96.4%;
     position : absolute;
+    margin-left:-14px;
     z-index: 11;
     padding: 0;
     /*position=absolute; 

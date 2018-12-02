@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>관리자 페이지</title>
 
 <%-- 부트스트랩 --%>
 <link
@@ -98,9 +98,9 @@ text-weight: bold;
                                 onclick="location.href='csList'"
                                 data-nav-section="10">문의 목록 </a></li>
                             <li><a onclick="location.href='mentorreqlist'" data-nav-section="2">멘토
-                                    신청 목록</a></li>
+                                    등록</a></li>
                             <li><a onclick="location.href='classreqlist'" data-nav-section="3">클래스
-                                    신청 목록</a></li>
+                                    등록</a></li>
                             <li><a onclick="location.href='reportList'" data-nav-section="4">신고
                                     접수 목록</a></li>
                             <li><a onclick="location.href='reportFinishList'" data-nav-section="5">신고
@@ -112,7 +112,7 @@ text-weight: bold;
                             <li><a onclick="location.href='prodOrderList'" data-nav-section="8">상품 주문
                                     내역</a></li>
                                     <li><a onclick="location.href='classOrderList'" data-nav-section="9">
-                                    클래스 신청 목록 </a></li>
+                                    클래스 신청 내역  </a></li>
                         </ul>
                     </div>
                 </nav>
@@ -198,50 +198,36 @@ text-weight: bold;
                                         <div class="row" style="margin-top:1%;">
                                             <div class="pro col-lg-12" style="border: 1px solid black;">
                                                 <div class="header" style="margin-top:1%;">
-                                                    <span class="h3">최근 상품등록</span>
-                                                    <button
-                                                        type="button"
-                                                        class="btn btn-outline-light"
-                                                        style="position: relative; float: right;"
-                                                        onclick="location.href='prdtlist'">
-                                                        <i class="far fa-plus-square fa-lg"
-                                                            style="color: black;"></i>
-                                                    </button>
-                                                </div>
-                                                <table
-                                                    class="table text-center">
-                                                    <thead>
-                                                        <tr>
-                                                            <th
-                                                                class="text-center">No</th>
-                                                            <th
-                                                                class="text-center">카테고리</th>
-                                                            <th
-                                                                class="text-center">판매자</th>
-                                                            <th
-                                                                class="text-center">신청일</th>
-                                                        </tr>
-                                                    </thead>
+                                                   <span class="h3">최근 신고접수</span>
+                                <button type="button" class="btn btn-outline-light" 
+                                    style="position: relative; float: right;"
+                                    onclick="location.href='reportList'">
+                                    <i class="far fa-plus-square fa-lg" style="color:black;"></i>
+                                </button>
+                        </div>
+                        <table class="table text-center table-sm">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">No</th>
+                                    <th class="text-center">신고유형</th>
+                                    <th class="text-center">회원</th>
+                                    <th class="text-center">신고일</th>
+                                </tr>
+                            </thead>
 
-                                                    <tbody
-                                                        class="table-hover">
-                                                        <c:forEach
-                                                            items="${ProductFindAll }"
-                                                            var="r"
-                                                            begin="0"
-                                                            end="1"
-                                                            step="1"
-                                                            varStatus="status">
-                                                            <tr>
-                                                                <th class="text-center">${status.count }</th>
-                                                                <td class="text-center">${r.smalltag.name }</td>
-                                                                <td class="text-center">${r.mentee.name}(${r.mentee.nick })</td>
-                                                                <td class="text-center">${r.rgdt }</td>
-                                                            </tr>
+                            <tbody class="table-hover">
+                                <c:forEach items="${ReportFindAll }" var="r" begin="0" end="1" step="1"
+                                    varStatus="status">
+                                    <tr>
+                                        <th class="text-center">${status.count }</th>
+                                        <td class="text-center">${r.type }</td>
+                                        <td class="text-center">${r.mentee2Nick }</td>
+                                        <td class="text-center">${r.rtdt }</td>
+                                    </tr>
 
-                                                        </c:forEach>
-                                                    </tbody>
-                                                </table>
+                                </c:forEach>
+                            </tbody>
+                        </table>
                                             </div>
                                             <!-- pro-->
                                         </div>

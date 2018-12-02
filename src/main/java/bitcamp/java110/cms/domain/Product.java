@@ -1,6 +1,7 @@
 package bitcamp.java110.cms.domain;
 
 import java.sql.Date;
+import java.util.List;
 
 // 공예품
 public class Product {
@@ -27,7 +28,23 @@ public class Product {
   private MiddleTag middletag;
   private BigTag bigTag;
   
+  private List<ProductFile> productFile;
+  private List<ProductRep> productReps;
   
+  
+  
+  public List<ProductRep> getProductReps() {
+    return productReps;
+  }
+  public void setProductReps(List<ProductRep> productReps) {
+    this.productReps = productReps;
+  }
+  public List<ProductFile> getProductFile() {
+    return productFile;
+  }
+  public void setProductFile(List<ProductFile> productFile) {
+    this.productFile = productFile;
+  }
   public BigTag getBigTag() {
     return bigTag;
   }
@@ -187,15 +204,16 @@ public class Product {
   public void setMiddletag(MiddleTag middletag) {
     this.middletag = middletag;
   }
-
   @Override
   public String toString() {
     return "Product [no=" + no + ", titl=" + titl + ", conts=" + conts + ", pric=" + pric
         + ", rgdt=" + rgdt + ", stock=" + stock + ", phot=" + phot + ", meno=" + meno + ", ctno="
         + ctno + ", stno=" + stno + ", deli=" + deli + ", star=" + star + ", classes=" + classes
         + ", mentee=" + mentee + ", classRep=" + classRep + ", cert=" + cert + ", smalltag="
-        + smalltag + ", middleTagName=" + middleTagName + ", middletag=" + middletag + "]";
+        + smalltag + ", middleTagName=" + middleTagName + ", middletag=" + middletag + ", bigTag="
+        + bigTag + ", productFile=" + productFile + "]";
   }
-
+  
+  
 
 }
