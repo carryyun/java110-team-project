@@ -12,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Clean Blog - Start Bootstrap Theme</title>
+<title>하루 - </title>
 
 <!-- Bootstrap core CSS -->
 <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -85,7 +85,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-<script type="text/javascript">
+<script>
     var testtTop;
     var setId = "#testt";
     testtTop = $("#detail").offset().top - 105 - $("#headermain").offset().top - $("#headernav").offset().top;
@@ -100,7 +100,7 @@ $("img.lazy").lazyload({
 });
 </script>
     
-<script type="text/javascript">
+<script>
  var stmnLEFT = 0; // 오른쪽 여백 
  var stmnGAP1 = 0; // 위쪽 여백 
  var stmnGAP2 = 52; // 스크롤시 브라우저 위쪽과 떨어지는 거리 
@@ -172,17 +172,23 @@ $("img.lazy").lazyload({
 	                    var html="";
 	                    var addrep_target = $('div#addrep_target');
 	                    for(var item in result){
-		                    html+= '<div class="col-lg-12 my-3">';
-		                    html+= '    <div class="container pb-3" style="border-bottom: 0.5px solid rgba(0, 0, 0, 0.5)">';
-		                    html+= '    <div class="row">';
-		                    html+= '        <div class="col-lg-2 text-center">';
-		                    html+= '            <img src="' + result[item].mentee.phot + '" alt="singup" id="circle"><br>';
-		                    html+=                result[item].mentee.nick;
-		                    html+= '        </div>';
-		                    html+= '        <div class="col-lg-10 media-body">'+ result[item].conts +'</div>';
-		                    html+= '        </div>';
-		                    html+= '    </div>';
-		                    html+= '</div>';
+	                        html+= '<div class="col-lg-12 my-3">';
+	                        html+= '    <div class="container pb-3" style="border-bottom: 0.5px solid rgba(0, 0, 0, 0.5)">';
+	                        html+= '    <div class="row">';
+	                        html+= '        <div class="col-lg-2 text-center">';
+	                        html+= '            <img src="' + result[item].mentee.phot + '" alt="singup" id="circle"><br>';
+	                        html+=                result[item].mentee.nick;
+	                        html+= '        </div>';
+	                        html+= '        <div class="col-lg-9 media-body">'+ result[item].conts +'</div>';
+	                        html+= '<c:if test="${sessionScope.loginUser != \'\' }">';
+	                        html+= '<c:if test="${sessionScope.loginUser.no == r.meno }">';
+	                        html+= '  <div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="removerep(${r.no})"><i class="fas fa-trash-alt"></i></a> </div>';
+	                        html+= '</c:if>';
+	                        html+= '</c:if>';
+	                        
+	                        html+= '        </div>';
+	                        html+= '    </div>';
+	                        html+= '</div>';
 	                    }
 	                    addrep_target.html(html);
 	                },
@@ -261,7 +267,7 @@ function changePric(cnt){
     
     check = parseInt($('input#inputCnt').val());
     if(check>${product.stock}) check = ${product.stock};
-    if(check>99) check=99;
+    if(check>999) check=999;
     
     var getPric = parseInt(${product.pric}) * cnt;
     var getDeli = parseInt(${product.deli});
@@ -279,6 +285,84 @@ function checkLeng(obj){
     if( obj.value < 1){
         obj.value = 1;
     }
+}
+
+function removerep(rno){
+    if('${sessionScope.loginUser}' != ''){
+        $.ajax({
+            type : "POST",
+            data : {
+                "ptno" : ${product.no},
+                "rno" : rno
+            },
+            url : "removerep.do",
+            success : function(result) {
+                var html="";
+                var addrep_target = $('div#addrep_target');
+                for(var item in result){
+                    html+= '<div class="col-lg-12 my-3">';
+                    html+= '    <div class="container pb-3" style="border-bottom: 0.5px solid rgba(0, 0, 0, 0.5)">';
+                    html+= '    <div class="row">';
+                    html+= '        <div class="col-lg-2 text-center">';
+                    html+= '            <img src="' + result[item].mentee.phot + '" alt="singup" id="circle"><br>';
+                    html+=                result[item].mentee.nick;
+                    html+= '        </div>';
+                    html+= '        <div class="col-lg-9 media-body">'+ result[item].conts +'</div>';
+                    html+= '<c:if test="${sessionScope.loginUser != \'\' }">';
+                    html+= '<c:if test="${sessionScope.loginUser.no == r.meno }">';
+                    html+= '  <div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="removerep(${r.no})"><i class="fas fa-trash-alt"></i></a> </div>';
+                    html+= '</c:if>';
+                    html+= '</c:if>';
+                    
+                    html+= '        </div>';
+                    html+= '    </div>';
+                    html+= '</div>';
+                }
+                addrep_target.html(html);
+            },
+            error : function(error, status) {
+                console.log(error);
+            }
+        });
+    }
+}
+
+function qnaType(){
+    // 문의 타입에따라 input hidden getQnaType에 값을 설정해둠. > 문의 추가할때 값을 편하게 가져오기위해
+    var qnatypes = $('input.qnatype');
+    for(var index=0;index < qnatypes.length;index++){
+        if(qnatypes[index].checked == true){
+            $('input#getQnaType').val(qnatypes[index].value);
+        }
+        
+    }
+}
+
+function addqna(no){
+    var qnatype = $('input#getQnaType').val();
+    var qnatitl = $('input#qnatitl').val();
+    var qnaconts = $('textarea#qnaconts').val();
+    var qnatitl = $('input#qnatitl').val();
+	$.ajax({
+	    type : "POST",
+	    data : {
+	        "meno" : "${sessionScope.loginUser.no}",
+            "ptno" : no,
+	        "type" : qnatype,
+	        "titl" : qnatitl,
+	        "conts" : qnaconts
+	    },
+	    url : "addqna.do",
+	    success : function(result) {
+	        console.log(result);
+	        $('#addQnaModal').modal('hide');
+	        $('.modal-backdrop.fade.show').remove();
+	        $('form#qnaModal')[0].reset();
+	    },
+	    error : function(error, status) {
+	        
+	    }
+	});
 }
 </script>
 </body>

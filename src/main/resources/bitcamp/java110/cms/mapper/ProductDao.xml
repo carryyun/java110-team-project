@@ -130,6 +130,8 @@ ON
     
     <select id="findAll_list" resultMap="productMap">
     <include refid="selectAll" />
+    where
+        p.stat='Y'
     order by 
         ptno DESC
     </select>
@@ -201,7 +203,8 @@ ON
     pcls.cno= cert.cno AND
     pcls.mono = clsmete.meno
 where
-    ptno=#{value}
+    ptno=#{value} and
+    p.stat='Y'
     </select>
     
     <select id="findAllByMeno" 

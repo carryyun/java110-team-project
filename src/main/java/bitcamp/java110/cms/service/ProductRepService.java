@@ -26,7 +26,8 @@ public interface ProductRepService {
 
   // 갱신
   int update(ProductRep productRep);
- 
-
+  
+  // 삭제
+  int delete(int no);
 
 }

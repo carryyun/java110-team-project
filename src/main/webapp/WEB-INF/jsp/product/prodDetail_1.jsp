@@ -31,12 +31,12 @@ input[type="number"]::-webkit-inner-spin-button {
 	<div class="text-center" id="main-carousel">
             <!--Carousel Wrapper-->
             <div id="carousel-banner-prdtDetail" class="carousel slide carousel-fade" data-ride="carousel">
-                <!--Indicators--> 
+                <!--Indicators-->  
                 <ol class="carousel-indicators" id="carousel-ol-prdtPhot">
 	                <c:forEach items="${product.productFile}" var="ppf" varStatus="i">
 		                <c:choose>
 		                    <c:when test="${i.index == 0}">
-			                    <li data-target="#carousel-banner-prdtDetail" data-slide-to="${i.index}" class="active"><img style="border:1px solid rgb(217,217,217);" class="w-100 h-100" src="${ppf.pfname}" alt="${ppf.pfname}"></li>
+			                    <li data-target="#carousel-banner-prdtDetail" data-slide-to="${i.index}" class="active"><img style="border:1px solid rgb(217,217,217);" class="w-100 h-100" src="${product.phot}" alt="${product.phot}"></li>
 		                    </c:when>
 		                    <c:otherwise>
 		                        <li data-target="#carousel-banner-prdtDetail" data-slide-to="${i.index}"><img style="border:1px solid rgb(217,217,217);" class="w-100 h-100" src="${ppf.pfname}" alt="${ppf.pfname}"></li>
@@ -52,7 +52,7 @@ input[type="number"]::-webkit-inner-spin-button {
                             <c:when test="${i.index == 0}">
                                 <div class="carousel-item active">
                                     <div class="view">
-			                            <img class="prdtDetailImg " src="${ppf.pfname}" alt="${ppf.pfname}">
+			                            <img class="prdtDetailImg " src="${product.phot}" alt="${product.phot}">
 			                        </div>
 			                    </div>
                             </c:when>
@@ -122,7 +122,7 @@ input[type="number"]::-webkit-inner-spin-button {
 								        </div>
 								        <div class="col-lg-4">
 								            <button onclick="cntM()" style="width: 20px; height: 26px; margin-top: 10px">-</button>
-	                                        <input type="number" id="inputCnt" value="1" maxlength="2" style="text-align:center ;width:35px; height:26px; margin-left: -5px; margin-right: -5px" oninput="checkLeng(this)" onchange="changePric(value)">
+	                                        <input type="number" id="inputCnt" value="1" maxlength="3" style="text-align:center ;width:35px; height:26px; margin-left: -5px; margin-right: -5px" oninput="checkLeng(this)" onchange="changePric(value)">
 	                                        <button onclick="cntP()" style="width: 20px; height: 26px">+</button>
 								        </div>
 								        <div class="col-lg-8 px-0">
