@@ -303,8 +303,8 @@ where
     <insert id="insert" parameterType="product"
             useGeneratedKeys="true" keyColumn="ptno" keyProperty="no">
             
-        insert into p_prdt(titl,conts,pric,rgdt,stock,phot,meno,ctno,stno,deli,star)
-        values(#{titl},#{conts},#{pric},now(),#{stock},#{phot},#{meno},#{ctno},#{stno},#{deli},#{star})
+        insert into p_prdt(titl,conts,pric,rgdt,stock,phot,meno,ctno,stno,deli,star,stat)
+        values(#{titl},#{conts},#{pric},now(),#{stock},#{phot},#{meno},#{ctno},#{stno},#{deli},#{star},'Y')
     </insert> 
     
     <update id="update" parameterType="product">
