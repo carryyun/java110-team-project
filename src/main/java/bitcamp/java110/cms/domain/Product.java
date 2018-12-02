@@ -1,6 +1,7 @@
 package bitcamp.java110.cms.domain;
 
 import java.sql.Date;
+import java.util.List;
 
 // 공예품
 public class Product {
@@ -15,7 +16,6 @@ public class Product {
   private int ctno; // 인증서번호
   private int stno; // 소분류번호
 
-
   private int deli; // 택배비
   private int star; // 별점
   private Classes classes; // 클래스정보
@@ -26,6 +26,11 @@ public class Product {
   private SmallTag smalltag;
   private String middleTagName;
   private MiddleTag middletag;
+  
+  private BigTag bigTag;
+  
+  private List<ProductFile> productFile;
+  private List<ProductRep> productReps;
   
   private Mentee mentee2;
   private ProductOrder productOrder;
@@ -44,6 +49,26 @@ public class Product {
 
   public void setProductOrder(ProductOrder productOrder) {
     this.productOrder = productOrder;
+  }
+  
+  
+  public List<ProductRep> getProductReps() {
+    return productReps;
+  }
+  public void setProductReps(List<ProductRep> productReps) {
+    this.productReps = productReps;
+  }
+  public List<ProductFile> getProductFile() {
+    return productFile;
+  }
+  public void setProductFile(List<ProductFile> productFile) {
+    this.productFile = productFile;
+  }
+  public BigTag getBigTag() {
+    return bigTag;
+  }
+  public void setBigTag(BigTag bigTag) {
+    this.bigTag = bigTag;
   }
 
   public ClassRep getClassRep() {
@@ -198,15 +223,16 @@ public class Product {
   public void setMiddletag(MiddleTag middletag) {
     this.middletag = middletag;
   }
-
   @Override
   public String toString() {
     return "Product [no=" + no + ", titl=" + titl + ", conts=" + conts + ", pric=" + pric
         + ", rgdt=" + rgdt + ", stock=" + stock + ", phot=" + phot + ", meno=" + meno + ", ctno="
         + ctno + ", stno=" + stno + ", deli=" + deli + ", star=" + star + ", classes=" + classes
         + ", mentee=" + mentee + ", classRep=" + classRep + ", cert=" + cert + ", smalltag="
-        + smalltag + ", middleTagName=" + middleTagName + ", middletag=" + middletag + "]";
+        + smalltag + ", middleTagName=" + middleTagName + ", middletag=" + middletag + ", bigTag="
+        + bigTag + ", productFile=" + productFile + "]";
   }
-
+  
+  
 
 }

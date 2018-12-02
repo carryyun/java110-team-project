@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import bitcamp.java110.cms.domain.ClassOrder;
 import bitcamp.java110.cms.domain.Classes;
+import bitcamp.java110.cms.domain.Cs;
 import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.Mentor;
 import bitcamp.java110.cms.domain.Notice;
@@ -19,6 +20,7 @@ import bitcamp.java110.cms.domain.Report;
 import bitcamp.java110.cms.service.BigTagService;
 import bitcamp.java110.cms.service.ClassOrderService;
 import bitcamp.java110.cms.service.ClassService;
+import bitcamp.java110.cms.service.CsService;
 import bitcamp.java110.cms.service.MenteeService;
 import bitcamp.java110.cms.service.MentorFileService;
 import bitcamp.java110.cms.service.MentorLicenseService;
@@ -45,6 +47,7 @@ public class MasterPageController {
   MentorLicenseService mentorlicenseService;
   ReportService reportService;
   NoticeService noticeService;
+  CsService csService;
   
 
   public MasterPageController(
@@ -59,7 +62,8 @@ public class MasterPageController {
       MentorFileService mentorFileService,
       MentorLicenseService mentorlicenseService,
       ReportService reportService,
-      NoticeService noticeService) {
+      NoticeService noticeService,
+      CsService csService) {
     
    this.menteeService = menteeService;
    this.mentorService = mentorService;
@@ -73,60 +77,10 @@ public class MasterPageController {
    this.mentorlicenseService = mentorlicenseService;
    this.reportService = reportService;
    this.noticeService = noticeService;
+   this.csService = csService;
   }
 
-  @GetMapping("masterpage")
-  public void masterpage(Model model) {
-    Mentee mentee = menteeService.get(5);
-    Mentor mentor = mentorService.get(5);
-    
-    System.out.println(mentee);
-    System.out.println(mentor);
-  
-    
-    model.addAttribute("mentee", mentee);
-//    model.addAttribute("mentor", mentor);
-    
-    
 
-    
-
-  }
-  
-  @GetMapping("menu1")
-  public void menu1(Model model) {
-    Mentee mentee = menteeService.get(5);
-
-    
-    model.addAttribute("mentee", mentee);
-
-  }
-  
-  
-  @GetMapping("menu2")
-  public void menu2(Model model) {
-
-    List<ClassOrder> colist = classOrderService.listByMeno(4,10,5);
-    model.addAttribute("colist", colist );
-    
-   
-    
-  }
-  
-  
-  @GetMapping("menu3-1")
-  public void menu3_1(Model model) {
-    List<ClassOrder> colist = classOrderService.listByMeno(4,10,5);
-    model.addAttribute("colist", colist );
- }
-  
-  @GetMapping("menu3-2")
-  public void menu3_2(Model model) {
-    List<ProductOrder> polist = productOrderService.listByMeno(4,10,5);
-    model.addAttribute("polist", polist );
-    
-  }
-  
   @GetMapping("prdtList")
   public void prdtList(Model model){
     List<Product> findAllByList = productService.findAllByList();
@@ -171,6 +125,14 @@ public class MasterPageController {
     report.setStat(stat);
     return reportService.updateReptstat(report);
   }
+  
+  // 클래스 삭제
+  @RequestMapping(value = "clsstat.do", method = {RequestMethod.GET, RequestMethod.POST})
+  public @ResponseBody int clsstat(int no, String stat) {
+    Classes classes = classService.findBycno(no);
+    classes.setStat(stat);
+    return classService.statupdate(classes);
+  }
 
   @GetMapping("mentorreqlist")
   public void mentorlist(Model model) {
@@ -195,12 +157,20 @@ public class MasterPageController {
   }
 
   /*
-   * 신고목록 관련(미완성)
+   * 1:1 문의
   */
-  @GetMapping("report")
-  public void report() {
-    
+  @GetMapping("csList")
+  public void csList(Model model) {
+    List<Cs> csList = csService.findByMaster();
+    model.addAttribute("csList",csList);
+   
   }
+  
+  @RequestMapping(value = "masterans.do", method= {RequestMethod.POST})
+  public @ResponseBody int update(Cs cs) {
+    return csService.update(cs);
+  }
+  
   
   @GetMapping("reportFinishList")
   public void reportFinishList(Model model) {

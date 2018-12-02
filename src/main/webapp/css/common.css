@@ -1,8 +1,9 @@
 @charset "UTF-8";
 /* hr 관련 */
-*{
+*:not(i){
  margin: 0;
  padding: 0;
+ font-family: 'Noto Sans KR', sans-serif !important;
 }
 
 div.wrap{
@@ -23,7 +24,7 @@ hr.MiddleMarginHr{
 hr.Fhr{
     border: 0; 
     height: 2px;
-    background: #ccc; 
+    background: rgb(217, 217, 217); 
     width: 100%; 
     margin: 0 auto;
 }
@@ -31,7 +32,7 @@ hr.Fhr{
 hr.FhrMargin{
     border: 0; 
     height: 2px;
-    background: #ccc; 
+    background: rgb(217, 217, 217); 
     width: 100%; 
     margin: 20px 0;
 }
@@ -39,14 +40,14 @@ hr.FhrMargin{
 hr.FhrBotMargin{
     border: 0; 
     height: 2px;
-    background: #ccc; 
+    background: rgb(217, 217, 217); 
     width: 100%; 
     margin: 0 0 15px 0;
 }
 hr.Hhr{
     border: 0; 
     height: 2px;
-    background: #ccc; 
+    background: rgb(217, 217, 217); 
     width: 90%; 
     margin: 0 auto;
 }
@@ -61,4 +62,8 @@ li a{
 }
 div a{
     text-decoration: none !important;
+}
+
+a.selected{
+  font-weight: 800;
 }

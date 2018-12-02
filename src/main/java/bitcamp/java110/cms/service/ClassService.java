@@ -5,6 +5,8 @@ import bitcamp.java110.cms.domain.Classes;
 
 public interface ClassService {
   List<Classes> list();
+  List<Classes> listByBtno(int pageNo, int pageSize, int btno);
+  List<Classes> listByMtno(int pageNo, int pageSize, int mtno);
   List<Classes> classList(int no);
   List<Classes> findAllByList();
   Classes findbyptno(int ptno);
@@ -22,4 +24,9 @@ public interface ClassService {
   
   //마이페이지 - 클래스 관리 - 멘토 클래스의 멘티들
   List<Classes> manageByCno(int cno);
+
+  //마이페이지 - 클래스 관리
+  List<Classes> findByMono(int mono);
+  int statupdate(Classes classes);
+  
 }

@@ -8,11 +8,11 @@ public class ProductRep {
   private int no; // 댓글 번호
   private int meno; // 작성자 번호
   private int ptno; // 공예품 번호
-  private String titl; // 제목
   private String conts; // 내용
   private int star; // 별점
   private Date rgdt; // 등록일
   private String phot; // 사진
+  
   private Mentee mentee;
 
 
@@ -47,14 +47,6 @@ public class ProductRep {
 
   public void setPtno(int ptno) {
     this.ptno = ptno;
-  }
-
-  public String getTitl() {
-    return titl;
-  }
-
-  public void setTitl(String titl) {
-    this.titl = titl;
   }
 
   public String getConts() {

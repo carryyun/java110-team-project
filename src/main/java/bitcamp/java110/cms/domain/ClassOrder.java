@@ -1,6 +1,7 @@
 package bitcamp.java110.cms.domain;
 
 import java.sql.Date;
+import java.sql.Time;
 
 public class ClassOrder {
 
@@ -19,7 +20,52 @@ public class ClassOrder {
   private Cert cert;
   private ClassFile classFile;
   
+
+  private String mentornick;
+  
+  private String mtname; // 중분류이름
+  private String cls_titl; // 클래스명
+  private String mete_nick; // 구매자 닉네임
+  private String mete2_nick; // 판매자 닉네임
+  private int cls_pric; // 클래스가격
+  private String mete_name;
+  private String mete2_name;
+  private String mete2_phone;
+  private Date date;
+  private Time stime;
+  
     
+  
+  public String getMete2_phone() {
+    return mete2_phone;
+  }
+  public void setMete2_phone(String mete2_phone) {
+    this.mete2_phone = mete2_phone;
+  }
+  public String getMete_name() {
+    return mete_name;
+  }
+  public void setMete_name(String mete_name) {
+    this.mete_name = mete_name;
+  }
+  public String getMete2_name() {
+    return mete2_name;
+  }
+  public void setMete2_name(String mete2_name) {
+    this.mete2_name = mete2_name;
+  }
+  public Date getDate() {
+    return date;
+  }
+  public void setDate(Date date) {
+    this.date = date;
+  }
+  public Time getStime() {
+    return stime;
+  }
+  public void setStime(Time stime) {
+    this.stime = stime;
+  }
   public ClassFile getClassFile() {
     return classFile;
   }
@@ -33,15 +79,6 @@ public class ClassOrder {
     this.cert = cert;
   }
 
-  private String mentornick;
-  
-  private String mtname; // 중분류이름
-  private String cls_titl; // 클래스명
-  private String mete_nick; // 구매자 닉네임
-  private String mete2_nick; // 판매자 닉네임
-  private int cls_pric; // 클래스가격
-  
-  
   public String getMentornick() {
     return mentornick;
   }

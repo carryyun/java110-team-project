@@ -5,7 +5,7 @@
 
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8">  
 <title>하루 - Haru</title>
 
 <%-- 부트스트랩 --%>
@@ -85,10 +85,10 @@
             <div class="row">
                     <div class="col-lg-2 border-right border-secondary">
                         <div class="col">
-                            <h2 class="mb-3">카테고리</h2>
+                            <h2 class="mb-4">카테고리</h2>
                             <ul class="ml-3">
                                 <c:forEach items="${BTlist}" var="bt">
-                                    <li><a href="#">${bt.name}</a></li>
+                                    <li><a href="../class/clsCate?no=${bt.no}">${bt.name}</a></li>
                                 </c:forEach>
                             </ul>
                         </div>
@@ -98,7 +98,7 @@
                     <div class="col-lg-10">
                         <div class="row">
                             <div class="col">
-                                <h2 class="mb-3">인싸예감 클래스</h2>
+                                <h2 class="mb-4">인싸예감 클래스</h2>
                                 <div id="owl-hotCls" class="owl-carousel col-lg-10 mt-2" style="margin:0 auto">
 
                                 </div>
@@ -161,6 +161,9 @@
 	<script src="/js/clean-blog.js"></script>
     <script src="/js/owl.carousel.js"></script>
     <script>
+    $(document).ready(function(){
+        $('#menusubs').remove();
+    });
     function setLike(evt,cno){
         evt.preventDefault();
         if('${sessionScope.loginUser}' != ''){

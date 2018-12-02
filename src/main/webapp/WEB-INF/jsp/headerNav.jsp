@@ -9,25 +9,25 @@
     <meta name="author" content="">
     <!-- Bootstrap core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- 폰트 추가 -->
-    <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
+    
     <!-- Custom fonts for this template -->
     <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-
     <!-- Custom styles for this template -->
     <link href="/css/category.css" rel="stylesheet">
     
+    <!-- 폰트 추가 -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
     </head>
     <!-- Category Navigation -->
     <!-- <hr class="Fhr"> -->
     
     <nav class="navbar navbar-expand-lg">
+    
         <div class="navbar-nav" id="categoryNav">
           <ul class="navbar-nav" id="mainUl" style="float: left;">
             <c:forEach  items="${BTlist}" var="bt" varStatus="i">
               <li class="nav-item" style="margin:0 auto;display: inline-block;">
-                <a class="nav-link" href="index.html" id="menu0${i.count}">${bt.name}</a>
+                <a class="nav-link" href="../class/clsCate?no=${bt.no}" id="menu0${i.count}">${bt.name}</a>
               </li>
             </c:forEach>
           </ul>
@@ -69,14 +69,14 @@
 
     <!-- 카테고리 서브메뉴 -->
     <script>
-    var timeset=1;
+    /* var timeset=1;
         $(document).ready(function(){
       var submenu=new Array();
       var sub_tmps=document.getElementById("menusubs").getElementsByTagName("ul");
       for (var i=0, len=sub_tmps.length; i<len; i++) {
-         /* if (sub_tmps[i].className=="localNav"){ */
+         // if (sub_tmps[i].className=="localNav"){ 
             submenu.push(sub_tmps[i]);
-         /* } */
+         // } 
       }
       var menu_tmps=document.getElementById("mainUl").getElementsByTagName("a");
       for (var i=0, len=menu_tmps.length; i<len; i++) {
@@ -112,6 +112,6 @@
             }
          }
       }
-        });
+        }); */
 </script>
 </html>

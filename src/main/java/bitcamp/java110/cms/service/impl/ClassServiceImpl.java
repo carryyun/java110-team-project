@@ -1,5 +1,6 @@
 package bitcamp.java110.cms.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,17 +14,15 @@ import bitcamp.java110.cms.service.ClassService;
 public class ClassServiceImpl implements ClassService{
 
   @Autowired ClassDao classDao;
-  
+  @Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
   
   @Override
-  @Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
   public int classadd(Classes classes) {
     
     return classDao.classinsert(classes);
     
   }
 
-  @Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
   @Override
   public int classupdate(Classes classes) {
     
@@ -32,8 +31,25 @@ public class ClassServiceImpl implements ClassService{
   
   @Override
   public List<Classes> list(){
-
     return classDao.findAllList();
+  }
+  @Override
+  public List<Classes> listByBtno(int pageNo, int pageSize, int btno){
+    HashMap<String, Object> params = new HashMap<>();
+    params.put("rowNo", (pageNo - 1) * pageSize);
+    params.put("size", pageSize);
+    params.put("btno", btno);
+
+    return classDao.findAllByBtno(params);
+  }
+  @Override
+  public List<Classes> listByMtno(int pageNo, int pageSize, int mtno){
+    HashMap<String, Object> params = new HashMap<>();
+    params.put("rowNo", (pageNo - 1) * pageSize);
+    params.put("size", pageSize);
+    params.put("mtno", mtno);
+
+    return classDao.findAllByMtno(params);
   }
 
   
@@ -77,5 +93,16 @@ public class ClassServiceImpl implements ClassService{
   @Override
   public List<Classes> manageByCno(int cno) {
     return classDao.manageByCno(cno);
+  }
+
+  @Override
+  public int statupdate(Classes classes) {
+    return classDao.statupdate(classes);
+  }
+
+  @Override
+  public List<Classes> findByMono(int mono) {
+    // TODO Auto-generated method stub
+    return null;
   }
 }

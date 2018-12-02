@@ -16,48 +16,48 @@
 
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
-	integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
-	crossorigin="anonymous">
+    integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+    crossorigin="anonymous">
 <!-- ===============필수포함=============== -->
 </head>
 <body>
-	<div id="wrap" style="background-color: #fff">
-		<div class="col" style="position: absolute; height: 105px; background-color: white">
-			<!-- 헤더 배경색 적용 -->
-		</div>
+    <div id="wrap" style="background-color: #fff">
+        <div class="col" style="position: absolute; height: 105px; background-color: white">
+            <!-- 헤더 배경색 적용 -->
+        </div>
 
-		<div class="container">
-			<div class="row">
-				<div class="col" style="position: absolute; height: 105px; background-color: white">
-					<!-- 헤더 배경색 적용 -->
-				</div>
+        <div class="container">
+            <div class="row">
+                <div class="col" style="position: absolute; height: 105px; background-color: white">
+                    <!-- 헤더 배경색 적용 -->
+                </div>
 
-				<div class="col-lg-12" style="z-index: 100">
-					<jsp:include page="../headerMain.jsp"></jsp:include>
-				</div>
+                <div class="col-lg-12" style="z-index: 100">
+                    <jsp:include page="../headerMain.jsp"></jsp:include>
+                </div>
 
-				<!-- 카테고리 nav (스크립트로 임시 inclue) -->
-				<div class="col-lg-12">
-					<jsp:include page="../headerNav.jsp"></jsp:include>
-				</div>
+                <!-- 카테고리 nav (스크립트로 임시 inclue) -->
+                <div class="col-lg-12">
+                    <jsp:include page="../headerNav.jsp"></jsp:include>
+                </div>
 
 
-				<div class="container col-lg-10 mt-3">
-					<c:forEach items="${noticeList}" var="nl" varStatus="i">
-						
-						<div class="notice notice-lg" id="rmv${nl.no}" onclick="location.href='${nl.url}'">
-							<span> <img src="${nl.phot}" alt="${nl.phot}" width="100px" height="100px">
-							</span> <span> <strong>[${nl.type}]${nl.titl}</strong> ${nl.conts}
-							</span> <span style="float: right; cursor: pointer;" onclick="del(${nl.no})"><i class="fas fa-trash-alt"></i> </span>
-						</div>
+                <div class="container col-lg-10 mt-3">
+                    <c:forEach items="${noticeList}" var="nl" varStatus="i">
+                        
+                        <div class="notice notice-lg" id="rmv${nl.no}" onclick="location.href='${nl.url}'">
+                            <span> <img src="${nl.phot}" alt="${nl.phot}" width="100px" height="100px">
+                            </span> <span> <strong>[${nl.type}]${nl.titl}</strong> ${nl.conts}
+                            </span> <span style="float: right; cursor: pointer;" onclick="del(${nl.no})"><i class="fas fa-trash-alt"></i> </span>
+                        </div>
 
-					</c:forEach>
-				</div>
-			</div>
-		</div>
-		
-	</div>
-	<footer>
+                    </c:forEach>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <footer>
             <div class="col px-0">
                 <jsp:include page="../footer.jsp"></jsp:include>
             </div>

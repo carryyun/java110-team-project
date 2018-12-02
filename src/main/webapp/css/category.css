@@ -1,21 +1,25 @@
 /* 카테고리 nav 관련 */
 nav.navbar{
     padding: 0;
-    z-index: 5;
+    /* z-index: 4; */
 }
 #categoryNav{
   /* 카테고리 가로정렬 ? */
   margin: 0 auto;
+}
+nav.navbar.navbar-expand-lg:not(#mainNav){
+  border-top: 1px solid #6e6e6e;
+  border-bottom: 1px solid #6e6e6e;
 }
 #categoryNav > .navbar-nav{
   /* 카테고리 세로정렬 ? */
   display: flex;
   flex-grow: 1;
   flex-direction: row;
+
 }
 #categoryNav > .navbar-nav > li.nav-item {
-  border-top: 1px solid #6e6e6e;
-  border-bottom: 1px solid #6e6e6e;
+
   
   font-size: 15px;
   font-weight: 800;
@@ -25,10 +29,11 @@ nav.navbar{
   text-align: center;
 }
 #categoryNav > .navbar-nav > li.nav-item:hover {
-  border-top: 1px solid #6e6e6e;
+/*   border-top: 1px solid #6e6e6e;
+  border-bottom: 1px solid #6e6e6e; */
   border-left: 1px solid #6e6e6e;
   border-right: 1px solid #6e6e6e;
-  border-bottom: 1px solid #6e6e6e;
+  
   
   font-size: 20px;
   font-weight: 800;
@@ -40,12 +45,12 @@ nav.navbar{
 #categoryNav > .navbar-nav > li.nav-item > a {
   padding: 8px;
   color: #6e6e6e;
-  min-width: 120px;
+  min-width: 123px;
 }
 #categoryNav > .navbar-nav > li.nav-item > a:hover{
   padding: 4px 8px 8px 8px;
   border-bottom: 4px solid #ec5453;
-  min-width: 120px;
+  min-width: 123px;
 }
 #categoryNav > .navbar-nav > li.nav-item > a#menu01 {
   padding: 8px;
@@ -55,7 +60,7 @@ nav.navbar{
   text-transform: uppercase;
   color: #6e6e6e;
   font-family: 'Noto Sans KR', sans-serif;
-  min-width: 120px;
+  min-width: 123px;
 }
 #categoryNav > .navbar-nav > li.nav-item > a#menu01:hover{
   padding: 4px 8px 8px 8px;
@@ -65,7 +70,7 @@ nav.navbar{
   text-transform: uppercase;
   font-family: 'Noto Sans KR', sans-serif;
   border-bottom: 4px solid #ec5453;
-  min-width: 120px;
+  min-width: 123px;
 }
 
 nav.navbar{

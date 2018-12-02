@@ -1,6 +1,7 @@
 package bitcamp.java110.cms.dao;
 
 import java.util.List;
+import java.util.Map;
 import bitcamp.java110.cms.domain.Classes;
 
 public interface ClassDao {
@@ -8,6 +9,9 @@ public interface ClassDao {
 
   List<Classes> findAllList();
 
+  List<Classes> findAllByBtno(Map<String,Object> params);
+  List<Classes> findAllByMtno(Map<String,Object> params);
+  
   List<Classes> findAllByList(); // 클래스 전체 목록
 
   List<Classes> classform(int no);
@@ -34,4 +38,7 @@ public interface ClassDao {
   
   // 마이페이지 - 클래스관리 - 멘토 클래스의 멘티들
   List<Classes> manageByCno(int cno);
+  
+  int statupdate(Classes classes);
+  
 }

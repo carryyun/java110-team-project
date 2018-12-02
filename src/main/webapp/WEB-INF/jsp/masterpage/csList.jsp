@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
+	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -9,9 +10,9 @@
 <!-- 필수-->
 <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet"
-    href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
-    integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
-    crossorigin="anonymous">
+	href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+	integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+	crossorigin="anonymous">
 
 <!-- css -->
 <link href="/css/master.css" rel="stylesheet">
@@ -76,7 +77,7 @@
                                 data-nav-section="1">메인 화면 </a></li>
                                 <li><a
                                 onclick="location.href='csList'"
-                                data-nav-section="10">문의 목록 </a></li>
+                                data-nav-section="10" style=" color: #2c98f0; font-weight:bold;">문의 목록 </a></li>
                             <li><a
                                 onclick="location.href='mentorreqlist'"
                                 data-nav-section="2">멘토 등록</a></li>
@@ -97,7 +98,7 @@
                                 data-nav-section="7">전체 클래스 목록 </a></li>
                             <li><a
                                 onclick="location.href='prodOrderList'"
-                                data-nav-section="8"  style=" color: #2c98f0; font-weight:bold;">상품 주문 내역</a></li>
+                                data-nav-section="8">상품 주문 내역</a></li>
                                 <li><a onclick="location.href='classOrderList'" data-nav-section="9">
                                     클래스 신청 내역 </a></li>
                         </ul>
@@ -108,13 +109,13 @@
 
             <div id="colorlib-main">
 
-                <section class="colorlib-experience" data-section="8">
+                <section class="colorlib-experience" data-section="10">
                     <div class="colorlib-narrow-content">
                         <div class="row">
 
                             <div class="about-desc">
 
-                                <h2 class="colorlib-heading">상품 주문 내역</h2>
+                                <h2 class="colorlib-heading">문의 목록</h2>
 
                                 <div class="col-lg-12">
                                     <div class="col-lg-5" id="serch-men">
@@ -145,25 +146,40 @@
                                         class="table table-list-search">
                                         <thead>
                                             <tr>
-                                                <th class="text-center">No</th>
-                                                <th class="text-center">카테고리</th>
-                                                <th class="text-center">상품명</th>
-                                                <th class="text-center">구매자</th>
-                                                <th class="text-center">가격</th>
-                                                <th class="text-center">결제일</th>
+                                                <th class="text-center">게시글번호</th>
+                                                <th class="text-center">제목</th>
+                                                <th class="text-center">내용</th>
+                                                <th class="text-center">글쓴이</th>
+                                                <th class="text-center">질문 등록일</th>
+                                                <th class="text-center">답변 유무</th>
                                                 <th class="text-center">상세보기</th>
                                             </tr>
                                         </thead>
+                                        
                                         <tbody>
-                            <c:forEach items="${productOrderList}" var="pl" varStatus="i">
-                                <tr>
-                                    <td class="text-center">${i.count}</td>
-                                    <td class="text-center">${pl.stname}</td> <!-- 카테고리 -->
-                                    <td class="text-center">${pl.prdt_titl}</td> <!-- 상품명 -->
-                                    <td class="text-center">${pl.mete_nick}</td><!-- 구매자 -->
-                                    <td class="text-center">${pl.prdt_pric}원</td><!-- 가격 -->
-                                    <td class="text-center bold">${pl.paydt}</td><!--결제일 -->
-                                    <td
+                                            <c:forEach
+                                                items="${csList}"
+                                                var="rl" varStatus="i">
+                                                <tr id="rmv${rl.no}">
+                                                    <td
+                                                        class="text-center">${i.count}</td>
+                                                    <td
+                                                        class="text-center">${rl.titl}</td>
+                                                    <td
+                                                        class="text-center">${rl.cstype}</td>
+                                                    <td
+                                                        class="text-center">${rl.mete_name}(${rl.mete_nick})</td>
+                                                    <td
+                                                        class="text-center">${rl.rgdt}</td>
+                                                        <c:set var="yn" value="${rl.anser }"/>
+                                                        <% String qna = (String)pageContext.getAttribute("yn"); 
+                                                           if(qna == null){
+                                                        %>
+                                                    <td class="text-center">미완료</td>
+                                                    <% }else{ %>
+                                                    <td class="text-center">완료</td>
+                                                    <%} %>
+                                                    <td
                                                         class="text-center"><button
                                                             class="btn btn-light" id="block-cho">
                                                             <a
@@ -171,11 +187,12 @@
                                                                 href="#popup${i.index}" style="color:black;">상세
                                                                 보기</a>
                                                         </button></td>
-                                </tr>
-                            </c:forEach>
-                            </tbody>
-                        </table>
-                    </div>
+                                                </tr>
+                                            </c:forEach>
+                                        </tbody>
+                                        
+                                    </table>
+                                </div>
 
                                 <div class="col-lg-12 text-center"
                                     id="page-list1">
@@ -216,12 +233,12 @@
 
 
                                 <!-- popup-->
-                                <c:forEach items="${productOrderList}"
-                                    var="pl" varStatus="i">
+                                <c:forEach items="${csList}"
+                                    var="rl" varStatus="i">
                                     <div id="popup${i.index}"
                                         class="overlay">
                                         <div class="popupH">
-                                            <h2>상품 주문 내역</h2>
+                                            <h2>문의 상세 보기</h2>
                                             <a class="close" href="#">×</a>
                                             <div class="content">
                                                 <br />
@@ -236,66 +253,79 @@
                                                                 style="list-style-type: none;">
                                                                 <tbody>
                                                                     <tr>
-                                                                    <td><li><span
-                                                                                style="font-size: 20px;">구매번호:
+                                                                        <td colspan="2"><li><span
+                                                                                style="font-size: 20px;">글쓴이:
                                                                             </span>
                                                                                 <span
-                                                                                class="pop-type">${pl.no }</span></li></td>
-                                                                        <td><li><span
-                                                                                style="font-size: 20px;">구매자:
-                                                                            </span>
-                                                                                <span
-                                                                                class="pop-type">${pl.mete_name }(${pl.mete_nick})</span></li></td>
-                                                                        <td><li><span
-                                                                                style="font-size: 20px;">판매자:
-                                                                            </span>
-                                                                                <span
-                                                                                class="pop-type">${pl.mete2_name }(${pl.mete2_nick})</span></li></td>
-                                                                        <td><li><span
-                                                                                style="font-size: 20px;">판매자 연락처:
-                                                                            </span>
-                                                                                <span
-                                                                                class="pop-type">${pl.mete2_phone}</span></li></td>
+                                                                                class="pop-type">${rl.mete_name}(${rl.mete_nick })</span></li></td>
                                                                         
-                                                                    </tr>
-
-                                                                    <tr>
-                                                                        <td><li><span style="font-size: 20px;">가격:
-                                                                            </span>
-                                                                                <span class="pop-type">${pl.prdt_pric}원</span></li></td>
-                                                                                <td><li><span style="font-size: 20px;">수량:
-                                                                            </span>
-                                                                                <span class="pop-type">${pl.cnt}개</span></li></td>
-                                                                                <td><li><span style="font-size: 20px;">결제방법:
-                                                                            </span>
-                                                                                <span class="pop-type">${pl.payopt}</span></li></td>
-                                                                                <td><li><span style="font-size: 20px;">결제날짜:
-                                                                            </span>
-                                                                                <span class="pop-type">${pl.paydt}</span></li></td>
-                                                                    </tr>
-
-
-                                                                    <tr>
                                                                         <td
-                                                                            colspan="3"><li><span
-                                                                                style="font-size: 20px;">택배사:
+                                                                            colspan="7"><li><span
+                                                                                style="font-size: 20px;">제목:
                                                                             </span>
                                                                                 <span
-                                                                                class="pop-type">${pl.parc_name}</span></li></td>
+                                                                                class="pop-type">${rl.titl}</span></li></td>
                                                                         <td
                                                                             colspan="3"><li><span
-                                                                                style="font-size: 20px;">송장번호:
+                                                                                style="font-size: 20px;">문의날짜:
                                                                             </span>
                                                                                 <span
-                                                                                class="pop-type">${pl.parc_no}</span></li></td>
+                                                                                class="pop-type">${rl.rgdt}</span></li></td>
                                                                     </tr>
-                                                                    
+                                                                    <tr>
+                                                                        <td
+                                                                            colspan="12"
+                                                                            style="height: auto"><li><span
+                                                                                style="font-size: 20px;">내용:
+                                                                            </span>
+                                                                                <span
+                                                                                class="pop-type">${rl.conts}</span></li></td>
+                                                                    </tr>
+                                                                    <c:set var="yn" value="${rl.anser }"/>
+                                                                <% String qna = (String)pageContext.getAttribute("yn");
+                                                                   if(qna != null){%>
+                                                                    <tr>
+                                                                        <td colspan="12" style="height:auto; font-weight:bold;"><li><span style="font-size: 20px;">답변:</span>
+                                                                        <span class="pop-type">${rl.anser }</span></li></td>
+                                                                    </tr>
+                                                                    <%}%>
                                                                    
                                                                 </tbody>
                                                             </table>
                                                         </div>
+                                                        
+                                                       <!--  답변 창  -->
+                                                         <c:set var="yn2" value="${rl.anser }"/>
+                                                                <% String qna2 = (String)pageContext.getAttribute("yn2");
+                                                                   if(qna2 == null){%>
+                                                            <div
+                                                                class="col-lg-12">
+                                                                <div
+                                                                    class="form-group">
+                                                                    
+                                                                    <textarea
+                                                                        class="form-control z-depth-1"
+                                                                        rows="6"
+                                                                        id="anser${i.index}" placeholder="답변 작성하기.." style="width: 100%; border:1px solid black;"></textarea>
+                                                                </div>
+                                                            </div>
                                                         <!-- 12 -->
                                                         
+                                                        <div
+                                                            class="col-lg-12">
+                                                            
+                                                        
+                                                            <button
+                                                                type="button"
+                                                                class="btn btn-primary"
+                                                                id="mas-p2"
+                                                                name="Y"
+                                                                onclick="anserclick(${i.index}, ${rl.no})"
+                                                                
+                                                                >답변하기</button>
+                                                        
+                                                        </div>
+                                                        <%} %>
                                                     </div>
                                                     <!-- popup row-->
                                                 </div>
@@ -322,10 +352,38 @@
 <!-- Bootstrap core JavaScript -->
 <script src="/vendor/jquery/jquery.min.js"></script>
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!-- 181121고친거 -->
 <script>
+
+//답변하기 버튼 클릭
+function anserclick(index, csno){
+    var anserfn = $("#anser"+index).val();
+
+    
+    $.ajax({
+        type: "POST",
+        data: {
+            no: csno,
+            anser: anserfn
+            
+        },
+        url: "masterans.do",
+        success : function() {
+           location.href="csList";
+            },error : function(error,status){
+                swal({
+                    text : "이미 답변한 문의이거나 삭제된 문의입니다.",
+                    button : "확인",
+                  })
+            }
+    })
+}
+
 $(document).ready(function() {
     var activeSystemClass = $('.list-group-item.active');
+    
+    
 
     //something is entered in search form
     $('#system-search').keyup( function() {
@@ -384,7 +442,7 @@ function stat(no,name){
             meno : no,
             stat : name
         },
-        url : "mtstat.do",
+        url : "masterans.do",
         success : location.href="#"
     });
 }

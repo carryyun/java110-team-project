@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import bitcamp.java110.cms.domain.BigTag;
 import bitcamp.java110.cms.domain.ClassBakt;
 import bitcamp.java110.cms.domain.ClassFile;
 import bitcamp.java110.cms.domain.ClassLike;
@@ -17,7 +19,9 @@ import bitcamp.java110.cms.domain.ClassQna;
 import bitcamp.java110.cms.domain.ClassRep;
 import bitcamp.java110.cms.domain.Classes;
 import bitcamp.java110.cms.domain.Mentee;
+import bitcamp.java110.cms.domain.MiddleTag;
 import bitcamp.java110.cms.domain.Timetable;
+import bitcamp.java110.cms.service.BigTagService;
 import bitcamp.java110.cms.service.ClassBaktService;
 import bitcamp.java110.cms.service.ClassFileService;
 import bitcamp.java110.cms.service.ClassLikeService;
@@ -26,6 +30,7 @@ import bitcamp.java110.cms.service.ClassQnaService;
 import bitcamp.java110.cms.service.ClassRepService;
 import bitcamp.java110.cms.service.ClassService;
 import bitcamp.java110.cms.service.MenteeService;
+import bitcamp.java110.cms.service.MiddleTagService;
 import bitcamp.java110.cms.service.TimetableService;
 
 @Controller
@@ -41,13 +46,16 @@ public class ClassController {
   ClassFileService classFileService;
   TimetableService timetableService;
   MenteeService menteeService;
+  BigTagService bigTagService;
+  MiddleTagService middleTagService;
   
   public ClassController(
       ClassService classService,ClassQnaService classqnaService,
       ClassOrderService classorderService,ClassLikeService classlikeService
       ,ClassBaktService classBaktService,MenteeService menteeService,
       ClassRepService classrepService,ClassFileService classFileService,
-      TimetableService timetableService) {
+      TimetableService timetableService,BigTagService bigTagService,
+      MiddleTagService middleTagService) {
     this.classService = classService;
     this.classqnaService = classqnaService;
     this.classorderService = classorderService;
@@ -57,6 +65,8 @@ public class ClassController {
     this.classrepService = classrepService;
     this.classFileService = classFileService;
     this.timetableService = timetableService;
+    this.bigTagService = bigTagService;
+    this.middleTagService = middleTagService;
   }
 
   @GetMapping("form") 
@@ -168,8 +178,28 @@ public class ClassController {
     model.addAttribute("clslist", clslist);
   }
   
+  @RequestMapping("clsCate")
+  public void clsCate(Model model, int no, String type) {
+    BigTag bigtag = null;
+    List<Classes> clslist = null;
+    if(type == null) {
+      clslist = classService.listByBtno(10, 5, no);
+      bigtag = bigTagService.get(no);
+      model.addAttribute("selectedNo", 0);
+    }else if("mtag".equals(type)) {
+      clslist = classService.listByMtno(10, 5, no);
+      MiddleTag middleTag = middleTagService.get(no);
+      bigtag = bigTagService.get(middleTag.getBtno());
+      model.addAttribute("selectedNo", no);
+    }
+    
+    model.addAttribute("clslist", clslist);
+    model.addAttribute("bigTag", bigtag);
+  }
+  
   @RequestMapping("detail")
-  public void findByCno(Model model,int no ,HttpSession session) {
+  public void findByCno(@RequestParam(defaultValue="1") int pageNo, @RequestParam(defaultValue="3") int pageSize, 
+      Model model,int no ,HttpSession session) {
     
     List<ClassRep> clsreqlist = classrepService.listbycno(no);
     
@@ -181,14 +211,11 @@ public class ClassController {
     
     List<Timetable> clstimelist = timetableService.findByCno(no);
     
-//    List<ClassRep> clsrepcount = classrepService.countByCnoAll(no);
-    
     model.addAttribute("clsreqlist",clsreqlist);
     model.addAttribute("detailclass",detailclass);
     model.addAttribute("clsqnalist",clsqnalist);
     model.addAttribute("clsfilelist",clsfilelist);
     model.addAttribute("clstimelist",clstimelist);
-//    model.addAttribute("clsrepcount",clsrepcount);
   }
   
   @RequestMapping("findByptno")
@@ -234,11 +261,6 @@ public class ClassController {
     return classqnaService.qnaadd(classqna);
   }
   
-  @RequestMapping("qnadelete")
-  public void qnadelete(int no) {
-    
-    classqnaService.qnadelete(no);
-  }
   
   @RequestMapping("qnaupdate")
   public void qnaupdate(ClassQna classqna) {
@@ -252,7 +274,7 @@ public class ClassController {
     classqnaService.qnaupdate(classqna);
   }
   
-  @RequestMapping(value = "ansupdate", method = {RequestMethod.POST})
+  @RequestMapping(value = "ansupdate.do", method = {RequestMethod.POST})
   public @ResponseBody int ansupdate(ClassQna classqna) {
     
     System.out.println(classqna.getCno());
@@ -279,16 +301,30 @@ public class ClassController {
     
     System.out.println(classrep.toString());
     
+    
     return classrepService.repAdd(classrep);
   }
   
   @RequestMapping(value = "clslikeins.do", method = {RequestMethod.POST})
-  public @ResponseBody int clslikeins(ClassLike classlike) {
+  public @ResponseBody String clslikeins(ClassLike classlike) {
     
     System.out.println(classlike.getMeno());
     System.out.println(classlike.getCno());
+    classlikeService.likeadd(classlike);
     
-    return classlikeService.likeadd(classlike);
+    return "redirect:detail?no="+classlike.getCno();
+  }
+  
+  @RequestMapping(value = "clsrepdele.do", method = {RequestMethod.POST})
+  public @ResponseBody int clsrepdele(int no) {
+    
+    return classrepService.repDelete(no);
+  }
+  
+  @RequestMapping(value = "clsrepchange.do", method = {RequestMethod.POST})
+  public @ResponseBody int clsrepchange(ClassRep classRep) {
+    
+    return classrepService.repupdate(classRep);
   }
   
   ///////////////// p_cls_qna 수업질문답변//////////////////
@@ -299,7 +335,12 @@ public class ClassController {
     
     return 1;
   }
-  
+
+  @RequestMapping("qnadelete")
+  public void qnadelete(int no) {
+    
+    classqnaService.qnadelete(no);
+  }
  /* @GetMapping("corderlist")
   public List<ClassOrder> orderlist() {
     
