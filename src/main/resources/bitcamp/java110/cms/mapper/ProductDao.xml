@@ -38,6 +38,33 @@
         <result column="clsmetenick" property="classes.mentee.nick"/>
         
     </resultMap>
+    
+    <resultMap type="product" id="sellerMap">
+        <id column="ptno"        property="no"/>
+        <result column="titl"    property="titl"/>
+        <result column="conts"   property="conts"/>
+        <result column="pric"    property="pric"/>
+        <result column="rgdt"    property="rgdt"/>
+        <result column="stock"   property="stock"/>
+        <result column="phot"     property="phot"/>
+        <result column="meno"    property="meno"/>
+        <result column="ctno"    property="ctno"/>
+        <result column="stno"    property="stno"/>
+        <result column="star"    property="star"/>
+        
+        <result column="popric"     property="productOrder.tot_pric"/>
+        <result column="payopt"      property="productOrder.payopt"/>
+        <result column="paydt"     property="productOrder.paydt"/>
+        <result column="parc_name"  property="productOrder.parc_name"/>
+        <result column="parc_no"    property="productOrder.parc_no"/>
+        
+        <result column="me2name"    property="mentee2.name"/>
+        <result column="me2nick"    property="mentee2.nick"/>
+        <result column="me2phone"   property="mentee2.phone"/>
+        <result column="me2pstno"   property="mentee2.pstno"/>
+        <result column="me2bas"     property="mentee2.bas_addr"/>
+        <result column="me2det"     property="mentee2.det_addr"/>
+    </resultMap>
 
     
     <select id="findAll_list" resultMap="productMap">
@@ -193,6 +220,56 @@ where
             stno=#{smallno}
     </select>
     
+
+    <select id="findBySeller" 
+            resultMap="sellerMap" parameterType="Map">
+            
+        SELECT  
+                p.*
+        FROM
+            p_prdt p
+            JOIN p_mete me ON p.meno = me.meno
+        WHERE
+            me.meno = #{meno}
+            
+    </select>
+    
+     <select id="findBySeller2" 
+            resultMap="sellerMap" parameterType="Map">
+            
+        SELECT  
+                p.*,
+                po.cnt as pocnt,
+                po.tot_pric as popric,
+                po.payopt,
+                po.paydt,
+                po.parc_name,
+                po.parc_no,
+                me2.name as me2name,
+                me2.nick as me2nick,
+                me2.phone as me2phone,
+                me2.pstno as me2pstno,
+                me2.bas_addr as me2bas,
+                me2.det_addr as me2det
+                
+        FROM
+            p_prdt p
+            JOIN p_mete me ON p.meno = me.meno
+            JOIN p_prdt_order po ON p.ptno = po.ptno
+            JOIN p_mete me2 ON po.meno = me2.meno
+    
+        WHERE
+            me.meno = #{meno}
+
+        ORDER BY
+            po.ono asc
+    
+            
+            
+    </select>
+            
+            
+            
     <insert id="insert" parameterType="product"
             useGeneratedKeys="true" keyColumn="ptno" keyProperty="no">
             

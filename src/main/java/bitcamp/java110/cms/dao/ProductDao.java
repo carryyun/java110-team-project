@@ -14,6 +14,12 @@ public interface ProductDao {
 
   // 공예품 번호 조회
   Product findByNo(int no); 
+  
+  // 마이페이지 판매관리  판매자번호(meno)로조회
+  List<Product> findBySeller(Map<String, Object> params);
+  
+  // 마이페이지 판매관리  판매자번호(meno)로조회
+  List<Product> findBySeller2(Map<String, Object> params);
 
   // 판매자 번호 조회
   List<Product> findAllByMeno(Map<String,Object> params); 

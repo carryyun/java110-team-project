@@ -1,3 +1,4 @@
+<%@ page import="bitcamp.java110.cms.domain.Product"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -24,14 +25,13 @@
                 </thead>
 
                 <tbody>
-
+ <c:forEach items="${pmanage}" var="p" varStatus="i">
                             <tr id="tb-pay">
                             <td>${i.count}</td>
-                            <td>${p.product.titl}
-                            <a href='#'><img src="${p.product.phot}" width="200px" height="150px"/></a>
+                            <td><a href='#'><img src="${p.phot}" width="200px" height="150px"/></a>
                             </td>
-                            <td>상품명<br></td>
-                            <td>상품가격</td>
+                            <td>${p.titl}<br></td>
+                            <td>${p.pric}</td>
                             
                             
                             <td>
@@ -39,11 +39,9 @@
                             <button type="button" class="btn btn-primary" style="width:100px; margin:2px;">삭제</button>
                             <button type="button" class="btn btn-primary" style="width:100px; margin:2px;">판매종료</button>
                             <button type="button" class="btn btn-primary" style="width:100px; margin:2px;">주문자 목록</button>
-                            <button type="button" class="btn btn-primary"
-                                    style="width:100px; margin:2px;">배송정보</button>
                             </td>
                             </tr>
-
+</c:forEach>   
                            
 
         
@@ -66,7 +64,7 @@ swal("송장번호를 입력하세요", {
     content: "input",
   })
   .then((value) => {
-    swal(`You typed: ${value}`);
+    swal(`${value}`);
   });
   
 }

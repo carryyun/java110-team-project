@@ -26,6 +26,25 @@ public class Product {
   private SmallTag smalltag;
   private String middleTagName;
   private MiddleTag middletag;
+  
+  private Mentee mentee2;
+  private ProductOrder productOrder;
+
+  public Mentee getMentee2() {
+    return mentee2;
+  }
+
+  public void setMentee2(Mentee mentee2) {
+    this.mentee2 = mentee2;
+  }
+
+  public ProductOrder getProductOrder() {
+    return productOrder;
+  }
+
+  public void setProductOrder(ProductOrder productOrder) {
+    this.productOrder = productOrder;
+  }
 
   public ClassRep getClassRep() {
     return classRep;

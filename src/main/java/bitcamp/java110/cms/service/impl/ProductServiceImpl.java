@@ -51,7 +51,28 @@ public class ProductServiceImpl implements ProductService {
 
     return productDao.findAllByStno(params);
   }
+  
+  // 마이페이지에서 판매자번호로조회
+  @Override
+  public List<Product> listBySeller(int pageNo, int pageSize, int meno) {
+    HashMap<String, Object> params = new HashMap<>();
+    params.put("rowNo", (pageNo - 1) * pageSize);
+    params.put("size", pageSize);
+    params.put("meno", meno);
 
+    return productDao.findBySeller(params);
+  }
+
+  //마이페이지에서 판매자번호로조회2
+  @Override
+  public List<Product> listBySeller2(int pageNo, int pageSize, int meno) {
+   HashMap<String, Object> params = new HashMap<>();
+   params.put("rowNo", (pageNo - 1) * pageSize);
+   params.put("size", pageSize);
+   params.put("meno", meno);
+
+   return productDao.findBySeller2(params);
+ }
   @Override
   public int add(Product product) {
     return productDao.insert(product);
