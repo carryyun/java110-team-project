@@ -48,11 +48,22 @@
 		        	on psp.cno = ps.cno
 		    	,(select @rownum:=0)r
 		        where ps.cno = #{no}
-		        order by psp.rno desc
+		        order by psp.rno asc
 		    ) as a
 		where rnum limit #{rowNo},#{size}
     </select>
     
+    <select id="countByCno" resultType="int" parameterType="int">
+		    select 
+		    	count(*)
+		    from
+		        p_mete as pe inner join p_cls_rep as psp
+		        	on pe.meno = psp.meno
+		        inner join p_cls as ps
+		        	on psp.cno = ps.cno
+		        where ps.cno = #{no}
+		        order by psp.rno asc
+    </select>
     
     <insert id="repinsert" parameterType="ClassRep"
     	useGeneratedKeys="true" keyColumn="rno" keyProperty="no">
