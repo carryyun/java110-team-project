@@ -10,7 +10,6 @@
         <result column="cno" 	property="cno"/>
         <result column="date" 	property="date"/>
         <result column="stime" 	property="stime"/>
-        <result column="edate"  property="edate"/>
         <result column="capa" 	property="capa"/>
     </resultMap>
     
