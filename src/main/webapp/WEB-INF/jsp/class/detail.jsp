@@ -308,7 +308,7 @@
                             </div>  
                             <div>
                             	 
-                                	<span class="glyphicon glyphicon-user"></span>후기인원 : ${fn:length(clsreqlist)} 
+                                	<span class="glyphicon glyphicon-user"></span>후기인원 : ${countrep} 
                             </div>  
                         </div>  
                     </div>  
@@ -452,33 +452,28 @@
 				 <nav aria-label="Page navigation example" id="product-pn" 
 		            style="margin : auto; margin-top: -40px;">
 		                <ul class="pagination justify-content-center">
-		                	
-			                	<c:set var="repsi" value="${fn:length(clsreqlist)}" />
+		                <c:set var="repsi" value="${countrep}" />
+		                <%
+			                int repsize = (int)pageContext.getAttribute("repsi");
+	                		int reppage = (repsize/5)+1;
+	                		int pno = 1;
+		                %>
+		                	<li class="page-item"><a class="page-link" 
+		                    onClick="prev(${countrep})">prev</a></li>
+			                	
 			                	<%
-			                		int pno = 1;
-			                		int repsize = (int)pageContext.getAttribute("repsi");
-			                		
-			                		
-			                		if(repsize/3 == 1){
-			                		  pno += 1;
+			                		for(pno = 1; pno<=reppage; pno++){
+			                	%>
+				                    <li class="page-item"><a class="page-link" 
+				                    href="detail?no=${detailclass.no}&pageNo=<%=pno%>&pageSize=5"><%=pno%></a></li>
+				                <%
 			                		}
 			                	%>
-				                    <!-- <li class="page-item disabled "><a class="page-link" 
-				                    href="#" tabindex="-1"> <</a></li> -->
-				                    <li class="page-item"><a class="page-link" 
-				                    href="detail?no=${detailclass.no}&pageNo=1&pageSize=3">1</a></li>
-				                    
-				                    <%-- <li class="page-item"><a class="page-link" 
-				                    href="detail?no=${detailclass.no}&pageNo=2&pageSize=3">2</a></li>
-				                    <li class="page-item"><a class="page-link" 
-				                    href="detail?no=${detailclass.no}&pageNo=3&pageSize=3">3</a></li>
-				                    <li class="page-item"><a class="page-link" 
-				                    href="detail?no=${detailclass.no}&pageNo=4&pageSize=3">4</a></li>
-				                    <li class="page-item"><a class="page-link" 
-				                    href="detail?no=${detailclass.no}&pageNo=5&pageSize=3">5</a></li>--%>
-				                    
-				                    <!-- <li class="page-item"><a class="page-link" 
-				                    href="#">></a></li>  -->
+		                    <li class="page-item"><a class="page-link" 
+		                    onClick="next(${countrep})">next</a></li>
+		                 <%
+		                 	System.out.println(pno);
+		                 %>
 		                </ul>
 		          </nav>
                     <div class="detail_info">
@@ -695,6 +690,28 @@ $('.accordian-body').on('show.bs.collapse', function () {
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="/js/jquery.raty.min.js"></script>
     <script src="/js/clean-blog.js"></script>
+    
+<script>
+function prev(pano) {
+    console.log(pano);
+    
+    var pagebu = (pano/5)+1;
+    var currectpage = <% request.getParameter("pageNo"); %>
+    console.log(pagebu);
+    console.log(currectpage);
+    
+    
+    /* location.href="detail?no=${detailclass.no}&pageNo=1&pageSize=5"; */
+}
+function next(pano) {
+    console.log(pano);
+    
+    
+    
+    
+    location.href="detail?no=${detailclass.no}&pageNo=1&pageSize=5";
+}
+</script>
 <script>
 function addqna(no) {
     var type = $('input:radio:checked.type').val();
@@ -990,17 +1007,6 @@ function updabtn(rno , teno) { /* 회원 인식해서 댓글 수정해주는 버
     }
 }
 </script>
-<!-- <script type="text/javascript">
-	var totalcount = 0; // 게시물 갯수
-	var pageNo = 0; // 페이지 번호
-	var pageSize = 0; // 페이지 나오는 사이즈
-	var startPage = 0; // 페이지 시작번호
-	var endPage = 0; // 끝나는 페이지 번호
-	var prev = 0; // 전으로 돌아가기
-	var next = 0; // 다음으로 가기
-	var currentPage = 0; // 현재 페이지
-	var lastPage = 0; // 마지막 페이지
-</script> -->
 <script type="text/javascript">
  var stmnLEFT = 0; // 오른쪽 여백 
  var stmnGAP1 = 0; // 위쪽 여백 
