@@ -227,8 +227,9 @@ blockquote {
 }
 
 #testt{
-    width:94.6%;
+    width:96.4%;
     position : absolute;
+    margin-left:-14px;
     z-index: 11;
     padding: 0;
     /*position=absolute; 
