@@ -6,7 +6,7 @@ import bitcamp.java110.cms.domain.ClassFile;
 
 public interface ClassFileDao {
   List<ClassFile> findAll(Map<String,Object> params);
-  int insert(ClassFile cfile);
+  int insert(Map<String,Object> params);
   ClassFile findByNo(int no);
   int delete(int no);
   int update(ClassFile cfile);

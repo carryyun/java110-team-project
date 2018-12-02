@@ -5,6 +5,11 @@ import bitcamp.java110.cms.domain.Timetable;
 
 public interface TimetableService {
   
+<<<<<<< HEAD
+=======
+  
+  
+>>>>>>> song
   List<Timetable> list(int pageNo, int pageSize);
   List<Timetable> findByCno(int cno);
   

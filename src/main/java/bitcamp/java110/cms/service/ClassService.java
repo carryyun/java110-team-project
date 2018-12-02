@@ -1,6 +1,7 @@
 package bitcamp.java110.cms.service;
 
 import java.util.List;
+import org.springframework.web.multipart.MultipartFile;
 import bitcamp.java110.cms.domain.Classes;
 
 public interface ClassService {
@@ -10,10 +11,15 @@ public interface ClassService {
   List<Classes> classList(int no);
   List<Classes> findAllByList();
   Classes findbyptno(int ptno);
+<<<<<<< HEAD
   
   
   Classes findBycno(int no);
   int classadd(Classes classes);
+=======
+  Classes findAllBycno(int no);
+  int classadd(Classes classes, List<MultipartFile> files,String removefiles, String days,String date,String edate);
+>>>>>>> song
   int classupdate(Classes classes);
   
   // 클래스 신청목록

@@ -80,6 +80,7 @@ public class AppConfig {
   // Spring에서 트랜잭션 관리자를 찾을 때 이 이름으로 찾는다.
   // 만약 트랜잭션 이름을 다른 이름을 지었다면 
   // 트랜잭션 관리 설정에서 그 이름을 알려줘야 한다.
+ 
   @Bean
   public PlatformTransactionManager transactionManager(
       DataSource dataSource) {

@@ -61,7 +61,7 @@
 <script>
 
 function autoHypenPhone(str){
-    str = str.replace(/[^0-9]/g, '');
+    str = str.replace(/^(0?[1-9]|1[0-2])\/(0?[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/, '');
     var tmp = '';
     if( str.length < 4){
         return str;
@@ -94,6 +94,7 @@ event = event || window.event;
 var _val = this.value.trim();
 this.value = autoHypenPhone(_val) ;
 }
+
 var nameCheck = 0; // 유효성검사
 
 function chkName(){	
