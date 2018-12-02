@@ -1,5 +1,6 @@
 package bitcamp.java110.cms.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,9 +22,12 @@ public class ClassRepServiceImpl implements ClassRepService{
   }
 
   @Override
-  public List<ClassRep> listbycno(int cno) {
-    
-    return classRepDao.findByCno(cno);
+  public List<ClassRep> listbycno(int cno , int pageNo , int pageSize) {
+    HashMap<String,Object> params = new HashMap<>();
+    params.put("rowNo", (pageNo - 1) * pageSize);
+    params.put("size", pageSize);
+    params.put("no", cno);
+    return classRepDao.findByCno(params);
   }
 
   @Override
@@ -43,6 +47,12 @@ public class ClassRepServiceImpl implements ClassRepService{
   public int repupdate(ClassRep classRep) {
     
     return classRepDao.repChange(classRep);
+  }
+
+  @Override
+  public int countbycno(int cno) {
+    
+    return classRepDao.countByCno(cno);
   }
 
 }

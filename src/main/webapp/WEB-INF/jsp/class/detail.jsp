@@ -36,15 +36,15 @@
 <link href="/css/common.css" rel="stylesheet">
 <link href="/css/class_detail.css" rel="stylesheet">
 
-	<!-- 아래와 같이 주석처리한 이유는 bootstrap이 두번 선언된 경우에 동작이 두번할수도 있음 -->
+    <!-- 아래와 같이 주석처리한 이유는 bootstrap이 두번 선언된 경우에 동작이 두번할수도 있음 -->
 
 <style type="text/css">
 #STATICMENU { 
-	margin: 0pt; padding: 0pt;  
-	position: absolute; right: 0px; top: 0px;
-	transform: translateX(95%);
-	width : 300px;
-	}
+    margin: 0pt; padding: 0pt;  
+    position: absolute; right: 0px; top: 0px;
+    transform: translateX(95%);
+    width : 300px;
+    }
 </style>
 
 </head>
@@ -54,7 +54,7 @@
 </div>
     <div class="container">
         <div class="row">
-			<div class="col-lg-12">
+            <div class="col-lg-12">
                 <jsp:include page="../headerMain.jsp"></jsp:include>
             </div>
             <!-- 카테고리 nav (스크립트로 임시 inclue) -->
@@ -63,8 +63,8 @@
             </div>
             
             <div class="col-lg-12 col-md-12 mt-5">
-	            <h2>클래스 상세보기</h2>
-	            <hr class="FhrBotMargin">
+                <h2>클래스 상세보기</h2>
+                <hr class="FhrBotMargin">
             </div>
             <div class="col-lg-12">
             <div class="col-lg-9 text-center">
@@ -72,23 +72,23 @@
                     <aside class="col-lg-12 col-md-12 mx-auto">
                         <article class="gallery-wrap">
                                 <div>
-				                    <div id="carouselExampleIndicators" class="carousel slide" data-interval="false" data-ride="carousel">
-									  <ol class="carousel-indicators">
-									    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-									    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-									    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-									    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-									  </ol>
-									  <div class="carousel-inner">
-									    
-									    <c:set var="cfl" value="${detailclass.cfile}"/>
-									    <%
+                                    <div id="carouselExampleIndicators" class="carousel slide" data-interval="false" data-ride="carousel">
+                                      <ol class="carousel-indicators">
+                                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                                      </ol>
+                                      <div class="carousel-inner">
+                                        
+                                        <c:set var="cfl" value="${detailclass.cfile}"/>
+                                        <%
                                             String cfile = (String)pageContext.getAttribute("cfl");
                                             if(cfile.endsWith("jpg") || cfile.endsWith("png")){
                                         %>    
                                         <div class="carousel-item active">
-									      <img style="width=100%; margin-left:-10px;" class="d-block w-100" src="${detailclass.cfile}" alt="First slide">
-									      <%     
+                                          <img style="width=100%; margin-left:-10px;" class="d-block w-100" src="${detailclass.cfile}" alt="First slide">
+                                          <%     
                                             }else {
                                              int cfileidx = cfile.indexOf("=");
                                              String cfileurl = cfile.substring(cfileidx+1);
@@ -100,47 +100,47 @@
                                         <%
                                             }
                                         %>
-									      
-									    </div>
-									    <c:forEach items="${clsfilelist}" var="cf" varStatus="i">
-									    	<c:set var="divi" value="${cf.fname}"/>
-									    	<%
-									    		String fna = (String)pageContext.getAttribute("divi");
-									    		if(fna.endsWith("jpg") || fna.endsWith("png")){
-									    	%>	  
-									    		<div class="carousel-item">
-											      <img class="d-block w-100" style="width:100%; height:450px; margin-left:-10px; " 
-											      src="${cf.fname}" alt="${i.count}">
-											    </div>
-									    	<%	  
-									    		}else {
-									    		 int idx = fna.indexOf("=");
-									    		 String fnaurl = fna.substring(idx+1);
-									    	%>
-											    <div class="carousel-item" style="margin-bottom: -5px;">
-											      <iframe width="100%" height="450" style="margin-left:-10px;" src="https://www.youtube.com/embed/<%=fnaurl%>" 
-											      frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-											      allowfullscreen></iframe>
-											    </div>
-											<%
-									    		}
-											%>
-										</c:forEach>
-									  </div>
-									  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-									    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-									  </a>
-									  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-									    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-									  </a>
-									</div>
-								</div>
+                                          
+                                        </div>
+                                        <c:forEach items="${clsfilelist}" var="cf" varStatus="i">
+                                            <c:set var="divi" value="${cf.fname}"/>
+                                            <%
+                                                String fna = (String)pageContext.getAttribute("divi");
+                                                if(fna.endsWith("jpg") || fna.endsWith("png")){
+                                            %>    
+                                                <div class="carousel-item">
+                                                  <img class="d-block w-100" style="width:100%; height:450px; margin-left:-10px; " 
+                                                  src="${cf.fname}" alt="${i.count}">
+                                                </div>
+                                            <%    
+                                                }else {
+                                                 int idx = fna.indexOf("=");
+                                                 String fnaurl = fna.substring(idx+1);
+                                            %>
+                                                <div class="carousel-item" style="margin-bottom: -5px;">
+                                                  <iframe width="100%" height="450" style="margin-left:-10px;" src="https://www.youtube.com/embed/<%=fnaurl%>" 
+                                                  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                                                  allowfullscreen></iframe>
+                                                </div>
+                                            <%
+                                                }
+                                            %>
+                                        </c:forEach>
+                                      </div>
+                                      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                      </a>
+                                      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                      </a>
+                                    </div>
+                                </div>
                             </div>
-						</article>
+                        </article>
                     </aside>
                     <!-- 사이드바 -->
                     <div id="STATICMENU">
-                    	<aside class="col-lg-8">
+                        <aside class="col-lg-8">
                         <article class="card-body p-3">
                             <div class="text-center">
                             <img style="width: 200px; height:200px;" src="${detailclass.cfile}" alt=""/>
@@ -153,7 +153,7 @@
                                 </dl>
 
                                 <dl class="param param-feature">
-                                    	${detailclass.mentee.nick} 멘토
+                                        ${detailclass.mentee.nick} 멘토
                                 </dl>
                                 
                                 <dl class="param param-feature">
@@ -161,31 +161,31 @@
                                 </dl>
                                 
                                 <dl>
-                                	<c:set var="clsstar" value ="${detailclass.star}"/>
-                                	<%
-		                            	int clsstar = (int)pageContext.getAttribute("clsstar");
-		                            for(int i=0; i<5;i++){
-									  if(i<clsstar){
-									%>
-									<img class="starimg" alt="star-on-big" src="/upload/img/raty/star-on-big.png"
-									style="width:20px; height:20px;">
-									<%}else{
-		              					%>
-		              				<img class="starimg" alt="star-off-big" src="/upload/img/raty/star-off-big.png"
-		              				style="width:20px; height:20px;">
-		              				<%
-		            						}
-		            					}
-		            				%>
+                                    <c:set var="clsstar" value ="${detailclass.star}"/>
+                                    <%
+                                        int clsstar = (int)pageContext.getAttribute("clsstar");
+                                    for(int i=0; i<5;i++){
+                                      if(i<clsstar){
+                                    %>
+                                    <img class="starimg" alt="star-on-big" src="/upload/img/raty/star-on-big.png"
+                                    style="width:20px; height:20px;">
+                                    <%}else{
+                                        %>
+                                    <img class="starimg" alt="star-off-big" src="/upload/img/raty/star-off-big.png"
+                                    style="width:20px; height:20px;">
+                                    <%
+                                            }
+                                        }
+                                    %>
                                 </dl>
                                         <!-- item-property .// -->
                                     <!-- col.// -->
 
                                 <dl class="param param-feature">
                                             <select name="time">
-	                                            <c:forEach items="${clstimelist}" var="t">
-	                                            	<option value="">날짜 : ${t.date} , 시간 : ${t.stime}</option>
-	                                            </c:forEach>
+                                                <c:forEach items="${clstimelist}" var="t">
+                                                    <option value="">날짜 : ${t.date} , 시간 : ${t.stime}</option>
+                                                </c:forEach>
                                             </select>
                                 </dl>
                                 
@@ -196,8 +196,8 @@
                                 <a href="#" class="btn btn-lg btn-primary text-uppercase"
                                 onClick="cls"> 수업 신청하기 </a>
                                 <a href="#" class="btn btn-lg btn-outline-primary text-uppercase"
-	                                	onClick="clslikeins(${sessionScope.loginUser.no});"> 
-	                                    	<i class="fas fa-shopping-cart"></i> 찜클래스 </a>
+                                        onClick="clslikeins(${sessionScope.loginUser.no});"> 
+                                            <i class="fas fa-shopping-cart"></i> 찜클래스 </a>
                             </div>
                         </article>
                         <!-- card-body.// -->
@@ -214,30 +214,30 @@
             <!-- <div class="col-lg-12 col-md-12 text-center"> -->
         </div>
         <!-- <div class="row"> -->
-						<div class="col-lg-12" id="testt">
-				            <ul class="under-navbar-nav col-lg-9 col-md-12">
-				                <li class="under-nav-item"><a class="nav-link"
-				                    href="#class_detail">
-				                        <h4>요약</h4> 
-				                </a></li>
-				                <li class="under-nav-item"><a class="nav-link"
-				                    href="#mentor-info">
-				                        <h4>강사소개</h4>
-				                </a></li>
-				                <li class="under-nav-item"><a class="nav-link" 
-				                	href="#class-info">
-				                        <h4>강의설명</h4>
-				                </a></li>
-				                <li class="under-nav-item"><a class="nav-link" 
-				                	href="#location">
-				                        <h4>위치</h4>
-				                </a></li>
-				                <li class="under-nav-item"><a class="nav-link" 
-				                	href="#class-review">
-				                        <h4>클래스 후기</h4>
-				                </a></li>
-				            </ul>
-			        	</div>
+                        <div class="col-lg-12" id="testt">
+                            <ul class="under-navbar-nav col-lg-9 col-md-12">
+                                <li class="under-nav-item"><a class="nav-link"
+                                    href="#class_detail">
+                                        <h4>요약</h4> 
+                                </a></li>
+                                <li class="under-nav-item"><a class="nav-link"
+                                    href="#mentor-info">
+                                        <h4>강사소개</h4>
+                                </a></li>
+                                <li class="under-nav-item"><a class="nav-link" 
+                                    href="#class-info">
+                                        <h4>강의설명</h4>
+                                </a></li>
+                                <li class="under-nav-item"><a class="nav-link" 
+                                    href="#location">
+                                        <h4>위치</h4>
+                                </a></li>
+                                <li class="under-nav-item"><a class="nav-link" 
+                                    href="#class-review">
+                                        <h4>클래스 후기</h4>
+                                </a></li>
+                            </ul>
+                        </div>
     <!--요약 , 강사소개 , 강의설명,  위치, 클래스후기-->
         <div class="row">
           <div class="col-lg-9">
@@ -249,11 +249,11 @@
                     <h3>요약</h3>
                     <!-- <div class="row"> -->
                     <div>
-                    	<img style = "width:200px; height:200px; float:left;"src="${detailclass.mentee.phot}" alt="">
-                    	<br><br><br>
-                    	<div class = "shortinfo"><strong>금액</strong><div class="inf">${detailclass.pric}원</div></div>
-	                    <div class = "shortinfo"><strong>총 수업시간</strong><div class="inf">${detailclass.time}시간</div></div>
-	                    <div class = "shortinfo"><strong>모집인원</strong><div class="inf">${detailclass.capa}명</div></div>
+                        <img style = "width:200px; height:200px; float:left;"src="${detailclass.mentee.phot}" alt="">
+                        <br><br><br>
+                        <div class = "shortinfo"><strong>금액</strong><div class="inf">${detailclass.pric}원</div></div>
+                        <div class = "shortinfo"><strong>총 수업시간</strong><div class="inf">${detailclass.time}시간</div></div>
+                        <div class = "shortinfo"><strong>모집인원</strong><div class="inf">${detailclass.capa}명</div></div>
                     </div>
                     <div style="margin-left : 40px;"><strong>멘토 : ${detailclass.mentee.nick}</strong></div>
                 </div>
@@ -270,17 +270,17 @@
                     <h3>강의설명</h3>
                     ${detailclass.cinfo}
                 </div>
-	                <div class="detail_info">
-	                    <hr class="Fhr" id="location">
-	                    <h3>위치</h3>
-	                    <div class ="row" >
-	                    <div id="map" style="width:500px; height:400px; margin-left:10px; float:left;"></div>
-	                    <div class="dddd" style="float:right; width:200px; margin-top:60px;">
-	                    <div id="adr" class = "addr" style="height:50px;"><div><strong>기본 주소</strong></div>  ${detailclass.basAddr}</div>
-	                    <div id="adr" class = "addr"><div><strong>상세 주소</strong></div>  ${detailclass.detAddr}</div>
-	                    </div>
-	                    </div>
-	                </div>
+                    <div class="detail_info">
+                        <hr class="Fhr" id="location">
+                        <h3>위치</h3>
+                        <div class ="row" >
+                        <div id="map" style="width:500px; height:400px; margin-left:10px; float:left;"></div>
+                        <div class="dddd" style="float:right; width:200px; margin-top:60px;">
+                        <div id="adr" class = "addr" style="height:50px;"><div><strong>기본 주소</strong></div>  ${detailclass.basAddr}</div>
+                        <div id="adr" class = "addr"><div><strong>상세 주소</strong></div>  ${detailclass.detAddr}</div>
+                        </div>
+                        </div>
+                    </div>
                 
                 <!-- <hr class="Fhr" id="class_info"> -->    
                 <div class="detail_info">
@@ -307,8 +307,8 @@
                                 %>
                             </div>  
                             <div>
-                            	 
-                                	<span class="glyphicon glyphicon-user"></span>후기인원 : ${fn:length(clsreqlist)} 
+                                 
+                                    <span class="glyphicon glyphicon-user"></span>후기인원 : ${countrep} 
                             </div>  
                         </div>  
                     </div>  
@@ -317,151 +317,165 @@
                 <div class="container col-lg-12" id="prod_review">
                     <div class="row">
                         <div class="col">
-				<form class="form-horizontal" action="detail?no=${detailclass.no}" method="post">
+                <form class="form-horizontal" action="detail?no=${detailclass.no}" method="post">
                     <fieldset>
-					<table class="fixed-table w-100" >
-							<tr>
-								<td colspan="3">
-									<!-- <div class=""> -->
-									
-											<!-- Message body -->
-											<div class="form-group">
-												<div class="col-lg-12">
-													<input type="file" id="phot" name="phot">사진만 가능합니다.</input>
-												</div>
-												<div class="col-lg-12">
-													<textarea class="form-control" id="conts" name="conts"
-														placeholder="클래스평을 등록해주세요." rows="5"></textarea>
-												</div>
-											</div>
+                    <table class="fixed-table w-100" >
+                            <tr>
+                                <td colspan="3">
+                                    <!-- <div class=""> -->
+                                    
+                                            <!-- Message body -->
+                                            <div class="form-group">
+                                                <div class="col-lg-12">
+                                                    <input type="file" id="phot" name="phot">사진만 가능합니다.</input>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <textarea class="form-control" id="conts" name="conts"
+                                                        placeholder="클래스평을 등록해주세요." rows="5"></textarea>
+                                                </div>
+                                            </div>
                                                 </td>
                                 </tr>
                                 <tr>
                                             <td>
-												<label class="control-label my-0" id="star" name="star" for="message">별점</label>
+                                                <label class="control-label my-0" id="star" name="star" for="message">별점</label>
                                             </td>
                                             <td>
-												<div id="star1"></div>
-											<!-- </div> -->
-											<!-- <div class=""> -->
+                                                <div id="star1"></div>
+                                            <!-- </div> -->
+                                            <!-- <div class=""> -->
                                             </td>
-								<td align="right" valign="top">
-									<!-- Form actions -->
-										<!--col-lg-12추가했음-->
-										<div class="col-md-12 col-lg-12 text-right" style="vertical-align: middle;">
-												<button id="repbtn" type="button" onClick="repins(${sessionScope.loginUser.no});" 
-												class="btn btn-primary btn-md"
-													style="background-color: #606066; color: #ffffff">등록</button>
-											</div>
-								</td>
-							</tr>
-						<!-- <div class="col-md-9 col-md-offset-0"> -->
-					</table>
-					                                       </fieldset>
+                                <td align="right" valign="top">
+                                    <!-- Form actions -->
+                                        <!--col-lg-12추가했음-->
+                                        <div class="col-md-12 col-lg-12 text-right" style="vertical-align: middle;">
+                                                <button id="repbtn" type="button" onClick="repins(${sessionScope.loginUser.no});" 
+                                                class="btn btn-primary btn-md"
+                                                    style="background-color: #606066; color: #ffffff">등록</button>
+                                            </div>
+                                </td>
+                            </tr>
+                        <!-- <div class="col-md-9 col-md-offset-0"> -->
+                    </table>
+                                                           </fieldset>
                                     </form>
                                     </div>
                     </div>
 
                     <hr>
                     <div class ="row">
-	                    <div class="col-lg-12 col-md-12 mx-auto detail_info">
-	                    <hr class="Fhr" id="class-review">
-	                    <h3>클래스 후기</h3>
-	                
-	                    <c:forEach items="${clsreqlist}" var="r" varStatus="i">
-	                        <div class="media"
-	                            style="border-bottom: 0.3px solid rgba(0, 0, 0, 0.5)">
-	                            <div class="col-lg-2 text-center">
-	
-	                                <img src='${r.mentee.phot}' alt="singup" id="circle">
-	                                ${r.mentee.nick}
-	                            </div>
-	                            <div id="rcont${i.index}" class="col-lg-10 media-body">${r.conts}</div>
-	                            <textarea class="repupda col-lg-9 media-body" id="repup${i.index}" rows="5" name="repup"
-					                       style =" margin-left:10px; width : 500px; display: none;"></textarea>
-					            <c:choose>
-					            <c:when test="${sessionScope.loginUser eq null}">
-					            	<button type="button" onClick="deleterepnull()"
-	                             class="delebtn" id="delebtn${i.index}">삭제</button>
-					            </c:when>
-					            <c:otherwise>         
-	                            <button type="button" data-toggle="modal" data-target="#deleteModal_${r.no}"
-	                             class="delebtn" id="delebtn${i.index}">삭제</button>
-	                             </c:otherwise>
-	                             </c:choose>
-	                            
-			                            <div class="modal fade" id="deleteModal_${r.no}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-										  <div class="modal-dialog">
-											<div class="modal-content">
-												<div class="modal-header">
-													<h4 class="modal-title" id="repdelet">해당 게시글 삭제하시겠습니까?</h4>
-													<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-												</div>
-												<div class="modal-body">
-													
-										            <!-- content goes here -->
-													<form action="detail?no=${detailclass.no}" method="post">
-										              <button type="button" class="btn btn-default" 
-															onClick="delerep(${sessionScope.loginUser.no} , ${r.no} , ${r.meno});">삭제하기</button>
-													  <button type="button" class="btn btn-default" data-dismiss="modal"  role="button">취소</button>
-										            </form>
-												</div>
-											</div>
-										  </div>
-										</div>
-										
-								<c:choose>
-									<c:when test="${sessionScope.loginUser eq null}">
-										<button type="button" class="edbtn" id="edbtn${i.index}" 
-	                            onClick="deleterepnull()" >수정</button>
-									</c:when>
-									<c:otherwise>
-										<button type="button" class="edbtn" id="edbtn${i.index}" 
-	                            onClick="updarep(${sessionScope.loginUser.no} , ${r.no} , ${r.meno} ,${i.index});" >수정</button>
-									</c:otherwise>
-								</c:choose>
-								
-	                            <button type="button" class="updabtn" id="updabtn${i.index}" data-toggle="modal" 
-	                            data-target="#updateModal_${r.no}" 
-	                             style="display:none;">수정완료</button>
-			                            <div class="modal fade" id="updateModal_${r.no}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-										  <div class="modal-dialog">
-											<div class="modal-content">
-												<div class="modal-header">
-													<h4 class="modal-title" id="repupdat">해당 게시글 수정하시겠습니까?</h4>
-													<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-												</div>
-												<div class="modal-body">
-										            <!-- content goes here --> 
-													<form action="detail?no=${detailclass.no}" method="post">
-										              <button type="button" class="btn btn-default" data-dismiss="modal"
-															 onClick="updabtn(${r.no} , ${i.index})" >수정하기</button>
-													  <button type="button" class="btn btn-default" data-dismiss="modal" role="button"
-													  onClick="updano(${i.index})">취소</button>
-										            </form>
-												</div>
-											</div>
-										  </div>
-										</div>
-	                        </div>
-	                    </c:forEach>
-	                    </div>
+                        <div class="col-lg-12 col-md-12 mx-auto detail_info">
+                        <hr class="Fhr" id="class-review">
+                        <h3>클래스 후기</h3>
+                    
+                        <c:forEach items="${clsreqlist}" var="r" varStatus="i">
+                            <div class="media"
+                                style="border-bottom: 0.3px solid rgba(0, 0, 0, 0.5)">
+                                <div class="col-lg-2 text-center">
+    
+                                    <img src='${r.mentee.phot}' alt="singup" id="circle">
+                                    ${r.mentee.nick}
+                                </div>
+                                <div id="rcont${i.index}" class="col-lg-10 media-body">${r.conts}</div>
+                                <textarea class="repupda col-lg-9 media-body" id="repup${i.index}" rows="5" name="repup"
+                                           style =" margin-left:10px; width : 500px; display: none;"></textarea>
+                                <c:choose>
+                                <c:when test="${sessionScope.loginUser eq null}">
+                                    <button type="button" onClick="deleterepnull()"
+                                 class="delebtn" id="delebtn${i.index}">삭제</button>
+                                </c:when>
+                                <c:otherwise>         
+                                <button type="button" data-toggle="modal" data-target="#deleteModal_${r.no}"
+                                 class="delebtn" id="delebtn${i.index}">삭제</button>
+                                 </c:otherwise>
+                                 </c:choose>
+                                
+                                        <div class="modal fade" id="deleteModal_${r.no}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                          <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title" id="repdelet">해당 게시글 삭제하시겠습니까?</h4>
+                                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    
+                                                    <!-- content goes here -->
+                                                    <form action="detail?no=${detailclass.no}" method="post">
+                                                      <button type="button" class="btn btn-default" 
+                                                            onClick="delerep(${sessionScope.loginUser.no} , ${r.no} , ${r.meno});">삭제하기</button>
+                                                      <button type="button" class="btn btn-default" data-dismiss="modal"  role="button">취소</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        
+                                <c:choose>
+                                    <c:when test="${sessionScope.loginUser eq null}">
+                                        <button type="button" class="edbtn" id="edbtn${i.index}" 
+                                onClick="deleterepnull()" >수정</button>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <button type="button" class="edbtn" id="edbtn${i.index}" 
+                                onClick="updarep(${sessionScope.loginUser.no} , ${r.no} , ${r.meno} ,${i.index});" >수정</button>
+                                    </c:otherwise>
+                                </c:choose>
+                                
+                                <button type="button" class="updabtn" id="updabtn${i.index}" data-toggle="modal" 
+                                data-target="#updateModal_${r.no}" 
+                                 style="display:none;">수정완료</button>
+                                        <div class="modal fade" id="updateModal_${r.no}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                          <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title" id="repupdat">해당 게시글 수정하시겠습니까?</h4>
+                                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <!-- content goes here -->
+                                                    <form action="detail?no=${detailclass.no}" method="post">
+                                                      <button type="button" class="btn btn-default" data-dismiss="modal"
+                                                             onClick="updabtn(${r.no} , ${i.index})" >수정하기</button>
+                                                      <button type="button" class="btn btn-default" data-dismiss="modal" role="button"
+                                                      onClick="updano(${i.index})">취소</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                            </div>
+                        </c:forEach>
+                        </div>
                     </div>
                     <hr class="Fhr" id="qna">
                     <br><br>
-				 <nav aria-label="Page navigation example" id="product-pn" 
-		            style="margin : auto; margin-top: -40px;">
-		                <ul class="pagination justify-content-center">
-		                    <li class="page-item disabled "><a class="page-link" href="#"
-		                        tabindex="-1"> <</a></li>
-		                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-		                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-		                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-		                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-		                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-		                    <li class="page-item"><a class="page-link" href="#">></a></li>
-		                </ul>
-		          </nav>
+                 <nav aria-label="Page navigation example" id="product-pn" 
+                    style="margin : auto; margin-top: -40px;">
+                        <ul class="pagination justify-content-center">
+                        <c:set var="repsi" value="${countrep}" />
+                        <%
+                            int repsize = (int)pageContext.getAttribute("repsi");
+                            int reppage = (repsize/5)+1;
+                            int pno = 1;
+                        %>
+                            <li class="page-item"><a class="page-link" 
+                            onClick="prev(${countrep})">prev</a></li>
+                                
+                                <%
+                                    for(pno = 1; pno<=reppage; pno++){
+                                %>
+                                    <li class="page-item"><a class="page-link" 
+                                    href="detail?no=${detailclass.no}&pageNo=<%=pno%>&pageSize=5"><%=pno%></a></li>
+                                <%
+                                    }
+                                %>
+                            <li class="page-item"><a class="page-link" 
+                            onClick="next(${countrep})">next</a></li>
+                         <%
+                            System.out.println(pno);
+                         %>
+                        </ul>
+                  </nav>
                     <div class="detail_info">
                         <h3>Q&A</h3>
                         <div class="row">
@@ -487,135 +501,140 @@
                                             <td class="col-lg-2">${cq.type}</td>
                                             <c:set var="yn" value="${cq.anser}"/>
                                             <%
-                                            	String qnayn = (String)pageContext.getAttribute("yn");
-                                            	if(qnayn==null){
-                                           	%>
-                                           		<td class="col-lg-2">미완료</td>
-                                           	<%  }else{
-                                           	%>
-                                            	<td class="col-lg-2">완료</td>
-                                           	<%  
-                                           	}
+                                                String qnayn = (String)pageContext.getAttribute("yn");
+                                                if(qnayn==null){
+                                            %>
+                                                <td class="col-lg-2">미완료</td>
+                                            <%  }else{
+                                            %>
+                                                <td class="col-lg-2">완료</td>
+                                            <%  
+                                            }
                                             %>
                                             <td class="col-lg-3">${cq.titl}</td>
                                             <td class="col-lg-2">${cq.mentee.nick}</td>
                                             <td class="col-lg-2">${cq.rgdt}</td>
                                         </tr>
                                         <tr>
-                                        	<td colspan="6" class="hiddenRow">
-                                        		<div class="accordian-body collapse" id="demo1-${i.count}">
-                                        		<div class="adddet col-lg-2" style="text-align: center;
-                                        		vertical-align: middle;
-															display : block;">질문 내용</div>
-                                        		<div class="acco" id="cont">${cq.conts}</div><br>
-                                        			<c:set var="ans" value="${cq.anser}"/>
-		                                            <%
-		                                            	String ans = (String)pageContext.getAttribute("ans");
-		                                            	if(ans==null){
-		                                           	%>
-		                                           		<div class="adddet col-lg-2" style="text-align: center;
-		                                           			vertical-align: middle;
-															display : block;">질문 답변</div>
-															
-														<c:choose>	
-															<c:when test="${sessionScope.loginUser eq null}">
-																<div class="acco" id="ans${i.index}">답변이 등록되지 않았습니다.</div>
-															</c:when>
-		                                           			<c:when test="${sessionScope.loginUser.no eq detailclass.mentee.no}">
-		                                           				<form class="ansinss" action="detail?no=${detailclass.no}" method="post">
-			                                           				<label onClick="ansbtn(${i.index})" class="allbtn"
-			                                           				id="allbtn${i.index}">답변을 작성하시려면 클릭해주세요!</label>
-					                                           		<textarea class="clsanser" id="cls${i.index}" rows="5" name="clsanser"
-					                                           		style ="width : 500px; display: none;"></textarea>
-					                                           		<div class="butmana" style="margin-left:10px;">
-						                                           		<button class="btn btn-default" 
-						                                           		onClick="answerins(${sessionScope.loginUser.no},cls${i.index},${cq.no})"
-						                                           		 type="button" >등록</button>
-						                                           		<button class="btn btn-default" id="ansstat" type="button" 
-						                                           		onClick="answercansle(${i.index})">취소</button>
-						                                           	</div>
-						                                        </form>
-		                                           			</c:when>
-															<c:otherwise>
-																<div class="acco" id="ans${i.index}">답변이 등록되지 않았습니다.</div>
-															</c:otherwise>
-		                                           		</c:choose>
-		                                           		
-		                                           	<%  }else{
-		                                           	%>
-		                                           		<div class="adddet col-lg-2" style="text-align: center;
-		                                           		vertical-align: middle;
-															display : block;">질문 답변</div>
-		                                           		<div class="acco" id="ans${i.index}">${cq.anser}</div>
-		                                           	<%  
-		                                           	}
-		                                            %>
-                                        		</div>
-                                        	</td>
+                                            <td colspan="6" class="hiddenRow">
+                                                <div class="accordian-body collapse" id="demo1-${i.count}">
+                                                <div class="adddet col-lg-2" style="text-align: center;
+                                                vertical-align: middle;
+                                                            display : block;">질문 내용</div>
+                                                <div class="acco" id="cont">${cq.conts}</div><br>
+                                                    <c:set var="ans" value="${cq.anser}"/>
+                                                    <%
+                                                        String ans = (String)pageContext.getAttribute("ans");
+                                                        if(ans==null){
+                                                    %>
+                                                        <div class="adddet col-lg-2" style="text-align: center;
+                                                            vertical-align: middle;
+                                                            display : block;">질문 답변</div>
+                                                            
+                                                        <c:choose>  
+                                                            <c:when test="${sessionScope.loginUser eq null}">
+                                                                <div class="acco" id="ans${i.index}">답변이 등록되지 않았습니다.</div>
+                                                            </c:when>
+                                                            <c:when test="${sessionScope.loginUser.no eq detailclass.mentee.no}">
+                                                                <form class="ansinss" action="detail?no=${detailclass.no}" method="post">
+                                                                    <label onClick="ansbtn(${i.index})" class="allbtn"
+                                                                    id="allbtn${i.index}">답변을 작성하시려면 클릭해주세요!</label>
+                                                                    <textarea class="clsanser" id="cls${i.index}" rows="5" name="clsanser"
+                                                                    style ="width : 500px; display: none;"></textarea>
+                                                                    <div class="butmana" style="margin-left:10px;">
+                                                                        <button class="btn btn-default" 
+                                                                        onClick="answerins(${sessionScope.loginUser.no},cls${i.index},${cq.no})"
+                                                                         type="button" >등록</button>
+                                                                        <button class="btn btn-default" id="ansstat" type="button" 
+                                                                        onClick="answercansle(${i.index})">취소</button>
+                                                                    </div>
+                                                                </form>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <div class="acco" id="ans${i.index}">답변이 등록되지 않았습니다.</div>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                        
+                                                    <%  }else{
+                                                    %>
+                                                        <div class="adddet col-lg-2" style="text-align: center;
+                                                        vertical-align: middle;
+                                                            display : block;">질문 답변</div>
+                                                        <div class="acco" id="ans${i.index}">${cq.anser}</div>
+                                                    <%  
+                                                    }
+                                                    %>
+                                                </div>
+                                            </td>
                                         </tr>
                                     </c:forEach>
                                     </tbody>
+                                    <!-- <tfoot>
+                                        <tr>
+                                            <td>1</td><td>2</td><td>3</td><td>4</td>
+                                        </tr>
+                                    </tfoot> -->
                                 </table>
                                 
-		                        <div class="center"><button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block"
-								style="width: 120px; height: 40px; float : right; background-color: #606066; color: #ffffff;">클래스 문의</button></div>
-								<c:choose>
-									<c:when test="${sessionScope.loginUser eq null}">
-										<div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-											  <div class="modal-dialog">
-												<div class="modal-content">
-													<div class="modal-header">
-														<h4 class="modal-title" class="replogin">로그인 후 이용가능합니다.</h4>
-														<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-													</div>
-												</div>
-											  </div>
-											</div>
-									</c:when>
-									<c:otherwise>
-										<div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-										  <div class="modal-dialog">
-											<div class="modal-content">
-												<div class="modal-header">
-													<h4 class="modal-title" id="clsname">클래스 명: ${detailclass.titl}</h4>
-													<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-												</div>
-												<div class="modal-body">
-													
-										            <!-- content goes here -->
-													<form action="detail?no=${detailclass.no}" style="width: 400px" method="post">
-													  <div class="form-group">
-										                <label for="exampleInputEmail1">문의 유형</label>
-										                		<input type="radio" name="type" class="type" value="환불" id="opt1" checked="checked"/>
-															    <label for="opt1">환불</label>
-															    <input type="radio" name="type" class="type" value="위치" id="opt2"/>
-															    <label for="opt2">위치</label>
-															    <input type="radio" name="type" class="type" value="강의" id="opt3"/>
-															    <label for="opt2">강의</label>
-															    <input type="radio" name="type" class="type" value="기타" id="opt4"/>
-															    <label for="opt2">기타</label>
-										              </div>
-										              <div class="form-group">
-										                <label for="exampleInputEmail1">Q&A 제목</label>
-										                <input type="text" class="form-control" name="titl" id="titl" placeholder="제목을 입력해주세요">
-										              </div>
-										              <div class="form-group">
-										                <label for="exampleInputconts1">Q&A 내용</label>
-										                <div>
-										                <textarea name="qnaconts" id="qnaconts" rows="5" class="customWidth" style="resize: none; width:100%;" 
-										                placeholder="내용을 입력해주세요"></textarea></div>
-										              </div>
-										              <button type="button" class="btn btn-default" 
-															onClick="addqna(${sessionScope.loginUser.no});">등록하기</button>
-													  <button type="button" class="btn btn-default" data-dismiss="modal"  role="button">취소</button>
-										            </form>
-										
-												</div>
-											</div>
-										  </div>
-										</div>
-									</c:otherwise>
-								</c:choose>
+                                <div class="center"><button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block"
+                                style="width: 120px; height: 40px; float : right; background-color: #606066; color: #ffffff;">클래스 문의</button></div>
+                                <c:choose>
+                                    <c:when test="${sessionScope.loginUser eq null}">
+                                        <div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                              <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title" class="replogin">로그인 후 이용가능합니다.</h4>
+                                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                          <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title" id="clsname">클래스 명: ${detailclass.titl}</h4>
+                                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    
+                                                    <!-- content goes here -->
+                                                    <form action="detail?no=${detailclass.no}" method="post">
+                                                      <div class="form-group">
+                                                        <label for="exampleInputEmail1">문의 유형</label>
+                                                                <input type="radio" name="type" class="type" value="환불" id="opt1" checked="checked"/>
+                                                                <label for="opt1">환불</label>
+                                                                <input type="radio" name="type" class="type" value="위치" id="opt2"/>
+                                                                <label for="opt2">위치</label>
+                                                                <input type="radio" name="type" class="type" value="강의" id="opt3"/>
+                                                                <label for="opt2">강의</label>
+                                                                <input type="radio" name="type" class="type" value="기타" id="opt4"/>
+                                                                <label for="opt2">기타</label>
+                                                      </div>
+                                                      <div class="form-group">
+                                                        <label for="exampleInputEmail1">Q&A 제목</label>
+                                                        <input type="text" class="form-control" name="titl" id="titl" placeholder="제목을 입력해주세요">
+                                                      </div>
+                                                      <div class="form-group">
+                                                        <label for="exampleInputconts1">Q&A 내용</label>
+                                                        <div>
+                                                        <textarea name="qnaconts" id="qnaconts" rows="5" class="customWidth" style="resize: none; width:100%;" 
+                                                        placeholder="내용을 입력해주세요"></textarea></div>
+                                                      </div>
+                                                      <button type="button" class="btn btn-default" 
+                                                            onClick="addqna(${sessionScope.loginUser.no});">등록하기</button>
+                                                      <button type="button" class="btn btn-default" data-dismiss="modal"  role="button">취소</button>
+                                                    </form>
+                                        
+                                                </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                    </c:otherwise>
+                                </c:choose>
                             </div>
                             <!-- <div class="col-lg-12"> -->
                         </div>
@@ -625,27 +644,28 @@
 
                     </div>
                     <!-- <div class="detail_info"> -->
-					<!--페이지 넘버-->
-		            <nav aria-label="Page navigation example" id="product-pn" 
-		            style="margin : auto; margin-top: -40px;">
-		                <ul class="pagination justify-content-center">
-		                    <li class="page-item disabled "><a class="page-link" href="#"
-		                        tabindex="-1"> <</a></li>
-		                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-		                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-		                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-		                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-		                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-		                    <li class="page-item"><a class="page-link" href="#">></a></li>
-		                </ul>
-		            </nav>
+                    <!--페이지 넘버-->
+                    <nav aria-label="Page navigation example" id="product-pn" 
+                    style="margin : auto; margin-top: -40px;">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled "><a class="page-link" href="#"
+                                tabindex="-1"> <</a></li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">4</a></li>
+                            <li class="page-item"><a class="page-link" href="#">5</a></li>
+                            <li class="page-item"><a class="page-link" href="#">></a></li>
+                        </ul>
+                    </nav>
+                
                 </div>
                 <!-- <div class="row"> -->
             </div>
             <!-- <div class="container col-lg-12"> -->
             </div>
-		</div>
-			</div>
+        </div>
+            </div>
         </div>
         <!-- <div class="col-lg-12 col-md-12 mx-auto" id="detail"> -->
     <!-- <div class="container"> -->
@@ -666,11 +686,32 @@ $('.accordian-body').on('show.bs.collapse', function () {
         .not(this)
 })
 </script>
-	<script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/jquery/jquery.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="/js/jquery.raty.min.js"></script>
     <script src="/js/clean-blog.js"></script>
     
+<script>
+function prev(pano) {
+    console.log(pano);
+    
+    var pagebu = (pano/5)+1;
+    var currectpage = <% request.getParameter("pageNo"); %>
+    console.log(pagebu);
+    console.log(currectpage);
+    
+    
+    /* location.href="detail?no=${detailclass.no}&pageNo=1&pageSize=5"; */
+}
+function next(pano) {
+    console.log(pano);
+    
+    
+    
+    
+    location.href="detail?no=${detailclass.no}&pageNo=1&pageSize=5";
+}
+</script>
 <script>
 function addqna(no) {
     var type = $('input:radio:checked.type').val();
@@ -690,25 +731,25 @@ function addqna(no) {
         $.ajax({
             type:"POST",
             data : {
-	            "type" : type,
-	            "titl" : titl,
-	            "conts" : conts,
-	            "cno" : cno,
-	            "meno" : no
-	        },
-	        url : "qnainsert",
-	        success : function() {
-	            swal({
-	                title : "Q&A 질문이 등록되었습니다",
-	                text : "축하드립니다.",
-	                icon : "success",
-	                button : "확인",
-	              })
-	            location.href="detail?no="+${detailclass.no};
-	        },error : function(error,status){
-	            console.log(error);
-	            console.log(status);
-	        }
+                "type" : type,
+                "titl" : titl,
+                "conts" : conts,
+                "cno" : cno,
+                "meno" : no
+            },
+            url : "qnainsert",
+            success : function() {
+                swal({
+                    title : "Q&A 질문이 등록되었습니다",
+                    text : "축하드립니다.",
+                    icon : "success",
+                    button : "확인",
+                  })
+                location.href="detail?no="+${detailclass.no};
+            },error : function(error,status){
+                console.log(error);
+                console.log(status);
+            }
         });
     }
 }
@@ -720,34 +761,34 @@ function answerins(no,clsno,qno) {
     console.log(clsno.value);
     console.log(qno);
     
-	if(clsno.value == ""){
-	    swal({
+    if(clsno.value == ""){
+        swal({
             text : "내용이 비어있으면 답변이 등록이 안됩니다.",
             button : "확인",
           })
-	} else {
-	    $.ajax({
-	        type : "POST" ,
-	        data : {
-	            "anser" : clsno.value ,
-	            "no" : qno
-	        },
-	        url : "ansupdate.do",
-	        success : function() {
-	            swal({
-	                text : "해당후기에 해당하는 답변이 등록되었습니다",
-	                icon : "success",
-	                button : "확인",
-	              })
-	            location.href="detail?no="+${detailclass.no};
-	        },error : function(error,status){
-	            swal({
-	                text : "해당 Q&A는 삭제되었거나 존재하지 않는 글입니다.",
-	                button : "확인",
-	              })
-	        }
-	    });
-	}
+    } else {
+        $.ajax({
+            type : "POST" ,
+            data : {
+                "anser" : clsno.value ,
+                "no" : qno
+            },
+            url : "ansupdate.do",
+            success : function() {
+                swal({
+                    text : "해당후기에 해당하는 답변이 등록되었습니다",
+                    icon : "success",
+                    button : "확인",
+                  })
+                location.href="detail?no="+${detailclass.no};
+            },error : function(error,status){
+                swal({
+                    text : "해당 Q&A는 삭제되었거나 존재하지 않는 글입니다.",
+                    button : "확인",
+                  })
+            }
+        });
+    }
 }
 function deleterepnull(){
         swal({
@@ -772,31 +813,31 @@ function repins(no) {
             button : "확인",
           })
     } else {
-	    $.ajax({
-	        type : "POST",
-	        data : {
-	            "meno" : no ,
-	            "cno" : cno , 
-	            "conts" : conts , 
-	            "star" : star ,
-	            "phot" : phot 
-	        },
-	        url : "repinsert",
-	        success : function() {
-	            swal({
-	                text : "클래스 후기가 등록되었습니다",
-	                icon : "success",
-	                button : "확인",
-	              })
-	            /* location.href="detail?no="+${detailclass.no}; */
-	            location.reload();
-	        },error : function(error,status){
-	            swal({
-	                text : "이미 후기를 등록을 하셨습니다.",
-	                button : "확인",
-	              })
-	        }
-	    });
+        $.ajax({
+            type : "POST",
+            data : {
+                "meno" : no ,
+                "cno" : cno , 
+                "conts" : conts , 
+                "star" : star ,
+                "phot" : phot 
+            },
+            url : "repinsert",
+            success : function() {
+                swal({
+                    text : "클래스 후기가 등록되었습니다",
+                    icon : "success",
+                    button : "확인",
+                  })
+                /* location.href="detail?no="+${detailclass.no}; */
+                location.reload();
+            },error : function(error,status){
+                swal({
+                    text : "이미 후기를 등록을 하셨습니다.",
+                    button : "확인",
+                  })
+            }
+        });
     }
 }
 
@@ -809,37 +850,37 @@ function clslikeins(no) {
             button : "확인",
           })
     } else{
-	    $.ajax({
-	        type : "POST" , 
-	        data : {
-	            "cno" : cno , 
-	            "meno" : no
-	        },
-	        url : "clslikeins.do" ,
-	        success : function() {
-	            swal({
-	                text : "찜클래스가 등록되었습니다",
-	                icon : "success",
-	                button : "확인",
-	              })
-	        },error : function(error,status){
-	            swal({
-	                text : "이미 찜클래스에 등록된 클래스입니다.",
-	                button : "확인",
-	              })
-	        }
-	    });
-	}
+        $.ajax({
+            type : "POST" , 
+            data : {
+                "cno" : cno , 
+                "meno" : no
+            },
+            url : "clslikeins.do" ,
+            success : function() {
+                swal({
+                    text : "찜클래스가 등록되었습니다",
+                    icon : "success",
+                    button : "확인",
+                  })
+            },error : function(error,status){
+                swal({
+                    text : "이미 찜클래스에 등록된 클래스입니다.",
+                    button : "확인",
+                  })
+            }
+        });
+    }
 }
 
 function ansbtn(indexno){  /* QnA 나타나는 답변 버튼*/
     if($("#cls"+indexno).css("display") == "none"){
-		$("#cls"+indexno).show();
-		$("#allbtn"+indexno).hide();
-	}else{
-		$("#cls"+indexno).hide();
-		$("#allbtn"+indexno).show();
-	}
+        $("#cls"+indexno).show();
+        $("#allbtn"+indexno).hide();
+    }else{
+        $("#cls"+indexno).hide();
+        $("#allbtn"+indexno).show();
+    }
 }
 
 function answercansle(indexno) {
@@ -852,10 +893,10 @@ function answercansle(indexno) {
 function updano(teno) {  /* 댓글 수정 취소 버튼 */
     $("#repup"+teno).val("");
     $("#updabtn"+teno).hide();
-	$("#repup"+teno).hide();
-	$("#rcont"+teno).show();
-	$("#edbtn"+teno).show();
-	$("#delebtn"+teno).show();
+    $("#repup"+teno).hide();
+    $("#rcont"+teno).show();
+    $("#edbtn"+teno).show();
+    $("#delebtn"+teno).show();
 }
 
 function delerep(no , rno , repmeno){ /* 댓글 삭제 버튼 */
@@ -869,26 +910,26 @@ function delerep(no , rno , repmeno){ /* 댓글 삭제 버튼 */
             button : "확인" ,
         })
     } else {
-	        $.ajax({
-	        type : "POST" ,
-	        data : {
-	            "no" : rno
-	        },
-	        url : "clsrepdele.do" ,
-	        success : function() {
-	            swal({
-	                text : "댓글 삭제가 완료되었습니다.",
-	                icon : "success",
-	                button : "확인",
-	              })
-	            location.href="detail?no="+${detailclass.no};
-		        },error : function(error,status){
-		            swal({
-		                text : "이미 삭제되었거나 존재하지 않는 댓글입니다.",
-		                button : "확인",
-		              })
-		        }
-	    });
+            $.ajax({
+            type : "POST" ,
+            data : {
+                "no" : rno
+            },
+            url : "clsrepdele.do" ,
+            success : function() {
+                swal({
+                    text : "댓글 삭제가 완료되었습니다.",
+                    icon : "success",
+                    button : "확인",
+                  })
+                location.href="detail?no="+${detailclass.no};
+                },error : function(error,status){
+                    swal({
+                        text : "이미 삭제되었거나 존재하지 않는 댓글입니다.",
+                        button : "확인",
+                      })
+                }
+        });
     }
 }
 
@@ -907,22 +948,22 @@ function updarep(no , rno , repmeno , teno) { /* 댓글 회원 인식해서 수�
         })
     } else if( no = repmeno) {
         if($("#repup"+teno).css("display") == "none"){
-        	$("#updabtn"+teno).show();
-        	$("#repup"+teno).show();
-			$("#rcont"+teno).hide();
-			$("#edbtn"+teno).hide();
-			$("#delebtn"+teno).hide();
-			/* $("#updateModal_"+rno).hide(); */
-		
-		disstat = 1;
+            $("#updabtn"+teno).show();
+            $("#repup"+teno).show();
+            $("#rcont"+teno).hide();
+            $("#edbtn"+teno).hide();
+            $("#delebtn"+teno).hide();
+            /* $("#updateModal_"+rno).hide(); */
+        
+        disstat = 1;
     }
     } else {
-		
-		swal({
+        
+        swal({
             text : "이미 삭제되었거나 존재하지 않는 댓글입니다.",
             button : "확인",
           })
-	}
+    }
 }
 
 function updabtn(rno , teno) { /* 회원 인식해서 댓글 수정해주는 버튼 */
@@ -937,32 +978,32 @@ function updabtn(rno , teno) { /* 회원 인식해서 댓글 수정해주는 버
             button : "확인",
           })
     } else {
-	        $.ajax({
-	        type : "POST" ,
-	        data : {
-	            "no" : rno ,
-	            "conts" : updateconts
-	        },
-	        url : "clsrepchange.do" ,
-	        success : function() {
-	            $("#updabtn"+teno).hide();
-	            $("#repup${i.index}").hide();
-	    		$("#rcont${i.index}").show();
-	    		$("#edbtn"+teno).show();
-				$("#delebtn"+teno).show();
-	            swal({
-	                text : "댓글 수정이 완료되었습니다.",
-	                icon : "success",
-	                button : "확인",
-	              })
-	            location.href="detail?no="+${detailclass.no};
-		        },error : function(error,status){
-		            swal({
-		                text : "이미 삭제되었거나 존재하지 않는 댓글입니다.",
-		                button : "확인",
-		              })
-		        }
-	    });
+            $.ajax({
+            type : "POST" ,
+            data : {
+                "no" : rno ,
+                "conts" : updateconts
+            },
+            url : "clsrepchange.do" ,
+            success : function() {
+                $("#updabtn"+teno).hide();
+                $("#repup${i.index}").hide();
+                $("#rcont${i.index}").show();
+                $("#edbtn"+teno).show();
+                $("#delebtn"+teno).show();
+                swal({
+                    text : "댓글 수정이 완료되었습니다.",
+                    icon : "success",
+                    button : "확인",
+                  })
+                location.href="detail?no="+${detailclass.no};
+                },error : function(error,status){
+                    swal({
+                        text : "이미 삭제되었거나 존재하지 않는 댓글입니다.",
+                        button : "확인",
+                      })
+                }
+        });
     }
 }
 </script>
@@ -1027,7 +1068,7 @@ geocoder.addressSearch('${detailclass.basAddr}', function(result, status) {
             fillColor: '#CFE7FF', // 채우기 색깔
             fillOpacity: 0.7  // 채우기 불투명도
         });
-       	Circle.setMap(map); 
+        Circle.setMap(map); 
        
         // 결과값으로 받은 위치를 마커로 표시합니다
         var marker = new daum.maps.Marker({

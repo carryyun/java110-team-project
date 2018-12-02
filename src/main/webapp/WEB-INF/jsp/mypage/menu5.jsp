@@ -3,10 +3,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<div class="col-lg-12">
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  
+  
+<div class="col-lg-12" >
 	<div class="panel panel-default">
-		<div class="panel-body">
-
+		<div class="panel-body" > 
 			<table class="table table-condensed"
 				style="border-collapse: collapse;">
 				<thead>
@@ -21,20 +23,19 @@
 					 <c:forEach items="${cmanage}" var="c" varStatus="i">
 					<tr id="tb-pay">
 						<td>${i.count}</td>
-						<td><a href='#'>${c.titl}</a></td>
+						<td><a href='#'>${c.titl} ${c.no}</a></td>
 						<td>${c.bigTag.name}-${c.bigTag.name}</td>
-						<td> <button class="btn-primary" style="width:100px;"> ${c.timetable.capa}/ ${c.capa} 명</button></td>
-						<!-- capa - timetalbe.capa  jstl 연산 해야함 바탕화면 조인킹 ㄱㄱ   -->
+						<td><button onclick="getMenteeList(${c.no})"  class="btn-primary"  style="width:100px;"> ${c.capa-c.timetable.capa}/ ${c.capa} 명</button></td>
 					</tr>
 					        </c:forEach>     
  
 				</tbody>
 				
-			<%-- </table>
+				
+			 </table>
 		</div>
-		
 		<div class="panel-body">
-		<table class="table table-condensed"
+		<table class="table table-condensed" id="table_target"
                 style="border-collapse: collapse;">
                 <thead>
                     <tr id="th-pay">
@@ -45,41 +46,13 @@
                         <th width="15%">신고</th>
                     </tr>
                 </thead>
-                <tbody>
-                     <c:forEach items="${colist}" var="c" varStatus="i">
-                    <tr id="tb-pay">
-                        <td>${i.count}1</td>
-                        <td><a href='#'>멘티예티</a></td>
-                        <td>010-6645-1010</td>
-                        <td>
-                        <button class="btn-primary" style="width:70px;">수료</button><br>
-                        
-                        
-                        
-                        </td>
-                        <td><img src="/upload/img/rpt-before.png" style=" width:50%; height:auto;"></td>
-                    </tr>
-                            </c:forEach>     
-                </tbody>
                 
-                <tbody>
-                     <c:forEach items="${colist}" var="c" varStatus="i">
-                    <tr id="tb-pay">
-                        <td>${i.count}2</td>
-                        <td><a href='#'>멘티예티2</a></td>
-                        <td>010-6645-1012</td>
-                        <td>
-                        <button class="btn-danger" style="width:70px;">미수료</button>
-                        
-                        
-                        
-                        </td>
-                        <td><img src="/upload/img/rpt-after.png" style=" width:50%; height:auto;"></td>
-                    </tr>
-                            </c:forEach>     
-                </tbody>
+                <tbody id="insert_target">
+               
+                                       
+                </tbody>  
                 
-                 --%>
+                 
             </table>
             
 		</div>
@@ -87,6 +60,93 @@
 		
 	</div>
 </div> 
+
+
+  <script>
+  
+
+
+function getMenteeList(cno){
+    var contents="";
+    var cnt = 1;
+$.ajax({
+    type : "POST",
+    data : {
+        "cno" : cno
+    },
+    url : "getMenteeList.do",
+    success : function(data) {
+        
+        $('#insert_target').empty();
+        
+        contents = "";
+        for(var i in data) {
+            
+       contents+='<tr id="tb-pay">';
+       contents+='<td>'+cnt+++'</td>';
+       contents+='<td><a href=\'#\'>'+data[i].mentee2.name+'('+data[i].mentee2.nick+')'+'</a></td>';
+       contents+='<td>'+data[i].mentee2.phone+'</td>';
+       contents+='<td>';
+       
+     
+        if (data[i].cert == null)  {
+            contents+= '<button class="btn-danger" name="btn-certi" value="'+i+'" onclick="certi(this.value);"   style="width:70px;" ">미수료</button>';
+        }else  if (data[i].cert != null) {
+           if(data[i].cert.type == "수료증")
+            contents+= '<button class="btn-primary"  style="width:70px;">수료</button>';    
+        } 
+       
+       
+            
+       contents+='</td>';
+       contents+='<td><img src="/upload/img/rpt-before.png" style=" width:50%; height:auto;"></td>';
+       contents+='</tr>';
+       
+       
+       
+       
+        }
+       var setdiv=document.querySelector("#insert_target");
+       setdiv.innerHTML+= contents;
+         console.log(data); 
+         
+      
+    }
+    
+    ,error : function(error,status){
+        console.log("fail");
+    }
+});
+}
+
+function certi(v){
+    
+    var textareaVal = $("button[name='btn-certi']:button[value='"+v+"']").text();
+
+    if(textareaVal=="미수료"){
+             
+            swal({
+                 title: "수료증을 발급하시겠어요?",
+                 text: "멘티에게 수료증을 발급합니다.\n수료처리후에는 취소가 불가능합니다.",
+                 icon: "warning",
+                 buttons: true,
+                 dangerMode: true,
+                 })
+                 
+            .then((willCerti) => {
+                     if (willCerti) {
+                         swal("수료처리 하였습니다!", {icon: "success", });
+                         $("button[name='btn-certi']:button[value='"+v+"']").attr('class','btn-primary');
+                         $("button[name='btn-certi']:button[value='"+v+"']").text('수료');
+                     }
+                 });
+         
+         }
+}
+
+
+</script>
+
 
 
 

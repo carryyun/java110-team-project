@@ -148,6 +148,12 @@ public class MasterPageController {
   /*
    * 클래스신청목록 관련
    */
+  @RequestMapping("detail")
+  public void clsmaster(Model model , int no ,HttpSession session) {
+    Classes detailclass = classService.findBycno(no);
+    
+    model.addAttribute("detailclass",detailclass);
+  }
 
   @GetMapping("classreqlist")
   public void classlist(Model model) {

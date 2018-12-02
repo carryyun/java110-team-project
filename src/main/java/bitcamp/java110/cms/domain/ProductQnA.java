@@ -17,6 +17,16 @@ public class ProductQnA {
   private String type; // 질문유형
   
   private Product product; // 공예품
+  
+  private Mentee mentee2;
+
+  public Mentee getMentee2() {
+    return mentee2;
+  }
+
+  public void setMentee2(Mentee mentee2) {
+    this.mentee2 = mentee2;
+  }
 
   public Product getProduct() {
     return product;

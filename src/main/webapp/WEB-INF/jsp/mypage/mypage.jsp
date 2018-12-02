@@ -34,6 +34,9 @@
     <link rel="stylesheet" href="/css/mypagecss/button/togglebtn.css">
     <!-- <link rel="stylesheet" href="/css/mypagecss/button/slider.css"> -->
     
+    <!--  sweetalert   -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    
     <!-- Animate.css -->
     <link rel="stylesheet" href="/css/mypagecss/animate.css">
     <!-- Bootstrap  -->
@@ -41,11 +44,15 @@
     <!-- Theme style  -->
     <link rel="stylesheet" href="/css/mypagecss/style.css">
     <!-- J Query -->
-    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <!-- Load JS-->
     <script src=/js/mypagejs/hideshow.js></script> 
+   
         
+        
+      
     
+
     <script>
     
      /* menu4 btn 스크립트 */ 
@@ -69,6 +76,8 @@
         
        }
     </script>
+    
+
 
     <style>
 
@@ -365,7 +374,7 @@
 
 
 
-                    <div class="social-networks">
+                    <div class="social-networks" >
                         <ul style="text-align: right;">
                             <li class="list-inline-item" style="position: relative;">
                                 <a href="#" class="twitter"><i class="fab fa-twitter  fa-inverse"></i></a>
@@ -382,7 +391,7 @@
                         </ul>
 
 
-                        <button type="button" class="btn btn-default" style=" margin-right: 0;">Contact us</button>
+                        <button  type="button" class="btn btn-default" style=" margin-right: 0;">Contact us</button>
                     </div>
                 </div>
 
@@ -416,4 +425,5 @@
     <!-- MAIN JS -->
     <script src="/js/mypagejs/main.js"></script>
     <script src="/js/mypagejs/bootstrap.min.js"></script>
+ 
 </html>
