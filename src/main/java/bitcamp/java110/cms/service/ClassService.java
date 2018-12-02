@@ -13,7 +13,7 @@ public interface ClassService {
   Classes findbyptno(int ptno);
   Classes findBycno(int no);
   Classes findAllBycno(int no);
-  int classadd(Classes classes, List<MultipartFile> files,String removefiles, String days,String date,String edate);
+  void classadd(Classes classes, List<MultipartFile> files,String removefiles, String days,String date,String edate);
   int classupdate(Classes classes);
   
   // 클래스 신청목록
