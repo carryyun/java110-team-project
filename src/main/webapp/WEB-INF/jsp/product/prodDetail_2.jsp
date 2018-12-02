@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <div class="container">
 	<!-- 상세정보, 상품평, QnA navi바 -->
 	<div id="testt">
@@ -55,16 +55,16 @@
 							%>
 						</div>
 						<div>
-							<i class="fas fa-user"></i>total 12
+							<i class="fas fa-user"></i>total ${fn:length(replyList)} 
 						</div>
 					</div>
 				</div>
 				
-                    <div class="col mt-3">
+                    <div class="col my-3">
                                 <table class="fixed-table w-100">
                                     <tr>
                                         <td colspan="3">
-                                            <div class="col-lg-12">
+                                            <div class="col-lg-12 mb-3">
                                                 <textarea class="form-control" id="repconts" name="conts"
                                                     placeholder="상품평을 등록해주세요." rows="4"></textarea>
                                             </div>
@@ -102,9 +102,17 @@
 		                            <img src='${r.mentee.phot}' alt="singup" id="circle"><br>
 		                            ${r.mentee.nick}
 		                        </div>
-		                        <div class="col-lg-10 media-body">${r.conts}</div>
+		                        
+		                        <div class="col-lg-9 media-body">${r.conts}</div>
+		                        <c:if test="${sessionScope.loginUser != '' }">
+		                          <c:if test="${sessionScope.loginUser.no == r.meno }">
+			                        <div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="removerep(${r.no})"><i class="fas fa-trash-alt"></i></a> </div>
+		                          </c:if>
+		                        </c:if>
+		                        
 		                        </div>
 		                    </div>
+		                    
 	                    </div>
 		                </c:forEach>
                     </div>
@@ -132,32 +140,133 @@
 
 									</tr>
 								</thead>
-								<c:forEach items="${prodQnaList}" var="qna">
 									<tbody class="col-lg-12">
-										<tr class="row">
-											<th class="col-lg-1" scope="row" id="qna_th">${qna.no}</th>
-											<td class="col-lg-2">${qna.type}</td>
-											<td class="col-lg-2"><c:set var="rgdt2"
-													value="${qna.rgdt2}" /> <%
-											   Date rgdt2 = (Date) pageContext.getAttribute("rgdt2");
-											     if (rgdt2 != null) {
-											 %> 완료 <%
-											   } else {
-											 %> 미완료 <%
-											   }
-											 %></td>
-											<td class="col-lg-3">${qna.conts}</td>
-											<td class="col-lg-2">${qna.mentee.nick}</td>
-											<td class="col-lg-2">${qna.rgdt}</td>
-										</tr>
-									</tbody>
+								<c:forEach items="${prodQnaList}" var="qna" varStatus="i">
+										<tr data-toggle="collapse" 
+                                        data-target="#demo1-${i.count}" class="accordion-toggle row">
+                                            <td class="col-lg-1" scope="row" id="qna_th">${i.count}</td>
+                                            <td class="col-lg-2">${qna.type}</td>
+                                            <c:set var="yn" value="${qna.anser}"/>
+                                            <%
+                                                String qnayn = (String)pageContext.getAttribute("yn");
+                                                if(qnayn==null){
+                                            %>
+                                                <td class="col-lg-2">미완료</td>
+                                            <%  }else{
+                                            %>
+                                                <td class="col-lg-2">완료</td>
+                                            <%  
+                                            }
+                                            %>
+                                            <td class="col-lg-3">${qna.titl}</td>
+                                            <td class="col-lg-2">${qna.mentee.nick}</td>
+                                            <td class="col-lg-2">${qna.rgdt}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6" class="hiddenRow">
+                                                <div class="accordian-body collapse" id="demo1-${i.count}">
+                                                <div class="adddet col-lg-2" style="text-align: center;
+                                                vertical-align: middle;
+                                                            display : block;">질문 내용</div>
+                                                <div class="acco" id="cont">${qna.conts}</div><br>
+                                                    <c:set var="ans" value="${qna.anser}"/>
+                                                    <%
+                                                        String ans = (String)pageContext.getAttribute("ans");
+                                                        if(ans==null){
+                                                    %>
+                                                        <div class="adddet col-lg-2" style="text-align: center;
+                                                            vertical-align: middle;
+                                                            display : block;">질문 답변</div>
+                                                            
+                                                        <c:choose>  
+                                                            <c:when test="${sessionScope.loginUser eq null}">
+                                                                <div class="acco" id="ans${i.index}">답변이 등록되지 않았습니다.</div>
+                                                            </c:when>
+                                                            <c:when test="${sessionScope.loginUser.no eq product.mentee.no}">
+                                                                <form class="ansinss" action="detail?no=${product.no}" method="post">
+                                                                    <label onClick="ansbtn(${i.index})" class="allbtn"
+                                                                    id="allbtn${i.index}">답변을 작성하시려면 클릭해주세요!</label>
+                                                                    <textarea class="clsanser" id="cls${i.index}" rows="5" name="clsanser"
+                                                                    style ="width : 500px; display: none;"></textarea>
+                                                                    <div class="butmana" style="margin-left:10px;">
+                                                                        <button class="btn btn-default" 
+                                                                        onClick="answerins(${sessionScope.loginUser.no},cls${i.index},${qna.no})"
+                                                                         type="button" >등록</button>
+                                                                        <button class="btn btn-default" id="ansstat" type="button" 
+                                                                        onClick="answercansle(${i.index})">취소</button>
+                                                                    </div>
+                                                                </form>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <div class="acco" id="ans${i.index}">답변이 등록되지 않았습니다.</div>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                        
+                                                    <%  }else{
+                                                    %>
+                                                        <div class="adddet col-lg-2" style="text-align: center;
+                                                        vertical-align: middle;
+                                                            display : block;">질문 답변</div>
+                                                        <div class="acco" id="ans${i.index}">${qna.anser}</div>
+                                                    <%  
+                                                    }
+                                                    %>
+                                                </div>
+                                            </td>
+                                        </tr>
 								</c:forEach>
+									</tbody>
 							</table>
 						</div>
 						<div class="col-lg-12 text-right">
-							<button onclick="location.href='prdtQna'"
-								style="width: 120px; height: 40px; background-color: #606066; color: #ffffff">
-								상품 문의</button>
+							<!-- <button onclick="location.href='prdtQna'">상품 문의</button> -->
+								
+								
+							<button type="button" data-toggle="modal" data-target="#addQnaModal"
+							style="width: 120px; height: 40px; background-color: #606066; color: #ffffff">상품문의</button>
+                                        <div class="modal fade" id="addQnaModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                          <div class="modal-dialog">
+                                            <div class="modal-content text-left">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title" id="repupdat">해당 게시글 수정하시겠습니까?</h4>
+                                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <!-- content goes here -->
+                                                    <form action="#" id="qnaModal" style="width: 400px" method="post">
+                                                      <div class="form-group">
+                                                        <label for="exampleInputEmail1">문의 유형</label>
+                                                                <input type="radio" name="type" onclick="qnaType()" class="qnatype" value="환불" id="qnaopt1" checked="checked"/>
+                                                                <label for="opt1">환불</label>
+                                                                <input type="radio" name="type" onclick="qnaType()" class="qnatype" value="배송" id="qnaopt2"/>
+                                                                <label for="opt2">배송</label>
+                                                                <input type="radio" name="type" onclick="qnaType()" class="qnatype" value="상품" id="qnaopt3"/>
+                                                                <label for="opt2">상품</label>
+                                                                <input type="radio" name="type" onclick="qnaType()" class="qnatype" value="기타" id="qnaopt4"/>
+                                                                <label for="opt2">기타</label>
+                                                                <input type="hidden" id="getQnaType" value="환불">
+                                                      </div>
+                                                      <div class="form-group">
+                                                        <label for="exampleInputEmail1">Q&A 제목</label>
+                                                        <input type="text" class="form-control" name="titl" id="qnatitl" placeholder="제목을 입력해주세요">
+                                                      </div>
+                                                      <div class="form-group">
+                                                        <label for="exampleInputconts1">Q&A 내용</label>
+                                                        <div>
+                                                        <textarea name="qnaconts" id="qnaconts" rows="5" class="customWidth" style="resize: none; width:100%;" 
+                                                        placeholder="내용을 입력해주세요"></textarea></div>
+                                                      </div>
+                                                      <div class="text-right">
+	                                                      <button type="button" class="btn btn-default" 
+	                                                            onClick="addqna(${product.no});">등록하기</button>
+	                                                      <button type="reset" class="btn btn-default" data-dismiss="modal"  role="button">취소</button>
+                                                      </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                          </div>
+                                        </div>
+								
 						</div>
 						<!-- <div class="col-lg-12"> -->
 					</div>

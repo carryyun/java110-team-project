@@ -25,6 +25,7 @@
 		pr.conts,
 		pr.rgdt,
 		pr.phot as pp,
+        mete.meno,
 		mete.nick,
 		mete.phot as mp
 		FROM p_prdt_rep pr
@@ -111,7 +112,11 @@
 		where
 		rno=#{no}
 	</update>
-
-
+ 
+    <delete id="delete" parameterType="int">
+        delete from p_prdt_rep 
+        where rno=#{rno}
+    </delete>
+    
 
 </mapper>

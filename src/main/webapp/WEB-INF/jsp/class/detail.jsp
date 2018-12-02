@@ -432,7 +432,7 @@
 													<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
 												</div>
 												<div class="modal-body">
-										            <!-- content goes here -->
+										            <!-- content goes here --> 
 													<form action="detail?no=${detailclass.no}" method="post">
 										              <button type="button" class="btn btn-default" data-dismiss="modal"
 															 onClick="updabtn(${r.no} , ${i.index})" >수정하기</button>
@@ -583,7 +583,7 @@
 												<div class="modal-body">
 													
 										            <!-- content goes here -->
-													<form action="detail?no=${detailclass.no}" method="post">
+													<form action="detail?no=${detailclass.no}" style="width: 400px" method="post">
 													  <div class="form-group">
 										                <label for="exampleInputEmail1">문의 유형</label>
 										                		<input type="radio" name="type" class="type" value="환불" id="opt1" checked="checked"/>

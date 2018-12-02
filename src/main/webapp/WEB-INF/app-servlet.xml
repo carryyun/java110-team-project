@@ -35,8 +35,10 @@
 			<mvc:exclude-mapping path="/class/clsrepdele.do" />
       		<mvc:exclude-mapping path="/class/clsrepchange.do" />
             <mvc:exclude-mapping path="/product/addrep.do" />
-        
-        
+            <mvc:exclude-mapping path="/product/removerep.do" />
+            <mvc:exclude-mapping path="/product/addqna.do" />
+            
+            
             
             <!-- master page -->
             <mvc:exclude-mapping path="/masterpage/clsstat.do" />

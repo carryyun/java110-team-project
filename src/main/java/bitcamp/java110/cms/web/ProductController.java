@@ -81,7 +81,7 @@ public class ProductController {
 
   @GetMapping("prdt")
   public void prdt(@RequestParam(defaultValue = "1") int pageNo,
-      @RequestParam(defaultValue = "3") int pageSize, Model model) {
+      @RequestParam(defaultValue = "12") int pageSize, Model model) {
     List<Product> productList = productService.list();
 
     List<ProductPopul> pp_list = productPopulService.list();
@@ -136,6 +136,7 @@ public class ProductController {
   @GetMapping("detail")
   public void detail(Model model, int no) {
     Product product = productService.get(no);
+    System.out.println(product.getPhot());
     product.setProductFile(productFileService.listByPtno(no));
     
     List<ProductRep> replyList = productRepSerivce.listByPtno(no);
@@ -177,26 +178,25 @@ public class ProductController {
     model.addAttribute("ctno", ctno);
   }
 
-  //상품평 등록
+//상품평 등록
   @RequestMapping(value = "addrep.do", method = {RequestMethod.GET, RequestMethod.POST})
-  public @ResponseBody List<ProductRep> getCertList(ProductRep productRep) {
+  public @ResponseBody List<ProductRep> addrep(ProductRep productRep) {
     productRepSerivce.add(productRep);
     List<ProductRep> productRepList = productRepSerivce.listByPtno(productRep.getPtno());
     return productRepList;
   }
+  
+//상품평 삭제
+  @RequestMapping(value = "removerep.do", method = {RequestMethod.GET, RequestMethod.POST})
+  public @ResponseBody List<ProductRep> removerep(int ptno, int rno) {
+    productRepSerivce.delete(rno);
+    List<ProductRep> productRepList = productRepSerivce.listByPtno(ptno);
+    return productRepList;
+  }
 
-  @RequestMapping(value = "addqna", method = RequestMethod.POST)
-  public String addqna(String type, String titl, String conts) {
-    ProductQnA pqna = new ProductQnA();
-    pqna.setTitl(titl);
-    pqna.setConts(conts);
-    pqna.setType(type);
-    pqna.setMeno(5);
-    pqna.setPtno(5);
-
-
-    productQnAService.add(pqna);
-    return "redirect:../product/prdtQna";
+  @RequestMapping(value = "addqna.do", method = {RequestMethod.GET, RequestMethod.POST})
+  public @ResponseBody int addqna(ProductQnA productQnA) {
+    return productQnAService.add(productQnA);
   }
 
   /*
