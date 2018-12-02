@@ -45,6 +45,16 @@ public class ProductQnAServiceImpl implements ProductQnAService {
 
     return productQnADao.findAllByMeno(params);
   }
+  
+  @Override
+  public List<ProductQnA> listByMeno2(int pageNo, int pageSize, int meno) {
+    HashMap<String, Object> params = new HashMap<>();
+    params.put("pageNo", (pageNo - 1) * pageSize);
+    params.put("pageSize", pageSize);
+    params.put("meno", meno);
+
+    return productQnADao.findAllByMeno2(params);
+  }
 
 
   @Override

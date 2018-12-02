@@ -1,16 +1,20 @@
 package bitcamp.java110.cms.web;
 
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import bitcamp.java110.cms.domain.ClassOrder;
 import bitcamp.java110.cms.domain.ClassQna;
 import bitcamp.java110.cms.domain.Classes;
 import bitcamp.java110.cms.domain.Cs;
 import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.Mentor;
+import bitcamp.java110.cms.domain.Product;
 import bitcamp.java110.cms.domain.ProductOrder;
 import bitcamp.java110.cms.domain.ProductQnA;
 import bitcamp.java110.cms.service.ClassOrderService;
@@ -21,6 +25,7 @@ import bitcamp.java110.cms.service.MenteeService;
 import bitcamp.java110.cms.service.MentorService;
 import bitcamp.java110.cms.service.ProductOrderService;
 import bitcamp.java110.cms.service.ProductQnAService;
+import bitcamp.java110.cms.service.ProductService;
 
 @Controller
 @RequestMapping("/mypage")
@@ -33,7 +38,8 @@ public class MypageController {
   ProductQnAService productQnAService;
   ClassOrderService classOrderService;
   ProductOrderService productOrderSerivce;
-  ClassService classService; 
+  ClassService classService;
+  ProductService productService;
   
 
   public MypageController(
@@ -44,7 +50,8 @@ public class MypageController {
       ProductQnAService productQnAService,
       ClassOrderService classOrderService,
       ProductOrderService productOrderService,
-      ClassService classService) {
+      ClassService classService,
+      ProductService productService) {
    this.menteeService = menteeService;
    this.mentorService = mentorService;
    this.csService = csService;
@@ -53,6 +60,7 @@ public class MypageController {
    this.classOrderService = classOrderService;
    this.productOrderSerivce = productOrderService;
    this.classService = classService;
+   this.productService = productService;
    
    
   }
@@ -135,6 +143,8 @@ public class MypageController {
   
   @GetMapping("menu4-3")
   public void menu4_3(Model model) {
+    List<ClassQna> cqlist2 = classQnaService.classqnalist2(4,10,5);
+    model.addAttribute("cqlist2", cqlist2 );
     
   }
   
@@ -147,23 +157,51 @@ public class MypageController {
   
   @GetMapping("menu4-5")
   public void menu4_5(Model model) {
-    
+    List<ProductQnA> pqlist2 = productQnAService.listByMeno2(4, 10, 5);
+    model.addAttribute("pqlist2", pqlist2 );
   }
   
   @GetMapping("menu5")
-  public void menu5(Model model) {
+  public void menu5(Model model,HttpSession session) { 
     
- List<Classes> cmanage = classService.findByMono(5);
+ List<Classes> cmanage = classService.manageByMono(5);
     
     model.addAttribute("cmanage",cmanage);
     
+    
+ /*   List<Classes> cm = classService.manageByCno(cno);
+    
+    model.addAttribute("cm", cm);*/
+        
   }
+  
+  
   
   @GetMapping("menu6")
   public void menu6(Model model) {
     
+    List<Product> pmanage = productService.listBySeller(1,10,5);
+    model.addAttribute("pmanage", pmanage );
+    
+    for( Product p : pmanage)
+    {System.out.println(p.getTitl());}
+    
+    List<Product> pmanage2 = productService.listBySeller2(1,10,5);
+    model.addAttribute("pmanage2", pmanage2 );
   }
   
+  
+  @RequestMapping(value = "getMenteeList.do", method = {RequestMethod.POST})
+  public @ResponseBody List<Classes> getMenteeList(int cno) {
+    
+    
+    return classService.manageByCno(cno);
+  }
+  
+  
 }
+
+
+
 
 
