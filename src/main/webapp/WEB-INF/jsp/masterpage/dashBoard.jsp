@@ -410,7 +410,7 @@ text-weight: bold;
                                                                                 },
                                                                                 {
                                                                                     type : 'bar',
-                                                                                    label : '멘티',
+                                                                                    label : '판매자',
                                                                                     data : [
                                                                                             '0.3',
                                                                                             '0.9',

@@ -146,7 +146,7 @@
                                         class="table table-list-search">
                                         <thead>
                                             <tr>
-                                                <th class="text-center">게시글번호</th>
+                                                <th class="text-center">No</th>
                                                 <th class="text-center">제목</th>
                                                 <th class="text-center">내용</th>
                                                 <th class="text-center">글쓴이</th>
