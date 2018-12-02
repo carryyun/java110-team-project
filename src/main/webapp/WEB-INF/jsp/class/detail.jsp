@@ -452,14 +452,33 @@
 				 <nav aria-label="Page navigation example" id="product-pn" 
 		            style="margin : auto; margin-top: -40px;">
 		                <ul class="pagination justify-content-center">
-		                    <li class="page-item disabled "><a class="page-link" href="#"
-		                        tabindex="-1"> <</a></li>
-		                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-		                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-		                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-		                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-		                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-		                    <li class="page-item"><a class="page-link" href="#">></a></li>
+		                	
+			                	<c:set var="repsi" value="${fn:length(clsreqlist)}" />
+			                	<%
+			                		int pno = 1;
+			                		int repsize = (int)pageContext.getAttribute("repsi");
+			                		
+			                		
+			                		if(repsize/3 == 1){
+			                		  pno += 1;
+			                		}
+			                	%>
+				                    <!-- <li class="page-item disabled "><a class="page-link" 
+				                    href="#" tabindex="-1"> <</a></li> -->
+				                    <li class="page-item"><a class="page-link" 
+				                    href="detail?no=${detailclass.no}&pageNo=1&pageSize=3">1</a></li>
+				                    
+				                    <%-- <li class="page-item"><a class="page-link" 
+				                    href="detail?no=${detailclass.no}&pageNo=2&pageSize=3">2</a></li>
+				                    <li class="page-item"><a class="page-link" 
+				                    href="detail?no=${detailclass.no}&pageNo=3&pageSize=3">3</a></li>
+				                    <li class="page-item"><a class="page-link" 
+				                    href="detail?no=${detailclass.no}&pageNo=4&pageSize=3">4</a></li>
+				                    <li class="page-item"><a class="page-link" 
+				                    href="detail?no=${detailclass.no}&pageNo=5&pageSize=3">5</a></li>--%>
+				                    
+				                    <!-- <li class="page-item"><a class="page-link" 
+				                    href="#">></a></li>  -->
 		                </ul>
 		          </nav>
                     <div class="detail_info">

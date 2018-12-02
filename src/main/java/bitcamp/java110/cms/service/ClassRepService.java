@@ -8,6 +8,6 @@ public interface ClassRepService {
   int repDelete(int no);
   int repupdate(ClassRep classRep);
   List<ClassRep> repList();
-  List<ClassRep> listbycno(int cno);
+  List<ClassRep> listbycno(int cno , int pageNo , int pageSize);
   
 }

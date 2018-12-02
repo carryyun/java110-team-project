@@ -29,22 +29,28 @@
     </select>
     
     <select id="findByCno" resultMap="crepMap" parameterType="int">
-        select 
-        	psp.rno,
-			pe.nick,
-			pe.phot,
-			psp.conts,
-			psp.phot,
-			psp.star,
-			psp.rgdt,
-			pe.meno
-		from
-			p_mete as pe inner join p_cls_rep as psp
-				on pe.meno = psp.meno
-			inner join p_cls as ps
-				on psp.cno = ps.cno
-		where psp.cno = #{no}
-		order by psp.rno desc;
+        select *
+		from (
+		    select 
+		    	@rownum:=@rownum+1 as rnum,
+		    	psp.rno,
+		        pe.nick,
+		        pe.phot as ppt,
+		        psp.conts,
+		        psp.phot,
+		        psp.star,
+		        psp.rgdt,
+		        pe.meno
+		    from
+		        p_mete as pe inner join p_cls_rep as psp
+		        	on pe.meno = psp.meno
+		        inner join p_cls as ps
+		        	on psp.cno = ps.cno
+		    	,(select @rownum:=0)r
+		        where ps.cno = #{no}
+		        order by psp.rno desc
+		    ) as a
+		where rnum limit #{rowNo},#{size}
     </select>
     
     

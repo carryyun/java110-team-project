@@ -198,10 +198,10 @@ public class ClassController {
   }
   
   @RequestMapping("detail")
-  public void findByCno(@RequestParam(defaultValue="1") int pageNo, @RequestParam(defaultValue="3") int pageSize, 
+  public void findByCno(@RequestParam(defaultValue="1") int pageNo, @RequestParam(defaultValue="5") int pageSize, 
       Model model,int no ,HttpSession session) {
     
-    List<ClassRep> clsreqlist = classrepService.listbycno(no);
+    List<ClassRep> clsreqlist = classrepService.listbycno(no , pageNo , pageSize);
     
     Classes detailclass = classService.findBycno(no);
     
