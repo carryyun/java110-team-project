@@ -8,6 +8,10 @@ div#imgBind {
 	overflow: auto;
 	display: block;
 }
+.container{
+	background-color:white;
+}
+
 div.row.imgDiv {
 	margin-bottom: 15px;
 }
@@ -19,21 +23,23 @@ div.row.imgDiv {
 	height: 70px;
 }
 
-.fc-day-top.fc-sat.fc-past{ color:#0000FF; }     /* 토요일 */
-.fc-day-top.fc-sun.fc-past{ color:#FF0000; }     /* 일요일 */
+.fc-day-top.fc-sat{ color:#0000FF; }     /* 토요일 */
+.fc-day-top.fc-sun{ color:#FF0000; }     /* 일요일 */
 
 div h1{
-    border-bottom: 1px solid black;
-    border-top: 1px solid black;
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
     color: black;
+    font-size: -webkit-xxx-large;
+    margin-top: 30px;
+    padding-top: 10px;
     margin-bottom: 10px;
-    
 }
 div #ctitl{
     border: 1px solid black;
-    margin-bottom: 30px;
-    width: 700px;
+    margin-bottom: 20px;
     height: 50px;
+    width: 1140px;
 }
 .view,#pst #posi{
     color: white;
@@ -69,10 +75,11 @@ div #ctitl{
     margin-bottom: 5px;
 }
 input[type="button"]{
-    background-color: blanchedalmond;
-    border-radius: 12px;
+    background-color: #FFB53C;
+    border-radius: 3px;
     border: none;
-}
+    color: white;
+} 
 
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
@@ -80,19 +87,17 @@ input[type="number"]::-webkit-inner-spin-button {
     margin: 0;
 }
 
-input[type="button"]:hover { box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); }
-
+ input[type="button"]:hover { box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); }
+ 
 #sample6_address{
     width: 285px;
 }
 #sample6_address2{
     width: 237px;
 }
-#file-box{
-    border: 1px solid black;
-}
+
 #classinfo{
-    position: relative; border: 2px solid green; height: 700px;
+    position: relative; height: 650px;
 }
 
 #filetable{
@@ -116,13 +121,22 @@ input.upload{/*input type="file" tag 투명하게 처리*/
 
 #btnreplace {
   position: absolute;  /*button tag 에 원하는 스타일 적용*/
-  background-color: blanchedalmond;
+  background-color: #FFB53C;
   border-radius: 12px;
   border: none;
 }
 
 #clsinsert{
+	background-color: #FFB53C;
+    border-radius: 3px;
+    width: 100px;
+    height: 30px;
+    border: none;
+    color: white;
     float: right;
+}
+#imgInput{
+	width: 500px;
 }
 
 

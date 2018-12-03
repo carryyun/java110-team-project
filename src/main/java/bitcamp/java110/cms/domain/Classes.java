@@ -22,6 +22,7 @@ public class Classes {
   private int mtno;
   private int star;
   private String stat;
+  private String note;
   private String type;
   
   private Mentee mentee;
@@ -37,6 +38,13 @@ public class Classes {
   private Cert cert;
   private Report report;
   
+  
+  public String getNote() {
+    return note;
+  }
+  public void setNote(String note) {
+    this.note = note;
+  }
   public Mentor getMentor() {
     return mentor;
   }

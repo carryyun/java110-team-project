@@ -145,10 +145,10 @@
                                         <tbody>
                             <c:forEach items="${ClassRequestList}" var="cl" varStatus="i">
                                 <tr id="rmv${cl.no}">
-                                    <td class="text-center"><input type="checkbox" id="men-ck" class="men-ck" name="men-ck" value="${cl.no}"></td>
+                                    <td></td>
                                     <td class="text-center">${i.count}</td>
                                     <td class="text-center">${cl.mentee.name}(${cl.mentee.nick })</td><%-- ${cl.nick}(${cl.name}) --%>
-                                    <td class="text-center"><a class="button" href="#popup${i.count}">${cl.titl}</a></td>
+                                    <td class="text-center"><a class="button" href="../masterpage/detail?no=${cl.no }">${cl.titl}</a></td>
                                     <td class="text-center">${cl.middleTag.name}</td>
                                     <td class="text-center">${cl.rgdt}</td>
                                     <td class="text-center">
@@ -190,7 +190,7 @@
             </div>
 
 
-                            <div class="col-lg-12">
+                            <!-- <div class="col-lg-12">
                                 <div class="row">
                                     <div class="col-lg-12" id="btn">
                                         <button type="button"
@@ -200,7 +200,7 @@
                                             등록 반려</button>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </section>

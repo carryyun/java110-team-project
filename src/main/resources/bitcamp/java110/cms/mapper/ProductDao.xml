@@ -24,7 +24,6 @@
         <result column="mp"   property="mentee.phot"/>
         <result column="ctno"   property="cert.no"/>
         <result column="type"   property="cert.type"/>
-        
         <result column="stno"   property="smalltag.no"/>
         <result column="stname"   property="smalltag.name"/>
         <result column="mtno"   property="smalltag.mtno"/>
@@ -40,6 +39,9 @@
         <result column="cfile" property="classes.cfile"/>
         <result column="clsmetephot" property="classes.mentee.phot"/>
         <result column="clsmetenick" property="classes.mentee.nick"/>
+        
+        <result column="clsstar"    property="classes.star"/>
+        <result column="clsaddr"     property="classes.basAddr"/>
         
     </resultMap>
     
@@ -184,11 +186,16 @@ select
     stag.stno,
     stag.stname,
     stag.mtno,
+    mtag.mtno, <!--  -->
     mtag.mtname,
+    btag.btno,
+    btag.btname,
     pcls.titl clstitl,
     pcls.cfile,
     clsmete.phot clsmetephot,
-    clsmete.nick clsmetenick
+    clsmete.nick clsmetenick,
+    pcls.star clsstar,
+    pcls.bas_addr clsaddr
 from 
     p_prdt p
     join p_mete mete
@@ -197,11 +204,13 @@ from
     JOIN p_mtag mtag
     join p_cls pcls
     join p_mete clsmete
+    join p_btag btag
 ON
     p.meno=mete.meno AND
     p.ctno=cert.ctno AND
     p.stno=stag.stno AND
     stag.mtno = mtag.mtno AND
+    mtag.btno = btag.btno AND
     pcls.cno= cert.cno AND
     pcls.mono = clsmete.meno
 where
@@ -285,6 +294,7 @@ where
                 me2.pstno as me2pstno,
                 me2.bas_addr as me2bas,
                 me2.det_addr as me2det
+                
                 
         FROM
             p_prdt p

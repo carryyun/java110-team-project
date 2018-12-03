@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.Time;
 import java.util.HashMap;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -13,6 +14,7 @@ import bitcamp.java110.cms.dao.ClassFileDao;
 import bitcamp.java110.cms.dao.TimetableDao;
 import bitcamp.java110.cms.domain.ClassFile;
 import bitcamp.java110.cms.domain.Classes;
+import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.Timetable;
 import bitcamp.java110.cms.service.ClassService;
 
@@ -26,14 +28,17 @@ public class ClassServiceImpl implements ClassService{
   @Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
   @Override
   public void classadd(Classes classes, List<String> filelist,
-      String removefiles, String days,String date,String edate,String stime, String etime) {
+      String removefiles, String days,String date,String edate,String stime, String etime,HttpSession session) {
+    Mentee loginUser = new Mentee();
+    loginUser = (Mentee)session.getAttribute("loginUser");
+    
     if(classes.getDetAddr() == null) {
       classes.setDetAddr(null);
     }else if(classes.getCfile().length() > 0) {
       classes.setCfile(classes.getCfile().substring(classes.getCfile().length()-11, classes.getCfile().length()));
     }
-    classes.setMtno(1);
-    classes.setMono(1);
+    classes.setMtno(loginUser.getNo());
+    classes.setMono(loginUser.getNo());
     classDao.classinsert(classes);
     
     if(classes.getType().equals("단기")) {
@@ -140,6 +145,7 @@ public class ClassServiceImpl implements ClassService{
 
   @Override
   public int statupdate(Classes classes) {
+   System.out.println("서비스 "+classes.getNote());
     return classDao.statupdate(classes);
   }
 

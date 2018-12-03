@@ -28,7 +28,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"  type="text/javascript"></script>
     
     </head>
-<body>
+<body style="background-color:#F2F4F7;">
 <div class="container">
 <div class="row">
 <div class="col-lg-12">
@@ -43,7 +43,7 @@
              </div>
               
               <div id="classinfo">
-               <div style="border: 2px solid red; width: 400px; height: auto; float: right; top:0">
+               <div style="width: 400px; height: auto; float: right; top:0">
                 <div>
                   	<input type="radio" id="contactChoice1" name="typeChk" value="단기" checked="checked">
 				    <label for="contactChoice1">oneday</label>
@@ -51,16 +51,14 @@
 				    <label for="contactChoice2">allday</label>
                 </div>
                 <div id="calendar"></div>
-                <div id="oneday-btn" style="border:1px solid black; width:400px; height: 200px; float: right;"><input type="text" class="view" readonly value="수업 날짜">
+                <div id="oneday-btn"><input type="text" class="view" readonly value="수업 날짜">
                 <input type="button" id="sledel" value="선택삭제" style="float: right;'">
                 <select id="daylist" size="5" style="width: 400px;"></select>
                 </div>
                 </div>
-                
                 <div style="position:absolute; width: 736px;
-                float:right; top: 0; border: 2px solid red;">
-                
-                
+                float:right; top: 0;">
+
                <div>
                 <input type="text" class="view" readonly value="시간당 금액" >
                 <input type="number" name="pric" id="cpay" oninput="maxLengthCheck2(this)" maxlength="6" placeholder="필수입력항목">원
@@ -73,8 +71,7 @@
                <div id="alldaytime">
                 <input type="text" class="view" readonly value="수업시간">
                 <input type="text" name="stime" id="ctime" readonly placeholder="시작시간">~
-                <input type="text" name="etime" id="ctime2" readonly placeholder="종료시간">
-                <input type="button" onclick="add()"  value="확인" ><br>
+                <input type="text" name="etime" id="ctime2" readonly placeholder="종료시간"><br>
                 <input type="text"  class="view" readonly value="일 수업시간">
                 <input type="text" name="time" id="cttime" readonly  >
                </div>
@@ -98,7 +95,7 @@
                        <input type="file" id="files" name="files" multiple
 						accept="image/*"><br />
 	
-						<div id="selectedFiles" style="border: 1px solid red;"></div>
+						<div id="selectedFiles" ></div>
                 	 </div>
                </div>
              </div>
@@ -108,10 +105,10 @@
                  <textarea id="classcowdog" name="tinfo"></textarea>
              <h2>강의설명</h2>
                  <textarea id="classtteok" name="cinfo"></textarea>
-                 <input id="days" type="text" name="days">
-                 <input id="removefiles" type="text" name="removefiles">
+                 <input id="days" type="hidden" name="days">
+                 <input id="removefiles" type="hidden" name="removefiles">
                  <input type="hidden" id="type" name="type" value="단기">  
-              	 <input type="submit" id="clsinsert" value="클래스 등록" />
+              	 <input type="submit" id="clsinsert"  value="클래스 등록" />
               </form>
             </div>
         </div>
@@ -123,6 +120,10 @@
 function emptychk(){
 	if($("#ctitl").val().length < 3){
 		swal("제목은 최소 3글자이상 입력해주세요.");
+		return false;
+	}else if($("#imgInput").val().substr(0 , 16) != "https://youtu.be" ||
+			$("#imgInput").val().substr(0 , 23) != "https://www.youtube.com" ){
+		swal("유튜브 URL만 가능합니다.");
 		return false;
 	}else if($("#rnumber").val() == ""){
 		swal("모집인원을 입력해주세요");
@@ -308,6 +309,55 @@ $(document.body).on('click', '.remove-file-btn', function (event) {
 	   interval: 60,
 	   timeFormat :'H:mm',
 	   change: function(time) { 
+		   if($("#ctime2").val().length == 5){
+			    if($("#ctime").val().length == 5){
+					var ct2 = $("#ctime2").val().substr(0,2);
+					var ct1 = $("#ctime").val().substr(0,2);
+			    	var alltime = ct2-ct1
+			    	if(ct2 > ct1){
+			  	  		$("#cttime").val(Math.abs(alltime));	    		
+			    	}else if(ct2 < ct1){
+			    		swal("시작시간이 끝나는시간보다 작아야합니다");
+			    	}else if(ct2 = ct1){
+			    		swal("시작시간과 끝나는시간이 같으면안됩니다.");
+			    	}
+			    }else if($("#ctime").val().length == 4){
+			    	var ct2 = $("#ctime2").val().substr(0,2);
+					var ct1 = $("#ctime").val().substr(0,1);
+			    	var alltime = ct2-ct1
+			    	if(Math.abs(ct2)>Math.abs(ct1)){
+			  	  		$("#cttime").val(Math.abs(alltime));	    		
+			    	}else if(Math.abs(ct2)<Math.abs(ct1)){
+			    		swal("시작시간이 끝나는시간보다 작아야합니다");
+			    	}else if(Math.abs(ct2)=Math.abs(ct1)){
+			    		swal("시작시간과 끝나는시간이 같으면안됩니다.");
+			    	}
+			    }
+			}else if($("#ctime2").val().length == 4){
+				if($("#ctime").val().length == 4){
+					var ct2 = $("#ctime2").val().substr(0,1);
+					var ct1 = $("#ctime").val().substr(0,1);
+			    	var alltime = ct2-ct1
+			    	if(ct2 > ct1){
+			  	  		$("#cttime").val(Math.abs(alltime));	    		
+			    	}else if(ct2 < ct1){
+			    		swal("시작시간이 끝나는시간보다 작아야합니다");
+			    	}else if(ct2 = ct1){
+			    		swal("시작시간과 끝나는시간이 같으면안됩니다.");
+			    	}
+				}else if($("#ctime").val().length == 5){
+					var ct2 = $("#ctime2").val().substr(0,1);
+					var ct1 = $("#ctime").val().substr(0,2);
+			    	var alltime = ct2-ct1
+			    	if(Math.abs(ct2)>Math.abs(ct1)){
+			  	  		$("#cttime").val(Math.abs(alltime));	    		
+			    	}else if(Math.abs(ct2)<Math.abs(ct1)){
+			    		swal("시작시간이 끝나는시간보다 작아야합니다");
+			    	}else if(Math.abs(ct2)=Math.abs(ct1)){
+			    		swal("시작시간과 끝나는시간이 같으면안됩니다.");
+			    	}
+				}
+			}
        $("#ctime2").timepicker("option","minTime", time);
 	   }
    });
@@ -327,7 +377,58 @@ $(document.body).on('click', '.remove-file-btn', function (event) {
    
    $( "#ctime2" ).timepicker({
 	   interval: 60,
-	   timeFormat :'H:mm'
+	   timeFormat :'H:mm',
+	   change: function(){
+		   if($("#ctime2").val().length == 5){
+			    if($("#ctime").val().length == 5){
+					var ct2 = $("#ctime2").val().substr(0,2);
+					var ct1 = $("#ctime").val().substr(0,2);
+			    	var alltime = ct2-ct1
+			    	if(ct2 > ct1){
+			  	  		$("#cttime").val(Math.abs(alltime));	    		
+			    	}else if(ct2 < ct1){
+			    		swal("시작시간이 끝나는시간보다 작아야합니다");
+			    	}else if(ct2 = ct1){
+			    		swal("시작시간과 끝나는시간이 같으면안됩니다.");
+			    	}
+			    }else if($("#ctime").val().length == 4){
+			    	var ct2 = $("#ctime2").val().substr(0,2);
+					var ct1 = $("#ctime").val().substr(0,1);
+			    	var alltime = ct2-ct1
+			    	if(Math.abs(ct2)>Math.abs(ct1)){
+			  	  		$("#cttime").val(Math.abs(alltime));	    		
+			    	}else if(Math.abs(ct2)<Math.abs(ct1)){
+			    		swal("시작시간이 끝나는시간보다 작아야합니다");
+			    	}else if(Math.abs(ct2)=Math.abs(ct1)){
+			    		swal("시작시간과 끝나는시간이 같으면안됩니다.");
+			    	}
+			    }
+			}else if($("#ctime2").val().length == 4){
+				if($("#ctime").val().length == 4){
+					var ct2 = $("#ctime2").val().substr(0,1);
+					var ct1 = $("#ctime").val().substr(0,1);
+			    	var alltime = ct2-ct1
+			    	if(ct2 > ct1){
+			  	  		$("#cttime").val(Math.abs(alltime));	    		
+			    	}else if(ct2 < ct1){
+			    		swal("시작시간이 끝나는시간보다 작아야합니다");
+			    	}else if(ct2 = ct1){
+			    		swal("시작시간과 끝나는시간이 같으면안됩니다.");
+			    	}
+				}else if($("#ctime").val().length == 5){
+					var ct2 = $("#ctime2").val().substr(0,1);
+					var ct1 = $("#ctime").val().substr(0,2);
+			    	var alltime = ct2-ct1
+			    	if(Math.abs(ct2)>Math.abs(ct1)){
+			  	  		$("#cttime").val(Math.abs(alltime));	    		
+			    	}else if(Math.abs(ct2)<Math.abs(ct1)){
+			    		swal("시작시간이 끝나는시간보다 작아야합니다");
+			    	}else if(Math.abs(ct2)=Math.abs(ct1)){
+			    		swal("시작시간과 끝나는시간이 같으면안됩니다.");
+			    	}
+				}
+			}
+	   }
    });
 	 //  change: function(time) {
      //      var element = $(this), text;
@@ -358,6 +459,7 @@ $(document.body).on('click', '.remove-file-btn', function (event) {
 	$("#cdate").datepicker({
 		dateFormat: 'yy-mm-dd',
 		onSelect: function(selected) {
+			
 			$("#cdate2").datepicker("option","minDate", selected)
 		}
 	});
@@ -385,8 +487,6 @@ $("#sledel").click(function(){
    		days.push($(e).val())
    	});
    	$('#days').val(days);
-   	console.log($('#files').val());
-   	console.log($('#files').length);
 });
    	
    	
@@ -479,59 +579,6 @@ if (object.value.length > object.maxLength){
 }else if(object.value < 1){
 	swal("최소인원은 1명이상입니다.");
 }
-}
-
-
-function add(){
-	if($("#ctime2").val().length == 5){
-	    if($("#ctime").val().length == 5){
-			var ct2 = $("#ctime2").val().substr(0,2);
-			var ct1 = $("#ctime").val().substr(0,2);
-	    	var alltime = ct2-ct1
-	    	if(ct2 > ct1){
-	  	  		$("#cttime").val(Math.abs(alltime));	    		
-	    	}else if(ct2 < ct1){
-	    		swal("시작시간이 끝나는시간보다 작아야합니다");
-	    	}else if(ct2 = ct1){
-	    		swal("시작시간과 끝나는시간이 같으면안됩니다.");
-	    	}
-	    }else if($("#ctime").val().length == 4){
-	    	var ct2 = $("#ctime2").val().substr(0,2);
-			var ct1 = $("#ctime").val().substr(0,1);
-	    	var alltime = ct2-ct1
-	    	if(Math.abs(ct2)>Math.abs(ct1)){
-	  	  		$("#cttime").val(Math.abs(alltime));	    		
-	    	}else if(Math.abs(ct2)<Math.abs(ct1)){
-	    		swal("시작시간이 끝나는시간보다 작아야합니다");
-	    	}else if(Math.abs(ct2)=Math.abs(ct1)){
-	    		swal("시작시간과 끝나는시간이 같으면안됩니다.");
-	    	}
-	    }
-	}else if($("#ctime2").val().length == 4){
-		if($("#ctime").val().length == 4){
-			var ct2 = $("#ctime2").val().substr(0,1);
-			var ct1 = $("#ctime").val().substr(0,1);
-	    	var alltime = ct2-ct1
-	    	if(ct2 > ct1){
-	  	  		$("#cttime").val(Math.abs(alltime));	    		
-	    	}else if(ct2 < ct1){
-	    		swal("시작시간이 끝나는시간보다 작아야합니다");
-	    	}else if(ct2 = ct1){
-	    		swal("시작시간과 끝나는시간이 같으면안됩니다.");
-	    	}
-		}else if($("#ctime").val().length == 5){
-			var ct2 = $("#ctime2").val().substr(0,1);
-			var ct1 = $("#ctime").val().substr(0,2);
-	    	var alltime = ct2-ct1
-	    	if(Math.abs(ct2)>Math.abs(ct1)){
-	  	  		$("#cttime").val(Math.abs(alltime));	    		
-	    	}else if(Math.abs(ct2)<Math.abs(ct1)){
-	    		swal("시작시간이 끝나는시간보다 작아야합니다");
-	    	}else if(Math.abs(ct2)=Math.abs(ct1)){
-	    		swal("시작시간과 끝나는시간이 같으면안됩니다.");
-	    	}
-		}
-	}
 }
   $(document).ready(function() {
      $('#classcowdog').summernote();

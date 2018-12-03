@@ -118,6 +118,14 @@ public class MasterPageController {
     return menteeService.updateMtstat(mentee);
   }
   
+  @RequestMapping(value = "mtnote.do", method = {RequestMethod.GET, RequestMethod.POST})
+  public @ResponseBody int mtnote(int meno, char stat, String note) {
+    Mentee mentee = menteeService.get(meno);
+    mentee.setMtstat(stat);
+    mentee.setNote(note);
+    return menteeService.updateMtstat(mentee);
+  }
+  
   // 181121 고친거
   @RequestMapping(value = "reptstat.do", method = {RequestMethod.GET, RequestMethod.POST})
   public @ResponseBody int reptstat(int rtno, char stat) {
@@ -131,6 +139,16 @@ public class MasterPageController {
   public @ResponseBody int clsstat(int no, String stat) {
     Classes classes = classService.findBycno(no);
     classes.setStat(stat);
+    return classService.statupdate(classes);
+  }
+  
+  // 클래스에 노트 추가
+  @RequestMapping(value = "clsnote.do", method = {RequestMethod.GET, RequestMethod.POST})
+  public @ResponseBody int clsnote(int no, String stat, String note) {
+    Classes classes = classService.findBycno(no);
+    classes.setStat(stat);
+    classes.setNote(note);
+    System.out.println(note);
     return classService.statupdate(classes);
   }
 
