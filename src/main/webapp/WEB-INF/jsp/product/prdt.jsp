@@ -210,6 +210,8 @@
 		  <option onselect="">
 		</select> -->
 	</div>
+	
+	<%-- <jsp:include page="prodRegister.jsp"> </jsp:include> --%>
 	<!-- ===============필수포함=============== -->
 	<!-- Bootstrap core JavaScript -->
 	<script src="/vendor/jquery/jquery.min.js"></script>
@@ -317,7 +319,7 @@
                 html+='<input type="hidden" name="ctno" id="ctno" value=""';
                 html+='</div><br>';
                 html+='<div class="text-center" style="margin-top:10px">'
-                html+='<button type="submit" class="btn btn-default" style="margin:5px">등록</button>';
+                html+='<button type="submit" class="btn btn-default" style="margin:5px">선택</button>';
                 html+='<button type="button" class="btn btn-default" data-dismiss="modal" role="button">취소</button>';
                 html+='</div>';
                 html+=' </form>';
@@ -325,7 +327,6 @@
                 setDiv.innerHTML=html;
                 $('#ctno').val($('#cert option:selected').attr('id'));
             }
-            
         });
         
     }
