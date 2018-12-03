@@ -148,7 +148,7 @@
                                     <td class="text-center"><input type="checkbox" id="men-ck" class="men-ck" name="men-ck" value="${cl.no}"></td>
                                     <td class="text-center">${i.count}</td>
                                     <td class="text-center">${cl.mentee.name}(${cl.mentee.nick })</td><%-- ${cl.nick}(${cl.name}) --%>
-                                    <td class="text-center"><a class="button" href="#popup${i.count}">${cl.titl}</a></td>
+                                    <td class="text-center"><a class="button" href="../masterpage/detail?no=${cl.no }">${cl.titl}</a></td>
                                     <td class="text-center">${cl.middleTag.name}</td>
                                     <td class="text-center">${cl.rgdt}</td>
                                     <td class="text-center">

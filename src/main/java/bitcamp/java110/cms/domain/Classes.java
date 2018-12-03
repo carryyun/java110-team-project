@@ -22,6 +22,7 @@ public class Classes {
   private int mtno;
   private int star;
   private String stat;
+  private String note;
   
   private Mentee mentee;
   private MiddleTag middleTag;
@@ -36,6 +37,14 @@ public class Classes {
   private ClassOrder classOrder;
   private Cert cert;
   private Report report;
+  
+  
+  public String getNote() {
+    return note;
+  }
+  public void setNote(String note) {
+    this.note = note;
+  }
   public int getNo() {
     return no;
   }
