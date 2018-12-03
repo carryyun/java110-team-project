@@ -144,7 +144,7 @@ input[type="number"]::-webkit-inner-spin-button {
 		</div> <!-- <div class="col-lg-12 col-md-12 text-center"> -->
 	</div><!-- <div class="row"> -->
 </div><!-- <div class="container"> -->
-
+ 
 
 </body>
 </html>

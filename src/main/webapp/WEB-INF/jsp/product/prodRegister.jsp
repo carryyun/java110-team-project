@@ -170,7 +170,7 @@ div.row.imgDiv {
 				<!-- 등록 취소버튼 -->
 				<div class="col-lg-12 text-right">
 					<button type="button" id="submitBtn" class="btn btn-primary" style="background-color: #ec5453">등록</button>
-					<input type="button" class="btn" value="취소">
+					<input type="button" class="btn" onclick="closepage()" value="취소">
 				</div>
 			</form>
 		</div>
@@ -278,7 +278,12 @@ div.row.imgDiv {
         $("div#imgDiv" + no).remove();
     }
 </script>
+<script>
+function closepage(){
+    self.close();   //자기자신창을 닫습니다.
+}
 
+</script>
 
 
 <!-- checkbox disable input -->
