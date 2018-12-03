@@ -22,11 +22,8 @@ public class Classes {
   private int mtno;
   private int star;
   private String stat;
-<<<<<<< HEAD
   private String note;
-=======
   private String type;
->>>>>>> 828a7938d5245efd149332ac24698387d8eef73e
   
   private Mentee mentee;
   private Mentor mentor;
@@ -41,20 +38,18 @@ public class Classes {
   private Cert cert;
   private Report report;
   
-<<<<<<< HEAD
   
   public String getNote() {
     return note;
   }
   public void setNote(String note) {
     this.note = note;
-=======
+  }
   public Mentor getMentor() {
     return mentor;
   }
   public void setMentor(Mentor mentor) {
     this.mentor = mentor;
->>>>>>> 828a7938d5245efd149332ac24698387d8eef73e
   }
   public int getNo() {
     return no;
