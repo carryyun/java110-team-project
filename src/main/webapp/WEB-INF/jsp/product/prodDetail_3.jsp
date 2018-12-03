@@ -1,3 +1,4 @@
+
 <%@page import="bitcamp.java110.cms.domain.Product"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -29,16 +30,43 @@
                         </div>
                                 
                                 <h5 class="title mb-3">${product.classes.titl}</h5>
-                                <dl class="param param-feature row">
-                                    <dd class="col-lg-4 pr-1 text-center"><img class="clsMetoPhot" src="${product.classes.mentee.phot}" alt="${product.classes.mentee.phot}"> </dd>
-                                    <dd class="col-lg-8 pl-1"><strong>${product.classes.mentee.nick}</strong> 멘토님</dd>
+                               
+                                <dl class="param param-feature">[${product.bigTag.name}-${product.middleTagName}]</dl>
+                                <dl class="param param-feature"><strong>${product.classes.mentee.nick}</strong> 멘토님</dl>
+                               <dl class="param param-feature">${product.classes.basAddr}</dl> 
+                                
+                                <dl class="text-left">
+                                    <c:set var="clsstar" value ="${product.classes.star}"/>
+                                    <%
+                                        int clsstar = (int)pageContext.getAttribute("clsstar");
+                                    for(int i=0; i<5;i++){
+                                      if(i<clsstar){
+                                    %>
+                                    <img class="starimg" alt="star-on-big" src="/upload/img/raty/star-on-big.png"
+                                    style="width:20px; height:20px;">
+                                    <%}else{
+                                        %>
+                                    <img class="starimg" alt="star-off-big" src="/upload/img/raty/star-off-big.png"
+                                    style="width:20px; height:20px;">
+                                    <%
+                                            }
+                                        }
+                                    %>
                                 </dl>
-                                <dl class="param param-feature">ㅇㅇㅇㅇ원</dl>
-
-                                <dl class="param param-feature">ㅇㅇㅇ멘토</dl>
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                              <!--   <dl class="param param-feature">ddd멘토</dl>
                                         <dl class="param param-feature">
                                             <dd>ㅇㅇㄴㅇ</dd>
-                                        </dl>
+                                        </dl> -->
+                                        
+                                        
                                 <dl>
                                     <%-- <c:set var="clsstar" value ="ㅇㅇㅇ"/>
                                     <%

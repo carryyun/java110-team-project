@@ -204,7 +204,7 @@
                                 <dl class="param param-feature">
                                             <select name="time">
                                                 <c:forEach items="${clstimelist}" var="t">
-                                                    <option value="">날짜 : ${t.date} , 시간 : ${t.stime}</option>
+                                                    <option value="" >날짜 : ${t.date} , 시간 : ${t.stime}</option>
                                                 </c:forEach>
                                             </select>
                                 </dl>
@@ -660,7 +660,7 @@
                         </div>
                         <!-- <div class="row"> -->
 
-
+ 
 
                     </div>
                     <!-- <div class="detail_info"> -->
@@ -816,7 +816,7 @@ function deleterepnull(){
             button : "확인",
           })
 }
-function repins(no) {
+function repins(no) { /* 후기(댓글) 추가버튼 */
     var cno = ${detailclass.no};
     var conts = $('textarea#conts').val();
     var star = $('#star1-score').val();
@@ -849,8 +849,9 @@ function repins(no) {
                     icon : "success",
                     button : "확인",
                   })
-                /* location.href="detail?no="+${detailclass.no}; */
                 location.reload();
+                var html ="";
+                
             },error : function(error,status){
                 swal({
                     text : "이미 후기를 등록을 하셨습니다.",
@@ -1062,10 +1063,10 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
     mapOption = {
         center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
         level: 7 // 지도의 확대 레벨
-    };  
+    }; 
 
 // 지도를 생성합니다    
-var map = new daum.maps.Map(mapContainer, mapOption); 
+var map = new daum.maps.Map(mapContainer, mapOption);
 
 // 주소-좌표 변환 객체를 생성합니다
 var geocoder = new daum.maps.services.Geocoder();
@@ -1136,12 +1137,12 @@ geocoder.addressSearch('${detailclass.basAddr}', function(result, status) {
                 if (position > 985) {
                     $(id).css("position", "fixed-top");
                     $(id).css("top", position + "px");
-                    $(id).css("width", "1110px");
+                    /* $(id).css("width", "1110px"); */
 
                 } else {
                     $(id).css("top", (testtTop) + "px");
                     $(id).css("position", "absolute");
-                    $(id).css("width", "1110px");
+                    /* $(id).css("width", "1110px"); */
                 }
             });
         }

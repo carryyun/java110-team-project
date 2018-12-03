@@ -258,12 +258,8 @@ public class ProductController {
         index++;
       }
     }
-    /*try {
-      Thread.sleep(3000);
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
-    }*/
-    return "redirect:detail?no=" + result;
+    
+    return "detail?no=" + result;
   }
 }
 
