@@ -72,5 +72,10 @@ public class ProductBaktServiceImpl implements ProductBaktService {
     productBaktDao.delete(pbno);
   }
 
+  @Override
+  public List<ProductBakt> sumByMeno(int no) {
+    return productBaktDao.sumByMeno(no);
+  }
+
 
 }

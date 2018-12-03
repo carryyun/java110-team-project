@@ -113,7 +113,9 @@
 									<div class="totals">
 										<div class="totals-item totals-item-total">
 											<label> 최종 결제 금액</label>
-											<div class="totals-value" id="cart-total">0</div>
+                                            <c:forEach items="${sumList}" var="r">
+											<div class="totals-value" id="cart-total">${r.sum }</div>
+                                            </c:forEach>
 										</div>
 									</div>
 
