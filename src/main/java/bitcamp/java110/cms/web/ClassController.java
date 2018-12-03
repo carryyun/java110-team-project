@@ -229,14 +229,15 @@ public class ClassController {
   }
   
   @RequestMapping("detail")
-  public void findByCno(@RequestParam(defaultValue="1") int pageNo, @RequestParam(defaultValue="5") int pageSize, 
+  public void findByCno(@RequestParam(defaultValue="1") int reppageNo, @RequestParam(defaultValue="5") int reppageSize, 
+      @RequestParam(defaultValue="1") int qnapageNo, @RequestParam(defaultValue="5") int qnapageSize, 
       Model model,int no ,HttpSession session) {
     
-    List<ClassRep> clsreqlist = classrepService.listbycno(no , pageNo , pageSize);
+    List<ClassRep> clsreqlist = classrepService.listbycno(no , reppageNo , reppageSize);
     
     Classes detailclass = classService.findBycno(no);
     
-    List<ClassQna> clsqnalist = classqnaService.listbycno(5, 5, no);
+    List<ClassQna> clsqnalist = classqnaService.listbycno(no, qnapageNo, qnapageSize);
     
     List<ClassFile> clsfilelist = classFileService.findByCno(no);
     
@@ -244,12 +245,15 @@ public class ClassController {
     
     int countrep = classrepService.countbycno(no);
     
+    int countqna = classqnaService.countbycno(no);
+    
     model.addAttribute("clsreqlist",clsreqlist);
     model.addAttribute("detailclass",detailclass);
     model.addAttribute("clsqnalist",clsqnalist);
     model.addAttribute("clsfilelist",clsfilelist);
     model.addAttribute("clstimelist",clstimelist);
     model.addAttribute("countrep",countrep);
+    model.addAttribute("countqna",countqna);
   }
   
   @RequestMapping("findByptno")

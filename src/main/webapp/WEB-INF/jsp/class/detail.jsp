@@ -212,7 +212,6 @@
                                 <hr>
                                 <!-- row.// -->
                                 <!---->
-                                <hr>
                                 <a href="#" class="btn btn-lg btn-primary text-uppercase"
                                 onClick="cls"> 수업 신청하기 </a>
                                 <a href="#" class="btn btn-lg btn-outline-primary text-uppercase"
@@ -476,24 +475,20 @@
                         <%
                             int repsize = (int)pageContext.getAttribute("repsi");
                             int reppage = (repsize/5)+1;
-                            int pno = 1;
                         %>
                             <li class="page-item"><a class="page-link" 
-                            onClick="prev(${countrep})">prev</a></li>
+                            onClick="prevrep(${countrep})">prev</a></li>
                                 
                                 <%
-                                    for(pno = 1; pno<=reppage; pno++){
+                                    for(int pno = 1; pno<=reppage; pno++){
                                 %>
                                     <li class="page-item"><a class="page-link" 
-                                    href="detail?no=${detailclass.no}&pageNo=<%=pno%>&pageSize=5"><%=pno%></a></li>
+                                    href="detail?no=${detailclass.no}&reppageNo=<%=pno%>&reppageSize=5"><%=pno%></a></li>
                                 <%
                                     }
                                 %>
                             <li class="page-item"><a class="page-link" 
-                            onClick="next(${countrep})">next</a></li>
-                         <%
-                            System.out.println(pno);
-                         %>
+                            onClick="nextrep(${countrep})">next</a></li>
                         </ul>
                   </nav>
                     <div class="detail_info">
@@ -589,11 +584,6 @@
                                         </tr>
                                     </c:forEach>
                                     </tbody>
-                                    <!-- <tfoot>
-                                        <tr>
-                                            <td>1</td><td>2</td><td>3</td><td>4</td>
-                                        </tr>
-                                    </tfoot> -->
                                 </table>
                                 
                                 <div class="center"><button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block"
@@ -668,14 +658,25 @@
                     <nav aria-label="Page navigation example" id="product-pn" 
                     style="margin : auto; margin-top: -40px;">
                         <ul class="pagination justify-content-center">
-                            <li class="page-item disabled "><a class="page-link" href="#"
-                                tabindex="-1"> <</a></li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">4</a></li>
-                            <li class="page-item"><a class="page-link" href="#">5</a></li>
-                            <li class="page-item"><a class="page-link" href="#">></a></li>
+                        <c:set var="qnasi" value="${countqna}" />
+                        <%
+                            int qnasize = (int)pageContext.getAttribute("qnasi");
+                            int qnapage = (qnasize/5)+1;
+                        %>
+                            <li class="page-item"><a class="page-link" 
+                            onClick="prevqna(${countqna})">prev</a></li>
+                                
+                                <%
+                                    for(int qno = 1; qno<=qnapage; qno++){
+                                %>
+                                    <li class="page-item"><a class="page-link" 
+                                    href="detail?no=${detailclass.no}&qnapageNo=<%=qno%>&qnapageSize=5"><%=qno%></a></li>
+                                <%
+                                	System.out.println(qno);
+                                    }
+                                %>
+                            <li class="page-item"><a class="page-link" 
+                            onClick="nextqna(${countrep})">next</a></li>
                         </ul>
                     </nav>
                 
