@@ -9,7 +9,7 @@
                           
         <div class="panel-body">
             <table class="table table-condensed" style="border-collapse:collapse;">
-
+ 
                 <thead> 
                     <tr id="th-pay">
                        
@@ -20,8 +20,8 @@
                          <th width="15%">수업시간</th>
                          <th width="10%">가격</th>
                          <th width="10%">수료상태</th>
-
-                        
+ 
+                         
                     </tr>
                 </thead>
                 <tbody>
