@@ -4,6 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+
+    
 <div class="col-lg-12"> 
     <div class="panel panel-default">
 
@@ -28,8 +30,7 @@
  <c:forEach items="${pmanage}" var="p" varStatus="i">
                             <tr id="tb-pay">
                             <td>${i.count}</td>
-                            <td><a href='#'><img src="${p.phot}" width="200px" height="150px"/></a>
-                            </td>
+                            <td><a href='#'><img src="${p.phot}" width="200px" height="150px"/></a></td>
                             <td>${p.titl}<br></td>
                             <td>${p.pric}</td>
                             
@@ -38,7 +39,7 @@
                             <button type="button" class="btn btn-primary" style="width:100px; margin:2px;">수정</button>
                             <button type="button" class="btn btn-primary" style="width:100px; margin:2px;">삭제</button>
                             <button type="button" class="btn btn-primary" style="width:100px; margin:2px;">판매종료</button>
-                            <button type="button" class="btn btn-primary" style="width:100px; margin:2px;">주문자 목록</button>
+                            <button id="buyer-${i.index}" type="button" class="btn btn-warning"  style="width:100px; margin:2px;">주문자 목록</button>
                             </td>
                             </tr>
 </c:forEach>   
@@ -58,16 +59,19 @@
 
 <script>
 
-function writeparc(){
-    
-swal("송장번호를 입력하세요", {
-    content: "input",
-  })
-  .then((value) => {
-    swal(`${value}`);
-  });
-  
-}
+<c:forEach items="${pmanage}" var="pp" varStatus="i">
+    $("#buyer-"+${i.index}).click(function(){
+     
+        $("#menu6").fadeOut(200);
+        
+        setTimeout(function() {
+            $("#menu6buyer").load("/app/mypage/menu6buyer");
+            $("#menu6buyer").fadeIn(200);
+        }, 200);
+       
+    });
+    </c:forEach>
+
 </script>
 
 

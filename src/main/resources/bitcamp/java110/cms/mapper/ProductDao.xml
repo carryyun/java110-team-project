@@ -58,6 +58,8 @@
         <result column="stno"    property="stno"/>
         <result column="star"    property="star"/>
         
+       
+        <result column="poono"     property="productOrder.no"/>
         <result column="popric"     property="productOrder.tot_pric"/>
         <result column="payopt"      property="productOrder.payopt"/>
         <result column="paydt"     property="productOrder.paydt"/>
@@ -278,12 +280,14 @@ where
             
         SELECT  
                 p.*,
+                po.ono as poono,
                 po.cnt as pocnt,
+                po.parc_no,
                 po.tot_pric as popric,
                 po.payopt,
                 po.paydt,
                 po.parc_name,
-                po.parc_no,
+                
                 me2.name as me2name,
                 me2.nick as me2nick,
                 me2.phone as me2phone,
@@ -299,7 +303,7 @@ where
             JOIN p_mete me2 ON po.meno = me2.meno
     
         WHERE
-            me.meno = #{meno}
+            p.ptno = #{ptno}
 
         ORDER BY
             po.ono asc

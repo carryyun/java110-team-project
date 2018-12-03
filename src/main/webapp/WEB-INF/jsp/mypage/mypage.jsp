@@ -226,7 +226,7 @@
       
       
       <div id="con2"  class="switch-field" style="display:none; padding:0; position: absolute; bottom:0; left:26.8%;" >
-      <input type="radio" id="btn-menu4-2"" name="switch_2" value="42" checked/>
+      <input type="radio" id="btn-menu4-2" name="switch_2" value="42" checked/>
       <label for="btn-menu4-2" style="width:100px;">질문</label>
       <input type="radio" id="btn-menu4-3" name="switch_2" value="43" />
       <label for="btn-menu4-3" style="width:100px;">답변</label>
@@ -234,7 +234,7 @@
       
       
        <div id="con3"  class="switch-field" style="display:none; padding:0; position: absolute; bottom:0; left:50.8%;">
-      <input type="radio" id="btn-menu4-4"" name="switch_2" value="44" checked/>
+      <input type="radio" id="btn-menu4-4" name="switch_2" value="44" checked/>
       <label for="btn-menu4-4" style="width:100px;">질문</label>
       <input type="radio" id="btn-menu4-5" name="switch_2" value="45" />
       <label for="btn-menu4-5" style="width:100px;">답변</label>
@@ -308,6 +308,7 @@
                     <div id="menu5"></div>
                         
                     </div>
+                    </div>
                 </section>
 
 
@@ -319,7 +320,9 @@
                                   <hr color="black"    >
                         
                         <div id="menu6"></div>
+                        <div id="menu6buyer"></div>
                         
+                    </div>
                     </div>
                 </section>
 

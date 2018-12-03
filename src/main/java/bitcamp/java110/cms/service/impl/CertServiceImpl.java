@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import bitcamp.java110.cms.dao.CertDao;
 import bitcamp.java110.cms.domain.Cert;
 import bitcamp.java110.cms.domain.Cs;
+import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.service.CertService;
 
 @Service
@@ -31,8 +32,8 @@ public class CertServiceImpl implements CertService {
 
   
   @Override
-  public int insert(Cert cert) {
-    return certDao.insert(cert);
+  public int insertCert(Cert cert) {
+    return certDao.insertCert(cert);
   }
 
 }

@@ -199,11 +199,14 @@ public class MypageController {
   }
   
   @RequestMapping(value = "insertCert.do", method = {RequestMethod.POST})
-  public @ResponseBody int insert(Cert cert) {
+  public @ResponseBody int insertCert(Cert cert) {
     
-    
-    return certService.insert(cert);
+    return certService.insertCert(cert);
   }
+  
+ 
+  
+  
   
   
   @GetMapping("menu6")
@@ -212,11 +215,15 @@ public class MypageController {
     List<Product> pmanage = productService.listBySeller(1,10,5);
     model.addAttribute("pmanage", pmanage );
     
-    for( Product p : pmanage)
-    {System.out.println(p.getTitl());}
+  }
+  
+  
+  @GetMapping("menu6buyer")
+  public void menu6buyer(Model model) {
     
     List<Product> pmanage2 = productService.listBySeller2(1,10,5);
     model.addAttribute("pmanage2", pmanage2 );
+    
   }
   
   

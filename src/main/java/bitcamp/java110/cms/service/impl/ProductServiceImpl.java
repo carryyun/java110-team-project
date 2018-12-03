@@ -58,11 +58,11 @@ public class ProductServiceImpl implements ProductService {
 
   //마이페이지에서 판매자번호로조회2
   @Override
-  public List<Product> listBySeller2(int pageNo, int pageSize, int meno) {
+  public List<Product> listBySeller2(int pageNo, int pageSize, int ptno) {
    HashMap<String, Object> params = new HashMap<>();
    params.put("rowNo", (pageNo - 1) * pageSize);
    params.put("size", pageSize);
-   params.put("meno", meno);
+   params.put("ptno", ptno);
 
    return productDao.findBySeller2(params);
  }
