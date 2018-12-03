@@ -133,6 +133,16 @@ public class MasterPageController {
     classes.setStat(stat);
     return classService.statupdate(classes);
   }
+  
+  // 클래스에 노트 추가
+  @RequestMapping(value = "clsnote.do", method = {RequestMethod.GET, RequestMethod.POST})
+  public @ResponseBody int clsnote(int no, String stat, String note) {
+    Classes classes = classService.findBycno(no);
+    classes.setStat(stat);
+    classes.setNote(note);
+    System.out.println(note);
+    return classService.statupdate(classes);
+  }
 
   @GetMapping("mentorreqlist")
   public void mentorlist(Model model) {

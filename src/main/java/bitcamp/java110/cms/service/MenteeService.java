@@ -42,5 +42,11 @@ public interface MenteeService {
   
   // 멘토신청 처리
   int updateMtstat(Mentee mentee);
+  
+  // 마이페이지 menu1
+  int updateProfile(Mentee mentee);
+  int updatePwd(Mentee mentee);
+  int updatePhone(Mentee mentee);
+  int updateAddr(Mentee mentee);
 
 }

@@ -25,6 +25,7 @@
         <result column="mtno"  		property="mtno"/>
         <result column="stat"       property="stat"/>
         <result column="star"		property="star"/>
+        <result column="note"       property="note"/>
         
         <result column="meno"		property="mentee.no"/>
         <result column="name"  		property="mentee.name"/>
@@ -56,6 +57,7 @@
         <result column="mono"       property="mono"/>
         <result column="mtno"       property="mtno"/>
         <result column="star"       property="star"/>
+        <result column="note"       property="note"/>
         <result column="mtname"     property="middleTag.name"/>
         <result column="btno"       property="bigTag.no"/>
         <result column="btname"     property="bigTag.name"/>
@@ -66,6 +68,7 @@
     <resultMap type="Classes" id="classMapMypage">
         <id     column="cno"        property="no"/>
         <result column="titl"       property="titl"/>
+        <result column="note"       property="note"/>
         <result column="btname"     property="bigTag.name"/>
         <result column="mtname"     property="middleTag.name"/>
         <result column="capa"       property="capa"/>
@@ -73,6 +76,7 @@
         <result column="me2name"    property="mentee2.name"/>
         <result column="me2nick"    property="mentee2.nick"/>
         <result column="me2phone"   property="mentee2.phone"/>
+        <result column="me2no"      property="mentee2.no"/>
         <result column="certtype"   property="cert.type"/>
     </resultMap>
     
@@ -299,6 +303,7 @@
             me2.name as me2name,
             me2.nick as me2nick,
             me2.phone as me2phone,
+            me2.meno as me2no,
             cert.type as certtype
             
 
@@ -317,9 +322,11 @@
            
     </select>
     
+    
     <update id="statupdate" parameterType="Classes">
     update p_cls
         <set>
+            <if test="note != null">note = #{note},</if>
             <if test="stat != null">stat = #{stat}</if>
         </set>
        where 
