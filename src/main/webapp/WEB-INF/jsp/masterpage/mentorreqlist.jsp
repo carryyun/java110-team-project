@@ -302,10 +302,18 @@
                          </div>
                          
                             </div>
+                            
+                        
                             <button type="button" class="btn btn-primary" id="mas-p1" name="Y" value="${ml.no}" onclick="stat(value,name)">승락</button>
                             <button type="button" class="btn btn-primary" id="mas-p2" name="N" value="${ml.no}" onclick="stat(value,name)">거절</button>
+                        <div class="row">
+                        <div class="col-lg-12">
+                        
                         </div>
-
+                        </div>
+                        
+                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -349,6 +357,7 @@
                                             onclick="checkItem()">멘토
                                             등록 반려</button>
                                     </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -363,6 +372,7 @@
 <script src="/vendor/jquery/jquery.min.js"></script>
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script>
+
 $(document).ready(function() {
     var activeSystemClass = $('.list-group-item.active');
 

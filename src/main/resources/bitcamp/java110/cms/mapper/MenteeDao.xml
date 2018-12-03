@@ -240,9 +240,12 @@
     </select> 
     
     <update id="updateMtstat" parameterType="Mentee">
-        UPDATE p_mete 
-           SET
-            mtstat = #{mtstat}
+        UPDATE 
+            p_mete
+        <set>
+            <if test="note != null">note = #{note},</if>
+            <if test="stat != null">mtstat = #{mtstat}</if>
+        </set>
          where meno = #{no}
     </update>
     
