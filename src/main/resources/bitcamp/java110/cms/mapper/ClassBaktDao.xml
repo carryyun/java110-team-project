@@ -18,6 +18,7 @@
   <result column="ttno" property="timetable.no"/>
   <result column="date" property="timetable.date"/>
   <result column="stime" property="timetable.stime"/>
+  <result column="sum" property="sum"/>
   
   
   <result column="nick" property="mentorNick"/>
@@ -69,7 +70,8 @@
            cls.pric, 
            cls.cfile, 
            ttab.stime,
-           bakt.cbno 
+           bakt.cbno
+            
        FROM p_cls_bakt bakt 
             join p_mete mete
                 on bakt.meno = mete.meno
@@ -82,7 +84,27 @@
             join p_mete mete2
                 on mete2.meno = meto.mono
         WHERE
-            bakt.meno=#{value}
+            bakt.meno=#{meno}
+    
+  </select>
+  
+  <select id="sumAllByMeno" resultMap="classBaktMap" parameterType="int">
+       SELECT 
+            sum(cls.pric) as sum
+            
+       FROM p_cls_bakt bakt 
+            join p_mete mete
+                on bakt.meno = mete.meno
+            join p_cls_ttab ttab
+                on bakt.ctno = ttab.ctno
+            join p_cls cls
+                on ttab.cno = cls.cno 
+            join p_meto meto
+                on meto.mono = cls.mono
+            join p_mete mete2
+                on mete2.meno = meto.mono
+        WHERE
+            bakt.meno=#{meno}
     
   </select>
 </mapper>

@@ -6,7 +6,7 @@
 
   function cbox1(chkbox,meno)
     {
-        
+         
        if ( chkbox.checked == true )
             {
             text1.readOnly = false;

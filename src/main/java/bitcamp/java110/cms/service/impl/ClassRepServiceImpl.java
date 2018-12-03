@@ -22,10 +22,10 @@ public class ClassRepServiceImpl implements ClassRepService{
   }
 
   @Override
-  public List<ClassRep> listbycno(int cno , int pageNo , int pageSize) {
+  public List<ClassRep> listbycno(int cno , int reppageNo , int reppageSize) {
     HashMap<String,Object> params = new HashMap<>();
-    params.put("rowNo", (pageNo - 1) * pageSize);
-    params.put("size", pageSize);
+    params.put("rowNo", (reppageNo - 1) * reppageSize);
+    params.put("size", reppageSize);
     params.put("no", cno);
     return classRepDao.findByCno(params);
   }
