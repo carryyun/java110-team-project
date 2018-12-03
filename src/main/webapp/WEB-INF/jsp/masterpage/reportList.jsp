@@ -173,13 +173,11 @@
                                                     <td
                                                         class="text-center">${rl.rtdt}</td>
                                                     <td
-                                                        class="text-center"><button
-                                                            class="btn btn-light" id="block-cho">
-                                                            <a
-                                                                class="button"
+                                                        class="text-center">
+                                                            <a 
+                                                                class="btn btn-light"
                                                                 href="#popup${i.index}" style="color:black;">상세
-                                                                보기</a>
-                                                        </button></td>
+                                                                보기</a></td>
                                                 </tr>
                                             </c:forEach>
                                         </tbody>

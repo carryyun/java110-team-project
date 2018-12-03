@@ -126,9 +126,8 @@
 
 								<div class="container">
 									<div class="clearfix">
-										<a class="btn btn-primary float-right mb-3" data-toggle="modal"
-											data-target="#squarespaceModal" href="#"
-											onclick="showCert('${sessionScope.loginUser.no}')">클래스 개강 </a>
+										<a class="btn btn-primary float-right mb-3" 
+											data-target="#squarespaceModal" href="classadd">클래스 개강 </a>
 									</div>
 									<div class="clslist row">
 										<c:forEach items="${clslist}" var="cl" varStatus="i"> 

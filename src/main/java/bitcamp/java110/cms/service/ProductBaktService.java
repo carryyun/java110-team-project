@@ -20,4 +20,6 @@ public interface ProductBaktService {
   int update(ProductBakt productbakt);
   void delete(int pbno);
   
+  List<ProductBakt> sumByMeno(int no);
+  
 }

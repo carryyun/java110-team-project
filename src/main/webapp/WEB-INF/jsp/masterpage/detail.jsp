@@ -316,7 +316,7 @@ function anserclick(no){
             location.href='classreqlist'
             },error : function(error,status){
                 swal({
-                    text : "이미 답변한 문의이거나 삭제된 문의입니다.",
+                    text : "이미 확인한 클래스 입니다.",
                     button : "확인"
                   })    
             }

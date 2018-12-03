@@ -143,13 +143,7 @@
                                                 items="${MentorRequestList}"
                                                 var="ml" varStatus="i">
                                                 <tr id="rmv${ml.no}">
-                                                    <td
-                                                        class="text-center"><input
-                                                        type="checkbox"
-                                                        id="men-ck"
-                                                        class="men-ck"
-                                                        name="men-ck"
-                                                        value="${ml.no}"></td>
+                                                <td></td>
                                                     <td
                                                         class="text-center">${i.count}</td>
                                                     <td
@@ -302,9 +296,17 @@
                          </div>
                          
                             </div>
+                            <br/>
                             <button type="button" class="btn btn-primary" id="mas-p1" name="Y" value="${ml.no}" onclick="stat(value,name)">승락</button>
-                            <button type="button" class="btn btn-primary" id="mas-p2" name="N" value="${ml.no}" onclick="stat(value,name)">거절</button>
+                            <button type="button" class="btn btn-primary" id="mas-p2" name="N" value="${ml.no}" onclick="clickN(${ml.no })">거절</button>
+                       
+                       
+                       <div>
+                        <textarea id="reje${ml.no }" style=" display:none; position:relative; margin-top:5%; left:2%; top:100%; resize:none; width:400px;" rows="2" placeholder="거절사유를 입력해주세요"></textarea>
+                        <button type="button" id="menty${ml.no}"  class="btn btn-primary btn-sm" style=" display:none; position:relative; left:5%; top:30%" onClick="anserclick(${ml.no})">확인</button>
                         </div>
+                        </div>
+                        
 
                     </div>
                 </div>
@@ -340,7 +342,7 @@
             </div>
 
 
-                            <div class="col-lg-12">
+                            <!-- <div class="col-lg-12">
                                 <div class="row">
                                     <div class="col-lg-12" id="btn">
                                         <button type="button"
@@ -350,7 +352,7 @@
                                             등록 반려</button>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </section>
@@ -363,6 +365,42 @@
 <script src="/vendor/jquery/jquery.min.js"></script>
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script>
+function clickN(no){
+    if($("#reje"+no).css("display") == "none"){
+        $("#reje"+no).show();
+        $("#menty"+no).show();
+        
+    }else{
+        $("#reje"+no).hide();
+        $("#menty"+no).hide();
+    }
+}
+
+// 거절 버튼 누르기
+function anserclick(no){
+    var anserfn = $("#reje"+no).val();
+    var statno = "N";
+    
+    $.ajax({
+        type: "POST",
+        data: {
+            "meno": no,
+            "stat":statno,
+            "note":anserfn
+        },
+        url: "mtnote.do",
+        success: function(){
+            location.href='mentorreqlist'
+        },error : function(error,status){
+            swal({
+                text : "이미 확인한 멘토 입니다.",
+                button : "확인"
+              }) 
+        }
+    });
+    
+}
+
 $(document).ready(function() {
     var activeSystemClass = $('.list-group-item.active');
 

@@ -1,6 +1,7 @@
 package bitcamp.java110.cms.service;
 
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import bitcamp.java110.cms.domain.Classes;
 
 public interface ClassService {
@@ -13,7 +14,7 @@ public interface ClassService {
   Classes findBycno(int no);
   Classes findAllBycno(int no);
   void classadd(Classes classes, List<String> filelist,String removefiles,
-      String days,String date,String edate,String stime, String etime);
+      String days,String date,String edate,String stime, String etime,HttpSession session);
   int classupdate(Classes classes);
   
   // 클래스 신청목록

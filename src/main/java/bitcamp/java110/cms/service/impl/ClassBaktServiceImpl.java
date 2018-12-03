@@ -49,6 +49,11 @@ public class ClassBaktServiceImpl implements ClassBaktService {
   public List<ClassBakt> listByMeno(int meno) {
     return classbaktDao.findAllByMeno(meno);
   }
+
+  @Override
+  public List<ClassBakt> sumByMeno(int meno) {
+    return classbaktDao.sumAllByMeno(meno);
+  }
   
 
 }

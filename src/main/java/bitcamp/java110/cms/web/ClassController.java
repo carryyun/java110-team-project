@@ -99,8 +99,12 @@ public class ClassController {
   }
   
   @RequestMapping(value = "classadd", method=RequestMethod.POST)
-  public void classinsert(Classes c,List<MultipartFile> files,
-      String removefiles, String days,String date,String edate,String stime, String etime) throws Exception {
+  public String classinsert(Classes c,List<MultipartFile> files,
+      String removefiles, String days,String date,String edate,String stime, String etime,HttpSession session) throws Exception {
+    //Mentee loginUser = new Mentee();
+    //loginUser = (Mentee)session.getAttribute("loginUser");
+    //loginUser.getNo();
+    
     List<String> filelist = new ArrayList<>();
     System.out.println(removefiles);
     System.out.println(days);
@@ -127,12 +131,13 @@ public class ClassController {
         file.transferTo(new File(sc.getRealPath("/upload/img/test/" + filename+".png")));
         filelist.add(filename);
         }
-      }
+      } 
     }
     for(String file : filelist) {
       System.out.println(file);
     }
-    classService.classadd(c, filelist, removefiles, days,date, edate,stime,etime);
+    classService.classadd(c, filelist, removefiles, days,date, edate,stime,etime,session);
+    return "redirect:clsCate?no=1";
   }
   
   
@@ -464,7 +469,11 @@ public class ClassController {
     Mentee mentee = (Mentee) session.getAttribute("loginUser");
     List<ClassBakt> basketList = classBaktService.listByMeno(mentee.getNo());
     model.addAttribute("basketList", basketList);
+    
+    List<ClassBakt> sumList = classBaktService.sumByMeno(mentee.getNo());
+    model.addAttribute("sumList", sumList);
   }
+  
   
   @ResponseBody
   @RequestMapping("removeDate")

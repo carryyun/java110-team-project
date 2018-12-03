@@ -47,6 +47,7 @@
             <mvc:exclude-mapping path="/masterpage/reptstat.do" />
             <mvc:exclude-mapping path="/masterpage/masterans.do" />
             <mvc:exclude-mapping path="/masterpage/clsnote.do" />
+            <mvc:exclude-mapping path="/masterpage/mtnote.do" />
             
             <!-- my page -->
             <mvc:exclude-mapping path="/mypage/getMenteeList.do" />

@@ -213,6 +213,9 @@ public class ProductController {
 
     model.addAttribute("total", total);
     model.addAttribute("basketList", basketList);
+    
+    List<ProductBakt> sumList = productBaktService.sumByMeno(mentee.getNo());
+    model.addAttribute("sumList", sumList);
   }
 
   @ResponseBody
@@ -258,12 +261,8 @@ public class ProductController {
         index++;
       }
     }
-    /*try {
-      Thread.sleep(3000);
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
-    }*/
-    return "redirect:detail?no=" + result;
+    
+    return "detail?no=" + result;
   }
 }
 

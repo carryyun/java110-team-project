@@ -11,4 +11,5 @@ public interface ClassBaktDao {
   int delete(int no);
   int update(ClassBakt classbakt);
   List<ClassBakt> findAllByMeno(int no);
+  List<ClassBakt> sumAllByMeno(int no);
 }
