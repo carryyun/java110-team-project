@@ -236,7 +236,7 @@ blockquote {
 #testt{
  max-width: 74.5%;
  min-width: 74.5%;
-    width:96.4%;
+    width:96.4%; 
     position : absolute;
     margin-left:16px;
     z-index: 11;
