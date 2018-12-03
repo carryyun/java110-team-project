@@ -63,24 +63,44 @@
     </select>
     
     <select id="findByCno" resultMap="cqnaMap" parameterType="int">
-        select
-        	ps.cno,
-			psa.qno,
-			psa.type,
-			psa.titl,
-			psa.conts,
-			pme.nick,
-			psa.rgdt,
-			psa.anser
-		from
-			p_cls_qna as psa inner join p_cls as ps
-				on psa.cno = ps.cno
-			inner join p_mete as pme 
-				on psa.meno = pme.meno
-		where
-			ps.cno = #{no}
-		order by 
-			psa.qno desc;
+        select *
+		from (
+		    select
+		    	@rownum:=@rownum+1 as rnum,
+		        ps.cno,
+		        psa.qno,
+		        psa.type,
+		        psa.titl,
+		        psa.conts,
+		        pme.nick,
+		        psa.rgdt,
+		        psa.anser
+		    from
+		        p_cls_qna as psa inner join p_cls as ps
+		        on psa.cno = ps.cno
+		        inner join p_mete as pme 
+		        on psa.meno = pme.meno
+		    	,(select @rownum:=0)r
+		    where
+		        ps.cno = #{no}
+		    order by 
+		        psa.qno desc
+		    ) as a
+		where rnum limit #{qnapageNo},#{qnapageSize};
+    </select>
+    
+    <select id="countByCno" resultType="int" parameterType="int">
+		    select
+		        count(*)
+	        from
+		        p_cls_qna as psa inner join p_cls as ps
+		        on psa.cno = ps.cno
+		        inner join p_mete as pme 
+		        on psa.meno = pme.meno
+	        where
+	        	ps.cno = #{no}
+	        order by 
+	        	psa.qno desc;
     </select>
     
     <insert id="qnainsert" parameterType="ClassQna"
