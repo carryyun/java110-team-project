@@ -129,10 +129,8 @@
 										<a class="btn btn-primary float-right mb-3" 
 											data-target="#squarespaceModal" href="classadd">클래스 개강 </a>
 									</div>
-									<div class="row">
-
+									<div class="clslist row">
 										<c:forEach items="${clslist}" var="cl" varStatus="i"> 
-
 											<div class="col-lg-4">
 												<article class="card-wrapper">
 													<div class="image-holder">
@@ -151,14 +149,12 @@
 													</div>
 													<div class="product-description">
 														<!-- 제목 -->
-
 														<div class="product-description__title">
 															<div class="row">
 																<div class="col-lg-12 mb-2">
 																	<a href="detail?no=${cl.no}">${cl.titl}</a>
 																</div>
 															</div>
-
 															<!-- 분류명 , 가격 -->
 															<div class="row">
 																<div class="col-lg-7 product-description__category secondary-text">
@@ -192,7 +188,6 @@
 													</div>
 												</article>
 											</div>
-
 										</c:forEach>
 									</div>
 								</div>

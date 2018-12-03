@@ -5,12 +5,6 @@ import java.sql.Date;
 public class ClassQna {
 
   private int no;
-  @Override
-  public String toString() {
-    return "ClassQna [no=" + no + ", meno=" + meno + ", cno=" + cno + ", titl=" + titl + ", conts="
-        + conts + ", rgdt=" + rgdt + ", anser=" + anser + ", rgdt2=" + rgdt2 + ", type=" + type
-        + ", mentee=" + mentee + ", classes=" + classes + "]";
-  }
   private int meno;
   private int cno;
   private String titl;
@@ -26,6 +20,12 @@ public class ClassQna {
   private Mentee mentee2;
   private Mentor mentor;
   
+  @Override
+  public String toString() {
+    return "ClassQna [no=" + no + ", meno=" + meno + ", cno=" + cno + ", titl=" + titl + ", conts="
+        + conts + ", rgdt=" + rgdt + ", anser=" + anser + ", rgdt2=" + rgdt2 + ", type=" + type
+        + ", mentee=" + mentee + ", classes=" + classes + "]";
+  }
   public Mentee getMentee2() {
     return mentee2;
   }

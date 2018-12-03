@@ -10,7 +10,17 @@ public class ProductBakt {
   private int cnt;
   private Product product;
   private Mentee mentee;
+  private int sum;
   
+  
+
+  public int getSum() {
+    return sum;
+  }
+
+  public void setSum(int sum) {
+    this.sum = sum;
+  }
 
   public int getCnt() {
     return cnt;

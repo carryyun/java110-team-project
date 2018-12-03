@@ -17,5 +17,6 @@ public interface ProductBaktDao {
   int delete(int pbno);
   
   List<ProductBakt> findAllByMeno(int no); //추가
+  List<ProductBakt> sumByMeno(int no);
   
 }

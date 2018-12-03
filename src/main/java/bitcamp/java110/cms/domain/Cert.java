@@ -11,6 +11,17 @@ public class Cert {
   private Date edt;
   private Date ctdt;
   private Classes classes;
+  private Mentee mentee;
+
+  
+
+  public Mentee getMentee() {
+    return mentee;
+  }
+
+  public void setMentee(Mentee mentee) {
+    this.mentee = mentee;
+  }
 
   public int getNo() {
     return no;

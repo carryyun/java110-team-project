@@ -213,6 +213,9 @@ public class ProductController {
 
     model.addAttribute("total", total);
     model.addAttribute("basketList", basketList);
+    
+    List<ProductBakt> sumList = productBaktService.sumByMeno(mentee.getNo());
+    model.addAttribute("sumList", sumList);
   }
 
   @ResponseBody

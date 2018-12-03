@@ -7,10 +7,17 @@ public class ClassBakt {
   private Classes classes;
   private Mentee mentee;
   private Timetable timetable;
-  
+  private int sum;
   private String mentorNick;
   
   
+  
+  public int getSum() {
+    return sum;
+  }
+  public void setSum(int sum) {
+    this.sum = sum;
+  }
   public String getMentorNick() {
     return mentorNick;
   }

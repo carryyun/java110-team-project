@@ -61,15 +61,15 @@
         
     </select>
     
-    <select id="insert" resultMap="certMap" parameterType="Map">
+    
+    <insert id="insertCert" parameterType="Cert">
        
        INSERT INTO
-                p_cert ( cno, meno, type, cnt, edt, ctdt)
-                
-       VALUES
-                (#{cno}, #{meno}, "수료증", 1, now(),now())
+            p_cert(cno,meno,type,cnt,edt,ctdt)
+        VALUES
+            (#{cno},#{meno},"수료증",1,now(),DATE_ADD(NOW(), INTERVAL 1 MONTH))
         
-    </select>
+    </insert>
 
     
 </mapper>

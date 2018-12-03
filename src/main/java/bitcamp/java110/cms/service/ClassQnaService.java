@@ -11,5 +11,6 @@ public interface ClassQnaService {
   
   List<ClassQna> classqnalist(int pageNo,int pageSize,int no);
   List<ClassQna> classqnalist2(int pageNo,int pageSize,int no);
-  List<ClassQna> listbycno(int pageNo,int pageSize ,int no);
+  List<ClassQna> listbycno(int no , int pageNo,int pageSize );
+  int countbycno(int no);
 }
