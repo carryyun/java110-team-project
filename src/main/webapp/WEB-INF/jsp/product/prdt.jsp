@@ -210,8 +210,6 @@
 		  <option onselect="">
 		</select> -->
 	</div>
-	
-	<%-- <jsp:include page="prodRegister.jsp"> </jsp:include> --%>
 	<!-- ===============필수포함=============== -->
 	<!-- Bootstrap core JavaScript -->
 	<script src="/vendor/jquery/jquery.min.js"></script>
