@@ -40,4 +40,11 @@ public interface MenteeDao {
   void tempwd(Mentee mentee);
 
   String findByNameEmail(Mentee mentee);
+  
+  // 마이페이지 menu1
+  int updateProfile(Mentee mentee);
+  int updatePwd(Mentee mentee);
+  int updatePhone(Mentee mentee);
+  int updateAddr(Mentee mentee);
+  
 }

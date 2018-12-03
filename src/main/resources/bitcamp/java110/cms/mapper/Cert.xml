@@ -60,6 +60,16 @@
             p.cno= cls.cno
         
     </select>
+    
+    <select id="insert" resultMap="certMap" parameterType="Map">
+       
+       INSERT INTO
+                p_cert ( cno, meno, type, cnt, edt, ctdt)
+                
+       VALUES
+                (#{cno}, #{meno}, "수료증", 1, now(),now())
+        
+    </select>
 
     
 </mapper>
