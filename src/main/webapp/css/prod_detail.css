@@ -3,6 +3,42 @@
  * Copyright 2013-2018 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-clean-blog/blob/master/LICENSE)
  */
+/*
+ * 상품 질문답변
+*/
+
+@media screen and (min-width: 768px) { 
+        .modal:before {
+                display: inline-block;
+                vertical-align: middle;
+                content: " ";
+                height: 100%;
+        }
+}
+ 
+.modal-dialog {
+        display: inline-block;
+        text-align: left;
+        vertical-align: middle;
+}
+
+div.adddet{
+    transform: translateX(250%);
+    font-size : 15px;
+    font-weight : bold;
+}
+div.addr{
+    text-align : center;
+    vertical-align: middle; 
+    margin-left: 80px;
+    margin-top : 60px;
+    float : right;
+}
+td.hiddenRow {
+    padding: 0 4px !important;
+    background-color: #eeeeee;
+    font-size: 15px;
+}
 
 /* 메인헤더 관련 */
 img.clsMetoPhot{

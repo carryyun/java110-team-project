@@ -25,4 +25,7 @@ public interface ProductRepDao {
   
   // 갱신
   int update(ProductRep reoductRep);
+  
+  // 삭제
+  int delete(int no);
 }

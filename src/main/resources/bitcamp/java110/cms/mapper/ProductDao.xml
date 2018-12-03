@@ -130,6 +130,8 @@ ON
     
     <select id="findAll_list" resultMap="productMap">
     <include refid="selectAll" />
+    where
+        p.stat='Y'
     order by 
         ptno DESC
     </select>
@@ -201,7 +203,8 @@ ON
     pcls.cno= cert.cno AND
     pcls.mono = clsmete.meno
 where
-    ptno=#{value}
+    ptno=#{value} and
+    p.stat='Y'
     </select>
     
     <select id="findAllByMeno" 
@@ -300,8 +303,8 @@ where
     <insert id="insert" parameterType="product"
             useGeneratedKeys="true" keyColumn="ptno" keyProperty="no">
             
-        insert into p_prdt(titl,conts,pric,rgdt,stock,phot,meno,ctno,stno,deli,star)
-        values(#{titl},#{conts},#{pric},now(),#{stock},#{phot},#{meno},#{ctno},#{stno},#{deli},#{star})
+        insert into p_prdt(titl,conts,pric,rgdt,stock,phot,meno,ctno,stno,deli,star,stat)
+        values(#{titl},#{conts},#{pric},now(),#{stock},#{phot},#{meno},#{ctno},#{stno},#{deli},#{star},'Y')
     </insert> 
     
     <update id="update" parameterType="product">

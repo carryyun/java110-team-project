@@ -10,10 +10,10 @@ public interface ClassService {
   List<Classes> classList(int no);
   List<Classes> findAllByList();
   Classes findbyptno(int ptno);
-  
-  
   Classes findBycno(int no);
-  int classadd(Classes classes);
+  Classes findAllBycno(int no);
+  void classadd(Classes classes, List<String> filelist,String removefiles,
+      String days,String date,String edate,String stime, String etime);
   int classupdate(Classes classes);
   
   // 클래스 신청목록

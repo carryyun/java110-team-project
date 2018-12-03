@@ -123,6 +123,7 @@
             resultMap="productQnAMap" parameterType="Map">
         select 
             qno, 
+            titl,
             type, 
             conts, 
             nick,

@@ -53,8 +53,6 @@ public class MenteeController {
     String pwd = UUID.randomUUID().toString();
     if(menteeService.getByNameEmail(mentee) != null) {
       mentee.setPwd(pwd);
-      System.out.println(mentee.getPwd());
-      System.out.println(mentee.getEmail());
       menteeService.naverMailSend(mentee);
       menteeService.tempwd(mentee);
       model.addAttribute("value",menteeService.getByNameEmail(mentee));
@@ -82,7 +80,7 @@ public class MenteeController {
   }
   @RequestMapping(value = "signup", method=RequestMethod.POST)
   public String signup2(Mentee mentee) {
-      menteeService.add(mentee);
+    menteeService.add(mentee);
     return  "redirect:app/mainpage/mainpage";
     }
   

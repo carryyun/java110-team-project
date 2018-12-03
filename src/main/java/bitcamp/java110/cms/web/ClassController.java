@@ -1,6 +1,10 @@
 package bitcamp.java110.cms.web;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import bitcamp.java110.cms.domain.BigTag;
 import bitcamp.java110.cms.domain.ClassBakt;
 import bitcamp.java110.cms.domain.ClassFile;
@@ -48,6 +53,7 @@ public class ClassController {
   MenteeService menteeService;
   BigTagService bigTagService;
   MiddleTagService middleTagService;
+  ServletContext sc;
   
   public ClassController(
       ClassService classService,ClassQnaService classqnaService,
@@ -55,7 +61,7 @@ public class ClassController {
       ,ClassBaktService classBaktService,MenteeService menteeService,
       ClassRepService classrepService,ClassFileService classFileService,
       TimetableService timetableService,BigTagService bigTagService,
-      MiddleTagService middleTagService) {
+      MiddleTagService middleTagService, ServletContext sc) {
     this.classService = classService;
     this.classqnaService = classqnaService;
     this.classorderService = classorderService;
@@ -67,6 +73,7 @@ public class ClassController {
     this.timetableService = timetableService;
     this.bigTagService = bigTagService;
     this.middleTagService = middleTagService;
+    this.sc = sc;
   }
 
   @GetMapping("form") 
@@ -86,29 +93,48 @@ public class ClassController {
       System.out.println(c.getTitl());
     }
   }
-
-  @RequestMapping("classinsert")
-  public void classinsert(Classes c) {
+  @RequestMapping(value = "classadd", method=RequestMethod.GET)
+  public void classinsert() {
     
-    c.setNo(6);
-    c.setTitl("고정지");
-    c.setConts("고정지");
-    c.setPric(111);
-    //c.setrgdt("now()");
-    c.setTime("고정지");
-    c.setCapa(5);
-    c.setCfile("고정지");
-    c.setTinfo("고정지");
-    c.setCinfo("고정지");
-    c.setPstno("고정지");
-    c.setBasAddr("고정지");
-    c.setDetAddr("고정지");
-    //c.setEdt("고정지");
-    c.setMono(4);
-    c.setMtno(4);
-    
-    classService.classadd(c);
   }
+  
+  @RequestMapping(value = "classadd", method=RequestMethod.POST)
+  public void classinsert(Classes c,List<MultipartFile> files,
+      String removefiles, String days,String date,String edate,String stime, String etime) throws Exception {
+    List<String> filelist = new ArrayList<>();
+    System.out.println(removefiles);
+    System.out.println(days);
+    System.out.println(c.getNo());
+    System.out.println(c.getCfile().substring(c.getCfile().length()-11, c.getCfile().length()));
+    System.out.println(c.getTitl());
+    System.out.println(c.getPric());
+    System.out.println(c.getTime());
+    System.out.println(c.getCapa());
+    System.out.println(c.getPstno());
+    System.out.println(c.getBasAddr());
+    System.out.println(c.getDetAddr());
+    System.out.println(c.getTinfo());
+    System.out.println(c.getCinfo());
+    System.out.println(c.getType());
+    System.out.println(stime);
+    System.out.println(etime);
+    for(MultipartFile file : files) {
+      if(file.getOriginalFilename().length() > 2 ) {
+        if(file.getOriginalFilename().equals(removefiles)) {
+          files.remove((Object)file.getOriginalFilename());
+        }else {
+        String filename = UUID.randomUUID().toString();
+        file.transferTo(new File(sc.getRealPath("/upload/img/test/" + filename+".png")));
+        filelist.add(filename);
+        }
+      }
+    }
+    for(String file : filelist) {
+      System.out.println(file);
+    }
+    classService.classadd(c, filelist, removefiles, days,date, edate,stime,etime);
+  }
+  
   
   @RequestMapping("classupdate")
   public void classupdate(Classes c) {
@@ -198,10 +224,10 @@ public class ClassController {
   }
   
   @RequestMapping("detail")
-  public void findByCno(@RequestParam(defaultValue="1") int pageNo, @RequestParam(defaultValue="3") int pageSize, 
+  public void findByCno(@RequestParam(defaultValue="1") int pageNo, @RequestParam(defaultValue="5") int pageSize, 
       Model model,int no ,HttpSession session) {
     
-    List<ClassRep> clsreqlist = classrepService.listbycno(no);
+    List<ClassRep> clsreqlist = classrepService.listbycno(no , pageNo , pageSize);
     
     Classes detailclass = classService.findBycno(no);
     
@@ -211,11 +237,14 @@ public class ClassController {
     
     List<Timetable> clstimelist = timetableService.findByCno(no);
     
+    int countrep = classrepService.countbycno(no);
+    
     model.addAttribute("clsreqlist",clsreqlist);
     model.addAttribute("detailclass",detailclass);
     model.addAttribute("clsqnalist",clsqnalist);
     model.addAttribute("clsfilelist",clsfilelist);
     model.addAttribute("clstimelist",clstimelist);
+    model.addAttribute("countrep",countrep);
   }
   
   @RequestMapping("findByptno")

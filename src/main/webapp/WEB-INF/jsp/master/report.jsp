@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
 *{
@@ -15,7 +13,7 @@ table.fixed-table, table.fixed-table tr, table.fixed-table th, table.fixed-table
     padding:8px;
     border-collapse: collapse;
     table-layout: fixed;
-    width: 650px;
+    width: 600px;
 }
 table.fixed-table td{
     border-bottom: 1px solid silver;
@@ -51,17 +49,17 @@ table.fixed-table td.tableBtn{
 
 <table class="fixed-table">
 <colgroup>
-<col style="width:30%;">
-<col style="width:70%;">
+<col style="width:20%;">
+<col style="width:80%;">
 </colgroup>
 
 <tr>
-<td class="noBorder" colspan="2"><h4>상품명: 상품명 예제1</h4><hr color="red" style="height:2px; border-bottom-right-radius :25%;border-top-right-radius :25%;"/></td>
+<td class="noBorder text-left" colspan="2"><h4>상품명: 상품명 예제1</h4><hr color="red" style="height:2px; border-bottom-right-radius :25%;border-top-right-radius :25%;"/></td>
 </tr>
 
 <tr>
     <th>분류</th>
-    <td>
+    <td class="text-left" style="padding-left: 20px">
         <input type="radio" name="type" class="type" value="클래스" id="opt1" checked="checked"/>
         <label for="opt1">클래스</label>
         <input type="radio" name="type" class="type" value="상품" id="opt2"/>
@@ -74,8 +72,8 @@ table.fixed-table td.tableBtn{
 </tr>
 <tr>
     <th>신고유형</th>
-    <td id="tdetail-cls" style="display: none">
-        <input type="radio" name="type-detail" class="detail" value="카테고리" id="opt1" checked="checked"/>
+    <td class="text-left" style="padding-left: 20px;display: none" id="tdetail-cls">
+        <input type="radio" name="type-detail" onselect="" class="detail" value="카테고리" id="opt1" checked="checked"/>
         <label for="opt1">카테고리</label>
         <input type="radio" name="type-detail" class="detail" value="수업관련" id="opt2"/>
         <label for="opt2">수업관련</label>
@@ -84,7 +82,7 @@ table.fixed-table td.tableBtn{
         <input type="radio" name="type-detail" class="detail" value="기타" id="opt4"/>
         <label for="opt4">기타</label>
     </td>
-    <td id="tdetail-prdt" style="display: table-cell">
+    <td class="text-left" style="padding-left: 20px;display: table-cell;" id="tdetail-prdt">
         <input type="radio" name="type-detail" class="detail" value="카테고리" id="opt1" checked="checked"/>
         <label for="opt1">카테고리</label>
         <input type="radio" name="type-detail" class="detail" value="상품관련" id="opt2"/>
@@ -94,7 +92,7 @@ table.fixed-table td.tableBtn{
         <input type="radio" name="type-detail" class="detail" value="기타" id="opt4"/>
         <label for="opt4">기타</label>
     </td>
-    <td id="tdetail-rep" style="display: none">
+    <td class="text-left" style="padding-left: 20px;display: none"  id="tdetail-rep">
         <input type="radio" name="type-detail" class="detail" value="광고" id="opt1"/>
         <label for="opt1">광고</label>
         <input type="radio" name="type-detail" class="detail" value="음란성" id="opt2"/>
@@ -104,14 +102,14 @@ table.fixed-table td.tableBtn{
         <input type="radio" name="type-detail" class="detail" value="기타" id="opt4"/>
         <label for="opt4">기타</label>
     </td>
-    <td id="tdetail-etc" style="display: none">
+    <td class="text-left" style="padding-left: 20px;display: none"  id="tdetail-etc">
         <input type="radio" name="type-detail" class="detail" value="기타" id="opt1"/>
         <label for="opt1">기타</label>
     </td>
 </tr>
 <tr>
     <th>신고닉네임</th>
-    <td><input type="text" value="징징이" name="nick" class="customWidth" id="usernick" oninput="checknick()" onfocusout="checknick()" style="width: 35%"><br></td>
+    <td class="text-left" style="padding-left: 20px"><input type="text" value="징징이" name="nick" class="customWidth" id="usernick" oninput="checknick()" onfocusout="checknick()" style="width: 35%"><br></td>
 </tr>
 <tr>
     <th>제　　목</th>
@@ -134,10 +132,6 @@ table.fixed-table td.tableBtn{
 
 
 </body>
-<!-- Bootstrap core JavaScript -->
-<script src="/vendor/jquery/jquery.min.js"></script>
-<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
 function addRept(){
     var type = $('input:radio:checked.type').val();
@@ -166,8 +160,6 @@ function addRept(){
             url : "addreport.do",
             success : function() {
                 /* location.href="#"; */
-                /* 창닫기 (익스플로러는 작동하는데 크롬에서 디버깅뜸)
-                window.open("about:blank","_self").close(); */
             }
             
         });
@@ -175,32 +167,6 @@ function addRept(){
     }
     
 }
-function temp(){
-    /* console.log(checkType.val());
-    console.log(checkdetail.val());
-    console.log(nick.val());
-    console.log(titl.val());
-    console.log(conts.val());
-    console.log(url.val());
-     */
-    
-    $.ajax({
-        data : {
-            type : checkType,
-            typedetail : checkdetail
-            
-        },
-        /* url : "addreport.do", */
-        success : function() {
-            /* location.href="#"; */
-            /* 창닫기 (익스플로러는 작동하는데 크롬에서 디버깅뜸)
-            window.open("about:blank","_self").close(); */
-        }
-        
-    });
-}
-
-
 
 function checknick(){
     var nickChk = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|\*]+$/;

@@ -12,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Clean Blog - Start Bootstrap Theme</title>
+<title>하루 - 클래스</title>
 
 <!-- Bootstrap core CSS -->
 <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -40,10 +40,12 @@
 
 <style type="text/css">
 #STATICMENU { 
-    margin: 0pt; padding: 0pt;  
+    margin: 0px;
+    padding: 10px;
     position: absolute; right: 0px; top: 0px;
     transform: translateX(95%);
     width : 300px;
+    background-color: white;
     }
 </style>
 
@@ -87,7 +89,7 @@
                                             if(cfile.endsWith("jpg") || cfile.endsWith("png")){
                                         %>    
                                         <div class="carousel-item active">
-                                          <img style="width=100%; margin-left:-10px;" class="d-block w-100" src="${detailclass.cfile}" alt="First slide">
+                                          <img style="width=100%;" class="d-block w-100" src="${detailclass.cfile}" alt="First slide">
                                           <%     
                                             }else {
                                              int cfileidx = cfile.indexOf("=");
@@ -140,27 +142,45 @@
                     </aside>
                     <!-- 사이드바 -->
                     <div id="STATICMENU">
-                        <aside class="col-lg-8">
-                        <article class="card-body p-3">
+                        <div class="col-lg-12">
+                        <div class="card-body p-1">
                             <div class="text-center">
-                            <img style="width: 200px; height:200px;" src="${detailclass.cfile}" alt=""/>
-                                <h3 class="title mb-3">${detailclass.titl}</h3>
-                                <dl class="param param-feature">
-                                    <dd>${detailclass.middleTag.name}</dd>
+                            
+                            <%
+                                if(cfile.endsWith("jpg") || cfile.endsWith("png")){
+                            %>    
+                            <img style="width: 100%; height:150px;" src="${detailclass.cfile}" alt=""/>
+                              <%     
+                                }else {
+                                 int cfileidx = cfile.indexOf("=");
+                                 String cfileurl = cfile.substring(cfileidx+1);
+                            %>
+                                  <iframe width="100%" height="150px" src="https://www.youtube.com/embed/<%=cfileurl%>" 
+                                  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                                  allowfullscreen></iframe>
+                            <%
+                                }
+                            %>
+                            
+                            
+                            
+                                <h4 class="title mb-3 text-left">${detailclass.titl}</h4>
+                                <dl class="param param-feature text-left">
+                                    <dd style="font-size: 1rem;">${detailclass.middleTag.name}</dd>
                                 </dl>
-                                <dl class="param param-feature">
+                                <dl class="param param-feature text-left">
                                     ${detailclass.pric}원
                                 </dl>
 
-                                <dl class="param param-feature">
+                                <dl class="param param-feature text-left">
                                         ${detailclass.mentee.nick} 멘토
-                                </dl>
+                                </dl> 
                                 
-                                <dl class="param param-feature">
+                                <dl class="param param-feature text-left">
                                             <dd>${detailclass.basAddr}</dd>
                                 </dl>
                                 
-                                <dl>
+                                <dl class="text-left">
                                     <c:set var="clsstar" value ="${detailclass.star}"/>
                                     <%
                                         int clsstar = (int)pageContext.getAttribute("clsstar");
@@ -199,9 +219,9 @@
                                         onClick="clslikeins(${sessionScope.loginUser.no});"> 
                                             <i class="fas fa-shopping-cart"></i> 찜클래스 </a>
                             </div>
-                        </article>
+                        </div>
                         <!-- card-body.// -->
-                    </aside>
+                    </div>
                     
                     </div>
                     <!-- 사이드바 끝 -->
@@ -214,7 +234,7 @@
             <!-- <div class="col-lg-12 col-md-12 text-center"> -->
         </div>
         <!-- <div class="row"> -->
-                        <div class="col-lg-12" id="testt">
+                        <div class="col-lg-9" id="testt">
                             <ul class="under-navbar-nav col-lg-9 col-md-12">
                                 <li class="under-nav-item"><a class="nav-link"
                                     href="#class_detail">
@@ -259,9 +279,9 @@
                 </div>
                 <!-- <div class="detail_info"> -->
                 
-                <div class="detail_info">
-                    <hr class="Fhr" id="mentor-info">
+                <div class="detail_info"  id="mentor-info">
                     <h3>강사소개</h3>
+                    <hr class="Fhr">
                     ${detailclass.tinfo}
                 </div>
                 
@@ -308,7 +328,7 @@
                             </div>  
                             <div>
                                  
-                                    <span class="glyphicon glyphicon-user"></span>후기인원 : ${fn:length(clsreqlist)} 
+                                    <span class="glyphicon glyphicon-user"></span>후기인원 : ${countrep} 
                             </div>  
                         </div>  
                     </div>  
@@ -452,14 +472,28 @@
                  <nav aria-label="Page navigation example" id="product-pn" 
                     style="margin : auto; margin-top: -40px;">
                         <ul class="pagination justify-content-center">
-                            <li class="page-item disabled "><a class="page-link" href="#"
-                                tabindex="-1"> <</a></li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">4</a></li>
-                            <li class="page-item"><a class="page-link" href="#">5</a></li>
-                            <li class="page-item"><a class="page-link" href="#">></a></li>
+                        <c:set var="repsi" value="${countrep}" />
+                        <%
+                            int repsize = (int)pageContext.getAttribute("repsi");
+                            int reppage = (repsize/5)+1;
+                            int pno = 1;
+                        %>
+                            <li class="page-item"><a class="page-link" 
+                            onClick="prev(${countrep})">prev</a></li>
+                                
+                                <%
+                                    for(pno = 1; pno<=reppage; pno++){
+                                %>
+                                    <li class="page-item"><a class="page-link" 
+                                    href="detail?no=${detailclass.no}&pageNo=<%=pno%>&pageSize=5"><%=pno%></a></li>
+                                <%
+                                    }
+                                %>
+                            <li class="page-item"><a class="page-link" 
+                            onClick="next(${countrep})">next</a></li>
+                         <%
+                            System.out.println(pno);
+                         %>
                         </ul>
                   </nav>
                     <div class="detail_info">
@@ -555,6 +589,11 @@
                                         </tr>
                                     </c:forEach>
                                     </tbody>
+                                    <!-- <tfoot>
+                                        <tr>
+                                            <td>1</td><td>2</td><td>3</td><td>4</td>
+                                        </tr>
+                                    </tfoot> -->
                                 </table>
                                 
                                 <div class="center"><button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block"
@@ -639,6 +678,7 @@
                             <li class="page-item"><a class="page-link" href="#">></a></li>
                         </ul>
                     </nav>
+                
                 </div>
                 <!-- <div class="row"> -->
             </div>
@@ -671,6 +711,27 @@ $('.accordian-body').on('show.bs.collapse', function () {
     <script src="/js/jquery.raty.min.js"></script>
     <script src="/js/clean-blog.js"></script>
     
+<script>
+function prev(pano) {
+    console.log(pano);
+    
+    var pagebu = (pano/5)+1;
+    var currectpage = <% request.getParameter("pageNo"); %>
+    console.log(pagebu);
+    console.log(currectpage);
+    
+    
+    /* location.href="detail?no=${detailclass.no}&pageNo=1&pageSize=5"; */
+}
+function next(pano) {
+    console.log(pano);
+    
+    
+    
+    
+    location.href="detail?no=${detailclass.no}&pageNo=1&pageSize=5";
+}
+</script>
 <script>
 function addqna(no) {
     var type = $('input:radio:checked.type').val();

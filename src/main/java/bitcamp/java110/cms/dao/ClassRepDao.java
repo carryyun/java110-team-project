@@ -1,6 +1,7 @@
 package bitcamp.java110.cms.dao;
 
 import java.util.List;
+import java.util.Map;
 import bitcamp.java110.cms.domain.ClassRep;
 
 public interface ClassRepDao {
@@ -8,5 +9,6 @@ public interface ClassRepDao {
   int repinsert(ClassRep classRep);
   int repDelete(int no);
   int repChange(ClassRep classRep); // update
-  List<ClassRep> findByCno(int no);
+  List<ClassRep> findByCno(Map<String,Object> params);
+  int countByCno(int no);
 }
