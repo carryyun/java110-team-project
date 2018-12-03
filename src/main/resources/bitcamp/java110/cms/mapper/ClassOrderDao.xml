@@ -26,7 +26,8 @@
         <result column="ceedt"  property="cert.edt"/>
         <result column="cectdt"  property="cert.ctdt"/>
         <result column="fname"  property="classFile.fname"/>
-        <result column="cfno"  property="classFile.no"/>   
+        <result column="cfno"  property="classFile.no"/>
+        <result column="ccno"  property="classes.no"/>  
      
         <result column="mtname" property="mtname"/>
         <result column="titl" property="cls_titl"/>
@@ -49,6 +50,7 @@
             co.payopt,
             co.paydt,
             co.ctno,
+            c.cno as ccno,
             c.titl as ctitl,
             me2.nick as mentornick,
             ct.date,

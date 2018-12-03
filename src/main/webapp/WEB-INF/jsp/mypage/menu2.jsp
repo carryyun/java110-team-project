@@ -32,7 +32,7 @@
                     <tr id="tb-pay" >
                                               
                         <td>${i.count}</td>
-                        <td>${c.classes.titl}<a href='#'><img src="${c.classFile.fname}" width="200px" height="150px"></a></td>
+                        <td>${c.classes.titl}<a href="../class/detail?no=${c.classes.no}"><img src="${c.classFile.fname}" width="200px" height="150px"></a></td>
                         <td>${c.mentornick}</td>
                         <td>${c.timetable.date}</td>
                          <td>${c.timetable.stime}<br>(${c.classes.time}시간)</td>
