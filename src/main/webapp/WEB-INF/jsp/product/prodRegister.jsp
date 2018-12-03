@@ -74,7 +74,7 @@ div.row.imgDiv {
 					<div class="row">
 						<!-- 상품명 -->
 
-						<div class="col-lg-12" style="margin-top: 10px">
+						<div class="col-lg-12" style="margin-top: 10px"> 
                         <h3 style="font-weight: 700">상품 등록</h3><hr color="#FFB53C" style="height:4px;margin-top:10px;margin-bottom:15px"/>
 							<div
 								style="color: white; background-color: gray; padding: 5px; display: inline; border-radius: 3px;">상품명</div>
