@@ -410,7 +410,7 @@ function pay(){
                     buyer_tel : rsp.buyer_tel,
                     buyer_addr : rsp.buyer_addr,
                     buyer_postcode : rsp.buyer_postcode
-                }
+                } 
             }).done(function(data) {
                 //[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
                 if ( everythings_fine ) {
