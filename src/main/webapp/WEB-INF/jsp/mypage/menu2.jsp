@@ -10,7 +10,7 @@
         <div class="panel-body">
             <table class="table table-condensed" style="border-collapse:collapse;">
 
-                <thead>
+                <thead> 
                     <tr id="th-pay">
                        
                          <th width="5%">No.</th>
