@@ -9,5 +9,7 @@ public interface CertDao {
   Cert findByNo(int no);
   
   List<Cert> findByMeno(Map<String, Object> params);
+  
+  int insert(Cert cert);
 
 }

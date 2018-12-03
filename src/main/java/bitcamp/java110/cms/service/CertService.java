@@ -7,4 +7,6 @@ public interface CertService {
  
   List<Cert> listByMeno(int pageNo, int pageSize, int meno);
   
+  int insert(Cert cert);
+  
 }

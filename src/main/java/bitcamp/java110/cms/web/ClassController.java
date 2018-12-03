@@ -1,6 +1,7 @@
 package bitcamp.java110.cms.web;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import javax.servlet.ServletContext;
@@ -98,13 +99,12 @@ public class ClassController {
   }
   
   @RequestMapping(value = "classadd", method=RequestMethod.POST)
-  public void classinsert(Classes c,List<MultipartFile> files,String removefiles, String days,String date,String edate) throws Exception {
+  public void classinsert(Classes c,List<MultipartFile> files,
+      String removefiles, String days,String date,String edate,String stime, String etime) throws Exception {
+    List<String> filelist = new ArrayList<>();
     System.out.println(removefiles);
     System.out.println(days);
-    String daylist[] = days.split(",");
-    for(int x=0; x<daylist.length; x++) {
-      System.out.println(daylist[x]);
-    }
+    System.out.println(c.getNo());
     System.out.println(c.getCfile().substring(c.getCfile().length()-11, c.getCfile().length()));
     System.out.println(c.getTitl());
     System.out.println(c.getPric());
@@ -115,22 +115,24 @@ public class ClassController {
     System.out.println(c.getDetAddr());
     System.out.println(c.getTinfo());
     System.out.println(c.getCinfo());
+    System.out.println(c.getType());
+    System.out.println(stime);
+    System.out.println(etime);
     for(MultipartFile file : files) {
       if(file.getOriginalFilename().length() > 2 ) {
         if(file.getOriginalFilename().equals(removefiles)) {
           files.remove((Object)file.getOriginalFilename());
         }else {
-        //System.out.println(file.getOriginalFilename());
         String filename = UUID.randomUUID().toString();
         file.transferTo(new File(sc.getRealPath("/upload/img/test/" + filename+".png")));
+        filelist.add(filename);
         }
       }
     }
-    System.out.println("--------------------------------------------");
-    for(MultipartFile file : files) {
-        System.out.println(file.getOriginalFilename());
-      }
-  //  classService.classadd(c, files, removefiles, days,date, edate);
+    for(String file : filelist) {
+      System.out.println(file);
+    }
+    classService.classadd(c, filelist, removefiles, days,date, edate,stime,etime);
   }
   
   

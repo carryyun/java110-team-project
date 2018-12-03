@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import bitcamp.java110.cms.dao.CertDao;
 import bitcamp.java110.cms.domain.Cert;
+import bitcamp.java110.cms.domain.Cs;
 import bitcamp.java110.cms.service.CertService;
 
 @Service
@@ -28,5 +29,10 @@ public class CertServiceImpl implements CertService {
     return certDao.findByMeno(params);
   }
 
+  
+  @Override
+  public int insert(Cert cert) {
+    return certDao.insert(cert);
+  }
 
 }

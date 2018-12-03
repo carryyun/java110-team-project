@@ -1,17 +1,19 @@
 package bitcamp.java110.cms.service.impl;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 import bitcamp.java110.cms.dao.ClassDao;
 import bitcamp.java110.cms.dao.ClassFileDao;
 import bitcamp.java110.cms.dao.TimetableDao;
+import bitcamp.java110.cms.domain.ClassFile;
 import bitcamp.java110.cms.domain.Classes;
+import bitcamp.java110.cms.domain.Timetable;
 import bitcamp.java110.cms.service.ClassService;
 
 @Service
@@ -20,34 +22,48 @@ public class ClassServiceImpl implements ClassService{
   @Autowired ClassDao classDao;
   @Autowired ClassFileDao classFileDao;
   @Autowired TimetableDao timetableDao;
+  
   @Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
-  
-  
   @Override
-  public int classadd(Classes classes, List<MultipartFile> files,String removefiles, String days,String date,String edate) {
+  public void classadd(Classes classes, List<String> filelist,
+      String removefiles, String days,String date,String edate,String stime, String etime) {
     if(classes.getDetAddr() == null) {
       classes.setDetAddr(null);
-      classDao.classinsert(classes);
+    }else if(classes.getCfile().length() > 0) {
+      classes.setCfile(classes.getCfile().substring(classes.getCfile().length()-11, classes.getCfile().length()));
     }
+    classes.setMtno(1);
+    classes.setMono(1);
+    classDao.classinsert(classes);
     
     if(classes.getType().equals("단기")) {
-      Map<String,Object> paramst = new HashMap<>();
       String daylist[] = days.split(",");
       for(int x=0; x<daylist.length; x++) {
-        paramst.put("cno", classes.getNo());
-        paramst.put("date", daylist);
-        paramst.put("edate", daylist);
-        paramst.put("capa", classes.getCapa());
-        timetableDao.insert(paramst);
+        Timetable t = new Timetable();
+        t.setCno(classes.getNo());
+        t.setDate(Date.valueOf(daylist[x]) );
+        t.setEdate(Date.valueOf(daylist[x]));
+        t.setStime(Time.valueOf(stime+":00"));
+        t.setCapa(classes.getCapa());
+        timetableDao.insert(t);
       }
     }else if(classes.getType().equals("장기")) {
-      Map<String,Object> paramst = new HashMap<>();
-      paramst.put("cno", classes.getNo());
-     
-      paramst.put("capa", classes.getCapa());
+      Timetable t = new Timetable();
+      t.setCno(classes.getNo());
+      t.setDate(Date.valueOf(date));
+      t.setEdate(Date.valueOf(edate));
+      t.setStime(Time.valueOf(stime+":00"));
+      t.setCapa(classes.getCapa());
+      timetableDao.insert(t);
     }
-
-    return classDao.classinsert(classes);
+    
+    for(String file : filelist) {      
+          ClassFile cf = new ClassFile();
+          cf.setFname(file);
+          cf.setCno(classes.getNo());
+          classFileDao.insert(cf);
+    }
+    
   }
 
   @Override
@@ -124,6 +140,7 @@ public class ClassServiceImpl implements ClassService{
 
   @Override
   public int statupdate(Classes classes) {
+   System.out.println("서비스 "+classes.getNote());
     return classDao.statupdate(classes);
   }
 
