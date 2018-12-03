@@ -140,6 +140,7 @@ public class ClassServiceImpl implements ClassService{
 
   @Override
   public int statupdate(Classes classes) {
+   System.out.println("서비스 "+classes.getNote());
     return classDao.statupdate(classes);
   }
 

@@ -12,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Clean Blog - Start Bootstrap Theme</title>
+<title>클래스 등록</title>
 
 <!-- Bootstrap core CSS -->
 <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -45,6 +45,12 @@
 	transform: translateX(95%);
 	width : 300px;
 	}
+.mstcheck{
+ position: absolute;
+ right: 0;
+ bottom: 0;
+}
+ 
 </style>
 
 </head>
@@ -252,11 +258,18 @@
 	            <!-- <div class="container col-lg-12"> -->
 	            </div>
 			</div>
-				<button type="button" class="clsstat btn btn-primary" id="allow">신청 수락</button>
-				<button type="button" class="clsstat btn btn-primary" id="reject"
-				onClick="clsject()">신청 거절</button><br>
-				<textarea class="masterreje" id="reje" style="display:none; width:300px;" rows="5" placeholder="거절사유를 입력해주세요"></textarea>
-				
+            <div class="row" style="position: relative; left:53%;">
+            <div class="mstcheck col-lg-12" style="margin-top:3%;">
+				<button type="button" class="clsstat btn btn-primary btn-sm" id="allow" onClick="clicky(${detailclass.no})">신청 수락</button>
+				<button type="button" class="clsstat btn btn-primary btn-sm" id="reject"
+				onClick="clsject()">신청 거절</button><br/>
+                
+				<textarea class="masterreje" id="reje" style=" position:relative; margin-top:1%; display: none; right: 37%; resize:none; width:600px;" rows="2" placeholder="거절사유를 입력해주세요"></textarea>
+                <br/>
+                <button type="button" class="masty btn btn-primary btn-sm" style="display: none; position:relative; left:13%;" onClick="anserclick(${detailclass.no})" >확인</button>
+ 
+                </div><!--  12 -->
+				</div><!--  row -->
 			</div>
         </div>
         <!-- <div class="col-lg-12 col-md-12 mx-auto" id="detail"> -->
@@ -278,10 +291,61 @@
 function clsject() {
     if($("#reje").css("display") == "none"){
 		$("#reje").show();
+		$(".masty").show();
 	}else{
 		$("#reje").hide();
+		$(".masty").hide();
 	}
 }
+
+//신청 거절 버튼
+function anserclick(no){
+    var anserfn = $("#reje").val();
+    var statno = "N";
+    
+       $.ajax({
+        type: "POST",
+        data: {
+            "no": no,
+            "stat": statno ,
+            "note": anserfn
+            
+        },
+        url: "clsnote.do",
+        success : function() {
+            location.href='classreqlist'
+            },error : function(error,status){
+                swal({
+                    text : "이미 답변한 문의이거나 삭제된 문의입니다.",
+                    button : "확인"
+                  })    
+            }
+       });
+}
+
+function clicky(no){
+    var statyes = "Y";
+    
+    $.ajax({
+        type: "POST",
+        data: {
+            "no": no,
+            "stat": statyes
+            
+        },
+        url: "clsstat.do",
+        success : function() {
+            location.href='classreqlist'
+            },error : function(error,status){
+                swal({
+                    text : "이미 답변한 문의이거나 삭제된 문의입니다.",
+                    button : "확인",
+                  })    
+            }
+       });
+    
+}
+  
 </script>
 <script type="text/javascript">
  var stmnLEFT = 0; // 오른쪽 여백 

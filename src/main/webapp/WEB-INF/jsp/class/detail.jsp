@@ -234,8 +234,8 @@
             <!-- <div class="col-lg-12 col-md-12 text-center"> -->
         </div>
         <!-- <div class="row"> -->
-                        <div class="col-lg-9" id="testt">
-                            <ul class="under-navbar-nav col-lg-9 col-md-12">
+                        <div class="col-lg-12" id="testt">
+                            <ul class="under-navbar-nav col-lg-7 col-md-12">
                                 <li class="under-nav-item"><a class="nav-link"
                                     href="#class_detail">
                                         <h4>요약</h4> 

@@ -246,4 +246,61 @@
          where meno = #{no}
     </update>
     
+    <update id="updateProfile" parameterType="Mentee">
+        
+        UPDATE
+            p_mete
+
+        SET 
+            nick = #{nick}
+
+        WHERE 
+            meno = #{no}
+
+    </update>
+    
+    <update id="updatePwd" parameterType="Mentee">
+        
+        UPDATE
+            p_mete
+
+        SET 
+            pwd = #{pwd},
+            bkname = #{bkname},
+            bkno = #{bkno}
+
+        WHERE 
+            meno = #{no}
+
+    </update>
+    
+    <update id="updatePhone" parameterType="Mentee">
+        
+        UPDATE
+            p_mete
+
+        SET 
+            phone = #{phone}
+
+        WHERE 
+            meno = #{no}
+
+    </update>
+    
+    <update id="updateAddr" parameterType="Mentee">
+        
+        UPDATE
+            p_mete
+
+        SET 
+            pstno = #{pstno},
+            bas_addr = #{bas_addr},
+            det_addr = #{det_addr}
+
+        WHERE 
+            meno = #{no}
+
+    </update>
+    
+    
 </mapper>

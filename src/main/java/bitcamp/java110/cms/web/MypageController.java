@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import bitcamp.java110.cms.domain.Cert;
 import bitcamp.java110.cms.domain.ClassOrder;
 import bitcamp.java110.cms.domain.ClassQna;
 import bitcamp.java110.cms.domain.Classes;
@@ -17,6 +18,7 @@ import bitcamp.java110.cms.domain.Mentor;
 import bitcamp.java110.cms.domain.Product;
 import bitcamp.java110.cms.domain.ProductOrder;
 import bitcamp.java110.cms.domain.ProductQnA;
+import bitcamp.java110.cms.service.CertService;
 import bitcamp.java110.cms.service.ClassOrderService;
 import bitcamp.java110.cms.service.ClassQnaService;
 import bitcamp.java110.cms.service.ClassService;
@@ -40,6 +42,7 @@ public class MypageController {
   ProductOrderService productOrderSerivce;
   ClassService classService;
   ProductService productService;
+  CertService certService;
   
 
   public MypageController(
@@ -51,7 +54,8 @@ public class MypageController {
       ClassOrderService classOrderService,
       ProductOrderService productOrderService,
       ClassService classService,
-      ProductService productService) {
+      ProductService productService,
+      CertService certService) {
    this.menteeService = menteeService;
    this.mentorService = mentorService;
    this.csService = csService;
@@ -61,6 +65,7 @@ public class MypageController {
    this.productOrderSerivce = productOrderService;
    this.classService = classService;
    this.productService = productService;
+   this.certService = certService;
    
    
   }
@@ -86,17 +91,35 @@ public class MypageController {
   @GetMapping("menu1")
   public void menu1(Model model) {
     Mentee mentee = menteeService.get(5);
-
     
     model.addAttribute("mentee", mentee);
-    
-    
- 
-    
-    
-    
 
   }
+  
+  @RequestMapping(value = "updateProfile.do", method = {RequestMethod.POST})
+  public @ResponseBody int updateProfile(Mentee mentee) {
+    
+    return menteeService.updateProfile(mentee);
+  }
+  
+  @RequestMapping(value = "updatePwd.do", method = {RequestMethod.POST})
+  public @ResponseBody int updatePwd(Mentee mentee) {
+    
+    return menteeService.updatePwd(mentee);
+  }
+  
+  @RequestMapping(value = "updatePhone.do", method = {RequestMethod.POST})
+  public @ResponseBody int updatePhone(Mentee mentee) {
+    
+    return menteeService.updatePhone(mentee);
+  }
+  
+  @RequestMapping(value = "updateAddr.do", method = {RequestMethod.POST})
+  public @ResponseBody int updateAddr(Mentee mentee) {
+    
+    return menteeService.updateAddr(mentee);
+  }
+  
   
   
   @GetMapping("menu2")
@@ -175,6 +198,12 @@ public class MypageController {
         
   }
   
+  @RequestMapping(value = "insertCert.do", method = {RequestMethod.POST})
+  public @ResponseBody int insert(Cert cert) {
+    
+    
+    return certService.insert(cert);
+  }
   
   
   @GetMapping("menu6")
