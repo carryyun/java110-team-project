@@ -244,7 +244,8 @@
             p_mete
         <set>
             <if test="note != null">note = #{note},</if>
-            <if test="stat != null">mtstat = #{mtstat}</if>
+            <if test="stat != null">mtstat = #{mtstat},</if>
+            rgdtmt=now()
         </set>
          where meno = #{no}
     </update>

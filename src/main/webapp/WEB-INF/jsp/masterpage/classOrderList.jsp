@@ -195,13 +195,11 @@
                                                             class="text-center bold">${pl.paydt}</td>
                                                         <!--결제일 -->
                                                         <td
-                                                        class="text-center"><button
-                                                            class="btn btn-light" id="block-cho">
+                                                        class="text-center">
                                                             <a
-                                                                class="button"
+                                                                class="btn btn-light"
                                                                 href="#popup${i.index}" style="color:black;">상세
-                                                                보기</a>
-                                                        </button></td>
+                                                                보기</a></td>
                                                     </tr>
                                                 </c:forEach>
                                             </tbody>
