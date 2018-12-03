@@ -199,11 +199,14 @@ public class MypageController {
   }
   
   @RequestMapping(value = "insertCert.do", method = {RequestMethod.POST})
-  public @ResponseBody int insert(Cert cert) {
+  public @ResponseBody int insertCert(Cert cert) {
     
-    
-    return certService.insert(cert);
+    return certService.insertCert(cert);
   }
+  
+ 
+  
+  
   
   
   @GetMapping("menu6")
