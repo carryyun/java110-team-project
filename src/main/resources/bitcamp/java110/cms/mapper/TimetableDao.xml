@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ClassFile 클래스가 사용할 SQL이 들어 있는 파일 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="bitcamp.java110.cms.dao.TimetableDao">
+    
+    <resultMap type="Timetable" id="timeMap">
+        <id 	column="ctno" 	property="no"/>
+        <result column="cno" 	property="cno"/>
+        <result column="date" 	property="date"/>
+        <result column="stime" 	property="stime"/>
+        <result column="edate"  property="edate"/>
+        <result column="capa" 	property="capa"/>
+    </resultMap>
+    
+    <sql id="select1">
+    	select 
+    		ctno,
+    		cno,
+    		date,
+    		stime,
+    		capa
+    	from
+    		p_cls_ttab
+    </sql>
+    
+    <select id="findAll" resultMap="timeMap">
+    	<include refid="select1"></include>
+        order by
+            ctno asc
+    </select>
+    
+    <select id="findByCtno" resultMap="timeMap" parameterType="int">
+    	<include refid="select1"></include>
+        where
+            ctno=#{no}
+    </select>
+    
+	<select id="findByCno" resultMap="timeMap" parameterType="int">
+		<include refid="select1"></include>
+		where
+			cno =#{cno}
+		order by
+			ctno asc;
+	</select>
+    
+    <insert id="insert" parameterType="Timetable" useGeneratedKeys="true" keyColumn="ctno" keyProperty="no">
+        insert into p_cls_ttab(cno,date,stime,capa,edate)
+        values(#{cno},#{date},#{stime},#{capa},#{edate})
+        <!-- cno에 }의로 값을 3 넣었기 때문에 나중에 변경해 주어야 함  -->
+    </insert>
+    
+    <delete id="delete" parameterType="int">
+        delete from p_cls_ttab
+        where ctno=#{ctno}
+    </delete>
+    
+    <update id="update">
+    	update
+	    	<set>
+	    		<if test="stime>0">stime = #{stime}</if>
+	    	</set>
+    	where
+    		ctno = #{ctno}
+    </update>
+    
+  </mapper>

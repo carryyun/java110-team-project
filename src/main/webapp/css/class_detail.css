@@ -210,6 +210,13 @@ blockquote {
     display: inline-block;
 }
 
+/* div#STATICMENU{
+    border: 1px solid silver;
+    font-size: 16px;
+    margin: 0px; padding: 0px;  
+    position: absolute; right: 0px; top: 0px;
+} */
+
 .detail_info{
     position: relative;
     display: -ms-flexbox;
@@ -222,13 +229,16 @@ blockquote {
     background-clip: border-box;
     border: 0px;
     border-radius: .25rem;
-    margin-top:80px;
-    padding : 10px;
+    margin-top:30px;
+    padding : 20px 10px 10px 10px
 }
 
 #testt{
-    width:94.6%;
+ max-width: 74.5%;
+ min-width: 74.5%;
+    width:96.4%;
     position : absolute;
+    margin-left:16px;
     z-index: 11;
     padding: 0;
     /*position=absolute; 

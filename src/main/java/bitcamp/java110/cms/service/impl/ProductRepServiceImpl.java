@@ -63,4 +63,9 @@ public class ProductRepServiceImpl implements ProductRepService {
     return null;
   }
 
+  @Override
+  public int delete(int no) {
+    return productRepDao.delete(no);
+  }
+
 }

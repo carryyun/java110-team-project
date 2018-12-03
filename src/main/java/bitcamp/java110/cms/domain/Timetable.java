@@ -10,6 +10,7 @@ public class Timetable {
   private Date date;
   private Time stime;
   private int capa;
+  private Date edate;
   
   public int getNo() {
     return no;
@@ -40,6 +41,12 @@ public class Timetable {
   }
   public void setCapa(int capa) {
     this.capa = capa;
+  }
+  public Date getEdate() {
+    return edate;
+  }
+  public void setEdate(Date edate) {
+    this.edate = edate;
   }
   
   

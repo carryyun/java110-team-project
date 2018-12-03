@@ -15,8 +15,7 @@ public class TimetableServiceImpl implements TimetableService {
 
   @Autowired TimetableDao timetableDao;
 
-  @Transactional(
-      rollbackFor=Exception.class)
+  @Transactional(rollbackFor=Exception.class)
   @Override
   public int add(Timetable timetable) {
 
@@ -25,7 +24,6 @@ public class TimetableServiceImpl implements TimetableService {
 
   @Override
   public int update(Timetable timetable) {
-    
     return timetableDao.update(timetable);
   }
 

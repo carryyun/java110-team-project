@@ -22,15 +22,18 @@ public class Classes {
   private int mtno;
   private int star;
   private String stat;
+<<<<<<< HEAD
   private String note;
+=======
+  private String type;
+>>>>>>> 828a7938d5245efd149332ac24698387d8eef73e
   
   private Mentee mentee;
-  private MiddleTag middleTag;
   private Mentor mentor;
+  private MiddleTag middleTag;
   private ClassFile classFile;
   private ClassLike classLike;
-  
-  
+
   private Mentee mentee2;
   private BigTag bigTag;
   private Timetable timetable;
@@ -38,12 +41,20 @@ public class Classes {
   private Cert cert;
   private Report report;
   
+<<<<<<< HEAD
   
   public String getNote() {
     return note;
   }
   public void setNote(String note) {
     this.note = note;
+=======
+  public Mentor getMentor() {
+    return mentor;
+  }
+  public void setMentor(Mentor mentor) {
+    this.mentor = mentor;
+>>>>>>> 828a7938d5245efd149332ac24698387d8eef73e
   }
   public int getNo() {
     return no;
@@ -153,6 +164,12 @@ public class Classes {
   public void setStat(String stat) {
     this.stat = stat;
   }
+  public String getType() {
+    return type;
+  }
+  public void setType(String type) {
+    this.type = type;
+  }
   public Mentee getMentee() {
     return mentee;
   }
@@ -164,12 +181,6 @@ public class Classes {
   }
   public void setMiddleTag(MiddleTag middleTag) {
     this.middleTag = middleTag;
-  }
-  public Mentor getMentor() {
-    return mentor;
-  }
-  public void setMentor(Mentor mentor) {
-    this.mentor = mentor;
   }
   public ClassFile getClassFile() {
     return classFile;
@@ -219,17 +230,7 @@ public class Classes {
   public void setReport(Report report) {
     this.report = report;
   }
-  @Override
-  public String toString() {
-    return "Classes [no=" + no + ", titl=" + titl + ", conts=" + conts + ", pric=" + pric
-        + ", rgdt=" + rgdt + ", time=" + time + ", capa=" + capa + ", cfile=" + cfile + ", tinfo="
-        + tinfo + ", cinfo=" + cinfo + ", pstno=" + pstno + ", basAddr=" + basAddr + ", detAddr="
-        + detAddr + ", edt=" + edt + ", mono=" + mono + ", mtno=" + mtno + ", star=" + star
-        + ", stat=" + stat + ", mentee=" + mentee + ", middleTag=" + middleTag + ", mentor="
-        + mentor + ", classFile=" + classFile + ", classLike=" + classLike + ", mentee2=" + mentee2
-        + ", bigTag=" + bigTag + ", timetable=" + timetable + ", classOrder=" + classOrder
-        + ", cert=" + cert + ", report=" + report + "]";
-  }
+  
   
   
 }

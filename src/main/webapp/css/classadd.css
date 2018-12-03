@@ -1,0 +1,133 @@
+div.note-editable{
+    height: 300px;
+}
+div#imgBind {
+	border: 2px solid silver;
+	padding-top: 15px;
+	height: 300px;
+	overflow: auto;
+	display: block;
+}
+div.row.imgDiv {
+	margin-bottom: 15px;
+}
+#files {
+	color: white
+}
+.fileImg {
+	width: 120px;
+	height: 70px;
+}
+
+.fc-day-top.fc-sat.fc-past{ color:#0000FF; }     /* 토요일 */
+.fc-day-top.fc-sun.fc-past{ color:#FF0000; }     /* 일요일 */
+
+div h1{
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    color: black;
+    margin-bottom: 10px;
+    
+}
+div #ctitl{
+    border: 1px solid black;
+    margin-bottom: 30px;
+    width: 700px;
+    height: 50px;
+}
+.view,#pst #posi{
+    color: white;
+    background-color: black;
+    border: none;
+    width: 100px;
+    text-align: center;
+    font-weight: bold;
+    
+}
+#file-box{
+    margin-bottom: 10px;
+}
+
+#pst,#posi,#mainphot{
+    margin-bottom: 5px;
+}
+#example td{
+    border: 1px solid black;
+}
+
+
+#file-box #mphot{
+    color: white;
+    background-color: black; 
+    width: 100px;
+    border: none;
+     text-align: center;
+    font-weight: bold;
+}
+
+#mphot{
+    margin-bottom: 5px;
+}
+input[type="button"]{
+    background-color: blanchedalmond;
+    border-radius: 12px;
+    border: none;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="button"]:hover { box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); }
+
+#sample6_address{
+    width: 285px;
+}
+#sample6_address2{
+    width: 237px;
+}
+#file-box{
+    border: 1px solid black;
+}
+#classinfo{
+    position: relative; border: 2px solid green; height: 700px;
+}
+
+#filetable{
+    border: 1px;
+}
+
+#addItemBtn,#deleteItembtn{
+    background-color: blanchedalmond;
+    border-radius: 12px;
+    border: none;
+}
+
+#image_section{
+    height: 200px;
+    width: 200px;
+}
+
+input.upload{/*input type="file" tag 투명하게 처리*/
+  width: 75.9px;
+}
+
+#btnreplace {
+  position: absolute;  /*button tag 에 원하는 스타일 적용*/
+  background-color: blanchedalmond;
+  border-radius: 12px;
+  border: none;
+}
+
+#clsinsert{
+    float: right;
+}
+
+
+
+
+
+
+
