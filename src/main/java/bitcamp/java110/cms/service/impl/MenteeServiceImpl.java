@@ -134,5 +134,30 @@ public class MenteeServiceImpl implements MenteeService {
     return menteeDao.updateMtstat(mentee);
   }
 
+  // 마이페이지 menu1 profile
+  @Override
+  public int updateProfile(Mentee mentee) {
+    return menteeDao.updateProfile(mentee);
+  }
+  
+  //마이페이지 menu1 pwd
+  @Override
+  public int updatePwd(Mentee mentee) {
+    return menteeDao.updatePwd(mentee);
+  }
+  
+  //마이페이지 menu1 phone
+  @Override
+  public int updatePhone(Mentee mentee) {
+    return menteeDao.updatePhone(mentee);
+  }
+  
+  //마이페이지 menu1 addr
+  @Override
+  public int updateAddr(Mentee mentee) {
+    return menteeDao.updateAddr(mentee);
+  }
+  
+  
 
 }
