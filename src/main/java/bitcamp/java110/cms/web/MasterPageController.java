@@ -118,6 +118,14 @@ public class MasterPageController {
     return menteeService.updateMtstat(mentee);
   }
   
+  @RequestMapping(value = "mtnote.do", method = {RequestMethod.GET, RequestMethod.POST})
+  public @ResponseBody int mtnote(int meno, char stat, String note) {
+    Mentee mentee = menteeService.get(meno);
+    mentee.setMtstat(stat);
+    mentee.setNote(note);
+    return menteeService.updateMtstat(mentee);
+  }
+  
   // 181121 고친거
   @RequestMapping(value = "reptstat.do", method = {RequestMethod.GET, RequestMethod.POST})
   public @ResponseBody int reptstat(int rtno, char stat) {
