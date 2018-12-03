@@ -1,5 +1,3 @@
-<%@page import="bitcamp.java110.cms.domain.Mentee"%>
-<%@page import="bitcamp.java110.cms.domain.Mentor"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
      
