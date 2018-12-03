@@ -78,7 +78,7 @@
                             </thead>
 
                             <tbody>
-                            <c:forEach items="${basketList}" var="r">
+                            <c:forEach items="${basketList}" var="r" varStatus="i">
                                 <tr class="product d-flex">
                                     <td class="col-6">
                                         <div class="media">
@@ -109,7 +109,9 @@
                                     <div class="totals">
                                         <div class="totals-item totals-item-total">
                                             <label> 최종 결제 금액</label>
-                                            <div class="totals-value" id="cart-total"></div>
+                                            <c:forEach items="${sumList }" var="r" varStatus="i">
+                                            <div class="totals-value" id="cart-total">${r.sum }</div>
+                                            </c:forEach>
                                         </div>
                                     </div>
 

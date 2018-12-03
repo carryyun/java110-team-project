@@ -18,6 +18,7 @@
         <result column="phot" property="product.phot"/>
         
         <result column="nick" property="mentee.nick"/>
+        <result column="sum"  property="sum"/>
         
     </resultMap>
     
@@ -66,6 +67,19 @@
             pr.pric, 
             pr.deli, 
             mete.nick
+        FROM 
+            p_prdt_bakt pb 
+                join p_prdt pr
+            on pb.ptno = pr.ptno
+        JOIN p_mete mete
+            on pb.meno = mete.meno
+        where 
+            pb.meno = #{value}
+    </select>
+    
+    <select id="sumByMeno" resultMap="productBaktMap" parameterType="int">
+        SELECT
+            sum((pr.pric*pb.cnt)+pr.deli) as sum
         FROM 
             p_prdt_bakt pb 
                 join p_prdt pr

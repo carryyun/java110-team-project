@@ -15,4 +15,6 @@ public interface ClassBaktService {
   
   List<ClassBakt> listByMeno(int meno);
   
+  List<ClassBakt> sumByMeno(int meno);
+  
 }

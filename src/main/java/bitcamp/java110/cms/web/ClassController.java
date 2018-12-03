@@ -465,7 +465,11 @@ public class ClassController {
     Mentee mentee = (Mentee) session.getAttribute("loginUser");
     List<ClassBakt> basketList = classBaktService.listByMeno(mentee.getNo());
     model.addAttribute("basketList", basketList);
+    
+    List<ClassBakt> sumList = classBaktService.sumByMeno(mentee.getNo());
+    model.addAttribute("sumList", sumList);
   }
+  
   
   @ResponseBody
   @RequestMapping("removeDate")
