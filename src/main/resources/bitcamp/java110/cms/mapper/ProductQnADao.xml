@@ -21,7 +21,7 @@
         <result column="ptitl"    property="product.titl"/>
         <result column="me2nick"  property="mentee2.nick"/>
         <result column="me2name"  property="mentee2.name"/>
-        
+         
     </resultMap>
     
     <select id="findAll" resultMap="productQnAMap">
@@ -85,7 +85,7 @@
             pq.titl,
             me.nick,
             me2.nick as me2nick,
-            me2.name as me2name,,
+            me2.name as me2name,
             pq.rgdt,
             pq.rgdt2,
             pq.conts,
