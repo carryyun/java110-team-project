@@ -1137,12 +1137,12 @@ geocoder.addressSearch('${detailclass.basAddr}', function(result, status) {
                 if (position > 985) {
                     $(id).css("position", "fixed-top");
                     $(id).css("top", position + "px");
-                    $(id).css("width", "1110px");
+                    /* $(id).css("width", "1110px"); */
 
                 } else {
                     $(id).css("top", (testtTop) + "px");
                     $(id).css("position", "absolute");
-                    $(id).css("width", "1110px");
+                    /* $(id).css("width", "1110px"); */
                 }
             });
         }

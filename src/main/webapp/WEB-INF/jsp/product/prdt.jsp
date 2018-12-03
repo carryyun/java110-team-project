@@ -290,7 +290,6 @@
     </script>
 	<script>
 	function getCtno(){
-	    /* console.log($('#cert option:selected').attr('id')); */
 	    $('#ctno').val($('#cert option:selected').attr('id'));
 	}
 	
@@ -317,7 +316,9 @@
                 html+='<input type="hidden" name="ctno" id="ctno" value=""';
                 html+='</div><br>';
                 html+='<div class="text-center" style="margin-top:10px">'
-                html+='<button type="submit" class="btn btn-default" style="margin:5px">선택</button>';
+
+                html+='<button type="button" onclick="openPopUp(this.form)" class="btn btn-default" style="margin:5px">등록</button>';
+
                 html+='<button type="button" class="btn btn-default" data-dismiss="modal" role="button">취소</button>';
                 html+='</div>';
                 html+=' </form>';
@@ -328,6 +329,33 @@
         });
         
     }
+    function openPopUp(frm){
+        var openWin;
+        
+        var url    = "prodRegister";
+        var title  = "하루 - 상품등록";
+        var status = "toolbar=no,directories=no,scrollbars=no,resizable=no,status=no,menubar=no,width=1300, height=700, top=-1000,left=100"; 
+        openWin = window.open("", title,status); //window.open(url,title,status); window.open 함수에 url을 앞에와 같이
+                                                  //인수로  넣어도 동작에는 지장이 없으나 form.action에서 적용하므로 생략
+                                                  //가능합니다.
+        frm.target = title;                    //form.target 이 부분이 빠지면 form값 전송이 되지 않습니다. 
+        frm.action = url;                    //form.action 이 부분이 빠지면 action값을 찾지 못해서 제대로 된 팝업이 뜨질 않습니다.
+        frm.method = "post";
+        frm.submit();     
+        }
+    
+/*     {
+        
+        var ctno = $('input#ctno').val();
+        
+        console.log(ctno);
+
+        // window.name = "부모창 이름"; 
+        window.name = "parentForm";
+        // window.open("open할 window", "자식창 이름", "팝업창 옵션");
+        openWin = window.open("prodRegister",
+                "childForm", "width=570, height=350, resizable = no, scrollbars = no");    
+    } */
     </script>
 </body>
 
