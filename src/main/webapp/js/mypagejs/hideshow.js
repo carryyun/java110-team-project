@@ -8,23 +8,31 @@
             $("#menu2").load("/app/mypage/menu2");
         });
 
-        // 결제내역 load / hide /show
-        $(function(){
-        $("#menu3-1").load("/app/mypage/menu3-1");
+        // 결제내역 load / fadeOut /fadeIn
+        $(document).ready(function() {
+            $("#menu3-1").load("/app/mypage/menu3-1");
         });
         
         $(function(){
             $("#classbkt").click(function(){
-                $("#menu3-2").hide("/app/mypage/menu3-2");
-                $("#menu3-1").show("/app/mypage/menu3-1");
+                $("#menu3-2").fadeOut(200);
+                
+                setTimeout(function() {
+                    $("#menu3-1").fadeIn(200);
+                  }, 200);
+                
             });
         });
         
         $(function(){
             $("#productbkt").click(function(){
-                $("#menu3-2").load("/app/mypage/menu3-2");
-                $("#menu3-1").hide("/app/mypage/menu3-1");
-                $("#menu3-2").show("/app/mypage/menu3-2");
+               
+                $("#menu3-1").fadeOut(200);
+                setTimeout(function() {
+                    $("#menu3-2").load("/app/mypage/menu3-2");
+                    $("#menu3-2").fadeIn(200);
+                  }, 200);
+                
             });
         });
         
@@ -39,40 +47,56 @@
         
         $(function(){
             $("#btn-menu4-1").click(function(){
-                $("#menu4-2,#menu4-2,#menu4-3,#menu4-4,#menu4-5").hide("/app/mypage/menu4-2,/app/mypage/menu4-2,/app/mypage/menu4-3,/app/mypage/menu4-4,/app/mypage/menu4-5");
-                $("#menu4-1").show("/app/mypage/menu4-1");
+                $("#menu4-2,#menu4-2,#menu4-3,#menu4-4,#menu4-5").fadeOut(200);
+                
+                setTimeout(function() {
+                    $("#menu4-1").fadeIn(200);
+                  }, 200);
+                
             });
         });
         
         $(function(){
             $("#btn-menu4-2").click(function(){
-                $("#menu4-2").load("/app/mypage/menu4-2");
-                 $("#menu4-1,#menu4-1,#menu4-3,#menu4-4,#menu4-5").hide("/app/mypage/menu4-2,/app/mypage/menu4-2,/app/mypage/menu4-3,/app/mypage/menu4-4,/app/mypage/menu4-5");
-                $("#menu4-2").show("/app/mypage/menu4-2");
+                $("#menu4-1,#menu4-1,#menu4-3,#menu4-4,#menu4-5").fadeOut(200);
+                
+                setTimeout(function() {
+                    $("#menu4-2").load("/app/mypage/menu4-2");
+                    $("#menu4-2").fadeIn(200);
+                  }, 200);
             });
         });
         
              $(function(){
             $("#btn-menu4-3").click(function(){
-                $("#menu4-3").load("/app/mypage/menu4-3");
-                 $("#menu4-2,#menu4-2,#menu4-1,#menu4-4,#menu4-5").hide("/app/mypage/menu4-2,/app/mypage/menu4-2,/app/mypage/menu4-1,/app/mypage/menu4-4,/app/mypage/menu4-5");
-                $("#menu4-3").show("/app/mypage/menu4-3");
+                $("#menu4-2,#menu4-2,#menu4-1,#menu4-4,#menu4-5").fadeOut(200);
+                
+                setTimeout(function() {
+                    $("#menu4-3").load("/app/mypage/menu4-3");
+                    $("#menu4-3").fadeIn("/app/mypage/menu4-3");
+                }, 200);
             });
         });
         
              $(function(){
             $("#btn-menu4-4").click(function(){
-                $("#menu4-4").load("/app/mypage/menu4-4");
-                $("#menu4-2,#menu4-2,#menu4-1,#menu4-3,#menu4-5").hide("/app/mypage/menu4-2,/app/mypage/menu4-2,/app/mypage/menu4-1,/app/mypage/menu4-3,/app/mypage/menu4-5");
-                $("#menu4-4").show("/app/mypage/menu4-4");
+                $("#menu4-2,#menu4-2,#menu4-1,#menu4-3,#menu4-5").fadeOut(200);
+                
+                setTimeout(function() {
+                    $("#menu4-4").load("/app/mypage/menu4-4");
+                    $("#menu4-4").fadeIn(200);
+                }, 200);
             });
         });
         
              $(function(){
             $("#btn-menu4-5").click(function(){
-                $("#menu4-5").load("/app/mypage/menu4-5");
-                $("#menu4-2,#menu4-2,#menu4-1,#menu4-4,#menu4-3").hide("/app/mypage/menu4-2,/app/mypage/menu4-2,/app/mypage/menu4-1,/app/mypage/menu4-4,/app/mypage/menu4-3");
-                $("#menu4-5").show("/app/mypage/menu4-5");
+                $("#menu4-2,#menu4-2,#menu4-1,#menu4-4,#menu4-3").fadeOut(200);
+                
+                setTimeout(function() {
+                    $("#menu4-5").load("/app/mypage/menu4-5");
+                    $("#menu4-5").fadeIn(200);
+                }, 200);
             });
         });
              
@@ -82,7 +106,11 @@
                  $("#menu5").load("/app/mypage/menu5");
              });
             
-             // 상품 관리   
+             
+             
+             
+          // 상품 관리   
              $(document).ready(function() {
                  $("#menu6").load("/app/mypage/menu6");
              });
+             

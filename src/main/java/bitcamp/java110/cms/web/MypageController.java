@@ -215,11 +215,15 @@ public class MypageController {
     List<Product> pmanage = productService.listBySeller(1,10,5);
     model.addAttribute("pmanage", pmanage );
     
-    for( Product p : pmanage)
-    {System.out.println(p.getTitl());}
+  }
+  
+  
+  @GetMapping("menu6buyer")
+  public void menu6buyer(Model model) {
     
     List<Product> pmanage2 = productService.listBySeller2(1,10,5);
     model.addAttribute("pmanage2", pmanage2 );
+    
   }
   
   
