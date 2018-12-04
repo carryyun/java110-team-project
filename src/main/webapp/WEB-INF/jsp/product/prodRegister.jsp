@@ -165,7 +165,6 @@ div.row.imgDiv {
 				<div class="col-lg-12">
 					<input type="file" id="files" name="files" multiple accept="image/*" />
 					<div id="selectedFiles"></div>
-
 				</div>
 				<!-- 등록 취소버튼 -->
 				<div class="col-lg-12 text-right">

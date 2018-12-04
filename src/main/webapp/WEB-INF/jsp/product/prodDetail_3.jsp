@@ -91,7 +91,7 @@
                                 <a href="http://localhost:8888/app/class/detail?no=${product.classes.no}" id="prdtSidebtnGo" class="btn btn-lg btn-primary text-uppercase"><i class="fas fa-graduation-cap"></i>수업듣기</a> 
                                 <a href="#" id="prdtSidebtnLike" class="btn btn-lg btn-outline-primary text-uppercase"> 
                                     <i class="fas fa-star"></i>찜클래스 </a>
-                                    
+                                  
                         </div>
                         <!-- card-body.// -->
                     </div>

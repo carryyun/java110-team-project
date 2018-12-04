@@ -8,60 +8,61 @@
     <meta charset="UTF-8">
     <title>클래스 등록</title>
     <link rel="stylesheet" type="text/css" href="/css/classadd.css">
-    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+    <link rel="stylesheet" href="/css/jquery.datetimepicker.min.css" >
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" type="text/javascript" ></script> 
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
     <link href='/css/fullcalendar.css' rel='stylesheet' />
     <link href='/css/fullcalendar.min.css' rel='stylesheet' type="text/javascript" />
     <link href='/css/fullcalendar.print.min.css' rel='stylesheet' media='print'/>
     <script src='/js/moment.min.js'></script>
     <script src='/js/fullcalendar.min.js'></script>
-    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="/js/jquery.datetimepicker.full.min.js"></script>
-    <link rel="stylesheet" href="/css/jquery.datetimepicker.min.css" >
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"  type="text/javascript"></script>
-    
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
     </head>
+    
 <body style="background-color:#F2F4F7;">
 <div class="container">
 <div class="row">
-<div class="col-lg-12">
+<div class="col" style="position: absolute; height: 105px; background-color: white">
+			<!-- 헤더 배경색 적용 -->
+		</div>
+<div class="col-lg-12" style="z-index: 100">
+					<jsp:include page="../headerMain.jsp"></jsp:include>
  <div id="classadd">
   <div>
       <h1>클래스 등록</h1>
   </div>
   <!--method="post"  enctype="multipart/form-data"-->
-  <form action="classadd" method="post" id="uploadForm" enctype="multipart/form-data" onsubmit="return emptychk(this)" >
+  <form action="classadd" method="post" id="uploadForm" enctype="multipart/form-data" onsubmit="return emptychk()" >
              <div>
-              <input type="text" name="titl" id="ctitl" placeholder="#제목을 입력해주세요#Haru#클래스등록">
+              <input type="text" name="titl" id="ctitl" placeholder="#제목을 입력해주세요 #Haru #클래스등록">
              </div>
               
               <div id="classinfo">
-               <div style="width: 400px; height: auto; float: right; top:0">
-                <div>
+               <div style="width: 500px; height: auto; float: right; top:0">
+                <div id="type-chk-btn">
                   	<input type="radio" id="contactChoice1" name="typeChk" value="단기" checked="checked">
-				    <label for="contactChoice1">oneday</label>
+				    <label for="contactChoice1">단기</label>
 				    <input type="radio" id="contactChoice2" name="typeChk" value="장기">
-				    <label for="contactChoice2">allday</label>
+				    <label for="contactChoice2">장기</label>
                 </div>
                 <div id="calendar"></div>
                 <div id="oneday-btn"><input type="text" class="view" readonly value="수업 날짜">
                 <input type="button" id="sledel" value="선택삭제" style="float: right;'">
-                <select id="daylist" size="5" style="width: 400px;"></select>
+                <select id="daylist" size="5" style="width:500px;"></select>
                 </div>
                 </div>
-                <div style="position:absolute; width: 736px;
-                float:right; top: 0;">
-
-               <div>
+                <div style="position:absolute; width: 500px; float:right; top: 0;">
+               <div id="pay-div">
                 <input type="text" class="view" readonly value="시간당 금액" >
-                <input type="number" name="pric" id="cpay" oninput="maxLengthCheck2(this)" maxlength="6" placeholder="필수입력항목">원
+                <input type="number" name="pric" id="cpay" oninput="maxLengthCheck2(this)" maxlength="6" placeholder="시간당 수업금액을 입력해주세요.">원
                </div> 
                <div id="allday-btn" style="display:none;">
                <input type="text" class="view" readonly value="수업날짜">
@@ -72,22 +73,24 @@
                 <input type="text" class="view" readonly value="수업시간">
                 <input type="text" name="stime" id="ctime" readonly placeholder="시작시간">~
                 <input type="text" name="etime" id="ctime2" readonly placeholder="종료시간"><br>
+                </div>
+                <div id="onetime">
                 <input type="text"  class="view" readonly value="일 수업시간">
                 <input type="text" name="time" id="cttime" readonly  >
                </div>
-               <div>
+               <div id="divcapa">
                 <input type="text" class="view" readonly value="모집인원">
-                <input type="number" name="capa" id="rnumber" oninput="maxLengthCheck2(this)" min="1" maxlength="2" placeholder="필수입력항목">
+                <input type="number" name="capa" id="rnumber" oninput="maxLengthCheck2(this)" min="1" maxlength="2" placeholder="모집인원을 입력해주세요.">
                </div>
                 <div id="pst">
                     <input type="text" id="posi" readonly value="수업장소"><br>
                     <input type="text" name="pstno" id="sample6_postcode" readonly placeholder="우편번호">
-                    <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+                    <input type="button" id="findpstno" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
                     <input type="text" name="basAddr" id="sample6_address" readonly placeholder="주소">
                     <input type="text" name="detAddr" id="sample6_address2" placeholder="상세주소">
                  </div>
                  <div id="file-box">
-                     <input type="text" class="view" readonly value="동영상  URL"><br>
+                     <input type="text" class="view" id="video-url" readonly value="동영상  URL"><br>
                      <input type="url" name="cfile" id="imgInput"  />
                  </div> 
                  <div id="filetable">
@@ -117,113 +120,148 @@
 
 
 <script> 
+
+	$(document).ready(function(){ 
+	    $("input:radio[name=typeChk]").click(function() 
+	    { 
+	    	$("#type").val($("input[name=typeChk]:checked").val());
+	    });
+	});
+	
 function emptychk(){
 	if($("#ctitl").val().length < 3){
-		swal("제목은 최소 3글자이상 입력해주세요.");
+		swal({
+			text:"제목은 최소 3글자이상 입력해주세요.",
+			button:"확인"
+		});
+		console.log($("#cpay").val() < 1000);
 		return false;
-	}else if($("#imgInput").val().substr(0 , 16) != "https://youtu.be" ||
-			$("#imgInput").val().substr(0 , 23) != "https://www.youtube.com" ){
-		swal("유튜브 URL만 가능합니다.");
-		return false;
+	}else if($("#imgInput").val().length > 0 && !($("#imgInput").val().substr(0 , 16) == 'https://youtu.be' || 
+			$("#imgInput").val().substr(0 , 23) == 'https://www.youtube.com')) {
+				swal({
+				text:"유튜브 URL만 가능합니다.",
+				button:"확인"
+				});
+				return false;
 	}else if($("#rnumber").val() == ""){
-		swal("모집인원을 입력해주세요");
+		swal({
+			text:"모집인원을 입력해주세요",
+			button:"확인"
+		});
 		return false;
 	}else if($("#cpay").val() == ""){
-		swal("가격을 입력해주세요")
+		swal({
+			text:"가격을 입력해주세요",
+			button:"확인"
+		});
 		return false;
 	}else if($("#classcowdog").val().length < 100){
-		swal("강의 소개는 최소100글자이상 입력해주세요.");
+		swal({
+			text:"강의 소개는 최소100글자이상 입력해주세요.",
+			button:"확인"
+		});
 		return false;
 	}else if($("#classtteok").val().length < 100){
-		swal("강의 설명은 최소100글자이상 입력해주세요.");
+		swal({
+			text:"강의 설명은 최소100글자이상 입력해주세요.",
+			button:"확인"
+		});
 		return false;
-	}else if($('#files').length < 1){
-		swal("사진한장이상 선택해주세요.");
+	}else if($('#files').val().length < 1){
+		swal({
+			text:"사진한장이상 선택해주세요.",
+			button:"확인"
+		});
 		return false;
 	}else if($("#sample6_postcode").val() == ""){
-		swal("우편번호를 입력해주세요.");
+		swal({
+			text:"우편번호를 입력해주세요.",
+			button:"확인"
+		});
 		return false;
 	}else if($("#sample6_address").val() == ""){
-		swal("기본주소를 입력해주세요.");
+		swal({
+			text:"기본주소를 입력해주세요.",
+			button:"확인"
+		});
 		return false;
-	}else if($("#type").val() == '장기'){
-		if($("#cdate").val() == ""){
-			swal("날짜를 선택해주세요.");
+	}else if($("#ctime").val().length < 1){
+		swal({
+			text:"시간을 입력해주세요.",
+			button:"확인"
+		});
+		return false;
+	}else if($("#ctime2").val().length < 1){
+		swal({
+			text:"시간을 입력해주세요.",
+			button:"확인"
+		});
+		return false;
+	}else if($("#type").val() == '장기' && $("#cdate").val().length < 1){
+			swal({
+				text:"날짜를 선택해주세요.",
+				button:"확인"
+			});
 			return false;
-		}else if($("#cdate2").val() == ""){
-			swal("날짜를 선택해주세요.");
+	}else if($("#type").val() == '장기' && $("#cdate2").val().length < 1){
+			swal({
+				text:"날짜를 선택해주세요.",
+				button:"확인"
+			});
 			return false;
-		}
-	}else if($("#type").val() == '단기'){
-		if($('#daylist option').length < 1){
-			swal("날짜를 선택해주세요.");
+	}else if($("#type").val() == '단기' && $('#daylist option').length < 1){
+			swal({
+				text:"날짜를 선택해주세요.",
+				button:"확인"
+			});
 			return false;
-		}
-	}else if($("#ctime2").val().length == 5){
-	    if($("#ctime").val().length == 5){
-			var ct2 = $("#ctime2").val().substr(0,2);
-			var ct1 = $("#ctime").val().substr(0,2);
-	    	var alltime = ct2-ct1
-	    	if(ct2 < ct1){
-	    		swal("시작시간이 끝나는시간보다 작아야합니다");
-	    		return false;
-	    	}else if(ct2 = ct1){
-	    		swal("시작시간과 끝나는시간이 같으면안됩니다.");
-	    		return false;
-	    	}
-	    }else if($("#ctime").val().length == 4){
-	    	var ct2 = $("#ctime2").val().substr(0,2);
-			var ct1 = $("#ctime").val().substr(0,1);
-	    	var alltime = ct2-ct1
-	    	if(Math.abs(ct2)<Math.abs(ct1)){
-	    		swal("시작시간이 끝나는시간보다 작아야합니다");
-	    		return false;
-	    	}else if(Math.abs(ct2)=Math.abs(ct1)){
-	    		swal("시작시간과 끝나는시간이 같으면안됩니다.");
-	    		return false;
-	    	}
-	    }
-	}else if($("#ctime2").val().length == 4){
-		if($("#ctime").val().length == 4){
-			var ct2 = $("#ctime2").val().substr(0,1);
-			var ct1 = $("#ctime").val().substr(0,1);
-	    	var alltime = ct2-ct1
-	    	if(ct2 < ct1){
-	    		swal("시작시간이 끝나는시간보다 작아야합니다");
-	    		return false;
-	    	}else if(ct2 = ct1){
-	    		swal("시작시간과 끝나는시간이 같으면안됩니다.");
-	    		return false;
-	    	}
-		}else if($("#ctime").val().length == 5){
-			var ct2 = $("#ctime2").val().substr(0,1);
-			var ct1 = $("#ctime").val().substr(0,2);
-	    	var alltime = ct2-ct1
-	    	if(Math.abs(ct2)<Math.abs(ct1)){
-	    		swal("시작시간이 끝나는시간보다 작아야합니다");
-	    		return false;
-	    	}else if(Math.abs(ct2)=Math.abs(ct1)){
-	    		swal("시작시간과 끝나는시간이 같으면안됩니다.");
-	    		return false;
-	    	}
-		}
-	}else if($("#cpay").val() < 1000){
-		swal("시간당 최소금액은 1000원이상입니다.")
+	}else if($("#type").val() == '단기' && $("#cpay").val() < 1000){
+		swal({
+			text:"시간당 최소금액은 1000원이상입니다.",
+			button:"확인"
+		});
 		return false;
 	}else if($("#rnumber").val() < 1){
-		swal("모집인원의 최소인원은 1명이상입니다.");
+		swal({
+			text:"모집인원의 최소인원은 1명이상입니다.",
+			button:"확인"
+		});
 		return false;
+	}else if($("#ctime2").val().length == 4 && $("#ctime").val().length == 5){
+		swal({
+			text:"시작시간이 끝나는시간보다 작아야합니다",
+			button:"확인"
+		});
+		return false;
+	}else if($("#ctime2").val().length == 5 && $("#ctime").val().length == 5 && $("#ctime2").val().substr(0,2) < $("#ctime").val().substr(0,2)){
+    		swal({
+				text:"시작시간이 끝나는시간보다 작아야합니다",
+				button:"확인"
+			});
+    		return false;
+	}else if($("#ctime2").val().length == 5 && $("#ctime").val().length == 5 &&  $("#ctime2").val().substr(0,2) == $("#ctime").val().substr(0,2)){
+    		swal({
+				text:"시작시간과 끝나는시간이 같으면안됩니다.",
+				button:"확인"
+			});
+    		return false;
+		
+	}else if($("#ctime2").val().length == 4 && $("#ctime").val().length == 4 && $("#ctime2").val().substr(0,1) < $("#ctime").val().substr(0,1)){
+    		swal({
+				text:"시작시간이 끝나는시간보다 작아야합니다",
+				button:"확인"
+			});
+    		return false;
+	}else if($("#ctime2").val().length == 4 && $("#ctime").val().length == 4 && $("#ctime2").val().substr(0,1) == $("#ctime").val().substr(0,1)){
+    		swal({
+				text:"시작시간과 끝나는시간이 같으면안됩니다.",
+				button:"확인"
+			});
+    		return false;
 	}
 }
 
 
-$(document).ready(function() 
-	{ 
-	    $("input:radio[name=typeChk]").click(function() 
-	    { 
-	    	$("#type").val($("input[name=typeChk]:checked").val());
-	    }) 
-	});
 	
 $("#contactChoice1").click(function() {
     $("#oneday-btn").show(); 
@@ -236,6 +274,7 @@ $("#contactChoice2").click(function(){
 
 
 var selDiv = "";
+
 document.addEventListener("DOMContentLoaded", init, false);
 
 function init() {
@@ -245,14 +284,19 @@ function init() {
 }
 
 function handleFileSelect(e) {
+
     if (!e.target.files || !window.FileReader)
         return;
+
     selDiv.innerHTML = "";
+
     var files = e.target.files;
     var filesArr = Array.prototype.slice.call(files);
+    
     var html = "";
     html += "<div class='col-lg-12' id='imgBind'>";
     for (var i = 0; i < filesArr.length; i++) {
+        
         var f = files[i];
         if (!f.type.match("image.*")) {
             return;
@@ -260,34 +304,25 @@ function handleFileSelect(e) {
         var j = 0;
         var reader = new FileReader();
         reader.onload = function(e) {
+            console.log("filesArr[i]="+filesArr[i] +  " ," + i);
+            console.log("filesArr[j]="+filesArr[j] +  " ," + j);
             f = filesArr[j];
-            html += "<div class='row imgDiv' id='imgDiv"+j + "'>";
-            html += "<div class='col-lg-5'>";
-            html += "<img class='fileImg' src=\"" + e.target.result + "\">";
+            /* console.log(f);
+            console.log(e); */
+            html += "<div class='row imgDiv' id='imgDiv"+j + "' style='float:left; margin:5px;'>";
+
+            html += "<div class='col-lg-12 px-0'>";
+            html += '<img class="fileImg" src=\"' + e.target.result + '\" onclick="removeImg(' + j + ', )">';
             html += "</div>";
-            html += "<div class='col-lg-3'>";
-            html += f.name + "<br clear=\"left\"/>";
             html += "</div>";
-            html += "<div class='col-lg-2'>";
-            var kb = (f.size / 1024);
-            html += kb.toFixed(2) + "kb <br clear=\"left\"/>";
-            html += "</div>";
-            html += "<div class='col-lg-2'>";
-            html += "<button data-fileno='" + j + "' data-filename='" + f.name + "' class='remove-file-btn'>" + "삭제"
-                    + "</button>";
-            html += "</div>";
-            if (j < filesArr.length-1) {
-                html += "<div class='col-lg-12'>";
-                html += "<hr>";
-                html += "</div>";
-            }
-            html += "</div>";
+
             selDiv.innerHTML = html;
             j++;
         }
         reader.readAsDataURL(f);
     }
     selDiv.innerHTML += "</div>";
+
 }
 
 var removefiles = $('#removefiles');
@@ -456,10 +491,21 @@ $(document.body).on('click', '.remove-file-btn', function (event) {
   // 		}
 //    });
     
+var today = new Date();
+var dd = today.getDate() + 3;
+var mm = today.getMonth()+1; //January is 0!
+var yy = today.getFullYear();
+if(dd<10) {
+    dd='0'+dd
+} 
+if(mm<10) {
+    mm='0'+mm
+} 
+today = yy+'-' + mm+'-'+dd;
 	$("#cdate").datepicker({
 		dateFormat: 'yy-mm-dd',
+		minDate: today,
 		onSelect: function(selected) {
-			
 			$("#cdate2").datepicker("option","minDate", selected)
 		}
 	});
@@ -469,7 +515,6 @@ $(document.body).on('click', '.remove-file-btn', function (event) {
 			$("#cdate").datepicker("option","maxDate", selected)
 		}
 	});
-     
     /* $('#calendar').fullCalendar({
    	  dayClick: function(date, jsEvent, view, resourceObj) {
    		  swal("ASD");
@@ -582,10 +627,20 @@ if (object.value.length > object.maxLength){
 }
   $(document).ready(function() {
      $('#classcowdog').summernote();
+     $('div.note-popover.popover.in.note-link-popover.bottom').remove();
+     $('div.note-popover.popover.in.note-image-popover.bottom').remove();
+     $('div.popover-content.note-children-container').remove();
+     $('div.arrow').remove();
+     $('div.note-popover.popover.in.note-table-popover.bottom').remove();
  });
 
  $(document).ready(function() {
      $('#classtteok').summernote();
+     $('div.note-popover.popover.in.note-link-popover.bottom').remove();
+     $('div.note-popover.popover.in.note-image-popover.bottom').remove();
+     $('div.popover-content.note-children-container').remove();
+     $('div.arrow').remove();
+     $('div.note-popover.popover.in.note-table-popover.bottom').remove();
  }); 
  
  
@@ -614,7 +669,6 @@ $(document).ready(function(){
       defaultDate: today,
       editable: false, 
       eventLimit: true, 
-      
 	      dayClick: function(date, jsEvent, view, resourceObj) {
 	   	      var seldate = date.format();
 	   	      var option = $("<option  value='"+seldate+"'>"+seldate+"</option>");
