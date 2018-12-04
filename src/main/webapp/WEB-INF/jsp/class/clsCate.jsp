@@ -255,7 +255,7 @@
 			location.href='classadd';
 		}else if('${sessionScope.loginUser.mtstat}' == 'I'){
 			swal({
-				title: "응안돼~응 송",
+				title: "아직 멘토 심사 기간이 안끝났습니다.",
 				button: "확인"
 			});
 		}
