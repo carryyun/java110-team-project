@@ -41,8 +41,8 @@
         <result column="clsmetenick" property="classes.mentee.nick"/>
         
         <result column="clsstar"    property="classes.star"/>
-        <result column="clsaddr"     property="classes.basAddr"/>
-        
+        <result column="clsaddr"    property="classes.basAddr"/>
+        <result column="clscno"     property = "classes.no"/>
     </resultMap>
     
     <resultMap type="product" id="sellerMap">
@@ -186,7 +186,7 @@ select
     stag.stno,
     stag.stname,
     stag.mtno,
-    mtag.mtno, <!--  -->
+    mtag.mtno,
     mtag.mtname,
     btag.btno,
     btag.btname,
@@ -195,7 +195,8 @@ select
     clsmete.phot clsmetephot,
     clsmete.nick clsmetenick,
     pcls.star clsstar,
-    pcls.bas_addr clsaddr
+    pcls.bas_addr clsaddr,
+    pcls.cno clscno
 from 
     p_prdt p
     join p_mete mete
