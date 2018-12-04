@@ -139,9 +139,9 @@ input[type="number"]::-webkit-inner-spin-button {
 								    </div>
 								</div>
 							</div>
-
+ 
 							<hr class="FhrMargin">
-							<a href="javaScript:void(0)" onclick="pay()" class="btn btn-lg btn-primary">
+							<a href="javaScript:void(0)" onclick="npay()" class="btn btn-lg btn-primary">
 								구매하기 </a> 
 							<a href="#" class="btn btn-lg btn-outline-primary">
 							<i class="fas fa-shopping-cart"></i> 장바구니</a>
