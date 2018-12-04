@@ -219,7 +219,7 @@
 			location.href='classadd';
 		}else if('${sessionScope.loginUser.mtstat}' == 'I'){
 			swal({
-				title: "응안돼~",
+				title: "아직 멘토 심사 기간이 안끝났습니다.",
 				button: "확인"
 			});
 		}
@@ -253,7 +253,7 @@
 	    console.log(nick);
 	    console.log(mtname);
 	    console.log(btname);*/
-	    var clssize = ${clslist.size()};
+	    /* var clssize = ${clslist.size()};
 	    console.log(clssize);
 	    var html = "";
 	    var clslist = $('div#clslist'); 
@@ -309,7 +309,7 @@
 			}
 			clslist.html(html);
 	    }
-	});
+	}); */
 </script>
 </body>
 
