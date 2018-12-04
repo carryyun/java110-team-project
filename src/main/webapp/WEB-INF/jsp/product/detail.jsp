@@ -418,7 +418,40 @@ function npay(){
     }
 }
 </script>
+<script>
+function clslikeins(no) {
+    var cno = ${detailclass.no};
+    if("${sessionScope.loginUser}" == ""){
+        swal({
+            text : "로그인 후 이용가능합니다..",
+            button : "확인",
+          })
+    } else{
+        $.ajax({
+            type : "POST" , 
+            data : {
+                "cno" : cno , 
+                "meno" : no
+            },
+            url : "clslikeins.do" ,
+            success : function() {
+                swal({
+                    text : "찜클래스가 등록되었습니다",
+                    icon : "success",
+                    button : "확인",
+                  })
+            },error : function(error,status){
+                swal({
+                    text : "이미 찜클래스에 등록된 클래스입니다.",
+                    button : "확인",
+                  })
+            }
+        });
+    } 
+}
 
+
+</script>
 </body>
 
 </html>
@@ -488,4 +521,5 @@ function npay(){
             alert(msg);
         }
     });
+<<<<<<< HEAD
 } --%>

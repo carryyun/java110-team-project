@@ -8,10 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import bitcamp.java110.cms.domain.BigTag;
 import bitcamp.java110.cms.domain.ClassOrder;
 import bitcamp.java110.cms.domain.Classes;
 import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.Mentor;
+import bitcamp.java110.cms.domain.MiddleTag;
 import bitcamp.java110.cms.domain.Notice;
 import bitcamp.java110.cms.domain.Product;
 import bitcamp.java110.cms.domain.ProductOrder;
@@ -23,6 +25,7 @@ import bitcamp.java110.cms.service.MenteeService;
 import bitcamp.java110.cms.service.MentorFileService;
 import bitcamp.java110.cms.service.MentorLicenseService;
 import bitcamp.java110.cms.service.MentorService;
+import bitcamp.java110.cms.service.MiddleTagService;
 import bitcamp.java110.cms.service.NoticeService;
 import bitcamp.java110.cms.service.ProductOrderService;
 import bitcamp.java110.cms.service.ProductPopulService;
@@ -44,6 +47,7 @@ public class MasterController {
   MentorFileService mentorFileService;
   MentorLicenseService mentorlicenseService;
   ReportService reportService;
+  MiddleTagService middleTagService;
 
   
   NoticeService noticeService;
@@ -59,7 +63,8 @@ public class MasterController {
       MentorLicenseService mentorlicenseService,
       BigTagService bigTagService,
       ReportService reportService,
-      NoticeService noticeService
+      NoticeService noticeService,
+      MiddleTagService middleTagService
       ) {
 
     this.productService = productService;
@@ -73,7 +78,7 @@ public class MasterController {
     this.mentorlicenseService = mentorlicenseService;
     this.bigTagService = bigTagService;
     this.reportService = reportService;
-    
+    this.middleTagService = middleTagService;
     this.noticeService = noticeService;
   }
   
@@ -238,6 +243,27 @@ public class MasterController {
       
     
   }// dashBoard end
+  
+  // 검색기능
+  @RequestMapping("clsCate")
+  public void clsCate(Model model, int no, String type) {
+    BigTag bigtag = null;
+    List<Classes> clslist = null;
+    if(type == null) {
+      clslist = classService.listByBtno(10, 5, no);
+      bigtag = bigTagService.get(no);
+      model.addAttribute("selectedNo", 0);
+    }else if("mtag".equals(type)) {
+      clslist = classService.listByMtno(10, 5, no);
+      MiddleTag middleTag = middleTagService.get(no);
+      bigtag = bigTagService.get(middleTag.getBtno());
+      model.addAttribute("selectedNo", no);
+    }
+    model.addAttribute("clslist", clslist);
+    
+    
+    model.addAttribute("bigTag", bigtag);
+  }
   
   
 }
