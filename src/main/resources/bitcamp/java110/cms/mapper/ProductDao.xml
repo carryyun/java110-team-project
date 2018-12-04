@@ -42,7 +42,7 @@
         
         <result column="clsstar"    property="classes.star"/>
         <result column="clsaddr"    property="classes.basAddr"/>
-        <result column="clscno"     property = "classes.no"/>
+        <result column="clscno"     property="classes.no"/>
     </resultMap>
     
     <resultMap type="product" id="sellerMap">
