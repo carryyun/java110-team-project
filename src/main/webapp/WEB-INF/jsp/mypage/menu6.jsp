@@ -39,16 +39,27 @@
                             <button type="button" class="btn btn-primary" style="width:100px; margin:2px;">수정</button>
                             <button type="button" class="btn btn-primary" style="width:100px; margin:2px;">삭제</button>
                             <button type="button" class="btn btn-primary" style="width:100px; margin:2px;">판매종료</button>
-                            <button id="buyer-${i.index}" type="button" class="btn btn-warning"  style="width:100px; margin:2px;">주문자 목록</button>
+                            
+                            
+                            <form
+                            
+                              action="javascript:void(0)" id="buyer" method="post" >
+                            <input name="ptno" id="ptno${i.index}" type="hidden" value="${p.no}"/>
+                            <button  id="submit_btn${i.index}" class="btn1 btn-warning"  style="width:100px; margin:2px;">주문자 목록</button>
+                            </form>
+                            
                             </td>
                             </tr>
+                            
+                            
+                            
 </c:forEach>   
                             
 
-        
 
                 </tbody>
-                
+                <tbody>
+                </tbody>
             </table>
 
         </div>
@@ -59,18 +70,26 @@
 
 <script>
 
-<c:forEach items="${pmanage}" var="pp" varStatus="i">
-    $("#buyer-"+${i.index}).click(function(){
+<c:forEach items="${pmanage}" var="pp" varStatus="i"> 
+
+   $('#submit_btn'+${i.index}).click(function() { 
+       /* $.post( "/app/mypage/menu6buyer", $( "#buyer" ).serialize() );  */
+
      
         $("#menu6").fadeOut(200);
         
         setTimeout(function() {
-            $("#menu6buyer").load("/app/mypage/menu6buyer");
+            var j = ${i.index};
+            var getptno = $('input#ptno'+j).val();
+            $("#menu6buyer").load("/app/mypage/menu6buyer?ptno="+getptno);
             $("#menu6buyer").fadeIn(200);
         }, 200);
        
     });
-    </c:forEach>
+    
+   </c:forEach> 
+    
+   
 
 </script>
 

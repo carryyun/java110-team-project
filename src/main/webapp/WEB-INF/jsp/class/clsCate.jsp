@@ -75,46 +75,10 @@
 								</ul>
 							</div>
 						</div>
-						<!-- 오늘의 핫 아이템(카르셀) -->
-
-						<div class="col-lg-10">
-							<div class="row">
-								<div class="col">
-									<div id="day-select">
-										<h2>기간</h2>
-										<div class="box">
-											<label> <input type="radio" name="like" checked=""> <span class="yes">원데이</span>
-											</label> <label> <input type="radio" name="like"> <span class="no">전체</span>
-											</label>
-										</div>
-									</div>
-
-									<div>
-										<h2>요일 선택</h2>
-										<br>
-										<div>
-											<label for="default1" class="btn btn-default1"> <strong style="font-size: 16px">월</strong>
-												<input type="checkbox" id="default1" class="badgebox"><span class="badge">&check;</span>
-											</label> <label for="default2" class="btn btn-default2"> <strong style="font-size: 16px">화</strong>
-												<input type="checkbox" id="default2" class="badgebox"><span class="badge">&check;</span>
-											</label> <label for="default3" class="btn btn-default3"> <strong style="font-size: 16px">수
-											</strong> <input type="checkbox" id="default3" class="badgebox"><span class="badge">&check;</span>
-											</label> <label for="default4" class="btn btn-default4"> <strong style="font-size: 16px">목</strong>
-												<input type="checkbox" id="default4" class="badgebox"><span class="badge">&check;</span>
-											</label> <br> <label for="default5" class="btn btn-default5"> <strong
-												style="font-size: 16px">금</strong> <input type="checkbox" id="default5" class="badgebox"><span
-												class="badge">&check;</span>
-											</label> <label for="default6" class="btn btn-default6"> <strong style="font-size: 16px">토</strong>
-												<input type="checkbox" id="default6" class="badgebox"><span class="badge">&check;</span>
-											</label> <label for="default7" class="btn btn-default7"> <strong style="font-size: 16px">일
-											</strong> <input type="checkbox" id="default7" class="badgebox"><span class="badge">&check;</span>
-											</label>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
+						<!--  여기에 코드작성-->
+						
+						
+						
 						<hr class="FhrMargin">
 					</div>
 

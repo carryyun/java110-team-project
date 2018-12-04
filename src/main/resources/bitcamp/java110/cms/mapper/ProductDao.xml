@@ -275,7 +275,7 @@ where
             me.meno = #{meno}
             
     </select>
-    
+
      <select id="findBySeller2" 
             resultMap="sellerMap" parameterType="Map">
             
@@ -313,6 +313,15 @@ where
             
     </select>
             
+    <select id="serchByTitl" 
+            resultMap="productMap" parameterType="Map">
+        <include refid="selectAll" />
+        WHERE
+            p.titl Like #{titl}
+            
+    </select>
+    
+            
             
             
     <insert id="insert" parameterType="product"
@@ -323,9 +332,7 @@ where
     </insert> 
     
     <update id="update" parameterType="product">
-    
-    update p_prdt
-    
+        update p_prdt
     <set> 
         <if test="titl!=null">titl= #{titl},</if>
         <if test="conts!=null">conts=#{conts},</if>
@@ -336,7 +343,6 @@ where
         <if test="phot!=null">phot= #{phot},</if>
         <if test="ctno>0">ctno= #{ctno},</if>
         <if test="stno>0">stno= #{stno},</if>
-        
     </set>
         where
             ptno=#{no}

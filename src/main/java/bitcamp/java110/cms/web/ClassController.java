@@ -103,9 +103,6 @@ public class ClassController {
   @RequestMapping(value = "classadd", method=RequestMethod.POST)
   public String classinsert(Classes c,List<MultipartFile> files,
       String removefiles, String days,String date,String edate,String stime, String etime,HttpSession session) throws Exception {
-    //Mentee loginUser = new Mentee();
-    //loginUser = (Mentee)session.getAttribute("loginUser");
-    //loginUser.getNo();
     
     List<String> filelist = new ArrayList<>();
     System.out.println(removefiles);
@@ -119,8 +116,6 @@ public class ClassController {
     System.out.println(c.getPstno());
     System.out.println(c.getBasAddr());
     System.out.println(c.getDetAddr());
-    System.out.println(c.getTinfo());
-    System.out.println(c.getCinfo());
     System.out.println(c.getType());
     System.out.println(stime);
     System.out.println(etime);
@@ -138,7 +133,10 @@ public class ClassController {
     for(String file : filelist) {
       System.out.println(file);
     }
-    classService.classadd(c, filelist, removefiles, days,date, edate,stime,etime,session);
+    Mentee loginUser = new Mentee();
+    loginUser = (Mentee) session.getAttribute("loginUser");
+    System.out.println(loginUser.getNo());
+    classService.classadd(c, filelist, removefiles, days,date, edate,stime,etime,loginUser.getNo());
     return "redirect:clsCate?no=1";
   }
   
