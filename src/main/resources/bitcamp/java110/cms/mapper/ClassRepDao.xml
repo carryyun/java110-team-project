@@ -15,7 +15,7 @@
         <result column="phot" 		property="phot"/>
         <result column="rgdt" 		property="rgdt"/>
         <result column="nick"		property="mentee.nick"/>
-        <result column="phot"		property="mentee.phot"/>
+        <result column="mp"			property="mentee.phot"/>
         <result column="phone"      property="mentee.phone"/>
     </resultMap>
     
@@ -31,11 +31,11 @@
     <select id="findByCno" resultMap="crepMap" parameterType="int">
         select *
 		from (
-		    select 
+		    select
 		    	@rownum:=@rownum+1 as rnum,
 		    	psp.rno,
 		        pe.nick,
-		        pe.phot as ppt,
+		        pe.phot as mp,
 		        psp.conts,
 		        psp.phot,
 		        psp.star,
@@ -47,8 +47,10 @@
 		        inner join p_cls as ps
 		        	on psp.cno = ps.cno
 		    	,(select @rownum:=0)r
-		        where ps.cno = #{no}
-		        order by psp.rno asc
+		    where 
+		    	ps.cno = #{no}
+		    order by 
+		    	psp.rno asc
 		    ) as a
 		where rnum limit #{rowNo},#{size}
     </select>

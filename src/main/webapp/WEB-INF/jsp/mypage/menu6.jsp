@@ -30,7 +30,7 @@
  <c:forEach items="${pmanage}" var="p" varStatus="i">
                             <tr id="tb-pay">
                             <td>${i.count}</td>
-                            <td><a href='#'><img src="${p.phot}" width="200px" height="150px"/></a></td>
+                            <td><a href="../product/detail?no=${p.no}"><img src="${p.phot}" width="200px" height="150px"/></a></td>
                             <td>${p.titl}<br></td>
                             <td>${p.pric}</td>
                             

@@ -20,6 +20,7 @@
         <result column="ptitl"   property="product.titl"/>
         <result column="sellernick"   property="sellernick"/>
         <result column="pphot"   property="product.phot"/>
+        <result column="pptno"   property="product.no"/>
         
         <result column="stname" property="stname"/>
         <result column="titl" property="prdt_titl"/>
@@ -125,6 +126,7 @@
             po.cnt,
             po.ptno,
             p.titl as ptitl,
+            p.ptno as pptno,
             me2.nick as sellernick,
             p.phot as pphot
          FROM

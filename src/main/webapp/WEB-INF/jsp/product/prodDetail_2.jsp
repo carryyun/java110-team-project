@@ -95,25 +95,25 @@
 	                    <hr class="Fhr">
                     </div>
 		                <c:forEach items="${replyList}" var="r" varStatus="i">
-	                    <div class="col-lg-12 my-3">
-		                    <div class="container pb-3" style="border-bottom: 0.5px solid rgba(0, 0, 0, 0.5)">
-		                    <div class="row">
-		                        <div class="col-lg-2 text-center">
-		                            <img src='${r.mentee.phot}' alt="singup" id="circle"><br>
-		                            ${r.mentee.nick}
-		                        </div>
-		                        
-		                        <div class="col-lg-9 media-body">${r.conts}</div>
-		                        <c:if test="${sessionScope.loginUser != '' }">
-		                          <c:if test="${sessionScope.loginUser.no == r.meno }">
-			                        <div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="removerep(${r.no})"><i class="fas fa-trash-alt"></i></a> </div>
-		                          </c:if>
-		                        </c:if>
-		                        
-		                        </div>
+		                    <div class="col-lg-12 my-3">
+			                    <div class="container pb-3" style="border-bottom: 0.5px solid rgba(0, 0, 0, 0.5)">
+			                    <div class="row">
+			                        <div class="col-lg-2 text-center">
+			                            <img src='${r.mentee.phot}' alt="singup" id="circle"><br>
+			                            ${r.mentee.nick}
+			                        </div>
+			                        
+			                        <div class="col-lg-9 media-body">${r.conts}</div>
+			                        <c:if test="${sessionScope.loginUser != '' }">
+			                          <c:if test="${sessionScope.loginUser.no == r.meno }">
+				                        <div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="removerep(${r.no})"><i class="fas fa-trash-alt"></i></a> </div>
+			                          </c:if>
+			                        </c:if>
+			                        
+			                        </div>
+			                    </div>
+			                    
 		                    </div>
-		                    
-	                    </div>
 		                </c:forEach>
                     </div>
                     <!-- <table width="100%" border="0"> -->

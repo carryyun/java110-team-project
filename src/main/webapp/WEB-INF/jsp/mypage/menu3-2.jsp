@@ -34,7 +34,7 @@
                             <td>${p.paydt}<br> (<fmt:formatDate value="${p.paydt}"
                                     pattern="yyyyMMdd" />${p.no})</td>
                             <td>${p.product.titl}
-                            <a href='#'><img src="${p.product.phot}" width="200px" height="150px"/></a>
+                            <a href="../product/detail?no=${p.no}"><img src="${p.product.phot}" width="200px" height="150px"/></a>
                             </td>
                             <td>${p.sellernick}</td>
                             <td>${p.tot_pric}(${p.cnt})개<br>${p.payopt}</td>

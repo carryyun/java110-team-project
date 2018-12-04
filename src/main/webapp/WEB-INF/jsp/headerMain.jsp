@@ -14,7 +14,7 @@
 	crossorigin="anonymous">
 <link href="/css/mainheader.css" rel="stylesheet">
 
-<script>
+<!-- <script>
 function mover(){
     var getwid = $('#dropdown').css('width');
     if(getwid != undefined){
@@ -26,7 +26,7 @@ function mover(){
     } 
 }
 
-</script>
+</script> -->
 </head>
 <nav class="navbar navbar-expand-lg mx-auto fixed-top mb-2" id="mainNav">
 	<a class="navbar-brand" href="/app/mainpage/mainpage">하루</a>
@@ -52,8 +52,9 @@ function mover(){
 						</c:when>
 						<c:otherwise>
 							<div class="dropdown" id="dropdown">
-								<img onload="mover()" src="${sessionScope.loginUser.phot}" alt="userIMG"
-									style="margin: 8px 23px; width: 56px; height: 56px; border-radius: 28px; border: 3px solid #ec5453"><br>
+							<!-- onload="mover()" -->
+								<img src="${sessionScope.loginUser.phot}" alt="userIMG" 
+									style="margin: 8px 23px; width: 56px; height: 56px; border-radius: 28px; border: 3px solid #FFB53C"><br>
 
 
 								
