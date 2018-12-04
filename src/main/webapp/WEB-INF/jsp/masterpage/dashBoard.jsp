@@ -461,6 +461,12 @@ text-weight: bold;
         <!-- container-wrap -->
     </div>
     <!-- colorlib-page -->
+    
+            <footer>
+            <div class="col px-0" style="z-index:10000;">
+                <jsp:include page="../footer.jsp"></jsp:include>
+            </div>
+        </footer>
 
 </body>
 </html>
