@@ -263,5 +263,22 @@ public class ProductController {
     
     return "detail?no=" + result;
   }
+  
+  @RequestMapping(value="payment", method = {RequestMethod.GET, RequestMethod.POST})
+  public void serchProductList(Model model, HttpSession session) {
+    Mentee mentee = (Mentee) session.getAttribute("loginUser");
+    List<ProductBakt> paymentList = productBaktService.listAllByMeno(mentee.getNo());
+    model.addAttribute("paymentList", paymentList);
+    
+  }
+  
+  @GetMapping("prdtSerch")
+  public void prdtSerch(String titl,Model model) {
+    System.out.println(titl);
+    List<Product> serchList = productService.serchByTitl(1, 10, titl);
+    
+    model.addAttribute("serchList", serchList);
+  }
+  
 }
 
