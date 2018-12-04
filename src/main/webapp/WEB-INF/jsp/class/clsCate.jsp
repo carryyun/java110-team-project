@@ -126,7 +126,7 @@
 
 								<div class="container">
 									<div class="clearfix">
-										<a class="btn btn-primary float-right mb-3" href='#' onClick="showClassAdd('${sessionScope.loginUser.mtstat}')">클래스 개강 </a>
+										<a class="btn btn-primary float-right mb-3" onClick="showClassAdd('${sessionScope.loginUser.mtstat}')">클래스 개강 </a>
 									</div>
 									<div class="row" id="clslist">
 										<c:forEach items="${clslist}" var="cl" varStatus="i"> 
@@ -239,7 +239,6 @@
 
 	<!-- ===============필수포함=============== -->
 
-<<<<<<< HEAD
 	<script>
 	
 	function showClassAdd(mtstat){
@@ -257,12 +256,12 @@
 			location.href='classadd';
 		}else if('${sessionScope.loginUser.mtstat}' == 'I'){
 			swal({
-				title: "응안돼~",
+				title: "응안돼~응 송",
 				button: "확인"
 			});
 		}
 	}
-=======
+	</script>
 <script>
 /* var data = {
         "items": ${clslist}
@@ -291,7 +290,7 @@
 	    console.log(nick);
 	    console.log(mtname);
 	    console.log(btname);*/
-	    var clssize = ${clslist.size()};
+	    /* var clssize = ${clslist.size()};
 	    console.log(clssize);
 	    var html = "";
 	    var clslist = $('div#clslist'); 
@@ -347,7 +346,7 @@
 			}
 			clslist.html(html);
 	    }
-	});
+	}); */
 </script>
 </body>
 
