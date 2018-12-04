@@ -49,7 +49,7 @@
                 <div class="col-lg-12 mt-5">
                     <div class="row">
                         <div class="main-btn col-lg-6 text-left">
-                            <button type="button" class="btn btn-outline-secondary btn-lg"  onclick="location.href='/app/class/basket'">장바구니(클래스)</button>
+                            <button type="button" class="btn btn-outline-secondary btn-lg"  onclick="location.href='/app/class/basket'" style="background-color:whitesmoke; color: black;">장바구니(클래스)</button>
                             <button type="button" class="btn btn-outline-secondary btn-lg" id="btn-cl"
                                 onclick="location.href='/app/product/basket'">장바구니(공예품)</button>
                         </div>
@@ -78,7 +78,7 @@
                             </thead>
 
                             <tbody>
-                            <c:forEach items="${basketList}" var="r">
+                            <c:forEach items="${basketList}" var="r" varStatus="i">
                                 <tr class="product d-flex">
                                     <td class="col-6">
                                         <div class="media">
@@ -104,13 +104,14 @@
                         </table>
 
                         <!-- 계산 -->
-                        <div class="container">
                             <div class="row">
                                 <div class="total col-lg-12">
                                     <div class="totals">
                                         <div class="totals-item totals-item-total">
                                             <label> 최종 결제 금액</label>
-                                            <div class="totals-value" id="cart-total">0</div>
+                                            <c:forEach items="${sumList }" var="r" varStatus="i">
+                                            <div class="totals-value" id="cart-total">${r.sum }</div>
+                                            </c:forEach>
                                         </div>
                                     </div>
 
@@ -120,7 +121,6 @@
 
                                 </div><!-- 계산 12-->
                             </div><!-- 계산 row-->
-                        </div><!-- 계산 container-->
 
                     </div>
 

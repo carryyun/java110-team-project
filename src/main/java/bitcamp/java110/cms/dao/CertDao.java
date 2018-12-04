@@ -10,6 +10,6 @@ public interface CertDao {
   
   List<Cert> findByMeno(Map<String, Object> params);
   
-  int insert(Cert cert);
+  int insertCert(Cert cert); // 마이페이지 - 클래스관리 - 멘토가 수료처리 : 수료증발급
 
 }

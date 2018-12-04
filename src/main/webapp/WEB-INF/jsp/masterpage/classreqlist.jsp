@@ -208,6 +208,11 @@
             <!-- wrap -->
         </div>
     </div>
+    <footer>
+            <div class="col px-0" style="z-index:10000;">
+                <jsp:include page="../footer.jsp"></jsp:include>
+            </div>
+        </footer>
 </body>
 <!-- Bootstrap core JavaScript -->
 <script src="/vendor/jquery/jquery.min.js"></script>

@@ -1,4 +1,5 @@
 <%@ page import="bitcamp.java110.cms.domain.Classes"%>
+<%@ page import="bitcamp.java110.cms.domain.Cert"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -23,7 +24,7 @@
 					 <c:forEach items="${cmanage}" var="c" varStatus="i">
 					<tr id="tb-pay">
 						<td>${i.count}</td>
-						<td><a href='#'>${c.titl} ${c.no}</a></td>
+						<td><a href="../class/detail?no=${c.no}">${c.titl} ${c.no}</a></td>
 						<td>${c.bigTag.name}-${c.bigTag.name}</td>
 						<td><button onclick="getMenteeList(${c.no})"  class="btn-primary"  style="width:100px;"> ${c.capa-c.timetable.capa}/ ${c.capa} 명</button></td>
 					</tr>
@@ -90,7 +91,7 @@ $.ajax({
        
      
         if (data[i].cert == null)  {
-            contents+= '<button class="btn-danger" name="btn-certi" value="'+i+'" onclick="certi(this.value,'+data[i].mentee2.no+','+data[i].cno+');"   style="width:70px;" ">미수료</button>';
+            contents+= '<button class="btn-danger" name="btn-certi" value="'+i+'" onclick="certi(this.value,'+cno+','+data[i].mentee2.no+');"   style="width:70px;" ">미수료</button>';
         }else  if (data[i].cert != null) {
            if(data[i].cert.type == "수료증")
             contents+= '<button class="btn-primary"  style="width:70px;">수료</button>';    
@@ -119,10 +120,11 @@ $.ajax({
 });
 }
 
-/* function certi(v,no,cno){
+ function certi(v,cno,meno){
     
-    var textareaVal = $("button[name='btn-certi']:button[value='"+v+"']").text();
-
+     console.log(v+cno+meno);
+     var  textareaVal= $("button[name='btn-certi']:button[value='"+v+"']").text();
+     console.log(textareaVal);
     if(textareaVal=="미수료"){
              
             swal({
@@ -141,15 +143,15 @@ $.ajax({
                              type: "POST",
                              data: {
                                  "cno": cno,
-                                 "no" : meno
+                                 "meno" : meno
                                  
                                  
                              },
                              url: "insertCert.do",
                              success : function() {
                                  
-                                 $("button[name='btn-certi']:button[value='"+v+"']").attr('class','btn-primary');
-                                 $("button[name='btn-certi']:button[value='"+v+"']").text('수료');
+                                $("button[name='btn-certi']:button[value='"+v+"']").attr('class','btn-primary');
+                                $("button[name='btn-certi']:button[value='"+v+"']").text('수료'); 
                                 
                                  }
                          })
@@ -159,9 +161,9 @@ $.ajax({
                  });
          
          }
-} */
+} 
 
-function certi(v){
+/* function certi(v){
     
     var textareaVal = $("button[name='btn-certi']:button[value='"+v+"']").text();
 
@@ -188,7 +190,7 @@ function certi(v){
                  });
          
          }
-}
+} */
 
 </script>
 

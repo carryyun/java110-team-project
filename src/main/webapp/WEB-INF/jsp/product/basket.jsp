@@ -49,7 +49,7 @@
 						<div class="main-btn col-lg-6 text-left">
 							<button type="button" class="btn btn-outline-secondary btn-lg" id="btn-cl" onclick="location.href='/app/class/basket'">장바구니(클래스)</button>
 							<button type="button" class="btn btn-outline-secondary btn-lg"
-								onclick="location.href='/app/product/basket'">장바구니(공예품)</button>
+								onclick="location.href='/app/product/basket'" style="background-color:whitesmoke; color: black;" >장바구니(공예품)</button>
 						</div>
 						<div class="col-lg-6 text-right">
 							<span style="font-size: 22px; float: right;"> <span><strong>></strong>완료</span></span> <span
@@ -113,7 +113,9 @@
 									<div class="totals">
 										<div class="totals-item totals-item-total">
 											<label> 최종 결제 금액</label>
-											<div class="totals-value" id="cart-total">0</div>
+                                            <c:forEach items="${sumList}" var="r">
+											<div class="totals-value" id="cart-total">${r.sum }</div>
+                                            </c:forEach>
 										</div>
 									</div>
 

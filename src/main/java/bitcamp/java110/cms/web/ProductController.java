@@ -213,6 +213,9 @@ public class ProductController {
 
     model.addAttribute("total", total);
     model.addAttribute("basketList", basketList);
+    
+    List<ProductBakt> sumList = productBaktService.sumByMeno(mentee.getNo());
+    model.addAttribute("sumList", sumList);
   }
 
   @ResponseBody
@@ -230,7 +233,6 @@ public class ProductController {
     model.addAttribute("paymentList", paymentList);
 
   }
-
 
   // 2018.11.29 -> ?.?
   @PostMapping(value = "addProduct.do")

@@ -340,5 +340,11 @@
       
       
        </script> 
+<script>
+$(document).ready(function() { 
+console.log(1);
+console.log('${sessionScope.loginUser}');
+});
+</script>
 </body>
 </html>

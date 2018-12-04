@@ -33,7 +33,7 @@
                         <td>${i.count}</td>
                         <td>${c.paydt}<br>
                         (<fmt:formatDate value="${c.paydt}" pattern="yyyyMMdd"/>${c.no})</td>
-                        <td>${c.classes.titl}<a href='#'><img src="${c.classFile.fname}" width="200px" height="150px"></a></td>
+                        <td>${c.classes.titl}<a href="../class/detail?no=${c.classes.no}"><img src="${c.classFile.fname}" width="200px" height="150px"></a></td>
                         <td>${c.mentornick}</td>
                         <td>${c.tot_pric}<br>${c.payopt}</td>
                         <td>결제완료</td>

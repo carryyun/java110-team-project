@@ -128,10 +128,8 @@
 									<div class="clearfix">
 										<a class="btn btn-primary float-right mb-3" href='#' onClick="showClassAdd('${sessionScope.loginUser.mtstat}')">클래스 개강 </a>
 									</div>
-									<div class="row">
-
+									<div class="row" id="clslist">
 										<c:forEach items="${clslist}" var="cl" varStatus="i"> 
-
 											<div class="col-lg-4">
 												<article class="card-wrapper">
 													<div class="image-holder">
@@ -150,14 +148,12 @@
 													</div>
 													<div class="product-description">
 														<!-- 제목 -->
-
 														<div class="product-description__title">
 															<div class="row">
 																<div class="col-lg-12 mb-2">
 																	<a href="detail?no=${cl.no}">${cl.titl}</a>
 																</div>
 															</div>
-
 															<!-- 분류명 , 가격 -->
 															<div class="row">
 																<div class="col-lg-7 product-description__category secondary-text">
@@ -191,7 +187,6 @@
 													</div>
 												</article>
 											</div>
-
 										</c:forEach>
 									</div>
 								</div>
@@ -205,7 +200,7 @@
 				</div>
 
 				<hr>
-
+ 
 				<!-- Footer -->
 
 			</div>
@@ -244,6 +239,7 @@
 
 	<!-- ===============필수포함=============== -->
 
+<<<<<<< HEAD
 	<script>
 	
 	function showClassAdd(mtstat){
@@ -266,8 +262,93 @@
 			});
 		}
 	}
+=======
+<script>
+var data = {
+        "items": ${clslist}
+    };
+    console.log(data); 
+	for (var i in data["items"]) {
+		var cno = data["items"][i].classes.no;
+	    var titl = data["items"][i].classes.titl;
+	    var pric = data["items"][i].classes.pric;
+	    var basAddr = data["items"][i].classes.basAddr;
+	    var cfile = data["items"][i].classes.cfile;
+	    var star = data["items"][i].classes.star;
+	    var name = data["items"][i].mentee.name;
+	    var nick = data["items"][i].mentee.nick;
+	    var phot = data["items"][i].mentee.phot;
+	    var mtname = data["items"][i].middletag.mtname;
+	    var btname = data["items"][i].bigtag.btname;
         
-    </script>
+	    console.log(cno);
+	    console.log(titl);
+	    console.log(pric);
+	    console.log(basAddr);
+	    console.log(cfile);
+	    console.log(star);
+	    console.log(name);
+	    console.log(nick);
+	    console.log(mtname);
+	    console.log(btname);
+	    var clssize = ${clslist.size()};
+	    console.log(clssize);
+	    var html = "";
+	    var clslist = $('div#clslist');
+	$(window).scroll(function() {
+	    if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+	        for(var i=0;i<=6; i++){
+			    html+= '<div class="col-lg-4">'
+			    html+= '	<article class="card-wrapper">'
+			    html+= ' 		<div class="image-holder">'
+			    html+= '			<a href="detail?no=${cl.no}" class="image-holder__link"></a>'
+			    html+= '			<div class="image-liquid image-holder--original">'
+			    html+= '				<a href="detail?no=${cl.no}"><img alt="${i.count}" src="${cl.cfile}"'
+			    html+= '					style="width: 100%; height: 100%"></a> <img src="${cl.mentee.phot}"'
+			    html+= '					class="mentorimg" alt="${cl.mentee.phot}">'
+			    html+= '				<div '
+			    html+= '				style="padding: 0 5px; top: 75px; width: auto; height: auto; position: absolute; background-color: #f58500; color: white; border-bottom-right-radius: 10px">$${cl.mentee.name}'
+			    html+= '				</div>'
+			    html+= '				<div'
+			    html+= '					style="padding: 0 5px; top: 100px; width: auto; height: auto; position: absolute; background-color: #333873; color: white; border-bottom-right-radius: 10px">${cl.mentee.nick}'
+			    html+= '					멘토</div>'
+			    html+= '			</div>'
+			    html+= '		</div>'
+			    html+= '		<div class="product-description">'
+			    html+= '			<div class="product-description__title">'
+			    html+= '				<div class="row">'
+			    html+= '					<div class="col-lg-12 mb-2">'
+			    html+= '						<a href="detail?no=${cl.no}">${cl.titl}</a>'
+			    html+= '					</div>'
+			    html+= '				</div>'
+			    html+= '				<div class="row">'
+			    html+= '					<div class="col-lg-7 product-description__category secondary-text">'
+			        								for(var j=0; j<5; j++) {
+				                                    if (j<star) {
+				html+= '                        <img alt="star-on-big" class="starimg" src="/upload/img/raty/star-on-big.png">'
+				                                  } else {
+				html+= '                        <img alt="star-off-big" class="starimg" src="/upload/img/raty/star-off-big.png">'
+				                                  }
+				                              }
+			    html+= '					</div>'
+			    html+= '					<div class="col-lg-5 product-description__price">${cl.pric}원</div>'
+			    html+= '				</div>'
+			    html+= '				<hr class="NoMarginHr">'
+			    html+= '				<div class="sizes-wrapper">'
+			    html+= '					<b>판매자 - ${cl.mentee.name}</b>'
+			    html+= '				</div>'
+			    html+= '				<div class="color-wrapper">'
+			    html+= '					<b>기본 주소 - ${cl.bas_addr}</b>'
+			    html+= '				</div>'
+			    html+= '			</div>'
+			    html+= '		</div>'
+			    html+= '	</article>'
+			    html+= '</div>'
+			}
+			clslist.html(html);
+	    }
+	});
+</script>
 </body>
 
 </html>

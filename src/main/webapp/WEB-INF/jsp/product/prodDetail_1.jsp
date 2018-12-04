@@ -103,10 +103,16 @@ input[type="number"]::-webkit-inner-spin-button {
                               }
                             %>
 							</div>
-							<div id="transPric" class="mb-3" style="font-size: 1.75rem; font-weight: 700;">
-								${product.pric} 원
-							</div>
-
+							<div class="row">
+								<div class="col-lg-12">
+									<div id="transPric" class="mb-3" style="font-size: 1.75rem; font-weight: 700;float: left">
+										${product.pric}
+									</div>
+									<div class="mb-3" style="font-size: 1.75rem; font-weight: 700;float: left">
+									     원
+									</div>
+								</div>
+                            </div>
 							<div class="mb-3">
 								<div>배송비 ${product.deli}원</div>
 							</div>
@@ -128,13 +134,14 @@ input[type="number"]::-webkit-inner-spin-button {
 								        <div class="col-lg-8 px-0">
 		                                        <div class="col-lg-5 text-right pl-0" style="float: left;margin-top: 10px">총 결제금액</div>
 	                                            <div class="col-lg-7 text-left px-0" style="float: left;font-weight: 600; font-size: 1.5rem" id="num">${product.pric + product.deli}원</div>
+	                                            <input type="hidden" id="totalPric" value="${product.pric + product.deli}">
                                         </div>
 								    </div>
 								</div>
 							</div>
-
+ 
 							<hr class="FhrMargin">
-							<a href="#" class="btn btn-lg btn-primary">
+							<a href="javaScript:void(0)" onclick="npay()" class="btn btn-lg btn-primary">
 								구매하기 </a> 
 							<a href="#" class="btn btn-lg btn-outline-primary">
 							<i class="fas fa-shopping-cart"></i> 장바구니</a>
@@ -144,7 +151,7 @@ input[type="number"]::-webkit-inner-spin-button {
 		</div> <!-- <div class="col-lg-12 col-md-12 text-center"> -->
 	</div><!-- <div class="row"> -->
 </div><!-- <div class="container"> -->
-
+ 
 
 </body>
 </html>
