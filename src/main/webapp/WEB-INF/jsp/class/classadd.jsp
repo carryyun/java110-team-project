@@ -124,7 +124,8 @@
                  <textarea id="classtteok" name="cinfo"></textarea>
                  <input id="days" type="hidden" name="days">
                  <input id="removefiles" type="hidden" name="removefiles">
-                 <input type="hidden" id="type" name="type" value="단기">  
+                 <input type="hidden" id="type" name="type" value="단기"> 
+                 <input type="button" id="back-home-btn" value="Go Home">  
               	 <input type="submit" id="clsinsert"  value="클래스 등록" />
               </form>
             </div>

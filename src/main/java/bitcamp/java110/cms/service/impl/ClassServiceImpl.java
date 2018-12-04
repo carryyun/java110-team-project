@@ -4,7 +4,6 @@ import java.sql.Date;
 import java.sql.Time;
 import java.util.HashMap;
 import java.util.List;
-import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -14,7 +13,6 @@ import bitcamp.java110.cms.dao.ClassFileDao;
 import bitcamp.java110.cms.dao.TimetableDao;
 import bitcamp.java110.cms.domain.ClassFile;
 import bitcamp.java110.cms.domain.Classes;
-import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.Timetable;
 import bitcamp.java110.cms.service.ClassService;
 
@@ -29,7 +27,7 @@ public class ClassServiceImpl implements ClassService{
   @Override
   public void classadd(Classes classes, List<String> filelist,
       String removefiles, String days,String date,String edate,String stime, String etime,int loginUserNo) {
-    
+    System.out.println(loginUserNo);
     if(classes.getDetAddr() == null) {
       classes.setDetAddr(null);
     }else if(classes.getCfile().length() > 0) {
@@ -38,7 +36,6 @@ public class ClassServiceImpl implements ClassService{
     classes.setMtno(loginUserNo);
     classes.setMono(loginUserNo);
     classDao.classinsert(classes);
-    
     if(classes.getType().equals("단기")) {
       String daylist[] = days.split(",");
       for(int x=0; x<daylist.length; x++) {
@@ -59,14 +56,12 @@ public class ClassServiceImpl implements ClassService{
       t.setCapa(classes.getCapa());
       timetableDao.insert(t);
     }
-    
     for(String file : filelist) {      
-          ClassFile cf = new ClassFile();
-          cf.setFname(file);
-          cf.setCno(classes.getNo());
-          classFileDao.insert(cf);
+        ClassFile cf = new ClassFile();
+        cf.setFname(file);
+        cf.setCno(classes.getNo());
+        classFileDao.insert(cf);
     }
-    
   }
 
   @Override

@@ -27,7 +27,6 @@ import bitcamp.java110.cms.domain.ClassRep;
 import bitcamp.java110.cms.domain.Classes;
 import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.MiddleTag;
-import bitcamp.java110.cms.domain.Paging;
 import bitcamp.java110.cms.domain.Timetable;
 import bitcamp.java110.cms.service.BigTagService;
 import bitcamp.java110.cms.service.ClassBaktService;
@@ -137,6 +136,7 @@ public class ClassController {
     Mentee loginUser = new Mentee();
     loginUser = (Mentee) session.getAttribute("loginUser");
     System.out.println(loginUser.getNo());
+    
     classService.classadd(c, filelist, removefiles, days,date, edate,stime,etime,loginUser.getNo());
     return "redirect:clsCate?no=1";
   }
