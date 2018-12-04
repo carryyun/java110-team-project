@@ -113,7 +113,6 @@ public class ClassController {
     System.out.println(removefiles);
     System.out.println(days);
     System.out.println(c.getNo());
-    System.out.println(c.getCfile().substring(c.getCfile().length()-11, c.getCfile().length()));
     System.out.println(c.getTitl());
     System.out.println(c.getPric());
     System.out.println(c.getTime());

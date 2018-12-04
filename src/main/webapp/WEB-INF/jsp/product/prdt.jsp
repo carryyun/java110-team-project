@@ -42,7 +42,7 @@
 		<div class="container" style="background-color: white">
 			<!-- Header (스크립트로 임시 inclue) -->
 			<div class="row">
-				<div class="col-lg-12" style="z-index: 100">
+				<div class="col-lg-12" >
 					<jsp:include page="../headerMain.jsp"></jsp:include>
 				</div>
 

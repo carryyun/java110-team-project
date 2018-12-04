@@ -360,7 +360,6 @@ function addqna(no){
 	    },
 	    url : "addqna.do",
 	    success : function(result) {
-	        console.log(result);
 	        $('#addQnaModal').modal('hide');
 	        $('.modal-backdrop.fade.show').remove();
 	        $('form#qnaModal')[0].reset();
@@ -383,11 +382,11 @@ function pay(){
         merchant_uid : 'merchant_' + new Date().getTime(),
         name : '${product.titl}',
         amount : parseInt($('input#totalPric').val()),
-        buyer_email : '${sesstionScope.loginUser.email}',
-        buyer_name : '${sesstionScope.loginUser.name}',
-        buyer_tel : '${sesstionScope.loginUser.phone}',
-        buyer_addr : '${sesstionScope.loginUser.basAddr}',
-        buyer_postcode : '${sesstionScope.loginUser.pstno}'
+        buyer_email : '${sessionScope.loginUser.email}',
+        buyer_name : '${sessionScope.loginUser.name}',
+        buyer_tel : '${sessionScope.loginUser.phone}',
+        buyer_addr : '${sessionScope.loginUser.bas_addr}',
+        buyer_postcode : '${sessionScope.loginUser.pstno}'
     }, function(rsp) {
         var msg = '결제가 완료되었습니다.';
         msg += '\n고유ID : ' + rsp.imp_uid;
@@ -402,7 +401,8 @@ function pay(){
                 url: "../payment/complete.do", //cross-domain error가 발생하지 않도록 주의해주세요
                 type: 'POST',
                 dataType: 'json',
-                data: {
+                contentType: 'application/json',
+                data: JSON.stringify({
                     imp_uid : rsp.imp_uid,
                     //기타 필요한 데이터가 있으면 추가 전달
                     buyer_email : rsp.buyer_email,
@@ -410,9 +410,11 @@ function pay(){
                     buyer_tel : rsp.buyer_tel,
                     buyer_addr : rsp.buyer_addr,
                     buyer_postcode : rsp.buyer_postcode
-                } 
+                }),
+                
             }).done(function(data) {
                 //[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
+                console.log(data);
                 if ( everythings_fine ) {
                     var msg = '결제가 완료되었습니다.';
                     msg += '\n고유ID : ' + rsp.imp_uid;
@@ -432,6 +434,43 @@ function pay(){
             
             alert(msg);
         }
+    });
+}
+function npay(){
+    var IMP = window.IMP; // 생략해도 괜찮습니다.
+    IMP.init("imp40971131"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
+    
+    IMP.request_pay({
+        pg : 'naverco',
+        pay_method : 'card', //연동되지 않습니다. 네이버페이 결제창 내에서 결제수단을 구매자가 직접 선택하게 됩니다.
+        merchant_uid : 'merchant_' + new Date().getTime(), //상점에서 관리하시는 고유 주문번호를 전달
+        name : '${product.titl}',
+        amount : parseInt($('input#totalPric').val()),
+        buyer_email : '${sessionScope.loginUser.email}',
+        buyer_name : '${sessionScope.loginUser.name}',
+        buyer_tel : '${sessionScope.loginUser.phone}',
+        buyer_addr : '${sessionScope.loginUser.bas_addr}',
+        buyer_postcode : '${sessionScope.loginUser.pstno}',
+        naverProducts :
+            {
+                id : "singleProductId",
+                name : '${product.titl}',
+                basePrice : 1000,
+                taxType : 'TAX_FREE', //TAX or TAX_FREE
+                quantity : 1,
+                infoUrl : "http://www.iamport.kr/product/detail",
+                imageUrl : "http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg",
+                shipping : {
+                    groupId : "shipping-a",
+                    method : "DELIVERY", //DELIVERY(택배·소포·등기), QUICK_SVC(퀵 서비스), DIRECT_DELIVERY(직접 전달), VISIT_RECEIPT(방문 수령), NOTHING(배송 없음)
+                    baseFee : 2500,
+                    feeRule : {
+                        freeByThreshold : 20000
+                    },
+                    feePayType : "PREPAYED" //PREPAYED(선불), CASH_ON_DELIVERY(착불)
+                }
+            }
+        
     });
 }
 </script>
