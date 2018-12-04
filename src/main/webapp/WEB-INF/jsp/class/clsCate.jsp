@@ -240,11 +240,11 @@
 	<!-- ===============필수포함=============== -->
 
 <script>
-var data = {
+/* var data = {
         "items": ${clslist}
-    };
-    console.log(data); 
-	for (var i in data["items"]) {
+    }; */
+    /* console.log(data);  */
+	/* for (var i in data["items"]) {
 		var cno = data["items"][i].classes.no;
 	    var titl = data["items"][i].classes.titl;
 	    var pric = data["items"][i].classes.pric;
@@ -266,11 +266,11 @@ var data = {
 	    console.log(name);
 	    console.log(nick);
 	    console.log(mtname);
-	    console.log(btname);
+	    console.log(btname);*/
 	    var clssize = ${clslist.size()};
 	    console.log(clssize);
 	    var html = "";
-	    var clslist = $('div#clslist');
+	    var clslist = $('div#clslist'); 
 	$(window).scroll(function() {
 	    if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
 	        for(var i=0;i<=6; i++){
@@ -300,7 +300,7 @@ var data = {
 			    html+= '				<div class="row">'
 			    html+= '					<div class="col-lg-7 product-description__category secondary-text">'
 			        								for(var j=0; j<5; j++) {
-				                                    if (j<star) {
+				                                    if (j<${cl.star}) {
 				html+= '                        <img alt="star-on-big" class="starimg" src="/upload/img/raty/star-on-big.png">'
 				                                  } else {
 				html+= '                        <img alt="star-off-big" class="starimg" src="/upload/img/raty/star-off-big.png">'

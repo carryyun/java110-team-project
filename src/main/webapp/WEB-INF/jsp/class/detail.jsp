@@ -1100,7 +1100,7 @@ geocoder.addressSearch('${detailclass.basAddr}', function(result, status) {
 
         // 인포윈도우로 장소에 대한 설명을 표시합니다
         var infowindow = new daum.maps.InfoWindow({
-            content: '<div style="width:150px;text-align:center;padding:6px 0;">클래스 받을 지역</div>'
+            content: '<div style="width:150px;text-align:center;padding:6px 0; opacity: 0.5; background-color:pink;">수업 받을 지역</div>'
         });
         infowindow.open(map, marker);
 
