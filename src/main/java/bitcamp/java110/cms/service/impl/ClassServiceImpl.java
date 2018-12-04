@@ -28,18 +28,15 @@ public class ClassServiceImpl implements ClassService{
   @Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
   @Override
   public void classadd(Classes classes, List<String> filelist,
-      String removefiles, String days,String date,String edate,String stime, String etime,HttpSession session) {
-    Mentee loginUser = new Mentee();
-    loginUser = (Mentee)session.getAttribute("loginUser");
-
+      String removefiles, String days,String date,String edate,String stime, String etime,int loginUserNo) {
     
     if(classes.getDetAddr() == null) {
       classes.setDetAddr(null);
     }else if(classes.getCfile().length() > 0) {
       classes.setCfile(classes.getCfile().substring(classes.getCfile().length()-11, classes.getCfile().length()));
     }
-//    classes.setMtno(loginUser.getNo());
-//    classes.setMono(loginUser.getNo());
+    classes.setMtno(loginUserNo);
+    classes.setMono(loginUserNo);
     classDao.classinsert(classes);
     
     if(classes.getType().equals("단기")) {

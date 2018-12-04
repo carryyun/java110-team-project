@@ -510,7 +510,7 @@
                                 style="margin: 0 auto; border-collapse:collapse;">
                                     <thead class="col-lg-12">
                                         <tr class="row">
-                                            <th scope="col" class="col-lg-1" id="qna_th">번호</th>
+                                            <!-- <th scope="col" class="col-lg-1" id="qna_th">번호</th> -->
                                             <th scope="col" class="col-lg-2" id="qna_th">문의유형</th>
                                             <th scope="col" class="col-lg-2" id="qna_th">답변상태</th>
                                             <th scope="col" class="col-lg-3" id="qna_th">질문 제목</th>
@@ -521,9 +521,10 @@
                                     
                                     <tbody class="col-lg-12">
                                     <c:forEach items="${clsqnalist}" var="cq" varStatus="i">
+                                    <c:set var="qnasi" value="${countqna}" />
                                         <tr data-toggle="collapse" 
                                         data-target="#demo1-${i.count}" class="accordion-toggle row">
-                                            <td class="col-lg-1" scope="row" id="qna_th">${i.count}</td>
+                                            <!-- <td class="col-lg-1" scope="row" id="qna_th"></td> -->
                                             <td class="col-lg-2">${cq.type}</td>
                                             <c:set var="yn" value="${cq.anser}"/>
                                             <%

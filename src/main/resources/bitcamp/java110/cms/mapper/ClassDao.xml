@@ -118,7 +118,7 @@
         <include refid="selectAll"></include>
         WHERE
             btag.btno=#{btno}
-        ORDER by ps.cno asc
+            limit #{rowNo},#{size}
     </select>
     <select id="findAllByMtno" resultMap="classMap" parameterType="map">
         <include refid="selectAll"></include>

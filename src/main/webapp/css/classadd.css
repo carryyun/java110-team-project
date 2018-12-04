@@ -90,7 +90,6 @@ div #ctitl{
     border: 1px solid black;
 }
 
-
 #file-box #mphot{
     color: white;
     background-color: black; 
@@ -99,7 +98,6 @@ div #ctitl{
     text-align: center;
     font-weight: bold;
 }
-
 
 input[type="button"]{
     background-color: #FFB53C;

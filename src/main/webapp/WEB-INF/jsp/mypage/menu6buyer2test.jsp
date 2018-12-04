@@ -1,10 +1,8 @@
-<%@ page import="bitcamp.java110.cms.domain.Product"%>
+<%-- <%@ page import="bitcamp.java110.cms.domain.Product"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
-
 
 <div class="col-lg-12"> 
 	<div class="panel panel-default">
@@ -33,7 +31,8 @@
                 <tbody>
                     
                   
-                    <c:forEach items="${pmanage2}" var="p" varStatus="i">
+                    <!-- i.idnex를 받아와서 items에 꽂아주면완성 -->
+                    <c:forEach items="${pmanage21}" var="p" varStatus="i">
                         
                         <tr id="tb-pay">
                             <td>${i.count}</td>
@@ -53,21 +52,44 @@
                     </c:forEach>
 
                 </tbody>
-                
+            <button id="${ rst"> &{rst}</button>    
             </table>
 		</div>
 
 	</div>
 
 
-	
+
+	<!-- Paging 처리 -->
+	<div id="paging">
+		<!--        ${pageCode}-->
+	</div>
 
 </div>
+
+
+<!-- page navigation -->
+<nav aria-label="Page navigation" class="pn-center">
+	<ul class="pagination">
+		<li class="page-item"><a class="page-link" href="#"
+			aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span
+				class="sr-only">Previous</span>
+		</a></li>
+		<li class="page-item"><a class="page-link" href="#">1</a></li>
+		<li class="page-item"><a class="page-link" href="#">2</a></li>
+		<li class="page-item"><a class="page-link" href="#">3</a></li>
+		<li class="page-item"><a class="page-link" href="#"
+			aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span
+				class="sr-only">Next</span>
+		</a></li>
+	</ul>
+</nav>
 
 
 
 <script>
 
+var rst= "";
 
 function writeparc(){
     
@@ -79,6 +101,9 @@ swal("송장번호를 입력하세요", {
   });
   
 }
+ 
+
+ 
    
 
 $("#menu6re").click(function(){
@@ -92,6 +117,21 @@ $("#menu6re").click(function(){
    
 });
 
+$(document).ready(function() {
+    
+    rst = "aaabb";/* $("#res").load("/app/mypage/menu6 .btn1 "); */
+    
+    console.log(rst);
+    
+    /* $('result').load('/app/mypage/menu6 .btn1 ');
+    
+   var rst =  result;
+    
+   console.log(rst); */
+    
+    
+});
 
 </script>
 
+ --%>
