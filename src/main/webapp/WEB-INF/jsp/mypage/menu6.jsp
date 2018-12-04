@@ -72,7 +72,6 @@
 
 <c:forEach items="${pmanage}" var="pp" varStatus="i"> 
 
-
    $('#submit_btn'+${i.index}).click(function() { 
        /* $.post( "/app/mypage/menu6buyer", $( "#buyer" ).serialize() );  */
 
@@ -89,8 +88,6 @@
     });
     
    </c:forEach> 
-    
-    
     
    
 

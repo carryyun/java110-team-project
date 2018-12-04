@@ -79,9 +79,6 @@ swal("송장번호를 입력하세요", {
   });
   
 }
- 
-
- 
    
 
 $("#menu6re").click(function(){
@@ -95,19 +92,6 @@ $("#menu6re").click(function(){
    
 });
 
-
-
- 
-$(document).ready(function() {
-    
-  
-
-        
-        
-        
-    
-
-}); 
 
 </script>
 
