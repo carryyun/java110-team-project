@@ -21,6 +21,8 @@ public interface ProductService {
   
   List<Product> listBySeller2(int pageNo, int pageSize, int ptno); // 판매자번호로 조회2 - 마이페이지
   
+  List<Product> serchByTitl(int pageNo, int pageSize, String titl); // 판매자번호로 조회2 - 마이페이지
+  
   int add(Product product);
 
   int update(Product product);

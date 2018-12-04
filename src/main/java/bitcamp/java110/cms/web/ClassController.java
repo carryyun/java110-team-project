@@ -27,6 +27,7 @@ import bitcamp.java110.cms.domain.ClassRep;
 import bitcamp.java110.cms.domain.Classes;
 import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.MiddleTag;
+import bitcamp.java110.cms.domain.Paging;
 import bitcamp.java110.cms.domain.Timetable;
 import bitcamp.java110.cms.service.BigTagService;
 import bitcamp.java110.cms.service.ClassBaktService;
@@ -108,6 +109,7 @@ public class ClassController {
     System.out.println(removefiles);
     System.out.println(days);
     System.out.println(c.getNo());
+    System.out.println(c.getCfile().substring(c.getCfile().length()-11, c.getCfile().length()));
     System.out.println(c.getTitl());
     System.out.println(c.getPric());
     System.out.println(c.getTime());
@@ -265,6 +267,11 @@ public class ClassController {
     int countrep = classrepService.countbycno(no);
     
     int countqna = classqnaService.countbycno(no);
+    
+    /*Paging paging = new Paging();
+    paging.setPageNo(reppageNo);
+    paging.setPageSize(reppageSize);
+    paging.setTotalCount(countrep);*/
     
     model.addAttribute("clsreqlist",clsreqlist);
     model.addAttribute("detailclass",detailclass);

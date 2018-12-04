@@ -220,13 +220,32 @@ public class MypageController {
   }
   
   
-  @GetMapping("menu6buyer")
+  @RequestMapping(value="menu6buyer", method = {RequestMethod.GET, RequestMethod.POST})
+  public void menu6buyer(Model model,int ptno) {
+    System.out.println(ptno);
+    
+    List<Product> pmanage2 = productService.listBySeller2(1,10,ptno);
+    model.addAttribute("pmanage2", pmanage2 );
+       
+  }
+  
+ /* @GetMapping("menu6buyer")
   public void menu6buyer(Model model,HttpSession session) {
     Mentee mentee = (Mentee) session.getAttribute("loginUser");
-    List<Product> pmanage2 = productService.listBySeller2(1,10,mentee.getNo());
-    model.addAttribute("pmanage2", pmanage2 );
+    List<Product> pmanage = productService.listBySeller(1,10,mentee.getNo());
     
-  }
+    int i = 0;
+    for(Product p: pmanage) {
+    System.out.println(p.getNo());
+    
+    i++;
+    
+    List<Product> pmanage2i= productService.listBySeller2(1,10,p.getNo());
+    
+    model.addAttribute("pmanage2"+i, pmanage2i ); 
+    }
+   
+  }*/
   
   
   @RequestMapping(value = "getMenteeList.do", method = {RequestMethod.POST})
@@ -235,6 +254,14 @@ public class MypageController {
     
     return classService.manageByCno(cno);
   }
+  
+/*  @RequestMapping(value = "buyerList.do", method = {RequestMethod.POST})
+  public @ResponseBody List<Product> buyerList(int ptno) {
+    
+    return productService.listBySeller2(1, 10, ptno);
+  }*/
+  
+
   
   
 }

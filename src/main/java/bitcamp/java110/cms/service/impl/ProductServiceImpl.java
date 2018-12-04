@@ -103,4 +103,13 @@ public class ProductServiceImpl implements ProductService {
     return productDao.findAllByStno(params);
   }
 
+  @Override
+  public List<Product> serchByTitl(int pageNo, int pageSize, String titl) {
+    HashMap<String, Object> params = new HashMap<>();
+    params.put("rowNo", (pageNo - 1) * pageSize);
+    params.put("size", pageSize);
+    params.put("titl", "%"+titl+"%");
+    return productDao.serchByTitl(params);
+  }
+
 }

@@ -26,7 +26,7 @@
             
 			<h3 id="target_detail">상세정보</h3>
 			<hr class="Fhr" id="prod_detail" style="margin-bottom: 25px">
-			<div class="detail_info px-4">
+			<div class="detail_info px-4 pb-3">
 				${product.conts}
 			</div>
         </div> 
