@@ -51,6 +51,7 @@
             
             <!-- my page -->
             <mvc:exclude-mapping path="/mypage/getMenteeList.do" />
+            <mvc:exclude-mapping path="/mypage/buyerList.do" />
             <mvc:exclude-mapping path="/mypage/insertCert.do" />
             <mvc:exclude-mapping path="/mypage/updateProfile.do" />
             <mvc:exclude-mapping path="/mypage/updatePwd.do" />
