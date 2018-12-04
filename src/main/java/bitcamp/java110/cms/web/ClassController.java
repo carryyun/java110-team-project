@@ -27,7 +27,6 @@ import bitcamp.java110.cms.domain.ClassRep;
 import bitcamp.java110.cms.domain.Classes;
 import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.MiddleTag;
-import bitcamp.java110.cms.domain.ProductPopul;
 import bitcamp.java110.cms.domain.Timetable;
 import bitcamp.java110.cms.service.BigTagService;
 import bitcamp.java110.cms.service.ClassBaktService;

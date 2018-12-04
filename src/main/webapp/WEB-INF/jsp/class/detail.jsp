@@ -89,7 +89,7 @@
                                             if(cfile.endsWith("jpg") || cfile.endsWith("png")){
                                         %>    
                                         <div class="carousel-item active">
-                                          <img style="width=100%;" class="d-block w-100" src="${detailclass.cfile}" alt="First slide">
+                                          <img style="width:100%; height:445px;" class="d-block w-100" src="${detailclass.cfile}" alt="First slide">
                                           <%     
                                             }else {
                                              int cfileidx = cfile.indexOf("=");
@@ -234,7 +234,7 @@
         </div>
         <!-- <div class="row"> -->
                         <div class="col-lg-12" id="testt">
-                            <ul class="under-navbar-nav col-lg-7 col-md-12">
+                            <ul class="under-navbar-nav col-lg-5 col-md-12">
                                 <li class="under-nav-item"><a class="nav-link"
                                     href="#class_detail">
                                         <h4>요약</h4> 
@@ -491,6 +491,17 @@
                             onClick="nextrep(${countrep})">next</a></li>
                         </ul>
                   </nav>
+                  <%-- <jsp:include page="/detail.jsp" flush="true">
+					    <jsp:param name="firstPageNo" value="${paging.firstPageNo}" />
+					    <jsp:param name="prevPageNo" value="${paging.prevPageNo}" />
+					    <jsp:param name="startPageNo" value="${paging.startPageNo}" />
+					    <jsp:param name="pageNo" value="${paging.pageNo}" />
+					    <jsp:param name="endPageNo" value="${paging.endPageNo}" />
+					    <jsp:param name="nextPageNo" value="${paging.nextPageNo}" />
+					    <jsp:param name="finalPageNo" value="${paging.finalPageNo}" />
+					</jsp:include> --%>
+
+
                     <div class="detail_info">
                         <h3>Q&A</h3>
                         <div class="row">
