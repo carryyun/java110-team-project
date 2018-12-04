@@ -126,8 +126,7 @@
 
 								<div class="container">
 									<div class="clearfix">
-										<a class="btn btn-primary float-right mb-3" 
-											data-target="#squarespaceModal" href="classadd">클래스 개강 </a>
+										<a class="btn btn-primary float-right mb-3" href='#' onClick="showClassAdd('${sessionScope.loginUser.mtstat}')">클래스 개강 </a>
 									</div>
 									<div class="row">
 
@@ -241,10 +240,32 @@
 	<!-- js 추가 -->
 	<script src="/js/clean-blog.js"></script>
 	<script src="/js/owl.carousel.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 	<!-- ===============필수포함=============== -->
 
 	<script>
+	
+	function showClassAdd(mtstat){
+		if("${sessionScope.loginUser}" == ""){
+			swal({
+				title: "로그인후 이용가능합니다.",
+				button: "확인"
+			});
+		}else if('${sessionScope.loginUser.mtstat}' == 'N'){
+			swal({
+				title: "멘토만 이용가능합니다.",
+				button: "확인"
+			});
+		}else if('${sessionScope.loginUser.mtstat}' == 'Y'){
+			location.href='classadd';
+		}else if('${sessionScope.loginUser.mtstat}' == 'I'){
+			swal({
+				title: "응안돼~",
+				button: "확인"
+			});
+		}
+	}
         
     </script>
 </body>
