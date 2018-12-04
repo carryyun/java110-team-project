@@ -38,8 +38,7 @@
             <mvc:exclude-mapping path="/product/addrep.do" />
             <mvc:exclude-mapping path="/product/removerep.do" />
             <mvc:exclude-mapping path="/product/addqna.do" />
-            
-            
+            <mvc:exclude-mapping path="/class/clsCate.do" />
             
             <!-- master page -->
             <mvc:exclude-mapping path="/masterpage/clsstat.do" />

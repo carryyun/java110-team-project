@@ -58,16 +58,16 @@
 					</thead>
 
 					<tbody>
-						<c:forEach items="${likeList }" var="r">
+						<c:forEach items="${likeList}" var="r">
 							<tr class="main d-flex">
 								<td class=" col-8">
 									<div class="media">
-										<a class="thumbnail pull-left" href="#"> <img class="media-object"
+										<a class="thumbnail pull-left" href="../class/detail?no=${r.classes.no}"> <img class="media-object"
 											src="${r.classes.cfile }" style="width: 100px; height: 100px;">
 										</a>
 										<div class="media-body">
 											<h4 class="media-heading">
-												<a href="#">${r.classes.titl}</a>
+												<a href="../class/detail?no=${r.classes.no}">${r.classes.titl}</a>
 											</h4>
 											<h5 class="media-heading">
 												멘토: <span>${r.mentorNick}</span>

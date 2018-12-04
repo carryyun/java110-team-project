@@ -215,38 +215,51 @@ public class ClassController {
     BigTag bigtag = null;
     List<Classes> clslist = null;
     if(type == null) {
-      clslist = classService.listByBtno(10, 5, no);
+      clslist = classService.listByBtno(1, 6, no);
       bigtag = bigTagService.get(no);
       model.addAttribute("selectedNo", 0);
     }else if("mtag".equals(type)) {
-      clslist = classService.listByMtno(10, 5, no);
+      clslist = classService.listByMtno(1, 6, no);
       MiddleTag middleTag = middleTagService.get(no);
       bigtag = bigTagService.get(middleTag.getBtno());
       model.addAttribute("selectedNo", no);
     }
-    
-    /*List<ProductPopul> pp_list = productPopulService.list();
-    List<ProductPopul> pp_product = new ArrayList<>();
+    model.addAttribute("type",type);
+    /*List<Classes> clsaddlist = classService.listByBtno(10, 5, no);
+    List<Classes> classcalist = new ArrayList<>();
+    for (Classes c : clsaddlist) {
 
-    for (ProductPopul p : pp_list) {
-
-      pp_product.add(p);
+      classcalist.add(c);
     }*/
-    List<Classes> clsaddlist = classService.classList(no);
-    ObjectMapper mapper = new ObjectMapper();
+    /*ObjectMapper mapper = new ObjectMapper();
     String jsonText = "";
     try {
-
-      jsonText = mapper.writeValueAsString(clsaddlist);
-      model.addAttribute("clsaddlist", jsonText);
+      jsonText = mapper.writeValueAsString(classcalist);
+      model.addAttribute("classcalist", jsonText);
     } catch (JsonProcessingException e) {
       System.out.println(e.getMessage());
-    }
+    }*/
+    
+    System.out.println(bigtag.getNo());
     
     model.addAttribute("clslist", clslist);
     
     
     model.addAttribute("bigTag", bigtag);
+  }
+  
+  @RequestMapping(value="clsCate.do" ,method= {RequestMethod.POST})
+  public @ResponseBody List<Classes> clsCatedo(int no, String type,
+      @RequestParam(defaultValue="2") int pageNo, @RequestParam(defaultValue="3") int pageSize) {
+    List<Classes> scrollClsList = null;
+    if(type == null) {
+      scrollClsList = classService.listByBtno(pageNo, pageSize, no);
+    }else if("mtag".equals(type)) {
+      scrollClsList = classService.listByMtno(pageNo, pageSize, no);
+    }
+    
+
+    return scrollClsList;
   }
   
   @RequestMapping("detail")

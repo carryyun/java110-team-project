@@ -10,6 +10,7 @@ public interface ClassService {
   List<Classes> listByMtno(int pageNo, int pageSize, int mtno);
   List<Classes> classList(int no);
   List<Classes> findAllByList();
+  
   Classes findbyptno(int ptno);
   Classes findBycno(int no);
   Classes findAllBycno(int no);
