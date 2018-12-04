@@ -240,7 +240,6 @@
 	<!-- ===============필수포함=============== -->
 
 	<script>
-	
 	function showClassAdd(mtstat){
 		if("${sessionScope.loginUser}" == ""){
 			swal({

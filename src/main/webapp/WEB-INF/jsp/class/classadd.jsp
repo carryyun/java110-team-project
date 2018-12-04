@@ -7,24 +7,25 @@
 <head>
     <meta charset="UTF-8">
     <title>클래스 등록</title>
-    <link rel="stylesheet" type="text/css" href="/css/classadd.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
-    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-    <link rel="stylesheet" href="/css/jquery.datetimepicker.min.css" >
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" type="text/javascript" ></script> 
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/classadd.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" type="text/javascript" ></script> 
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
+    <script src='/js/moment.min.js'></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"  type="text/javascript"></script>
+    <script src="/js/jquery.datetimepicker.full.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src='/js/fullcalendar.min.js'></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+    <link rel="stylesheet" href="/css/jquery.datetimepicker.min.css" >
     <link href='/css/fullcalendar.css' rel='stylesheet' />
     <link href='/css/fullcalendar.min.css' rel='stylesheet' type="text/javascript" />
     <link href='/css/fullcalendar.print.min.css' rel='stylesheet' media='print'/>
-    <script src='/js/moment.min.js'></script>
-    <script src='/js/fullcalendar.min.js'></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="/js/jquery.datetimepicker.full.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"  type="text/javascript"></script>
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
     </head>
     
 <body style="background-color:#F2F4F7;">
@@ -34,7 +35,7 @@
 			<!-- 헤더 배경색 적용 -->
 		</div>
 <div class="col-lg-12" style="z-index: 100">
-					<jsp:include page="../headerMain.jsp"></jsp:include>
+					<%-- <jsp:include page="../headerMain.jsp"></jsp:include> --%>
  <div id="classadd">
   <div>
       <h1>클래스 등록</h1>
@@ -42,9 +43,8 @@
   <!--method="post"  enctype="multipart/form-data"-->
   <form action="classadd" method="post" id="uploadForm" enctype="multipart/form-data" onsubmit="return emptychk()" >
              <div>
-              <input type="text" name="titl" id="ctitl" placeholder="#제목을 입력해주세요 #Haru #클래스등록">
+              <input type="text" name="titl" id="ctitl" placeholder="#제목을 입력해주세요  #Haru #클래스등록">
              </div>
-              
               <div id="classinfo">
                <div style="width: 500px; height: auto; float: right; top:0">
                 <div id="type-chk-btn">
@@ -627,21 +627,22 @@ if (object.value.length > object.maxLength){
 }
   $(document).ready(function() {
      $('#classcowdog').summernote();
-     $('div.note-popover.popover.in.note-link-popover.bottom').remove();
+    /*  $('div.note-popover.popover.in.note-link-popover.bottom').remove();
      $('div.note-popover.popover.in.note-image-popover.bottom').remove();
      $('div.popover-content.note-children-container').remove();
-     $('div.arrow').remove();
-     $('div.note-popover.popover.in.note-table-popover.bottom').remove();
+      $('div.arrow').remove(); 
+     $('div.note-popover.popover.in.note-table-popover.bottom').remove(); */
  });
 
  $(document).ready(function() {
      $('#classtteok').summernote();
-     $('div.note-popover.popover.in.note-link-popover.bottom').remove();
+     /* $('div.note-popover.popover.in.note-link-popover.bottom').remove();
      $('div.note-popover.popover.in.note-image-popover.bottom').remove();
      $('div.popover-content.note-children-container').remove();
-     $('div.arrow').remove();
-     $('div.note-popover.popover.in.note-table-popover.bottom').remove();
+      $('div.arrow').remove(); 
+     $('div.note-popover.popover.in.note-table-popover.bottom').remove(); */
  }); 
+ 
  
  
 $(document).ready(function(){
