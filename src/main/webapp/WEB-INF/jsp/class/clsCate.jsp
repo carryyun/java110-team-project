@@ -228,9 +228,9 @@
 		    console.log("documentheight="+$(document).height());
 		    console.log("windowheight="+$(window).height());
 		    
-		    console.log("documentscrollTop="+$(document).scrollTop());
-		    
-		    if(($(window).scrollTop() == $(document).height() - $(window).height())) {
+		    console.log("windowscrollY="+window.scrollY);
+		    console.log("window.innerHeight="+window.innerHeight);
+		    if($(window).scrollTop() == $(document).height() - window.innerHeight+17) {
 		        var html = "";
 		        $.ajax({
 		            type : "POST" , 
