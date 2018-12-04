@@ -26,6 +26,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"  type="text/javascript"></script>
     <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
     </head>
+    
 <body style="background-color:#F2F4F7;">
 <div class="container">
 <div class="row">
