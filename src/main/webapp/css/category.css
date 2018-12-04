@@ -21,7 +21,7 @@ nav.navbar.navbar-expand-lg:not(#mainNav){
 #categoryNav > .navbar-nav > li.nav-item {
 
   
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 800;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -35,7 +35,7 @@ nav.navbar.navbar-expand-lg:not(#mainNav){
   border-right: 1px solid #6e6e6e;
   
   
-  font-size: 20px;
+  /* font-size: 20px; */
   font-weight: 800;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -49,10 +49,10 @@ nav.navbar.navbar-expand-lg:not(#mainNav){
 }
 #categoryNav > .navbar-nav > li.nav-item > a:hover{
   padding: 4px 8px 8px 8px;
-  border-bottom: 4px solid #ec5453;
+  border-bottom: 4px solid #FFB53C;
   min-width: 123px;
 }
-#categoryNav > .navbar-nav > li.nav-item > a#menu01 {
+/* #categoryNav > .navbar-nav > li.nav-item > a#menu01 {
   padding: 8px;
   font-size: 20px;
   font-weight: 800;
@@ -71,7 +71,7 @@ nav.navbar.navbar-expand-lg:not(#mainNav){
   font-family: 'Noto Sans KR', sans-serif;
   border-bottom: 4px solid #ec5453;
   min-width: 123px;
-}
+} */
 
 nav.navbar{
     /* background-color: #fff; */

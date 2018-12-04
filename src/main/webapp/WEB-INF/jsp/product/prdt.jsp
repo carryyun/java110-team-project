@@ -334,7 +334,7 @@
         
         var url    = "prodRegister";
         var title  = "하루 - 상품등록";
-        var status = "toolbar=no,directories=no,scrollbars=no,resizable=no,status=no,menubar=no,width=1300, height=700, top=-1000,left=100"; 
+        var status = "toolbar=no,directories=no,scrollbars=no,resizable=no,status=no,menubar=no,width=1300, height=750, top=-1000,left=100"; 
         openWin = window.open("", title,status); //window.open(url,title,status); window.open 함수에 url을 앞에와 같이
                                                   //인수로  넣어도 동작에는 지장이 없으나 form.action에서 적용하므로 생략
                                                   //가능합니다.

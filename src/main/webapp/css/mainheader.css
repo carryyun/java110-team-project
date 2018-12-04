@@ -65,7 +65,7 @@ div.dropdown-content a {
   }
   #mainNav .navbar-brand {
     padding: 10px 20px;
-    color: #ec5453;
+    color: #FFB53C;
   }
   #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
     color: #d84b6b;
@@ -128,13 +128,13 @@ div.dropdown-content a {
     position:absolute;
     left:90%; 
     top:19%;
-    color: #ec5453;
+    color: #FFB53C;
     vertical-align: middle;
 }
 
 input.search-form {
     background: transparent; 
-    border: 4px solid #ec5453;
+    border: 4px solid #FFB53C;
     width: 450px;
     font-size:25px;
     height:55px;
