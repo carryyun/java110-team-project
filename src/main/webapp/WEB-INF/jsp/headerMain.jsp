@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <html>
 <head>
 <meta charset="utf-8">
@@ -50,14 +51,23 @@ function mover(){
 							</a>
 
 						</c:when>
+						
+						<c:when test="${fn:contains(sessionScope.loginUser.stat,'M')}">
+						<div class="dropdown" id="dropdown">
+                            <img src="${sessionScope.loginUser.phot}" alt="userIMG" 
+                                    style="margin: 8px 23px; width: 56px; height: 56px; border-radius: 28px; border: 3px solid #FFB53C"><br>
+                            <div class="dropdown-content text-left" id="dropdown-content">
+                            <hr class="Hhr"/> 
+                            <a href="../auth/logout"><span><i class="fas fa-sign-out-alt"></i></span><span class="ml-3">로그아웃</span></a>
+                            </div>
+                        </div>
+                        </c:when>
+						
 						<c:otherwise>
 							<div class="dropdown" id="dropdown">
 							<!-- onload="mover()" -->
 								<img src="${sessionScope.loginUser.phot}" alt="userIMG" 
 									style="margin: 8px 23px; width: 56px; height: 56px; border-radius: 28px; border: 3px solid #FFB53C"><br>
-
-
-								
 								<div class="dropdown-content text-left" id="dropdown-content">
 									<a href="../mypage/mypage"><span><i class="fas fa-user"></i></span><span class="ml-3">마이페이지</span></a>
 									<a href="../master/notice"><span><i class="fas fa-bell"></i></span><span class="ml-3">알림</span></a>
@@ -77,9 +87,14 @@ function mover(){
 				<div id="row">
 					<c:choose>
 						<c:when test="${sessionScope.loginUser eq null}">
-							<a class="nav-link " href="../mentee/signup"> <i class="fas fa-user-plus fa-3x"></i></i><br>회원가입
+							<a class="nav-link " href="../mentee/signup"> <i class="fas fa-user-plus fa-3x"></i><br>회원가입
 							</a>
 						</c:when>
+						
+						<c:when test="${fn:contains(sessionScope.loginUser.stat,'M')}">
+                            <a class="nav-link " href="../masterpage/dashBoard"> <i class="fas fa-wrench fa-3x"></i><br>관리페이지
+                            </a>
+                        </c:when>
 						
 						<c:otherwise>
 							<a class="nav-link " href="../class/basket"> <i class="fas fa-shopping-cart fa-3x"></i><br>장바구니
@@ -92,6 +107,8 @@ function mover(){
 				<div id="row">
 				<c:choose>
                         <c:when test="${sessionScope.loginUser eq null}">
+                        </c:when>
+                        <c:when test="${fn:contains(sessionScope.loginUser.stat,'M')}">
                         </c:when>
                         
                         <c:otherwise>

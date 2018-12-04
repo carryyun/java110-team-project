@@ -101,7 +101,7 @@
   transition: opacity 0.6s;
 }
 .image-holder:after {
-  content: '+';
+  /* content: '+'; */
   font-family: 'Raleway', sans-serif;
   font-size: 70px;
   color: #ec5453;
@@ -111,10 +111,10 @@
   left: 50%;
   width: 75px;
   height: 75px;
-  line-height: 65px;
-  background-color: #ffffff;
+  /* line-height: 65px; */
+  /* background-color: #ffffff; */
   opacity: 0;
-  border-radius: 50%;
+  /* border-radius: 50%; */
   z-index: 10;
   transform: translate(-50%, 100%);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);

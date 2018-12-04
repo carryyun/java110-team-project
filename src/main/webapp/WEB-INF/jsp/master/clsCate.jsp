@@ -13,7 +13,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Clean Blog - Start Bootstrap Theme</title>
+<title>검색 결과</title>
 
 <!-- ===============필수포함=============== -->
 <!-- Bootstrap core CSS -->
@@ -56,28 +56,50 @@
 					<div class="row">
 						<div class="col-lg-2 border-right border-secondary">
 							<div class="col">
-								<h2>${bigTag.name}</h2>
-								<ul>
-                                    <c:forEach  items="${MTlist}" varStatus="j">
-                                        <c:if test="${bigTag.no == MTlist[j.index].btno}">
-                                            <c:choose>
-                                                <c:when test="${selectedNo > 0 && MTlist[j.index].no == selectedNo}">
-                                                    <li class="ml-3"><a class="selected" href="../class/clsCate?type=mtag&no=${MTlist[j.index].no}">${MTlist[j.index].name}</a></li>  
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <li class="ml-3"><a href="../class/clsCate?type=mtag&no=${MTlist[j.index].no}">${MTlist[j.index].name}</a></li>
-                                                </c:otherwise>
-                                            </c:choose>
-                                          
-                                        </c:if>
-                                    </c:forEach>
-								</ul>
+								<h2>검색 결과</h2>
+								
 							</div>
 						</div>
-						<!--  여기에 코드작성-->
-						
-						
-						
+						<!-- 오늘의 핫 아이템(카르셀) -->
+
+						<div class="col-lg-10">
+							<div class="row">
+								<div class="col">
+									<div id="day-select">
+										<h2>종류</h2>
+										<div class="box">
+											<label> <input type="radio" name="like" checked> <span class="yes">클래스</span>
+											</label> <label> <input type="radio" name="like"> <span class="no">전체</span>
+											</label>
+										</div>
+									</div>
+
+									<div>
+										<h2>요일 선택</h2>
+										<br>
+										<div>
+											<label for="default1" class="btn btn-default1"> <strong style="font-size: 16px">월</strong>
+												<input type="checkbox" id="default1" class="badgebox"><span class="badge">&check;</span>
+											</label> <label for="default2" class="btn btn-default2"> <strong style="font-size: 16px">화</strong>
+												<input type="checkbox" id="default2" class="badgebox"><span class="badge">&check;</span>
+											</label> <label for="default3" class="btn btn-default3"> <strong style="font-size: 16px">수
+											</strong> <input type="checkbox" id="default3" class="badgebox"><span class="badge">&check;</span>
+											</label> <label for="default4" class="btn btn-default4"> <strong style="font-size: 16px">목</strong>
+												<input type="checkbox" id="default4" class="badgebox"><span class="badge">&check;</span>
+											</label> <br> <label for="default5" class="btn btn-default5"> <strong
+												style="font-size: 16px">금</strong> <input type="checkbox" id="default5" class="badgebox"><span
+												class="badge">&check;</span>
+											</label> <label for="default6" class="btn btn-default6"> <strong style="font-size: 16px">토</strong>
+												<input type="checkbox" id="default6" class="badgebox"><span class="badge">&check;</span>
+											</label> <label for="default7" class="btn btn-default7"> <strong style="font-size: 16px">일
+											</strong> <input type="checkbox" id="default7" class="badgebox"><span class="badge">&check;</span>
+											</label>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div> <!--  없어질 예정 -->
+
 						<hr class="FhrMargin">
 					</div>
 
@@ -89,9 +111,6 @@
 
 
 								<div class="container">
-									<div class="clearfix">
-										<a class="btn btn-primary float-right mb-3" onClick="showClassAdd('${sessionScope.loginUser.mtstat}')">클래스 개강 </a>
-									</div>
 									<div class="row" id="clslist">
 										<c:forEach items="${clslist}" var="cl" varStatus="i"> 
 											<div class="col-lg-4">
@@ -153,6 +172,9 @@
 											</div>
 										</c:forEach>
 									</div>
+                                    
+                                    
+                                    
 								</div>
 
 							</div>
@@ -169,7 +191,7 @@
 
 			</div>
 		</div>
-
+        
 		<footer>
 			<div class="col px-0">
 				<jsp:include page="../footer.jsp"></jsp:include>
@@ -204,6 +226,7 @@
 	<!-- ===============필수포함=============== -->
 
 	<script>
+	
 	function showClassAdd(mtstat){
 		if("${sessionScope.loginUser}" == ""){
 			swal({
@@ -219,18 +242,18 @@
 			location.href='classadd';
 		}else if('${sessionScope.loginUser.mtstat}' == 'I'){
 			swal({
-				title: "아직 멘토 심사 기간이 안끝났습니다.",
+				title: "응안돼~",
 				button: "확인"
 			});
 		}
 	}
-	</script>
+=======
 <script>
-/* var data = {
+var data = {
         "items": ${clslist}
-    }; */
-    /* console.log(data);  */
-	/* for (var i in data["items"]) {
+    };
+    console.log(data); 
+	for (var i in data["items"]) {
 		var cno = data["items"][i].classes.no;
 	    var titl = data["items"][i].classes.titl;
 	    var pric = data["items"][i].classes.pric;
@@ -252,11 +275,11 @@
 	    console.log(name);
 	    console.log(nick);
 	    console.log(mtname);
-	    console.log(btname);*/
-	    /* var clssize = ${clslist.size()};
+	    console.log(btname);
+	    var clssize = ${clslist.size()};
 	    console.log(clssize);
 	    var html = "";
-	    var clslist = $('div#clslist'); 
+	    var clslist = $('div#clslist');
 	$(window).scroll(function() {
 	    if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
 	        for(var i=0;i<=6; i++){
@@ -286,7 +309,7 @@
 			    html+= '				<div class="row">'
 			    html+= '					<div class="col-lg-7 product-description__category secondary-text">'
 			        								for(var j=0; j<5; j++) {
-				                                    if (j<${cl.star}) {
+				                                    if (j<star) {
 				html+= '                        <img alt="star-on-big" class="starimg" src="/upload/img/raty/star-on-big.png">'
 				                                  } else {
 				html+= '                        <img alt="star-off-big" class="starimg" src="/upload/img/raty/star-off-big.png">'
@@ -309,7 +332,7 @@
 			}
 			clslist.html(html);
 	    }
-	}); */
+	});
 </script>
 </body>
 

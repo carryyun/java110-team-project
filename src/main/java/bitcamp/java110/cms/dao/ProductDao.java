@@ -29,7 +29,9 @@ public interface ProductDao {
   
   // 중분류 번호 조회
   List<Product> findAllByMtno(Map<String,Object> params); 
-
+  
+  // 검색(타이틀)
+  List<Product> serchByTitl(Map<String,Object> params);
   
   // 삽입
   int insert(Product product);

@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import bitcamp.java110.cms.domain.BigTag;
 import bitcamp.java110.cms.domain.ClassBakt;
 import bitcamp.java110.cms.domain.ClassFile;
@@ -25,6 +27,7 @@ import bitcamp.java110.cms.domain.ClassRep;
 import bitcamp.java110.cms.domain.Classes;
 import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.MiddleTag;
+import bitcamp.java110.cms.domain.Paging;
 import bitcamp.java110.cms.domain.Timetable;
 import bitcamp.java110.cms.service.BigTagService;
 import bitcamp.java110.cms.service.ClassBaktService;
@@ -224,7 +227,27 @@ public class ClassController {
       model.addAttribute("selectedNo", no);
     }
     
+    /*List<ProductPopul> pp_list = productPopulService.list();
+    List<ProductPopul> pp_product = new ArrayList<>();
+
+    for (ProductPopul p : pp_list) {
+
+      pp_product.add(p);
+    }*/
+    List<Classes> clsaddlist = classService.classList(no);
+    ObjectMapper mapper = new ObjectMapper();
+    String jsonText = "";
+    try {
+
+      jsonText = mapper.writeValueAsString(clsaddlist);
+      model.addAttribute("clsaddlist", jsonText);
+    } catch (JsonProcessingException e) {
+      System.out.println(e.getMessage());
+    }
+    
     model.addAttribute("clslist", clslist);
+    
+    
     model.addAttribute("bigTag", bigtag);
   }
   
@@ -246,6 +269,11 @@ public class ClassController {
     int countrep = classrepService.countbycno(no);
     
     int countqna = classqnaService.countbycno(no);
+    
+    /*Paging paging = new Paging();
+    paging.setPageNo(reppageNo);
+    paging.setPageSize(reppageSize);
+    paging.setTotalCount(countrep);*/
     
     model.addAttribute("clsreqlist",clsreqlist);
     model.addAttribute("detailclass",detailclass);

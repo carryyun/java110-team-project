@@ -42,7 +42,7 @@
 		<div class="container" style="background-color: white">
 			<!-- Header (스크립트로 임시 inclue) -->
 			<div class="row">
-				<div class="col-lg-12" style="z-index: 100">
+				<div class="col-lg-12" >
 					<jsp:include page="../headerMain.jsp"></jsp:include>
 				</div>
 
@@ -82,6 +82,10 @@
 								</div>
 							</div>
 						</div>
+						<div class="col-lg-12 mt-3 text-right">
+						  <input type="text" id="serchconts" style="height:40px; border: 4px solid #FFB53C;" onkeypress="if(event.keyCode==13) {serchProduct();}"> 
+						  <button onclick="serchProduct()" style="border:none; background: none;"><i style="position:relative;margin-left:-50px ;font-size: 20px;" class="fas fa-search"></i></button>
+						</div>
 
 						<hr class="FhrMargin">
 					</div>
@@ -91,13 +95,11 @@
 							<a href="post.html"></a>
 							<div class="row">
 
-
-
 								<div class="container">
 									<div class="clearfix">
-										<a class="btn btn-primary float-right mb-3"
-											data-toggle="modal" data-target="#squarespaceModal" href="#"
-											onclick="showCert('${sessionScope.loginUser.no}')">상품 등록
+										<a class="btn btn-primary float-right mb-3" id="certBtn"
+											data-toggle="modal" href="#"
+											onclick="checkSession('${sessionScope.loginUser.no}',event)">상품 등록
 										</a>
 									</div>
 									<div class="row">
@@ -132,7 +134,6 @@
 														              <a href="detail?no=${pl.no}">${pl.titl}</a>
 														            </c:otherwise> 
 																</c:choose>
-																	
 																</div>
 															</div>
 
@@ -218,7 +219,7 @@
 	<!-- js 추가 -->
 	<script src="/js/clean-blog.js"></script>
 	<script src="/js/owl.carousel.js"></script>
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<!-- ===============필수포함=============== -->
 
 	<script>
@@ -288,20 +289,46 @@
             owlPrdt.trigger('prev.owl.carousel');
         });
     </script>
+    
 	<script>
 	function getCtno(){
 	    $('#ctno').val($('#cert option:selected').attr('id'));
 	}
-	
-    function showCert(no){
-
+	function checkSession(no,e){
+	    if('${sessionScope.loginUser}' == ''){
+	        e.preventDefault();
+	        e.stopPropagation();
+	        swal({
+                text : "로그인 후 이용가능합니다..",
+                button : "확인",
+              });
+            return false;
+	    }else{
+            
+	        showCert(no,e);
+	    }
+	    
+	}
+    function showCert(no,e){
         $.ajax({
             data : {
                 no : no
             },
             url : "getCertList.do",
             success : function(data) {
-                console.log(data[0]);
+                if(data.length<1){
+                    e.preventDefault();
+                    e.stopPropagation();
+                    swal({
+                        text : "발급받은 인증서가 없습니다. 클래스 수료 후 이용해주세요.",
+                        button : "확인",
+                      });
+                    console.log(data.length);
+                    return false;
+                }else{
+                    $('#certBtn').attr('data-target','#squarespaceModal');
+                    $('#squarespaceModal').modal();
+                }
                 
                 var html= "";
                 
@@ -343,13 +370,9 @@
         frm.method = "post";
         frm.submit();     
         }
-    
 /*     {
-        
         var ctno = $('input#ctno').val();
-        
         console.log(ctno);
-
         // window.name = "부모창 이름"; 
         window.name = "parentForm";
         // window.open("open할 window", "자식창 이름", "팝업창 옵션");
@@ -357,6 +380,23 @@
                 "childForm", "width=570, height=350, resizable = no, scrollbars = no");    
     } */
     </script>
+<script>
+function serchProduct(){
+    var conts = $('input#serchconts').val();
+    location.href='prdtSerch?titl='+conts;
+}
+/*     var serch = $('#serchconts').val();
+$.ajax({
+    method : 'GET',
+    data : {
+        "serch" : serch
+    },
+    url : "prdtSerch",
+    success : function(data) {
+        console.log(data);
+    }
+}); */
+</script>
 </body>
 
 </html>

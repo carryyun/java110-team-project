@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import bitcamp.java110.cms.domain.Cert;
+import bitcamp.java110.cms.domain.ClassLike;
 import bitcamp.java110.cms.domain.Classes;
 import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.Product;
@@ -29,6 +30,7 @@ import bitcamp.java110.cms.domain.ProductRep;
 import bitcamp.java110.cms.domain.SmallTag;
 import bitcamp.java110.cms.service.BigTagService;
 import bitcamp.java110.cms.service.CertService;
+import bitcamp.java110.cms.service.ClassLikeService;
 import bitcamp.java110.cms.service.ClassService;
 import bitcamp.java110.cms.service.MiddleTagService;
 import bitcamp.java110.cms.service.ProductBaktService;
@@ -57,13 +59,16 @@ public class ProductController {
   ProductFileService productFileService;
 
   ServletContext sc;
+  ClassLikeService classlikeService;
 
+  
   public ProductController(ProductService productService, BigTagService bigTagService,
       MiddleTagService middleTagService, ProductPopulService productPopulService,
       ProductRepService productRepSerivce, ClassService classService,
       ProductQnAService productQnAService, ProductBaktService productBaktService,
       CertService certService, SmallTagService smallTagService,
-      ProductFileService productFileService, ServletContext sc) {
+      ProductFileService productFileService, ServletContext sc,
+      ClassLikeService classlikeService) {
 
     this.productService = productService;
     this.bigTagService = bigTagService;
@@ -77,6 +82,7 @@ public class ProductController {
     this.smallTagService = smallTagService;
     this.productFileService = productFileService;
     this.sc = sc;
+    this.classlikeService =classlikeService;
   }
 
   @GetMapping("prdt")
@@ -135,7 +141,9 @@ public class ProductController {
 
   @GetMapping("detail")
   public void detail(Model model, int no) {
+    
     Product product = productService.get(no);
+    Classes detailclass = classService.findBycno(product.getClasses().getNo());
     System.out.println(product.getPhot());
     product.setProductFile(productFileService.listByPtno(no));
     
@@ -148,6 +156,7 @@ public class ProductController {
     model.addAttribute("replyList", replyList);
     model.addAttribute("prdtcls", prdtcls);
     model.addAttribute("prodQnaList", prodQnaList);
+    model.addAttribute("detailclass",detailclass);
     /* model.addAttribute("clslist",clslist); */
   }
 
@@ -234,6 +243,7 @@ public class ProductController {
 
   }
 
+
   // 2018.11.29 -> ?.?
   @PostMapping(value = "addProduct.do")
   public String addProduct(Product product, List<MultipartFile> files, HttpSession session)
@@ -263,5 +273,25 @@ public class ProductController {
     
     return "detail?no=" + result;
   }
+  
+  @GetMapping("prdtSerch")
+  public void prdtSerch(String titl,Model model) {
+    System.out.println(titl);
+    List<Product> serchList = productService.serchByTitl(1, 10, titl);
+    
+    model.addAttribute("serchList", serchList);
+  }
+  
+  @RequestMapping(value = "clslikeins.do", method = {RequestMethod.POST})
+  public @ResponseBody String clslikeins(ClassLike classlike) {
+    
+    System.out.println(classlike.getMeno());
+    System.out.println(classlike.getCno());
+    classlikeService.likeadd(classlike);
+    
+    return "redirect:detail?no="+classlike.getCno();
+  }
+  
+  
 }
 

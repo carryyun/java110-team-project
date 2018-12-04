@@ -333,6 +333,37 @@
         cno = #{no}
     </update>
     
+    <select id="serchByAll" resultMap="classMap" parameterType="map" >
+        SELECT 
+            ps.cno,
+            ps.titl,
+            ps.pric,
+            pe.name,
+            pe.nick,
+            pe.phot,
+            ps.bas_addr,
+            pg.mtname,
+            ps.cfile,
+            ps.star,
+            btag.btno,
+            btag.btname
+        FROM
+            p_mtag pg inner join p_cls as ps
+                on ps.mtno = pg.mtno
+            inner join p_meto as po 
+                on po.mono = ps.mono
+            inner join p_mete as pe
+                on po.mono = pe.meno
+            inner join p_btag as btag
+                on pg.btno = btag.btno
+                WHERE ps.titl LIKE "%{value}%"
+                or ps.tinfo Like "%{value}%"
+                or ps.cinfo Like "%{value}%"
+                or pe.name Like "%{value}%"
+                or pe.nick Like "%{value}%"
+    
+    </select>
+    
 </mapper>
 
 

@@ -113,7 +113,7 @@ input[type="number"]::-webkit-inner-spin-button {
 									</div>
 								</div>
                             </div>
-							<div class="mb-3">
+							<div class="mb-3" style="margin-top: 74px">
 								<div>배송비 ${product.deli}원</div>
 							</div>
 
@@ -139,19 +139,18 @@ input[type="number"]::-webkit-inner-spin-button {
 								    </div>
 								</div>
 							</div>
-
+ 
 							<hr class="FhrMargin">
-							<a href="javaScript:void(0)" onclick="pay()" class="btn btn-lg btn-primary">
+							<a href="javaScript:void(0)" onclick="npay()" class="btn btn-lg btn-primary">
 								구매하기 </a> 
-							<a href="#" class="btn btn-lg btn-outline-primary">
-							<i class="fas fa-shopping-cart"></i> 장바구니</a>
+							<a href="#" class="btn btn-lg btn-outline-primary">장바구니</a>
 						</div> <!-- <div class="text-left"> -->
 				</div>
 			</div> <!-- <div class="row"> -->
 		</div> <!-- <div class="col-lg-12 col-md-12 text-center"> -->
 	</div><!-- <div class="row"> -->
 </div><!-- <div class="container"> -->
-
+ 
 
 </body>
 </html>
