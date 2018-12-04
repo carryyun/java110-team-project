@@ -18,7 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import bitcamp.java110.cms.domain.BigTag;
-import bitcamp.java110.cms.domain.Cert;
 import bitcamp.java110.cms.domain.ClassBakt;
 import bitcamp.java110.cms.domain.ClassFile;
 import bitcamp.java110.cms.domain.ClassLike;
@@ -28,7 +27,6 @@ import bitcamp.java110.cms.domain.ClassRep;
 import bitcamp.java110.cms.domain.Classes;
 import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.MiddleTag;
-import bitcamp.java110.cms.domain.ProductPopul;
 import bitcamp.java110.cms.domain.Timetable;
 import bitcamp.java110.cms.service.BigTagService;
 import bitcamp.java110.cms.service.ClassBaktService;
@@ -226,18 +224,30 @@ public class ClassController {
       bigtag = bigTagService.get(middleTag.getBtno());
       model.addAttribute("selectedNo", no);
     }
+    
+    /*List<ProductPopul> pp_list = productPopulService.list();
+    List<ProductPopul> pp_product = new ArrayList<>();
+
+    for (ProductPopul p : pp_list) {
+
+      pp_product.add(p);
+    }*/
+    List<Classes> clsaddlist = classService.classList(no);
+    ObjectMapper mapper = new ObjectMapper();
+    String jsonText = "";
+    try {
+
+      jsonText = mapper.writeValueAsString(clsaddlist);
+      model.addAttribute("clsaddlist", jsonText);
+    } catch (JsonProcessingException e) {
+      System.out.println(e.getMessage());
+    }
+    
     model.addAttribute("clslist", clslist);
     
     
     model.addAttribute("bigTag", bigtag);
   }
-  
-  /*@RequestMapping(value = "getclassList.do", method = {RequestMethod.GET, RequestMethod.POST})
-  public @ResponseBody List<Classes> getCertList(int no) {
-    List<Classes> claslist = classService.classList(no);
-    
-    return claslist;
-  }*/
   
   @RequestMapping("detail")
   public void findByCno(@RequestParam(defaultValue="1") int reppageNo, @RequestParam(defaultValue="5") int reppageSize, 
