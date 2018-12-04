@@ -61,52 +61,57 @@
 	</div>
 </div>
 
+
+
+
+</body>
+
 <script>
 var nameCheck = 0; // 유효성검사
 var emailCheck = 0;
 
 function chkEmail() {
-	var inputed2 = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    var inputed2 = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     var inputed = $("#useremail").val();
-	var y = inputed2.test(inputed);
-	if(inputed==""){
-		emailCheck = 0;	
-	}else if(y == true){
-		emailCheck = 1;
-	}else{
-		emailCheck = 0;
-	}
+    var y = inputed2.test(inputed);
+    if(inputed==""){
+        emailCheck = 0; 
+    }else if(y == true){
+        emailCheck = 1;
+    }else{
+        emailCheck = 0;
+    }
 }
 
-function chkName(){	
-	var reg_name = /^[가-힣]{2,6}$/;
-	var inputed2 = $("#username").val();
-	var x = reg_name.test(inputed2);
-	if(inputed2==""){
-		nameCheck = 0;
-	}else if(x == true){
-		nameCheck = 1;
-	}else{
-		nameCheck = 0;
-	}
+function chkName(){ 
+    var reg_name = /^[가-힣]{2,6}$/;
+    var inputed2 = $("#username").val();
+    var x = reg_name.test(inputed2);
+    if(inputed2==""){
+        nameCheck = 0;
+    }else if(x == true){
+        nameCheck = 1;
+    }else{
+        nameCheck = 0;
+    }
 }
 
 function gohome(){
-	location.href="/app/auth/form";
+    location.href="/app/auth/form";
 }
 
 function wow(){
-	if(searchCheck() == false)
-		alert("회원정보를 다시 입력해주세요.");
-	smtpTransport.sendMail(mailOpt, function(err, res) {
-		  if( err ) {
-		      console.log(err);
-		  }else{
-		      console.log('Message send :'+ res);
-		  }
+    if(searchCheck() == false)
+        alert("회원정보를 다시 입력해주세요.");
+    smtpTransport.sendMail(mailOpt, function(err, res) {
+          if( err ) {
+              console.log(err);
+          }else{
+              console.log('Message send :'+ res);
+          }
 
-		  smtpTransport.close();
-		})
+          smtpTransport.close();
+        })
 }
 
 function searchCheck() {
@@ -115,13 +120,12 @@ function searchCheck() {
     if(email=="" || name=="") {
         return false;
     }else if(nameCheck == 0 || emailCheck == 0){
-		return false;
-	}else if(nameCheck == 1 && emailCheck == 1){
+        return false;
+    }else if(nameCheck == 1 && emailCheck == 1){
         return true;
-	}
+    }
 }
 
 
 </script>
-</body>
 </html>
