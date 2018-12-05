@@ -186,6 +186,19 @@ public class ProductController {
     model.addAttribute("stagList", stagList);
     model.addAttribute("ctno", ctno);
   }
+  
+  @GetMapping("prodUpdate")
+  public void prodUpdate(Model model, HttpSession session, int no) {
+    Product product = productService.get(no);
+    List<ProductFile> productFiles = productFileService.listByPtno(product.getNo());
+    int FileLength = productFiles.size();
+    List<SmallTag> stagList = smallTagService.listMtno(10, 5, product.getStno());
+    
+    model.addAttribute("FileLength", FileLength);
+    model.addAttribute("stagList", stagList);
+    model.addAttribute("productFiles", productFiles);
+    model.addAttribute("product", product);
+  }
 
 //상품평 등록
   @RequestMapping(value = "addrep.do", method = {RequestMethod.GET, RequestMethod.POST})
