@@ -14,4 +14,6 @@ public interface ProductFileService {
   int add(ProductFile profile); // insert
   int update(ProductFile profile); // update
   
+  int delete(ProductFile profile); // delete
+  
 }

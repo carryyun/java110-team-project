@@ -286,6 +286,49 @@ public class ProductController {
     return "detail?no=" + result;
   }
   
+  @PostMapping(value = "updateProduct.do")
+  public String updateProductdo(Product product, List<MultipartFile> files, String deleteFile, HttpSession session)
+      throws Exception {
+    productService.update(product);
+    int result = product.getNo();
+    
+    System.out.println(product);
+    System.out.println(deleteFile);
+    String[] str = deleteFile.split("&");
+    for(String s:str) {
+      ProductFile profile = new ProductFile();
+      profile.setPfname(s);
+      profile.setPtno(result);
+      productFileService.delete(profile);
+    }
+    
+    int index = 0;
+    for (MultipartFile file : files) {
+      if (!file.getOriginalFilename().equals("")) {
+        String filename = UUID.randomUUID().toString();
+        file.transferTo(new File(sc.getRealPath("/upload/img/prdtImg/" + filename + ".png")));
+        String fname = "/upload/img/prdtImg/" + filename + ".png";
+        System.out.println(fname);
+        ProductFile productFile = new ProductFile();
+        productFile.setPfname(fname);
+        productFile.setPtno(result);
+
+        productFileService.add(productFile);
+        index++;
+      }
+    }
+    
+    return "detail?no=" + result;
+  }
+  @GetMapping("updatestat")
+  public String updatestat(int no, String stat) {
+    Product product = new Product();
+    product.setNo(no);
+    product.setStat(stat);
+    productService.updatestat(product);
+    return "redirect:prdt";
+  }
+  
   @GetMapping("prdtSerch")
   public void prdtSerch(String titl,Model model) {
     System.out.println(titl);
