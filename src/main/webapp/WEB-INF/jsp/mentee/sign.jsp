@@ -34,7 +34,7 @@
                     <div class="col-sm-4">
                         <label class="name">이름</label> </div>
                     <div class="col-sm-8">
-                        <input type="text" name="name" id="username" placeholder="이름을 입력해 주세요" oninput="chkName()" class="form-control" maxlength="10" >
+                        <input type="text" name="name" id="username" placeholder="이름을 입력해 주세요" oninput="chkName()" class="form-control" maxlength="10" style="width: 250px;" >
                     </div>
                 </div>
             </div>
@@ -45,7 +45,7 @@
                     <div class="col-sm-4">
                         <label class="nick">닉네임</label> </div>
                     <div class="col-sm-8">
-                        <input type="text" name="nick" id="usernick" placeholder="닉네임을 입력해 주세요" class="form-control " oninput="checknick()" maxlength="10">
+                        <input type="text" name="nick" id="usernick" placeholder="닉네임을 입력해 주세요" class="form-control " oninput="checknick()" maxlength="10" style="width: 250px;">
                     </div>
                 </div>
             </div>
@@ -56,7 +56,7 @@
                     <div class="col-sm-4">
                         <label class="mail">이메일</label></div>
                     <div class="col-sm-8">
-                        <input type="email" name="email" id="useremail" placeholder="이메일을 입력해 주세요" class="form-control" oninput="checkemail()">
+                        <input type="email" name="email" id="useremail" placeholder="이메일을 입력해 주세요" class="form-control" oninput="checkemail()" style="width: 250px;">
                     </div>
                 </div>
             </div>
@@ -66,7 +66,7 @@
                     <div class="col-sm-4">
                         <label class="pass">비밀번호</label></div>
                     <div class="col-sm-8">
-                        <input type="password" name="pwd" id="pass" placeholder="비밀번호를 입력해 주세요" class="form-control" oninput="checkPwd()">
+                        <input type="password" name="pwd" id="pass" placeholder="비밀번호를 입력해 주세요" class="form-control" oninput="checkPwd()" style="width: 250px;">
                     </div>
                 </div>
             </div>
@@ -77,7 +77,7 @@
                     <div class="col-sm-4">
                         <label class="repass">비밀번호 확인</label></div>
                     <div class="col-sm-8">
-                        <input type="password" name="repwd" id="repwd" placeholder="비밀번호를 다시 입력해 주세요" class="form-control" oninput="checkPwd()">
+                        <input type="password" name="repwd" id="repwd" placeholder="비밀번호를 다시 입력해 주세요" class="form-control" oninput="checkPwd()" style="width: 250px;">
                     </div>
                 </div>
             </div>
