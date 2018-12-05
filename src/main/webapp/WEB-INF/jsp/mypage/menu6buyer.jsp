@@ -24,8 +24,6 @@
                         <th width="20%">주문자</th>
                         <th width="35%">결제금액(수량)<br>(결제방법)      </th>
                         <th width="15%">상태</th>
-                       
-
 
                     </tr>
                 </thead>
@@ -41,14 +39,8 @@
                                     pattern="yyyyMMdd" />${p.productOrder.no})</td>
                             <td>${p.mentee2.name}</td>
                             <td>${p.productOrder.tot_pric}(${p.productOrder.cnt})개<br>${p.productOrder.payopt}</td>
-                            <td>
-                                <button type="button" class="btn btn-primary"
-                                    onclick="writeparc()">배송정보입력</button>
-                                    
-                                   
-                                    
-                            </td>
-                            </tr>
+                            <td><button type="button" class="btn btn-primary" onclick="writeparc()">배송정보입력</button></td>
+                        </tr>
 
                     </c:forEach>
 
@@ -60,8 +52,6 @@
 	</div>
 
 
-	
-
 </div>
 
 
@@ -71,13 +61,15 @@
 
 function writeparc(){
     
-swal("송장번호를 입력하세요", {
-    content: "input",
-  })
-  .then((value) => {
-    swal(`${value}`);
-  });
-  
+     swal("Write something here:", {
+        content: "input",
+      })
+      .then((value) => {
+        swal(`You typed: ${value}`);
+      }); 
+     
+      
+     
 }
    
 

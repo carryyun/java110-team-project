@@ -1,5 +1,6 @@
 <%@page import="bitcamp.java110.cms.domain.Mentee"%>
 <%@page import="bitcamp.java110.cms.domain.Mentor"%>
+<%@page import="bitcamp.java110.cms.domain.Cert"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -32,11 +33,10 @@
     <link rel="stylesheet" href="/css/mypagecss/button/switchbtn.css">
     <link rel="stylesheet" href="/css/mypagecss/button/flipbtn.css">
     <link rel="stylesheet" href="/css/mypagecss/button/togglebtn.css">
-    <!-- <link rel="stylesheet" href="/css/mypagecss/button/slider.css"> -->
     
     <!--  sweetalert   -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js "></script>
     <!-- Animate.css -->
     <link rel="stylesheet" href="/css/mypagecss/animate.css">
     <!-- Bootstrap  -->
@@ -106,7 +106,8 @@
                 <div class="text-center">
                     <div class="author-img" style="background-image: url(${mentee.phot};"></div>
                     <h1 id="colorlib-logo"><a href="index.html">${mentee.name}</a></h1>
-                    <span class="position"><a href="">MIT Universe.</a><br>{멘토자격증}</span>
+                    <span id="stat" name="${mentee.mtstat}"class="position"><B>멘토 경력 ${mentor.carr} 년</B><br></span>
+                    
                 </div>
 
                 <nav id="colorlib-main-menu" role="navigation" class="navbar">
@@ -122,11 +123,7 @@
                     </div>
                 </nav>
 
-                <div class="colorlib-footer">
-                    <p><small><a href="">Haru</a></small></p>
-
-                </div>
-
+                
             </aside>
 
             <div id="colorlib-main">
@@ -306,6 +303,8 @@
                                  <hr color="black"    >
                    
                     <div id="menu5"></div>
+                    <div id="menu5disable"></div>
+                    <div id="menu5disable2"></div>
                         
                     </div>
                     </div>

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import bitcamp.java110.cms.domain.Cert;
-import bitcamp.java110.cms.domain.ClassBakt;
 import bitcamp.java110.cms.domain.ClassOrder;
 import bitcamp.java110.cms.domain.ClassQna;
 import bitcamp.java110.cms.domain.Classes;
@@ -75,9 +74,12 @@ public class MypageController {
   public void mypage(Model model,HttpSession session) {
     
     Mentee mentee = (Mentee) session.getAttribute("loginUser");
-    
     model.addAttribute("mentee", mentee);
-
+    
+    Mentor mentor = mentorService.get(mentee.getNo());
+    model.addAttribute("mentor", mentor);
+    
+    
   }
   
   @GetMapping("menu1")
@@ -208,7 +210,15 @@ public class MypageController {
   
  
   
+  @GetMapping("menu5disable")
+  public void menu5disable(Model model) { 
+
+  }
   
+  @GetMapping("menu5disable2")
+  public void menu5disable2(Model model) { 
+
+  }
   
   
   @GetMapping("menu6")

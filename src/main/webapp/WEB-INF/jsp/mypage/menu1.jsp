@@ -315,7 +315,7 @@
                     <div class="services  color-3" >
                         
                             <div class=profile-title>
-                                <h3>비밀번호 변경</h3>
+                                <h3>연락처 변경</h3>
                             </div>
                             <div class="profile-contents" style="height: 50px;" >
                                 <div class="title1" style="text-align:left;" >
