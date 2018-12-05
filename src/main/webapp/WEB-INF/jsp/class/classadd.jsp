@@ -55,7 +55,7 @@
       <h1>클래스 등록</h1>
   </div>
   <!--method="post"  enctype="multipart/form-data"-->
-  <form action="classadd" method="post" id="uploadForm" enctype="multipart/form-data" onsubmit="return emptychk()" >
+  <form action="classadd" method="post" id="uploadForm" enctype="multipart/form-data">
              <div>
               <input type="text" name="titl" id="ctitl" placeholder="#제목을 입력해주세요  #Haru #클래스등록">
              </div>
@@ -126,7 +126,7 @@
                  <input id="removefiles" type="hidden" name="removefiles">
                  <input type="hidden" id="type" name="type" value="단기"> 
                  <input type="button" id="back-home-btn" value="Go Home">  
-              	 <input type="submit" id="clsinsert"  value="클래스 등록" />
+              	 <input type="button" id="clsinsert" onclick="emptychk();" value="클래스 등록" />
               </form>
             </div>
         </div>
@@ -282,6 +282,16 @@ function emptychk(){
 				button:"확인"
 			});
     		return false;
+	}else {
+		swal({
+		        
+		        title: "클래스 신청이 완료되었습니다.", 
+		        text: "심사기간은 최대 3일입니다."
+		        timer:3000,
+		        button:"확인"
+		        }).then((value) => {
+		       		document.getElementById('uploadForm').submit();
+		        });
 	}
 }
 

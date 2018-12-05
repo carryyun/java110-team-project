@@ -421,9 +421,9 @@ function npay(){
 
 
 <!-- 장바구니 -->
-<!-- <script>
+<script>
 function prodBaskt(no) {
-    var cno = ${detailclass.no};
+    var ptno = ${product.no}; /* 이거수정해야함 */
     if("${sessionScope.loginUser}" == ""){
         swal({
             text : "로그인 후 이용가능합니다..",
@@ -433,26 +433,27 @@ function prodBaskt(no) {
         $.ajax({
             type : "POST" , 
             data : {
-                "cno" : cno , 
-                "meno" : no
+                "ptno" : ptno,
+                "meno" : no,
+                "cnt" : 1
             },
             url : "prodBaskt.do" ,
             success : function() {
                 swal({
-                    text : "찜클래스가 등록되었습니다",
+                    text : "장바구니에 등록되었습니다",
                     icon : "success",
                     button : "확인",
                   })
             },error : function(error,status){
                 swal({
-                    text : "이미 찜클래스에 등록된 클래스입니다.",
+                    text : "이미 장바구니에 등록된 상품입니다.",
                     button : "확인",
                   })
             }
         });
     } 
 }
- -->
+
 
 </script>
 
@@ -503,9 +504,31 @@ function update(){
                                               //인수로  넣어도 동작에는 지장이 없으나 form.action에서 적용하므로 생략
                                               //가능합니다.
     /* frm.target = title;                    //form.target 이 부분이 빠지면 form값 전송이 되지 않습니다. 
-    frm.action = url;                    //form.action 이 부분이 빠지면 action값을 찾지 못해서 제대로 된 팝업이 뜨질 않습니다.
+    frm.action = url;                    //form.action 이 부분이 빠지면 action값을 찾지 못해서 제대로 된 팝업이 뜨질 않습니다. 
     frm.method = "GET";
     frm.submit();   */
+}
+function updatestat(){
+    swal({
+        title: "삭제 하시겠습니까?",
+        text: "삭제한 게시물은 복구할 수 없습니다.",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    }).then((willDelete) => {
+        if (willDelete) {
+            swal({
+                text : "삭제되었습니다.",
+                button : "확인",
+            }).then((willDelete) => {
+                if(willDelete){
+                  location.href="updatestat?no=${product.no}&stat=N";
+                }
+              })
+        } else {
+          
+        }
+      });
 }
 </script>
 </body>

@@ -15,6 +15,7 @@ public class Product {
   private int meno; // 판매자번호
   private int ctno; // 인증서번호
   private int stno; // 소분류번호
+  private String stat; // 소분류번호
 
   private int deli; // 택배비
   private int star; // 별점
@@ -34,6 +35,15 @@ public class Product {
   
   private Mentee mentee2;
   private ProductOrder productOrder;
+
+  
+  public String getStat() {
+    return stat;
+  }
+
+  public void setStat(String stat) {
+    this.stat = stat;
+  }
 
   public Mentee getMentee2() {
     return mentee2;

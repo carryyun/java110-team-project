@@ -74,18 +74,28 @@
                     <div class="row align-items-center remember">
                         <input type="checkbox" name="save" ${cookie.save.value}>이메일 저장
                     </div>
-                    <div id="login" class="form-group">
-                        <input type="submit" value="login" class="btn float-right login_btn">
+                    <div class="row" style="margin-top:10%">
+                    <div class="col-sm-12">
+                    
+                    <div id="login" class="form-group" style="right:80%;">
+                        <input type="submit" value="로그인" class="btn btn-warning btn-lg">
+                    </div>
+                    
+                    <div id="main" class="form-group" style="position:absolute; right:10px; bottom:0;">
+                        <input type="button" value="메인으로" class="btn btn-warning btn-lg" onclick="mainhome()" >
+                    </div>
+                    
+                    </div>
                     </div>
                     
                 </form>
             </div>
             <div class="card-footer">
                 <div class="d-flex justify-content-center links">
-                    <a href="/app/mentee/signup">회원 가입</a>
+                    <a href="/app/mentee/sign">회원 가입</a>
                 </div>
                 <div class="d-flex justify-content-center">
-                    <a href="/app/mentee/searchuser">이메일 찾기</a>
+                    <a href="/app/mentee/searchmail">이메일 찾기</a>
                 </div>
                 <div class="d-flex justify-content-center">
                     <a href="/app/mentee/searchpwd">비밀번호 찾기</a>
@@ -163,6 +173,10 @@ function loginWithKakao(){
     });
     
     
+}
+
+function mainhome(){
+    location.href="/app/mainpage/mainpage";
 }
 </script>
  <!-- Kakao.Auth.logout(function () {  alert("카카오로그아웃");}); -->
