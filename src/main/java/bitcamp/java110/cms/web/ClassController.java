@@ -243,7 +243,6 @@ public class ClassController {
     }else if("mtag".equals(type)) {
       scrollClsList = classService.listByMtno(pageNo, pageSize, no);
     }
-
     return scrollClsList;
   }
   
