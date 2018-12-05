@@ -12,7 +12,7 @@ div.note-editable{
     height: 300px;
 }
 div#imgBind {
-	border: 2px solid silver;
+	border: 2px solid lightskyblue;
 	padding-top: 15px;
 	width: 459px;
 	height: 280px;
@@ -58,9 +58,9 @@ div #ctitl{
     width: 1100px;
 }
 .view,#posi{
-	border: 1px solid gray;
-    color: white;
-    background-color: gray;
+	border: 1px solid lightskyblue;
+    color: aliceblue;
+    background-color: lightskyblue;
     margin-right:3px;
     width: 100px;
     border-radius:3px;
@@ -100,10 +100,10 @@ div #ctitl{
 }
 
 input[type="button"]{
-    background-color: #FFB53C;
+    background-color: white;
     border-radius: 3px;
-    border: none;
-    color: white;
+    border: 2px solid black;
+    color: black;
 } 
 
 input[type="number"]::-webkit-outer-spin-button,
@@ -149,17 +149,18 @@ input.upload{/*input type="file" tag 투명하게 처리*/
 	margin-bottom: 3px;
 }
 #cpay,#ctime,#sample6_address,#sample6_address2,#imgInput,#cttime,#ctime2,#rnumber,#cdate,#cdate2,#sample6_postcode{
-	border: 2px solid silver;
+	border: 2px solid lightskyblue;
+	border-radius: 3px;
 	
 }
 
-#clsinsert{
-	background-color: #FFB53C;
+#clsinsert,#back-home-btn{
+	background-color: white;
     border-radius: 3px;
+    border:3px solid #FFB53C;
+    color: black;
     width: 100px;
     height: 30px;
-    border: none;
-    color: white;
     float: right;
 }
 
