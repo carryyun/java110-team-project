@@ -18,7 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import bitcamp.java110.cms.domain.Cert;
-import bitcamp.java110.cms.domain.ClassLike;
 import bitcamp.java110.cms.domain.Classes;
 import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.Product;
@@ -294,7 +293,7 @@ public class ProductController {
     
     model.addAttribute("serchList", serchList);
   }
-  
+/*  
   @RequestMapping(value = "clslikeins.do", method = {RequestMethod.POST})
   public @ResponseBody String clslikeins(ClassLike classlike) {
     
@@ -304,7 +303,7 @@ public class ProductController {
     
     return "redirect:detail?no="+classlike.getCno();
   }
-  
+  */
   
 }
 

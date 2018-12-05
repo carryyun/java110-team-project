@@ -147,6 +147,8 @@ input[type="number"]::-webkit-inner-spin-button {
 							<a href="javaScript:void(0)" onclick="npay()" class="btn btn-lg btn-primary">
 								구매하기 </a> 
 							<button class="btn btn-lg btn-outline-primary">장바구니</button>
+							<button class="btn btn-lg btn-outline-primary"
+                                        onClick="prodBask(${sessionScope.loginUser.no})"> 장바구니</button>
 						</div> <!-- <div class="text-left"> -->
 				</div>
 			</div> <!-- <div class="row"> -->
