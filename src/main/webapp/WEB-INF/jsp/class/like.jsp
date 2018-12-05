@@ -70,7 +70,7 @@
 												<a href="../class/detail?no=${r.classes.no}">${r.classes.titl}</a>
 											</h4>
 											<h5 class="media-heading">
-												멘토: <span>${r.mentorNick}</span>
+												멘토 : <span>${r.mentorNick}</span>
 											</h5>
 											<span></span><span class="text-warning"><strong>당일 취소 불가</strong></span>
 										</div>

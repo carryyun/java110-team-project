@@ -78,15 +78,15 @@
 									<tr class="product d-flex">
 										<td class="col-5">
 											<div class="media">
-												<a class="thumbnail pull-left" href="#"> <img class="media-object"
-													src="${r.product.phot }" style="width: 100px; height: 100px;">
+												<a class="thumbnail pull-left" href="../product/detail?no=${r.ptno}"> <img class="media-object"
+													src="${r.product.phot}" style="width: 100px; height: 100px;">
 												</a>
 												<div class="media-body">
 													<h4 class="media-heading">
-														<a href="#">${r.product.titl }</a>
+														<a href="../product/detail?no=${r.ptno}">${r.product.titl }</a>
 													</h4>
 													<h5 class="media-heading">
-														판매자 <a href="#">${r.mentee.nick }</a>
+														판매자 : ${r.mentee.nick }
 													</h5>
 													<span></span><span class="text-warning"><strong>인당 최대 수량: 1개</strong></span>
 												</div>
