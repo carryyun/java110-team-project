@@ -1,6 +1,7 @@
 package bitcamp.java110.cms.web;
 
 import java.io.File;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -23,6 +24,7 @@ import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.Product;
 import bitcamp.java110.cms.domain.ProductBakt;
 import bitcamp.java110.cms.domain.ProductFile;
+import bitcamp.java110.cms.domain.ProductOrder;
 import bitcamp.java110.cms.domain.ProductPopul;
 import bitcamp.java110.cms.domain.ProductQnA;
 import bitcamp.java110.cms.domain.ProductRep;
@@ -34,6 +36,7 @@ import bitcamp.java110.cms.service.ClassService;
 import bitcamp.java110.cms.service.MiddleTagService;
 import bitcamp.java110.cms.service.ProductBaktService;
 import bitcamp.java110.cms.service.ProductFileService;
+import bitcamp.java110.cms.service.ProductOrderService;
 import bitcamp.java110.cms.service.ProductPopulService;
 import bitcamp.java110.cms.service.ProductQnAService;
 import bitcamp.java110.cms.service.ProductRepService;
@@ -59,6 +62,8 @@ public class ProductController {
 
   ServletContext sc;
   ClassLikeService classlikeService;
+  
+  ProductOrderService productOrderService;
 
   
   public ProductController(ProductService productService, BigTagService bigTagService,
@@ -67,7 +72,7 @@ public class ProductController {
       ProductQnAService productQnAService, ProductBaktService productBaktService,
       CertService certService, SmallTagService smallTagService,
       ProductFileService productFileService, ServletContext sc,
-      ClassLikeService classlikeService) {
+      ClassLikeService classlikeService, ProductOrderService productOrderService) {
 
     this.productService = productService;
     this.bigTagService = bigTagService;
@@ -82,6 +87,7 @@ public class ProductController {
     this.productFileService = productFileService;
     this.sc = sc;
     this.classlikeService =classlikeService;
+    this.productOrderService = productOrderService;
   }
 
   @GetMapping("prdt")
@@ -354,6 +360,35 @@ public class ProductController {
     
     return "redirect:detail?no="+productBakt.getNo();
   }
+  
+  @RequestMapping(value = "canget.do", method = {RequestMethod.POST})
+  public @ResponseBody String cangetdo(String[] arr) {
+    
+    for(String s : arr) {
+      String[] str = s.split("&");
+      
+      ProductBakt productBakt = new ProductBakt();
+      productBakt.setNo(Integer.parseInt(str[0]));
+      productBakt.setPtno(Integer.parseInt(str[1]));
+      productBakt.setMeno(Integer.parseInt(str[2]));
+      productBakt.setCnt(Integer.parseInt(str[3]));
+      productBaktService.delete(productBakt.getNo());
+      
+      Product product = new Product();
+      product = productService.get(productBakt.getPtno());
+      
+      ProductOrder order = new ProductOrder();
+      order.setMeno(productBakt.getMeno());
+      order.setPtno(productBakt.getPtno());
+      order.setCnt(productBakt.getCnt());
+      order.setTot_pric(product.getPric()*order.getCnt());
+      order.setPayopt(str[4]);
+      
+      productOrderService.add(order);
+      }
+    return "complete";
+  }
+  
   
 }
 
