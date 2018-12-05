@@ -180,11 +180,18 @@ img#owl-star{
     -webkit-backface-visibility: hidden;
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none; }
-  .owl-carousel .owl-item img {
+  .owl-carousel .owl-item img#owl-img{
     cursor:pointer;
     display: block;
-    height: 200px;
+    height:200px;
     width: 100%; }
+    .owl-carousel .owl-item img:hover{
+    transform: translate(-50%, 100%);
+    transition: all 0.4s ease-out;
+    }
+    div.imgcover:hover{
+     background-color: rgba(255,255,255,0.4);
+    }
   .owl-carousel .owl-nav.disabled,
   .owl-carousel .owl-dots.disabled {
     display: none; }
