@@ -467,6 +467,28 @@ function update(){
     frm.method = "GET";
     frm.submit();   */
 }
+function updatestat(){
+    swal({
+        title: "삭제 하시겠습니까?",
+        text: "삭제한 게시물은 복구할 수 없습니다.",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    }).then((willDelete) => {
+        if (willDelete) {
+            swal({
+                text : "삭제되었습니다.",
+                button : "확인",
+            }).then((willDelete) => {
+                if(willDelete){
+                  location.href="updatestat?no=${product.no}&stat=N";
+                }
+              })
+        } else {
+          
+        }
+      });
+}
 </script>
 </body>
 
