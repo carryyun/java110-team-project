@@ -1,8 +1,7 @@
-@charset "UTF-8";
 /*-----Background-----*/
 
 body{
-     background-image:url(/img/5.jpg);
+     background-image:url(https://s3.envato.com/files/243754334/primag.jpg);
      background-repeat:no-repeat;
      background-size:cover;
      width:100%;
@@ -28,7 +27,12 @@ body{
      margin-top: 166px;
 }
 /*--- for label of first and last name---*/
-.nick, .name, .mail, .pass, .repass{
+.nick, 
+.name, 
+.mail, 
+.pass, 
+.repass, 
+.phone{
      margin-left: 1px;
      font-family: sans-serif;
      font-size: 14px;
@@ -48,7 +52,11 @@ body{
 }
 /*-------for email----------*/
   /*------label----*/
-#useremail, #username, #usernick, #pass, #repwd{
+#email, 
+#name, 
+#nname, 
+#password, 
+#userphone{
       margin-top: 5px;
 }
 
