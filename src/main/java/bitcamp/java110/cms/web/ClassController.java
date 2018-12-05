@@ -128,6 +128,7 @@ public class ClassController {
     Mentee loginUser = new Mentee();
     loginUser = (Mentee) session.getAttribute("loginUser");
     System.out.println(loginUser.getNo());
+    
     classService.classadd(c, filelist, removefiles, days,date, edate,stime,etime,loginUser.getNo());
     return "redirect:clsCate?no=1";
   }
