@@ -8,6 +8,8 @@ nav.navbar{
   margin: 0 auto;
 }
 nav.navbar.navbar-expand-lg:not(#mainNav){
+ padding-top: 2px;
+ padding-bottom: 1px;
   /* border-top: 1px solid #6e6e6e; */
   /* border-bottom: 1px solid #6e6e6e */;
 }

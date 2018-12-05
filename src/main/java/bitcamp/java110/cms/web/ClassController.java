@@ -93,7 +93,6 @@ public class ClassController {
   @RequestMapping(value = "classadd", method=RequestMethod.POST)
   public String classinsert(Classes c,List<MultipartFile> files,
       String removefiles, String days,String date,String edate,String stime, String etime,HttpSession session) throws Exception {
-    
     List<String> filelist = new ArrayList<>();
     System.out.println(removefiles);
     System.out.println(days);
@@ -244,7 +243,6 @@ public class ClassController {
     }else if("mtag".equals(type)) {
       scrollClsList = classService.listByMtno(pageNo, pageSize, no);
     }
-
     return scrollClsList;
   }
   

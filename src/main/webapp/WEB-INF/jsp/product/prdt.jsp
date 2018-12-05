@@ -87,7 +87,7 @@
 						<h2>상품 검색</h2>
 						<hr color="#FFB53C" style="height:4px;margin-top:10px;margin-bottom:15px"/>
 						
-						  <input type="text" id="serchconts" style="height:40px; border: 4px solid #FFB53C;" onkeypress="if(event.keyCode==13) {serchProduct();}"> 
+						  <input type="text" id="serchconts" style="height:40px; width:98%; border: 4px solid #FFB53C;" onkeypress="if(event.keyCode==13) {serchProduct();}"> 
 						  <button onclick="serchProduct()" style="border:none; background: none;"><i style="position:relative;margin-left:-50px ;font-size: 20px;" class="fas fa-search"></i></button>
 						</div>
 
@@ -99,8 +99,8 @@
 							<a href="post.html"></a>
 							<div class="row">
 
-								<div class="container">
-									<div class="clearfix">
+<!-- 								<div class="container"> -->
+									<div class="col-lg-12 px-0">
 										<a class="btn btn-primary float-right mb-3" id="certBtn"
 											data-toggle="modal" href="#"
 											onclick="checkSession('${sessionScope.loginUser.no}',event)">상품 등록
@@ -173,7 +173,7 @@
 
 										</c:forEach>
 									</div>
-								</div>
+								<!-- </div> -->
 
 							</div>
 

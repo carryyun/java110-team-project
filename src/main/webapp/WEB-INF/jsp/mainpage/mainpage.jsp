@@ -72,11 +72,14 @@
     </div>
     <!-- main carousel container-->
     <!-- 메인 carousel -->
-
+    <div class="col-lg-12 px-0" 
+            style="position: absolute; top:504px; height: 41px; background-color: #f3f3f3">
+            <!-- 헤더 배경색 적용 -->
+        </div>
     <div class="container">
-        <div class="row">
+        <div class="row"> 
             <!-- 카테고리 네비 -->
-            <div class="col-12 my-3">
+            <div class="col-12" style="margin-top: -2px;">
                 <jsp:include page="../headerNav.jsp"></jsp:include>
             </div>
 
