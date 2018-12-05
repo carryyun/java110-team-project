@@ -54,7 +54,7 @@
 				<!-- Main Content -->
 				<div class="container col-lg-12 my-3" style="background-color: #white">
 					<div class="row">
-						<div class="col-lg-2 border-right border-secondary">
+						<%-- <div class="col-lg-2 border-right border-secondary">
 							<div class="col">
 								<h2>카테고리</h2>
 								<ul>
@@ -63,24 +63,32 @@
 									</c:forEach>
 								</ul>
 							</div>
-						</div>
+						</div> --%>
 						<!-- 오늘의 핫 아이템(카르셀) -->
 
-						<div class="col-lg-10">
+						<div class="col-lg-9">
 							<div class="row">
-								<div class="col">
+								<div class="col" style="border-right: 1px solid rgb(217, 217, 217);">
 									<h2>오늘의 핫 아이템</h2>
+									<hr color="#FFB53C" style="height:4px;margin-top:10px;margin-bottom:15px"/>
 									<div id="owl-hotItem" class="owl-carousel col-lg-10 mt-2" style="margin: 0 auto"></div>
 									<div class="owl-btns">
 										<div class="cusnextPrdt">
-											<i class="fas fa-angle-right" style="color: #ec5453"></i>
+											<i class="fas fa-angle-right" style="color: rgb(217, 217, 217)"></i>
 										</div>
 										<div class="cusprevPrdt">
-											<i class="fas fa-angle-left" style="color: #ec5453"></i>
+											<i class="fas fa-angle-left" style="color: rgb(217, 217, 217)"></i>
 										</div>
 									</div>
 								</div>
 							</div>
+						</div>
+						<div class="col-lg-3 text-left">
+						<h2>상품 검색</h2>
+						<hr color="#FFB53C" style="height:4px;margin-top:10px;margin-bottom:15px"/>
+						
+						  <input type="text" id="serchconts" style="height:40px; border: 4px solid #FFB53C;" onkeypress="if(event.keyCode==13) {serchProduct();}"> 
+						  <button onclick="serchProduct()" style="border:none; background: none;"><i style="position:relative;margin-left:-50px ;font-size: 20px;" class="fas fa-search"></i></button>
 						</div>
 
 						<hr class="FhrMargin">
@@ -91,13 +99,11 @@
 							<a href="post.html"></a>
 							<div class="row">
 
-
-
 								<div class="container">
 									<div class="clearfix">
-										<a class="btn btn-primary float-right mb-3"
-											data-toggle="modal" data-target="#squarespaceModal" href="#"
-											onclick="showCert('${sessionScope.loginUser.no}')">상품 등록
+										<a class="btn btn-primary float-right mb-3" id="certBtn"
+											data-toggle="modal" href="#"
+											onclick="checkSession('${sessionScope.loginUser.no}',event)">상품 등록
 										</a>
 									</div>
 									<div class="row">
@@ -132,7 +138,6 @@
 														              <a href="detail?no=${pl.no}">${pl.titl}</a>
 														            </c:otherwise> 
 																</c:choose>
-																	
 																</div>
 															</div>
 
@@ -218,7 +223,7 @@
 	<!-- js 추가 -->
 	<script src="/js/clean-blog.js"></script>
 	<script src="/js/owl.carousel.js"></script>
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<!-- ===============필수포함=============== -->
 
 	<script>
@@ -258,6 +263,8 @@
                     content += "<a href='detail?no="+ ptno +"'>"
                     content += "<div class='col' id='owl-col'>" 
                     content += "<div class='row' id='owl-row'>"
+                    content += '<div class="imgcover col-lg-12" style="height: 200px;position:absolute;">'
+                    content += '</div>'
                     content += '<div style="padding: 0 5px; top: 20px; width: auto; height: auto; position: absolute; background-color: #f58500; color: white; border-bottom-right-radius: 10px">'+nick+'</div>'
                     content += "<img id='owl-img' src=\"" + phot + "\" alt=\"" + titl + "\">"
                     content += "<div class='col-lg-9' id='owl-col2'>" + titl + "</div>"
@@ -288,20 +295,46 @@
             owlPrdt.trigger('prev.owl.carousel');
         });
     </script>
+    
 	<script>
 	function getCtno(){
 	    $('#ctno').val($('#cert option:selected').attr('id'));
 	}
-	
-    function showCert(no){
-
+	function checkSession(no,e){
+	    if('${sessionScope.loginUser}' == ''){
+	        e.preventDefault();
+	        e.stopPropagation();
+	        swal({
+                text : "로그인 후 이용가능합니다..",
+                button : "확인",
+              });
+            return false;
+	    }else{
+            
+	        showCert(no,e);
+	    }
+	    
+	}
+    function showCert(no,e){
         $.ajax({
             data : {
                 no : no
             },
             url : "getCertList.do",
             success : function(data) {
-                console.log(data[0]);
+                if(data.length<1){
+                    e.preventDefault();
+                    e.stopPropagation();
+                    swal({
+                        text : "발급받은 인증서가 없습니다. 클래스 수료 후 이용해주세요.",
+                        button : "확인",
+                      });
+                    console.log(data.length);
+                    return false;
+                }else{
+                    $('#certBtn').attr('data-target','#squarespaceModal');
+                    $('#squarespaceModal').modal();
+                }
                 
                 var html= "";
                 
@@ -330,6 +363,8 @@
         
     }
     function openPopUp(frm){
+     
+        $('#squarespaceModal').modal('toggle');
         var openWin;
         
         var url    = "prodRegister";
@@ -341,15 +376,12 @@
         frm.target = title;                    //form.target 이 부분이 빠지면 form값 전송이 되지 않습니다. 
         frm.action = url;                    //form.action 이 부분이 빠지면 action값을 찾지 못해서 제대로 된 팝업이 뜨질 않습니다.
         frm.method = "post";
-        frm.submit();     
+        frm.submit();  
+        
         }
-    
 /*     {
-        
         var ctno = $('input#ctno').val();
-        
         console.log(ctno);
-
         // window.name = "부모창 이름"; 
         window.name = "parentForm";
         // window.open("open할 window", "자식창 이름", "팝업창 옵션");
@@ -357,6 +389,12 @@
                 "childForm", "width=570, height=350, resizable = no, scrollbars = no");    
     } */
     </script>
+<script>
+function serchProduct(){
+    var conts = $('input#serchconts').val();
+    location.href='prdtSerch?titl='+conts;
+}
+</script>
 </body>
 
 </html>

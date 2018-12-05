@@ -57,6 +57,7 @@
 						<div class="col-lg-2 border-right border-secondary">
 							<div class="col">
 								<h2>${bigTag.name}</h2>
+								<input type="hidden" id="getbtno" value="${bigTag.no}">
 								<ul>
                                     <c:forEach  items="${MTlist}" varStatus="j">
                                         <c:if test="${bigTag.no == MTlist[j.index].btno}">
@@ -74,46 +75,10 @@
 								</ul>
 							</div>
 						</div>
-						<!-- 오늘의 핫 아이템(카르셀) -->
-
-						<div class="col-lg-10">
-							<div class="row">
-								<div class="col">
-									<div id="day-select">
-										<h2>기간</h2>
-										<div class="box">
-											<label> <input type="radio" name="like" checked=""> <span class="yes">원데이</span>
-											</label> <label> <input type="radio" name="like"> <span class="no">전체</span>
-											</label>
-										</div>
-									</div>
-
-									<div>
-										<h2>요일 선택</h2>
-										<br>
-										<div>
-											<label for="default1" class="btn btn-default1"> <strong style="font-size: 16px">월</strong>
-												<input type="checkbox" id="default1" class="badgebox"><span class="badge">&check;</span>
-											</label> <label for="default2" class="btn btn-default2"> <strong style="font-size: 16px">화</strong>
-												<input type="checkbox" id="default2" class="badgebox"><span class="badge">&check;</span>
-											</label> <label for="default3" class="btn btn-default3"> <strong style="font-size: 16px">수
-											</strong> <input type="checkbox" id="default3" class="badgebox"><span class="badge">&check;</span>
-											</label> <label for="default4" class="btn btn-default4"> <strong style="font-size: 16px">목</strong>
-												<input type="checkbox" id="default4" class="badgebox"><span class="badge">&check;</span>
-											</label> <br> <label for="default5" class="btn btn-default5"> <strong
-												style="font-size: 16px">금</strong> <input type="checkbox" id="default5" class="badgebox"><span
-												class="badge">&check;</span>
-											</label> <label for="default6" class="btn btn-default6"> <strong style="font-size: 16px">토</strong>
-												<input type="checkbox" id="default6" class="badgebox"><span class="badge">&check;</span>
-											</label> <label for="default7" class="btn btn-default7"> <strong style="font-size: 16px">일
-											</strong> <input type="checkbox" id="default7" class="badgebox"><span class="badge">&check;</span>
-											</label>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
+						<!--  여기에 코드작성-->
+						
+						
+						
 						<hr class="FhrMargin">
 					</div>
 
@@ -212,20 +177,7 @@
 			</div>
 		</footer>
 
-		<div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog"
-			aria-labelledby="modalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h4 class="modal-title" id="lineModalLabel">인증서 선택하기</h4>
-						<button type="button" class="close" data-dismiss="modal">
-							<span aria-hidden="true">×</span><span class="sr-only">Close</span>
-						</button>
-					</div>
-					<div class="modal-body" id="modal-body"></div>
-				</div>
-			</div>
-		</div>
+		
 	</div>
 	<!-- ===============필수포함=============== -->
 	<!-- Bootstrap core JavaScript -->
@@ -255,97 +207,113 @@
 			location.href='classadd';
 		}else if('${sessionScope.loginUser.mtstat}' == 'I'){
 			swal({
-				title: "응안돼~",
+				title: "아직 멘토 심사 기간이 안끝났습니다.",
 				button: "확인"
 			});
 		}
 	}
 	</script>
 <script>
-/* var data = {
-        "items": ${clslist}
-    }; */
-    /* console.log(data);  */
-	/* for (var i in data["items"]) {
-		var cno = data["items"][i].classes.no;
-	    var titl = data["items"][i].classes.titl;
-	    var pric = data["items"][i].classes.pric;
-	    var basAddr = data["items"][i].classes.basAddr;
-	    var cfile = data["items"][i].classes.cfile;
-	    var star = data["items"][i].classes.star;
-	    var name = data["items"][i].mentee.name;
-	    var nick = data["items"][i].mentee.nick;
-	    var phot = data["items"][i].mentee.phot;
-	    var mtname = data["items"][i].middletag.mtname;
-	    var btname = data["items"][i].bigtag.btname;
-        
-	    console.log(cno);
-	    console.log(titl);
-	    console.log(pric);
-	    console.log(basAddr);
-	    console.log(cfile);
-	    console.log(star);
-	    console.log(name);
-	    console.log(nick);
-	    console.log(mtname);
-	    console.log(btname);*/
-	    var clssize = ${clslist.size()};
-	    console.log(clssize);
-	    var html = "";
-	    var clslist = $('div#clslist'); 
-	$(window).scroll(function() {
-	    if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-	        for(var i=0;i<=6; i++){
-			    html+= '<div class="col-lg-4">'
-			    html+= '	<article class="card-wrapper">'
-			    html+= ' 		<div class="image-holder">'
-			    html+= '			<a href="detail?no=${cl.no}" class="image-holder__link"></a>'
-			    html+= '			<div class="image-liquid image-holder--original">'
-			    html+= '				<a href="detail?no=${cl.no}"><img alt="${i.count}" src="${cl.cfile}"'
-			    html+= '					style="width: 100%; height: 100%"></a> <img src="${cl.mentee.phot}"'
-			    html+= '					class="mentorimg" alt="${cl.mentee.phot}">'
-			    html+= '				<div '
-			    html+= '				style="padding: 0 5px; top: 75px; width: auto; height: auto; position: absolute; background-color: #f58500; color: white; border-bottom-right-radius: 10px">$${cl.mentee.name}'
-			    html+= '				</div>'
-			    html+= '				<div'
-			    html+= '					style="padding: 0 5px; top: 100px; width: auto; height: auto; position: absolute; background-color: #333873; color: white; border-bottom-right-radius: 10px">${cl.mentee.nick}'
-			    html+= '					멘토</div>'
-			    html+= '			</div>'
-			    html+= '		</div>'
-			    html+= '		<div class="product-description">'
-			    html+= '			<div class="product-description__title">'
-			    html+= '				<div class="row">'
-			    html+= '					<div class="col-lg-12 mb-2">'
-			    html+= '						<a href="detail?no=${cl.no}">${cl.titl}</a>'
-			    html+= '					</div>'
-			    html+= '				</div>'
-			    html+= '				<div class="row">'
-			    html+= '					<div class="col-lg-7 product-description__category secondary-text">'
-			        								for(var j=0; j<5; j++) {
-				                                    if (j<${cl.star}) {
-				html+= '                        <img alt="star-on-big" class="starimg" src="/upload/img/raty/star-on-big.png">'
-				                                  } else {
-				html+= '                        <img alt="star-off-big" class="starimg" src="/upload/img/raty/star-off-big.png">'
-				                                  }
-				                              }
-			    html+= '					</div>'
-			    html+= '					<div class="col-lg-5 product-description__price">${cl.pric}원</div>'
-			    html+= '				</div>'
-			    html+= '				<hr class="NoMarginHr">'
-			    html+= '				<div class="sizes-wrapper">'
-			    html+= '					<b>판매자 - ${cl.mentee.name}</b>'
-			    html+= '				</div>'
-			    html+= '				<div class="color-wrapper">'
-			    html+= '					<b>기본 주소 - ${cl.bas_addr}</b>'
-			    html+= '				</div>'
-			    html+= '			</div>'
-			    html+= '		</div>'
-			    html+= '	</article>'
-			    html+= '</div>'
-			}
-			clslist.html(html);
-	    }
-	});
+    var clslist = $('div#clslist'); 
+    var pageNo=parseInt(2);
+    var btno = $('input#getbtno').val();
+    $(document).ready(function(){
+    
+    console.log("scrollTop="+$(window).scrollTop());
+    console.log("documentheight="+$(document).height());
+    console.log("windowheight="+$(window).height());
+    });
+		$(window).scroll(function() {
+		    console.log("scrollTop="+$(window).scrollTop());
+		    console.log("documentheight="+$(document).height());
+		    console.log("windowheight="+$(window).height());
+		    
+		    console.log("windowscrollY="+window.scrollY);
+		    console.log("window.innerHeight="+window.innerHeight);
+		    if($(window).scrollTop() == $(document).height() - window.innerHeight+17) {
+		        var html = "";
+		        $.ajax({
+		            type : "POST" , 
+		            data : {
+		                "pageNo" : pageNo,
+		                "no" : btno
+		            },
+		            url : "clsCate.do" ,
+		            success : function(data) {
+		                html ="";
+		                for (var i in data) {
+		        			var cno = data[i].no;
+		        		    var titl = data[i].titl;
+		        		    var pric = data[i].pric;
+		        		    var basAddr = data[i].basAddr;
+		        		    var cfile = data[i].cfile;
+		        		    var star = data[i].star;
+		        		    var name = data[i].mentee.name;
+		        		    var nick = data[i].mentee.nick;
+		        		    var phot = data[i].mentee.phot;
+		        		    var mtname = data[i].middleTag.name;
+		        		    
+		        		    html+= '<div class="col-lg-4">'
+		    				    html+= '	<article class="card-wrapper">'
+		    				    html+= ' 		<div class="image-holder">'
+		    				    html+= '			<a href="detail?no='+cno+'" class="image-holder__-link"></a>'
+		    				    html+= '			<div class="image-liquid image-holder--original">'
+		    				    html+= '				<a href="detail?no=${cl.no}"><img alt="${i.count}" src="'+cfile+'"'
+		    				    html+= '					style="width: 100%; height: 100%"></a> <img src="'+phot+'"'
+		    				    html+= '					class="mentorimg" alt="'+phot+'">'
+		    				    html+= '				<div '
+		    				    html+= '				style="padding: 0 5px; top: 75px; width: auto; height: auto; position: absolute; background-color: #f58500; color: white; border-bottom-right-radius: 10px">'+name+''
+		    				    html+= '				</div>'
+		    				    html+= '				<div'
+		    				    html+= '					style="padding: 0 5px; top: 100px; width: auto; height: auto; position: absolute; background-color: #333873; color: white; border-bottom-right-radius: 10px">'+nick+''
+		    				    html+= '					멘토</div>'
+		    				    html+= '			</div>'
+		    				    html+= '		</div>'
+		    				    html+= '		<div class="product-description">'
+		    				    html+= '			<div class="product-description__title">'
+		    				    html+= '				<div class="row">'
+		    				    html+= '					<div class="col-lg-12 mb-2">'
+		    				    html+= '						<a href="detail?no='+cno+'">'+titl+'</a>'
+		    				    html+= '					</div>'
+		    				    html+= '				</div>'
+		    				    html+= '				<div class="row">'
+		    				    html+= '					<div class="col-lg-7 product-description__category secondary-text">'
+		    				        								for(var j=0; j<5; j++) {
+		    					                                    if (j<star) {
+		    					html+= '                        <img alt="star-on-big" class="starimg" src="/upload/img/raty/star-on-big.png">'
+		    					                                  } else {
+		    					html+= '                        <img alt="star-off-big" class="starimg" src="/upload/img/raty/star-off-big.png">'
+		    					                                  }
+		    					                              }
+		    				    html+= '					</div>'
+		    				    html+= '					<div class="col-lg-5 product-description__price">'+pric+'원</div>'
+		    				    html+= '				</div>'
+		    				    html+= '				<hr class="NoMarginHr">'
+		    				    html+= '				<div class="sizes-wrapper">'
+		    				    html+= '					<b>판매자 - '+name+'</b>'
+		    				    html+= '				</div>'
+		    				    html+= '				<div class="color-wrapper">'
+		    				    html+= '					<b>기본 주소 - '+basAddr+'</b>'
+		    				    html+= '				</div>'
+		    				    html+= '			</div>'
+		    				    html+= '		</div>'
+		    				    html+= '	</article>'
+		    				    html+= '</div>'
+		                }
+		                var setDiv = document.querySelector("div#clslist");
+		                setDiv.innerHTML+=html;
+		                
+		            },error : function(error,status){
+		                swal({
+		                    text : "안됨",
+		                    button : "확인",
+		                  })
+		            }
+		        }).done(function(json) {
+		            pageNo++;
+		        });
+		    }
+		});
 </script>
 </body>
 

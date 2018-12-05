@@ -62,6 +62,7 @@
         SELECT
             pb.cnt,
             pb.pbno,
+            pb.ptno,
             pr.phot, 
             pr.titl, 
             pr.pric, 
@@ -73,6 +74,7 @@
             on pb.ptno = pr.ptno
         JOIN p_mete mete
             on pb.meno = mete.meno
+            
         where 
             pb.meno = #{value}
     </select>

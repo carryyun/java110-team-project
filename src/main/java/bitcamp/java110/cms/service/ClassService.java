@@ -10,11 +10,12 @@ public interface ClassService {
   List<Classes> listByMtno(int pageNo, int pageSize, int mtno);
   List<Classes> classList(int no);
   List<Classes> findAllByList();
+  
   Classes findbyptno(int ptno);
   Classes findBycno(int no);
   Classes findAllBycno(int no);
   void classadd(Classes classes, List<String> filelist,String removefiles,
-      String days,String date,String edate,String stime, String etime,HttpSession session);
+      String days,String date,String edate,String stime, String etime,int loginUserNo);
   int classupdate(Classes classes);
   
   // 클래스 신청목록

@@ -326,7 +326,6 @@
                                 %>
                             </div>  
                             <div>
-                                 
                                     <span class="glyphicon glyphicon-user"></span>후기인원 : ${countrep} 
                             </div>  
                         </div>  
@@ -345,9 +344,6 @@
                                     
                                             <!-- Message body -->
                                             <div class="form-group">
-                                                <div class="col-lg-12">
-                                                    <input type="file" id="phot" name="phot">사진만 가능합니다.</input>
-                                                </div>
                                                 <div class="col-lg-12">
                                                     <textarea class="form-control" id="conts" name="conts"
                                                         placeholder="클래스평을 등록해주세요." rows="5"></textarea>
@@ -371,7 +367,7 @@
                                                 <button id="repbtn" type="button" onClick="repins(${sessionScope.loginUser.no});" 
                                                 class="btn btn-primary btn-md"
                                                     style="background-color: #606066; color: #ffffff">등록</button>
-                                            </div>
+                                        </div>
                                 </td>
                             </tr>
                         <!-- <div class="col-md-9 col-md-offset-0"> -->
@@ -383,7 +379,7 @@
 
                     <hr>
                     <div class ="row">
-                        <div class="col-lg-12 col-md-12 mx-auto detail_info">
+                        <div class="col-lg-12 col-md-12 mx-auto detail_info" id="replist">
                         <hr class="Fhr" id="class-review">
                         <h3>클래스 후기</h3>
                     
@@ -403,6 +399,10 @@
                                     <button type="button" onClick="deleterepnull()"
                                  class="delebtn" id="delebtn${i.index}">삭제</button>
                                 </c:when>
+                                <%-- <c:when test="${sessionScope.loginUser.no eq clsreqlist.mentee.no} ">
+                                    <button type="button" onClick="deleterepnull()"
+                                 class="delebtn" id="delebtn${i.index}">삭제</button>
+                                </c:when> --%>
                                 <c:otherwise>         
                                 <button type="button" data-toggle="modal" data-target="#deleteModal_${r.no}"
                                  class="delebtn" id="delebtn${i.index}">삭제</button>
@@ -510,7 +510,7 @@
                                 style="margin: 0 auto; border-collapse:collapse;">
                                     <thead class="col-lg-12">
                                         <tr class="row">
-                                            <th scope="col" class="col-lg-1" id="qna_th">번호</th>
+                                            <!-- <th scope="col" class="col-lg-1" id="qna_th">번호</th> -->
                                             <th scope="col" class="col-lg-2" id="qna_th">문의유형</th>
                                             <th scope="col" class="col-lg-2" id="qna_th">답변상태</th>
                                             <th scope="col" class="col-lg-3" id="qna_th">질문 제목</th>
@@ -521,9 +521,10 @@
                                     
                                     <tbody class="col-lg-12">
                                     <c:forEach items="${clsqnalist}" var="cq" varStatus="i">
+                                    <c:set var="qnasi" value="${countqna}" />
                                         <tr data-toggle="collapse" 
                                         data-target="#demo1-${i.count}" class="accordion-toggle row">
-                                            <td class="col-lg-1" scope="row" id="qna_th">${i.count}</td>
+                                            <!-- <td class="col-lg-1" scope="row" id="qna_th"></td> -->
                                             <td class="col-lg-2">${cq.type}</td>
                                             <c:set var="yn" value="${cq.anser}"/>
                                             <%
@@ -833,7 +834,8 @@ function repins(no) { /* 후기(댓글) 추가버튼 */
     var conts = $('textarea#conts').val();
     var star = $('#star1-score').val();
     var phot = $('input:file#phot').val();
-
+	var replist = $('div#replist');
+    
     if(conts == ""){
         swal({
             text : "내용이 비어있으면 후기가 등록이 안됩니다.",
@@ -855,15 +857,90 @@ function repins(no) { /* 후기(댓글) 추가버튼 */
                 "phot" : phot 
             },
             url : "repinsert",
-            success : function() {
+            success : function(data) {
                 swal({
                     text : "클래스 후기가 등록되었습니다",
                     icon : "success",
                     button : "확인",
                   })
-                location.reload();
-                var html ="";
-                
+	              var html ="";
+                	console.log("ddd");
+                  for (var i in data) {
+                     var rno = data[i].no;
+	        		 var meno = data[i].meno;
+	        		 var conts = data[i].conts;
+	        		 var nick = data[i].mentee.nick;
+	        		 var phot = data[i].mentee.phot;
+	        		 
+	        		 html +=' <div class="media"'
+	        		 html +='     style="border-bottom: 0.3px solid rgba(0, 0, 0, 0.5)">'
+	        		 html +='     <div class="col-lg-2 text-center">'
+
+	        		 html +='         <img src="'+phot+'" alt="singup" id="circle">'
+	        		 html +='         '+nick+''
+	        		 html +='     </div>'
+	        		 html +='     <div id="rcont'+i+'" class="col-lg-10 media-body">'+conts+'</div>'
+	        		 html +='     <textarea class="repupda col-lg-9 media-body" id="repup'+i+'" rows="5" name="repup"'
+	        		 html +='                style =" margin-left:10px; width : 500px; display: none;"></textarea>'
+	        		     if("${sessionScope.loginUser}" == ""){
+	        		 html +='         <button type="button" onClick="deleterepnull()"'
+	        		 html +='      class="delebtn" id="delebtn'+i+'">삭제</button>'
+	        		     } else {
+	        		 html +='      <button type="button" data-toggle="modal" data-target="#deleteModal_'+rno+'"'
+	        		 html +='      class="delebtn" id="delebtn'+i+'">삭제</button>'
+	        		     }
+                          
+	        		 html +='             <div class="modal fade" id="deleteModal_'+rno+'" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">'
+	        		 html +='               <div class="modal-dialog">'
+	        		 html +='                 <div class="modal-content">'
+	        		 html +='                     <div class="modal-header">'
+	        		 html +='                         <h4 class="modal-title" id="repdelet">해당 게시글 삭제하시겠습니까?</h4>'
+	        		 html +='                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>'
+	        		 html +='                     </div>'
+	        		 html +='                     <div class="modal-body">'
+	        		 html +='                          <form action="detail?no='+cno+'" method="post">'
+	        		 html +='                           <button type="button" class="btn btn-default"' 
+	        		 html +='                                 onClick="delerep('+no+' , '+rno+', '+meno+');">삭제하기</button>'
+	        		 html +='                           <button type="button" class="btn btn-default" data-dismiss="modal"  role="button">취소</button>'
+	        		 html +='                         </form>'
+	        		 html +='                     </div>'
+	        		 html +='                 </div>'
+	        		 html +='               </div>'
+	        		 html +='              </div>'
+                                  
+	        		 	if("${sessionScope.loginUser}" == ""){
+	        		 html +='               <button type="button" class="edbtn" id="edbtn'+i+'"' 
+	        		 html +='      onClick="deleterepnull()" >수정</button>'
+	        		 	} else {
+	        		 html +='             <button type="button" class="edbtn" id="edbtn'+i+'"' 
+	        		 html +='     onClick="updarep('+no+' , '+rno+' , '+meno+' ,'+i+');" >수정</button>'
+	        		 	}
+                          
+	        		 html +='     <button type="button" class="updabtn" id="updabtn'+i+'" data-toggle="modal"' 
+	        		 html +='      data-target="#updateModal_'+rno+'"' 
+	        		 html +='       style="display:none;">수정완료</button>'
+	        		 html +='             <div class="modal fade" id="updateModal_'+rno+'" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">'
+	        		 html +='               <div class="modal-dialog">'
+	        		 html +='                 <div class="modal-content">'
+	        		 html +='                     <div class="modal-header">'
+	        		 html +='                         <h4 class="modal-title" id="repupdat">해당 게시글 수정하시겠습니까?</h4>'
+	        		 html +='                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>'
+	        		 html +='                     </div>'
+	        		 html +='                    <div class="modal-body">'
+	        		 html +='                         <form action="detail?no='+cno+'" method="post">'
+	        		 html +='                           <button type="button" class="btn btn-default" data-dismiss="modal"'
+	        		 html +='                                  onClick="updabtn('+rno+' , '+i+')" >수정하기</button>'
+	        		 html +='                           <button type="button" class="btn btn-default" data-dismiss="modal" role="button"'
+	        		 html +='                           onClick="updano('+i+')">취소</button>'
+	        		 html +='                         </form>'
+	        		 html +='                     </div>'
+	        		 html +='                 </div>'
+	        		 html +='               </div>'
+	        		 html +='             </div>'
+	        		 html +=' 			</div>'
+                  }
+                  replist.html(html);
+                  $('textarea#conts').val("");
             },error : function(error,status){
                 swal({
                     text : "이미 후기를 등록을 하셨습니다.",
@@ -932,6 +1009,7 @@ function updano(teno) {  /* 댓글 수정 취소 버튼 */
     $("#delebtn"+teno).show();
 }
 
+/* no:${sessionScope.loginUser.no} , rno : ${r.no} , repmeno :  */
 function delerep(no , rno , repmeno){ /* 댓글 삭제 버튼 */
     console.log(no);
     console.log(rno);
@@ -955,7 +1033,85 @@ function delerep(no , rno , repmeno){ /* 댓글 삭제 버튼 */
                     icon : "success",
                     button : "확인",
                   })
-                location.href="detail?no="+${detailclass.no};
+
+	              var html ="";
+                  for (var i in data) {
+                     var rno = data[i].no;
+	        		 var meno = data[i].meno;
+	        		 var conts = data[i].conts;
+	        		 var nick = data[i].mentee.nick;
+	        		 var phot = data[i].mentee.phot;
+	        		 
+	        		 html +=' <div class="media"'
+	        		 html +='     style="border-bottom: 0.3px solid rgba(0, 0, 0, 0.5)">'
+	        		 html +='     <div class="col-lg-2 text-center">'
+
+	        		 html +='         <img src="'+phot+'" alt="singup" id="circle">'
+	        		 html +='         '+nick+''
+	        		 html +='     </div>'
+	        		 html +='     <div id="rcont'+i+'" class="col-lg-10 media-body">'+conts+'</div>'
+	        		 html +='     <textarea class="repupda col-lg-9 media-body" id="repup'+i+'" rows="5" name="repup"'
+	        		 html +='                style =" margin-left:10px; width : 500px; display: none;"></textarea>'
+	        		     if("${sessionScope.loginUser}" == ""){
+	        		 html +='         <button type="button" onClick="deleterepnull()"'
+	        		 html +='      class="delebtn" id="delebtn'+i+'">삭제</button>'
+	        		     } else {
+	        		 html +='      <button type="button" data-toggle="modal" data-target="#deleteModal_'+rno+'"'
+	        		 html +='      class="delebtn" id="delebtn'+i+'">삭제</button>'
+	        		     }
+                          
+	        		 html +='             <div class="modal fade" id="deleteModal_'+rno+'" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">'
+	        		 html +='               <div class="modal-dialog">'
+	        		 html +='                 <div class="modal-content">'
+	        		 html +='                     <div class="modal-header">'
+	        		 html +='                         <h4 class="modal-title" id="repdelet">해당 게시글 삭제하시겠습니까?</h4>'
+	        		 html +='                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>'
+	        		 html +='                     </div>'
+	        		 html +='                     <div class="modal-body">'
+	        		 html +='                          <form action="detail?no='+cno+'" method="post">'
+	        		 html +='                           <button type="button" class="btn btn-default"' 
+	        		 html +='                                 onClick="delerep('+no+' , '+rno+', '+meno+');">삭제하기</button>'
+	        		 html +='                           <button type="button" class="btn btn-default" data-dismiss="modal"  role="button">취소</button>'
+	        		 html +='                         </form>'
+	        		 html +='                     </div>'
+	        		 html +='                 </div>'
+	        		 html +='               </div>'
+	        		 html +='              </div>'
+                                  
+	        		 	if("${sessionScope.loginUser}" == ""){
+	        		 html +='               <button type="button" class="edbtn" id="edbtn'+i+'"' 
+	        		 html +='      onClick="deleterepnull()" >수정</button>'
+	        		 	} else {
+	        		 html +='             <button type="button" class="edbtn" id="edbtn'+i+'"' 
+	        		 html +='     onClick="updarep('+no+' , '+rno+' , '+meno+' ,'+i+');" >수정</button>'
+	        		 	}
+                          
+	        		 html +='     <button type="button" class="updabtn" id="updabtn'+i+'" data-toggle="modal"' 
+	        		 html +='      data-target="#updateModal_'+rno+'"' 
+	        		 html +='       style="display:none;">수정완료</button>'
+	        		 html +='             <div class="modal fade" id="updateModal_'+rno+'" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">'
+	        		 html +='               <div class="modal-dialog">'
+	        		 html +='                 <div class="modal-content">'
+	        		 html +='                     <div class="modal-header">'
+	        		 html +='                         <h4 class="modal-title" id="repupdat">해당 게시글 수정하시겠습니까?</h4>'
+	        		 html +='                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>'
+	        		 html +='                     </div>'
+	        		 html +='                    <div class="modal-body">'
+	        		 html +='                         <form action="detail?no='+cno+'" method="post">'
+	        		 html +='                           <button type="button" class="btn btn-default" data-dismiss="modal"'
+	        		 html +='                                  onClick="updabtn('+rno+' , '+i+')" >수정하기</button>'
+	        		 html +='                           <button type="button" class="btn btn-default" data-dismiss="modal" role="button"'
+	        		 html +='                           onClick="updano('+i+')">취소</button>'
+	        		 html +='                         </form>'
+	        		 html +='                     </div>'
+	        		 html +='                 </div>'
+	        		 html +='               </div>'
+	        		 html +='             </div>'
+	        		 html +=' 			</div>'
+                  }
+                  replist.html(html);
+                  $('textarea#conts').val("");
+            
                 },error : function(error,status){
                     swal({
                         text : "이미 삭제되었거나 존재하지 않는 댓글입니다.",

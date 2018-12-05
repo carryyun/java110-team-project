@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import bitcamp.java110.cms.domain.BigTag;
 import bitcamp.java110.cms.domain.ClassBakt;
 import bitcamp.java110.cms.domain.ClassFile;
@@ -85,15 +83,9 @@ public class ClassController {
   
   @PostMapping("findAll")
   public void findAll() {
-    System.out.println("findAll 호출");
     List<Classes> clist= classService.classList(5);
     
 
-    for(Classes c : clist) {
-
-      System.out.println(c.getNo());
-      System.out.println(c.getTitl());
-    }
   }
   @RequestMapping(value = "classadd", method=RequestMethod.GET)
   public void classinsert() {
@@ -103,14 +95,12 @@ public class ClassController {
   @RequestMapping(value = "classadd", method=RequestMethod.POST)
   public String classinsert(Classes c,List<MultipartFile> files,
       String removefiles, String days,String date,String edate,String stime, String etime,HttpSession session) throws Exception {
-    //Mentee loginUser = new Mentee();
-    //loginUser = (Mentee)session.getAttribute("loginUser");
-    //loginUser.getNo();
     
     List<String> filelist = new ArrayList<>();
     System.out.println(removefiles);
     System.out.println(days);
     System.out.println(c.getNo());
+    System.out.println((c.getCfile().equals("")));
     System.out.println(c.getTitl());
     System.out.println(c.getPric());
     System.out.println(c.getTime());
@@ -118,8 +108,6 @@ public class ClassController {
     System.out.println(c.getPstno());
     System.out.println(c.getBasAddr());
     System.out.println(c.getDetAddr());
-    System.out.println(c.getTinfo());
-    System.out.println(c.getCinfo());
     System.out.println(c.getType());
     System.out.println(stime);
     System.out.println(etime);
@@ -137,14 +125,16 @@ public class ClassController {
     for(String file : filelist) {
       System.out.println(file);
     }
-    classService.classadd(c, filelist, removefiles, days,date, edate,stime,etime,session);
-    return "redirect:clsCate?no=1";
+    Mentee loginUser = new Mentee();
+    loginUser = (Mentee) session.getAttribute("loginUser");
+    System.out.println(loginUser.getNo());
+    classService.classadd(c, filelist, removefiles, days,date, edate,stime,etime,loginUser.getNo());
+    return "redirect:../mainpage/mainpage";
   }
   
   
   @RequestMapping("classupdate")
   public void classupdate(Classes c) {
-    System.out.println("classupdate 호출");
     
     c.setNo(6);
     c.setTitl("고정지");
@@ -215,38 +205,49 @@ public class ClassController {
     BigTag bigtag = null;
     List<Classes> clslist = null;
     if(type == null) {
-      clslist = classService.listByBtno(10, 5, no);
+      clslist = classService.listByBtno(1, 9, no);
       bigtag = bigTagService.get(no);
       model.addAttribute("selectedNo", 0);
     }else if("mtag".equals(type)) {
-      clslist = classService.listByMtno(10, 5, no);
+      clslist = classService.listByMtno(1, 6, no);
       MiddleTag middleTag = middleTagService.get(no);
       bigtag = bigTagService.get(middleTag.getBtno());
       model.addAttribute("selectedNo", no);
     }
-    
-    /*List<ProductPopul> pp_list = productPopulService.list();
-    List<ProductPopul> pp_product = new ArrayList<>();
+    model.addAttribute("type",type);
+    /*List<Classes> clsaddlist = classService.listByBtno(10, 5, no);
+    List<Classes> classcalist = new ArrayList<>();
+    for (Classes c : clsaddlist) {
 
-    for (ProductPopul p : pp_list) {
-
-      pp_product.add(p);
+      classcalist.add(c);
     }*/
-    List<Classes> clsaddlist = classService.classList(no);
-    ObjectMapper mapper = new ObjectMapper();
+    /*ObjectMapper mapper = new ObjectMapper();
     String jsonText = "";
     try {
-
-      jsonText = mapper.writeValueAsString(clsaddlist);
-      model.addAttribute("clsaddlist", jsonText);
+      jsonText = mapper.writeValueAsString(classcalist);
+      model.addAttribute("classcalist", jsonText);
     } catch (JsonProcessingException e) {
       System.out.println(e.getMessage());
-    }
+    }*/
+    
+    System.out.println(bigtag.getNo());
     
     model.addAttribute("clslist", clslist);
     
-    
     model.addAttribute("bigTag", bigtag);
+  }
+  
+  @RequestMapping(value="clsCate.do" ,method= {RequestMethod.POST})
+  public @ResponseBody List<Classes> clsCatedo(int no, String type,
+      @RequestParam(defaultValue="2") int pageNo, @RequestParam(defaultValue="6") int pageSize) {
+    List<Classes> scrollClsList = null;
+    if(type == null) {
+      scrollClsList = classService.listByBtno(pageNo, pageSize, no);
+    }else if("mtag".equals(type)) {
+      scrollClsList = classService.listByMtno(pageNo, pageSize, no);
+    }
+
+    return scrollClsList;
   }
   
   @RequestMapping("detail")
@@ -255,18 +256,17 @@ public class ClassController {
       Model model,int no ,HttpSession session) {
     
     List<ClassRep> clsreqlist = classrepService.listbycno(no , reppageNo , reppageSize);
-    
     Classes detailclass = classService.findBycno(no);
-    
     List<ClassQna> clsqnalist = classqnaService.listbycno(no, qnapageNo, qnapageSize);
-    
     List<ClassFile> clsfilelist = classFileService.findByCno(no);
-    
     List<Timetable> clstimelist = timetableService.findByCno(no);
-    
     int countrep = classrepService.countbycno(no);
-    
     int countqna = classqnaService.countbycno(no);
+    
+    /*Paging paging = new Paging();
+    paging.setPageNo(reppageNo);
+    paging.setPageSize(reppageSize);
+    paging.setTotalCount(countrep);*/
     
     model.addAttribute("clsreqlist",clsreqlist);
     model.addAttribute("detailclass",detailclass);
@@ -295,7 +295,6 @@ public class ClassController {
   public void qnalist() {
     
     List<ClassQna> clist= classqnaService.classqnalist(4,10,5);
-    
 
     for(ClassQna c : clist) {
 
@@ -308,18 +307,16 @@ public class ClassController {
   
   @RequestMapping(value = "qnainsert", method = {RequestMethod.POST})
   public @ResponseBody int qnainsert(ClassQna classqna) {
+    
     System.out.println(classqna.getCno());
     System.out.println(classqna.getTitl());
     System.out.println(classqna.getConts());
     System.out.println(classqna.getMeno());
     System.out.println(classqna.getType());
-    
-    
     System.out.println(classqna.toString());
     
     return classqnaService.qnaadd(classqna);
   }
-  
   
   @RequestMapping("qnaupdate")
   public void qnaupdate(ClassQna classqna) {
@@ -336,32 +333,17 @@ public class ClassController {
   @RequestMapping(value = "ansupdate.do", method = {RequestMethod.POST})
   public @ResponseBody int ansupdate(ClassQna classqna) {
     
-    System.out.println(classqna.getCno());
-    System.out.println(classqna.getTitl());
-    System.out.println(classqna.getConts());
-    System.out.println(classqna.getMeno());
-    System.out.println(classqna.getType());
-    System.out.println(classqna.getAnser());
-    System.out.println(classqna.getRgdt2());
-    
     return classqnaService.ansupdate(classqna);
   }
   
   @RequestMapping(value = "repinsert", method = {RequestMethod.POST})
-  public @ResponseBody int repinsert(ClassRep classrep) {
+  public @ResponseBody List<ClassRep> repinsert(ClassRep classrep) {
+
+    classrepService.repAdd(classrep);
     
-    System.out.println(classrep.getMeno());
-    System.out.println(classrep.getCno());
-    System.out.println(classrep.getTitl());
-    System.out.println(classrep.getConts());
-    System.out.println(classrep.getStar());
-    System.out.println(classrep.getPhot());
-    System.out.println(classrep.getRgdt());
+    List<ClassRep> replist = classrepService.listbycno(classrep.getCno(), 1, 5);
     
-    System.out.println(classrep.toString());
-    
-    
-    return classrepService.repAdd(classrep);
+    return replist;
   }
   
   @RequestMapping(value = "clslikeins.do", method = {RequestMethod.POST})
@@ -375,9 +357,15 @@ public class ClassController {
   }
   
   @RequestMapping(value = "clsrepdele.do", method = {RequestMethod.POST})
-  public @ResponseBody int clsrepdele(int no) {
+  public @ResponseBody List<ClassRep> clsrepdele(int no) {
     
-    return classrepService.repDelete(no);
+    ClassRep classrep = new ClassRep();
+    
+    classrepService.repDelete(no);
+    
+    List<ClassRep> replist = classrepService.listbycno(classrep.getCno(), 1, 5);
+    
+    return replist;
   }
   
   @RequestMapping(value = "clsrepchange.do", method = {RequestMethod.POST})

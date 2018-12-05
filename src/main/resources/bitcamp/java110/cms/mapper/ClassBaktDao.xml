@@ -11,6 +11,9 @@
   <result column="meno" property="meno"/>
   <result column="ctno" property="ctno"/>
   
+  <result column="cno" property="classes.no"/>
+  
+  
   <result column="titl" property="classes.titl"/>
   <result column="pric" property="classes.pric"/>
   <result column="cfile" property="classes.cfile"/>
@@ -66,6 +69,7 @@
        SELECT 
            cls.titl, 
            mete2.nick, 
+           ttab.cno,
            ttab.date, 
            cls.pric, 
            cls.cfile, 

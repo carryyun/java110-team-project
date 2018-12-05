@@ -52,7 +52,7 @@
     <select id="findAllByMeno" resultMap="classlikeMap" parameterType="int">
         SELECT
             cl.clno, 
-            cls.cno,
+            cls.cno as clsno,
             cls.titl,
             cls.cfile,
             mete2.nick, 
