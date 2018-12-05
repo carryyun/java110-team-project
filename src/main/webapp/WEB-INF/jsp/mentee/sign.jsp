@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원 가입 </title>
 
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -21,7 +21,7 @@
 </head>
 <body>
 <div class="container">
-<form class="signup" method="post" action="/app/mentee/signup" onsubmit="return signupCheck()" >
+<form class="signup" method="post" action="/app/mentee/sign" onsubmit="return signupCheck()" >
         <!---heading---->
         <header class="heading"> 회원 가입</header>
         <hr />
@@ -101,7 +101,6 @@
     </div>
     
     <script>
-    
 var nameCheck = 0; // 유효성검사
 var emailCheck = 0; // 이메일 중복체크 , 유효성검사
 var pwdCheck = 0; // 패스워드 , 패스워드확인 값이 같은지 체크용
@@ -139,6 +138,7 @@ function checknick(){
         },
         url : "checknick.do",
         success : function(data){
+            console.log(data);
             if(inputed2=="" && data == '0'){
                 $("#usernick").css("background-color", "#FA5858");
                 nickCheck = 0;

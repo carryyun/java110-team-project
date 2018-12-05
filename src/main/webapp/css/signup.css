@@ -1,7 +1,7 @@
 /*-----Background-----*/
 
 body{
-     background-image:url(https://s3.envato.com/files/243754334/primag.jpg);
+     background-image:url(/img/5.jpg);
      background-repeat:no-repeat;
      background-size:cover;
      width:100%;
@@ -13,14 +13,13 @@ body{
 /*-----for border----*/
 .container{
     font-family:Roboto,sans-serif;
-      background-image:url(https://image.freepik.com/free-vector/dark-blue-blurred-background_1034-589.jpg) ;
+    background-color: rgba(0,0,0,0.5) !important;
     
      border-style: 1px solid grey;
      margin: 0 auto;
      text-align: center;
      opacity: 0.8;
      margin-top: 67px;
-     box-shadow: 2px 5px 5px 0px #eee;
      max-width: 500px;
      padding-top: 10px;
      height: 400px;

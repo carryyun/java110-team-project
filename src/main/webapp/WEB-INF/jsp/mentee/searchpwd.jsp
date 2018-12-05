@@ -1,72 +1,72 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" 
-	trimDirectiveWhitespaces="true"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Haru 이메일찾기</title>
-		<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-	    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-	    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	
-	    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-	    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-	    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-	    <link rel="stylesheet" href="/css/searchuser.css">
-	    
-	    
-	    
-	    
+<title>비밀번호 찾기</title>
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <link href="/css/signup.css" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="/vendor/jquery/jquery.min.js"></script>
 </head>
-	<body style="background-color: #f2f4f7">
-   <div id="wrap">
-		<div class="container mx-auto px-0">
-			<!-- Header (스크립트로 임시 inclue) -->
-			<div id="row">
-    <div class="container col-lg-12 mx-auto">
-    <!-- <div id="headerMain"></div> -->
-    <jsp:include page="../header.jsp"></jsp:include>
+<body>
+<div class="container">
+        <!---heading---->
+        <header class="heading" style="padding-top:15%; "> 비밀번호 찾기</header>
+        <form class="searchuser" method="post" action="/app/mentee/resultpwd" onsubmit="return searchCheck()" >
+        <hr />
+        <!---Form starting---->
+        <div class="row">
+
+            <!--- For Name---->
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label class="name">이름</label> </div>
+                    <div class="col-sm-8">
+                        <input type="text" name="name" id="username" placeholder="이름을 입력해 주세요" class="form-control " style="width: 250px;" ninput="chkName()" maxlength="10">
+                    </div>
+                </div>
+            </div>
+
+            <!-----------For Phone number-------->
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label class="mail">이메일</label></div>
+                    <div class="col-sm-8">
+                        <input type="text" name="email" id="useremail" placeholder="이메일 입력하세요" class="form-control" style="width: 250px;" oninput="chkEmail()">
+                    </div>
+                </div>
+            </div>
+            </div><!-- row -->
+
+            
+            <div class="row">
+            <div class="col-sm-12">
+                   <hr/>
+                    <div class="col-sm-6">
+                        <input type="submit" class="searchemail btn btn-warning" value=비밀번호찾기 onclick="wow();">
+                    </div>
+
+                    <div class="col-sm-6">
+                        <input type="button" class="btn btn-warning"id="backbtn" onclick="gohome();" value=뒤로가기>
+                    </div>
+            </div>
+            </div><!-- button row-->
+            
+        </form>
     </div>
-    </div>
-
-	<div class="container">
-			<div class="main">
-				<div class="main-center">
-				<h1>Haru 비밀번호찾기</h1>
-					<form class="searchuser" method="post" action="/app/mentee/resultpwd" onsubmit="return searchCheck()" >
-						<div class="form-group">
-							<label for="name"> 이름 </label>
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-				                    <input type="text" class="form-control" name="name" id="username" oninput="chkName()" placeholder="이름을 입력해주세요." maxlength="10"/>
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="email">이메일</label>
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="email" id="useremail" oninput="chkEmail()" placeholder="이메일을 입력해주세요."/>
-							</div>
-						</div>
-                        <div class="selecct-but">
-				            <input type="submit" class="searchpwd" value=비밀번호찾기 onclick="wow();">
-				            <input type="button" id="backbtn" onclick="gohome();" value=뒤로가기>
-						</div>
-					</form>
-				</div><!--main-center"-->
-			</div><!--main-->
-		</div><!--container-->
-	</div>
-</div>
-
-
-
-
-</body>
-
-<script>
+    
+    <script>
 var nameCheck = 0; // 유효성검사
 var emailCheck = 0;
 
@@ -128,4 +128,6 @@ function searchCheck() {
 
 
 </script>
+
+</body>
 </html>

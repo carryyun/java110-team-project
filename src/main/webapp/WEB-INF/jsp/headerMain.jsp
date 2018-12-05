@@ -87,7 +87,7 @@ function mover(){
 				<div id="row">
 					<c:choose>
 						<c:when test="${sessionScope.loginUser eq null}">
-							<a class="nav-link " href="../mentee/signup"> <i class="fas fa-user-plus fa-3x"></i><br>회원가입
+							<a class="nav-link " href="../mentee/sign"> <i class="fas fa-user-plus fa-3x"></i><br>회원가입
 							</a>
 						</c:when>
 						
