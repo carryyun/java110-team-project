@@ -128,7 +128,6 @@ public class ClassController {
     Mentee loginUser = new Mentee();
     loginUser = (Mentee) session.getAttribute("loginUser");
     System.out.println(loginUser.getNo());
-    
     classService.classadd(c, filelist, removefiles, days,date, edate,stime,etime,loginUser.getNo());
     return "redirect:../mainpage/mainpage";
   }
@@ -358,9 +357,15 @@ public class ClassController {
   }
   
   @RequestMapping(value = "clsrepdele.do", method = {RequestMethod.POST})
-  public @ResponseBody int clsrepdele(int no) {
+  public @ResponseBody List<ClassRep> clsrepdele(int no) {
     
-    return classrepService.repDelete(no);
+    ClassRep classrep = new ClassRep();
+    
+    classrepService.repDelete(no);
+    
+    List<ClassRep> replist = classrepService.listbycno(classrep.getCno(), 1, 5);
+    
+    return replist;
   }
   
   @RequestMapping(value = "clsrepchange.do", method = {RequestMethod.POST})
