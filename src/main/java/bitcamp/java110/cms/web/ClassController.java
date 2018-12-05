@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import bitcamp.java110.cms.domain.BigTag;
 import bitcamp.java110.cms.domain.ClassBakt;
 import bitcamp.java110.cms.domain.ClassFile;
@@ -85,15 +83,9 @@ public class ClassController {
   
   @PostMapping("findAll")
   public void findAll() {
-    System.out.println("findAll 호출");
     List<Classes> clist= classService.classList(5);
     
 
-    for(Classes c : clist) {
-
-      System.out.println(c.getNo());
-      System.out.println(c.getTitl());
-    }
   }
   @RequestMapping(value = "classadd", method=RequestMethod.GET)
   public void classinsert() {
@@ -143,7 +135,6 @@ public class ClassController {
   
   @RequestMapping("classupdate")
   public void classupdate(Classes c) {
-    System.out.println("classupdate 호출");
     
     c.setNo(6);
     c.setTitl("고정지");
@@ -214,7 +205,7 @@ public class ClassController {
     BigTag bigtag = null;
     List<Classes> clslist = null;
     if(type == null) {
-      clslist = classService.listByBtno(1, 6, no);
+      clslist = classService.listByBtno(1, 9, no);
       bigtag = bigTagService.get(no);
       model.addAttribute("selectedNo", 0);
     }else if("mtag".equals(type)) {
@@ -243,20 +234,18 @@ public class ClassController {
     
     model.addAttribute("clslist", clslist);
     
-    
     model.addAttribute("bigTag", bigtag);
   }
   
   @RequestMapping(value="clsCate.do" ,method= {RequestMethod.POST})
   public @ResponseBody List<Classes> clsCatedo(int no, String type,
-      @RequestParam(defaultValue="2") int pageNo, @RequestParam(defaultValue="3") int pageSize) {
+      @RequestParam(defaultValue="2") int pageNo, @RequestParam(defaultValue="6") int pageSize) {
     List<Classes> scrollClsList = null;
     if(type == null) {
       scrollClsList = classService.listByBtno(pageNo, pageSize, no);
     }else if("mtag".equals(type)) {
       scrollClsList = classService.listByMtno(pageNo, pageSize, no);
     }
-    
 
     return scrollClsList;
   }
@@ -267,17 +256,11 @@ public class ClassController {
       Model model,int no ,HttpSession session) {
     
     List<ClassRep> clsreqlist = classrepService.listbycno(no , reppageNo , reppageSize);
-    
     Classes detailclass = classService.findBycno(no);
-    
     List<ClassQna> clsqnalist = classqnaService.listbycno(no, qnapageNo, qnapageSize);
-    
     List<ClassFile> clsfilelist = classFileService.findByCno(no);
-    
     List<Timetable> clstimelist = timetableService.findByCno(no);
-    
     int countrep = classrepService.countbycno(no);
-    
     int countqna = classqnaService.countbycno(no);
     
     /*Paging paging = new Paging();
@@ -312,7 +295,6 @@ public class ClassController {
   public void qnalist() {
     
     List<ClassQna> clist= classqnaService.classqnalist(4,10,5);
-    
 
     for(ClassQna c : clist) {
 
@@ -325,18 +307,16 @@ public class ClassController {
   
   @RequestMapping(value = "qnainsert", method = {RequestMethod.POST})
   public @ResponseBody int qnainsert(ClassQna classqna) {
+    
     System.out.println(classqna.getCno());
     System.out.println(classqna.getTitl());
     System.out.println(classqna.getConts());
     System.out.println(classqna.getMeno());
     System.out.println(classqna.getType());
-    
-    
     System.out.println(classqna.toString());
     
     return classqnaService.qnaadd(classqna);
   }
-  
   
   @RequestMapping("qnaupdate")
   public void qnaupdate(ClassQna classqna) {
@@ -353,32 +333,17 @@ public class ClassController {
   @RequestMapping(value = "ansupdate.do", method = {RequestMethod.POST})
   public @ResponseBody int ansupdate(ClassQna classqna) {
     
-    System.out.println(classqna.getCno());
-    System.out.println(classqna.getTitl());
-    System.out.println(classqna.getConts());
-    System.out.println(classqna.getMeno());
-    System.out.println(classqna.getType());
-    System.out.println(classqna.getAnser());
-    System.out.println(classqna.getRgdt2());
-    
     return classqnaService.ansupdate(classqna);
   }
   
   @RequestMapping(value = "repinsert", method = {RequestMethod.POST})
-  public @ResponseBody int repinsert(ClassRep classrep) {
+  public @ResponseBody List<ClassRep> repinsert(ClassRep classrep) {
+
+    classrepService.repAdd(classrep);
     
-    System.out.println(classrep.getMeno());
-    System.out.println(classrep.getCno());
-    System.out.println(classrep.getTitl());
-    System.out.println(classrep.getConts());
-    System.out.println(classrep.getStar());
-    System.out.println(classrep.getPhot());
-    System.out.println(classrep.getRgdt());
+    List<ClassRep> replist = classrepService.listbycno(classrep.getCno(), 1, 5);
     
-    System.out.println(classrep.toString());
-    
-    
-    return classrepService.repAdd(classrep);
+    return replist;
   }
   
   @RequestMapping(value = "clslikeins.do", method = {RequestMethod.POST})

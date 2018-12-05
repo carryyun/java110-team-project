@@ -31,7 +31,7 @@
     <select id="findByCno" resultMap="crepMap" parameterType="int">
         select *
 		from (
-		    select
+		    select 
 		    	@rownum:=@rownum+1 as rnum,
 		    	psp.rno,
 		        pe.nick,
@@ -40,7 +40,8 @@
 		        psp.phot,
 		        psp.star,
 		        psp.rgdt,
-		        pe.meno
+		        pe.meno,
+		        ps.cno
 		    from
 		        p_mete as pe inner join p_cls_rep as psp
 		        	on pe.meno = psp.meno

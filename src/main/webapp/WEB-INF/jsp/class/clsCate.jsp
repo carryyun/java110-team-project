@@ -253,9 +253,6 @@
 		        		    var phot = data[i].mentee.phot;
 		        		    var mtname = data[i].middleTag.name;
 		        		    
-		        		    console.log(cno);
-		        		    
-		        		    
 		        		    html+= '<div class="col-lg-4">'
 		    				    html+= '	<article class="card-wrapper">'
 		    				    html+= ' 		<div class="image-holder">'
@@ -313,9 +310,7 @@
 		                  })
 		            }
 		        }).done(function(json) {
-
 		            pageNo++;
-					console.log(pageNo);
 		        });
 		    }
 		});
