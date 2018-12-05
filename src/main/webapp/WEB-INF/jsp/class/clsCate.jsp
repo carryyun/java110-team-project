@@ -357,17 +357,8 @@ margin-bottom: 0.25rem;
     var btno = $('input#getbtno').val();
     $(document).ready(function(){
     
-    console.log("scrollTop="+$(window).scrollTop());
-    console.log("documentheight="+$(document).height());
-    console.log("windowheight="+$(window).height());
     });
 		$(window).scroll(function() {
-		    console.log("scrollTop="+$(window).scrollTop());
-		    console.log("documentheight="+$(document).height());
-		    console.log("windowheight="+$(window).height());
-		    
-		    console.log("windowscrollY="+window.scrollY);
-		    console.log("window.innerHeight="+window.innerHeight);
 		    if($(window).scrollTop() == $(document).height() - window.innerHeight+17) {
 		        var html = "";
 		        $.ajax({
@@ -393,10 +384,10 @@ margin-bottom: 0.25rem;
 		        		    
 		        		    html+= '<div class="col-lg-4">'
 		    				    html+= '	<article class="card-wrapper">'
-		    				    html+= ' 		<div class="image-holder">'
+		    				    html+= ' 		<div class="image-holder" onClick="location.href="detail?no='+cno+'"">'
 		    				    html+= '			<a href="detail?no='+cno+'" class="image-holder__-link"></a>'
 		    				    html+= '			<div class="image-liquid image-holder--original">'
-		    				    html+= '				<a href="detail?no=${cl.no}"><img alt="${i.count}" src="'+cfile+'"'
+		    				    html+= '				<a href="detail?no='+cno+'"><img alt="${i.count}" src="'+cfile+'"'
 		    				    html+= '					style="width: 100%; height: 100%"></a> <img src="'+phot+'"'
 		    				    html+= '					class="mentorimg" alt="'+phot+'">'
 		    				    html+= '				<div '

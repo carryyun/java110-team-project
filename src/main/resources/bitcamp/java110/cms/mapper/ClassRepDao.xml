@@ -30,7 +30,8 @@
     
     <select id="get" resultMap="crepMap" parameterType="int">
     	select 
-		        ps.cno
+		        ps.cno,
+		        psp.rno
 		    from
 		        p_mete as pe inner join p_cls_rep as psp
 		        	on pe.meno = psp.meno

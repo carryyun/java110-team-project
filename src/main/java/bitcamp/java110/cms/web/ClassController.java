@@ -342,10 +342,20 @@ public class ClassController {
   }
   
   @RequestMapping(value = "clsrepchange.do", method = {RequestMethod.POST})
-  public @ResponseBody List<ClassRep> clsrepchange(ClassRep classRep) {
+  public @ResponseBody List<ClassRep> clsrepchange(int no , String conts) {
     
-    classrepService.repupdate(classRep);
-    List<ClassRep> replist = classrepService.listbycno(classRep.getCno(), 1, 5);
+    System.out.println(no);
+    
+    ClassRep classrep = classrepService.get(no);
+    classrep.setConts(conts);
+
+    
+    System.out.println(classrep.getConts());
+    System.out.println(classrep.getCno());
+    System.out.println(classrep.getNo());
+    classrepService.repupdate(classrep);
+    List<ClassRep> replist = classrepService.listbycno(classrep.getCno(), 1, 5);
+    
     
     return replist;
   }
