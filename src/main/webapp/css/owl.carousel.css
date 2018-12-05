@@ -188,7 +188,7 @@ img#owl-star{
     .owl-carousel .owl-item img:hover{
     transform: translate(-50%, 100%);
     transition: all 0.4s ease-out;
-    }
+    } 
     div.imgcover:hover{
      background-color: rgba(255,255,255,0.4);
     }
