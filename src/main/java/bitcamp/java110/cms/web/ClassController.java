@@ -341,6 +341,18 @@ public class ClassController {
 
     classrepService.repAdd(classrep);
     
+    List<ClassRep> replist = classrepService.listbycno(classrep.getCno(), 3, 5);
+    
+    return replist;
+  }
+  
+  @RequestMapping(value = "clsrepdele.do", method = {RequestMethod.POST})
+  public @ResponseBody List<ClassRep> clsrepdele(int no) {
+    
+    ClassRep classrep = new ClassRep();
+    
+    classrepService.repDelete(no);
+    
     List<ClassRep> replist = classrepService.listbycno(classrep.getCno(), 1, 5);
     
     return replist;
@@ -354,18 +366,6 @@ public class ClassController {
     classlikeService.likeadd(classlike);
     
     return "redirect:detail?no="+classlike.getCno();
-  }
-  
-  @RequestMapping(value = "clsrepdele.do", method = {RequestMethod.POST})
-  public @ResponseBody List<ClassRep> clsrepdele(int no) {
-    
-    ClassRep classrep = new ClassRep();
-    
-    classrepService.repDelete(no);
-    
-    List<ClassRep> replist = classrepService.listbycno(classrep.getCno(), 1, 5);
-    
-    return replist;
   }
   
   @RequestMapping(value = "clsrepchange.do", method = {RequestMethod.POST})
