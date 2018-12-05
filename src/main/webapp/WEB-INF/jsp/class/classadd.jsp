@@ -153,7 +153,6 @@ function emptychk(){
 			text:"제목은 최소 3글자이상 입력해주세요.",
 			button:"확인"
 		});
-		console.log($("#cpay").val() < 1000);
 		return false;
 	}else if($("#imgInput").val().length > 0 && !($("#imgInput").val().substr(0 , 16) == 'https://youtu.be' || 
 			$("#imgInput").val().substr(0 , 23) == 'https://www.youtube.com')) {
@@ -174,6 +173,12 @@ function emptychk(){
 			button:"확인"
 		});
 		return false;
+	}else if($("#rnumber").val() > 50){
+			swal({
+				text:"최대 모집인원은 50명입니다.",
+				button:"확인"
+			});
+			return false;
 	}else if($("#classcowdog").val().length < 100){
 		swal({
 			text:"강의 소개는 최소100글자이상 입력해주세요.",
@@ -234,7 +239,7 @@ function emptychk(){
 				button:"확인"
 			});
 			return false;
-	}else if($("#type").val() == '단기' && $("#cpay").val() < 1000){
+	}else if($("#cpay").val() < 1000){
 		swal({
 			text:"시간당 최소금액은 1000원이상입니다.",
 			button:"확인"

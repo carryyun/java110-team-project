@@ -18,7 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import bitcamp.java110.cms.domain.Cert;
-import bitcamp.java110.cms.domain.ClassLike;
 import bitcamp.java110.cms.domain.Classes;
 import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.Product;
@@ -186,6 +185,19 @@ public class ProductController {
     model.addAttribute("stagList", stagList);
     model.addAttribute("ctno", ctno);
   }
+  
+  @GetMapping("prodUpdate")
+  public void prodUpdate(Model model, HttpSession session, int no) {
+    Product product = productService.get(no);
+    List<ProductFile> productFiles = productFileService.listByPtno(product.getNo());
+    int FileLength = productFiles.size();
+    List<SmallTag> stagList = smallTagService.listMtno(10, 5, product.getStno());
+    
+    model.addAttribute("FileLength", FileLength);
+    model.addAttribute("stagList", stagList);
+    model.addAttribute("productFiles", productFiles);
+    model.addAttribute("product", product);
+  }
 
 //상품평 등록
   @RequestMapping(value = "addrep.do", method = {RequestMethod.GET, RequestMethod.POST})
@@ -281,7 +293,7 @@ public class ProductController {
     
     model.addAttribute("serchList", serchList);
   }
-  
+/*  
   @RequestMapping(value = "clslikeins.do", method = {RequestMethod.POST})
   public @ResponseBody String clslikeins(ClassLike classlike) {
     
@@ -291,7 +303,7 @@ public class ProductController {
     
     return "redirect:detail?no="+classlike.getCno();
   }
-  
+  */
   
 }
 

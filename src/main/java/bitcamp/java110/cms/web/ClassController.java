@@ -100,7 +100,7 @@ public class ClassController {
     System.out.println(removefiles);
     System.out.println(days);
     System.out.println(c.getNo());
-    System.out.println(c.getCfile().substring(c.getCfile().length()-11, c.getCfile().length()));
+    System.out.println((c.getCfile().equals("")));
     System.out.println(c.getTitl());
     System.out.println(c.getPric());
     System.out.println(c.getTime());
@@ -129,7 +129,7 @@ public class ClassController {
     loginUser = (Mentee) session.getAttribute("loginUser");
     System.out.println(loginUser.getNo());
     classService.classadd(c, filelist, removefiles, days,date, edate,stime,etime,loginUser.getNo());
-    return "redirect:clsCate?no=1";
+    return "redirect:../mainpage/mainpage";
   }
   
   
