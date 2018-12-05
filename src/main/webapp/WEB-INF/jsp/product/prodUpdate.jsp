@@ -61,9 +61,12 @@ div.row.imgDiv {
 	<div class="container">
 		<div class="row">
 			
-			<form id="myForm" action="addProduct.do" method="post" enctype="multipart/form-data">
+			<form id="myForm" action="updateProduct.do" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="meno" value="${sessionScope.loginUser.no}">
-
+                <input type="hidden" id="deleteFile" name="deleteFile" value="">
+                <input type="hidden" id="ptno" name="no" value="${product.no}">
+                
+                
 
 				<div class="col-lg-12">
 					<div class="row">
@@ -257,10 +260,15 @@ div.row.imgDiv {
         selDiv.innerHTML += "</div>";
 
     }
-    function removeImg(no) {
+    function removeImg(no,str) {
+       
         event.preventDefault(); /* 스크립트 기본동작 중지 */
         console.log(no);
+        console.log(str);
+        console.log($("input#deleteFile").val()+str);
+        
         $("div#imgDiv" + no).remove();
+        $("input#deleteFile").val($("input#deleteFile").val()+str+"&");
     }
     
 function loadImg(){
@@ -277,10 +285,10 @@ function loadImg(){
             html += "<div class='col-lg-12' id='imgBind'>";
             <c:forEach items="${productFiles}" var="pf" varStatus="k">
                 
-                html += "<div class='row imgDiv' id='imgDiv"+ ${k.index} + "' style='float:left; margin:5px;'>";
+                html += "<div class='row imgDiv' id='imgDiv${k.index}' style='float:left; margin:5px;'>";
                 
                 html += "<div class='col-lg-12 px-0'>";
-                html += '<img class="fileImg" src=\"${pf.pfname}\" onclick="removeImg(' + ${k.index} + ', )">';
+                html += '<img class="fileImg" id="${pf.pfname}" src=\"${pf.pfname}\" onclick="removeImg(${k.index},id)">';
                 html += "</div>";
                 html += "</div>";
             </c:forEach>

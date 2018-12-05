@@ -21,7 +21,7 @@ input[type="number"]::-webkit-inner-spin-button {
 				<h2 class="col-lg-9 mr-5">상품 상세보기</h2>
 				<c:if test="${sessionScope.loginUser.no == product.meno}">
 					<a href="javaScript:void(0)" onclick="update()" class="btn btn-lg btn-primary col-lg-1 mr-1 py-1" style="color:white; height: 38px;">수정</a> 
-					<a href="javaScript:void(0)" onclick="" class="btn btn-lg btn-danger col-lg-1 py-1" style="color:white; height: 38px;">삭제</a> 
+					<a href="javaScript:void(0)" onclick="updatestat()" class="btn btn-lg btn-danger col-lg-1 py-1" style="color:white; height: 38px;">삭제</a> 
 				</c:if>
 			<hr class="FhrBotMargin">
 

@@ -246,6 +246,8 @@
            content += "<a href='../class/detail?no="+ cno +"'>"
            content += "<div class='col-lg-12' id='owl-col'>"
            content += "<div class='row' id='owl-row'>"
+           content += '<div class="imgcover col-lg-12" style="height: 200px;position:absolute;">'
+           content += '</div>'
            content += "<i id='owl-i' class='far fa-star' onclick='setLike(event,"+ cno +")'></i>"
            content += '<div style="padding: 0 5px; top: 20px; width: auto; height: auto; position: absolute; background-color: #f58500; color: white; border-bottom-right-radius: 10px">'+nick+'</div>'
            content += '<div style="padding: 0 5px; top: 45px; width: auto; height: auto; position: absolute; background-color: #333873; color: white; border-bottom-right-radius: 10px">'+name+' 멘토</div>'
@@ -299,7 +301,9 @@
              content += "<a href='../product/detail?no="+ ptno +"'>"
              content += "<div class='col-lg-12' id='owl-col'>"
              content += "<div class='row' id='owl-row'>"
-                 content += '<div style="padding: 0 5px; top: 20px; width: auto; height: auto; position: absolute; background-color: #f58500; color: white; border-bottom-right-radius: 10px">'+nick+'</div>'
+             content += '<div class="imgcover col-lg-12" style="height: 200px;position:absolute;">'
+             content += '</div>'
+             content += '<div style="padding: 0 5px; top: 20px; width: auto; height: auto; position: absolute; background-color: #f58500; color: white; border-bottom-right-radius: 10px">'+nick+'</div>'
              content += "<img id='owl-img' src=\"" +phot+ "\" alt=\"" +titl+ "\">"
              content += "<div class='col-lg-9' id='owl-col2'>" + titl + "</div>"
              content += "<div class='col-lg-3' id='owl-coltag'>" + stname + "</div>"

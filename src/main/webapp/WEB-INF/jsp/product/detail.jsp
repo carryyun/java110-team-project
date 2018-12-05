@@ -504,9 +504,31 @@ function update(){
                                               //인수로  넣어도 동작에는 지장이 없으나 form.action에서 적용하므로 생략
                                               //가능합니다.
     /* frm.target = title;                    //form.target 이 부분이 빠지면 form값 전송이 되지 않습니다. 
-    frm.action = url;                    //form.action 이 부분이 빠지면 action값을 찾지 못해서 제대로 된 팝업이 뜨질 않습니다.
+    frm.action = url;                    //form.action 이 부분이 빠지면 action값을 찾지 못해서 제대로 된 팝업이 뜨질 않습니다. 
     frm.method = "GET";
     frm.submit();   */
+}
+function updatestat(){
+    swal({
+        title: "삭제 하시겠습니까?",
+        text: "삭제한 게시물은 복구할 수 없습니다.",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    }).then((willDelete) => {
+        if (willDelete) {
+            swal({
+                text : "삭제되었습니다.",
+                button : "확인",
+            }).then((willDelete) => {
+                if(willDelete){
+                  location.href="updatestat?no=${product.no}&stat=N";
+                }
+              })
+        } else {
+          
+        }
+      });
 }
 </script>
 </body>

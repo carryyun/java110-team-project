@@ -38,5 +38,7 @@ public interface ProductDao {
 
   // 갱신
   int update(Product product);
+  
+  int updatestat(Product product);
 
 }
