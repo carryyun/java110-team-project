@@ -143,7 +143,7 @@ input[type="number"]::-webkit-inner-spin-button {
 							<hr class="FhrMargin">
 							<a href="javaScript:void(0)" onclick="npay()" class="btn btn-lg btn-primary">
 								구매하기 </a> 
-							<a href="#" class="btn btn-lg btn-outline-primary">장바구니</a>
+							<button class="btn btn-lg btn-outline-primary">장바구니</button>
 						</div> <!-- <div class="text-left"> -->
 				</div>
 			</div> <!-- <div class="row"> -->
