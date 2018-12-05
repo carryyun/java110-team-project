@@ -28,7 +28,7 @@
 </head>
 <body>
 
-<!-- 네이버 --> -->
+<!-- 네이버 -->
 <%
     String clientId = "TnNcED7klJ8X7xSS3nja";//애플리케이션 클라이언트 아이디값";
     String redirectURI = URLEncoder.encode("http://localhost:8888/app/auth/callback", "UTF-8");
@@ -82,7 +82,7 @@
             </div>
             <div class="card-footer">
                 <div class="d-flex justify-content-center links">
-                    <a href="/app/mentee/signup">회원 가입</a>
+                    <a href="/app/mentee/sign">회원 가입</a>
                 </div>
                 <div class="d-flex justify-content-center">
                     <a href="/app/mentee/searchuser">이메일 찾기</a>

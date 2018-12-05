@@ -40,5 +40,4 @@ public interface ClassDao {
   List<Classes> manageByCno(int cno);
   
   int statupdate(Classes classes);
-  
 }

@@ -237,12 +237,12 @@
                                     var="rl" varStatus="i">
                                     <div id="popup${i.index}"
                                         class="overlay">
-                                        <div class="popupH">
+                                        <div class="popupHH">
                                             <h2>문의 상세 보기</h2>
                                             <a class="close" href="#">×</a>
                                             <div class="content">
                                                 <br />
-                                                <div class="container">
+                                                <div class="container" style="width:100%;">
                                                     <div class="row">
 
                                                         <div
@@ -253,40 +253,44 @@
                                                                 style="list-style-type: none;">
                                                                 <tbody>
                                                                     <tr>
-                                                                        <td colspan="2"><li><span
+                                                                        <td colspan="2"><span
                                                                                 style="font-size: 20px;">글쓴이:
                                                                             </span>
                                                                                 <span
-                                                                                class="pop-type">${rl.mete_name}(${rl.mete_nick })</span></li></td>
+                                                                                class="pop-type">${rl.mete_name}(${rl.mete_nick })</span></td>
+                                                                        
                                                                         
                                                                         <td
-                                                                            colspan="7"><li><span
-                                                                                style="font-size: 20px;">제목:
-                                                                            </span>
-                                                                                <span
-                                                                                class="pop-type">${rl.titl}</span></li></td>
-                                                                        <td
-                                                                            colspan="3"><li><span
+                                                                            colspan="3"><span
                                                                                 style="font-size: 20px;">문의날짜:
                                                                             </span>
                                                                                 <span
-                                                                                class="pop-type">${rl.rgdt}</span></li></td>
+                                                                                class="pop-type">${rl.rgdt}</span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                    <td
+                                                                            colspan="7"><span
+                                                                                style="font-size: 20px;">제목:
+                                                                            </span>
+                                                                                <span
+                                                                                class="pop-type">${rl.titl}</span></td>
+                                                                    
                                                                     </tr>
                                                                     <tr>
                                                                         <td
                                                                             colspan="12"
-                                                                            style="height: auto"><li><span
+                                                                            style="height: auto"><span
                                                                                 style="font-size: 20px;">내용:
                                                                             </span>
                                                                                 <span
-                                                                                class="pop-type">${rl.conts}</span></li></td>
+                                                                                class="pop-type">${rl.conts}</span></td>
                                                                     </tr>
                                                                     <c:set var="yn" value="${rl.anser }"/>
                                                                 <% String qna = (String)pageContext.getAttribute("yn");
                                                                    if(qna != null){%>
                                                                     <tr>
-                                                                        <td colspan="12" style="height:auto; font-weight:bold;"><li><span style="font-size: 20px;">답변:</span>
-                                                                        <span class="pop-type">${rl.anser }</span></li></td>
+                                                                        <td colspan="12" style="height:auto; font-weight:bold;"><span style="font-size: 20px;">답변:</span>
+                                                                        <span class="pop-type">${rl.anser }</span></td>
                                                                     </tr>
                                                                     <%}%>
                                                                    

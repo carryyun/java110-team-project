@@ -218,12 +218,12 @@
                                     var="pl" varStatus="i">
                                     <div id="popup${i.index}"
                                         class="overlay">
-                                        <div class="popupH">
+                                        <div class="popupHH">
                                             <h2>상품 주문 내역</h2>
                                             <a class="close" href="#">×</a>
                                             <div class="content">
                                                 <br />
-                                                <div class="container">
+                                                <div class="container" style="width:100%;">
                                                     <div class="row">
 
                                                         <div
@@ -234,58 +234,64 @@
                                                                 style="list-style-type: none;">
                                                                 <tbody>
                                                                     <tr>
-                                                                    <td><li><span
+                                                                    <td><span
                                                                                 style="font-size: 20px;">구매번호:
                                                                             </span>
                                                                                 <span
-                                                                                class="pop-type">${pl.no }</span></li></td>
-                                                                        <td><li><span
+                                                                                class="pop-type">${pl.no }</span></td>
+                                                                        <td><span
                                                                                 style="font-size: 20px;">구매자:
                                                                             </span>
                                                                                 <span
-                                                                                class="pop-type">${pl.mete_name }(${pl.mete_nick})</span></li></td>
-                                                                        <td><li><span
+                                                                                class="pop-type">${pl.mete_name }(${pl.mete_nick})</span></td>
+                                                                        
+                                                                        
+                                                                    </tr>
+                                                                    <tr>
+                                                                    <td><span
                                                                                 style="font-size: 20px;">판매자:
                                                                             </span>
                                                                                 <span
-                                                                                class="pop-type">${pl.mete2_name }(${pl.mete2_nick})</span></li></td>
-                                                                        <td><li><span
+                                                                                class="pop-type">${pl.mete2_name }(${pl.mete2_nick})</span></td>
+                                                                        <td><span
                                                                                 style="font-size: 20px;">판매자 연락처:
                                                                             </span>
                                                                                 <span
-                                                                                class="pop-type">${pl.mete2_phone}</span></li></td>
-                                                                        
+                                                                                class="pop-type">${pl.mete2_phone}</span></td>
+                                                                    
                                                                     </tr>
 
                                                                     <tr>
-                                                                        <td><li><span style="font-size: 20px;">가격:
+                                                                        <td><span style="font-size: 20px;">가격:
                                                                             </span>
-                                                                                <span class="pop-type">${pl.prdt_pric}원</span></li></td>
-                                                                                <td><li><span style="font-size: 20px;">수량:
+                                                                                <span class="pop-type">${pl.prdt_pric}원</span></td>
+                                                                                <td><span style="font-size: 20px;">수량:
                                                                             </span>
-                                                                                <span class="pop-type">${pl.cnt}개</span></li></td>
-                                                                                <td><li><span style="font-size: 20px;">결제방법:
+                                                                                <span class="pop-type">${pl.cnt}개</span></td>
+                                                                                
+                                                                    </tr>
+                                                                    <tr>
+                                                                    <td><span style="font-size: 20px;">결제방법:
                                                                             </span>
-                                                                                <span class="pop-type">${pl.payopt}</span></li></td>
-                                                                                <td><li><span style="font-size: 20px;">결제날짜:
+                                                                                <span class="pop-type">${pl.payopt}</span></td>
+                                                                                <td><span style="font-size: 20px;">결제날짜:
                                                                             </span>
-                                                                                <span class="pop-type">${pl.paydt}</span></li></td>
+                                                                                <span class="pop-type">${pl.paydt}</span></td>
+                                                                    
                                                                     </tr>
 
 
                                                                     <tr>
-                                                                        <td
-                                                                            colspan="3"><li><span
+                                                                        <td><span
                                                                                 style="font-size: 20px;">택배사:
                                                                             </span>
                                                                                 <span
-                                                                                class="pop-type">${pl.parc_name}</span></li></td>
-                                                                        <td
-                                                                            colspan="3"><li><span
+                                                                                class="pop-type">${pl.parc_name}</span></td>
+                                                                        <td><span
                                                                                 style="font-size: 20px;">송장번호:
                                                                             </span>
                                                                                 <span
-                                                                                class="pop-type">${pl.parc_no}</span></li></td>
+                                                                                class="pop-type">${pl.parc_no}</span></td>
                                                                     </tr>
                                                                     
                                                                    

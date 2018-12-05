@@ -49,6 +49,7 @@ public class MasterPageController {
   NoticeService noticeService;
   CsService csService;
   
+  
 
   public MasterPageController(
       MenteeService menteeService,
@@ -142,6 +143,7 @@ public class MasterPageController {
     return classService.statupdate(classes);
   }
   
+  
   // 클래스에 노트 추가
   @RequestMapping(value = "clsnote.do", method = {RequestMethod.GET, RequestMethod.POST})
   public @ResponseBody int clsnote(int no, String stat, String note) {
@@ -161,7 +163,15 @@ public class MasterPageController {
       m.setMentorTag(bigTagService.listByMono(m.getNo()));
     }
     model.addAttribute("MentorRequestList", MentorRequestList);
+   
   }
+  
+  @RequestMapping(value = "mentoradd.do", method = {RequestMethod.GET, RequestMethod.POST})
+  public @ResponseBody int mentoradd(Mentor m) {
+    return mentorService.add(m);
+  }
+  
+  
 
   /*
    * 클래스신청목록 관련
@@ -250,6 +260,8 @@ public class MasterPageController {
   public @ResponseBody int notiRemove(int no) {
     return noticeService.remove(no);
   }
+  
+  
   
   /*
    * 차단목록 관련(미완성)
