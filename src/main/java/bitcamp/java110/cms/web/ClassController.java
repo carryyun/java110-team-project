@@ -78,16 +78,13 @@ public class ClassController {
 
   @GetMapping("form") 
   public void form() {
-    
   }
-  
   @PostMapping("findAll")
   public void findAll() {
     List<Classes> clist= classService.classList(5);
   }
   @RequestMapping(value = "classadd", method=RequestMethod.GET)
   public void classinsert() {
-    
   }
   
   @RequestMapping(value = "classadd", method=RequestMethod.POST)
