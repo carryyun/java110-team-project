@@ -8,8 +8,8 @@ nav.navbar{
   margin: 0 auto;
 }
 nav.navbar.navbar-expand-lg:not(#mainNav){
-  border-top: 1px solid #6e6e6e;
-  border-bottom: 1px solid #6e6e6e;
+  /* border-top: 1px solid #6e6e6e; */
+  /* border-bottom: 1px solid #6e6e6e */;
 }
 #categoryNav > .navbar-nav{
   /* 카테고리 세로정렬 ? */
@@ -31,8 +31,8 @@ nav.navbar.navbar-expand-lg:not(#mainNav){
 #categoryNav > .navbar-nav > li.nav-item:hover {
 /*   border-top: 1px solid #6e6e6e;
   border-bottom: 1px solid #6e6e6e; */
-  border-left: 1px solid #6e6e6e;
-  border-right: 1px solid #6e6e6e;
+  border-top: 1px solid #B9B9B9;
+
   
   
   /* font-size: 20px; */
@@ -48,8 +48,10 @@ nav.navbar.navbar-expand-lg:not(#mainNav){
   min-width: 123px;
 }
 #categoryNav > .navbar-nav > li.nav-item > a:hover{
-  padding: 4px 8px 8px 8px;
+  padding: 4px 7px 7px 7px;
   border-bottom: 4px solid #FFB53C;
+  border-left: 1px solid #B9B9B9;
+  border-right: 1px solid #B9B9B9;
   min-width: 123px;
 }
 /* #categoryNav > .navbar-nav > li.nav-item > a#menu01 {
