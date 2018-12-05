@@ -20,7 +20,7 @@ $(document).ready(function () {
             data : {"no": this.value},
             success : function(data){
                 if(data != 0){
-                    alert("success!");
+                    alert("삭제되었습니다!");
                 }else{
                     alert("fail!");
                 }
