@@ -423,7 +423,7 @@ function npay(){
 <!-- 장바구니 -->
 <script>
 function prodBaskt(no) {
-    var ptno = ${product.no}; /* 이거수정해야함 */
+    var ptno = ${product.no}; 
     if("${sessionScope.loginUser}" == ""){
         swal({
             text : "로그인 후 이용가능합니다..",
