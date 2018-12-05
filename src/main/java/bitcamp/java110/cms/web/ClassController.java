@@ -84,8 +84,6 @@ public class ClassController {
   @PostMapping("findAll")
   public void findAll() {
     List<Classes> clist= classService.classList(5);
-    
-
   }
   @RequestMapping(value = "classadd", method=RequestMethod.GET)
   public void classinsert() {
@@ -306,16 +304,13 @@ public class ClassController {
   }
   
   @RequestMapping(value = "qnainsert", method = {RequestMethod.POST})
-  public @ResponseBody int qnainsert(ClassQna classqna) {
+  public @ResponseBody List<ClassQna> qnainsert(ClassQna classqna) {
     
-    System.out.println(classqna.getCno());
-    System.out.println(classqna.getTitl());
-    System.out.println(classqna.getConts());
-    System.out.println(classqna.getMeno());
-    System.out.println(classqna.getType());
-    System.out.println(classqna.toString());
+    classqnaService.qnaadd(classqna);
     
-    return classqnaService.qnaadd(classqna);
+    List<ClassQna> qnalist = classqnaService.classqnalist(1, 5, classqna.getCno());
+    
+    return qnalist;
   }
   
   @RequestMapping("qnaupdate")
@@ -341,7 +336,16 @@ public class ClassController {
 
     classrepService.repAdd(classrep);
     
-    List<ClassRep> replist = classrepService.listbycno(classrep.getCno(), 3, 5);
+    List<ClassRep> replist = classrepService.listbycno(classrep.getCno(), 1, 5);
+    
+    return replist;
+  }
+  
+  @RequestMapping(value = "clsrepchange.do", method = {RequestMethod.POST})
+  public @ResponseBody List<ClassRep> clsrepchange(ClassRep classRep) {
+    
+    classrepService.repupdate(classRep);
+    List<ClassRep> replist = classrepService.listbycno(classRep.getCno(), 1, 5);
     
     return replist;
   }
@@ -349,7 +353,7 @@ public class ClassController {
   @RequestMapping(value = "clsrepdele.do", method = {RequestMethod.POST})
   public @ResponseBody List<ClassRep> clsrepdele(int no) {
     
-    ClassRep classrep = new ClassRep();
+    ClassRep classrep = classrepService.get(no);
     
     classrepService.repDelete(no);
     
@@ -366,12 +370,6 @@ public class ClassController {
     classlikeService.likeadd(classlike);
     
     return "redirect:detail?no="+classlike.getCno();
-  }
-  
-  @RequestMapping(value = "clsrepchange.do", method = {RequestMethod.POST})
-  public @ResponseBody int clsrepchange(ClassRep classRep) {
-    
-    return classrepService.repupdate(classRep);
   }
   
   ///////////////// p_cls_qna 수업질문답변//////////////////

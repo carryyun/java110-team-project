@@ -10,4 +10,6 @@ public interface ClassRepService {
   List<ClassRep> repList();
   List<ClassRep> listbycno(int cno , int pageNo , int pageSize);
   int countbycno(int cno);
+  
+  ClassRep get(int no);
 }
