@@ -13,6 +13,7 @@
         <result column="cnt"    property="cnt"/>
         
         <result column="titl" property="product.titl"/>
+        <result column="stock" property="product.stock"/>
         <result column="pric" property="product.pric"/>
         <result column="deli" property="product.deli"/>
         <result column="phot" property="product.phot"/>
@@ -64,6 +65,7 @@
             pb.pbno,
             pb.ptno,
             pr.phot, 
+            pr.stock, 
             pr.titl, 
             pr.pric, 
             pr.deli, 
