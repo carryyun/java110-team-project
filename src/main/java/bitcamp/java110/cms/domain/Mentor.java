@@ -4,12 +4,19 @@ import java.util.List;
 
 public class Mentor extends Mentee{
   
+  private int no;
   protected int carr;
   protected List<MentorFile> mentorFile;
   protected List<MentorLicense> mentorLicense;
   protected List<BigTag> mentorTag;
 
   
+  public int getNo() {
+    return no;
+  }
+  public void setNo(int no) {
+    this.no = no;
+  }
   public List<BigTag> getMentorTag() {
     return mentorTag;
   }

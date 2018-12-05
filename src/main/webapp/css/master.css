@@ -72,13 +72,24 @@
     transition: all 500ms ease-in-out;
 }
 
-.popup h2, .popupH h2 {
+.popupHH {
+    margin: 70px auto;
+    padding: 20px;
+    background-color: gainsboro;
+    border-radius: 5px;
+    width: 47%;
+    height: auto;
+    position: relative;
+    transition: all 500ms ease-in-out;
+}
+
+.popup h2, .popupH h2, .popupHH h2 {
     margin-top: 0;
     color: #333;
     font-family: Tahoma, Arial, sans-serif;
 }
 
-.popup .close, .popupH .close {
+.popup .close, .popupH .close, .popupHH .close {
     position: absolute;
     top: 20px;
     right: 30px;
@@ -89,11 +100,11 @@
     color: #333;
 }
 
-.popup .close:hover .popupH .close:hover {
+.popup .close:hover, .popupH .close:hover, .popupHH .close:hover {
     color: #06D85F;
 }
 
-.popup .content, .popupH .content {
+.popup .content, .popupH .content, .popupHH .content {
     max-height: auto; 
     overflow: auto;
     height: 550px;
@@ -112,6 +123,10 @@
         min-width: 640px;
     }
     .popupH {
+        width: 50%;
+        min-width: 640px;
+    }
+    .popupHH {
         width: 50%;
         min-width: 640px;
     }

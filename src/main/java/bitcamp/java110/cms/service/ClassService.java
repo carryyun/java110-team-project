@@ -31,4 +31,5 @@ public interface ClassService {
   List<Classes> findByMono(int mono);
   int statupdate(Classes classes);
   
+  
 }

@@ -30,6 +30,8 @@ public class ClassServiceImpl implements ClassService{
     System.out.println(loginUserNo);
     if(classes.getDetAddr() == null) {
       classes.setDetAddr(null);
+    }else if((classes.getCfile().equals(""))){
+      classes.setCfile("");
     }else if(classes.getCfile().length() > 0) {
       classes.setCfile(classes.getCfile().substring(classes.getCfile().length()-11, classes.getCfile().length()));
     }

@@ -418,6 +418,47 @@ function npay(){
     }
 }
 </script>
+
+
+<!-- 장바구니 -->
+<script>
+function prodBaskt(no) {
+    var ptno = ${product.no}; /* 이거수정해야함 */
+    if("${sessionScope.loginUser}" == ""){
+        swal({
+            text : "로그인 후 이용가능합니다..",
+            button : "확인",
+          })
+    } else{
+        $.ajax({
+            type : "POST" , 
+            data : {
+                "ptno" : ptno,
+                "meno" : no,
+                "cnt" : 1
+            },
+            url : "prodBaskt.do" ,
+            success : function() {
+                swal({
+                    text : "장바구니에 등록되었습니다",
+                    icon : "success",
+                    button : "확인",
+                  })
+            },error : function(error,status){
+                swal({
+                    text : "이미 장바구니에 등록된 상품입니다.",
+                    button : "확인",
+                  })
+            }
+        });
+    } 
+}
+
+
+</script>
+
+
+<!-- 찜클래스 -->
 <script>
 function clslikeins(no) {
     var cno = ${detailclass.no};
