@@ -21,7 +21,7 @@
 </head>
 <body>
 <div class="container">
-<form class="signup"  method="post" action="sign" id="myfrm" >
+<form class="classadd"  method="post" action="sign" id="myfrm" >
         <!---heading---->
         <header class="heading"> 회원 가입</header>
         <hr />
