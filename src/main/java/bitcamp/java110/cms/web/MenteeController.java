@@ -81,7 +81,7 @@ public class MenteeController {
   @RequestMapping(value = "signup", method=RequestMethod.POST)
   public String signup2(Mentee mentee) {
     menteeService.add(mentee);
-    return  "redirect:app/mainpage/mainpage";
+    return "redirect:../mainpage/mainpage";
     }
   
   @GetMapping("findAll")

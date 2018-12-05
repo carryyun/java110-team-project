@@ -61,33 +61,33 @@
 <script>
 
 function autoHypenPhone(str){
-    str = str.replace(/^(0?[1-9]|1[0-2])\/(0?[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/, '');
-    var tmp = '';
-    if( str.length < 4){
-        return str;
-    }else if(str.length < 7){
-        tmp += str.substr(0, 3);
-        tmp += '-';
-        tmp += str.substr(3);
-        return tmp;
-    }else if(str.length < 11){
-        tmp += str.substr(0, 3);
-        tmp += '-';
-        tmp += str.substr(3, 3);
-        tmp += '-';
-        tmp += str.substr(6);
-        return tmp;
-    }else{              
-        tmp += str.substr(0, 3);
-        tmp += '-';
-        tmp += str.substr(3, 4);
-        tmp += '-';
-        tmp += str.substr(7);
-        return tmp;
-    }
-    return str;
-}
-
+	  str = str.replace(/[^0-9]/g, '');
+	  var tmp = '';
+	  if( str.length < 4){
+	    return str;
+	  }else if(str.length < 7){
+	    tmp += str.substr(0, 3);
+	    tmp += '-';
+	    tmp += str.substr(3);
+	    return tmp;
+	  }else if(str.length < 11){
+	    tmp += str.substr(0, 3);
+	    tmp += '-';
+	    tmp += str.substr(3, 3);
+	    tmp += '-';
+	    tmp += str.substr(6);
+	    return tmp;
+	  }else{        
+	    tmp += str.substr(0, 3);
+	    tmp += '-';
+	    tmp += str.substr(3, 4);
+	    tmp += '-';
+	    tmp += str.substr(7);
+	    return tmp;
+	  }
+	  return str;
+	}
+	
 var cellPhone = document.getElementById('userphone');
 userphone.onkeyup = function(event){
 event = event || window.event;

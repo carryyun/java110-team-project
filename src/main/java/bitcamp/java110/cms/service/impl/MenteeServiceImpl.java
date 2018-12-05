@@ -110,8 +110,12 @@ public class MenteeServiceImpl implements MenteeService {
 
   @Override
   public void add(Mentee mentee) {
+    mentee.setSell('N');
+    mentee.setStat('N');
+    mentee.setMtstat('N');
     menteeDao.signup(mentee);
   }
+  
   public void fbadd(Mentee mentee) {
     if(menteeDao.checkemail(mentee) == 0)
       menteeDao.fbsignup(mentee);
