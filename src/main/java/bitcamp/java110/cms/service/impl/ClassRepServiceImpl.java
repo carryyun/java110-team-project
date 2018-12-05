@@ -53,4 +53,11 @@ public class ClassRepServiceImpl implements ClassRepService{
     
     return classRepDao.countByCno(cno);
   }
+
+  @Override
+  public ClassRep get(int no) {
+    
+    return classRepDao.get(no);
+  }
+
 }

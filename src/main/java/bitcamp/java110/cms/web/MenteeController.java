@@ -33,22 +33,29 @@ public class MenteeController {
   public void searchpwdPost() {
   }
   
-  @RequestMapping(value = "signup", method=RequestMethod.GET)
-  public void signup(Mentee mentee) {
-    }
-  
-//  @RequestMapping(value = "sign", method=RequestMethod.GET)
-//  public void sign(Mentee mentee) {
+//  @RequestMapping(value = "signup", method=RequestMethod.GET)
+//  public void signup(Mentee mentee) {
 //    }
+  
+  @RequestMapping(value = "sign", method=RequestMethod.GET)
+  public void sign(Mentee mentee) {
+    }
   @RequestMapping(value = "fbsignup", method=RequestMethod.GET)
   public void fbsignup(Mentee mentee) {
   }
   
-  @RequestMapping(value = "searchuser", method=RequestMethod.GET)
+//  @RequestMapping(value = "searchuser", method=RequestMethod.GET)
+//  public void searchUser() {
+//    
+//  }
+//  @RequestMapping(value = "searchuser", method=RequestMethod.POST)
+//  public void searchUserPost() {
+//  }
+  @RequestMapping(value = "searchmail", method=RequestMethod.GET)
   public void searchUser() {
     
   }
-  @RequestMapping(value = "searchuser", method=RequestMethod.POST)
+  @RequestMapping(value = "searchmail", method=RequestMethod.POST)
   public void searchUserPost() {
   }
   
@@ -82,16 +89,16 @@ public class MenteeController {
     menteeService.fbadd(mentee);
     return  "redirect:app/mainpage/mainpage";
   }
-  @RequestMapping(value = "signup", method=RequestMethod.POST)
-  public String signup2(Mentee mentee) {
-    menteeService.add(mentee);
-    return  "redirect:app/mainpage/mainpage";
-    }
-//  @RequestMapping(value = "sign", method=RequestMethod.POST)
+//  @RequestMapping(value = "signup", method=RequestMethod.POST)
 //  public String signup2(Mentee mentee) {
 //    menteeService.add(mentee);
 //    return  "redirect:app/mainpage/mainpage";
 //    }
+  @RequestMapping(value = "sign", method=RequestMethod.POST)
+  public String signup2(Mentee mentee) {
+    menteeService.add(mentee);
+    return "redirect:../mainpage/mainpage";
+    }
   
   @GetMapping("findAll")
   public void findAll() {
