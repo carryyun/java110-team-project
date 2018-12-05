@@ -421,9 +421,9 @@ function npay(){
 
 
 <!-- 장바구니 -->
-<!-- <script>
+<script>
 function prodBaskt(no) {
-    var cno = ${detailclass.no};
+    var ptno = ${product.no}; /* 이거수정해야함 */
     if("${sessionScope.loginUser}" == ""){
         swal({
             text : "로그인 후 이용가능합니다..",
@@ -433,26 +433,27 @@ function prodBaskt(no) {
         $.ajax({
             type : "POST" , 
             data : {
-                "cno" : cno , 
-                "meno" : no
+                "ptno" : ptno,
+                "meno" : no,
+                "cnt" : 1
             },
             url : "prodBaskt.do" ,
             success : function() {
                 swal({
-                    text : "찜클래스가 등록되었습니다",
+                    text : "장바구니에 등록되었습니다",
                     icon : "success",
                     button : "확인",
                   })
             },error : function(error,status){
                 swal({
-                    text : "이미 찜클래스에 등록된 클래스입니다.",
+                    text : "이미 장바구니에 등록된 상품입니다.",
                     button : "확인",
                   })
             }
         });
     } 
 }
- -->
+
 
 </script>
 

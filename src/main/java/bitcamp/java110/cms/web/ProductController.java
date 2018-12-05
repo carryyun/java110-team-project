@@ -293,8 +293,8 @@ public class ProductController {
     
     model.addAttribute("serchList", serchList);
   }
-/*  
-  @RequestMapping(value = "clslikeins.do", method = {RequestMethod.POST})
+  
+/*  @RequestMapping(value = "clslikeins.do", method = {RequestMethod.POST})
   public @ResponseBody String clslikeins(ClassLike classlike) {
     
     System.out.println(classlike.getMeno());
@@ -304,6 +304,13 @@ public class ProductController {
     return "redirect:detail?no="+classlike.getCno();
   }
   */
+  @RequestMapping(value = "prodBaskt.do", method = {RequestMethod.POST})
+  public @ResponseBody String prodBaskt(ProductBakt productBakt) {
+    
+    productBaktService.add(productBakt);
+    
+    return "redirect:detail?no="+productBakt.getNo();
+  }
   
 }
 
