@@ -33,13 +33,13 @@ public class MenteeController {
   public void searchpwdPost() {
   }
   
-//  @RequestMapping(value = "signup", method=RequestMethod.GET)
-//  public void signup(Mentee mentee) {
-//    }
-  
-  @RequestMapping(value = "sign", method=RequestMethod.GET)
-  public void sign(Mentee mentee) {
+  @RequestMapping(value = "signup", method=RequestMethod.GET)
+  public void signup(Mentee mentee) {
     }
+  
+//  @RequestMapping(value = "sign", method=RequestMethod.GET)
+//  public void sign(Mentee mentee) {
+//    }
   @RequestMapping(value = "fbsignup", method=RequestMethod.GET)
   public void fbsignup(Mentee mentee) {
   }
@@ -82,16 +82,16 @@ public class MenteeController {
     menteeService.fbadd(mentee);
     return  "redirect:app/mainpage/mainpage";
   }
-//  @RequestMapping(value = "signup", method=RequestMethod.POST)
-//  public String signup2(Mentee mentee) {
-//    menteeService.add(mentee);
-//    return  "redirect:app/mainpage/mainpage";
-//    }
-  @RequestMapping(value = "sign", method=RequestMethod.POST)
+  @RequestMapping(value = "signup", method=RequestMethod.POST)
   public String signup2(Mentee mentee) {
     menteeService.add(mentee);
     return  "redirect:app/mainpage/mainpage";
     }
+//  @RequestMapping(value = "sign", method=RequestMethod.POST)
+//  public String signup2(Mentee mentee) {
+//    menteeService.add(mentee);
+//    return  "redirect:app/mainpage/mainpage";
+//    }
   
   @GetMapping("findAll")
   public void findAll() {
