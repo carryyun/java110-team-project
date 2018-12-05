@@ -173,7 +173,7 @@
 	                    icon: "success",
 	                    buttons: true,
 	                    dangerMode: true,
-	                }).then((willDelete) => {
+	                }).then((willDelete) => { 
 	                    if (willDelete) {
 	                        location.href="../mypage/mypage#productbkt";
 	                    } else {
