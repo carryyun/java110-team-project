@@ -72,7 +72,13 @@ public class AuthController {
             response.addCookie(cookie2);
         }
         Mentee loginUser = authService.getMentee(email, pwd);
+        
+        
         if (loginUser != null) {
+            if(loginUser.getStat() == 'Y') {
+              System.out.println("정지회원입니다.");
+              return "redirect:form";
+            }
             // 회원 정보를 세션에 보관한다.
             session.setAttribute("loginUser", loginUser);
             String redirectUrl = null;
@@ -85,9 +91,10 @@ public class AuthController {
             }
             return "redirect:" + redirectUrl;
             
-        } else {
-            session.invalidate();
-            return "redirect:form";
+        }else {
+          session.invalidate();
+          return "redirect:form";
+          
         }
     }
     

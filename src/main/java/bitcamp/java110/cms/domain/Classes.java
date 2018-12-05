@@ -37,7 +37,7 @@ public class Classes {
   private ClassOrder classOrder;
   private Cert cert;
   private Report report;
-  
+
   
   public String getNote() {
     return note;

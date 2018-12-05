@@ -14,7 +14,6 @@ import bitcamp.java110.cms.dao.ManagerDao;
 import bitcamp.java110.cms.dao.MenteeDao;
 import bitcamp.java110.cms.dao.MentorDao;
 import bitcamp.java110.cms.domain.Mentee;
-import bitcamp.java110.cms.domain.Mentor;
 import bitcamp.java110.cms.service.AuthService;
 
 @Service
@@ -26,7 +25,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override 
     public Mentee getMentee(
-            String email, String pwd ) {
+            String email, String pwd) {
         HashMap<String,Object> params = new HashMap<>();
         params.put("email", email.toLowerCase());
         params.put("pwd", pwd.toLowerCase());
