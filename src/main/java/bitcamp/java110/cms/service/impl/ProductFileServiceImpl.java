@@ -48,5 +48,9 @@ public class ProductFileServiceImpl implements ProductFileService {
     return productFileDao.update(profile);
   }
 
+  @Override
+  public int delete(ProductFile profile) {
+    return productFileDao.delete(profile);
+  }
 
 }

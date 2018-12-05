@@ -79,10 +79,10 @@
                                 data-nav-section="10">문의 목록 </a></li>
                             <li><a
                                 onclick="location.href='mentorreqlist'"
-                                data-nav-section="2">멘토 신청</a></li>
+                                data-nav-section="2">멘토 등록</a></li>
                             <li><a
                                 onclick="location.href='classreqlist'"
-                                data-nav-section="3">클래스 신청</a></li>
+                                data-nav-section="3">클래스 등록</a></li>
                             <li><a
                                 onclick="location.href='reportList'"
                                 data-nav-section="4">신고 접수 목록</a></li>
@@ -249,12 +249,12 @@
                                     var="pl" varStatus="i">
                                     <div id="popup${i.index}"
                                         class="overlay">
-                                        <div class="popupH">
+                                        <div class="popupHH">
                                             <h2>클래스 신청 내역</h2>
                                             <a class="close" href="#">×</a>
                                             <div class="content">
                                                 <br />
-                                                <div class="container">
+                                                <div class="container" style="width:100%;">
                                                     <div class="row">
 
                                                         <div
@@ -265,65 +265,73 @@
                                                                 style="list-style-type: none;">
                                                                 <tbody>
                                                                     <tr>
-                                                                    <td colspan="3"><li><span
+                                                                    <td colspan="6"><span
                                                                                 style="font-size: 20px;">신청번호:
                                                                             </span>
                                                                                 <span
-                                                                                class="pop-type">${pl.no }</span></li></td>
-                                                                        <td colspan="3"><li><span
+                                                                                class="pop-type">${pl.no }</span></td>
+                                                                        <td colspan="6"><span
                                                                                 style="font-size: 20px;">멘티:
                                                                             </span>
                                                                                 <span
-                                                                                class="pop-type">${pl.mete_name }(${pl.mete_nick})</span></li></td>
-                                                                        <td colspan="3"><li><span
+                                                                                class="pop-type">${pl.mete_name }(${pl.mete_nick})</span></td>
+                                                                        
+                                                                        
+                                                                    </tr>
+                                                                    <tr>
+                                                                    <td colspan="6"><span
                                                                                 style="font-size: 20px;">멘토:
                                                                             </span>
                                                                                 <span
-                                                                                class="pop-type">${pl.mete2_name }(${pl.mete2_nick})</span></li></td>
-                                                                        <td colspan="3"><li><span
+                                                                                class="pop-type">${pl.mete2_name }(${pl.mete2_nick})</span></td>
+                                                                        <td colspan="6"><span
                                                                                 style="font-size: 20px;">멘토 연락처:
                                                                             </span>
                                                                                 <span
-                                                                                class="pop-type">${pl.mete2_phone}</span></li></td>
-                                                                        
+                                                                                class="pop-type">${pl.mete2_phone}</span></td>
+                                                                    
                                                                     </tr>
 
+<tr>
+                                                                    
+                                                                    <td colspan="6"><span style="font-size: 20px;">수업날짜:
+                                                                            </span>
+                                                                            <span class="pop-type">${pl.timetable.date}</span></td>
+                                                                            <td colspan="6"><span style="font-size: 20px;">수업시간:
+                                                                            </span>
+                                                                            <span class="pop-type">${pl.timetable.stime}(${pl.time })</span></td>
+                                                                    
+                                                                    </tr>
+                                                                    
                                                                     <tr>
-                                                                        <td><li><span style="font-size: 20px;">카테고리:
+                                                                        <td colspan="3"><span style="font-size: 20px;">카테고리:
                                                                             </span>
-                                                                                <span class="pop-type">${pl.mtname }</span></li></td>
-                                                                                <td colspan="5"><li><span style="font-size: 20px;">클래스명:
+                                                                                <span class="pop-type">${pl.mtname }</span></td>
+                                                                                <td colspan="9"><span style="font-size: 20px;">클래스명:
                                                                             </span>
-                                                                            <span class="pop-type">${pl.cls_titl}</span></li></td>
-                                                                            <td colspan="2"><li><span style="font-size: 20px;">수업날짜:
-                                                                            </span>
-                                                                            <span class="pop-type">${pl.timetable.date}</span></li></td>
-                                                                            <td colspan="2"><li><span style="font-size: 20px;">수업시간:
-                                                                            </span>
-                                                                            <span class="pop-type">${pl.timetable.stime}(${pl.time })</span></li></td>
+                                                                            <span class="pop-type">${pl.cls_titl}</span></td>
+                                                                            
                                                                                 
                                                                     </tr>
+                                                                    
 
 
                                                                     <tr>
-                                                                        <td
-                                                                            colspan="4"><li><span
+                                                                        <td colspan="4"><span
                                                                                 style="font-size: 20px;">결제방법:
                                                                             </span>
                                                                                 <span
-                                                                                class="pop-type">${pl.payopt}</span></li></td>
-                                                                        <td
-                                                                            colspan="4"><li><span
+                                                                                class="pop-type">${pl.payopt}</span></td>
+                                                                        <td colspan="4"><span
                                                                                 style="font-size: 20px;">가격:
                                                                             </span>
                                                                                 <span
-                                                                                class="pop-type">${pl.cls_pric}</span></li></td>
-                                                                                <td
-                                                                            colspan="4"><li><span
+                                                                                class="pop-type">${pl.cls_pric}</span></td>
+                                                                                <td colspan="4"><span
                                                                                 style="font-size: 20px;">결제일:
                                                                             </span>
                                                                                 <span
-                                                                                class="pop-type">${pl.paydt}</span></li></td>
+                                                                                class="pop-type">${pl.paydt}</span></td>
                                                                                 
                                                                                 
                                                                                 

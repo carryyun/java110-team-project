@@ -356,11 +356,11 @@
                 on po.mono = pe.meno
             inner join p_btag as btag
                 on pg.btno = btag.btno
-                WHERE ps.titl LIKE "%{value}%"
-                or ps.tinfo Like "%{value}%"
-                or ps.cinfo Like "%{value}%"
-                or pe.name Like "%{value}%"
-                or pe.nick Like "%{value}%"
+                WHERE ps.titl LIKE "%{str}%"
+                or ps.tinfo Like "%{str}%"
+                or ps.cinfo Like "%{str}%"
+                or pe.name Like "%{str}%"
+                or pe.nick Like "%{str}%"
     
     </select>
     
