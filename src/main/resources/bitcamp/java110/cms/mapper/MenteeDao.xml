@@ -48,8 +48,8 @@
 	<update id="tempwd" parameterType="Mentee" >
 		UPDATE p_mete 
 		   SET
-		  	pwd = #{pwd}
-		 where email = #{email}
+		  	pwd=#{pwd}
+		 where email=#{email}
 	</update>
 	
 	<select id="findByNameEmail" parameterType="Mentee" resultType="String">
@@ -197,7 +197,7 @@
     <insert id="signup" parameterType="mentee"
             useGeneratedKeys="true" keyColumn="meno" keyProperty="no">
         insert into p_mete(name,email,pwd,nick,rgdt,sell,stat,mtstat)
-        values(#{name},#{email},password(#{pwd}),#{nick},now(),#{sell},#{stat},#{mtstat})
+        values(#{name},#{email},password(LOWER(#{pwd})),#{nick},now(),#{sell},#{stat},#{mtstat})
     </insert> 
     
     
@@ -236,8 +236,8 @@
         from 
             p_mete mte
         where
-            LOWER(mte.email)=#{email} and LOWER(mte.pwd)=password(#{pwd})
-            <!-- mte.email=#{email} and mte.pwd=password(#{pwd}) -->
+            mte.email=#{email} and mte.pwd=password(#{pwd})
+            
     </select> 
     
     <update id="updateMtstat" parameterType="Mentee">

@@ -72,7 +72,7 @@ public class AuthController {
             response.addCookie(cookie2);
         }
         Mentee loginUser = authService.getMentee(email, pwd);
-        
+        System.out.println(loginUser);
         
         if (loginUser != null) {
             if(loginUser.getStat() == 'Y') {
@@ -93,6 +93,7 @@ public class AuthController {
             
         }else {
           session.invalidate();
+          System.out.println("실패");
           return "redirect:form";
           
         }

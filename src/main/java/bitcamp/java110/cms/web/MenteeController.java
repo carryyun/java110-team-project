@@ -114,6 +114,7 @@ public class MenteeController {
   
   @RequestMapping(value = "checkemail.do", method = { RequestMethod.GET, RequestMethod.POST})
   public @ResponseBody int checkByEmail(Mentee mentee) {
+    System.out.println(mentee.getEmail());
     return menteeService.checkByEmail(mentee);
     //model.addAttribute("checkemail", email);
   }

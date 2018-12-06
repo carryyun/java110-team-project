@@ -202,9 +202,9 @@
                                     <!-- col.// -->
 
                                 <dl class="param param-feature">
-                                            <select name="time">
+                                            <select name="time" id="time">
                                                 <c:forEach items="${clstimelist}" var="t">
-                                                    <option value="" >날짜 : ${t.date} , 시간 : ${t.stime}</option>
+                                                    <option value="${t.no}" >날짜 : ${t.date} , 시간 : ${t.stime}</option>
                                                 </c:forEach>
                                             </select>
                                 </dl>
@@ -212,11 +212,18 @@
                                 <hr>
                                 <!-- row.// -->
                                 <!---->
+                                <%-- <a href="#" class="btn btn-lg btn-outline-primary text-uppercase"
+                                        onClick="clslikeins(${sessionScope.loginUser.no});"> 
+                                            <i class="fas fa-shopping-cart"></i> 찜클래스 </a> --%>
+                                
+                          
+                                <button class="btn btn-lg btn-outline-primary text-uppercase"
+                                onClick="clsBaskt(${sessionScope.loginUser.no})"> 
+                                <i class="fas fa-shopping-cart"></i>장바구니</button>
+                                        
                                 <a href="#" class="btn btn-lg btn-primary text-uppercase"
                                 onClick="cls"> 결제하기</a>
-                                <a href="#" class="btn btn-lg btn-outline-primary text-uppercase"
-                                        onClick="clslikeins(${sessionScope.loginUser.no});"> 
-                                            <i class="fas fa-shopping-cart"></i> 찜클래스 </a>
+                                
                             </div>
                         </div>
                         <!-- card-body.// -->
@@ -1524,4 +1531,39 @@ geocoder.addressSearch('${detailclass.basAddr}', function(result, status) {
                     }
                 });
     </script>
+    
+<!-- 장바구니 -->
+<script>
+function clsBaskt(no) { 
+    var ctno = $('select#time option:selected').val();
+    if("${sessionScope.loginUser}" == ""){
+        swal({
+            text : "로그인 후 이용가능합니다..",
+            button : "확인",
+          })
+    } else{
+        $.ajax({
+            type : "POST" , 
+            data : {
+                "meno" : no,
+                "ctno" : ctno
+            },
+            url : "clsBaskt.do" ,
+            success : function() {
+                swal({
+                    text : "장바구니에 등록되었습니다",
+                    icon : "success",
+                    button : "확인",
+                  })
+            },error : function(error,status){
+                swal({
+                    text : "이미 장바구니에 등록된 상품입니다.",
+                    button : "확인",
+                  })
+            }
+        });
+    } 
+}
+
+</script>
 </html>
