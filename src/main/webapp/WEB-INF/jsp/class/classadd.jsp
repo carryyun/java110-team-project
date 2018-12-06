@@ -286,7 +286,7 @@ function emptychk(){
 		swal({
 		        
 		        title: "클래스 신청이 완료되었습니다.", 
-		        text: "심사기간은 최대 3일입니다."
+		        text: "심사기간은 최대 3일입니다.",
 		        timer:3000,
 		        button:"확인"
 		        }).then((value) => {
