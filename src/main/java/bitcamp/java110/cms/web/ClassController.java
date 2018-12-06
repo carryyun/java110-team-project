@@ -474,7 +474,7 @@ public class ClassController {
   }
   
   /*
-   * 클래스 장바구니 관련 시작
+   * 클래스 장바구니 리스트불러오기
    */
   @GetMapping("basket")
   public void basketclass(Model model, HttpSession session) {
@@ -486,6 +486,15 @@ public class ClassController {
     model.addAttribute("sumList", sumList);
   }
   
+  
+  /* 클래스장바구니*/
+  @RequestMapping(value = "clsBaskt.do", method = {RequestMethod.POST})
+  public @ResponseBody String clsBaskt(ClassBakt classBakt) {
+    
+    classBaktService.add(classBakt);
+    
+    return "redirect:detail?no="+classBakt.getNo();
+  }
   
   @ResponseBody
   @RequestMapping("removeDate")
