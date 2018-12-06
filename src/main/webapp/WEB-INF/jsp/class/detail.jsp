@@ -46,6 +46,7 @@
     width : 290px;
     background-color: white;
     }
+
 #STATICMENU select#time{
     font-size: 14px;
 }

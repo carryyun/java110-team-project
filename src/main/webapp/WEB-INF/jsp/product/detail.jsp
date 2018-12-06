@@ -78,8 +78,9 @@
     </div>
 </div>
 </div>
-<script src="/vendor/jquery/jquery.min.js"></script>
+
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/vendor/jquery/jquery.min.js"></script>
 <script src="/js/jquery.raty.min.js"></script>
 <script src="/js/clean-blog.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
@@ -371,8 +372,8 @@ function addqna(no){
 }
 </script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-<script>
 
+<script>
 function npay(){
     if(${sessionScope.loginUser eq null}){
         swal({
@@ -531,6 +532,15 @@ function updatestat(){
         }
       });
 }
+</script>
+
+<!-- 상품상세보기에서 아코디언임 -->
+<script>
+$('.accordian-body').on('show.bs.collapse', function () {
+    $(this).closest("table")
+        .find(".collapse.in")
+        .not(this)
+})
 </script>
 </body>
 
