@@ -32,7 +32,7 @@
                     <div class="col-sm-4">
                         <label class="name">이름</label> </div>
                     <div class="col-sm-8">
-                        <input type="text" name="name" id="username" placeholder="이름을 입력해 주세요" class="form-control " style="width: 250px;" ninput="chkName()" maxlength="10">
+                        <input type="text" name="name" id="username" placeholder="이름을 입력해 주세요" class="form-control " style="width: 250px;" oninput="chkName()" maxlength="10">
                     </div>
                 </div>
             </div>

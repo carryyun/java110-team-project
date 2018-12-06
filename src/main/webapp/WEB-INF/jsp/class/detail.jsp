@@ -794,28 +794,21 @@ function addqna(no) {
 	        		var qnaanser = data[i].anser;
 	        		var qnanick = data[i].mentee.nick;
 	        		var countqn = ${countqna};
-	        		
-	        		console.log(cqno);
-	        		console.log(qnatitl);
-	        		console.log(qnatype);
-	        		console.log(qnargdt);
-	        		console.log(qnaconts);
-	        		console.log(qnaanser);
-	        		console.log(qnanick);
+	        		var qnadatergdt = qnargdt.("{yyyy}{MM}{dd}");
 	        		
 	        		html +=' <c:set var="qnasi" value="${countqna}" />'
 	        		html +='    <tr data-toggle="collapse" '
 	        		html +='    data-target="#demo1-'+i+'" class="accordion-toggle row">'
 	        		html +='        <!-- <td class="col-lg-1" scope="row" id="qna_th"></td> -->'
 	        		html +='        <td class="col-lg-2">'+qnatype+'</td>'
-	        				         	if(anser == null){
+	        				         	if(qnaanser == null){
 	        		html +='            <td class="col-lg-2">미완료</td>'
 	        						  	}else{
 	        		html +='            <td class="col-lg-2">완료</td>'
 	        							}
 	        		html +='        <td class="col-lg-3">'+qnatitl+'</td>'
 	        		html +='        <td class="col-lg-2">'+qnanick+'</td>'
-	        		html +='        <td class="col-lg-2">'+qnargdt+'</td>'
+	        		html +='        <td class="col-lg-2">'+qnadatergdt+'</td>'
 	        		html +='    </tr>'
 	        		html +='    <tr>'
 	        		html +='        <td colspan="6" class="hiddenRow">'
@@ -868,7 +861,14 @@ function addqna(no) {
 
 function answerins(no,clsno,qno) {
     var cno = ${detailclass.mentee.no};
+    var type = $('input:radio:checked.type').val();
+    var titl = $('input:text#titl').val();
+    var conts = $('textarea#qnaconts').val();
+    var cno = ${detailclass.no};
+    var clsmeno = ${detailclass.mentee.no};
+	var qnatablelist = $('#qnatablelist');
     
+	
     if(clsno.value == ""){
         swal({
             text : "내용이 비어있으면 답변이 등록이 안됩니다.",
@@ -882,13 +882,79 @@ function answerins(no,clsno,qno) {
                 "no" : qno
             },
             url : "ansupdate.do",
-            success : function() {
+            success : function(data) {
                 swal({
                     text : "해당후기에 해당하는 답변이 등록되었습니다",
                     icon : "success",
                     button : "확인",
                   })
-                location.href="detail?no="+${detailclass.no};
+                  var html ="";
+                for(var i in data) {
+                    var cqno = data[i].no;
+	        		var qnatitl = data[i].titl;
+	        		var qnatype = data[i].type;
+	        		var qnargdt = data[i].rgdt;
+	        		var qnaconts = data[i].conts;
+	        		var qnaanser = data[i].anser;
+	        		var qnanick = data[i].mentee.nick;
+	        		var countqn = ${countqna};
+	        		var qnadatergdt = moment(qnargdt).format('YYYYMMDD');
+	        		
+	        		html +=' <c:set var="qnasi" value="${countqna}" />'
+	        		html +='    <tr data-toggle="collapse" '
+	        		html +='    data-target="#demo1-'+i+'" class="accordion-toggle row">'
+	        		html +='        <!-- <td class="col-lg-1" scope="row" id="qna_th"></td> -->'
+	        		html +='        <td class="col-lg-2">'+qnatype+'</td>'
+	        				         	if(qnaanser == null){
+	        		html +='            <td class="col-lg-2">미완료</td>'
+	        						  	}else{
+	        		html +='            <td class="col-lg-2">완료</td>'
+	        							}
+	        		html +='        <td class="col-lg-3">'+qnatitl+'</td>'
+	        		html +='        <td class="col-lg-2">'+qnanick+'</td>'
+	        		html +='        <td class="col-lg-2">'+qnadatergdt+'</td>'
+	        		html +='    </tr>'
+	        		html +='    <tr>'
+	        		html +='        <td colspan="6" class="hiddenRow">'
+	        		html +='             <div class="accordian-body collapse" id="demo1-'+i+'">'
+	        		html +='             <div class="adddet col-lg-2" style="text-align: center;'
+	        		html +='            vertical-align: middle;'
+	        		html +='                        display : block;">질문 내용</div>'
+	        		html +='            <div class="acco" id="cont">'+qnaconts+'</div><br>'
+			         	 				 if(qnaanser == null){
+	        		html +='                      <div class="adddet col-lg-2" style="text-align: center;'
+	        		html +='                          vertical-align: middle;'
+	        		html +='                         display : block;">질문 답변</div>'
+	        		    						if("${sessionScope.loginUser}" == ""){
+	        		html +='                              <div class="acco" id="ans'+i+'">답변이 등록되지 않았습니다.</div>'
+	        		    						} else if("${sessionScope.loginUser.no}" == clsmeno) {
+                    html +='                            <form class="ansinss" action="detail?no='+cno+'" method="post">'
+                    html +='                                <label onClick="ansbtn('+i+')" class="allbtn"'
+                    html +='                                id="allbtn'+i+'">답변을 작성하시려면 클릭해주세요!</label>'
+                    html +='                                <textarea class="clsanser" id="cls'+i+'" rows="5" name="clsanser"'
+                    html +='                                style ="width : 500px; display: none;"></textarea>'
+                    html +='                                <div class="butmana" style="margin-left:10px;">'
+                    html +='                                    <button class="btn btn-default"' 
+                    html +='                                    onClick="answerins(${sessionScope.loginUser.no},cls'+i+','+cqno+')"'
+                    html +='                                     type="button" >등록</button>'
+                    html +='                                    <button class="btn btn-default" id="ansstat" type="button"' 
+                    html +='                                     onClick="answercansle('+i+')">취소</button>'
+                    html +='                                 </div>'
+                    html +='                              </form>'
+	        		    						} else {
+                    html +='                            <div class="acco" id="ans'+i+'">답변이 등록되지 않았습니다.</div>'
+	        		    						}
+                                    	}else{
+                    html +='                    <div class="adddet col-lg-2" style="text-align: center;'
+                    html +='                    vertical-align: middle;'
+                    html +='                        display : block;">질문 답변</div>'
+                    html +='                     <div class="acco" id="ans'+i+'">'+qnaanser+'</div>'
+                                    }
+                    html +='            </div>'
+                    html +='        </td>'
+                    html +='    </tr>'
+                }
+                qnatablelist.html(html);
             },error : function(error,status){
                 swal({
                     text : "해당 Q&A는 삭제되었거나 존재하지 않는 글입니다.",
@@ -955,7 +1021,6 @@ function repins(no) { /* 후기(댓글) 추가버튼 */
 	        		 html +=' <div class="media"'
 	        		 html +='     style="border-bottom: 0.3px solid rgba(0, 0, 0, 0.5)">'
 	        		 html +='     <div class="col-lg-2 text-center">'
-
 	        		 html +='         <img src="'+phot+'" alt="singup" id="circle">'
 	        		 html +='         '+nick+''
 	        		 html +='     </div>'
@@ -969,7 +1034,6 @@ function repins(no) { /* 후기(댓글) 추가버튼 */
 	        		 html +='      <button type="button" data-toggle="modal" data-target="#deleteModal_'+rno+'"'
 	        		 html +='      class="delebtn" id="delebtn'+i+'">삭제</button>'
 	        		     		}
-                          
 	        		 html +='             <div class="modal fade" id="deleteModal_'+rno+'" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">'
 	        		 html +='               <div class="modal-dialog">'
 	        		 html +='                 <div class="modal-content">'
@@ -987,7 +1051,6 @@ function repins(no) { /* 후기(댓글) 추가버튼 */
 	        		 html +='                 </div>'
 	        		 html +='               </div>'
 	        		 html +='              </div>'
-                                  
 	        		 			if("${sessionScope.loginUser}" == ""){
 	        		 html +='               <button type="button" class="edbtn" id="edbtn'+i+'"' 
 	        		 html +='      onClick="deleterepnull()" >수정</button>'
@@ -995,7 +1058,6 @@ function repins(no) { /* 후기(댓글) 추가버튼 */
 	        		 html +='             <button type="button" class="edbtn" id="edbtn'+i+'"' 
 	        		 html +='     onClick="updarep('+no+' , '+rno+' , '+meno+' ,'+i+');" >수정</button>'
 	        		 			}
-                          
 	        		 html +='     <button type="button" class="updabtn" id="updabtn'+i+'" data-toggle="modal"' 
 	        		 html +='      data-target="#updateModal_'+rno+'"' 
 	        		 html +='       style="display:none;">수정완료</button>'
@@ -1066,7 +1128,6 @@ function delerep(no , rno , repmeno){ /* 댓글 삭제 버튼 */
 	        		 html +=' <div class="media"'
 	        		 html +='     style="border-bottom: 0.3px solid rgba(0, 0, 0, 0.5)">'
 	        		 html +='     <div class="col-lg-2 text-center">'
-
 	        		 html +='         <img src="'+phot+'" alt="singup" id="circle">'
 	        		 html +='         '+nick+''
 	        		 html +='     </div>'
@@ -1080,7 +1141,6 @@ function delerep(no , rno , repmeno){ /* 댓글 삭제 버튼 */
 	        		 html +='      <button type="button" data-toggle="modal" data-target="#deleteModal_'+rno+'"'
 	        		 html +='      class="delebtn" id="delebtn'+i+'">삭제</button>'
 	        		     }
-                          
 	        		 html +='             <div class="modal fade" id="deleteModal_'+rno+'" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">'
 	        		 html +='               <div class="modal-dialog">'
 	        		 html +='                 <div class="modal-content">'
@@ -1090,7 +1150,7 @@ function delerep(no , rno , repmeno){ /* 댓글 삭제 버튼 */
 	        		 html +='                     </div>'
 	        		 html +='                     <div class="modal-body">'
 	        		 html +='                          <form action="detail?no='+cno+'" method="post">'
-	        		 html +='                           <button type="button" class="btn btn-default"' 
+	        		 html +='                           <button type="button" class="btn btn-default" data-dismiss="modal"' 
 	        		 html +='                                 onClick="delerep('+no+' , '+rno+', '+meno+');">삭제하기</button>'
 	        		 html +='                           <button type="button" class="btn btn-default" data-dismiss="modal"  role="button">취소</button>'
 	        		 html +='                         </form>'
@@ -1098,7 +1158,6 @@ function delerep(no , rno , repmeno){ /* 댓글 삭제 버튼 */
 	        		 html +='                 </div>'
 	        		 html +='               </div>'
 	        		 html +='              </div>'
-                                  
 	        		 	if("${sessionScope.loginUser}" == ""){
 	        		 html +='               <button type="button" class="edbtn" id="edbtn'+i+'"' 
 	        		 html +='      onClick="deleterepnull()" >수정</button>'
@@ -1106,7 +1165,6 @@ function delerep(no , rno , repmeno){ /* 댓글 삭제 버튼 */
 	        		 html +='             <button type="button" class="edbtn" id="edbtn'+i+'"' 
 	        		 html +='     onClick="updarep('+no+' , '+rno+' , '+meno+' ,'+i+');" >수정</button>'
 	        		 	}
-                          
 	        		 html +='     <button type="button" class="updabtn" id="updabtn'+i+'" data-toggle="modal"' 
 	        		 html +='      data-target="#updateModal_'+rno+'"' 
 	        		 html +='       style="display:none;">수정완료</button>'
@@ -1279,7 +1337,6 @@ function updabtn(sessionno,rno , teno) { /* 회원 인식해서 댓글 수정해
 	        		 html +=' <div class="media"'
 	        		 html +='     style="border-bottom: 0.3px solid rgba(0, 0, 0, 0.5)">'
 	        		 html +='     <div class="col-lg-2 text-center">'
-
 	        		 html +='         <img src="'+phot+'" alt="singup" id="circle">'
 	        		 html +='         '+nick+''
 	        		 html +='     </div>'
@@ -1293,7 +1350,6 @@ function updabtn(sessionno,rno , teno) { /* 회원 인식해서 댓글 수정해
 	        		 html +='      <button type="button" data-toggle="modal" data-target="#deleteModal_'+rno+'"'
 	        		 html +='      class="delebtn" id="delebtn'+i+'">삭제</button>'
 	        		     	}
-                        
 	        		 html +='             <div class="modal fade" id="deleteModal_'+rno+'" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">'
 	        		 html +='               <div class="modal-dialog">'
 	        		 html +='                 <div class="modal-content">'
@@ -1303,7 +1359,7 @@ function updabtn(sessionno,rno , teno) { /* 회원 인식해서 댓글 수정해
 	        		 html +='                     </div>'
 	        		 html +='                     <div class="modal-body">'
 	        		 html +='                          <form action="detail?no='+cno+'" method="post">'
-	        		 html +='                           <button type="button" class="btn btn-default"' 
+	        		 html +='                           <button type="button" class="btn btn-default" data-dismiss="modal"' 
 	        		 html +='                                 onClick="delerep('+sessionno+' , '+rno+', '+meno+');">삭제하기</button>'
 	        		 html +='                           <button type="button" class="btn btn-default" data-dismiss="modal"  role="button">취소</button>'
 	        		 html +='                         </form>'
@@ -1318,7 +1374,6 @@ function updabtn(sessionno,rno , teno) { /* 회원 인식해서 댓글 수정해
 	        		 html +='             <button type="button" class="edbtn" id="edbtn'+i+'"' 
 	        		 html +='     onClick="updarep('+sessionno+' , '+rno+' , '+meno+' ,'+i+');" >수정</button>'
 	        		 	}
-                        
 	        		 html +='     <button type="button" class="updabtn" id="updabtn'+i+'" data-toggle="modal"' 
 	        		 html +='      data-target="#updateModal_'+rno+'"' 
 	        		 html +='       style="display:none;">수정완료</button>'
