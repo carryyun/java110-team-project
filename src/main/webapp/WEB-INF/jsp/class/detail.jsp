@@ -54,6 +54,7 @@
 <div class="col" style="position: absolute; height: 105px; background-color: white">
     <!-- 헤더 배경색 적용 -->
 </div>
+<div class="wrap"> 
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -239,8 +240,8 @@
             <!-- <div class="col-lg-12 col-md-12 text-center"> -->
         </div>
         <!-- <div class="row"> -->
-                        <div class="col-lg-12" id="testt">
-                            <ul class="under-navbar-nav col-lg-5 col-md-12">
+                        <div class="col-lg-9" id="testt">
+                            <ul class="under-navbar-nav col-lg-6 col-md-12">
                                 <li class="under-nav-item"><a class="nav-link"
                                     href="#class_detail">
                                         <h4>요약</h4> 
@@ -705,6 +706,7 @@
         </div>
             </div>
         </div>
+      </div>
         <!-- <div class="col-lg-12 col-md-12 mx-auto" id="detail"> -->
     <!-- <div class="container"> -->
     <!-- </div> -->
