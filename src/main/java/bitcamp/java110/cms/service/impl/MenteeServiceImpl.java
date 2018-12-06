@@ -117,8 +117,10 @@ public class MenteeServiceImpl implements MenteeService {
   }
   
   public void fbadd(Mentee mentee) {
-    if(menteeDao.checkemail(mentee) == 0)
+    if(menteeDao.checkemail(mentee) == 0) 
       menteeDao.fbsignup(mentee);
+    
+    
   }
 
 

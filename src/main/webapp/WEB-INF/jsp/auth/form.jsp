@@ -108,22 +108,20 @@
  <!-- 페이스북 -->
 <script type="text/javascript">
 
-
-$(document).ready(function(){
-    
-});
-
 function autoLogin(accessToken) {
     location.href = "fblogin?" + 
             "accessToken=" + accessToken;
 }
-
 function checkLoginState() {
     FB.getLoginStatus(function(response) { 
         if (response.status === 'connected') {
             autoLogin(response.authResponse.accessToken);
         } else {
-            alert("Facebook 로그인 실패!");
+        	swal({
+		        text: "Facebook 로그인 실패!",
+		        timer:3000,
+		        button:"확인"
+			});
         }
     });
 }
