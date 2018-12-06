@@ -1,7 +1,6 @@
 package bitcamp.java110.cms.web;
 
 import java.io.File;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -31,6 +30,7 @@ import bitcamp.java110.cms.domain.ProductRep;
 import bitcamp.java110.cms.domain.SmallTag;
 import bitcamp.java110.cms.service.BigTagService;
 import bitcamp.java110.cms.service.CertService;
+import bitcamp.java110.cms.service.ClassBaktService;
 import bitcamp.java110.cms.service.ClassLikeService;
 import bitcamp.java110.cms.service.ClassService;
 import bitcamp.java110.cms.service.MiddleTagService;
@@ -64,7 +64,7 @@ public class ProductController {
   ClassLikeService classlikeService;
   
   ProductOrderService productOrderService;
-
+  ClassBaktService classBaktService;
   
   public ProductController(ProductService productService, BigTagService bigTagService,
       MiddleTagService middleTagService, ProductPopulService productPopulService,
@@ -72,7 +72,8 @@ public class ProductController {
       ProductQnAService productQnAService, ProductBaktService productBaktService,
       CertService certService, SmallTagService smallTagService,
       ProductFileService productFileService, ServletContext sc,
-      ClassLikeService classlikeService, ProductOrderService productOrderService) {
+      ClassLikeService classlikeService, ProductOrderService productOrderService
+      ) {
 
     this.productService = productService;
     this.bigTagService = bigTagService;
@@ -343,7 +344,8 @@ public class ProductController {
     model.addAttribute("serchList", serchList);
   }
   
-/*  @RequestMapping(value = "clslikeins.do", method = {RequestMethod.POST})
+  
+/* @RequestMapping(value = "clslikeins.do", method = {RequestMethod.POST})
   public @ResponseBody String clslikeins(ClassLike classlike) {
     
     System.out.println(classlike.getMeno());
@@ -351,8 +353,9 @@ public class ProductController {
     classlikeService.likeadd(classlike);
     
     return "redirect:detail?no="+classlike.getCno();
-  }
-  */
+  }*/
+ 
+ /*상품장바구니*/
   @RequestMapping(value = "prodBaskt.do", method = {RequestMethod.POST})
   public @ResponseBody String prodBaskt(ProductBakt productBakt) {
     
@@ -361,8 +364,8 @@ public class ProductController {
     return "redirect:detail?no="+productBakt.getNo();
   }
   
-  @RequestMapping(value = "canget.do", method = {RequestMethod.POST})
-  public @ResponseBody String cangetdo(String[] arr) {
+  @RequestMapping(value = "addProdOrder.do", method = {RequestMethod.POST})
+  public @ResponseBody String addOrderdo(String[] arr) {
     
     for(String s : arr) {
       String[] str = s.split("&");

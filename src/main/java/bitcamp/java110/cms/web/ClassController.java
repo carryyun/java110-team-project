@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import bitcamp.java110.cms.domain.BigTag;
+import bitcamp.java110.cms.domain.Cert;
 import bitcamp.java110.cms.domain.ClassBakt;
 import bitcamp.java110.cms.domain.ClassFile;
 import bitcamp.java110.cms.domain.ClassLike;
@@ -27,6 +28,7 @@ import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.MiddleTag;
 import bitcamp.java110.cms.domain.Timetable;
 import bitcamp.java110.cms.service.BigTagService;
+import bitcamp.java110.cms.service.CertService;
 import bitcamp.java110.cms.service.ClassBaktService;
 import bitcamp.java110.cms.service.ClassFileService;
 import bitcamp.java110.cms.service.ClassLikeService;
@@ -53,6 +55,7 @@ public class ClassController {
   MenteeService menteeService;
   BigTagService bigTagService;
   MiddleTagService middleTagService;
+  CertService certService;
   ServletContext sc;
   
   public ClassController(
@@ -61,7 +64,8 @@ public class ClassController {
       ,ClassBaktService classBaktService,MenteeService menteeService,
       ClassRepService classrepService,ClassFileService classFileService,
       TimetableService timetableService,BigTagService bigTagService,
-      MiddleTagService middleTagService, ServletContext sc) {
+      MiddleTagService middleTagService, ServletContext sc,
+      CertService certService) {
     this.classService = classService;
     this.classqnaService = classqnaService;
     this.classorderService = classorderService;
@@ -73,6 +77,7 @@ public class ClassController {
     this.timetableService = timetableService;
     this.bigTagService = bigTagService;
     this.middleTagService = middleTagService;
+    this.certService = certService;
     this.sc = sc;
   }
 
@@ -303,7 +308,13 @@ public class ClassController {
     
     classqnaService.qnaadd(classqna);
     
-    List<ClassQna> qnalist = classqnaService.classqnalist(1, 5, classqna.getCno());
+    System.out.println(classqna.getCno());
+    System.out.println(classqna.getConts());
+    System.out.println(classqna.getTitl());
+    System.out.println(classqna.getType());
+    System.out.println(classqna.getMeno());
+    
+    List<ClassQna> qnalist = classqnaService.listbycno(classqna.getCno(), 1, 5);
     
     return qnalist;
   }
@@ -321,9 +332,16 @@ public class ClassController {
   }
   
   @RequestMapping(value = "ansupdate.do", method = {RequestMethod.POST})
-  public @ResponseBody int ansupdate(ClassQna classqna) {
+  public @ResponseBody List<ClassQna> ansupdate(int no , String anser) {
     
-    return classqnaService.ansupdate(classqna);
+    ClassQna classqna = classqnaService.get(no);
+    classqna.setAnser(anser);
+    
+    classqnaService.ansupdate(classqna);
+    
+    List<ClassQna> qnalist = classqnaService.listbycno(classqna.getCno(), 1, 5);
+    
+    return qnalist;
   }
   
   @RequestMapping(value = "repinsert", method = {RequestMethod.POST})
@@ -339,15 +357,9 @@ public class ClassController {
   @RequestMapping(value = "clsrepchange.do", method = {RequestMethod.POST})
   public @ResponseBody List<ClassRep> clsrepchange(int no , String conts) {
     
-    System.out.println(no);
-    
     ClassRep classrep = classrepService.get(no);
     classrep.setConts(conts);
-
     
-    System.out.println(classrep.getConts());
-    System.out.println(classrep.getCno());
-    System.out.println(classrep.getNo());
     classrepService.repupdate(classrep);
     List<ClassRep> replist = classrepService.listbycno(classrep.getCno(), 1, 5);
     
@@ -474,7 +486,7 @@ public class ClassController {
   }
   
   /*
-   * 클래스 장바구니 관련 시작
+   * 클래스 장바구니 리스트불러오기
    */
   @GetMapping("basket")
   public void basketclass(Model model, HttpSession session) {
@@ -486,6 +498,15 @@ public class ClassController {
     model.addAttribute("sumList", sumList);
   }
   
+  
+  /* 클래스장바구니*/
+  @RequestMapping(value = "clsBaskt.do", method = {RequestMethod.POST})
+  public @ResponseBody String clsBaskt(ClassBakt classBakt) {
+    
+    classBaktService.add(classBakt);
+    
+    return "redirect:detail?no="+classBakt.getNo();
+  }
   
   @ResponseBody
   @RequestMapping("removeDate")
@@ -516,4 +537,42 @@ public class ClassController {
       return "redirect:classLike";
   }
   // 찜클래스 종료
+  
+  @RequestMapping(value = "clsBaskt.do", method = {RequestMethod.POST})
+  public @ResponseBody String clsBasktdo(ClassBakt classBakt) {
+    
+    classBaktService.add(classBakt);
+    
+    return "redirect:detail?no="+classBakt.getNo();
+  }
+  
+  @RequestMapping(value = "addClsOrder.do", method = {RequestMethod.POST})
+  public @ResponseBody String addClsOrderdo(String[] arr) {
+    for(String s : arr) {
+      String[] str = s.split("&");
+//      str[0] = BasketNo
+//      str[1] = TtabNo
+//      str[2] = Meno
+//      str[3] = Time
+//      str[4] = PayOpt
+//      str[5] = 디테일에서 결제할 경우의 조건
+      classBaktService.delete(Integer.parseInt(str[0]));
+      
+      Cert cert = new Cert();
+      cert = certService.get(Integer.parseInt(str[1]));
+      
+      Classes classes = new Classes();
+      classes = classService.findBycno(cert.getCno());
+      
+      ClassOrder order = new ClassOrder();
+      order.setCtno(Integer.parseInt(str[1]));
+      order.setMeno(Integer.parseInt(str[2]));
+      order.setTime(Integer.parseInt(str[3]));
+      order.setTot_pric(classes.getPric()*order.getTime());
+      order.setPayopt(str[4]);
+      
+      classorderService.orderadd(order);
+      }
+    return "complete";
+  }
 }
