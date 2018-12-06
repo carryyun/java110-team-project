@@ -78,22 +78,18 @@ public class ClassController {
 
   @GetMapping("form") 
   public void form() {
-    
   }
-  
   @PostMapping("findAll")
   public void findAll() {
     List<Classes> clist= classService.classList(5);
   }
   @RequestMapping(value = "classadd", method=RequestMethod.GET)
   public void classinsert() {
-    
   }
   
   @RequestMapping(value = "classadd", method=RequestMethod.POST)
   public String classinsert(Classes c,List<MultipartFile> files,
       String removefiles, String days,String date,String edate,String stime, String etime,HttpSession session) throws Exception {
-    
     List<String> filelist = new ArrayList<>();
     System.out.println(removefiles);
     System.out.println(days);
@@ -244,7 +240,6 @@ public class ClassController {
     }else if("mtag".equals(type)) {
       scrollClsList = classService.listByMtno(pageNo, pageSize, no);
     }
-
     return scrollClsList;
   }
   
@@ -342,10 +337,20 @@ public class ClassController {
   }
   
   @RequestMapping(value = "clsrepchange.do", method = {RequestMethod.POST})
-  public @ResponseBody List<ClassRep> clsrepchange(ClassRep classRep) {
+  public @ResponseBody List<ClassRep> clsrepchange(int no , String conts) {
     
-    classrepService.repupdate(classRep);
-    List<ClassRep> replist = classrepService.listbycno(classRep.getCno(), 1, 5);
+    System.out.println(no);
+    
+    ClassRep classrep = classrepService.get(no);
+    classrep.setConts(conts);
+
+    
+    System.out.println(classrep.getConts());
+    System.out.println(classrep.getCno());
+    System.out.println(classrep.getNo());
+    classrepService.repupdate(classrep);
+    List<ClassRep> replist = classrepService.listbycno(classrep.getCno(), 1, 5);
+    
     
     return replist;
   }

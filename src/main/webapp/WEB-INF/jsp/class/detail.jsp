@@ -454,7 +454,7 @@
                                                     <!-- content goes here -->
                                                     <form action="detail?no=${detailclass.no}" method="post">
                                                       <button type="button" class="btn btn-default" data-dismiss="modal"
-                                                             onClick="updabtn(${r.no} , ${i.index})" >수정하기</button>
+                                                             onClick="updabtn(${sessionScope.loginUser.no},${r.no} , ${i.index})" >수정하기</button>
                                                       <button type="button" class="btn btn-default" data-dismiss="modal" role="button"
                                                       onClick="updano(${i.index})">취소</button>
                                                     </form>
@@ -939,6 +939,12 @@ function repins(no) { /* 후기(댓글) 추가버튼 */
 	        		 var nick = data[i].mentee.nick;
 	        		 var phot = data[i].mentee.phot;
 	        		 
+	        		 console.log(rno);
+	        		 console.log(meno);
+	        		 console.log(conts);
+	        		 console.log(nick);
+	        		 console.log(phot);
+	        		 
 	        		 html +=' <div class="media"'
 	        		 html +='     style="border-bottom: 0.3px solid rgba(0, 0, 0, 0.5)">'
 	        		 html +='     <div class="col-lg-2 text-center">'
@@ -996,7 +1002,7 @@ function repins(no) { /* 후기(댓글) 추가버튼 */
 	        		 html +='                    <div class="modal-body">'
 	        		 html +='                         <form action="detail?no='+cno+'" method="post">'
 	        		 html +='                           <button type="button" class="btn btn-default" data-dismiss="modal"'
-	        		 html +='                                  onClick="updabtn('+rno+' , '+i+')" >수정하기</button>'
+	        		 html +='                                  onClick="updabtn('+no+','+rno+' , '+i+')" >수정하기</button>'
 	        		 html +='                           <button type="button" class="btn btn-default" data-dismiss="modal" role="button"'
 	        		 html +='                           onClick="updano('+i+')">취소</button>'
 	        		 html +='                         </form>'
@@ -1107,7 +1113,7 @@ function delerep(no , rno , repmeno){ /* 댓글 삭제 버튼 */
 	        		 html +='                    <div class="modal-body">'
 	        		 html +='                         <form action="detail?no='+cno+'" method="post">'
 	        		 html +='                           <button type="button" class="btn btn-default" data-dismiss="modal"'
-	        		 html +='                                  onClick="updabtn('+rno+' , '+i+')" >수정하기</button>'
+	        		 html +='                                  onClick="updabtn('+no+','+rno+' , '+i+')" >수정하기</button>'
 	        		 html +='                           <button type="button" class="btn btn-default" data-dismiss="modal" role="button"'
 	        		 html +='                           onClick="updano('+i+')">취소</button>'
 	        		 html +='                         </form>'
@@ -1189,10 +1195,6 @@ function answercansle(indexno) {
 }
 
 function updarep(no , rno , repmeno , teno) { /* 댓글 회원 인식해서 수정 버튼 */
-    console.log(no);
-    console.log(rno);
-    console.log(repmeno);
-    console.log(teno);
     var replist = $('div#replist');
     
     var disstat = 0; /* 댓글이 hide 된 여부 알려주는 변수 */
@@ -1222,11 +1224,14 @@ function updarep(no , rno , repmeno , teno) { /* 댓글 회원 인식해서 수�
     }
 }
 
-function updabtn(rno , teno) { /* 회원 인식해서 댓글 수정해주는 버튼 */
+function updabtn(sessionno,rno , teno) { /* 회원 인식해서 댓글 수정해주는 버튼 */
     var updateconts = $("#repup"+teno).val();
     var replist = $('div#replist');
+    var cno = ${detailclass.no};
+    
+    
     console.log(rno);
-    console.log(updateconts);
+    console.log("내용:"+updateconts);
     
     if(updateconts == "") {
         swal({
@@ -1258,17 +1263,11 @@ function updabtn(rno , teno) { /* 회원 인식해서 댓글 수정해주는 버
                   })
                   var html ="";
                 for (var i in data) {
-                   	var rno = data[i].no;
+                   	 var rno = data[i].no;
 	        		 var meno = data[i].meno;
 	        		 var conts = data[i].conts;
 	        		 var nick = data[i].mentee.nick;
 	        		 var phot = data[i].mentee.phot;
-	        		 
-	        		 console.log(rno);
-	        		 console.log(meno);
-	        		 console.log(conts);
-	        		 console.log(nick);
-	        		 console.log(phot);
 	        		 
 	        		 html +=' <div class="media"'
 	        		 html +='     style="border-bottom: 0.3px solid rgba(0, 0, 0, 0.5)">'
@@ -1280,13 +1279,13 @@ function updabtn(rno , teno) { /* 회원 인식해서 댓글 수정해주는 버
 	        		 html +='     <div id="rcont'+i+'" class="col-lg-10 media-body">'+conts+'</div>'
 	        		 html +='     <textarea class="repupda col-lg-9 media-body" id="repup'+i+'" rows="5" name="repup"'
 	        		 html +='                style =" margin-left:10px; width : 500px; display: none;"></textarea>'
-	        		     if("${sessionScope.loginUser}" == ""){
+	        		     	if("${sessionScope.loginUser}" == ""){
 	        		 html +='         <button type="button" onClick="deleterepnull()"'
 	        		 html +='      class="delebtn" id="delebtn'+i+'">삭제</button>'
-	        		     } else {
+	        		     	} else {
 	        		 html +='      <button type="button" data-toggle="modal" data-target="#deleteModal_'+rno+'"'
 	        		 html +='      class="delebtn" id="delebtn'+i+'">삭제</button>'
-	        		     }
+	        		     	}
                         
 	        		 html +='             <div class="modal fade" id="deleteModal_'+rno+'" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">'
 	        		 html +='               <div class="modal-dialog">'
@@ -1298,7 +1297,7 @@ function updabtn(rno , teno) { /* 회원 인식해서 댓글 수정해주는 버
 	        		 html +='                     <div class="modal-body">'
 	        		 html +='                          <form action="detail?no='+cno+'" method="post">'
 	        		 html +='                           <button type="button" class="btn btn-default"' 
-	        		 html +='                                 onClick="delerep('+no+' , '+rno+', '+meno+');">삭제하기</button>'
+	        		 html +='                                 onClick="delerep('+sessionno+' , '+rno+', '+meno+');">삭제하기</button>'
 	        		 html +='                           <button type="button" class="btn btn-default" data-dismiss="modal"  role="button">취소</button>'
 	        		 html +='                         </form>'
 	        		 html +='                     </div>'
@@ -1310,7 +1309,7 @@ function updabtn(rno , teno) { /* 회원 인식해서 댓글 수정해주는 버
 	        		 html +='      onClick="deleterepnull()" >수정</button>'
 	        		 	} else {
 	        		 html +='             <button type="button" class="edbtn" id="edbtn'+i+'"' 
-	        		 html +='     onClick="updarep('+no+' , '+rno+' , '+meno+' ,'+i+');" >수정</button>'
+	        		 html +='     onClick="updarep('+sessionno+' , '+rno+' , '+meno+' ,'+i+');" >수정</button>'
 	        		 	}
                         
 	        		 html +='     <button type="button" class="updabtn" id="updabtn'+i+'" data-toggle="modal"' 
@@ -1326,7 +1325,7 @@ function updabtn(rno , teno) { /* 회원 인식해서 댓글 수정해주는 버
 	        		 html +='                    <div class="modal-body">'
 	        		 html +='                         <form action="detail?no='+cno+'" method="post">'
 	        		 html +='                           <button type="button" class="btn btn-default" data-dismiss="modal"'
-	        		 html +='                                  onClick="updabtn('+rno+' , '+i+')" >수정하기</button>'
+	        		 html +='                                  onClick="updabtn('+sessionno+','+rno+' , '+i+')" >수정하기</button>'
 	        		 html +='                           <button type="button" class="btn btn-default" data-dismiss="modal" role="button"'
 	        		 html +='                           onClick="updano('+i+')">취소</button>'
 	        		 html +='                         </form>'
@@ -1336,9 +1335,7 @@ function updabtn(rno , teno) { /* 회원 인식해서 댓글 수정해주는 버
 	        		 html +='             </div>'
 	        		 html +=' 			</div>'
                 }
-                var setDiv = document.querySelector("div#replist");
-                setDiv.innerHTML+=html;
-                /* replist.html(html); */
+                replist.html(html);
               },error : function(error,status){
                     swal({
                         text : "이미 삭제되었거나 존재하지 않는 댓글입니다.",
@@ -1437,8 +1434,6 @@ geocoder.addressSearch('${detailclass.basAddr}', function(result, status) {
             $("#headerNav").load("headerNav.html")
 
             testtTop = $("#detail").offset().top;
-            console.log(testtTop);
-            console.log("toggle2");
             $(setId).css("position", "absolute");
             $(setId).css("top", (testtTop) + "px");
             

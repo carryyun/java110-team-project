@@ -21,7 +21,7 @@
 <div class="container">
         <!---heading---->
         <header class="heading" style="padding-top:15%; "> 비밀번호 찾기</header>
-        <form class="searchuser" method="post" action="/app/mentee/resultpwd" onsubmit="return searchCheck()" >
+        <form class="searchuser" method="post" action="resultpwd" onsubmit="return searchCheck()" >
         <hr />
         <!---Form starting---->
         <div class="row">

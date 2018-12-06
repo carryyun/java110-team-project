@@ -18,11 +18,20 @@ input[type="number"]::-webkit-inner-spin-button {
 <body>
 <div class="container" style="margin-bottom:20px; padding-bottom: 140px; padding-top:5px; background-color: #fff">
 	<div class="row mt-3">
-				<h2 class="col-lg-9 mr-5">상품 상세보기</h2>
-				<c:if test="${sessionScope.loginUser.no == product.meno}">
+							
+				<c:choose>
+				<c:when test="${sessionScope.loginUser.no == product.meno}">
+				<h2 class="col-lg-8 mr-5">상품 상세보기</h2>  
+	                <a href="../product/prdt" class="btn btn-lg btn-mok col-lg-1 mr-1 py-1" style="color:white; height: 38px;">목록</a>
 					<a href="javaScript:void(0)" onclick="update()" class="btn btn-lg btn-primary col-lg-1 mr-1 py-1" style="color:white; height: 38px;">수정</a> 
-					<a href="javaScript:void(0)" onclick="updatestat()" class="btn btn-lg btn-danger col-lg-1 py-1" style="color:white; height: 38px;">삭제</a> 
-				</c:if>
+	                <a href="javaScript:void(0)" onclick="updatestat()" class="btn btn-lg btn-danger col-lg-1 py-1" style="color:white; height: 38px;">삭제</a> 
+	            </c:when>
+				<c:otherwise>
+				    <h2 class="col-lg-10 mr-5">상품 상세보기</h2>  
+				    <a href="../product/prdt" class="btn btn-lg btn-mok col-lg-1 mr-1 py-1" style="color:white; height: 38px;">목록</a>
+				</c:otherwise>
+				</c:choose>
+				
 			<hr class="FhrBotMargin">
 
 			<div class="col-lg-12 col-md-12 text-center">
