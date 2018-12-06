@@ -9,7 +9,7 @@ public interface MenteeDao {
   
   int fbsignup(Mentee mentee);
 
-  int delete(int no);
+  int delete(String withdrawalpwd);
 
   List<Mentee> findAll(); // 전체조회
 

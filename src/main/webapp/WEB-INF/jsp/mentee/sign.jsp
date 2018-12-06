@@ -140,7 +140,6 @@ function checknick(){
 		},
 		url : "checknick.do",
 		success : function(data){
-			
 			if(inputed2=="" && data == '0'){
 				$("#usernick").css("background-color", "#FA5858");
 				nickCheck = 0;
