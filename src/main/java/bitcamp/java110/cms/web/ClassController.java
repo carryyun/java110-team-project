@@ -308,7 +308,13 @@ public class ClassController {
     
     classqnaService.qnaadd(classqna);
     
-    List<ClassQna> qnalist = classqnaService.classqnalist(1, 5, classqna.getCno());
+    System.out.println(classqna.getCno());
+    System.out.println(classqna.getConts());
+    System.out.println(classqna.getTitl());
+    System.out.println(classqna.getType());
+    System.out.println(classqna.getMeno());
+    
+    List<ClassQna> qnalist = classqnaService.listbycno(classqna.getCno(), 1, 5);
     
     return qnalist;
   }
@@ -326,9 +332,16 @@ public class ClassController {
   }
   
   @RequestMapping(value = "ansupdate.do", method = {RequestMethod.POST})
-  public @ResponseBody int ansupdate(ClassQna classqna) {
+  public @ResponseBody List<ClassQna> ansupdate(int no , String anser) {
     
-    return classqnaService.ansupdate(classqna);
+    ClassQna classqna = classqnaService.get(no);
+    classqna.setAnser(anser);
+    
+    classqnaService.ansupdate(classqna);
+    
+    List<ClassQna> qnalist = classqnaService.listbycno(classqna.getCno(), 1, 5);
+    
+    return qnalist;
   }
   
   @RequestMapping(value = "repinsert", method = {RequestMethod.POST})
@@ -344,15 +357,9 @@ public class ClassController {
   @RequestMapping(value = "clsrepchange.do", method = {RequestMethod.POST})
   public @ResponseBody List<ClassRep> clsrepchange(int no , String conts) {
     
-    System.out.println(no);
-    
     ClassRep classrep = classrepService.get(no);
     classrep.setConts(conts);
-
     
-    System.out.println(classrep.getConts());
-    System.out.println(classrep.getCno());
-    System.out.println(classrep.getNo());
     classrepService.repupdate(classrep);
     List<ClassRep> replist = classrepService.listbycno(classrep.getCno(), 1, 5);
     
@@ -479,7 +486,7 @@ public class ClassController {
   }
   
   /*
-   * 클래스 장바구니 관련 시작
+   * 클래스 장바구니 리스트불러오기
    */
   @GetMapping("basket")
   public void basketclass(Model model, HttpSession session) {
@@ -491,6 +498,15 @@ public class ClassController {
     model.addAttribute("sumList", sumList);
   }
   
+  
+  /* 클래스장바구니*/
+  @RequestMapping(value = "clsBaskt.do", method = {RequestMethod.POST})
+  public @ResponseBody String clsBaskt(ClassBakt classBakt) {
+    
+    classBaktService.add(classBakt);
+    
+    return "redirect:detail?no="+classBakt.getNo();
+  }
   
   @ResponseBody
   @RequestMapping("removeDate")
