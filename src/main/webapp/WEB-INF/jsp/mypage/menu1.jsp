@@ -233,9 +233,10 @@
                                 <B>닉네임</B>&nbsp;
                                 <input id="text1" type="text" name="닉네임" value="&nbsp;${mentee.nick}" readonly style="width:140px; border:none; ">
                                 </div>
-                                <div id="wrapper" style=" position: relative; right: -50px; bottom: -60px">
+                                <div id="wrapper" class="pop" style=" position: relative; right: -50px; bottom: -60px">
                                 <button class="fancy">멘토신청</button>
-                                </div>
+                                </div> 
+                                  
                             </div>
                           
                          <div class="toggle toggle--knob" style="position:absolute; right:30px; top:0; ">
@@ -399,15 +400,315 @@
                 </div>
                 
                 
+                 <!-- popup start  -->
+                  <div class="popup">
+ 
+  <div class="header">
+    <div class="title">멘토 신청 </div>
+    <div class="icon"><i class="fa fa-send" title="Send"></i></div>
+  </div>
+  
+  <div class="content">
+
+    <img src="${mentee.phot}" >
+   
+    <div class="infobox">
+        이름:${mentee.name}<br>
+        닉네임:${mentee.nick}<br>
+        휴대전화:${mentee.phone}<br>
+        출금은행:${mentee.bkname}<br>
+        계좌번호:${mentee.bkno}<br>
+    <hr>
+        분야:<br>
+        경력: ${mentor.carr}년
+    </div>
+ 
+  </div>
+  
+  
+  <!-- upload img code-->
+  <div id="upWorkout">
+  <h2>작품</h2>
+<p class="lead"> <b> 당신의 실력을 증명할<br>작품을 업로드 해주세요!</b></p>
+
+<!-- Upload  -->
+<form id="file-upload-form" class="uploader">
+  <input id="file-upload" type="file" name="fileUpload" accept="image/*" />
+
+  <label for="file-upload" id="file-drag">
+    <img id="file-image" src="#" alt="Preview" class="hidden">
+    <div id="start">
+      <i class="fa fa-download" aria-hidden="true"></i>
+      <div>Drag and Drop!! </div>
+      <div id="notimage" class="hidden">Please select an image</div>
+      <span id="file-upload-btn" class="btn btn-primary" style="height:50px;">이미지 선택</span>
+    </div>
+    <div id="response" class="hidden">
+      <div id="messages"></div>
+      <progress class="progress" id="file-progress" value="0">
+        <span>0</span>%
+      </progress>
+    </div>
+  </label>
+  
+</form>
+ 
+ </div>
+ 
+  <!-- upload img code-->
+  
+ 
+ <!-- certi upload code -->
+ 
+ <div class="certiUp"> 
+<div class="file-upload">
+ <h2>자격증</h2>
+<p class="lead"> <b> 당신의 실력을 증명할<br>자격증을 업로드 해주세요!</b></p>
+  <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">자격증</button>
+
+  <div class="image-upload-wrap">
+    <input class="file-upload-input" type='file' onchange="readURL(this);" accept="file/*" />
+    <div class="drag-text">
+      <h3>Drag and drop a file! </h3>
+    </div>
+  </div>
+  <div class="file-upload-content">
+    
+    <div class="image-title-wrap">
+      <button type="button" onclick="removeUpload()" class="remove-image">  <span class="image-title">Uploaded Image</span> - 삭제 </button>
+    </div>
+  </div>
+</div>
+     
+  </div>
+  
+ <button id="btn-sub" class="btn btn-warning">신청</button>
+     <button id="btn-cancle"class="btn btn-danger">취소</button>
+  <!-- certi upload code -->
+ 
+ <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+  
+  
+
+  
+</div>
+
+<!-- popup end  -->
+                
                 
                 <div class="leave" >
                     
                     회원탈퇴를 하시려면<a href="" class="btn-leave">여기</a>를 누르세요
 
                 </div>
+                
+                
 
             </div>
             
             
             
+            <script>
+            (function() {
+                $(".pop").click(function(){
+                  $(".pop").addClass("hide");
+                  return $(".popup").addClass("show");
+                });
+
+                $(".icon i").click(function(){
+                  $(".pop").removeClass("hide");
+                  return $(".popup").removeClass("show");
+                });
+
+              }).call(this);
+
+             
+
+
+              /* upalod js*/
+
+              // File Upload
+              // 
+              function ekUpload(){
+                function Init() {
+
+                  console.log("Upload Initialised");
+
+                  var fileSelect    = document.getElementById('file-upload'),
+                      fileDrag      = document.getElementById('file-drag'),
+                      submitButton  = document.getElementById('submit-button');
+
+                  fileSelect.addEventListener('change', fileSelectHandler, false);
+
+                  // Is XHR2 available?
+                  var xhr = new XMLHttpRequest();
+                  if (xhr.upload) {
+                    // File Drop
+                    fileDrag.addEventListener('dragover', fileDragHover, false);
+                    fileDrag.addEventListener('dragleave', fileDragHover, false);
+                    fileDrag.addEventListener('drop', fileSelectHandler, false);
+                  }
+                }
+
+                function fileDragHover(e) {
+                  var fileDrag = document.getElementById('file-drag');
+
+                  e.stopPropagation();
+                  e.preventDefault();
+
+                  fileDrag.className = (e.type === 'dragover' ? 'hover' : 'modal-body file-upload');
+                }
+
+                function fileSelectHandler(e) {
+                  // Fetch FileList object
+                  var files = e.target.files || e.dataTransfer.files;
+
+                  // Cancel event and hover styling
+                  fileDragHover(e);
+
+                  // Process all File objects
+                  for (var i = 0, f; f = files[i]; i++) {
+                    parseFile(f);
+                    uploadFile(f);
+                  }
+                }
+
+                // Output
+                function output(msg) {
+                  // Response
+                  var m = document.getElementById('messages');
+                  m.innerHTML = msg;
+                }
+
+                function parseFile(file) {
+
+                  console.log(file.name);
+                  output(
+                    '<strong>' + encodeURI(file.name) + '</strong>'
+                  );
+                  
+                  // var fileType = file.type;
+                  // console.log(fileType);
+                  var imageName = file.name;
+
+                  var isGood = (/\.(?=gif|jpg|png|jpeg)/gi).test(imageName);
+                  if (isGood) {
+                    document.getElementById('start').classList.add("hidden");
+                    document.getElementById('response').classList.remove("hidden");
+                    document.getElementById('notimage').classList.add("hidden");
+                    // Thumbnail Preview
+                    document.getElementById('file-image').classList.remove("hidden");
+                    document.getElementById('file-image').src = URL.createObjectURL(file);
+                  }
+                  else {
+                    document.getElementById('file-image').classList.add("hidden");
+                    document.getElementById('notimage').classList.remove("hidden");
+                    document.getElementById('start').classList.remove("hidden");
+                    document.getElementById('response').classList.add("hidden");
+                    document.getElementById("file-upload-form").reset();
+                  }
+                }
+
+                function setProgressMaxValue(e) {
+                  var pBar = document.getElementById('file-progress');
+
+                  if (e.lengthComputable) {
+                    pBar.max = e.total;
+                  }
+                }
+
+                function updateFileProgress(e) {
+                  var pBar = document.getElementById('file-progress');
+
+                  if (e.lengthComputable) {
+                    pBar.value = e.loaded;
+                  }
+                }
+
+                function uploadFile(file) {
+
+                  var xhr = new XMLHttpRequest(),
+                    fileInput = document.getElementById('class-roster-file'),
+                    pBar = document.getElementById('file-progress'),
+                    fileSizeLimit = 1024; // In MB
+                  if (xhr.upload) {
+                    // Check if file is less than x MB
+                    if (file.size <= fileSizeLimit * 1024 * 1024) {
+                      // Progress bar
+                      pBar.style.display = 'inline';
+                      xhr.upload.addEventListener('loadstart', setProgressMaxValue, false);
+                      xhr.upload.addEventListener('progress', updateFileProgress, false);
+
+                      // File received / failed
+                      xhr.onreadystatechange = function(e) {
+                        if (xhr.readyState == 4) {
+                          // Everything is good!
+
+                          // progress.className = (xhr.status == 200 ? "success" : "failure");
+                          // document.location.reload(true);
+                        }
+                      };
+
+                      // Start upload
+                      xhr.open('POST', document.getElementById('file-upload-form').action, true);
+                      xhr.setRequestHeader('X-File-Name', file.name);
+                      xhr.setRequestHeader('X-File-Size', file.size);
+                      xhr.setRequestHeader('Content-Type', 'multipart/form-data');
+                      xhr.send(file);
+                    } else {
+                      output('Please upload a smaller file (< ' + fileSizeLimit + ' MB).');
+                    }
+                  }
+                }
+
+                // Check for the various File API support.
+                if (window.File && window.FileList && window.FileReader) {
+                  Init();
+                } else {
+                  document.getElementById('file-drag').style.display = 'none';
+                }
+              }
+              ekUpload();
+
+
+
+              /* certi upload*/
+
+
+              function readURL(input) {
+                if (input.files && input.files[0]) {
+
+                  var reader = new FileReader();
+
+                  reader.onload = function(e) {
+                    $('.image-upload-wrap').hide();
+
+                    $('.file-upload-image').attr('src', e.target.result);
+                    $('.file-upload-content').show();
+
+                    $('.image-title').html(input.files[0].name);
+                  };
+
+                  reader.readAsDataURL(input.files[0]);
+
+                } else {
+                  removeUpload();
+                }
+              }
+
+              function removeUpload() {
+                $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+                $('.file-upload-content').hide();
+                $('.image-upload-wrap').show();
+              }
+              $('.image-upload-wrap').bind('dragover', function () {
+                      $('.image-upload-wrap').addClass('image-dropping');
+                  });
+                  $('.image-upload-wrap').bind('dragleave', function () {
+                      $('.image-upload-wrap').removeClass('image-dropping');
+              });
+
+
+
+            </script>
   

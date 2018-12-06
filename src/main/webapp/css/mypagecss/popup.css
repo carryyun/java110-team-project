@@ -1,0 +1,450 @@
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css);
+
+.popup {
+    
+    
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 800px;
+  height: 800px;
+  overflow: hidden;
+  z-index: 20;
+  font-family: "Montserrat", "Open Sans";
+  padding: 10px;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+  text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+  -moz-transform-style: preserve-3D;
+  -webkit-transform-style: preserve-3D;
+  transform-style: preserve-3D;
+  -moz-transform: perspective(1000px) translateY(300px) rotateX(-74deg);
+  -ms-transform: perspective(1000px) translateY(300px) rotateX(-74deg);
+  -webkit-transform: perspective(1000px) translateY(300px) rotateX(-74deg);
+  transform: perspective(1000px) translateY(300px) rotateX(-74deg);
+  -moz-backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  opacity: 0.2;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+.popup.show {
+  display: block;
+  opacity: 1;
+  -moz-transform: none;
+  -ms-transform: none;
+  -webkit-transform: none;
+  transform: none;
+}
+.popup .header {
+  padding: 10px 10px;
+}
+.popup .header .title {
+  font-size: 1.6rem;
+  font-family: "Open Sans Condensed";
+  float: left;
+}
+.popup .header .icon {
+  float: right;
+  font-size: 1.3rem;
+}
+.popup .header .icon i {
+  cursor: pointer;
+  -moz-transform: none;
+  -ms-transform: none;
+  -webkit-transform: none;
+  transform: none;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.popup .header .icon i:hover {
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+}
+.popup .header:before, .popup .header:after {
+  content: "";
+  display: table;
+}
+.popup .header:after {
+  clear: both;
+}
+.popup .content {
+  padding: 10px;
+  position: relative;
+    height: 700px;
+}
+
+.popup .content img {
+    position: absolute;
+    left:100px;
+    width:290px ;
+    height:290px;
+    
+    
+}
+.popup .content .infobox {
+  display: inline-block;
+  position: absolute;
+  right: 70px;
+  width: 290px;
+  height: 290px;
+  border: 0;
+  margin: 0;
+  padding: 20px;
+  background: rgba(217, 217, 217, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  font-family: "Open Sans" 20px;
+  font-size: 18px;
+ /* text-shadow: 2px 1px 3px rgba(100, 0, 0, 1.0);*/
+  color: #808080;
+    
+}
+
+.popup .content #send {
+    position:  absolute;
+    bottom: 0;
+    display: inline-block;
+}
+
+.popup .content #cancle {
+    position:  absolute;
+    bottom: 0;
+    display: inline-block;
+    
+}
+
+
+
+/* upload img*/
+#upWorkout{
+    
+  position: absolute;
+  bottom:30px;
+  left:50px;
+  width: 350px;
+  height: 350px;
+  text-align: center;
+    
+}
+
+
+#upWorkout h2 {
+  font-family: "Roboto", sans-serif;
+  font-size: 26px;
+  line-height: 1;
+  color: #454cad;
+  margin:0;
+}
+
+#upWorkout p {
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  color: #5f6982;
+}
+
+.uploader {
+  display: block;
+  clear: both;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 600px;
+}
+.uploader label {
+  float: left;
+  clear: both;
+  width: 90%;
+    height: 230px;
+  padding: 2rem 1.5rem;
+  position : absolute;
+  left : 20px;
+  text-align: center;
+  background: #fff;
+  border-radius: 7px;
+  border: 3px solid #eee;
+  transition: all .2s ease;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.uploader label:hover {
+  border-color: #454cad;
+}
+.uploader label.hover {
+  border: 3px solid #454cad;
+  box-shadow: inset 0 0 0 6px #eee;
+}
+.uploader label.hover #start i.fa {
+  -webkit-transform: scale(0.8);
+          transform: scale(0.8);
+  opacity: 0.3;
+}
+.uploader #start {
+  float: left;
+  clear: both;
+  width: 100%;
+}
+.uploader #start.hidden {
+  display: none;
+}
+.uploader #start i.fa {
+  font-size: 50px;
+  margin-bottom: 1rem;
+  transition: all .2s ease-in-out;
+}
+.uploader #response {
+  float: left;
+  clear: both;
+  width: 100%;
+}
+.uploader #response.hidden {
+  display: none;
+}
+.uploader #response #messages {
+  margin-bottom: .5rem;
+}
+.uploader #file-image {
+  display: inline;
+  margin: 0 auto .5rem auto;
+  width: auto;
+  height: auto;
+  max-width: 180px;
+}
+.uploader #file-image.hidden {
+  display: none;
+}
+.uploader #notimage {
+  display: block;
+  float: left;
+  clear: both;
+  width: 100%;
+}
+.uploader #notimage.hidden {
+  display: none;
+}
+.uploader progress,
+.uploader .progress {
+  display: inline;
+  clear: both;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 180px;
+  height: 8px;
+  border: 0;
+  border-radius: 4px;
+  background-color: #eee;
+  overflow: hidden;
+}
+.uploader .progress[value]::-webkit-progress-bar {
+  border-radius: 4px;
+  background-color: #eee;
+}
+.uploader .progress[value]::-webkit-progress-value {
+  background: linear-gradient(to right, #393f90 0%, #454cad 50%);
+  border-radius: 4px;
+}
+.uploader .progress[value]::-moz-progress-bar {
+  background: linear-gradient(to right, #393f90 0%, #454cad 50%);
+  border-radius: 4px;
+}
+.uploader input[type="file"] {
+  display: none;
+}
+.uploader div {
+  margin: 0 0 .5rem 0;
+  color: #5f6982;
+}
+.uploader .btn {
+  display: inline-block;
+  margin: .5rem .5rem 1rem .5rem;
+  clear: both;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+  text-transform: initial;
+  border: none;
+  border-radius: .2rem;
+  outline: none;
+  padding: 0 1rem;
+  height: 36px;
+  line-height: 36px;
+  color: #fff;
+  transition: all 0.2s ease-in-out;
+  box-sizing: border-box;
+  background: #454cad;
+  border-color: #454cad;
+  cursor: pointer;
+}
+
+
+
+/* certi upload */
+
+
+.certiUp .file-upload {
+  background-color: #ffffff;
+  width: 300px;
+  padding: 20px;
+  position: absolute;
+  right: 50px;
+  bottom: 120px;
+        
+}
+
+.certiUp .file-upload-btn {
+  width: 100%;
+  margin-bottom: 0;
+  color: #fff;
+  background: #FFB53C;
+  border: none;
+  padding-bottom: 20px;
+  border-radius: 4px;
+  border-bottom: 4px solid #e68e00;
+  transition: all .2s ease;
+  outline: none;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+
+
+.certiUp .file-upload-btn:hover {
+  background: #ffa71a;
+  color: #ffffff;
+  transition: all .2s ease;
+  cursor: pointer;
+}
+
+.certiUp .file-upload-btn:active {
+  border: 0;
+  transition: all .2s ease;
+}
+
+.certiUp .file-upload-content {
+  display: none;
+  text-align: center;
+}
+
+.certiUp .file-upload-input {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.certiUp .image-upload-wrap {
+  margin-top: 20px;
+    height:  60px;
+  border: 4px dashed #FFB53C;
+  position: relative;
+}
+
+.certiUp .image-dropping,
+.certiUp .image-upload-wrap:hover {
+  background-color: #1FB264;
+  border: 4px dashed #ffffff;
+}
+
+.certiUp .image-title-wrap {
+  padding: 0 15px 15px 15px;
+  color: #222;
+}
+
+.certiUp .drag-text {
+  text-align: center;
+}
+
+.certiUp h2{
+    text-align: center;
+     font-family: "Roboto", sans-serif;
+  font-size: 26px;
+  line-height: 1;
+  color: #454cad;
+  margin:0;
+}
+
+.certiUp p {
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  color: #5f6982;
+}
+.certiUp .lead{
+    text-align: center;
+}
+.certiUp .drag-text h3 {
+  font-weight: 100;
+  text-transform: uppercase;
+  color: grey;
+  padding: 0;
+}
+
+.certiUp .file-upload-image {
+  max-height: 200px;
+  max-width: 200px;
+  margin: auto;
+  padding: 20px;
+}
+
+.certiUp .remove-image {
+  width: 200px;
+  margin-top: 30px;
+  color: #fff;
+  background: #cd4535;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  border-bottom: 4px solid #b02818;
+  transition: all .2s ease;
+  outline: none;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.certiUp .remove-image:hover {
+  background: #c13b2a;
+  color: #ffffff;
+  transition: all .2s ease;
+  cursor: pointer;
+}
+
+.certiUp .remove-image:active {
+  border: 0;
+  transition: all .2s ease;
+}
+
+
+#btn-sub{
+position : absolute;
+bottom:20px;
+right:120px;	
+
+}
+
+#btn-cancle{
+position : absolute;
+bottom:20px;
+right:50px; 	
+	
+}

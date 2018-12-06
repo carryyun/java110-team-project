@@ -43,15 +43,16 @@
     <link href="/css/mypagecss/bootstrap.css" rel="stylesheet">
     <!-- Theme style  -->
     <link rel="stylesheet" href="/css/mypagecss/style.css">
+     <!-- 멘토신청 popup css  -->
+    <link href="/css/mypagecss/popup.css" rel="stylesheet">
+    
     <!-- J Query -->
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <!-- Load JS-->
-    <script src=/js/mypagejs/hideshow.js></script> 
-   
+    <script src=/js/mypagejs/hideshow.js></script>
+    <!-- 멘토신청 popup JS-->
+  <!--   <script src=/js/mypagejs/popup.js></script>  -->
         
-        
-      
-    
 
     <script>
     
