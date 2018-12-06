@@ -122,7 +122,6 @@ public class ClassOrder {
   public int getMeno() {
     return meno;
   }
-
   public void setMeno(int meno) {
     this.meno = meno;
   }
