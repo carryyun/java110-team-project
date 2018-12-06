@@ -78,24 +78,18 @@ public class ClassController {
 
   @GetMapping("form") 
   public void form() {
-    
   }
-  
   @PostMapping("findAll")
   public void findAll() {
     List<Classes> clist= classService.classList(5);
-    
-
   }
   @RequestMapping(value = "classadd", method=RequestMethod.GET)
   public void classinsert() {
-    
   }
   
   @RequestMapping(value = "classadd", method=RequestMethod.POST)
   public String classinsert(Classes c,List<MultipartFile> files,
       String removefiles, String days,String date,String edate,String stime, String etime,HttpSession session) throws Exception {
-    
     List<String> filelist = new ArrayList<>();
     System.out.println(removefiles);
     System.out.println(days);
@@ -246,7 +240,6 @@ public class ClassController {
     }else if("mtag".equals(type)) {
       scrollClsList = classService.listByMtno(pageNo, pageSize, no);
     }
-
     return scrollClsList;
   }
   
@@ -306,16 +299,13 @@ public class ClassController {
   }
   
   @RequestMapping(value = "qnainsert", method = {RequestMethod.POST})
-  public @ResponseBody int qnainsert(ClassQna classqna) {
+  public @ResponseBody List<ClassQna> qnainsert(ClassQna classqna) {
     
-    System.out.println(classqna.getCno());
-    System.out.println(classqna.getTitl());
-    System.out.println(classqna.getConts());
-    System.out.println(classqna.getMeno());
-    System.out.println(classqna.getType());
-    System.out.println(classqna.toString());
+    classqnaService.qnaadd(classqna);
     
-    return classqnaService.qnaadd(classqna);
+    List<ClassQna> qnalist = classqnaService.classqnalist(1, 5, classqna.getCno());
+    
+    return qnalist;
   }
   
   @RequestMapping("qnaupdate")
@@ -346,20 +336,29 @@ public class ClassController {
     return replist;
   }
   
-  @RequestMapping(value = "clslikeins.do", method = {RequestMethod.POST})
-  public @ResponseBody String clslikeins(ClassLike classlike) {
+  @RequestMapping(value = "clsrepchange.do", method = {RequestMethod.POST})
+  public @ResponseBody List<ClassRep> clsrepchange(int no , String conts) {
     
-    System.out.println(classlike.getMeno());
-    System.out.println(classlike.getCno());
-    classlikeService.likeadd(classlike);
+    System.out.println(no);
     
-    return "redirect:detail?no="+classlike.getCno();
+    ClassRep classrep = classrepService.get(no);
+    classrep.setConts(conts);
+
+    
+    System.out.println(classrep.getConts());
+    System.out.println(classrep.getCno());
+    System.out.println(classrep.getNo());
+    classrepService.repupdate(classrep);
+    List<ClassRep> replist = classrepService.listbycno(classrep.getCno(), 1, 5);
+    
+    
+    return replist;
   }
   
   @RequestMapping(value = "clsrepdele.do", method = {RequestMethod.POST})
   public @ResponseBody List<ClassRep> clsrepdele(int no) {
     
-    ClassRep classrep = new ClassRep();
+    ClassRep classrep = classrepService.get(no);
     
     classrepService.repDelete(no);
     
@@ -368,10 +367,14 @@ public class ClassController {
     return replist;
   }
   
-  @RequestMapping(value = "clsrepchange.do", method = {RequestMethod.POST})
-  public @ResponseBody int clsrepchange(ClassRep classRep) {
+  @RequestMapping(value = "clslikeins.do", method = {RequestMethod.POST})
+  public @ResponseBody String clslikeins(ClassLike classlike) {
     
-    return classrepService.repupdate(classRep);
+    System.out.println(classlike.getMeno());
+    System.out.println(classlike.getCno());
+    classlikeService.likeadd(classlike);
+    
+    return "redirect:detail?no="+classlike.getCno();
   }
   
   ///////////////// p_cls_qna 수업질문답변//////////////////

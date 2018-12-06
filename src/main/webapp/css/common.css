@@ -6,6 +6,10 @@ a.btn.btn-primary{
   border-color: #FFB53C !important;
 }
 
+a.btn.btn-mok{
+	background-color: gray !important;
+  border-color: white !important;
+}
 *:not(i){
  margin: 0;
  padding: 0;

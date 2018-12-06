@@ -38,8 +38,8 @@ public class MenteeServiceImpl implements MenteeService {
 
   public void naverMailSend(Mentee m) {
     String host = "smtp.naver.com";
-    String user = "";
-    String password = "";
+    String user = "tjgus2932@naver.com";
+    String password = "vmfhwprxm123!";
     Properties props = new Properties(); 
     props.put("mail.smtp.host", host);
     props.put("mail.smtp.port", 587);
@@ -110,8 +110,12 @@ public class MenteeServiceImpl implements MenteeService {
 
   @Override
   public void add(Mentee mentee) {
+    mentee.setSell('N');
+    mentee.setStat('N');
+    mentee.setMtstat('N');
     menteeDao.signup(mentee);
   }
+  
   public void fbadd(Mentee mentee) {
     if(menteeDao.checkemail(mentee) == 0)
       menteeDao.fbsignup(mentee);

@@ -196,9 +196,10 @@
     
     <insert id="signup" parameterType="mentee"
             useGeneratedKeys="true" keyColumn="meno" keyProperty="no">
-        insert into p_mete(name,email,pwd,nick,rgdt)
-        values(#{name},#{email},#{pwd},#{nick},now())
+        insert into p_mete(name,email,pwd,nick,rgdt,sell,stat,mtstat)
+        values(#{name},#{email},password(#{pwd}),#{nick},now(),#{sell},#{stat},#{mtstat})
     </insert> 
+    
     
     <insert id="fbsignup" parameterType="mentee"
             useGeneratedKeys="true" keyColumn="meno" keyProperty="no">
@@ -235,7 +236,7 @@
         from 
             p_mete mte
         where
-            LOWER(mte.email)=#{email} and LOWER(mte.pwd)=#{pwd}
+            LOWER(mte.email)=#{email} and LOWER(mte.pwd)=password(#{pwd})
             <!-- mte.email=#{email} and mte.pwd=password(#{pwd}) -->
     </select> 
     
