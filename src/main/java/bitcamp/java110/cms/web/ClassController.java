@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import bitcamp.java110.cms.domain.BigTag;
+import bitcamp.java110.cms.domain.Cert;
 import bitcamp.java110.cms.domain.ClassBakt;
 import bitcamp.java110.cms.domain.ClassFile;
 import bitcamp.java110.cms.domain.ClassLike;
@@ -28,6 +29,7 @@ import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.MiddleTag;
 import bitcamp.java110.cms.domain.Timetable;
 import bitcamp.java110.cms.service.BigTagService;
+import bitcamp.java110.cms.service.CertService;
 import bitcamp.java110.cms.service.ClassBaktService;
 import bitcamp.java110.cms.service.ClassFileService;
 import bitcamp.java110.cms.service.ClassLikeService;
@@ -55,6 +57,7 @@ public class ClassController {
   MenteeService menteeService;
   BigTagService bigTagService;
   MiddleTagService middleTagService;
+  CertService certService;
   ServletContext sc;
   
   public ClassController(
@@ -63,8 +66,8 @@ public class ClassController {
       ,ClassBaktService classBaktService,MenteeService menteeService,
       ClassRepService classrepService,ClassFileService classFileService,
       TimetableService timetableService,BigTagService bigTagService,
-      MiddleTagService middleTagService, ClassOrderService classOrderService,
-      ServletContext sc) {
+      MiddleTagService middleTagService, ServletContext sc,
+      CertService certService , ClassOrderService classOrderService) {
     this.classService = classService;
     this.classqnaService = classqnaService;
     this.classorderService = classorderService;
@@ -77,6 +80,7 @@ public class ClassController {
     this.timetableService = timetableService;
     this.bigTagService = bigTagService;
     this.middleTagService = middleTagService;
+    this.certService = certService;
     this.sc = sc;
   }
 
@@ -541,4 +545,34 @@ public class ClassController {
       return "redirect:classLike";
   }
   // 찜클래스 종료
+  
+  @RequestMapping(value = "addClsOrder.do", method = {RequestMethod.POST})
+  public @ResponseBody String addClsOrderdo(String[] arr) {
+    for(String s : arr) {
+      String[] str = s.split("&");
+      int baktNo = Integer.parseInt(str[0]);  //      str[0] = BasketNo
+      int ttabNo = Integer.parseInt(str[1]);      //      str[1] = TtabNo
+            //      str[2] = Meno
+            //      str[3] = Time
+            //      str[4] = PayOpt
+            //      str[5] = 디테일에서 결제할 경우의 조건 "detail"
+      classBaktService.delete(baktNo);
+      
+      Timetable ttab = new Timetable();
+      ttab = timetableService.get(ttabNo);
+      
+      Classes classes = new Classes();
+      classes = classService.findBycno(ttab.getCno());
+      
+      ClassOrder order = new ClassOrder();
+      order.setCtno(Integer.parseInt(str[1]));
+      order.setMeno(Integer.parseInt(str[2]));
+      order.setTime(Integer.parseInt(str[3]));
+      order.setTot_pric(classes.getPric()*order.getTime());
+      order.setPayopt(str[4]);
+      
+      classorderService.orderadd(order);
+      }
+    return "complete";
+  }
 }

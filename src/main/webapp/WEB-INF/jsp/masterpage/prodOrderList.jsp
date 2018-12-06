@@ -114,7 +114,7 @@
 
                             <div class="about-desc">
 
-                                <h2 class="colorlib-heading">상품 주문 내역</h2>
+                                <h1 class="colorlib-heading">상품 주문 내역</h1>
 
                                 <div class="col-lg-12">
                                     <div class="col-lg-5" id="serch-men">

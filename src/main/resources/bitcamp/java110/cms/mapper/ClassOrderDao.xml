@@ -129,7 +129,7 @@
 			pc.cno=#{no} AND pm.meno =#{meno};
     </select>
 
-    <insert id="orderinsert" parameterType="int"
+    <insert id="orderinsert" parameterType="classOrder"
     useGeneratedKeys="true" keyColumn="ono" keyProperty="no">
         insert 
             into p_cls_order(meno,time,tot_pric,payopt,paydt,ctno)

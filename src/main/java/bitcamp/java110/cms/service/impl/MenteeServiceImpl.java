@@ -12,7 +12,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import bitcamp.java110.cms.dao.MenteeDao;
 import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.service.MenteeService;
@@ -53,8 +52,9 @@ public class MenteeServiceImpl implements MenteeService {
         new InternetAddress(m.getEmail())); 
     // 메일 제목 
     message.setSubject("Haru 임시 비밀번호입니다.");
+    message.setText("임시비밀번호 : " + m.getPwd() + " 로 로그인부탁드립니다."); 
+    
     // 메일 내용 
-    message.setText("임시비밀번호 : " + m.getPwd() + "로 로그인부탁드립니다."); 
     // send the message 
     Transport.send(message); 
     System.out.println("Success Message Send"); 
@@ -122,16 +122,6 @@ public class MenteeServiceImpl implements MenteeService {
   }
 
 
-  @Transactional
-  @Override
-  public void delete(int no) {
-    if (menteeDao.delete(no) == 0) {
-      throw new RuntimeException("해당 번호의 데이터가 없습니다.");
-    }
-    menteeDao.delete(no);
-
-  }
-
   // 멘토상태변경
   @Override
   public int updateMtstat(Mentee mentee) {
@@ -148,6 +138,12 @@ public class MenteeServiceImpl implements MenteeService {
   @Override
   public int updatePwd(Mentee mentee) {
     return menteeDao.updatePwd(mentee);
+  }
+  
+  // 마이페이지 회원탈퇴
+  @Override
+  public int delete(String withdrawalpwd) {
+    return menteeDao.delete(withdrawalpwd);
   }
   
   //마이페이지 menu1 phone

@@ -91,7 +91,7 @@
 										<td class="product-price col-2 text-center">${r.product.pric }</td>
 										<td class="product-quantity col-1 text-center"><input type="number" id="cnt${i.index}" name="produc1"
 											min="1" max="${r.product.stock}" value="${r.cnt}"></td>
-										<td class="del col-1 text-center">${r.product.deli }</td>
+										<td class="del col-1 text-center">${r.product.deli}</td>
 										<td class="product-line-price col-2 text-center">${(r.product.pric * r.cnt)+r.product.deli }</td>
 										<td class="product-removal col-1" id="del-button">
 											<button type="button" class="btn btn-danger" value="${r.no}">삭제</button>
@@ -164,7 +164,7 @@
 	        data : {
 	            "arr" : arr,
 	        },
-	        url : "canget.do",
+	        url : "addOrder.do",
 	        success : function(result) {
 	            if(result == "complete"){
 	                swal({
