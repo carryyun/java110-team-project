@@ -35,9 +35,14 @@
 
 <body>
 	<div id="wrap" style="background-color: #fff">
-		<div class="col" style="position: absolute; height: 105px; background-color: white">
-			<!-- 헤더 배경색 적용 -->
-		</div>
+		<div class="col-lg-12 px-0"
+            style="position: absolute; height: 147px; background-color: white">
+            <!-- 헤더 배경색 적용 -->
+        </div>
+        <div class="col-lg-12 px-0" 
+            style="position: absolute; top:147px; height: 387px; background-color: #f3f3f3">
+            <!-- 헤더 배경색 적용 -->
+        </div>
 
 		<div class="container" style="background-color: white">
 			<!-- Header (스크립트로 임시 inclue) -->
@@ -54,18 +59,7 @@
 				<!-- Main Content -->
 				<div class="container col-lg-12 my-3" style="background-color: #white">
 					<div class="row">
-						<%-- <div class="col-lg-2 border-right border-secondary">
-							<div class="col">
-								<h2>카테고리</h2>
-								<ul>
-									<c:forEach items="${BTlist}" var="bt">
-										<li class="ml-3"><a href="#">${bt.name}</a></li>
-									</c:forEach>
-								</ul>
-							</div>
-						</div> --%>
 						<!-- 오늘의 핫 아이템(카르셀) -->
-
 						<div class="col-lg-9">
 							<div class="row">
 								<div class="col" style="border-right: 1px solid rgb(217, 217, 217);">
@@ -85,13 +79,13 @@
 						</div>
 						<div class="col-lg-3 text-left">
 						<h2>상품 검색</h2>
-						<hr color="#FFB53C" style="height:4px;margin-top:10px;margin-bottom:15px"/>
+						<hr color="#FFB53C" style=" height:4px;margin-top:10px;margin-bottom:15px"/>
 						
 						  <input type="text" id="serchconts" style="height:40px; border: 4px solid #FFB53C;" onkeypress="if(event.keyCode==13) {serchProduct();}"> 
 						  <button onclick="serchProduct()" style="border:none; background: none;"><i style="position:relative;margin-left:-50px ;font-size: 20px;" class="fas fa-search"></i></button>
 						</div>
 
-						<hr class="FhrMargin">
+						<hr class="FhrMargin" style="background:none ;">
 					</div>
 
 					<div class="col-lg-12 mx-auto my-3">
@@ -113,9 +107,9 @@
 											<div class="col-lg-4">
 												<article class="card-wrapper">
 													<div class="image-holder">
-														<a href="detail?no=${pl.no}" class="image-holder__link"></a>
+														<a href="#" onclick="openInNewTab('detail?no=${pl.no}')" class="image-holder__link"></a>
 														<div class="image-liquid image-holder--original">
-															<a href="detail?no=${pl.no}"><img alt="${i.count}" src="${pl.phot}"
+															<a href="#" onclick="openInNewTab('detail?no=${pl.no}');" ><img alt="${i.count}" src="${pl.phot}"
 																style="width: 100%; height: 100%"></a> <img src="${pl.mentee.phot}"
 																class="mentorimg" alt="${pl.mentee.phot}">
 															<div style="padding: 0 5px; top: 75px; width: auto; height: auto; position: absolute; background-color: #f58500; color: white; border-bottom-right-radius: 10px">${pl.mentee.name}
@@ -132,10 +126,10 @@
 																<div class="col-lg-12 mb-2">
 																<c:choose>
 																	<c:when test="${fn:length(pl.titl) > 20}">
-																	   <a href="detail?no=${pl.no}">${fn:substring(pl.titl,0,20)}...</a>
+																	   <a href="#" onclick="openInNewTab('detail?no=${pl.no}')">${fn:substring(pl.titl,0,20)}...</a>
 														            </c:when>
 														            <c:otherwise>
-														              <a href="detail?no=${pl.no}">${pl.titl}</a>
+														              <a href="#" onclick="openInNewTab('detail?no=${pl.no}')">${pl.titl}</a>
 														            </c:otherwise> 
 																</c:choose>
 																</div>
@@ -394,6 +388,11 @@ function serchProduct(){
     var conts = $('input#serchconts').val();
     location.href='prdtSerch?titl='+conts;
 }
+
+function openInNewTab(url) {
+    var win = window.open(url, '_blank');
+    win.focus();
+  }
 </script>
 </body>
 

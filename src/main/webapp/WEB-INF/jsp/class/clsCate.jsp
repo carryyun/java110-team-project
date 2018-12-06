@@ -14,7 +14,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Clean Blog - Start Bootstrap Theme</title>
+<title>하루 - 클래스 검색</title>
 
 <!-- ===============필수포함=============== -->
 <!-- Bootstrap core CSS -->
@@ -62,6 +62,13 @@ margin-bottom: 0.25rem;
 	color: white;
 	border-color: #FFB53C;
 }
+
+.box label span:hover{
+    background-color: #FFB53C;
+    color: white;
+    border-color: #FFB53C;
+}
+
 /*
 
 .box label input:checked ~ span.yes:before,
@@ -229,9 +236,9 @@ margin-bottom: 0.25rem;
 											<div class="col-lg-4">
 												<article class="card-wrapper">
 													<div class="image-holder">
-														<a href="detail?no=${cl.no}" class="image-holder__link"></a>
+														<a href="#"  onclick="openInNewTab('detail?no=${cl.no}');" class="image-holder__link"></a>
 														<div class="image-liquid image-holder--original">
-															<a href="detail?no=${cl.no}"><img alt="${i.count}"
+															<a href="#" onclick="openInNewTab('detail?no=${cl.no}');"><img alt="${i.count}"
 																src="${cl.cfile}" style="width: 100%; height: 100%"></a>
 															<img src="${cl.mentee.phot}" class="mentorimg"
 																alt="${cl.mentee.phot}">
@@ -248,7 +255,7 @@ margin-bottom: 0.25rem;
 														<div class="product-description__title">
 															<div class="row">
 																<div class="col-lg-12 mb-2">
-																	<a href="detail?no=${cl.no}">${cl.titl}</a>
+																	<a href="#" onclick="openInNewTab('detail?no=${cl.no}');">${cl.titl}</a>
 																</div>
 															</div>
 															<!-- 분류명 , 가격 -->
@@ -452,6 +459,12 @@ margin-bottom: 0.25rem;
 		        });
 		    }
 		});
+</script>
+<script>
+function openInNewTab(url) {
+    var win = window.open(url, '_blank');
+    win.focus();
+  }
 </script>
 </body>
 
