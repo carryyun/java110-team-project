@@ -115,7 +115,7 @@
 
                             <div class="about-desc">
 
-                                <h2 class="colorlib-heading">문의 목록</h2>
+                                <h1 class="colorlib-heading">문의 목록</h1>
 
                                 <div class="col-lg-12">
                                     <div class="col-lg-5" id="serch-men">
@@ -241,7 +241,6 @@
                                             <h2>문의 상세 보기</h2>
                                             <a class="close" href="#">×</a>
                                             <div class="content">
-                                                <br />
                                                 <div class="container" style="width:100%;">
                                                     <div class="row">
 

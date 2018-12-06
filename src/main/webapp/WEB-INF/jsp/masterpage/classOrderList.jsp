@@ -102,7 +102,7 @@
                                     주문 내역</a></li>
                             <li><a
                                 onclick="location.href='classOrderList'"
-                                data-nav-section="9" style="color: #2c98f0; font-weight: bold;"> 클래스 등록 내역 </a></li>
+                                data-nav-section="9" style="color: #2c98f0; font-weight: bold;"> 클래스 신청 내역 </a></li>
 
                         </ul>
                     </div>
@@ -118,7 +118,7 @@
 
                             <div class="about-desc">
 
-                                <h2 class="colorlib-heading">클래스 등록 내역</h2>
+                                <h1 class="colorlib-heading">클래스 신청 내역</h1>
 
                                 <div class="col-lg-12">
                                     <div class="col-lg-5" id="serch-men">

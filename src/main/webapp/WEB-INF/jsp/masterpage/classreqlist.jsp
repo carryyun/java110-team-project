@@ -107,7 +107,7 @@
                     <div class="colorlib-narrow-content">
                         <div class="row">
 
-                            <h2 class="colorlib-heading">클래스 등록</h2>
+                            <h1 class="colorlib-heading">클래스 등록</h1>
                             <hr />
 
 

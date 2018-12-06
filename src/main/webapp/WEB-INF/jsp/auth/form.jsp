@@ -77,12 +77,12 @@
                     <div class="row" style="margin-top:10%">
                     <div class="col-sm-12">
                     
-                    <div id="login" class="form-group" style="right:80%;">
-                        <input type="submit" value="로그인" class="btn btn-warning btn-lg">
+                    <div id="login" class="form-group">
+                        <input type="submit" value="로그인" class="btn btn-warning btn-sm">
                     </div>
                     
                     <div id="main" class="form-group" style="position:absolute; right:10px; bottom:0;">
-                        <input type="button" value="메인으로" class="btn btn-warning btn-lg" onclick="mainhome()" >
+                        <input type="button" value="메인으로" class="btn btn-warning btn-sm" onclick="mainhome()" >
                     </div>
                     
                     </div>
