@@ -77,7 +77,7 @@ div.row.imgDiv {
 						<div class="col-lg-12" style="margin-top: 10px"> 
                         <h3 style="font-weight: 700">상품 등록</h3><hr color="#FFB53C" style="height:4px;margin-top:10px;margin-bottom:15px"/>
 							<div
-								style="color: white; background-color: gray; padding: 5px; display: inline; border-radius: 3px;">상품명</div>
+								style="color: white; background-color: #FFB53C; border: 1px solid #FFB53C; padding: 5px; display: inline; border-radius: 3px;">상품명</div>
 							<p>
 
 								<input name="titl" placeholder="상품명을 입력하세요"
@@ -93,13 +93,13 @@ div.row.imgDiv {
 				<div class="col-lg-12 mt-3">
 
 					<div
-						style="color: white; background-color: gray; padding: 5px; display: inline; border-radius: 3px;">상품명</div>
+						style="color: white; background-color: #FFB53C; padding: 5px; display: inline; border-radius: 3px;">상세보기</div>
 
-					<div class="col-lg-12" style="border: 1px solid #ccc; margin-top: 1px;">
+					<div class="col-lg-12" style="border: 1px solid #a9a9a9; margin-top: 5px;">
 						<div class="row">
 
 							<!-- summernote -->
-							<div class="col-lg-12 px-0" style="margin-top: 15px">
+							<div class="col-lg-12 px-0" style="margin-top: 1px">
 
 								<!-- 가격, 택배비(무료배송), 인증서  -->
 								<div class="col-lg-3 text-left">
@@ -158,7 +158,7 @@ div.row.imgDiv {
 				<div class="col-lg-12">
 					<br>
 					<div
-						style="color: white; background-color: gray; padding: 5px; display: inline; border-radius: 3px;">상품소개</div>
+						style="color: white; background-color: #FFB53C; padding: 5px; display: inline; border-radius: 3px;">상품소개</div>
 					<textarea id="summernote" name="conts" style="position: auto"></textarea>
 				</div>
 
@@ -168,7 +168,7 @@ div.row.imgDiv {
 				</div>
 				<!-- 등록 취소버튼 -->
 				<div class="col-lg-12 text-right">
-					<button type="button" id="submitBtn" class="btn btn-primary" style="background-color: #ec5453">등록</button>
+					<button type="button" id="submitBtn" class="btn btn-primary" style="background-color: #FFB53C; border: 1px solid #FFB53C">등록</button>
 					<input type="button" class="btn" onclick="closepage()" value="취소">
 				</div>
 			</form>

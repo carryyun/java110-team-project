@@ -5,51 +5,57 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+	.col-sm-4{
+		width: 23.33333333% !important;
+	}
+</style>
 <meta charset="UTF-8">
 <title>필수항목</title>
-		<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-	    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-	    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	
-	    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-	    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-	    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-	    
-	    <link rel="stylesheet" href="/css/sign.css">
+
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+		<link href="/css/signup.css" rel="stylesheet">
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+		<script src="/vendor/jquery/jquery.min.js"></script>
 </head>
 <body style="background-color: #f2f4f7">
-   <div id="wrap">
-		<div class="container mx-auto px-0">
-			<!-- Header (스크립트로 임시 inclue) -->
-			<div id="row">
-    <div class="container col-lg-12 mx-auto">
-    <!-- <div id="headerMain"></div> -->
-    <jsp:include page="../header.jsp"></jsp:include> 
-    </div>
-    </div>
+<div class="container">
+<form class="fbsignup" method="post" id="uploadForm" action="/app/mentee/fbsignup" onsubmit="return signupCheck()">
+        <!---heading---->
+        <header class="heading"> 필수 입력 사항</header>
+        <hr />
+        <!---Form starting---->
+        <div class="row">
 
-	<div class="container">
-			<div class="main">
-				<div class="main-center">
-				<h1>필수 입력 사항</h1>
-					<form class="fbsignup" method="post" action="/app/mentee/fbsignup" onsubmit="return signupCheck()" >
-						<div class="form-group">
-							<label for="username">닉네임</label>
-								<div class="input-group"> 
-									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="nick" id="usernick" oninput="checknick()" placeholder="닉네임을 입력해주세요 "/>
-								</div>
-						</div>
-                        <div class="selecct-but">
-				            <input type="submit" class="signupbtn" value=확인 onclick="wow();">
-				            <input type="button" id="backbtn" onclick="gohome();" value=뒤로가기>
-						</div>
-					</form>
-				</div><!--main-center"-->
-			</div><!--main-->
-		</div><!--container-->
-	</div>
-</div>
+            <!--- For nickname---->
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label class="nick">닉네임</label> </div>
+                    <div class="col-sm-8">
+                        <input type="text" name="nick" id="usernick" placeholder="닉네임을 입력해 주세요" class="form-control " oninput="checknick()" maxlength="10" style="width: 250px;">
+                    </div>
+                </div>
+            </div>
+        </div><!-- row -->
+
+            <div class="row">
+            <div class="col-sm-12">
+                   <hr/>
+                    <div class="col-sm-6">
+                        <input type="button" class="signupbtn btn btn-warning" value="회원가입" onclick="wow();">
+                    </div>
+
+                    <div class="col-sm-6">
+                        <input type="button" class="backbtn btn btn-warning" onclick="gohome();" value="뒤로가기">
+                    </div>
+            </div>
+            </div><!-- button row-->
+            
+        </form>
+    </div>
 
 <script>
 var nickCheck = 0;  // 닉네임 중복체크 , 유효성검사
@@ -88,10 +94,20 @@ function checknick(){
 
 function wow(){
 	if(signupCheck() == false){
-		alert("회원정보를 다시 입력해주세요.");
+		swal({
+		        text: "회원정보를 다시 입력해주세요",
+		        timer:3000,
+		        button:"확인"
+        	});
 	}else if(signupCheck() == true){
-		alert($("#usernick").val() + "님 환영합니다^^");
-		location.href="/app/auth/form";
+		swal({
+		        icon: "success",
+		        text: $("#usernick").val() + "님 환영합니다^^",
+		        timer:3000,
+		        button:"확인"
+		        }).then((value) => {
+		        	document.getElementById('uploadForm').submit();
+		        });
 	}
 }
 
@@ -101,7 +117,7 @@ function signupCheck() {
         return false;
     }else if(nickCheck == 0){
 		return false;
-	}else if(nameCheck == 1){
+	}else if(nickCheck == 1){
         return true;
 	}
 }

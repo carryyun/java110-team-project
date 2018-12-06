@@ -12,7 +12,6 @@ div.note-editable{
     height: 300px;
 }
 div#imgBind {
-	border: 2px solid lightskyblue;
 	padding-top: 15px;
 	width: 459px;
 	height: 280px;
@@ -53,14 +52,15 @@ div h1{
 div #ctitl{
     border: 2px solid black;
     font-size: 20px;
+    margin-redius: 15px;
     margin-bottom: 20px;
     height: 60px;
     width: 1100px;
 }
 .view,#posi{
-	border: 1px solid lightskyblue;
+	border: 1px solid #FFB53C;
     color: aliceblue;
-    background-color: lightskyblue;
+    background-color: #FFB53C;
     margin-right:3px;
     width: 100px;
     border-radius:3px;
@@ -149,9 +149,7 @@ input.upload{/*input type="file" tag 투명하게 처리*/
 	margin-bottom: 3px;
 }
 #cpay,#ctime,#sample6_address,#sample6_address2,#imgInput,#cttime,#ctime2,#rnumber,#cdate,#cdate2,#sample6_postcode{
-	border: 2px solid lightskyblue;
 	border-radius: 3px;
-	
 }
 
 #clsinsert,#back-home-btn{

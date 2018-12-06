@@ -9,6 +9,7 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <!DOCTYPE html>
 <html>
@@ -56,12 +57,11 @@
                 </div>
             </div>
             <div class="card-body">
-                <form action='login' method="post" >
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="email" name="email" value='${cookie.email.value}' 
+                        <input type="email" name="email" id="email" value='${cookie.email.value}' 
                         class="form-control" placeholder="useremail">
                         
                     </div>
@@ -69,26 +69,25 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
-                        <input type="password" name="pwd" class="form-control" placeholder="password">
+                        <input type="password" name="pwd" id="pwd" class="form-control" placeholder="password">
                     </div>
                     <div class="row align-items-center remember">
-                        <input type="checkbox" name="save" ${cookie.save.value}>이메일 저장
+                        <input type="checkbox"  id="save" name="save" ${cookie.save.value}>이메일 저장
                     </div>
                     <div class="row" style="margin-top:10%">
                     <div class="col-sm-12">
                     
                     <div id="login" class="form-group">
-                        <input type="submit" value="로그인" class="btn btn-warning btn-sm">
+                        <input type="button" id="submitbtn" onClick="submitbtnClick()" value="로그인" class="btn btn-warning btn-sm"/>
                     </div>
                     
                     <div id="main" class="form-group" style="position:absolute; right:10px; bottom:0;">
-                        <input type="button" value="메인으로" class="btn btn-warning btn-sm" onclick="mainhome()" >
+                        <input type="button" value="메인으로" class="btn btn-warning btn-sm" onclick="mainhome()" />
                     </div>
                     
                     </div>
                     </div>
                     
-                </form>
             </div>
             <div class="card-footer">
                 <div class="d-flex justify-content-center links">
@@ -108,21 +107,21 @@
 
  <!-- 페이스북 -->
 <script type="text/javascript">
-$(document).ready(function(){
-    
-});
 
 function autoLogin(accessToken) {
     location.href = "fblogin?" + 
             "accessToken=" + accessToken;
 }
-
 function checkLoginState() {
     FB.getLoginStatus(function(response) { 
         if (response.status === 'connected') {
             autoLogin(response.authResponse.accessToken);
         } else {
-            alert("Facebook 로그인 실패!");
+        	swal({
+		        text: "Facebook 로그인 실패!",
+		        timer:3000,
+		        button:"확인"
+			});
         }
     });
 }
@@ -174,6 +173,42 @@ function loginWithKakao(){
     
     
 }
+function submitbtnClick(){
+	$.ajax({
+	 	type:"POST",
+		data : {
+			email : $("#email").val(),
+			pwd : $("#pwd").val(),
+			save : $("#save").val()
+		},
+		url : "login.do",
+		success : function(data){
+			console.log(data);
+			if(data == -1){
+				swal({
+			        text: "정지된 회원입니다.",
+			        timer:3000,
+			        button:"확인"
+				});
+			}else if(data == -2){
+				swal({
+			        text: "탈퇴한 회원입니다.",
+			        timer:3000,
+			        button:"확인"
+				});
+			}else if(data == 0){
+				swal({
+					 text:"회원정보가 일치하지 않습니다.",
+					 timer:3000,
+					 button:"확인"
+				  });
+			}else if(data == 1){
+				location.href="../mainpage/mainpage";
+			}
+		}
+	});
+}
+
 
 function mainhome(){
     location.href="/app/mainpage/mainpage";

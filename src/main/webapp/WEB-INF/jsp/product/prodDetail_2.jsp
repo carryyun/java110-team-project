@@ -140,6 +140,10 @@
 
 									</tr>
 								</thead>
+								
+								
+								
+								
 									<tbody class="col-lg-12">
 								<c:forEach items="${prodQnaList}" var="qna" varStatus="i">
 										<tr data-toggle="collapse" 
@@ -219,11 +223,11 @@
 							</table>
 						</div>
 						<div class="col-lg-12 text-right">
-							<!-- <button onclick="location.href='prdtQna'">상품 문의</button> -->
-								
-								
+							 <!-- <button onclick="location.href='prdtQna'">상품 문의</button>  -->
+							
 							<button type="button" data-toggle="modal" data-target="#addQnaModal"
 							style="width: 120px; height: 40px; background-color: #606066; color: #ffffff">상품문의</button>
+                                        
                                         <div class="modal fade" id="addQnaModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                           <div class="modal-dialog">
                                             <div class="modal-content text-left">

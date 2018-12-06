@@ -59,6 +59,8 @@ public class MenteeController {
   public void searchUserPost() {
   }
   
+ 
+  
   @RequestMapping("resultpwd")
   public void resultPwd(Mentee mentee,Model model) {
     String pwd = UUID.randomUUID().toString();
@@ -87,7 +89,8 @@ public class MenteeController {
     mentee.setEmail(session.getAttribute("email").toString());
     mentee.setName(session.getAttribute("name").toString());
     menteeService.fbadd(mentee);
-    return  "redirect:app/mainpage/mainpage";
+    session.setAttribute("loginUser", mentee);
+    return  "redirect:../mainpage/mainpage";
   }
 //  @RequestMapping(value = "signup", method=RequestMethod.POST)
 //  public String signup2(Mentee mentee) {
