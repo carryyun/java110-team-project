@@ -235,7 +235,7 @@ margin-bottom: 0.25rem;
 										<c:forEach items="${clslist}" var="cl" varStatus="i">
 											<div class="col-lg-4">
 												<article class="card-wrapper">
-													<div class="image-holder">
+													<div class="image-holder"> 
 														<a href="#"  onclick="openInNewTab('detail?no=${cl.no}');" class="image-holder__link"></a>
 														<div class="image-liquid image-holder--original">
 															<a href="#" onclick="openInNewTab('detail?no=${cl.no}');"><img alt="${i.count}"
