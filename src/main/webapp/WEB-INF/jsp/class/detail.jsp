@@ -351,35 +351,34 @@
                             <tr>
                                 <td colspan="3">
                                     <!-- <div class=""> -->
-                                    
                                             <!-- Message body -->
-                                            <div class="form-group">
-                                                <div class="col-lg-12">
-                                                    <textarea class="form-control" id="conts" name="conts"
-                                                        placeholder="클래스평을 등록해주세요." rows="5"></textarea>
-                                                </div>
-                                            </div>
-                                                </td>
-                                </tr>
-                                <tr>
-                                            <td>
-                                                <label class="control-label my-0" id="star" name="star" for="message">별점</label>
-                                            </td>
-                                            <td>
-                                                <div id="star1"></div>
-                                            <!-- </div> -->
-                                            <!-- <div class=""> -->
-                                            </td>
-                                <td align="right" valign="top">
-                                    <!-- Form actions -->
-                                        <!--col-lg-12추가했음-->
-                                        <div class="col-md-12 col-lg-12 text-right" style="vertical-align: middle;">
-                                                <button id="repbtn" type="button" onClick="repins(${sessionScope.loginUser.no});" 
-                                                class="btn btn-primary btn-md"
-                                                    style="background-color: #606066; color: #ffffff">등록</button>
-                                        </div>
+                                     <div class="form-group">
+                                         <div class="col-lg-12">
+                                             <textarea class="form-control" id="conts" name="conts"
+                                                 placeholder="클래스평을 등록해주세요." rows="5"></textarea>
+                                         </div>
+                                     </div>
                                 </td>
                             </tr>
+                            <tr>
+	                             <td>
+	                                 <label class="control-label my-0" id="star" name="star" for="message">별점</label>
+	                             </td>
+	                             <td>
+	                                 <div id="star1"></div>
+	                             <!-- </div> -->
+	                             <!-- <div class=""> -->
+	                             </td>
+	                             <td align="right" valign="top">
+	                                 <!-- Form actions -->
+	                                     <!--col-lg-12추가했음-->
+	                               		<div class="col-md-12 col-lg-12 text-right" style="vertical-align: middle;">
+	                                       <button id="repbtn" type="button" onClick="repins(${sessionScope.loginUser.no});" 
+	                                       class="btn btn-primary btn-md"
+	                                           style="background-color: #606066; color: #ffffff">등록</button>
+	                               		</div>
+	                             </td>
+                        	</tr>
                         <!-- <div class="col-md-9 col-md-offset-0"> -->
                     </table>
                                                            </fieldset>
@@ -789,6 +788,7 @@ function addqna(no) {
                     button : "확인",
                   })
                   var html ="";
+                
                 for(var i in data) {
                     var cqno = data[i].no;
 	        		var qnatitl = data[i].titl;
@@ -798,6 +798,21 @@ function addqna(no) {
 	        		var qnaanser = data[i].anser;
 	        		var qnanick = data[i].mentee.nick;
 	        		var countqn = ${countqna};
+	        		
+	        		qnargdt = new Date();
+	        		
+	        		var dd= qnargdt.getDate();
+	        		var mm= qnargdt.getMonth();
+	        		var yy= qnargdt.getFullYear();
+	        		
+	        		if( dd < 10){
+	        		    dd = '0' + dd;
+	        		}
+	        		if( mm < 10){
+	        		    mm='0' +mm;
+	        		}
+	        		
+	        		qnargdt = yy+'-'+mm+'-'+dd;
 	        		
 	        		html +=' <c:set var="qnasi" value="${countqna}" />'
 	        		html +='    <tr data-toggle="collapse" '
@@ -1210,8 +1225,6 @@ function updano(teno) {  /* 댓글 수정 취소 버튼 */
     $("#delebtn"+teno).show();
 }
 
-
-
 function clslikeins(no) {
     var cno = ${detailclass.no};
     
@@ -1295,10 +1308,6 @@ function updabtn(sessionno,rno , teno) { /* 회원 인식해서 댓글 수정해
     var updateconts = $("#repup"+teno).val();
     var replist = $('div#replist');
     var cno = ${detailclass.no};
-    
-    
-    console.log(rno);
-    console.log("내용:"+updateconts);
     
     if(updateconts == "") {
         swal({

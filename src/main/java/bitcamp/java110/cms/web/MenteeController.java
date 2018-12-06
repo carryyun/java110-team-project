@@ -59,6 +59,8 @@ public class MenteeController {
   public void searchUserPost() {
   }
   
+ 
+  
   @RequestMapping("resultpwd")
   public void resultPwd(Mentee mentee,Model model) {
     String pwd = UUID.randomUUID().toString();

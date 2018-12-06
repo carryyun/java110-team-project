@@ -9,13 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import bitcamp.java110.cms.domain.Cert;
-import bitcamp.java110.cms.domain.ClassBakt;
 import bitcamp.java110.cms.domain.ClassOrder;
 import bitcamp.java110.cms.domain.ClassQna;
 import bitcamp.java110.cms.domain.Classes;
 import bitcamp.java110.cms.domain.Cs;
 import bitcamp.java110.cms.domain.Mentee;
-import bitcamp.java110.cms.domain.Mentor;
 import bitcamp.java110.cms.domain.Product;
 import bitcamp.java110.cms.domain.ProductOrder;
 import bitcamp.java110.cms.domain.ProductQnA;
@@ -69,6 +67,17 @@ public class MypageController {
    this.certService = certService;
    
    
+  }
+  
+  @RequestMapping(value="deleteuser.do", method= {RequestMethod.POST})
+  public @ResponseBody int deleteuser(String withdrawalpwd,HttpSession session,Model result){
+    System.out.println("ASDASD");
+    System.out.println(menteeService.delete(withdrawalpwd));
+    if(menteeService.delete(withdrawalpwd) > 0) {
+      session.invalidate(); 
+      return menteeService.delete(withdrawalpwd);
+    }
+    return menteeService.delete(withdrawalpwd);
   }
 
   @GetMapping("mypage")

@@ -43,4 +43,13 @@ public class ClassOrderServiceImpl implements ClassOrderService{
   public void orderadd(ClassOrder classorder) {
     classorderDao.orderinsert(classorder);
   }
+
+
+  @Override
+  public int listByCno(int no , int rono) {
+    
+    return classorderDao.findBycno(no,rono);
+  }
+
+
 }

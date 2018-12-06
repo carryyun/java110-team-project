@@ -46,7 +46,7 @@ public class ClassController {
 
   ClassService classService;
   ClassQnaService classqnaService;
-  ClassOrderService classorderService;
+  ClassOrderService classOrderService;
   ClassLikeService classlikeService;
   ClassBaktService classBaktService;
   ClassRepService classrepService;
@@ -60,7 +60,7 @@ public class ClassController {
 
   public ClassController(
       ClassService classService,ClassQnaService classqnaService,
-      ClassOrderService classorderService,ClassLikeService classlikeService
+      ClassOrderService classOrderService,ClassLikeService classlikeService
       ,ClassBaktService classBaktService,MenteeService menteeService,
       ClassRepService classrepService,ClassFileService classFileService,
       TimetableService timetableService,BigTagService bigTagService,
@@ -68,7 +68,7 @@ public class ClassController {
       CertService certService) {
     this.classService = classService;
     this.classqnaService = classqnaService;
-    this.classorderService = classorderService;
+    this.classOrderService = classOrderService;
     this.classlikeService = classlikeService;
     this.classBaktService = classBaktService;
     this.menteeService = menteeService;
@@ -275,6 +275,20 @@ public class ClassController {
     model.addAttribute("countqna",countqna);
   }
 
+  @RequestMapping(value = "findBycno", method = {RequestMethod.POST})
+  public @ResponseBody int ordercountlist(int no,HttpSession session) {
+    
+    Mentee mentee = (Mentee) session.getAttribute("loginUser");
+    
+    System.out.println(mentee.getNo());
+    
+    int clsorderlist = classOrderService.listByCno(no , mentee.getNo());
+    
+    System.out.println(clsorderlist);
+    
+    return clsorderlist;
+  }
+
   @RequestMapping("findByptno")
   public void findByptno(Model model,int no) {
     Classes prdtcls = classService.findbyptno(no);
@@ -294,26 +308,11 @@ public class ClassController {
 
     List<ClassQna> clist= classqnaService.classqnalist(4,10,5);
 
-    for(ClassQna c : clist) {
-
-      System.out.println(c.getNo());
-      System.out.println(c.getTitl());
-      System.out.println(c.getConts());
-      System.out.println(c.getRgdt());
-    }
   }
 
   @RequestMapping(value = "qnainsert", method = {RequestMethod.POST})
   public @ResponseBody List<ClassQna> qnainsert(ClassQna classqna) {
-
     classqnaService.qnaadd(classqna);
-
-    System.out.println(classqna.getCno());
-    System.out.println(classqna.getConts());
-    System.out.println(classqna.getTitl());
-    System.out.println(classqna.getType());
-    System.out.println(classqna.getMeno());
-
     List<ClassQna> qnalist = classqnaService.listbycno(classqna.getCno(), 1, 5);
 
     return qnalist;
@@ -393,7 +392,7 @@ public class ClassController {
   @PostMapping("orderinsert")
   public int orderinsert(ClassOrder classorder) {
 
-    classorderService.orderadd(classorder);
+    classOrderService.orderadd(classorder);
 
     return 1;
   }
@@ -406,7 +405,7 @@ public class ClassController {
   /* @GetMapping("corderlist")
   public List<ClassOrder> orderlist() {
 
-    List<ClassOrder> clist = classorderService.corderlist(4,10,5);
+    List<ClassOrder> clist = classOrderService.corderlist(4,10,5);
 
     for(ClassOrder c : clist) {
       System.out.println(c.getNo());
@@ -565,7 +564,7 @@ public class ClassController {
         order.setTot_pric(classes.getPric()*time);
         order.setPayopt(payOpt);
 
-        classorderService.orderadd(order);
+        classOrderService.orderadd(order);
         return "complete";
       }else {
         int baktNo = Integer.parseInt(str[0]);  //      str[0] = BasketNo
@@ -587,7 +586,7 @@ public class ClassController {
         order.setTot_pric(classes.getPric()*time);
         order.setPayopt(payOpt);
 
-        classorderService.orderadd(order);
+        classOrderService.orderadd(order);
         return "complete";
       }
     }
