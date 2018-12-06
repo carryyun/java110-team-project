@@ -207,10 +207,11 @@
         values(#{name},#{email},#{nick},now())
     </insert> 
     
-    <delete id="delete" parameterType="int">
-        delete from p1_memb 
-        where mno=#{value}
-    </delete>
+    <update id="delete" parameterType="String">
+        update p_mete
+           set stat='Y'
+         where pwd=password(#{pwd}) OR pwd=(#{pwd})
+    </update>
     
     
     
@@ -236,7 +237,8 @@
         from 
             p_mete mte
         where
-            mte.email=#{email} and mte.pwd=password(#{pwd})
+            (mte.email=#{email} and mte.pwd=password(#{pwd}))
+            OR (mte.email=#{email} and mte.pwd=#{pwd})
             
     </select> 
     

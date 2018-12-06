@@ -10,4 +10,6 @@ public interface ClassOrderDao {
   int orderinsert(ClassOrder corder);
 
   List<ClassOrder> findAllMaster(Map<String, Object> params); // 관리자조회
+  
+  int findBycno(int no , int rono);
 }

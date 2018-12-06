@@ -44,25 +44,27 @@
     padding: 10px;
     position: absolute; right: 0px; top: 0px;
     transform: translateX(95%);
-    width : 300px;
+    width : 290px;
     background-color: white;
     }
-    
-    
+
+#STATICMENU select#time{
+    font-size: 14px;
+}
 </style>
 
 </head>
 <body style="background-color: #F2F4F7" onload="InitializeStaticMenu()">
-<div class="col" style="position: absolute; height: 105px; background-color: white">
+<div class="col" style="position: absolute; height: 146px; background-color: white">
     <!-- 헤더 배경색 적용 -->
 </div>
     <div class="container">
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-12" id="headermain">
                 <jsp:include page="../headerMain.jsp"></jsp:include>
             </div>
             <!-- 카테고리 nav (스크립트로 임시 inclue) -->
-            <div class="col-lg-12">
+            <div class="col-lg-12" id="headernav">
                 <jsp:include page="../headerNav.jsp"></jsp:include>
             </div>
             
@@ -71,9 +73,10 @@
                 <hr class="FhrBotMargin">
             </div>
             <div class="col-lg-12">
-            <div class="col-lg-9 text-center">
+            <div class="col-lg-9 text-center" style="margin-bottom: 50px">
                 <div class="row">
                     <aside class="col-lg-12 col-md-12 mx-auto">
+                    <div class="col-lg-12 px-1">
                         <article class="gallery-wrap">
                                 <div>
                                     <div id="carouselExampleIndicators" class="carousel slide" data-interval="false" data-ride="carousel">
@@ -91,14 +94,14 @@
                                             if(cfile.endsWith("jpg") || cfile.endsWith("png")){
                                         %>    
                                         <div class="carousel-item active">
-                                          <img style="width:100%; height:445px;" class="d-block w-100" src="${detailclass.cfile}" alt="First slide">
+                                          <img style="width:99.5%; height:445px;" class="d-block w-100" src="${detailclass.cfile}" alt="First slide">
                                           <%     
                                             }else {
                                              int cfileidx = cfile.indexOf("=");
                                              String cfileurl = cfile.substring(cfileidx+1);
                                         %>
-                                            <div class="carousel-item active" style="margin-bottom: -5px;">
-                                              <iframe width="100%" height="450" style="margin-left:-10px;" src="https://www.youtube.com/embed/<%=cfileurl%>" 
+                                            <div class="carousel-item active">
+                                              <iframe width="100%" height="445" style="margin-left:-10px;" src="https://www.youtube.com/embed/<%=cfileurl%>" 
                                               frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
                                               allowfullscreen></iframe>
                                         <%
@@ -113,16 +116,15 @@
                                                 if(fna.endsWith("jpg") || fna.endsWith("png")){
                                             %>    
                                                 <div class="carousel-item">
-                                                  <img class="d-block w-100" style="width:100%; height:450px; margin-left:-10px; " 
-                                                  src="${cf.fname}" alt="${i.count}">
+                                                  <img style="width:99.5%; height:445px;" src="${cf.fname}" alt="${i.count}">
                                                 </div>
                                             <%    
                                                 }else {
                                                  int idx = fna.indexOf("=");
                                                  String fnaurl = fna.substring(idx+1);
                                             %>
-                                                <div class="carousel-item" style="margin-bottom: -5px;">
-                                                  <iframe width="100%" height="450" style="margin-left:-10px;" src="https://www.youtube.com/embed/<%=fnaurl%>" 
+                                                <div class="carousel-item">
+                                                  <iframe width="100%" height="445" style="margin-left:-10px;" src="https://www.youtube.com/embed/<%=fnaurl%>" 
                                                   frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
                                                   allowfullscreen></iframe>
                                                 </div>
@@ -131,20 +133,21 @@
                                             %>
                                         </c:forEach>
                                       </div>
-                                      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                      <a class="carousel-control-prev" style="height: 50px; margin-top: 25%;" href="#carouselExampleIndicators" role="button" data-slide="prev">
                                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                       </a>
-                                      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                      <a class="carousel-control-next" style="height: 50px; margin-top: 25%;" href="#carouselExampleIndicators" role="button" data-slide="next">
                                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                       </a>
                                     </div>
                                 </div>
                             </div>
                         </article>
+                        </div>
                     </aside>
                     <!-- 사이드바 -->
                     <div id="STATICMENU">
-                        <div class="col-lg-12">
+                        <div class="col-lg-12 px-0">
                         <div class="card-body p-1">
                             <div class="text-center">
                             
@@ -166,7 +169,7 @@
                             
                             
                             
-                                <h4 class="title mb-3 text-left">${detailclass.titl}</h4>
+<%--                                 <h4 class="title mb-3 text-left">${detailclass.titl}　<i style="color:#FFB53C" id='owl-i' class='far fa-star' onclick='setLike(event,${detailclass.no})'></i></h4> --%>
                                 <dl class="param param-feature text-left">
                                     <dd style="font-size: 1rem;">${detailclass.middleTag.name}</dd>
                                 </dl>
@@ -241,39 +244,38 @@
             <!-- <div class="col-lg-12 col-md-12 text-center"> -->
         </div>
         <!-- <div class="row"> -->
-                        <div class="col-lg-12" id="testt">
-                            <ul class="under-navbar-nav col-lg-5 col-md-12">
-                                <li class="under-nav-item"><a class="nav-link"
-                                    href="#class_detail">
-                                        <h4>요약</h4> 
-                                </a></li>
-                                <li class="under-nav-item"><a class="nav-link"
-                                    href="#mentor-info">
-                                        <h4>강사소개</h4>
-                                </a></li>
-                                <li class="under-nav-item"><a class="nav-link" 
-                                    href="#class-info">
-                                        <h4>강의설명</h4>
-                                </a></li>
-                                <li class="under-nav-item"><a class="nav-link" 
-                                    href="#location">
-                                        <h4>위치</h4>
-                                </a></li>
-                                <li class="under-nav-item"><a class="nav-link" 
-                                    href="#class-review">
-                                        <h4>클래스 후기</h4>
-                                </a></li>
-                            </ul>
-                        </div>
     <!--요약 , 강사소개 , 강의설명,  위치, 클래스후기-->
-        <div class="row">
+        <div class="row"> 
           <div class="col-lg-9">
             <!-- Links -->
             <div class="col-lg-12 col-md-12 mx-auto" id="detail">
-            
-                <div class="detail_info">
-                    <hr class="Fhr" id="class_detail">
+            <div class="col-lg-12 px-0" id="testt"> 
+                            <ul class="under-navbar-nav col-lg-12 col-md-12" style="height:45px">
+                                <li class="under-nav-item"><a class="nav-link"
+                                    href="#class_detail">
+                                        <h5>요약</h5> 
+                                </a></li>
+                                <li class="under-nav-item"><a class="nav-link"
+                                    href="#mentor-info">
+                                        <h5>강사소개</h5>
+                                </a></li>
+                                <li class="under-nav-item"><a class="nav-link" 
+                                    href="#class-info">
+                                        <h5>강의설명</h5>
+                                </a></li>
+                                <li class="under-nav-item"><a class="nav-link" 
+                                    href="#location">
+                                        <h5>위치</h5>
+                                </a></li>
+                                <li class="under-nav-item"><a class="nav-link" 
+                                    href="#class-review">
+                                        <h5>클래스 후기</h5>
+                                </a></li>
+                            </ul>
+                        </div>
+                <div class="detail_info" id="startTarget"> 
                     <h3>요약</h3>
+                    <hr class="FhrBotMargin" id="class_detail">
                     <!-- <div class="row"> -->
                     <div>
                         <img style = "width:200px; height:200px; float:left;"src="${detailclass.mentee.phot}" alt="${detailclass.mentee.phot}">
@@ -349,35 +351,34 @@
                             <tr>
                                 <td colspan="3">
                                     <!-- <div class=""> -->
-                                    
                                             <!-- Message body -->
-                                            <div class="form-group">
-                                                <div class="col-lg-12">
-                                                    <textarea class="form-control" id="conts" name="conts"
-                                                        placeholder="클래스평을 등록해주세요." rows="5"></textarea>
-                                                </div>
-                                            </div>
-                                                </td>
-                                </tr>
-                                <tr>
-                                            <td>
-                                                <label class="control-label my-0" id="star" name="star" for="message">별점</label>
-                                            </td>
-                                            <td>
-                                                <div id="star1"></div>
-                                            <!-- </div> -->
-                                            <!-- <div class=""> -->
-                                            </td>
-                                <td align="right" valign="top">
-                                    <!-- Form actions -->
-                                        <!--col-lg-12추가했음-->
-                                        <div class="col-md-12 col-lg-12 text-right" style="vertical-align: middle;">
-                                                <button id="repbtn" type="button" onClick="repins(${sessionScope.loginUser.no});" 
-                                                class="btn btn-primary btn-md"
-                                                    style="background-color: #606066; color: #ffffff">등록</button>
-                                        </div>
+                                     <div class="form-group">
+                                         <div class="col-lg-12">
+                                             <textarea class="form-control" id="conts" name="conts"
+                                                 placeholder="클래스평을 등록해주세요." rows="5"></textarea>
+                                         </div>
+                                     </div>
                                 </td>
                             </tr>
+                            <tr>
+	                             <td>
+	                                 <label class="control-label my-0" id="star" name="star" for="message">별점</label>
+	                             </td>
+	                             <td>
+	                                 <div id="star1"></div>
+	                             <!-- </div> -->
+	                             <!-- <div class=""> -->
+	                             </td>
+	                             <td align="right" valign="top">
+	                                 <!-- Form actions -->
+	                                     <!--col-lg-12추가했음-->
+	                               		<div class="col-md-12 col-lg-12 text-right" style="vertical-align: middle;">
+	                                       <button id="repbtn" type="button" onClick="repins(${sessionScope.loginUser.no});" 
+	                                       class="btn btn-primary btn-md"
+	                                           style="background-color: #606066; color: #ffffff">등록</button>
+	                               		</div>
+	                             </td>
+                        	</tr>
                         <!-- <div class="col-md-9 col-md-offset-0"> -->
                     </table>
                                                            </fieldset>
@@ -729,6 +730,7 @@ $('.accordian-body').on('show.bs.collapse', function () {
 </script>
     <script src="/vendor/jquery/jquery.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
     <script src="/js/jquery.raty.min.js"></script>
     <script src="/js/clean-blog.js"></script>
     
@@ -786,6 +788,7 @@ function addqna(no) {
                     button : "확인",
                   })
                   var html ="";
+                
                 for(var i in data) {
                     var cqno = data[i].no;
 	        		var qnatitl = data[i].titl;
@@ -795,6 +798,21 @@ function addqna(no) {
 	        		var qnaanser = data[i].anser;
 	        		var qnanick = data[i].mentee.nick;
 	        		var countqn = ${countqna};
+	        		
+	        		qnargdt = new Date();
+	        		
+	        		var dd= qnargdt.getDate();
+	        		var mm= qnargdt.getMonth();
+	        		var yy= qnargdt.getFullYear();
+	        		
+	        		if( dd < 10){
+	        		    dd = '0' + dd;
+	        		}
+	        		if( mm < 10){
+	        		    mm='0' +mm;
+	        		}
+	        		
+	        		qnargdt = yy+'-'+mm+'-'+dd;
 	        		
 	        		html +=' <c:set var="qnasi" value="${countqna}" />'
 	        		html +='    <tr data-toggle="collapse" '
@@ -1207,8 +1225,6 @@ function updano(teno) {  /* 댓글 수정 취소 버튼 */
     $("#delebtn"+teno).show();
 }
 
-
-
 function clslikeins(no) {
     var cno = ${detailclass.no};
     
@@ -1292,10 +1308,6 @@ function updabtn(sessionno,rno , teno) { /* 회원 인식해서 댓글 수정해
     var updateconts = $("#repup"+teno).val();
     var replist = $('div#replist');
     var cno = ${detailclass.no};
-    
-    
-    console.log(rno);
-    console.log("내용:"+updateconts);
     
     if(updateconts == "") {
         swal({
@@ -1492,11 +1504,9 @@ geocoder.addressSearch('${detailclass.basAddr}', function(result, status) {
         var testtTop;
         var setId = "#testt";
         $(document).ready(function() {
-            $("#headerNav").load("headerNav.html")
-
-            testtTop = $("#detail").offset().top;
+            testtTop = $("#startTarget").offset().top-45;
             $(setId).css("position", "absolute");
-            $(setId).css("top", (testtTop) + "px");
+            /* $(setId).css("top", (testtTop) + "px"); */
             
             $('#star1').raty({
                 path : "/upload/img/raty/",
@@ -1510,17 +1520,20 @@ geocoder.addressSearch('${detailclass.basAddr}', function(result, status) {
         function scroll_follow(id) {
             $(window).scroll(function() //스크롤이 움직일때마다 이벤트 발생
             {
-                var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
-                if (position > 985) {
+                var position = $(window).scrollTop()-testtTop + 58 - $("#headermain").offset().top - $("#headernav").offset().top; // 현재 스크롤바의 위치값을 반환합니다.
+                console.log("tTop:"+ testtTop)
+                console.log("po:"+ position);
+                if (position > 0) {
                     $(id).css("position", "fixed-top");
                     $(id).css("top", position + "px");
-                    /* $(id).css("width", "1110px"); */
+                    /* $(id).css("width", "100%"); */
 
                 } else {
-                    $(id).css("top", (testtTop) + "px");
+                    $(id).css("top", (-45) + "px");
                     $(id).css("position", "absolute");
-                    /* $(id).css("width", "1110px"); */
+                    /* $(id).css("width", "100%"); */
                 }
+
             });
         }
         scroll_follow(setId);
@@ -1534,13 +1547,11 @@ geocoder.addressSearch('${detailclass.basAddr}', function(result, status) {
     </script>
     <script>
 function addOrder(payopt){
-        
         var arr = new Array();
-        <c:forEach items="${basketList}" var="b" varStatus="i">
-        if(${i.index==0}) saveTitl='${br.classes.titl}';
-        var time = ${b.classes.time};
-        arr.push("${b.no}&${b.ctno}&${sessionScope.loginUser.no}&"+time+"&"+payopt+"&"+"detail");
-        </c:forEach>
+        if(${i.index==0}) saveTitl='${detailclass.titl}';
+        var ctno = $('select#time option:selected').val();
+        var time = ${detailclass.time};
+        arr.push("${detailclass.no}&"+ ctno +"&${sessionScope.loginUser.no}&"+time+"&"+payopt+"&"+"detail");
         
         $.ajaxSettings.traditional = true;
         $.ajax({
@@ -1579,8 +1590,8 @@ function addOrder(payopt){
                 button : "확인",
               })
         }else{
-            var saveTitl = ${detailclass.titl};
-            var saveTotal = ParseInt(${detailclass.pric}) * ParseInt(${detailclass.time})*
+            var saveTitl = "${detailclass.titl}";
+            var saveTotal = parseInt(${detailclass.pric}) * parseInt(${detailclass.time});
             var IMP = window.IMP; // 생략해도 괜찮습니다.
             IMP.init("imp40971131"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
             
@@ -1643,5 +1654,38 @@ function clsBaskt(no) {
     } 
 }
 
+</script>
+<script>
+function setLike(evt,cno){
+    evt.preventDefault();
+    if('${sessionScope.loginUser}' != ''){
+        $.ajax({
+            type : "POST" , 
+            data : {
+                "cno" : cno , 
+                "meno" : '${sessionScope.loginUser.no}'
+            },
+            url : "../class/clslikeins.do" ,
+            success : function() {
+                swal({
+                    text : "찜클래스가 등록되었습니다",
+                    icon : "success",
+                    button : "확인",
+                  })
+                /* location.href="detail?no="+${detailclass.no}; */
+            },error : function(error,status){
+                swal({
+                    text : "이미 찜클래스에 등록된 클래스입니다.",
+                    button : "확인",
+                  })
+            }
+        });
+    }else{
+        swal({
+            text : "로그인 후 이용 가능합니다",
+            button : "확인",
+          })
+    }
+}
 </script>
 </html>
