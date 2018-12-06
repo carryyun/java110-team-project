@@ -209,7 +209,7 @@
     
     <update id="delete" parameterType="String">
         update p_mete
-           set stat='Y'
+           set stat='S'
          where pwd=password(#{pwd}) OR pwd=(#{pwd})
     </update>
     

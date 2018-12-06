@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import bitcamp.java110.cms.domain.BigTag;
-import bitcamp.java110.cms.domain.Cert;
 import bitcamp.java110.cms.domain.ClassBakt;
 import bitcamp.java110.cms.domain.ClassFile;
 import bitcamp.java110.cms.domain.ClassLike;
@@ -116,7 +115,7 @@ public class ClassController {
           files.remove((Object)file.getOriginalFilename());
         }else {
         String filename = UUID.randomUUID().toString();
-        file.transferTo(new File(sc.getRealPath("/upload/img/test/" + filename+".png")));
+        file.transferTo(new File(sc.getRealPath("/upload/img/classImg/" + filename+ ".png")));
         filelist.add(filename);
         }
       } 
