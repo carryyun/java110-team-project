@@ -222,9 +222,8 @@
                                 <i class="fas fa-shopping-cart"></i>장바구니</button>
                                         
                                 <a href="#" class="btn btn-lg btn-primary text-uppercase"
-                                onClick="cls"> 결제하기</a>
-                                
-                            </div>
+                                onClick="orderCls()"> 결제하기</a>
+                            </div> 
                         </div>
                         <!-- card-body.// -->
                     </div>
@@ -275,7 +274,7 @@
                     <h3>요약</h3>
                     <!-- <div class="row"> -->
                     <div>
-                        <img style = "width:200px; height:200px; float:left;"src="${detailclass.mentee.phot}" alt="">
+                        <img style = "width:200px; height:200px; float:left;"src="${detailclass.mentee.phot}" alt="${detailclass.mentee.phot}">
                         <br><br><br>
                         <div class = "shortinfo"><strong>금액</strong><div class="inf">${detailclass.pric}원</div></div>
                         <div class = "shortinfo"><strong>총 수업시간</strong><div class="inf">${detailclass.time}시간</div></div>
@@ -1531,7 +1530,84 @@ geocoder.addressSearch('${detailclass.basAddr}', function(result, status) {
                     }
                 });
     </script>
+    <script>
+function addOrder(payopt){
+        
+        var arr = new Array();
+        <c:forEach items="${basketList}" var="b" varStatus="i">
+        if(${i.index==0}) saveTitl='${br.classes.titl}';
+        var time = ${b.classes.time};
+        arr.push("${b.no}&${b.ctno}&${sessionScope.loginUser.no}&"+time+"&"+payopt);
+        </c:forEach>
+        
+        $.ajaxSettings.traditional = true;
+        $.ajax({
+            type : "POST",
+            data : {
+                "arr" : arr,
+            },
+            url : "addClsOrder.do",
+            success : function(result) {
+                if(result == "complete"){
+                    swal({
+                        title: "결제완료",
+                        text: "주문내역 페이지로 이동하시겠습니까?",
+                        icon: "success",
+                        buttons: true,
+                        dangerMode: true,
+                    }).then((willDelete) => { 
+                        if (willDelete) {
+                            location.href="../mypage/mypage#productbkt";
+                        } else {
+                            location.href="../mainpage/mainpage";
+                        }
+                      });
+                    
+                }
+            },
+            error : function(error, status) {
+            }
+        });
+    }
     
+    function orderCls(){
+        if(${sessionScope.loginUser eq null}){
+            swal({
+                text : "로그인 후 이용가능합니다..",
+                button : "확인",
+              })
+        }else{
+            var saveTitl = ${detailclass.titl};
+            var saveTotal = ParseInt(${detailclass.pric}) * ParseInt(${detailclass.time})*
+            var IMP = window.IMP; // 생략해도 괜찮습니다.
+            IMP.init("imp40971131"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
+            
+            IMP.request_pay({
+                pg : 'html5_inicis', //ActiveX 결제창은 inicis를 사용
+                pay_method : 'card', //card(신용카드), trans(실시간계좌이체), vbank(가상계좌), phone(휴대폰소액결제)
+                merchant_uid : 'merchant_' + new Date().getTime(), //상점에서 관리하시는 고유 주문번호를 전달
+                name : saveTitl,
+                amount : parseInt(saveTotal),
+                buyer_email : '${sessionScope.loginUser.email}',
+                buyer_name : '${sessionScope.loginUser.name}',
+                buyer_tel : '${sessionScope.loginUser.phone}',
+                buyer_addr : '${sessionScope.loginUser.bas_addr}',
+                buyer_postcode : '${sessionScope.loginUser.pstno}'
+            }, function(rsp) {
+                if ( rsp.success ) {
+                    addOrder(rsp.pay_method);
+                    
+                } else {
+                    var msg = '결제에 실패하였습니다.';
+                    msg += '에러내용 : ' + rsp.error_msg;
+                    
+                    alert(msg);
+                }
+            });
+            
+        }
+    }
+    </script>
 <!-- 장바구니 -->
 <script>
 function clsBaskt(no) { 

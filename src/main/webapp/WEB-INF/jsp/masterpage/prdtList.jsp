@@ -104,7 +104,7 @@
                     <div class="colorlib-narrow-content">
                         <div class="row">
                         
-                        <h2 class="colorlib-heading">전체 상품 목록</h2>
+                        <h1 class="colorlib-heading">전체 상품 목록</h1>
                             <hr />
                             
                     <div class="col-lg-12">

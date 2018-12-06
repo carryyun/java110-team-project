@@ -111,7 +111,7 @@
 
                             <div class="about-desc">
 
-                                <h2 class="colorlib-heading">신고 완료 목록</h2>
+                                <h1 class="colorlib-heading">신고 완료 목록</h1>
 
 
                                 <!-- 게시판 시작-->

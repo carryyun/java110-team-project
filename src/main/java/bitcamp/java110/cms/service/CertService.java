@@ -9,4 +9,5 @@ public interface CertService {
   
   int insertCert(Cert cert);
   
+  Cert get(int no);
 }
