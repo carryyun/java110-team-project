@@ -45,7 +45,7 @@ public class ClassController {
 
   ClassService classService;
   ClassQnaService classqnaService;
-  ClassOrderService classorderService;
+  ClassOrderService classOrderService;
   ClassLikeService classlikeService;
   ClassBaktService classBaktService;
   ClassRepService classrepService;
@@ -56,10 +56,10 @@ public class ClassController {
   MiddleTagService middleTagService;
   CertService certService;
   ServletContext sc;
-  
+
   public ClassController(
       ClassService classService,ClassQnaService classqnaService,
-      ClassOrderService classorderService,ClassLikeService classlikeService
+      ClassOrderService classOrderService,ClassLikeService classlikeService
       ,ClassBaktService classBaktService,MenteeService menteeService,
       ClassRepService classrepService,ClassFileService classFileService,
       TimetableService timetableService,BigTagService bigTagService,
@@ -67,7 +67,7 @@ public class ClassController {
       CertService certService) {
     this.classService = classService;
     this.classqnaService = classqnaService;
-    this.classorderService = classorderService;
+    this.classOrderService = classOrderService;
     this.classlikeService = classlikeService;
     this.classBaktService = classBaktService;
     this.menteeService = menteeService;
@@ -90,7 +90,7 @@ public class ClassController {
   @RequestMapping(value = "classadd", method=RequestMethod.GET)
   public void classinsert() {
   }
-  
+
   @RequestMapping(value = "classadd", method=RequestMethod.POST)
   public String classinsert(Classes c,List<MultipartFile> files,
       String removefiles, String days,String date,String edate,String stime, String etime,HttpSession session) throws Exception {
@@ -129,11 +129,11 @@ public class ClassController {
     classService.classadd(c, filelist, removefiles, days,date, edate,stime,etime,loginUser.getNo());
     return "redirect:../mainpage/mainpage";
   }
-  
-  
+
+
   @RequestMapping("classupdate")
   public void classupdate(Classes c) {
-    
+
     c.setNo(6);
     c.setTitl("고정지");
     c.setConts("안녕하세요 저는 둠칫둠칫");
@@ -150,31 +150,31 @@ public class ClassController {
     //c.setEdt("고정지");
     c.setMono(3);
     c.setMtno(3);
-    
+
     classService.classupdate(c);
   }
-  
+
   @GetMapping("findBytag")
   public Classes findBytag() {
-    
+
     List<Classes> clist = classService.classList(5);
 
     for(Classes c : clist) {
-      
+
       System.out.println(c.getMtno());
       System.out.println(c.getNo());
       System.out.println(c.getTitl());
       System.out.println("-------------");
     }
-    
+
     return null;
   }
-  
+
   @GetMapping("findByba")
   public Classes findByba() {
-    
+
     List<Classes> clist = classService.classList(5);
-    
+
     for(Classes c : clist) {
 
       System.out.println(c.getNo());
@@ -182,22 +182,22 @@ public class ClassController {
       System.out.println(c.getMtno());
       System.out.println(c.getBasAddr());
     }
-    
+
     return null;
   }
-  
+
   @GetMapping("findByday")
   public Classes findByday() {
-    
+
     return null;
   }
-  
+
   @RequestMapping("cls")
   public void cls(Model model) {
     List<Classes> clslist = classService.list();
     model.addAttribute("clslist", clslist);
   }
-  
+
   @RequestMapping("clsCate")
   public void clsCate(Model model, int no, String type) {
     BigTag bigtag = null;
@@ -227,14 +227,14 @@ public class ClassController {
     } catch (JsonProcessingException e) {
       System.out.println(e.getMessage());
     }*/
-    
+
     System.out.println(bigtag.getNo());
-    
+
     model.addAttribute("clslist", clslist);
-    
+
     model.addAttribute("bigTag", bigtag);
   }
-  
+
   @RequestMapping(value="clsCate.do" ,method= {RequestMethod.POST})
   public @ResponseBody List<Classes> clsCatedo(int no, String type,
       @RequestParam(defaultValue="2") int pageNo, @RequestParam(defaultValue="6") int pageSize) {
@@ -246,12 +246,12 @@ public class ClassController {
     }
     return scrollClsList;
   }
-  
+
   @RequestMapping("detail")
   public void findByCno(@RequestParam(defaultValue="1") int reppageNo, @RequestParam(defaultValue="5") int reppageSize, 
       @RequestParam(defaultValue="1") int qnapageNo, @RequestParam(defaultValue="5") int qnapageSize, 
       Model model,int no ,HttpSession session) {
-    
+
     List<ClassRep> clsreqlist = classrepService.listbycno(no , reppageNo , reppageSize);
     Classes detailclass = classService.findBycno(no);
     List<ClassQna> clsqnalist = classqnaService.listbycno(no, qnapageNo, qnapageSize);
@@ -259,12 +259,12 @@ public class ClassController {
     List<Timetable> clstimelist = timetableService.findByCno(no);
     int countrep = classrepService.countbycno(no);
     int countqna = classqnaService.countbycno(no);
-    
+
     /*Paging paging = new Paging();
     paging.setPageNo(reppageNo);
     paging.setPageSize(reppageSize);
     paging.setTotalCount(countrep);*/
-    
+
     model.addAttribute("clsreqlist",clsreqlist);
     model.addAttribute("detailclass",detailclass);
     model.addAttribute("clsqnalist",clsqnalist);
@@ -273,140 +273,139 @@ public class ClassController {
     model.addAttribute("countrep",countrep);
     model.addAttribute("countqna",countqna);
   }
-  
+
+  @RequestMapping(value = "findBycno", method = {RequestMethod.POST})
+  public @ResponseBody int ordercountlist(int no,HttpSession session) {
+    
+    Mentee mentee = (Mentee) session.getAttribute("loginUser");
+    
+    System.out.println(mentee.getNo());
+    
+    int clsorderlist = classOrderService.listByCno(no , mentee.getNo());
+    
+    System.out.println(clsorderlist);
+    
+    return clsorderlist;
+  }
+
   @RequestMapping("findByptno")
   public void findByptno(Model model,int no) {
     Classes prdtcls = classService.findbyptno(no);
-    
+
     model.addAttribute("prdtcls",prdtcls);
   }
-  
+
   @RequestMapping("classregi")
   public void classregi() {
-    
+
   }
-  
+
   ////////////////////여기까지 p_cls 클래스////////////////////////
-  
+
   @GetMapping("qnalist")
   public void qnalist() {
-    
+
     List<ClassQna> clist= classqnaService.classqnalist(4,10,5);
 
-    for(ClassQna c : clist) {
-
-      System.out.println(c.getNo());
-      System.out.println(c.getTitl());
-      System.out.println(c.getConts());
-      System.out.println(c.getRgdt());
-    }
   }
-  
+
   @RequestMapping(value = "qnainsert", method = {RequestMethod.POST})
   public @ResponseBody List<ClassQna> qnainsert(ClassQna classqna) {
-    
     classqnaService.qnaadd(classqna);
-    
-    System.out.println(classqna.getCno());
-    System.out.println(classqna.getConts());
-    System.out.println(classqna.getTitl());
-    System.out.println(classqna.getType());
-    System.out.println(classqna.getMeno());
-    
     List<ClassQna> qnalist = classqnaService.listbycno(classqna.getCno(), 1, 5);
-    
+
     return qnalist;
   }
-  
+
   @RequestMapping("qnaupdate")
   public void qnaupdate(ClassQna classqna) {
-    
+
     classqna.setNo(5);
     //classqna.setMeno(7);
     //classqna.setCno(cno);
     classqna.setTitl("고정은씨는 이 글을 보시오!!");
     classqna.setConts("응 넌 낚였어");
-    
+
     classqnaService.qnaupdate(classqna);
   }
-  
+
   @RequestMapping(value = "ansupdate.do", method = {RequestMethod.POST})
   public @ResponseBody List<ClassQna> ansupdate(int no , String anser) {
-    
+
     ClassQna classqna = classqnaService.get(no);
     classqna.setAnser(anser);
-    
+
     classqnaService.ansupdate(classqna);
-    
+
     List<ClassQna> qnalist = classqnaService.listbycno(classqna.getCno(), 1, 5);
-    
+
     return qnalist;
   }
-  
+
   @RequestMapping(value = "repinsert", method = {RequestMethod.POST})
   public @ResponseBody List<ClassRep> repinsert(ClassRep classrep) {
 
     classrepService.repAdd(classrep);
-    
+
     List<ClassRep> replist = classrepService.listbycno(classrep.getCno(), 1, 5);
-    
+
     return replist;
   }
-  
+
   @RequestMapping(value = "clsrepchange.do", method = {RequestMethod.POST})
   public @ResponseBody List<ClassRep> clsrepchange(int no , String conts) {
-    
+
     ClassRep classrep = classrepService.get(no);
     classrep.setConts(conts);
-    
+
     classrepService.repupdate(classrep);
     List<ClassRep> replist = classrepService.listbycno(classrep.getCno(), 1, 5);
-    
-    
+
+
     return replist;
   }
-  
+
   @RequestMapping(value = "clsrepdele.do", method = {RequestMethod.POST})
   public @ResponseBody List<ClassRep> clsrepdele(int no) {
-    
+
     ClassRep classrep = classrepService.get(no);
-    
+
     classrepService.repDelete(no);
-    
+
     List<ClassRep> replist = classrepService.listbycno(classrep.getCno(), 1, 5);
-    
+
     return replist;
   }
-  
+
   @RequestMapping(value = "clslikeins.do", method = {RequestMethod.POST})
   public @ResponseBody String clslikeins(ClassLike classlike) {
-    
+
     System.out.println(classlike.getMeno());
     System.out.println(classlike.getCno());
     classlikeService.likeadd(classlike);
-    
+
     return "redirect:detail?no="+classlike.getCno();
   }
-  
+
   ///////////////// p_cls_qna 수업질문답변//////////////////
   @PostMapping("orderinsert")
   public int orderinsert(ClassOrder classorder) {
-    
-    classorderService.orderadd(classorder);
-    
+
+    classOrderService.orderadd(classorder);
+
     return 1;
   }
 
   @RequestMapping("qnadelete")
   public void qnadelete(int no) {
-    
+
     classqnaService.qnadelete(no);
   }
- /* @GetMapping("corderlist")
+  /* @GetMapping("corderlist")
   public List<ClassOrder> orderlist() {
-    
-    List<ClassOrder> clist = classorderService.corderlist(4,10,5);
-    
+
+    List<ClassOrder> clist = classOrderService.corderlist(4,10,5);
+
     for(ClassOrder c : clist) {
       System.out.println(c.getNo());
       System.out.println(c.getMeno());
@@ -416,17 +415,17 @@ public class ClassController {
       System.out.println(c.getPaydt());
       System.out.println(c.getCtno());
     }
-    
+
     return null;
   }*/
-  
+
   ///////////////// p_cls_order 클래스 신청내역///////////////////////
-  
+
   @GetMapping("likelist")
   public List<ClassLike> likelist() {
-    
+
     List<ClassLike> clist = classlikeService.classlikelist(5);
-    
+
     for(ClassLike c : clist) {
       System.out.println(c.getNo());
       System.out.println(c.getMeno());
@@ -434,56 +433,56 @@ public class ClassController {
     }
     return null;
   }
-  
+
   @RequestMapping("likeinsert")
   public void likeinsert(ClassLike classlike) {
-    
+
     classlike.setNo(6);
     classlike.setCno(6);
     classlike.setMeno(6);
-    
+
     classlikeService.likeadd(classlike);
-    
+
   }
-  
+
   @RequestMapping("likedelete")
   public void likedelet(int no) {
-    
+
     classlikeService.likesub(no);
   }
-  
+
   ////////////////////////p_cls_like 찜클래스///////////////////////
-  
+
   @PostMapping("baktinsert")
   public int baktinsert(ClassBakt classbakt) {
-   
+
     classBaktService.add(classbakt);
-    
+
     return 1;
   }
-  
+
   @PostMapping("baktdelete")
   public int baktdelete(int no) {
-    
+
     classBaktService.delete(no);
-    
+
     return 1;
   }
-  
+
   @GetMapping("baktlist")
   public List<ClassBakt> baktlist(){
-    
+
     List<ClassBakt> clist = classBaktService.list(3, 5);
-    
+
     for(ClassBakt c : clist) {
       System.out.println(c.getNo());
       System.out.println(c.getMeno());
       System.out.println(c.getCtno());
     }
-    
+
     return null;
   }
-  
+
   /*
    * 클래스 장바구니 리스트불러오기
    */
@@ -492,78 +491,104 @@ public class ClassController {
     Mentee mentee = (Mentee) session.getAttribute("loginUser");
     List<ClassBakt> basketList = classBaktService.listByMeno(mentee.getNo());
     model.addAttribute("basketList", basketList);
-    
+
     List<ClassBakt> sumList = classBaktService.sumByMeno(mentee.getNo());
     model.addAttribute("sumList", sumList);
   }
-  
-  
+
+
   /* 클래스장바구니*/
   @RequestMapping(value = "clsBaskt.do", method = {RequestMethod.POST})
   public @ResponseBody String clsBaskt(ClassBakt classBakt) {
-    
+
     classBaktService.add(classBakt);
-    
+
     return "redirect:detail?no="+classBakt.getNo();
   }
-  
+
   @ResponseBody
   @RequestMapping("removeDate")
   public String removeDate(int no) throws Exception {
-      
-      classBaktService.delete(no);
-      return "redirect:basketclass";
+
+    classBaktService.delete(no);
+    return "redirect:basketclass";
   }
   //클래스 장바구니 종료
-  
+
   /*
    * 찜클래스 관련 시작
    */
   @GetMapping("like")
   public void basketproduct(Model model, HttpSession session) {
     Mentee loginUser = (Mentee) session.getAttribute("loginUser");
-    
+
     List<ClassLike> likeList = classlikeService.listByMeno(loginUser.getNo());
-    
+
     model.addAttribute("likeList",likeList);
-    
+
   }
   @ResponseBody
   @RequestMapping("removeLike")
   public String removeLike(int no) throws Exception {
-      
-      classlikeService.likesub(no);
-      return "redirect:classLike";
+
+    classlikeService.likesub(no);
+    return "redirect:classLike";
   }
   // 찜클래스 종료
-  
+
   @RequestMapping(value = "addClsOrder.do", method = {RequestMethod.POST})
   public @ResponseBody String addClsOrderdo(String[] arr) {
     for(String s : arr) {
       String[] str = s.split("&");
-      int baktNo = Integer.parseInt(str[0]);  //      str[0] = BasketNo
-      int ttabNo = Integer.parseInt(str[1]);      //      str[1] = TtabNo
-            //      str[2] = Meno
-            //      str[3] = Time
-            //      str[4] = PayOpt
-            //      str[5] = 디테일에서 결제할 경우의 조건 "detail"
-      classBaktService.delete(baktNo);
-      
-      Timetable ttab = new Timetable();
-      ttab = timetableService.get(ttabNo);
-      
-      Classes classes = new Classes();
-      classes = classService.findBycno(ttab.getCno());
-      
-      ClassOrder order = new ClassOrder();
-      order.setCtno(Integer.parseInt(str[1]));
-      order.setMeno(Integer.parseInt(str[2]));
-      order.setTime(Integer.parseInt(str[3]));
-      order.setTot_pric(classes.getPric()*order.getTime());
-      order.setPayopt(str[4]);
-      
-      classorderService.orderadd(order);
+      System.out.println(str.length);
+      if(str.length == 4) {
+        int baktNo = Integer.parseInt(str[0]);  //      str[0] = BasketNo
+        int ttabNo = Integer.parseInt(str[1]);      //      str[1] = TtabNo
+        int meno = Integer.parseInt(str[2]);      //      str[2] = Meno
+        int time = Integer.parseInt(str[3]);      //      str[3] = Time
+        String payOpt = str[4];      //      str[4] = PayOpt
+        //      str[5] = 디테일에서 결제할 경우의 조건 "detail"
+        classBaktService.delete(baktNo);
+
+        Timetable ttab = new Timetable();
+        ttab = timetableService.get(ttabNo);
+
+        Classes classes = new Classes();
+        classes = classService.findBycno(ttab.getCno());
+
+        ClassOrder order = new ClassOrder();
+        order.setCtno(ttabNo); // timetableNo임. 이름 잘못지어서 ctno인것같음.
+        order.setMeno(meno);
+        order.setTime(time);
+        order.setTot_pric(classes.getPric()*time);
+        order.setPayopt(payOpt);
+
+        classOrderService.orderadd(order);
+        return "complete";
+      }else {
+        int baktNo = Integer.parseInt(str[0]);  //      str[0] = BasketNo
+        int ttabNo = Integer.parseInt(str[1]);      //      str[1] = TtabNo
+        int meno = Integer.parseInt(str[2]);      //      str[2] = Meno
+        int time = Integer.parseInt(str[3]);      //      str[3] = Time
+        String payOpt = str[4];      //      str[4] = PayOpt
+        //      str[5] = 디테일에서 결제할 경우의 조건 "detail"
+        Timetable ttab = new Timetable();
+        ttab = timetableService.get(ttabNo);
+
+        Classes classes = new Classes();
+        classes = classService.findBycno(ttab.getCno());
+
+        ClassOrder order = new ClassOrder();
+        order.setCtno(ttabNo); // timetableNo임. 이름 잘못지어서 ctno인것같음.
+        order.setMeno(meno);
+        order.setTime(time);
+        order.setTot_pric(classes.getPric()*time);
+        order.setPayopt(payOpt);
+
+        classOrderService.orderadd(order);
+        return "complete";
       }
+    }
     return "complete";
   }
 }

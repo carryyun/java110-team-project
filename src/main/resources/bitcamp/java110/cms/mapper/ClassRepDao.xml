@@ -79,7 +79,7 @@
 		        	on pe.meno = psp.meno
 		        inner join p_cls as ps
 		        	on psp.cno = ps.cno
-		        where ps.cno = #{no}
+		    where ps.cno = #{no}
 		        order by psp.rno asc
     </select>
     
