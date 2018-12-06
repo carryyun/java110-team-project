@@ -1279,13 +1279,13 @@ function updabtn(sessionno,rno , teno) { /* 회원 인식해서 댓글 수정해
 	        		 html +='     <div id="rcont'+i+'" class="col-lg-10 media-body">'+conts+'</div>'
 	        		 html +='     <textarea class="repupda col-lg-9 media-body" id="repup'+i+'" rows="5" name="repup"'
 	        		 html +='                style =" margin-left:10px; width : 500px; display: none;"></textarea>'
-	        		     if("${sessionScope.loginUser}" == ""){
+	        		     	if("${sessionScope.loginUser}" == ""){
 	        		 html +='         <button type="button" onClick="deleterepnull()"'
 	        		 html +='      class="delebtn" id="delebtn'+i+'">삭제</button>'
-	        		     } else {
+	        		     	} else {
 	        		 html +='      <button type="button" data-toggle="modal" data-target="#deleteModal_'+rno+'"'
 	        		 html +='      class="delebtn" id="delebtn'+i+'">삭제</button>'
-	        		     }
+	        		     	}
                         
 	        		 html +='             <div class="modal fade" id="deleteModal_'+rno+'" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">'
 	        		 html +='               <div class="modal-dialog">'
