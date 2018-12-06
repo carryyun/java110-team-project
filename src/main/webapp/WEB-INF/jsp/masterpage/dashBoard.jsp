@@ -127,7 +127,7 @@ text-weight: bold;
 
                             <div class="about-desc">
 
-                                <h2 class="colorlib-heading">메인 화면</h2>
+                                <h1 class="colorlib-heading">메인 화면</h1>
 
                                 <div class="row">
                                     <div class="col-lg-12">
