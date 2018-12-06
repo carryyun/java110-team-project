@@ -164,7 +164,7 @@
 	        data : {
 	            "arr" : arr,
 	        },
-	        url : "canget.do",
+	        url : "addOrder.do",
 	        success : function(result) {
 	            if(result == "complete"){
 	                swal({

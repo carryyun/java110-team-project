@@ -361,8 +361,8 @@ public class ProductController {
     return "redirect:detail?no="+productBakt.getNo();
   }
   
-  @RequestMapping(value = "canget.do", method = {RequestMethod.POST})
-  public @ResponseBody String cangetdo(String[] arr) {
+  @RequestMapping(value = "addProdOrder.do", method = {RequestMethod.POST})
+  public @ResponseBody String addOrderdo(String[] arr) {
     
     for(String s : arr) {
       String[] str = s.split("&");
