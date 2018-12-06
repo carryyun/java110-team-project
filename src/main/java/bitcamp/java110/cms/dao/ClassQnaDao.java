@@ -14,4 +14,6 @@ public interface ClassQnaDao {
   int qnadelete(int no);
   int qnaupdate(ClassQna classqna); // 질문 수정
   int ansupdate(ClassQna classqna); // 답변 추가 , 답변수정
+  
+  ClassQna get(int no);
 }

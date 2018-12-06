@@ -28,7 +28,8 @@
        SELECT
             c.titl as ctitl,
             cq.titl,
-            cq.rgdt 
+            cq.rgdt, 
+            c.cno
        FROM
             p_cls_qna cq JOIN p_cls c ON cq.cno = c.cno
             JOIN p_mete m ON cq.meno = m.meno
@@ -87,6 +88,21 @@
 		        psa.qno desc
 		    ) as a
 		where rnum limit #{qnapageNo},#{qnapageSize};
+    </select>
+    
+    <select id="get" resultMap="cqnaMap" parameterType="int">
+	    select
+	        ps.cno,
+	        psa.qno
+	    from
+	        p_cls_qna as psa inner join p_cls as ps
+	        on psa.cno = ps.cno
+	        inner join p_mete as pme 
+	        on psa.meno = pme.meno
+	    where
+	        psa.qno = #{no}
+	    order by 
+	        psa.qno desc
     </select>
     
     <select id="countByCno" resultType="int" parameterType="int">

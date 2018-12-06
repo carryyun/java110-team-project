@@ -82,5 +82,11 @@ public class ClassQnaServiceImpl implements ClassQnaService{
     return classqnaDao.countByCno(no);
   }
 
+  @Override
+  public ClassQna get(int no) {
+    
+    return classqnaDao.get(no);
+  }
+
 }
 
