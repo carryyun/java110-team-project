@@ -17,7 +17,6 @@
 <!-- Bootstrap core CSS -->
 <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-
 <!-- 폰트 추가 -->
 <link href="https://fonts.googleapis.com/css?family=Jua"
     rel="stylesheet">
@@ -53,10 +52,12 @@
 </style>
 
 </head>
-<body style="background-color: #F2F4F7" onload="InitializeStaticMenu()">
+<body onload="InitializeStaticMenu()">
 <div class="col" style="position: absolute; height: 146px; background-color: white">
     <!-- 헤더 배경색 적용 -->
 </div>
+<div id="wrap" style="background-color: silver">
+<div> 
     <div class="container">
         <div class="row">
             <div class="col-lg-12" id="headermain">
@@ -705,9 +706,11 @@
             </div>
             <!-- <div class="container col-lg-12"> -->
             </div>
-        </div>
-            </div>
-        </div>
+         </div>
+       </div>
+   </div>
+   </div>
+</div>
         <!-- <div class="col-lg-12 col-md-12 mx-auto" id="detail"> -->
     <!-- <div class="container"> -->
     <!-- </div> -->
@@ -1100,6 +1103,7 @@ function repins(no) { /* 후기(댓글) 추가버튼 */
                   replist.html(html);
                   $('textarea#conts').val("");
             },error : function(error,status){
+                $('textarea#conts').val("");
                 swal({
                     text : "이미 후기를 등록을 하셨습니다.",
                     button : "확인",
