@@ -1530,7 +1530,6 @@ geocoder.addressSearch('${detailclass.basAddr}', function(result, status) {
                     }
                 });
     </script>
-<<<<<<< HEAD
     <script>
 function addOrder(payopt){
         
@@ -1609,8 +1608,6 @@ function addOrder(payopt){
         }
     }
     </script>
-=======
-    
 <!-- 장바구니 -->
 <script>
 function clsBaskt(no) { 
@@ -1645,5 +1642,4 @@ function clsBaskt(no) {
 }
 
 </script>
->>>>>>> 1ea883de5feb60b546b84abf1ffe48b5ff2bed79
 </html>
