@@ -1,7 +1,6 @@
 package bitcamp.java110.cms.service;
 
 import java.util.List;
-import javax.servlet.http.HttpSession;
 import bitcamp.java110.cms.domain.Classes;
 
 public interface ClassService {

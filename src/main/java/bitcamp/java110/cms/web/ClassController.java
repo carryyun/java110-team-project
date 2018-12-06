@@ -2,6 +2,7 @@ package bitcamp.java110.cms.web;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 import javax.servlet.ServletContext;
@@ -49,6 +50,7 @@ public class ClassController {
   ClassBaktService classBaktService;
   ClassRepService classrepService;
   ClassFileService classFileService;
+  ClassOrderService classOrderService;
   TimetableService timetableService;
   MenteeService menteeService;
   BigTagService bigTagService;
@@ -61,7 +63,8 @@ public class ClassController {
       ,ClassBaktService classBaktService,MenteeService menteeService,
       ClassRepService classrepService,ClassFileService classFileService,
       TimetableService timetableService,BigTagService bigTagService,
-      MiddleTagService middleTagService, ServletContext sc) {
+      MiddleTagService middleTagService, ClassOrderService classOrderService,
+      ServletContext sc) {
     this.classService = classService;
     this.classqnaService = classqnaService;
     this.classorderService = classorderService;
@@ -70,6 +73,7 @@ public class ClassController {
     this.menteeService = menteeService;
     this.classrepService = classrepService;
     this.classFileService = classFileService;
+    this.classOrderService = classOrderService;
     this.timetableService = timetableService;
     this.bigTagService = bigTagService;
     this.middleTagService = middleTagService;
@@ -270,6 +274,20 @@ public class ClassController {
     model.addAttribute("countqna",countqna);
   }
   
+  @RequestMapping(value = "findBycno", method = {RequestMethod.POST})
+  public @ResponseBody int ordercountlist(int no,HttpSession session) {
+    
+    Mentee mentee = (Mentee) session.getAttribute("loginUser");
+    
+    System.out.println(mentee.getNo());
+    
+    int clsorderlist = classOrderService.listByCno(no , mentee.getNo());
+    
+    System.out.println(clsorderlist);
+    
+    return clsorderlist;
+  }
+  
   @RequestMapping("findByptno")
   public void findByptno(Model model,int no) {
     Classes prdtcls = classService.findbyptno(no);
@@ -289,13 +307,6 @@ public class ClassController {
     
     List<ClassQna> clist= classqnaService.classqnalist(4,10,5);
 
-    for(ClassQna c : clist) {
-
-      System.out.println(c.getNo());
-      System.out.println(c.getTitl());
-      System.out.println(c.getConts());
-      System.out.println(c.getRgdt());
-    }
   }
   
   @RequestMapping(value = "qnainsert", method = {RequestMethod.POST})
@@ -303,11 +314,7 @@ public class ClassController {
     
     classqnaService.qnaadd(classqna);
     
-    System.out.println(classqna.getCno());
-    System.out.println(classqna.getConts());
-    System.out.println(classqna.getTitl());
-    System.out.println(classqna.getType());
-    System.out.println(classqna.getMeno());
+    System.out.println(classqna.getRgdt());
     
     List<ClassQna> qnalist = classqnaService.listbycno(classqna.getCno(), 1, 5);
     
@@ -333,6 +340,8 @@ public class ClassController {
     classqna.setAnser(anser);
     
     classqnaService.ansupdate(classqna);
+    
+    System.out.println(classqna.getRgdt());
     
     List<ClassQna> qnalist = classqnaService.listbycno(classqna.getCno(), 1, 5);
     
