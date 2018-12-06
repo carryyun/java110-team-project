@@ -1537,7 +1537,7 @@ function addOrder(payopt){
         <c:forEach items="${basketList}" var="b" varStatus="i">
         if(${i.index==0}) saveTitl='${br.classes.titl}';
         var time = ${b.classes.time};
-        arr.push("${b.no}&${b.ctno}&${sessionScope.loginUser.no}&"+time+"&"+payopt);
+        arr.push("${b.no}&${b.ctno}&${sessionScope.loginUser.no}&"+time+"&"+payopt+"&"+"detail");
         </c:forEach>
         
         $.ajaxSettings.traditional = true;

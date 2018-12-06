@@ -538,31 +538,23 @@ public class ClassController {
   }
   // 찜클래스 종료
   
-  @RequestMapping(value = "clsBaskt.do", method = {RequestMethod.POST})
-  public @ResponseBody String clsBasktdo(ClassBakt classBakt) {
-    
-    classBaktService.add(classBakt);
-    
-    return "redirect:detail?no="+classBakt.getNo();
-  }
-  
   @RequestMapping(value = "addClsOrder.do", method = {RequestMethod.POST})
   public @ResponseBody String addClsOrderdo(String[] arr) {
     for(String s : arr) {
       String[] str = s.split("&");
-//      str[0] = BasketNo
-//      str[1] = TtabNo
-//      str[2] = Meno
-//      str[3] = Time
-//      str[4] = PayOpt
-//      str[5] = 디테일에서 결제할 경우의 조건
-      classBaktService.delete(Integer.parseInt(str[0]));
+      int baktNo = Integer.parseInt(str[0]);  //      str[0] = BasketNo
+      int ttabNo = Integer.parseInt(str[1]);      //      str[1] = TtabNo
+            //      str[2] = Meno
+            //      str[3] = Time
+            //      str[4] = PayOpt
+            //      str[5] = 디테일에서 결제할 경우의 조건 "detail"
+      classBaktService.delete(baktNo);
       
-      Cert cert = new Cert();
-      cert = certService.get(Integer.parseInt(str[1]));
+      Timetable ttab = new Timetable();
+      ttab = timetableService.get(ttabNo);
       
       Classes classes = new Classes();
-      classes = classService.findBycno(cert.getCno());
+      classes = classService.findBycno(ttab.getCno());
       
       ClassOrder order = new ClassOrder();
       order.setCtno(Integer.parseInt(str[1]));
