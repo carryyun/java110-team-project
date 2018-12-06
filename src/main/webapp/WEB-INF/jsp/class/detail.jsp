@@ -47,6 +47,8 @@
     width : 300px;
     background-color: white;
     }
+    
+    
 </style>
 
 </head>
