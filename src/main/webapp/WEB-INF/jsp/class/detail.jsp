@@ -787,7 +787,6 @@ function addqna(no) {
 	        		var qnaanser = data[i].anser;
 	        		var qnanick = data[i].mentee.nick;
 	        		var countqn = ${countqna};
-	        		var qnadatergdt = qnargdt.("{yyyy}{MM}{dd}");
 	        		
 	        		html +=' <c:set var="qnasi" value="${countqna}" />'
 	        		html +='    <tr data-toggle="collapse" '
@@ -801,7 +800,7 @@ function addqna(no) {
 	        							}
 	        		html +='        <td class="col-lg-3">'+qnatitl+'</td>'
 	        		html +='        <td class="col-lg-2">'+qnanick+'</td>'
-	        		html +='        <td class="col-lg-2">'+qnadatergdt+'</td>'
+	        		html +='        <td class="col-lg-2">'+qnargdt+'</td>'
 	        		html +='    </tr>'
 	        		html +='    <tr>'
 	        		html +='        <td colspan="6" class="hiddenRow">'
@@ -891,7 +890,6 @@ function answerins(no,clsno,qno) {
 	        		var qnaanser = data[i].anser;
 	        		var qnanick = data[i].mentee.nick;
 	        		var countqn = ${countqna};
-	        		var qnadatergdt = moment(qnargdt).format('YYYYMMDD');
 	        		
 	        		html +=' <c:set var="qnasi" value="${countqna}" />'
 	        		html +='    <tr data-toggle="collapse" '
@@ -905,7 +903,7 @@ function answerins(no,clsno,qno) {
 	        							}
 	        		html +='        <td class="col-lg-3">'+qnatitl+'</td>'
 	        		html +='        <td class="col-lg-2">'+qnanick+'</td>'
-	        		html +='        <td class="col-lg-2">'+qnadatergdt+'</td>'
+	        		html +='        <td class="col-lg-2">'+qnargdt+'</td>'
 	        		html +='    </tr>'
 	        		html +='    <tr>'
 	        		html +='        <td colspan="6" class="hiddenRow">'
