@@ -37,8 +37,40 @@
                         <td>${c.timetable.date}</td>
                          <td>${c.timetable.stime}<br>(${c.classes.time}시간)</td>
                         <td>${c.tot_pric}</td>
-                        <td>${c.cert.type}수료증 if문처리(필요한것 : 클래스중분류,사용가능기한,발급횟수)</td>
+                        <td>
+                            
+                        <c:choose>
                         
+                            <c:when test="${c.cert.no == null }">
+                                                          미수료 <br>
+                            </c:when>
+                             
+                            <c:when test="${c.cert.no != null }">
+                                <c:if test="${c.cert.type == '수료증' }">
+                                                          
+                                                                 수료<br>                      
+                                    ${c.cert.type}<br>
+                                    ${c.bigTag.name}<br>
+                                    ${c.middleTag.name}<br>
+                                    <%-- ${c.cert.cnt}<br>
+                                    ${c.cert.ctdt}<br>
+                                    ${c.cert.edt} --%>
+                               
+                               </c:if>
+                             </c:when>
+                             
+                         </c:choose>
+                                
+                                
+
+
+
+                            
+                            
+                                
+                        <%-- ${c.cert.type}수료증 if문처리(필요한것 : 클래스중분류,사용가능기한,발급횟수) --%>
+                        
+                        </td>
 
                     </tr>
                    
