@@ -246,7 +246,7 @@ public class ClassController {
     }
     return scrollClsList;
   }
-
+  
   @RequestMapping("detail")
   public void findByCno(@RequestParam(defaultValue="1") int reppageNo, @RequestParam(defaultValue="5") int reppageSize, 
       @RequestParam(defaultValue="1") int qnapageNo, @RequestParam(defaultValue="5") int qnapageSize, 

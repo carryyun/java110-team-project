@@ -106,17 +106,19 @@ public class AuthController {
       
         try {
           Mentee loginUser = authService.getFacebookMember(accessToken);
+          System.out.println(loginUser);
           
           session.setAttribute("loginUser", loginUser);
           session.setAttribute("email", loginUser.getEmail());
           session.setAttribute("name", loginUser.getName());
          
           String redirectUrl = null;
+          System.out.println(menteeService.checkByEmail(loginUser));
           
           if(menteeService.checkByEmail(loginUser) == 0)
             redirectUrl = "../mentee/fbsignup";
           else {
-            redirectUrl = "../auth/form";
+            redirectUrl = "../mainpage/mainpage";
           }
           
           return "redirect:" + redirectUrl;

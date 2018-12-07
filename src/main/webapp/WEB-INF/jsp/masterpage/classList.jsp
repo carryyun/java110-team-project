@@ -31,10 +31,12 @@
 <!-- MAIN JS -->
 <script src="/js/masterpagejs/main.js"></script>
 <script src="/js/masterpagejs/bootstrap.min.js"></script>
+<link href="/css/common.css" rel="stylesheet">
 
 <style>
 #colorlib-aside {
     overflow: hidden;
+    position: absolute;
 }
 
 #th-pay th, #tb-pay td {
@@ -46,6 +48,18 @@
 </head>
 
 <body>
+
+<div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <jsp:include page="../headerMain.jsp"></jsp:include>
+            </div>
+            <!-- 카테고리 nav (스크립트로 임시 inclue) -->
+            <div class="col-lg-12">
+                <jsp:include page="../headerNav.jsp"></jsp:include>
+            </div>
+            </div>
+            </div>
 
     <div id="colorlib-page">
         <div class="container-wrap">
@@ -112,20 +126,19 @@
                             <h1 class="colorlib-heading">전체 클래스 목록</h1>
                             <!-- 게시판 시작-->
                             <div class="col-lg-12">
-                                <div class="col-lg-5" id="serch-men">
+                                <div class="col-lg-4" id="serch-men">
                                     <form action="#" method="get">
                                         <div class="input-group">
                                             <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
-                                            <input class="form-control"
+                                            <input class="form-control" style="height:48px; font-size:20px;"
                                                 id="system-search"
                                                 name="q"
                                                 placeholder="Search for"
                                                 required> <span
                                                 class="input-group-btn">
                                                 <button type="submit"
-                                                    class="btn btn-default">
-                                                    <i
-                                                        class="fas fa-search fa-3x"></i>
+                                                    class="btn btn-default" style="border:1px solid silver;">
+                                                    <i class="fas fa-search fa-3x" ></i>
                                                 </button>
                                             </span>
                                         </div>
@@ -286,4 +299,33 @@ $(document).ready(function() {
     });
 });
 </script>
+
+<script>
+    
+        var testtTop;
+        var setId = "#colorlib-aside";
+        $(document).ready(function() {
+            $("div#footerCss").css("margin-top","0px");
+            testtTop = $("#colorlib-aside").offset().top;
+console.log(testtTop);
+        });
+
+         function scroll_follow(id) {
+            $(window).scroll(function() //스크롤이 움직일때마다 이벤트 발생
+            {
+                var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
+                console.log(position);
+                if (position > 157) {
+                    $(id).css("position", "absolute");
+                    $(id).css("top", (position-157) + "px");
+
+                } else {
+                    $(id).css("position", "absolute");
+                    $(id).css("top", (0) + "px");
+                }
+            });
+        }
+        scroll_follow(setId); 
+        
+    </script>
 </html>
