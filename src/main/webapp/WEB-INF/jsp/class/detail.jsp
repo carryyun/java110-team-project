@@ -409,11 +409,11 @@
                                 <c:choose>
                                 <c:when test="${sessionScope.loginUser eq null}">
                                     <button type="button" onClick="deleterepnull()"
-                                 class="delebtn" id="delebtn${i.index}">삭제</button>
+                                 class="delebtn btn btn-danger" id="delebtn${i.index}">삭제</button>
                                 </c:when>
                                 <c:otherwise>         
                                 <button type="button" data-toggle="modal" data-target="#deleteModal_${r.no}"
-                                 class="delebtn" id="delebtn${i.index}">삭제</button>
+                                 class="delebtn btn btn-danger" id="delebtn${i.index}">삭제</button>
                                  </c:otherwise>
                                  </c:choose>
                                 
@@ -439,11 +439,11 @@
                                         
                                 <c:choose>
                                     <c:when test="${sessionScope.loginUser eq null}">
-                                        <button type="button" class="edbtn" id="edbtn${i.index}" 
+                                        <button type="button" class="edbtn btn btn-warning" id="edbtn${i.index}" 
                                 onClick="deleterepnull()" >수정</button>
                                     </c:when>
                                     <c:otherwise>
-                                        <button type="button" class="edbtn" id="edbtn${i.index}" 
+                                        <button type="button" class="edbtn btn btn-warning" id="edbtn${i.index}" 
                                 onClick="updarep(${sessionScope.loginUser.no} , ${r.no} , ${r.meno} ,${i.index});" >수정</button>
                                     </c:otherwise>
                                 </c:choose>

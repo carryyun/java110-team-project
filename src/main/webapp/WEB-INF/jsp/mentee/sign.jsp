@@ -129,8 +129,8 @@ function chkName(){
 
 
 function gohome(){
-	/* location.href="/app/auth/form"; */
-    history.back(-1);
+	 /* location.href="/app/auth/form"; */
+     history.back();
 }
 
 function checknick(){
