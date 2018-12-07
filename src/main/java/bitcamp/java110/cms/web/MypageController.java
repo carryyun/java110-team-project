@@ -1,13 +1,18 @@
 package bitcamp.java110.cms.web;
 
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import bitcamp.java110.cms.domain.Cert;
 import bitcamp.java110.cms.domain.ClassOrder;
 import bitcamp.java110.cms.domain.ClassQna;
@@ -15,15 +20,18 @@ import bitcamp.java110.cms.domain.Classes;
 import bitcamp.java110.cms.domain.Cs;
 import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.Mentor;
+import bitcamp.java110.cms.domain.MentorTag;
 import bitcamp.java110.cms.domain.Product;
 import bitcamp.java110.cms.domain.ProductOrder;
 import bitcamp.java110.cms.domain.ProductQnA;
+import bitcamp.java110.cms.service.BigTagService;
 import bitcamp.java110.cms.service.CertService;
 import bitcamp.java110.cms.service.ClassOrderService;
 import bitcamp.java110.cms.service.ClassQnaService;
 import bitcamp.java110.cms.service.ClassService;
 import bitcamp.java110.cms.service.CsService;
 import bitcamp.java110.cms.service.MenteeService;
+import bitcamp.java110.cms.service.MentoTagService;
 import bitcamp.java110.cms.service.MentorService;
 import bitcamp.java110.cms.service.ProductOrderService;
 import bitcamp.java110.cms.service.ProductQnAService;
@@ -43,6 +51,9 @@ public class MypageController {
   ClassService classService;
   ProductService productService;
   CertService certService;
+  BigTagService bigTagService;
+  MentoTagService mentoTagService;
+  ServletContext sc;
   
 
   public MypageController(
@@ -55,7 +66,10 @@ public class MypageController {
       ProductOrderService productOrderService,
       ClassService classService,
       ProductService productService,
-      CertService certService) {
+      CertService certService,
+      BigTagService bigTagService,
+      MentoTagService mentoTagService,
+    ServletContext sc) {
    this.menteeService = menteeService;
    this.mentorService = mentorService;
    this.csService = csService;
@@ -66,10 +80,13 @@ public class MypageController {
    this.classService = classService;
    this.productService = productService;
    this.certService = certService;
+   this.bigTagService = bigTagService;
+   this.mentoTagService = mentoTagService;
+   this.sc = sc ;
    
    
   }
-
+  
   @GetMapping("mypage")
   public void mypage(Model model,HttpSession session) {
     
@@ -91,6 +108,83 @@ public class MypageController {
 
   }
   
+  
+  
+  @RequestMapping(value = "imgupload", method=RequestMethod.POST)
+  public String  imgupload(@RequestParam("fileUpload1") List<MultipartFile> files,
+      @RequestParam("fileUpload2") List<MultipartFile> files2,
+      @RequestParam("no") int noin,
+      @RequestParam("carrin") String carrin, 
+      @RequestParam("btno") int btnoin,
+      Mentor mentor, MentorTag mentorTag) throws Exception {
+    
+      // string 에서 int값만 뽑아서  을 int type으로 변환
+      String str1 = carrin;
+      String str3 = new String();
+    
+    
+      for(int i = 0 ; i < str1.length(); i ++)
+      {    
+        if(48 <= str1.charAt(i) && str1.charAt(i) <= 57)
+            str3 += str1.charAt(i);
+      }
+    
+      int newCarr = Integer.parseInt(str3);
+      // string 에서 int값만 뽑아서  을 int type으로 변환
+    
+      mentorTag.setMono(noin);
+      mentorTag.setBtno(btnoin);
+      
+      mentor.setNo(noin);
+      mentor.setCarr(newCarr);
+    
+      mentorService.add(mentor);
+      mentoTagService.add(mentorTag);
+      
+    
+
+
+ 
+
+      
+
+        
+    for(MultipartFile file : files) {
+      if(file.getOriginalFilename().length() > 2 ) {
+        
+        String filename = UUID.randomUUID().toString();
+        file.transferTo(new File(sc.getRealPath("/upload/img/meto_file/" + filename+".png")));
+       
+      } 
+    }
+    
+    for(MultipartFile file : files2) {
+      if(file.getOriginalFilename().length() > 2 ) {
+        
+        String filename = UUID.randomUUID().toString();
+        file.transferTo(new File(sc.getRealPath("/upload/img/meto_licn/" + filename+".png")));
+       
+      } 
+    }
+    
+    return "redirect:mypage";
+  }
+
+  
+/*  
+  @RequestMapping(value = "mentorInsert.do", method = {RequestMethod.POST})
+  public @ResponseBody int add(Mentor mentor,HttpSession session) {
+    
+    Mentee mentee = (Mentee) session.getAttribute("loginUser");
+    
+    mentee.getNo()
+    
+    return mentorService.add(mentor);
+  }
+
+    */  
+    
+    
   @RequestMapping(value = "updateProfile.do", method = {RequestMethod.POST})
   public @ResponseBody int updateProfile(Mentee mentee) {
     

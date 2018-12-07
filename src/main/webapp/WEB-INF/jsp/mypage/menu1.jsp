@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-     
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 <script type="text/javascript">
 
@@ -401,95 +401,122 @@
                 
                 
                  <!-- popup start  -->
+                 
                   <div class="popup">
  
   <div class="header">
-    <div class="title">멘토 신청 </div>
+    <div class="title"><h3>멘토 신청</h3> </div>
     <div class="icon"><i class="fa fa-send" title="Send"></i></div>
   </div>
   
-  <div class="content">
-
-    <img src="${mentee.phot}" >
-   
+   <div class="content"> 
+  <form method="post"  action="imgupload" enctype="multipart/form-data" >
+    <input type="hidden" name="no" value="${sessionScope.loginUser.no}">
+    <img src="${mentee.phot}">
+       
     <div class="infobox">
-        이름:${mentee.name}<br>
-        닉네임:${mentee.nick}<br>
-        휴대전화:${mentee.phone}<br>
-        출금은행:${mentee.bkname}<br>
-        계좌번호:${mentee.bkno}<br>
+        이름&nbsp;&nbsp;: ${mentee.name}<br>
+        닉네임&nbsp;&nbsp;&nbsp;: ${mentee.nick}<br>
+        휴대전화 : ${mentee.phone}<br>
+        출금은행 : ${mentee.bkname}<br>
+        계좌번호 : ${mentee.bkno}<br>
+        
     <hr>
-        분야:<br>
-        경력: ${mentor.carr}년
+    
+    <div class="nope" >
+    
+<select name="btno" id="soflow" >
+  <option>분야 선택</option>
+   <option>5</option>
+
+
+</select>
+
+<select name="carrin"  id="soflow2">
+  <option>경력 선택</option>
+     <%
+                  String Result = "";
+                  
+                  for (int i = 1; i <= 20; i++){
+                           if (i < 20){
+                                   Result += "<option>"+i+"년"+"</option>";
+                           }
+                           else{
+                                   Result += "<option>"+i+"년이상"+"</option>" ;
+                           }
+                  }
+%>
+                     
+ <%= Result  %>   
+        
+
+</select>
+</div>
+    
     </div>
  
-  </div>
   
   
-  <!-- upload img code-->
-  <div id="upWorkout">
-  <h2>작품</h2>
-<p class="lead"> <b> 당신의 실력을 증명할<br>작품을 업로드 해주세요!</b></p>
-
-<!-- Upload  -->
-<form id="file-upload-form" class="uploader">
-  <input id="file-upload" type="file" name="fileUpload" accept="image/*" />
-
-  <label for="file-upload" id="file-drag">
-    <img id="file-image" src="#" alt="Preview" class="hidden">
-    <div id="start">
-      <i class="fa fa-download" aria-hidden="true"></i>
-      <div>Drag and Drop!! </div>
-      <div id="notimage" class="hidden">Please select an image</div>
-      <span id="file-upload-btn" class="btn btn-primary" style="height:50px;">이미지 선택</span>
-    </div>
-    <div id="response" class="hidden">
-      <div id="messages"></div>
-      <progress class="progress" id="file-progress" value="0">
-        <span>0</span>%
-      </progress>
-    </div>
-  </label>
-  
-</form>
  
+  <!-- upload file1 code-->
+<div id="headbox" >
+<h3>작품</h3>
  </div>
  
-  <!-- upload img code-->
+  <div class="drop">
+    <div class="cont">
+      <i class="fa fa-cloud-upload"></i>
+      <div class="tit">
+        Drag & Drop
+      </div>
+      <div class="desc">
+        당신의 작품을 보여주세요!
+        <br> (이미지파일을 업로드해주세요)
+      </div>
+      <div class="browse">
+        Haru
+      </div>
+    </div>
+    <output id="list"></output><input id="files"  name="fileUpload1" type="file" accept="image/*" multiple/>
+  </div>
+  
+  <!-- upload file1 code-->
+  
+    <!-- upload file2 code-->
+<div id="headbox2" >
+<h3>자격증</h3>
+ </div>
+ 
+  <div class="drop2">
+    <div class="cont">
+      <i class="fa fa-cloud-upload"></i>
+      <div class="tit">
+        Drag & Drop
+      </div>
+      <div class="desc">
+        멘토로써의 자격을 보여주세요!
+        <br> (이미지파일을 업로드해주세요)
+      </div>
+      <div class="browse">
+        Haru
+      </div>
+    </div>
+    <output id="list2"></output><input id="files2"  name="fileUpload2" type="file" accept="image/*" multiple/>
+  </div>
+  
+  <!-- upload file2 code-->
+ 
+ 
+ <button id="btn-sub" class="btn btn-warning" type="submit" >신청</button>
+ <button id="btn-cancle" class="btn btn-danger" type="button">취소</button>
+
   
  
- <!-- certi upload code -->
  
- <div class="certiUp"> 
-<div class="file-upload">
- <h2>자격증</h2>
-<p class="lead"> <b> 당신의 실력을 증명할<br>자격증을 업로드 해주세요!</b></p>
-  <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">자격증</button>
-
-  <div class="image-upload-wrap">
-    <input class="file-upload-input" type='file' onchange="readURL(this);" accept="file/*" />
-    <div class="drag-text">
-      <h3>Drag and drop a file! </h3>
-    </div>
-  </div>
-  <div class="file-upload-content">
-    
-    <div class="image-title-wrap">
-      <button type="button" onclick="removeUpload()" class="remove-image">  <span class="image-title">Uploaded Image</span> - 삭제 </button>
-    </div>
-  </div>
+  
+  
+ </form>
 </div>
-     
-  </div>
-  
- <button id="btn-sub" class="btn btn-warning">신청</button>
-     <button id="btn-cancle"class="btn btn-danger">취소</button>
-  <!-- certi upload code -->
- 
- <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-  
-  
-
   
 </div>
 
@@ -500,6 +527,7 @@
                     
                     회원탈퇴를 하시려면<a href="" class="btn-leave">여기</a>를 누르세요
 
+
                 </div>
                 
                 
@@ -509,6 +537,13 @@
             
             
             <script>
+            
+            $("#btn-cancle").click(function(){
+                $(".pop").removeClass("hide");
+                return $(".popup").removeClass("show");
+              });
+            
+            
             (function() {
                 $(".pop").click(function(){
                   $(".pop").addClass("hide");
@@ -528,185 +563,98 @@
               /* upalod js*/
 
               // File Upload
-              // 
-              function ekUpload(){
-                function Init() {
-
-                  console.log("Upload Initialised");
-
-                  var fileSelect    = document.getElementById('file-upload'),
-                      fileDrag      = document.getElementById('file-drag'),
-                      submitButton  = document.getElementById('submit-button');
-
-                  fileSelect.addEventListener('change', fileSelectHandler, false);
-
-                  // Is XHR2 available?
-                  var xhr = new XMLHttpRequest();
-                  if (xhr.upload) {
-                    // File Drop
-                    fileDrag.addEventListener('dragover', fileDragHover, false);
-                    fileDrag.addEventListener('dragleave', fileDragHover, false);
-                    fileDrag.addEventListener('drop', fileSelectHandler, false);
-                  }
-                }
-
-                function fileDragHover(e) {
-                  var fileDrag = document.getElementById('file-drag');
-
-                  e.stopPropagation();
-                  e.preventDefault();
-
-                  fileDrag.className = (e.type === 'dragover' ? 'hover' : 'modal-body file-upload');
-                }
-
-                function fileSelectHandler(e) {
-                  // Fetch FileList object
-                  var files = e.target.files || e.dataTransfer.files;
-
-                  // Cancel event and hover styling
-                  fileDragHover(e);
-
-                  // Process all File objects
-                  for (var i = 0, f; f = files[i]; i++) {
-                    parseFile(f);
-                    uploadFile(f);
-                  }
-                }
-
-                // Output
-                function output(msg) {
-                  // Response
-                  var m = document.getElementById('messages');
-                  m.innerHTML = msg;
-                }
-
-                function parseFile(file) {
-
-                  console.log(file.name);
-                  output(
-                    '<strong>' + encodeURI(file.name) + '</strong>'
-                  );
-                  
-                  // var fileType = file.type;
-                  // console.log(fileType);
-                  var imageName = file.name;
-
-                  var isGood = (/\.(?=gif|jpg|png|jpeg)/gi).test(imageName);
-                  if (isGood) {
-                    document.getElementById('start').classList.add("hidden");
-                    document.getElementById('response').classList.remove("hidden");
-                    document.getElementById('notimage').classList.add("hidden");
-                    // Thumbnail Preview
-                    document.getElementById('file-image').classList.remove("hidden");
-                    document.getElementById('file-image').src = URL.createObjectURL(file);
-                  }
-                  else {
-                    document.getElementById('file-image').classList.add("hidden");
-                    document.getElementById('notimage').classList.remove("hidden");
-                    document.getElementById('start').classList.remove("hidden");
-                    document.getElementById('response').classList.add("hidden");
-                    document.getElementById("file-upload-form").reset();
-                  }
-                }
-
-                function setProgressMaxValue(e) {
-                  var pBar = document.getElementById('file-progress');
-
-                  if (e.lengthComputable) {
-                    pBar.max = e.total;
-                  }
-                }
-
-                function updateFileProgress(e) {
-                  var pBar = document.getElementById('file-progress');
-
-                  if (e.lengthComputable) {
-                    pBar.value = e.loaded;
-                  }
-                }
-
-                function uploadFile(file) {
-
-                  var xhr = new XMLHttpRequest(),
-                    fileInput = document.getElementById('class-roster-file'),
-                    pBar = document.getElementById('file-progress'),
-                    fileSizeLimit = 1024; // In MB
-                  if (xhr.upload) {
-                    // Check if file is less than x MB
-                    if (file.size <= fileSizeLimit * 1024 * 1024) {
-                      // Progress bar
-                      pBar.style.display = 'inline';
-                      xhr.upload.addEventListener('loadstart', setProgressMaxValue, false);
-                      xhr.upload.addEventListener('progress', updateFileProgress, false);
-
-                      // File received / failed
-                      xhr.onreadystatechange = function(e) {
-                        if (xhr.readyState == 4) {
-                          // Everything is good!
-
-                          // progress.className = (xhr.status == 200 ? "success" : "failure");
-                          // document.location.reload(true);
-                        }
-                      };
-
-                      // Start upload
-                      xhr.open('POST', document.getElementById('file-upload-form').action, true);
-                      xhr.setRequestHeader('X-File-Name', file.name);
-                      xhr.setRequestHeader('X-File-Size', file.size);
-                      xhr.setRequestHeader('Content-Type', 'multipart/form-data');
-                      xhr.send(file);
-                    } else {
-                      output('Please upload a smaller file (< ' + fileSizeLimit + ' MB).');
-                    }
-                  }
-                }
-
-                // Check for the various File API support.
-                if (window.File && window.FileList && window.FileReader) {
-                  Init();
-                } else {
-                  document.getElementById('file-drag').style.display = 'none';
-                }
-              }
-              ekUpload();
+              var drop = $("input");
+drop.on('dragenter', function (e) {
+  $(".drop").css({
+    "border": "4px dashed #09f",
+    "background": "rgba(0, 153, 255, .05)"
+  });
+  $(".cont").css({
+    "color": "#09f"
+  });
+}).on('dragleave dragend mouseout drop', function (e) {
+  $(".drop").css({
+    "border": "3px dashed #DADFE3",
+    "background": "transparent"
+  });
+  $(".cont").css({
+    "color": "#8E99A5"
+  });
+});
 
 
 
-              /* certi upload*/
+function handleFileSelect(evt) {
+  var files = evt.target.files; // FileList object
+  
+  // Loop through the FileList and render image files as thumbnails.
+  for (var i = 0, f; f = files[i]; i++) {
+
+    // Only process image files.
+    if (!f.type.match('image.*')) {
+      continue;
+    }
+
+    var reader = new FileReader();
+
+    // Closure to capture the file information.
+    reader.onload = (function(theFile) {
+      return function(e) {
+        // Render thumbnail.
+        var span = document.createElement('span');
+        span.innerHTML = ['<img class="thumb" src="', e.target.result,
+                          '" title="', escape(theFile.name), '"/>'].join('');
+        document.getElementById('list').insertBefore(span, null);
+   
+      };
+    })(f);
+
+    // Read in the image file as a data URL.
+    reader.readAsDataURL(f);
+  }
+ 
+  
+  
+}
+
+$('#files').change(handleFileSelect);
 
 
-              function readURL(input) {
-                if (input.files && input.files[0]) {
+function handleFileSelect2(evt2) {
+    var files = evt2.target.files; // FileList object
+    
+    // Loop through the FileList and render image files as thumbnails.
+    for (var i = 0, f; f = files[i]; i++) {
 
-                  var reader = new FileReader();
+      // Only process image files.
+      if (!f.type.match('image.*')) {
+        continue;
+      }
 
-                  reader.onload = function(e) {
-                    $('.image-upload-wrap').hide();
+      var reader = new FileReader();
 
-                    $('.file-upload-image').attr('src', e.target.result);
-                    $('.file-upload-content').show();
+      // Closure to capture the file information.
+      reader.onload = (function(theFile) {
+        return function(e) {
+          // Render thumbnail.
+          var span = document.createElement('span');
+          span.innerHTML = ['<img class="thumb2" src="', e.target.result,
+                            '" title="', escape(theFile.name), '"/>'].join('');
+          document.getElementById('list2').insertBefore(span, null);
+     
+        };
+      })(f);
 
-                    $('.image-title').html(input.files[0].name);
-                  };
+      // Read in the image file as a data URL.
+      reader.readAsDataURL(f);
+    }
+   
+    
+  }
 
-                  reader.readAsDataURL(input.files[0]);
+  $('#files2').change(handleFileSelect2);
 
-                } else {
-                  removeUpload();
-                }
-              }
-
-              function removeUpload() {
-                $('.file-upload-input').replaceWith($('.file-upload-input').clone());
-                $('.file-upload-content').hide();
-                $('.image-upload-wrap').show();
-              }
-              $('.image-upload-wrap').bind('dragover', function () {
-                      $('.image-upload-wrap').addClass('image-dropping');
-                  });
-                  $('.image-upload-wrap').bind('dragleave', function () {
-                      $('.image-upload-wrap').removeClass('image-dropping');
-              });
+             
 
 
 
