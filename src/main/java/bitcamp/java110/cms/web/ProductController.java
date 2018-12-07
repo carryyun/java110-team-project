@@ -96,10 +96,16 @@ public class ProductController {
   public void prdt(@RequestParam(defaultValue = "1") int pageNo,
       @RequestParam(defaultValue = "12") int pageSize, Model model) {
     List<Product> productList = productService.list();
-
+    List<Product> hotItemlists = productService.hotItemlist();
     List<ProductPopul> pp_list = productPopulService.list();
     List<ProductPopul> pp_product = new ArrayList<>();
-
+    List<Product> hotItemlist = new ArrayList<>();
+    for(int x=0; x<5; x++) {
+      hotItemlist.add(hotItemlists.get(x));
+    }
+    System.out.println(hotItemlist);
+    model.addAttribute("hotItemlist", hotItemlist);
+    
     for (ProductPopul p : pp_list) {
 
       pp_product.add(p);
@@ -114,7 +120,7 @@ public class ProductController {
     } catch (JsonProcessingException e) {
       System.out.println(e.getMessage());
     }
-
+    
     model.addAttribute("productList", productList);
   }
 

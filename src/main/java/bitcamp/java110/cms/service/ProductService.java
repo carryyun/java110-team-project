@@ -11,6 +11,8 @@ public interface ProductService {
   
   Product get(int no); // 공예품 번호로 조회
   
+  List<Product> hotItemlist(); // 인기순위
+  
   List<Product> listByMeno(int pageNo, int pageSize, int meno); // 판매자번호로 조회
   
   List<Product> listByStno(int pageNo, int pageSize, int stno); // 소분류번호로 조회
