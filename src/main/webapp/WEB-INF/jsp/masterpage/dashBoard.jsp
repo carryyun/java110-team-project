@@ -32,6 +32,7 @@
     src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
 <script
     src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+    <link href="/css/common.css" rel="stylesheet">
 
 <!-- Bootstrap  -->
 <link href="/css/masterpagecss/bootstrap.css" rel="stylesheet">
@@ -50,6 +51,7 @@
 <style>
 #colorlib-aside {
     overflow: hidden;
+    position: absolute;
 }
 
 #th-pay th, #tb-pay td {
@@ -69,6 +71,17 @@ text-weight: bold;
 </head>
 
 <body>
+
+<div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <jsp:include page="../headerMain.jsp"></jsp:include>
+            </div>
+            <!-- 카테고리 nav (스크립트로 임시 inclue) -->
+            <div class="col-lg-12">
+                <jsp:include page="../headerNav.jsp"></jsp:include>
+            </div>
+            </div></div>
 
     <div id="colorlib-page">
         <div class="container-wrap">
@@ -467,6 +480,36 @@ text-weight: bold;
                 <jsp:include page="../footer.jsp"></jsp:include>
             </div>
         </footer>
+        
+        
+        <script>
+    
+        var testtTop;
+        var setId = "#colorlib-aside";
+        $(document).ready(function() {
+            $("div#footerCss").css("margin-top","0px");
+            testtTop = $("#colorlib-aside").offset().top;
+console.log(testtTop);
+        });
+
+         function scroll_follow(id) {
+            $(window).scroll(function() //스크롤이 움직일때마다 이벤트 발생
+            {
+                var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
+                console.log(position);
+                if (position > 157) {
+                    $(id).css("position", "absolute");
+                    $(id).css("top", (position-157) + "px");
+
+                } else {
+                    $(id).css("position", "absolute");
+                    $(id).css("top", (0) + "px");
+                }
+            });
+        }
+        scroll_follow(setId); 
+        
+    </script>
 
 </body>
 </html>

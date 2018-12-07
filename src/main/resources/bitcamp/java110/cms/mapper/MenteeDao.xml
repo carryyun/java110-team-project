@@ -203,8 +203,8 @@
     
     <insert id="fbsignup" parameterType="mentee"
             useGeneratedKeys="true" keyColumn="meno" keyProperty="no">
-        insert into p_mete(name,email,nick,rgdt)
-        values(#{name},#{email},#{nick},now())
+        insert into p_mete(name,email,nick,rgdt,sell,stat,mtstat)
+        values(#{name},#{email},#{nick},now(),'N','N','N')
     </insert> 
     
     <update id="delete" parameterType="String">
