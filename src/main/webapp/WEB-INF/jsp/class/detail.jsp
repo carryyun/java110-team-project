@@ -517,7 +517,7 @@
                                 style="margin: 0 auto; border-collapse:collapse;">
                                     <thead class="col-lg-12">
                                         <tr class="row">
-                                            <th scope="col" class="col-lg-1" id="qna_th">번호</th>
+                                            <!-- <th scope="col" class="col-lg-1" id="qna_th">번호</th> -->
                                             <th scope="col" class="col-lg-2" id="qna_th">문의유형</th>
                                             <th scope="col" class="col-lg-2" id="qna_th">답변상태</th>
                                             <th scope="col" class="col-lg-3" id="qna_th">질문 제목</th>
@@ -531,7 +531,7 @@
                                     <c:set var="qnasi" value="${countqna}" />
                                         <tr data-toggle="collapse" 
                                         data-target="#demo1-${i.count}" class="accordion-toggle row">
-                                            <td class="col-lg-1" scope="row" id="qna_th">${i.count}</td>
+                                            <%-- <td class="col-lg-1" scope="row" id="qna_th">${i.count}</td> --%>
                                             <td class="col-lg-2">${cq.type}</td>
                                             <c:set var="yn" value="${cq.anser}"/>
                                             <%
@@ -545,7 +545,20 @@
                                             <%  
                                             }
                                             %>
-                                            <td class="col-lg-3">${cq.titl}</td>
+                                            <c:set var="cqtit" value="${cq.titl}"/>
+                                            <%
+                                            	String cqtitl = (String)pageContext.getAttribute("cqtit");
+	                                            if(cqtitl.length() > 8) {
+	                                            String longtitl = cqtitl.substring(0, 7);
+	                                        %>
+	                                        	<td class="col-lg-3"><%=longtitl%>..</td>
+	                                        <%      
+	                                            } else {
+	                                        %>
+	                                        	<td class="col-lg-3"><%=cqtitl%></td>
+	                                        <%
+	                                            }
+                                            %>
                                             <td class="col-lg-2">${cq.mentee.nick}</td>
                                             <td class="col-lg-2">${cq.rgdt}</td>
                                         </tr>
@@ -680,7 +693,8 @@
                         <c:set var="qnasi" value="${countqna}" />
                         <%
                             int qnasize = (int)pageContext.getAttribute("qnasi");
-                            int qnapage = (qnasize/5)+1;
+                        	int p=qnasize/5;
+                            int qnapage = (int)Math.ceil(p);
                         %>
                             <li class="page-item"><a class="page-link" 
                             onClick="prevqna(${countqna})">prev</a></li>
@@ -738,8 +752,6 @@ $('.accordian-body').on('show.bs.collapse', function () {
 function prev(pano) {
     console.log(pano);
     
-    var pagebu = (pano/5)+1;
-    var currectpage = <% request.getParameter("pageNo"); %>
     console.log(pagebu);
     console.log(currectpage);
     
@@ -817,14 +829,19 @@ function addqna(no) {
 	        		html +=' <c:set var="qnasi" value="${countqna}" />'
 	        		html +='    <tr data-toggle="collapse" '
 	        		html +='    data-target="#demo1-'+i+'" class="accordion-toggle row">'
-	        		html +='        <!-- <td class="col-lg-1" scope="row" id="qna_th"></td> -->'
+	        		html +='        <%-- <td class="col-lg-1" scope="row" id="qna_th">'+i+'</td> --%>'
 	        		html +='        <td class="col-lg-2">'+qnatype+'</td>'
 	        				         	if(qnaanser == null){
 	        		html +='            <td class="col-lg-2">미완료</td>'
 	        						  	}else{
 	        		html +='            <td class="col-lg-2">완료</td>'
 	        							}
-	        		html +='        <td class="col-lg-3">'+qnatitl+'</td>'
+                            if(qnatitl.length > 8) {
+                            var longtitl = qnatitl.substring(0, 7);
+                    html +=' <td class="col-lg-3">'+longtitl+'..</td>'
+                            } else {
+                    html +=' <td class="col-lg-3">'+qnatitl+'</td>'
+                            }
 	        		html +='        <td class="col-lg-2">'+qnanick+'</td>'
 	        		html +='        <td class="col-lg-2">'+qnargdt+'</td>'
 	        		html +='    </tr>'
@@ -917,17 +934,37 @@ function answerins(no,clsno,qno) {
 	        		var qnanick = data[i].mentee.nick;
 	        		var countqn = ${countqna};
 	        		
+					qnargdt = new Date();
+	        		
+	        		var dd= qnargdt.getDate();
+	        		var mm= qnargdt.getMonth();
+	        		var yy= qnargdt.getFullYear();
+	        		
+	        		if( dd < 10){
+	        		    dd = '0' + dd;
+	        		}
+	        		if( mm < 10){
+	        		    mm='0' +mm;
+	        		}
+	        		
+	        		qnargdt = yy+'-'+mm+'-'+dd;
+	        		
 	        		html +=' <c:set var="qnasi" value="${countqna}" />'
 	        		html +='    <tr data-toggle="collapse" '
 	        		html +='    data-target="#demo1-'+i+'" class="accordion-toggle row">'
-	        		html +='        <!-- <td class="col-lg-1" scope="row" id="qna_th"></td> -->'
+	        		html +='        <%-- <td class="col-lg-1" scope="row" id="qna_th">'+i+'</td> --%>'
 	        		html +='        <td class="col-lg-2">'+qnatype+'</td>'
 	        				         	if(qnaanser == null){
 	        		html +='            <td class="col-lg-2">미완료</td>'
 	        						  	}else{
 	        		html +='            <td class="col-lg-2">완료</td>'
 	        							}
-	        		html +='        <td class="col-lg-3">'+qnatitl+'</td>'
+                    		if(qnatitl.length > 8) {
+	                        var longtitl = qnatitl.substring(0, 7);
+	                html +=' <td class="col-lg-3">'+longtitl+'..</td>'
+	                        } else {
+	                html +=' <td class="col-lg-3">'+qnatitl+'</td>'
+	                        }
 	        		html +='        <td class="col-lg-2">'+qnanick+'</td>'
 	        		html +='        <td class="col-lg-2">'+qnargdt+'</td>'
 	        		html +='    </tr>'
@@ -1114,7 +1151,6 @@ function repins(no) { /* 후기(댓글) 추가버튼 */
 function reppage(pno) {
     var cno = ${detailclass.no};
     var replist = $('div#replist');
-    var no = ${sessionScope.loginUser.no};
     
     $.ajax({
         type : "POST",
@@ -1158,7 +1194,7 @@ function reppage(pno) {
 	   		 html +='                     <div class="modal-body">'
 	   		 html +='                          <form action="detail?no='+cno+'" method="post">'
 	   		 html +='                           <button type="button" class="btn btn-default" data-dismiss="modal"' 
-	   		 html +='                                 onClick="delerep('+no+' , '+rno+', '+meno+');">삭제하기</button>'
+	   		 html +='                                 onClick="delerep(${sessionScope.loginUser.no} , '+rno+', '+meno+');">삭제하기</button>'
 	   		 html +='                           <button type="button" class="btn btn-default" data-dismiss="modal"  role="button">취소</button>'
 	   		 html +='                         </form>'
 	   		 html +='                     </div>'
@@ -1185,7 +1221,7 @@ function reppage(pno) {
 	   		 html +='                    <div class="modal-body">'
 	   		 html +='                         <form action="detail?no='+cno+'" method="post">'
 	   		 html +='                           <button type="button" class="btn btn-default" data-dismiss="modal"'
-	   		 html +='                                  onClick="updabtn('+no+','+rno+' , '+i+')" >수정하기</button>'
+	   		 html +='                                  onClick="updabtn(${sessionScope.loginUser.no},'+rno+' , '+i+')" >수정하기</button>'
 	   		 html +='                           <button type="button" class="btn btn-default" data-dismiss="modal" role="button"'
 	   		 html +='                           onClick="updano('+i+')">취소</button>'
 	   		 html +='                         </form>'
@@ -1220,16 +1256,11 @@ function qnapage(qno) {
     $.ajax({
            type : "POST" ,
            data : {
-               "no" : qno ,
+               "no" : cno ,
                "qnapageNo" : qno
            },
-           url : "ansupdate.do",
+           url : "qnapage.do",
            success : function(data) {
-               swal({
-                   text : "해당후기에 해당하는 답변이 등록되었습니다",
-                   icon : "success",
-                   button : "확인",
-                 })
                  var html ="";
                for(var i in data) {
                    var cqno = data[i].no;
@@ -1241,17 +1272,37 @@ function qnapage(qno) {
         		var qnanick = data[i].mentee.nick;
         		var countqn = ${countqna};
         		
+        		qnargdt = new Date();
+        		
+        		var dd= qnargdt.getDate();
+        		var mm= qnargdt.getMonth();
+        		var yy= qnargdt.getFullYear();
+        		
+        		if( dd < 10){
+        		    dd = '0' + dd;
+        		}
+        		if( mm < 10){
+        		    mm='0' +mm;
+        		}
+        		
+        		qnargdt = yy+'-'+mm+'-'+dd;
+        		
         		html +=' <c:set var="qnasi" value="${countqna}" />'
         		html +='    <tr data-toggle="collapse" '
         		html +='    data-target="#demo1-'+i+'" class="accordion-toggle row">'
-        		html +='        <!-- <td class="col-lg-1" scope="row" id="qna_th"></td> -->'
+        		html +='        <%-- <td class="col-lg-1" scope="row" id="qna_th">'+i+'</td> --%>'
         		html +='        <td class="col-lg-2">'+qnatype+'</td>'
         				         	if(qnaanser == null){
         		html +='            <td class="col-lg-2">미완료</td>'
         						  	}else{
         		html +='            <td class="col-lg-2">완료</td>'
         							}
-        		html +='        <td class="col-lg-3">'+qnatitl+'</td>'
+                		if(qnatitl.length > 8) {
+	                    var longtitl = qnatitl.substring(0, 7);
+	            html +=' <td class="col-lg-3">'+longtitl+'..</td>'
+	                    } else {
+	            html +=' <td class="col-lg-3">'+qnatitl+'</td>'
+	                    }
         		html +='        <td class="col-lg-2">'+qnanick+'</td>'
         		html +='        <td class="col-lg-2">'+qnargdt+'</td>'
         		html +='    </tr>'
@@ -1297,14 +1348,14 @@ function qnapage(qno) {
                }
                qnatablelist.html(html);
            },error : function(error,status){
-               swal({
-                   text : "잠시후에 페이지가 이동됩니다.",
-                   button : "확인",
-                 })
-            }
-        });
-    }
+           swal({
+               text : "잠시후에 페이지가 이동됩니다.",
+               button : "확인",
+             })
+        }
+    });
 }
+
 
 /* no:${sessionScope.loginUser.no} , rno : ${r.no} , repmeno :  */
 function delerep(no , rno , repmeno){ /* 댓글 삭제 버튼 */
