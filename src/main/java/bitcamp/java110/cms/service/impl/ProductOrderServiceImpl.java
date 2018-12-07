@@ -72,5 +72,10 @@ public class ProductOrderServiceImpl implements ProductOrderService {
   }
 
 
+  @Override
+  public int adddeliveryinfo(ProductOrder productOrder) {
+    
+    return productOrderDao.delInsert(productOrder);
+  }
 
 }

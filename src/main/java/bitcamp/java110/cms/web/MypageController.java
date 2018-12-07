@@ -230,6 +230,7 @@ public class MypageController {
     
     List<Product> pmanage2 = productService.listBySeller2(1,10,ptno);
     model.addAttribute("pmanage2", pmanage2 );
+    model.addAttribute("ptno", ptno);
        
   }
   
@@ -257,6 +258,18 @@ public class MypageController {
     
     
     return classService.manageByCno(cno);
+  }
+  @RequestMapping(value = "deliveryinsert.do", method = {RequestMethod.POST})
+  public @ResponseBody int deliveryInsert(String parcname,int parcno, String delptno) {
+    System.out.println(parcname);
+    System.out.println(parcno);
+    System.out.println(delptno);
+    ProductOrder order = new ProductOrder();
+    order.setParc_name(parcname);
+    order.setParc_no(parcno);
+    order.setPtno(Integer.parseInt(delptno));
+    
+    return productOrderSerivce.adddeliveryinfo(order);
   }
   
 /*  @RequestMapping(value = "buyerList.do", method = {RequestMethod.POST})
