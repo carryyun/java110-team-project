@@ -742,11 +742,32 @@ $('.accordian-body').on('show.bs.collapse', function () {
     
 <script>
 function updateclsstat() {
-    var cno = ${detailclass.no};
-    
-    console.log(cno);
-    
-    
+
+    swal({
+        title: "삭제 하시겠습니까?",
+        text: "삭제한 게시물은 복구할 수 없습니다.",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    }).then((willDelete) => {
+        var cno = ${detailclass.no};
+        var stat = 'N';
+        
+        $.ajax({
+            type : "POST" ,
+            data : {
+                "no" : cno ,
+                "stat" : stat
+            },
+            url : "updateclsstat.do" , 
+            success : function(){
+                swal({
+                    text : "삭제되었습니다.",
+                    button : "확인",
+                })
+            }
+        })
+  });
 }
 
 function prev(pano) {
