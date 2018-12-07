@@ -2,7 +2,41 @@
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
+<style>
+.modal-header .close{
+	margin-top: -20px;
+}
+</style>
+
 <script type="text/javascript">
+  
+ function submitbtn(){
+	 $.ajax({
+		 	type:"POST",
+			data : {
+				withdrawalpwd : $("#withdrawalpwd").val()
+			},
+			url : "deleteuser.do",
+			success : function(data){
+				if(data>0){
+					swal({
+				        text: "회원탈퇴되었습니다.",
+				        timer:3000,
+				        button:"확인"
+				        }).then((value) => {
+				       		location.href="../mainpage/mainpage";
+				        });
+				}else{
+					swal({
+						 text:"비밀번호가 맞지않습니다.",
+						 timer:3000,
+						 button:"확인"
+					  });
+				}
+			}
+		});
+  }
+
 
   function cbox1(chkbox,meno)
     {
@@ -524,13 +558,26 @@
                 
                 
                 <div class="leave" >
-                    
-                    회원탈퇴를 하시려면<a href="" class="btn-leave">여기</a>를 누르세요
 
-
+                   		 회원탈퇴를 하시려면<a href="#withdrawal" class="btn-leave" data-toggle="modal" data-target="#withdrawal">여기</a>를 누르세요
                 </div>
                 
-                
+                <div class="modal fade" id="withdrawal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                          <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title" id="repdelet">회원탈퇴</h4>
+                                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <!-- content goes here -->
+                                                      <input type="password" id="withdrawalpwd"/>
+                                                      <button type="button" class="btn btn-default" data-dismiss="modal" onClick="submitbtn()">탈퇴하기</button>
+                                                      <button type="button" class="btn btn-default" data-dismiss="modal"  role="button">취소</button>
+                                                </div>
+                                            </div>
+                                          </div>
+                                        </div>
 
             </div>
             

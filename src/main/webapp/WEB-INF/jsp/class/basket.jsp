@@ -6,20 +6,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>하루 - 장바구니</title>
 
 <%-- 부트스트랩 --%>
 <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
 <%-- css --%>
 <link href="/css/basketclass.css" rel="stylesheet">
 <link href="/css/common.css" rel="stylesheet">
-
-<%-- js --%>
-<script src="/vendor/jquery/jquery.min.js"></script>
-<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<script src="/js/basketclass.js"></script> 
 
 </head>
 
@@ -82,11 +75,13 @@
                                 <tr class="product d-flex">
                                     <td class="col-6">
                                         <div class="media">
-                                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="${r.classes.cfile}" style="width: 100px; height: 100px;"> </a>
+                                        <input type="hidden" id="titl${i.index}" value="${r.classes.titl}">
+                                            <a class="thumbnail pull-left" href="../class/detail?no=${r.classes.no}"> <img class="media-object" src="${r.classes.cfile}" style="width: 100px; height: 100px;"> </a>
                                             <div class="media-body">
-                                                <h4 class="media-heading"><a href="#">${r.classes.titl }</a></h4>
-                                                <h5 class="media-heading"> 멘토 <a href="#">${r.mentorNick }</a></h5>
+                                                <h4 class="media-heading"><a href="../class/detail?no=${r.classes.no}">${r.classes.titl}</a></h4>
+                                                <h5 class="media-heading"> 멘토 : ${r.mentorNick}</h5>
                                                 <span></span><span class="text-warning"><strong>당일 취소 불가</strong></span>
+                                                 <input type="hidden" id="cnt${i.index}" value="{r.classes.time}">
                                             </div>
                                         </div>
                                     </td>
@@ -109,14 +104,14 @@
                                     <div class="totals">
                                         <div class="totals-item totals-item-total">
                                             <label> 최종 결제 금액</label>
-                                            <c:forEach items="${sumList }" var="r" varStatus="i">
+                                            <c:forEach items="${sumList}" var="r" varStatus="i">
                                             <div class="totals-value" id="cart-total">${r.sum }</div>
                                             </c:forEach>
                                         </div>
                                     </div>
 
                                     <div class="btn-all">
-                                        <button class="checkout btn btn-light">장바구니 결제</button>
+                                        <button class="checkout btn btn-light" onclick="callpay()">장바구니 결제</button>
                                     </div>
 
                                 </div><!-- 계산 12-->
@@ -132,6 +127,91 @@
                 <jsp:include page="../footer.jsp"></jsp:include>
             </div>
         </footer>
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script src="/js/basketclass.js"></script> 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    
+    function addOrder(payopt){
+        
+        var arr = new Array();
+        <c:forEach items="${basketList}" var="b" varStatus="i">
+        if(${i.index==0}) saveTitl='${br.classes.titl}';
+        var time = ${b.classes.time};
+        arr.push("${b.no}&${b.ctno}&${sessionScope.loginUser.no}&"+time+"&"+payopt);
+        </c:forEach>
+        
+        $.ajaxSettings.traditional = true;
+        $.ajax({
+            type : "POST",
+            data : {
+                "arr" : arr,
+            },
+            url : "addClsOrder.do",
+            success : function(result) {
+                if(result == "complete"){
+                    swal({
+                        title: "결제완료",
+                        text: "주문내역 페이지로 이동하시겠습니까?",
+                        icon: "success",
+                        buttons: true,
+                        dangerMode: true,
+                    }).then((willDelete) => { 
+                        if (willDelete) {
+                            location.href="../mypage/mypage#productbkt";
+                        } else {
+                            location.href="../mainpage/mainpage";
+                        }
+                      });
+                    
+                }
+            },
+            error : function(error, status) {
+            }
+        });
+    }
+    
+    function callpay(){
+        
+        if(${sessionScope.loginUser eq null}){
+            swal({
+                text : "로그인 후 이용가능합니다..",
+                button : "확인",
+              })
+        }else{
+            var saveTitl = $('#titl0').val();
+            var saveTotal = document.getElementById('cart-total').innerHTML;
+            var IMP = window.IMP; // 생략해도 괜찮습니다.
+            IMP.init("imp40971131"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
+            
+            IMP.request_pay({
+                pg : 'html5_inicis', //ActiveX 결제창은 inicis를 사용
+                pay_method : 'card', //card(신용카드), trans(실시간계좌이체), vbank(가상계좌), phone(휴대폰소액결제)
+                merchant_uid : 'merchant_' + new Date().getTime(), //상점에서 관리하시는 고유 주문번호를 전달
+                name : saveTitl,
+                amount : parseInt(saveTotal),
+                buyer_email : '${sessionScope.loginUser.email}',
+                buyer_name : '${sessionScope.loginUser.name}',
+                buyer_tel : '${sessionScope.loginUser.phone}',
+                buyer_addr : '${sessionScope.loginUser.bas_addr}',
+                buyer_postcode : '${sessionScope.loginUser.pstno}'
+            }, function(rsp) {
+                if ( rsp.success ) {
+                    addOrder(rsp.pay_method);
+                    
+                } else {
+                    var msg = '결제에 실패하였습니다.';
+                    msg += '에러내용 : ' + rsp.error_msg;
+                    
+                    alert(msg);
+                }
+            });
+            
+        }
+    }
+    </script>
 </div>
 </body>
 </html>

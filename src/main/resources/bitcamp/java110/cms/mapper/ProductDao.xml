@@ -348,4 +348,13 @@ where
             ptno=#{no}
     </update>
     
+    <update id="updatestat" parameterType="product">
+        UPDATE 
+            p_prdt
+        <set>
+            <if test="stat != null">stat = #{stat}</if>
+        </set>
+         where ptno = #{no}
+    </update>
+    
 </mapper>

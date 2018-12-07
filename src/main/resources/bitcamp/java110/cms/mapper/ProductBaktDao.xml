@@ -13,6 +13,7 @@
         <result column="cnt"    property="cnt"/>
         
         <result column="titl" property="product.titl"/>
+        <result column="stock" property="product.stock"/>
         <result column="pric" property="product.pric"/>
         <result column="deli" property="product.deli"/>
         <result column="phot" property="product.phot"/>
@@ -62,7 +63,9 @@
         SELECT
             pb.cnt,
             pb.pbno,
+            pb.ptno,
             pr.phot, 
+            pr.stock, 
             pr.titl, 
             pr.pric, 
             pr.deli, 
@@ -73,6 +76,7 @@
             on pb.ptno = pr.ptno
         JOIN p_mete mete
             on pb.meno = mete.meno
+            
         where 
             pb.meno = #{value}
     </select>

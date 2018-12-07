@@ -32,10 +32,12 @@
 <!-- MAIN JS -->
 <script src="/js/masterpagejs/main.js"></script>
 <script src="/js/masterpagejs/bootstrap.min.js"></script>
+<link href="/css/common.css" rel="stylesheet">
 
 <style>
 #colorlib-aside {
     overflow: hidden;
+    position: absolute;
 }
 
 #th-pay th, #tb-pay td {
@@ -48,6 +50,18 @@
 </head>
 
 <body>
+
+<div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <jsp:include page="../headerMain.jsp"></jsp:include>
+            </div>
+            <!-- 카테고리 nav (스크립트로 임시 inclue) -->
+            <div class="col-lg-12">
+                <jsp:include page="../headerNav.jsp"></jsp:include>
+            </div>
+            </div>
+            </div>
 
     <div id="colorlib-page">
         <div class="container-wrap">
@@ -114,7 +128,7 @@
 
                             <div class="about-desc">
 
-                                <h2 class="colorlib-heading">상품 주문 내역</h2>
+                                <h1 class="colorlib-heading">상품 주문 내역</h1>
 
                                 <div class="col-lg-12">
                                     <div class="col-lg-5" id="serch-men">
@@ -125,11 +139,11 @@
                                                     id="system-search"
                                                     name="q"
                                                     placeholder="Search for"
-                                                    required> <span
+                                                    required style="height:48px; font-size:20px;"> <span
                                                     class="input-group-btn">
                                                     <button
                                                         type="submit"
-                                                        class="btn btn-default">
+                                                        class="btn btn-default" style="border:1px solid silver;">
                                                         <i
                                                             class="fas fa-search fa-3x"></i>
                                                     </button>
@@ -218,12 +232,12 @@
                                     var="pl" varStatus="i">
                                     <div id="popup${i.index}"
                                         class="overlay">
-                                        <div class="popupH">
+                                        <div class="popupHH">
                                             <h2>상품 주문 내역</h2>
                                             <a class="close" href="#">×</a>
                                             <div class="content">
                                                 <br />
-                                                <div class="container">
+                                                <div class="container" style="width:100%;">
                                                     <div class="row">
 
                                                         <div
@@ -234,58 +248,64 @@
                                                                 style="list-style-type: none;">
                                                                 <tbody>
                                                                     <tr>
-                                                                    <td><li><span
+                                                                    <td><span
                                                                                 style="font-size: 20px;">구매번호:
                                                                             </span>
                                                                                 <span
-                                                                                class="pop-type">${pl.no }</span></li></td>
-                                                                        <td><li><span
+                                                                                class="pop-type">${pl.no }</span></td>
+                                                                        <td><span
                                                                                 style="font-size: 20px;">구매자:
                                                                             </span>
                                                                                 <span
-                                                                                class="pop-type">${pl.mete_name }(${pl.mete_nick})</span></li></td>
-                                                                        <td><li><span
+                                                                                class="pop-type">${pl.mete_name }(${pl.mete_nick})</span></td>
+                                                                        
+                                                                        
+                                                                    </tr>
+                                                                    <tr>
+                                                                    <td><span
                                                                                 style="font-size: 20px;">판매자:
                                                                             </span>
                                                                                 <span
-                                                                                class="pop-type">${pl.mete2_name }(${pl.mete2_nick})</span></li></td>
-                                                                        <td><li><span
+                                                                                class="pop-type">${pl.mete2_name }(${pl.mete2_nick})</span></td>
+                                                                        <td><span
                                                                                 style="font-size: 20px;">판매자 연락처:
                                                                             </span>
                                                                                 <span
-                                                                                class="pop-type">${pl.mete2_phone}</span></li></td>
-                                                                        
+                                                                                class="pop-type">${pl.mete2_phone}</span></td>
+                                                                    
                                                                     </tr>
 
                                                                     <tr>
-                                                                        <td><li><span style="font-size: 20px;">가격:
+                                                                        <td><span style="font-size: 20px;">가격:
                                                                             </span>
-                                                                                <span class="pop-type">${pl.prdt_pric}원</span></li></td>
-                                                                                <td><li><span style="font-size: 20px;">수량:
+                                                                                <span class="pop-type">${pl.prdt_pric}원</span></td>
+                                                                                <td><span style="font-size: 20px;">수량:
                                                                             </span>
-                                                                                <span class="pop-type">${pl.cnt}개</span></li></td>
-                                                                                <td><li><span style="font-size: 20px;">결제방법:
+                                                                                <span class="pop-type">${pl.cnt}개</span></td>
+                                                                                
+                                                                    </tr>
+                                                                    <tr>
+                                                                    <td><span style="font-size: 20px;">결제방법:
                                                                             </span>
-                                                                                <span class="pop-type">${pl.payopt}</span></li></td>
-                                                                                <td><li><span style="font-size: 20px;">결제날짜:
+                                                                                <span class="pop-type">${pl.payopt}</span></td>
+                                                                                <td><span style="font-size: 20px;">결제날짜:
                                                                             </span>
-                                                                                <span class="pop-type">${pl.paydt}</span></li></td>
+                                                                                <span class="pop-type">${pl.paydt}</span></td>
+                                                                    
                                                                     </tr>
 
 
                                                                     <tr>
-                                                                        <td
-                                                                            colspan="3"><li><span
+                                                                        <td><span
                                                                                 style="font-size: 20px;">택배사:
                                                                             </span>
                                                                                 <span
-                                                                                class="pop-type">${pl.parc_name}</span></li></td>
-                                                                        <td
-                                                                            colspan="3"><li><span
+                                                                                class="pop-type">${pl.parc_name}</span></td>
+                                                                        <td><span
                                                                                 style="font-size: 20px;">송장번호:
                                                                             </span>
                                                                                 <span
-                                                                                class="pop-type">${pl.parc_no}</span></li></td>
+                                                                                class="pop-type">${pl.parc_no}</span></td>
                                                                     </tr>
                                                                     
                                                                    
@@ -320,7 +340,7 @@
                 <jsp:include page="../footer.jsp"></jsp:include>
             </div>
         </footer>
-</body>
+
 
 <!-- Bootstrap core JavaScript -->
 <script src="/vendor/jquery/jquery.min.js"></script>
@@ -411,5 +431,35 @@ function checkItem(){
     
 }
 </script>
+
+<script>
+    
+        var testtTop;
+        var setId = "#colorlib-aside";
+        $(document).ready(function() {
+            $("div#footerCss").css("margin-top","0px");
+            testtTop = $("#colorlib-aside").offset().top;
+console.log(testtTop);
+        });
+
+         function scroll_follow(id) {
+            $(window).scroll(function() //스크롤이 움직일때마다 이벤트 발생
+            {
+                var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
+                console.log(position);
+                if (position > 157) {
+                    $(id).css("position", "absolute");
+                    $(id).css("top", (position-157) + "px");
+
+                } else {
+                    $(id).css("position", "absolute");
+                    $(id).css("top", (0) + "px");
+                }
+            });
+        }
+        scroll_follow(setId); 
+        
+    </script>
+    </body>
 
 </html>

@@ -138,6 +138,13 @@
             me.meno=#{meno}
     </select>
     
+    <update id="delInsert" parameterType="productOrder" >
+    	update p_prdt_order 
+    	   set parc_name=#{parc_name},
+    	   	   parc_no=#{parc_no}
+    	 where ptno=#{ptno}
+    </update>
+    
     <select id="findAllByMeno" 
             resultMap="productOrderMap" parameterType="Map">
         select
@@ -178,8 +185,8 @@
     <!-- insert -->
     <insert id="insert" parameterType="productOrder"
             useGeneratedKeys="true" keyColumn="ono" keyProperty="no">
-        insert into p_prdt_order(meno,ptno,cnt,tot_pric,payopt,paydt,parc_name,parc_no)
-        values(#{meno},#{ptno},#{cnt},#{tot_pric},#{payopt},now(),#{parc_name},#{parc_no})
+        insert into p_prdt_order(meno,ptno,cnt,tot_pric,payopt,paydt)
+        values(#{meno},#{ptno},#{cnt},#{tot_pric},#{payopt},now())
     </insert> 
     
 

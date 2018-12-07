@@ -14,39 +14,6 @@
     height: 50px;
 }
 
-/* 카테고리 서브메뉴 관련 */
-/*
-    div.menusubs
-    div.menusubs .localNav
-    div.menusubs .localNav li
-    .localNav ul, .localNav li
-    div.menusubs ul
-
-*/
-
-
-/* hr 관련 */
-/*
-    hr.Fhr
-    hr.Hhr
-*/
-
-hr.FhrBotMargin{
-    border: 0; 
-    height: 2px;
-    background: #ccc; 
-    width: 100%; 
-    margin: 0 0 5px 0;
-}
-/*-------------------------- */
-
-/*
-    .card-text
-    .site-heading li a
-    .test
-    .test img
-
-*/
 
 ul{
     list-style: none;
@@ -54,23 +21,6 @@ ul{
 
 /* 카르셀 카테고리 관련 */
 
-
-/*--------------------------*/
-/* 
-body {
-  font-size: 20px;
-  color: #212529;
-  font-family: 'Noto Sans KR', sans-serif;
-}
-
-p {
-  line-height: 1.5;
-  margin: 30px 0;
-}
-
-p a {
-  text-decoration: underline;
-} */
 
 h1,
 h2,
@@ -103,16 +53,6 @@ blockquote {
   font-weight: 700;
   margin-top: 60px;
 }
-
-/*
-    ::-moz-selection
-    ::selection
-    img::-moz-selection
-    img::selection
-    img::-moz-selection
-*/
-
-
 
 
 /*ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd*/
@@ -210,13 +150,6 @@ blockquote {
     display: inline-block;
 }
 
-/* div#STATICMENU{
-    border: 1px solid silver;
-    font-size: 16px;
-    margin: 0px; padding: 0px;  
-    position: absolute; right: 0px; top: 0px;
-} */
-
 .detail_info{
     position: relative;
     display: -ms-flexbox;
@@ -234,15 +167,19 @@ blockquote {
 }
 
 #testt{
- max-width: 95.5%;
- min-width: 95.5%;
-    width:96.4%; 
+  max-width: 96.5% !important;
+ min-width: 96.5% !important;
+    width:96.5% !important;
+    top:-45px;
     position : absolute;
-    margin-left:16px;
     z-index: 11;
     padding: 0;
     /*position=absolute; 
-    top: 985px;*/
+}
+#testt ul{
+/*  max-width: 100% !important;
+ min-width: 100% !important;
+ width: 100% !important; */
 }
 
 #circle{

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.service.AuthService;
 import bitcamp.java110.cms.service.MenteeService;
@@ -49,8 +50,8 @@ public class AuthController {
     }
    
     
-    @PostMapping("login")
-    public String login(
+    @PostMapping("login.do")
+    public @ResponseBody int login(
             String email,
             String pwd,
             String save,
@@ -72,22 +73,22 @@ public class AuthController {
             response.addCookie(cookie2);
         }
         Mentee loginUser = authService.getMentee(email, pwd);
+        
         if (loginUser != null) {
+            if(loginUser.getStat() == 'Y') {
+              return -1;
+            }else if(loginUser.getStat() == 'S' ) {
+              return -2;
+            }else {
             // 회원 정보를 세션에 보관한다.
             session.setAttribute("loginUser", loginUser);
-            String redirectUrl = null;
-            if(loginUser.getMtstat() == 'Y') {
-              System.out.println("멘토로그인성공");
-              redirectUrl = "../mainpage/mainpage";
-            } else {
-              System.out.println("멘티로그인성공");
-              redirectUrl = "../mainpage/mainpage";
+            return 1;
             }
-            return "redirect:" + redirectUrl;
             
-        } else {
-            session.invalidate();
-            return "redirect:form";
+        }else {
+          session.invalidate();
+          return 0;
+          
         }
     }
     
@@ -105,17 +106,19 @@ public class AuthController {
       
         try {
           Mentee loginUser = authService.getFacebookMember(accessToken);
+          System.out.println(loginUser);
           
           session.setAttribute("loginUser", loginUser);
           session.setAttribute("email", loginUser.getEmail());
           session.setAttribute("name", loginUser.getName());
          
           String redirectUrl = null;
+          System.out.println(menteeService.checkByEmail(loginUser));
           
           if(menteeService.checkByEmail(loginUser) == 0)
             redirectUrl = "../mentee/fbsignup";
           else {
-            redirectUrl = "../auth/form";
+            redirectUrl = "../mainpage/mainpage";
           }
           
           return "redirect:" + redirectUrl;

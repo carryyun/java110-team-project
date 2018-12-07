@@ -32,10 +32,12 @@
 <!-- MAIN JS -->
 <script src="/js/masterpagejs/main.js"></script>
 <script src="/js/masterpagejs/bootstrap.min.js"></script>
+<link href="/css/common.css" rel="stylesheet">
 
 <style>
 #colorlib-aside {
     overflow: hidden;
+    position: absolute;
 }
 
 #th-pay th, #tb-pay td {
@@ -48,6 +50,18 @@
 </head>
 
 <body>
+
+<div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <jsp:include page="../headerMain.jsp"></jsp:include>
+            </div>
+            <!-- 카테고리 nav (스크립트로 임시 inclue) -->
+            <div class="col-lg-12">
+                <jsp:include page="../headerNav.jsp"></jsp:include>
+            </div>
+            </div>
+            </div>
 
     <div id="colorlib-page">
         <div class="container-wrap">
@@ -114,8 +128,8 @@
 
                             <div class="about-desc">
 
-                                <h2 class="colorlib-heading">신고 접수
-                                    화면</h2>
+                                <h1 class="colorlib-heading">신고 접수
+                                    화면</h1>
 
                                 <div class="col-lg-12">
                                     <div class="col-lg-5" id="serch-men">
@@ -126,11 +140,11 @@
                                                     id="system-search"
                                                     name="q"
                                                     placeholder="Search for"
-                                                    required> <span
+                                                    required style="height:48px; font-size:20px;"> <span
                                                     class="input-group-btn">
                                                     <button
                                                         type="submit"
-                                                        class="btn btn-default">
+                                                        class="btn btn-default" style="border:1px solid silver;">
                                                         <i
                                                             class="fas fa-search fa-3x"></i>
                                                     </button>
@@ -227,12 +241,12 @@
                                     var="rl" varStatus="i">
                                     <div id="popup${i.index}"
                                         class="overlay">
-                                        <div class="popupH">
+                                        <div class="popupHH">
                                             <h2>신고 상세 목록</h2>
                                             <a class="close" href="#">×</a>
                                             <div class="content">
                                                 <br />
-                                                <div class="container">
+                                                <div class="container" style="width:100%;">
                                                     <div class="row">
 
                                                         <div
@@ -243,61 +257,66 @@
                                                                 style="list-style-type: none;">
                                                                 <tbody>
                                                                     <tr>
-                                                                        <td><li><span
-                                                                                style="font-size: 20px;">신고자:
-                                                                            </span>
-                                                                                <span
-                                                                                class="pop-type">${rl.menteeNick}</span></li></td>
-                                                                        <td><li><span
-                                                                                style="font-size: 20px;">피신고자:
-                                                                            </span>
-                                                                                <span
-                                                                                class="pop-type">${rl.mentee2Nick}</span></li></td>
-                                                                        <td><li><span
-                                                                                style="font-size: 20px;">신고유형:
-                                                                            </span>
-                                                                                <span
-                                                                                class="pop-type">${rl.type}</span></li></td>
-                                                                        <td><li><span
-                                                                                style="font-size: 20px;">분류:
-                                                                            </span>
-                                                                                <span
-                                                                                class="pop-type">${rl.type_detail}</span></li></td>
+                                                                        <td
+                                                                            colspan="4"><span
+                                                                            style="font-size: 20px;">신고자:
+                                                                        </span>
+                                                                            <span
+                                                                            class="pop-type">${rl.menteeNick}</span></td>
+                                                                        <td
+                                                                            colspan="4"><span
+                                                                            style="font-size: 20px;">피신고자:
+                                                                        </span>
+                                                                            <span
+                                                                            class="pop-type">${rl.mentee2Nick}</span></td>
+                                                                        <td
+                                                                            colspan="4"><span
+                                                                            style="font-size: 20px;">신고날짜:
+                                                                        </span>
+                                                                            <span
+                                                                            class="pop-type">${rl.rtdt}</span></td>
+
                                                                     </tr>
 
                                                                     <tr>
                                                                         <td
-                                                                            colspan="4"><li><span
-                                                                                style="font-size: 20px;">클래스URL:
-                                                                            </span>
-                                                                                <a
-                                                                                href="${rl.url}"><span
-                                                                                    class="pop-type">${rl.url}</span></a></li></td>
+                                                                            colspan="4"><span
+                                                                            style="font-size: 20px;">신고유형:
+                                                                        </span>
+                                                                            <span
+                                                                            class="pop-type">${rl.type}</span></td>
+                                                                        <td
+                                                                            colspan="4"><span
+                                                                            style="font-size: 20px;">분류:
+                                                                        </span>
+                                                                            <span
+                                                                            class="pop-type">${rl.type_detail}</span></td>
+                                                                        <td
+                                                                            colspan="4"><span
+                                                                            style="font-size: 20px;">클래스URL:
+                                                                        </span>
+                                                                            <a
+                                                                            href="${rl.url}"><span
+                                                                                class="pop-type">${rl.url}</span></a></td>
+
                                                                     </tr>
 
 
                                                                     <tr>
-                                                                        <td
-                                                                            colspan="3"><li><span
+                                                                        <td colspan="9"><span
                                                                                 style="font-size: 20px;">제목:
                                                                             </span>
                                                                                 <span
-                                                                                class="pop-type">${rl.titl}</span></li></td>
-                                                                        <td
-                                                                            colspan="3"><li><span
-                                                                                style="font-size: 20px;">신고날짜:
-                                                                            </span>
-                                                                                <span
-                                                                                class="pop-type">${rl.rtdt}</span></li></td>
+                                                                                class="pop-type">${rl.titl}</span></td>
+                                                                        
                                                                     </tr>
                                                                     <tr>
-                                                                        <td
-                                                                            colspan="4"
-                                                                            style="height: auto"><li><span
+                                                                        <td colspan="12"
+                                                                            style="height: auto"><span
                                                                                 style="font-size: 20px;">내용:
                                                                             </span>
                                                                                 <span
-                                                                                class="pop-type">${rl.conts}</span></li></td>
+                                                                                class="pop-type">${rl.conts}</span></td>
                                                                     </tr>
                                                                    
                                                                 </tbody>
@@ -347,7 +366,6 @@
                 <jsp:include page="../footer.jsp"></jsp:include>
             </div>
         </footer>
-</body>
 
 <!-- Bootstrap core JavaScript -->
 <script src="/vendor/jquery/jquery.min.js"></script>
@@ -438,5 +456,35 @@ function checkItem(){
     
 }
 </script>
+
+<script>
+    
+        var testtTop;
+        var setId = "#colorlib-aside";
+        $(document).ready(function() {
+            $("div#footerCss").css("margin-top","0px");
+            testtTop = $("#colorlib-aside").offset().top;
+console.log(testtTop);
+        });
+
+         function scroll_follow(id) {
+            $(window).scroll(function() //스크롤이 움직일때마다 이벤트 발생
+            {
+                var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
+                console.log(position);
+                if (position > 157) {
+                    $(id).css("position", "absolute");
+                    $(id).css("top", (position-157) + "px");
+
+                } else {
+                    $(id).css("position", "absolute");
+                    $(id).css("top", (0) + "px");
+                }
+            });
+        }
+        scroll_follow(setId); 
+        
+    </script>
+    </body>
 
 </html>

@@ -24,17 +24,20 @@ import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.Product;
 import bitcamp.java110.cms.domain.ProductBakt;
 import bitcamp.java110.cms.domain.ProductFile;
+import bitcamp.java110.cms.domain.ProductOrder;
 import bitcamp.java110.cms.domain.ProductPopul;
 import bitcamp.java110.cms.domain.ProductQnA;
 import bitcamp.java110.cms.domain.ProductRep;
 import bitcamp.java110.cms.domain.SmallTag;
 import bitcamp.java110.cms.service.BigTagService;
 import bitcamp.java110.cms.service.CertService;
+import bitcamp.java110.cms.service.ClassBaktService;
 import bitcamp.java110.cms.service.ClassLikeService;
 import bitcamp.java110.cms.service.ClassService;
 import bitcamp.java110.cms.service.MiddleTagService;
 import bitcamp.java110.cms.service.ProductBaktService;
 import bitcamp.java110.cms.service.ProductFileService;
+import bitcamp.java110.cms.service.ProductOrderService;
 import bitcamp.java110.cms.service.ProductPopulService;
 import bitcamp.java110.cms.service.ProductQnAService;
 import bitcamp.java110.cms.service.ProductRepService;
@@ -60,7 +63,9 @@ public class ProductController {
 
   ServletContext sc;
   ClassLikeService classlikeService;
-
+  
+  ProductOrderService productOrderService;
+  ClassBaktService classBaktService;
   
   public ProductController(ProductService productService, BigTagService bigTagService,
       MiddleTagService middleTagService, ProductPopulService productPopulService,
@@ -68,7 +73,8 @@ public class ProductController {
       ProductQnAService productQnAService, ProductBaktService productBaktService,
       CertService certService, SmallTagService smallTagService,
       ProductFileService productFileService, ServletContext sc,
-      ClassLikeService classlikeService) {
+      ClassLikeService classlikeService, ProductOrderService productOrderService
+      ) {
 
     this.productService = productService;
     this.bigTagService = bigTagService;
@@ -83,6 +89,7 @@ public class ProductController {
     this.productFileService = productFileService;
     this.sc = sc;
     this.classlikeService =classlikeService;
+    this.productOrderService = productOrderService;
   }
 
   @GetMapping("prdt")
@@ -186,6 +193,19 @@ public class ProductController {
     model.addAttribute("stagList", stagList);
     model.addAttribute("ctno", ctno);
   }
+  
+  @GetMapping("prodUpdate")
+  public void prodUpdate(Model model, HttpSession session, int no) {
+    Product product = productService.get(no);
+    List<ProductFile> productFiles = productFileService.listByPtno(product.getNo());
+    int FileLength = productFiles.size();
+    List<SmallTag> stagList = smallTagService.listMtno(10, 5, product.getStno());
+    
+    model.addAttribute("FileLength", FileLength);
+    model.addAttribute("stagList", stagList);
+    model.addAttribute("productFiles", productFiles);
+    model.addAttribute("product", product);
+  }
 
 //상품평 등록
   @RequestMapping(value = "addrep.do", method = {RequestMethod.GET, RequestMethod.POST})
@@ -274,6 +294,49 @@ public class ProductController {
     return "detail?no=" + result;
   }
   
+  @PostMapping(value = "updateProduct.do")
+  public String updateProductdo(Product product, List<MultipartFile> files, String deleteFile, HttpSession session)
+      throws Exception {
+    productService.update(product);
+    int result = product.getNo();
+    
+    System.out.println(product);
+    System.out.println(deleteFile);
+    String[] str = deleteFile.split("&");
+    for(String s:str) {
+      ProductFile profile = new ProductFile();
+      profile.setPfname(s);
+      profile.setPtno(result);
+      productFileService.delete(profile);
+    }
+    
+    int index = 0;
+    for (MultipartFile file : files) {
+      if (!file.getOriginalFilename().equals("")) {
+        String filename = UUID.randomUUID().toString();
+        file.transferTo(new File(sc.getRealPath("/upload/img/prdtImg/" + filename + ".png")));
+        String fname = "/upload/img/prdtImg/" + filename + ".png";
+        System.out.println(fname);
+        ProductFile productFile = new ProductFile();
+        productFile.setPfname(fname);
+        productFile.setPtno(result);
+
+        productFileService.add(productFile);
+        index++;
+      }
+    }
+    
+    return "detail?no=" + result;
+  }
+  @GetMapping("updatestat")
+  public String updatestat(int no, String stat) {
+    Product product = new Product();
+    product.setNo(no);
+    product.setStat(stat);
+    productService.updatestat(product);
+    return "redirect:prdt";
+  }
+  
   @GetMapping("prdtSerch")
   public void prdtSerch(String titl,Model model) {
     System.out.println(titl);
@@ -282,7 +345,8 @@ public class ProductController {
     model.addAttribute("serchList", serchList);
   }
   
-  @RequestMapping(value = "clslikeins.do", method = {RequestMethod.POST})
+  
+ @RequestMapping(value = "clslikeins.do", method = {RequestMethod.POST})
   public @ResponseBody String clslikeins(ClassLike classlike) {
     
     System.out.println(classlike.getMeno());
@@ -290,6 +354,43 @@ public class ProductController {
     classlikeService.likeadd(classlike);
     
     return "redirect:detail?no="+classlike.getCno();
+  }
+ 
+ /*상품장바구니*/
+  @RequestMapping(value = "prodBaskt.do", method = {RequestMethod.POST})
+  public @ResponseBody String prodBaskt(ProductBakt productBakt) {
+    
+    productBaktService.add(productBakt);
+    
+    return "redirect:detail?no="+productBakt.getNo();
+  }
+  
+  @RequestMapping(value = "addProdOrder.do", method = {RequestMethod.POST})
+  public @ResponseBody String addOrderdo(String[] arr) {
+    
+    for(String s : arr) {
+      String[] str = s.split("&");
+      
+      ProductBakt productBakt = new ProductBakt();
+      productBakt.setNo(Integer.parseInt(str[0]));
+      productBakt.setPtno(Integer.parseInt(str[1]));
+      productBakt.setMeno(Integer.parseInt(str[2]));
+      productBakt.setCnt(Integer.parseInt(str[3]));
+      productBaktService.delete(productBakt.getNo());
+      
+      Product product = new Product();
+      product = productService.get(productBakt.getPtno());
+      
+      ProductOrder order = new ProductOrder();
+      order.setMeno(productBakt.getMeno());
+      order.setPtno(productBakt.getPtno());
+      order.setCnt(productBakt.getCnt());
+      order.setTot_pric(product.getPric()*order.getCnt());
+      order.setPayopt(str[4]);
+      
+      productOrderService.add(order);
+      }
+    return "complete";
   }
   
   

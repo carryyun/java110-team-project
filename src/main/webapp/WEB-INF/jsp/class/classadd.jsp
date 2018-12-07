@@ -7,25 +7,39 @@
 <head>
     <meta charset="UTF-8">
     <title>클래스 등록</title>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
-    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/classadd.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" type="text/javascript" ></script> 
+    <link href='/css/common.css' rel='stylesheet' />
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
-    <script src='/js/moment.min.js'></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"  type="text/javascript"></script>
-    <script src="/js/jquery.datetimepicker.full.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src='/js/fullcalendar.min.js'></script>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
-    <link rel="stylesheet" href="/css/jquery.datetimepicker.min.css" >
+    
+	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
+    <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"> -->
+    
+    <!-- <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script> -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
     <link href='/css/fullcalendar.css' rel='stylesheet' />
-    <link href='/css/fullcalendar.min.css' rel='stylesheet' type="text/javascript" />
+    <!-- <link href='/css/fullcalendar.min.css' rel='stylesheet' type="text/javascript" /> -->
     <link href='/css/fullcalendar.print.min.css' rel='stylesheet' media='print'/>
+    <script src='/js/moment.min.js'></script>
+    <script src='/js/fullcalendar.min.js'></script>
+    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="/js/jquery.datetimepicker.full.min.js"></script>
+    <link rel="stylesheet" href="/css/jquery.datetimepicker.min.css" >
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"  type="text/javascript"></script>
+    
+    <style type="text/css">
+    button.note-btn.btn.btn-default.btn-sm{
+    	font-size: 12px !important;
+    }
+    #mainNav .navbar-brand{
+    	margin-bottom: 50px !important;
+    }
+    </style>
     </head>
     
 <body style="background-color:#F2F4F7;">
@@ -35,13 +49,13 @@
 			<!-- 헤더 배경색 적용 -->
 		</div>
 <div class="col-lg-12" style="z-index: 100">
-					<%-- <jsp:include page="../headerMain.jsp"></jsp:include> --%>
+				 	 <jsp:include page="../headerMain.jsp"></jsp:include> 
  <div id="classadd">
   <div>
       <h1>클래스 등록</h1>
   </div>
   <!--method="post"  enctype="multipart/form-data"-->
-  <form action="classadd" method="post" id="uploadForm" enctype="multipart/form-data" onsubmit="return emptychk()" >
+  <form action="classadd" method="post" id="uploadForm" enctype="multipart/form-data">
              <div>
               <input type="text" name="titl" id="ctitl" placeholder="#제목을 입력해주세요  #Haru #클래스등록">
              </div>
@@ -62,7 +76,7 @@
                 <div style="position:absolute; width: 500px; float:right; top: 0;">
                <div id="pay-div">
                 <input type="text" class="view" readonly value="시간당 금액" >
-                <input type="number" name="pric" id="cpay" oninput="maxLengthCheck2(this)" maxlength="6" placeholder="시간당 수업금액을 입력해주세요.">원
+                <input type="number" name="pric" id="cpay" maxlength="6" placeholder="시간당 수업금액을 입력해주세요.">원
                </div> 
                <div id="allday-btn" style="display:none;">
                <input type="text" class="view" readonly value="수업날짜">
@@ -80,7 +94,7 @@
                </div>
                <div id="divcapa">
                 <input type="text" class="view" readonly value="모집인원">
-                <input type="number" name="capa" id="rnumber" oninput="maxLengthCheck2(this)" min="1" maxlength="2" placeholder="모집인원을 입력해주세요.">
+                <input type="number" name="capa" id="rnumber"  min="1" maxlength="2" placeholder="모집인원을 입력해주세요.">
                </div>
                 <div id="pst">
                     <input type="text" id="posi" readonly value="수업장소"><br>
@@ -110,8 +124,9 @@
                  <textarea id="classtteok" name="cinfo"></textarea>
                  <input id="days" type="hidden" name="days">
                  <input id="removefiles" type="hidden" name="removefiles">
-                 <input type="hidden" id="type" name="type" value="단기">  
-              	 <input type="submit" id="clsinsert"  value="클래스 등록" />
+                 <input type="hidden" id="type" name="type" value="단기"> 
+                 <input type="button" id="back-home-btn" value="Go Home">  
+              	 <input type="button" id="clsinsert" onclick="emptychk();" value="클래스 등록" />
               </form>
             </div>
         </div>
@@ -126,6 +141,10 @@
 	    { 
 	    	$("#type").val($("input[name=typeChk]:checked").val());
 	    });
+	     /* $('#mainNav .navbar-brand').css('margin-bottom', '50');
+	     $('.navbar-brand').css('margin-bottom', '50');
+	     $('#mainNav').css("padding", "0");
+	     $('#mainNav').css("border", "0"); */
 	});
 	
 function emptychk(){
@@ -134,7 +153,6 @@ function emptychk(){
 			text:"제목은 최소 3글자이상 입력해주세요.",
 			button:"확인"
 		});
-		console.log($("#cpay").val() < 1000);
 		return false;
 	}else if($("#imgInput").val().length > 0 && !($("#imgInput").val().substr(0 , 16) == 'https://youtu.be' || 
 			$("#imgInput").val().substr(0 , 23) == 'https://www.youtube.com')) {
@@ -155,6 +173,12 @@ function emptychk(){
 			button:"확인"
 		});
 		return false;
+	}else if($("#rnumber").val() > 50){
+			swal({
+				text:"최대 모집인원은 50명입니다.",
+				button:"확인"
+			});
+			return false;
 	}else if($("#classcowdog").val().length < 100){
 		swal({
 			text:"강의 소개는 최소100글자이상 입력해주세요.",
@@ -215,7 +239,7 @@ function emptychk(){
 				button:"확인"
 			});
 			return false;
-	}else if($("#type").val() == '단기' && $("#cpay").val() < 1000){
+	}else if($("#cpay").val() < 1000){
 		swal({
 			text:"시간당 최소금액은 1000원이상입니다.",
 			button:"확인"
@@ -258,6 +282,15 @@ function emptychk(){
 				button:"확인"
 			});
     		return false;
+	}else {
+		swal({
+		        title: "클래스 신청이 완료되었습니다.", 
+		        text: "심사기간은 최대 3일입니다.",
+		        timer:3000,
+		        button:"확인"
+		        }).then((value) => {
+		       		document.getElementById('uploadForm').submit();
+		        });
 	}
 }
 
@@ -344,55 +377,6 @@ $(document.body).on('click', '.remove-file-btn', function (event) {
 	   interval: 60,
 	   timeFormat :'H:mm',
 	   change: function(time) { 
-		   if($("#ctime2").val().length == 5){
-			    if($("#ctime").val().length == 5){
-					var ct2 = $("#ctime2").val().substr(0,2);
-					var ct1 = $("#ctime").val().substr(0,2);
-			    	var alltime = ct2-ct1
-			    	if(ct2 > ct1){
-			  	  		$("#cttime").val(Math.abs(alltime));	    		
-			    	}else if(ct2 < ct1){
-			    		swal("시작시간이 끝나는시간보다 작아야합니다");
-			    	}else if(ct2 = ct1){
-			    		swal("시작시간과 끝나는시간이 같으면안됩니다.");
-			    	}
-			    }else if($("#ctime").val().length == 4){
-			    	var ct2 = $("#ctime2").val().substr(0,2);
-					var ct1 = $("#ctime").val().substr(0,1);
-			    	var alltime = ct2-ct1
-			    	if(Math.abs(ct2)>Math.abs(ct1)){
-			  	  		$("#cttime").val(Math.abs(alltime));	    		
-			    	}else if(Math.abs(ct2)<Math.abs(ct1)){
-			    		swal("시작시간이 끝나는시간보다 작아야합니다");
-			    	}else if(Math.abs(ct2)=Math.abs(ct1)){
-			    		swal("시작시간과 끝나는시간이 같으면안됩니다.");
-			    	}
-			    }
-			}else if($("#ctime2").val().length == 4){
-				if($("#ctime").val().length == 4){
-					var ct2 = $("#ctime2").val().substr(0,1);
-					var ct1 = $("#ctime").val().substr(0,1);
-			    	var alltime = ct2-ct1
-			    	if(ct2 > ct1){
-			  	  		$("#cttime").val(Math.abs(alltime));	    		
-			    	}else if(ct2 < ct1){
-			    		swal("시작시간이 끝나는시간보다 작아야합니다");
-			    	}else if(ct2 = ct1){
-			    		swal("시작시간과 끝나는시간이 같으면안됩니다.");
-			    	}
-				}else if($("#ctime").val().length == 5){
-					var ct2 = $("#ctime2").val().substr(0,1);
-					var ct1 = $("#ctime").val().substr(0,2);
-			    	var alltime = ct2-ct1
-			    	if(Math.abs(ct2)>Math.abs(ct1)){
-			  	  		$("#cttime").val(Math.abs(alltime));	    		
-			    	}else if(Math.abs(ct2)<Math.abs(ct1)){
-			    		swal("시작시간이 끝나는시간보다 작아야합니다");
-			    	}else if(Math.abs(ct2)=Math.abs(ct1)){
-			    		swal("시작시간과 끝나는시간이 같으면안됩니다.");
-			    	}
-				}
-			}
        $("#ctime2").timepicker("option","minTime", time);
 	   }
    });
@@ -419,48 +403,29 @@ $(document.body).on('click', '.remove-file-btn', function (event) {
 					var ct2 = $("#ctime2").val().substr(0,2);
 					var ct1 = $("#ctime").val().substr(0,2);
 			    	var alltime = ct2-ct1
-			    	if(ct2 > ct1){
+			    	if(ct2 > ct1)
 			  	  		$("#cttime").val(Math.abs(alltime));	    		
-			    	}else if(ct2 < ct1){
-			    		swal("시작시간이 끝나는시간보다 작아야합니다");
-			    	}else if(ct2 = ct1){
-			    		swal("시작시간과 끝나는시간이 같으면안됩니다.");
-			    	}
+			    	
 			    }else if($("#ctime").val().length == 4){
 			    	var ct2 = $("#ctime2").val().substr(0,2);
 					var ct1 = $("#ctime").val().substr(0,1);
 			    	var alltime = ct2-ct1
-			    	if(Math.abs(ct2)>Math.abs(ct1)){
+			    	if(Math.abs(ct2)>Math.abs(ct1))
 			  	  		$("#cttime").val(Math.abs(alltime));	    		
-			    	}else if(Math.abs(ct2)<Math.abs(ct1)){
-			    		swal("시작시간이 끝나는시간보다 작아야합니다");
-			    	}else if(Math.abs(ct2)=Math.abs(ct1)){
-			    		swal("시작시간과 끝나는시간이 같으면안됩니다.");
-			    	}
 			    }
 			}else if($("#ctime2").val().length == 4){
 				if($("#ctime").val().length == 4){
 					var ct2 = $("#ctime2").val().substr(0,1);
 					var ct1 = $("#ctime").val().substr(0,1);
 			    	var alltime = ct2-ct1
-			    	if(ct2 > ct1){
+			    	if(ct2 > ct1)
 			  	  		$("#cttime").val(Math.abs(alltime));	    		
-			    	}else if(ct2 < ct1){
-			    		swal("시작시간이 끝나는시간보다 작아야합니다");
-			    	}else if(ct2 = ct1){
-			    		swal("시작시간과 끝나는시간이 같으면안됩니다.");
-			    	}
 				}else if($("#ctime").val().length == 5){
 					var ct2 = $("#ctime2").val().substr(0,1);
 					var ct1 = $("#ctime").val().substr(0,2);
 			    	var alltime = ct2-ct1
-			    	if(Math.abs(ct2)>Math.abs(ct1)){
+			    	if(Math.abs(ct2)>Math.abs(ct1))
 			  	  		$("#cttime").val(Math.abs(alltime));	    		
-			    	}else if(Math.abs(ct2)<Math.abs(ct1)){
-			    		swal("시작시간이 끝나는시간보다 작아야합니다");
-			    	}else if(Math.abs(ct2)=Math.abs(ct1)){
-			    		swal("시작시간과 끝나는시간이 같으면안됩니다.");
-			    	}
 				}
 			}
 	   }
@@ -618,29 +583,25 @@ function readURL(input) {
              }
          });
  }  */ 
-function maxLengthCheck2(object){
-if (object.value.length > object.maxLength){
-  object.value = object.value.slice(0, object.maxLength);
-}else if(object.value < 1){
-	swal("최소인원은 1명이상입니다.");
-}
-}
+
   $(document).ready(function() {
      $('#classcowdog').summernote();
-    /*  $('div.note-popover.popover.in.note-link-popover.bottom').remove();
+      $('div.note-popover.popover.in.note-link-popover.bottom').remove();
      $('div.note-popover.popover.in.note-image-popover.bottom').remove();
      $('div.popover-content.note-children-container').remove();
       $('div.arrow').remove(); 
-     $('div.note-popover.popover.in.note-table-popover.bottom').remove(); */
+     $('div.note-popover.popover.in.note-table-popover.bottom').remove();
+     
  });
 
  $(document).ready(function() {
      $('#classtteok').summernote();
-     /* $('div.note-popover.popover.in.note-link-popover.bottom').remove();
+      $('div.note-popover.popover.in.note-link-popover.bottom').remove();
      $('div.note-popover.popover.in.note-image-popover.bottom').remove();
      $('div.popover-content.note-children-container').remove();
       $('div.arrow').remove(); 
-     $('div.note-popover.popover.in.note-table-popover.bottom').remove(); */
+     $('div.note-popover.popover.in.note-table-popover.bottom').remove(); 
+     
  }); 
  
  
@@ -663,8 +624,8 @@ $(document).ready(function(){
         
     $('#calendar').fullCalendar({
        header: {
-        left: '',
-        center: 'title',
+        left: 'title',
+        center: '',
         right: 'today prev,next'
       },
       defaultDate: today,

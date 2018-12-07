@@ -76,6 +76,10 @@ public class ProductServiceImpl implements ProductService {
 
     return productDao.update(product);
   }
+  @Override
+  public int updatestat(Product product) {
+    return productDao.updatestat(product);
+  }
 
   @Override
   public List<Product> findAllByList() {

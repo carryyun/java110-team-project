@@ -33,6 +33,11 @@ public class CertServiceImpl implements CertService {
   public int insertCert(Cert cert) {
     return certDao.insertCert(cert);
   }
-  
+
+
+  @Override
+  public Cert get(int no) {
+    return certDao.findByNo(no);
+  }
 
 }

@@ -11,5 +11,6 @@ public interface ClassOrderService {
 
   List<ClassOrder> listByMaster(int pageNo, int pageSize); // 관리자- 클래스 조회
 
- 
+  int listByCno(int no , int rono);
+  
 }

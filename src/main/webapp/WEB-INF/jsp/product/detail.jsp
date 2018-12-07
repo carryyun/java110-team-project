@@ -46,7 +46,7 @@
 
 
 <div id="wrap" style="background-color: #F2F4F7">
-        <div class="col" style="position: absolute; height: 150px; background-color: #fff">
+        <div class="col" style="position: absolute; height: 147px; background-color: #fff">
             <!-- 헤더 배경색 적용 -->
         </div>
         
@@ -78,8 +78,9 @@
     </div>
 </div>
 </div>
-<script src="/vendor/jquery/jquery.min.js"></script>
+
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/vendor/jquery/jquery.min.js"></script>
 <script src="/js/jquery.raty.min.js"></script>
 <script src="/js/clean-blog.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
@@ -348,12 +349,13 @@ function addqna(no){
     var qnatype = $('input#getQnaType').val();
     var qnatitl = $('input#qnatitl').val();
     var qnaconts = $('textarea#qnaconts').val();
-    var qnatitl = $('input#qnatitl').val();
+    var ptno = ${product.no};
+    /* var qnatitl = $('input#qnatitl').val(); */
 	$.ajax({
 	    type : "POST",
 	    data : {
 	        "meno" : "${sessionScope.loginUser.no}",
-            "ptno" : no,
+            "ptno" : ptno,
 	        "type" : qnatype,
 	        "titl" : qnatitl,
 	        "conts" : qnaconts
@@ -371,8 +373,8 @@ function addqna(no){
 }
 </script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-<script>
 
+<script>
 function npay(){
     if(${sessionScope.loginUser eq null}){
         swal({
@@ -418,6 +420,47 @@ function npay(){
     }
 }
 </script>
+
+
+<!-- 장바구니 -->
+<script>
+function prodBaskt(no) {
+    var ptno = ${product.no}; 
+    if("${sessionScope.loginUser}" == ""){
+        swal({
+            text : "로그인 후 이용가능합니다..",
+            button : "확인",
+          })
+    } else{
+        $.ajax({
+            type : "POST" , 
+            data : {
+                "ptno" : ptno,
+                "meno" : no,
+                "cnt" : 1
+            },
+            url : "prodBaskt.do" ,
+            success : function() {
+                swal({
+                    text : "장바구니에 등록되었습니다",
+                    icon : "success",
+                    button : "확인",
+                  })
+            },error : function(error,status){
+                swal({
+                    text : "이미 장바구니에 등록된 상품입니다.",
+                    button : "확인",
+                  })
+            }
+        });
+    } 
+}
+
+
+</script>
+
+
+<!-- 찜클래스 -->
 <script>
 function clslikeins(no) {
     var cno = ${detailclass.no};
@@ -452,74 +495,54 @@ function clslikeins(no) {
 
 
 </script>
+<script>
+function update(){
+    var openWin;
+    
+    var url    = "prodUpdate?no="+${product.no};
+    var title  = "하루 - 상품수정";
+    var status = "toolbar=no,directories=no,scrollbars=no,resizable=no,status=no,menubar=no,width=1300, height=750, top=-1000,left=100"; 
+    openWin = window.open(url, title,status); 
+        //window.open(url,title,status); window.open 함수에 url을 앞에와 같이
+        //인수로  넣어도 동작에는 지장이 없으나 form.action에서 적용하므로 생략
+        //가능합니다.
+    /* frm.target = title;    //form.target 이 부분이 빠지면 form값 전송이 되지 않습니다. 
+    frm.action = url;         //form.action 이 부분이 빠지면 action값을 찾지 못해서 제대로 된 팝업이 뜨질 않습니다. 
+    frm.method = "GET";
+    frm.submit();   */
+}
+function updatestat(){
+    swal({
+        title: "삭제 하시겠습니까?",
+        text: "삭제한 게시물은 복구할 수 없습니다.",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    }).then((willDelete) => {
+        if (willDelete) {
+            swal({
+                text : "삭제되었습니다.",
+                button : "확인",
+            }).then((willDelete) => {
+                if(willDelete){
+                  location.href="updatestat?no=${product.no}&stat=N";
+                }
+              })
+        } else {
+          
+        }
+      });
+}
+</script>
+
+<!-- 상품상세보기에서 아코디언임 -->
+<script>
+$('.accordian-body').on('show.bs.collapse', function () {
+    $(this).closest("table")
+        .find(".collapse.in")
+        .not(this)
+})
+</script>
 </body>
 
 </html>
-
-
-
-<%-- function pay(){
-    var IMP = window.IMP; // 생략해도 괜찮습니다.
-    IMP.init("imp40971131"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
-    
-    IMP.request_pay({
-        pg : 'kakaopay',
-        pay_method : 'card',
-        merchant_uid : 'merchant_' + new Date().getTime(),
-        name : '${product.titl}',
-        amount : parseInt($('input#totalPric').val()),
-        buyer_email : '${sessionScope.loginUser.email}',
-        buyer_name : '${sessionScope.loginUser.name}',
-        buyer_tel : '${sessionScope.loginUser.phone}',
-        buyer_addr : '${sessionScope.loginUser.bas_addr}',
-        buyer_postcode : '${sessionScope.loginUser.pstno}'
-    }, function(rsp) {
-        var msg = '결제가 완료되었습니다.';
-        msg += '\n고유ID : ' + rsp.imp_uid;
-        msg += '\n상점 거래ID : ' + rsp.merchant_uid;
-        msg += '\n결제 금액 : ' + rsp.paid_amount;
-        msg += '카드 승인번호 : ' + rsp.apply_num;
-        
-        alert(msg);
-        if ( rsp.success ) {
-            //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
-            jQuery.ajax({
-                url: "../payment/complete.do", //cross-domain error가 발생하지 않도록 주의해주세요
-                type: 'POST',
-                dataType: 'json',
-                contentType: 'application/json',
-                data: JSON.stringify({
-                    imp_uid : rsp.imp_uid,
-                    //기타 필요한 데이터가 있으면 추가 전달
-                    buyer_email : rsp.buyer_email,
-                    buyer_name : rsp.buyer_name,
-                    buyer_tel : rsp.buyer_tel,
-                    buyer_addr : rsp.buyer_addr,
-                    buyer_postcode : rsp.buyer_postcode
-                }),
-                
-            }).done(function(data) {
-                //[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
-                console.log(data);
-                if ( everythings_fine ) {
-                    var msg = '결제가 완료되었습니다.';
-                    msg += '\n고유ID : ' + rsp.imp_uid;
-                    msg += '\n상점 거래ID : ' + rsp.merchant_uid;
-                    msg += '\n결제 금액 : ' + rsp.paid_amount;
-                    msg += '카드 승인번호 : ' + rsp.apply_num;
-                    
-                    alert(msg);
-                } else {
-                    //[3] 아직 제대로 결제가 되지 않았습니다.
-                    //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
-                }
-            });
-        } else {
-            var msg = '결제에 실패하였습니다.';
-            msg += '에러내용 : ' + rsp.error_msg;
-            
-            alert(msg);
-        }
-    });
-<<<<<<< HEAD
-} --%>

@@ -36,7 +36,7 @@ public interface MenteeService {
   
   void fbadd(Mentee mentee);
   
-  void delete(int no);
+  int delete(String withdrawalpwd);
   
   
   

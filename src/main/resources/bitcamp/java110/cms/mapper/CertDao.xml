@@ -36,7 +36,7 @@
 			cno asc;
     </select>
 
-	<select id="findByno" resultMap="certMap" parameterType="int">
+	<select id="findByNo" resultMap="certMap" parameterType="int">
 		<include refid="select1"></include>
 		where ctno = #{ctno}
 	</select>

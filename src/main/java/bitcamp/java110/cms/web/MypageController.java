@@ -87,6 +87,17 @@ public class MypageController {
    
   }
   
+  @RequestMapping(value="deleteuser.do", method= {RequestMethod.POST})
+  public @ResponseBody int deleteuser(String withdrawalpwd,HttpSession session){
+    System.out.println("ASDASD");
+    System.out.println(menteeService.delete(withdrawalpwd));
+    if(menteeService.delete(withdrawalpwd) > 0) {
+      session.invalidate(); 
+      return menteeService.delete(withdrawalpwd);
+    }
+    return menteeService.delete(withdrawalpwd);
+  }
+
   @GetMapping("mypage")
   public void mypage(Model model,HttpSession session) {
     
@@ -98,14 +109,10 @@ public class MypageController {
     
     
   }
-  
   @GetMapping("menu1")
   public void menu1(Model model,HttpSession session) {
-    
     Mentee mentee = (Mentee) session.getAttribute("loginUser");
-    
     model.addAttribute("mentee", mentee);
-
   }
   
   
@@ -330,6 +337,7 @@ public class MypageController {
     
     List<Product> pmanage2 = productService.listBySeller2(1,10,ptno);
     model.addAttribute("pmanage2", pmanage2 );
+    model.addAttribute("ptno", ptno);
        
   }
   
@@ -357,6 +365,18 @@ public class MypageController {
     
     
     return classService.manageByCno(cno);
+  }
+  @RequestMapping(value = "deliveryinsert.do", method = {RequestMethod.POST})
+  public @ResponseBody int deliveryInsert(String parcname,int parcno, String delptno) {
+    System.out.println(parcname);
+    System.out.println(parcno);
+    System.out.println(delptno);
+    ProductOrder order = new ProductOrder();
+    order.setParc_name(parcname);
+    order.setParc_no(parcno);
+    order.setPtno(Integer.parseInt(delptno));
+    
+    return productOrderSerivce.adddeliveryinfo(order);
   }
   
 /*  @RequestMapping(value = "buyerList.do", method = {RequestMethod.POST})

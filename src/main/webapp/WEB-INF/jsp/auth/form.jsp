@@ -9,6 +9,7 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <!DOCTYPE html>
 <html>
@@ -28,7 +29,7 @@
 </head>
 <body>
 
-<!-- 네이버 --> -->
+<!-- 네이버 -->
 <%
     String clientId = "TnNcED7klJ8X7xSS3nja";//애플리케이션 클라이언트 아이디값";
     String redirectURI = URLEncoder.encode("http://localhost:8888/app/auth/callback", "UTF-8");
@@ -41,7 +42,7 @@
     session.setAttribute("state", state);
  %>
  
-<div class="container">``
+<div class="container">
     <div class="d-flex justify-content-center h-100">
         <div class="card">
             <div class="card-header">
@@ -56,12 +57,11 @@
                 </div>
             </div>
             <div class="card-body">
-                <form action='login' method="post" >
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="email" name="email" value='${cookie.email.value}' 
+                        <input type="email" name="email" id="email" value='${cookie.email.value}' 
                         class="form-control" placeholder="useremail">
                         
                     </div>
@@ -69,23 +69,32 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
-                        <input type="password" name="pwd" class="form-control" placeholder="password">
+                        <input type="password" name="pwd" id="pwd" class="form-control" placeholder="password">
                     </div>
                     <div class="row align-items-center remember">
-                        <input type="checkbox" name="save" ${cookie.save.value}>이메일 저장
+                        <input type="checkbox"  id="save" name="save" ${cookie.save.value}>이메일 저장
                     </div>
-                    <div id="login" class="form-group">
-                        <input type="submit" value="login" class="btn float-right login_btn">
+                    <div class="row" style="margin-top:10%">
+                    <div class="col-sm-12">
+                    
+                    <div id="login" class="form-group" style="position:absolute; right:10px; bottom:0;">
+                        <input type="button" id="submitbtn" onClick="submitbtnClick()" value="로그인" class="btn btn-warning btn-lg"/>
                     </div>
                     
-                </form>
+                    <div id="main" class="form-group" >
+                        <input type="button" value="메인으로" class="btn btn-warning btn-lg" onclick="mainhome()" />
+                    </div>
+                    
+                    </div>
+                    </div>
+                    
             </div>
             <div class="card-footer">
                 <div class="d-flex justify-content-center links">
-                    <a href="/app/mentee/signup">회원 가입</a>
+                    <a href="/app/mentee/sign">회원 가입</a>
                 </div>
                 <div class="d-flex justify-content-center">
-                    <a href="/app/mentee/searchuser">이메일 찾기</a>
+                    <a href="/app/mentee/searchmail">이메일 찾기</a>
                 </div>
                 <div class="d-flex justify-content-center">
                     <a href="/app/mentee/searchpwd">비밀번호 찾기</a>
@@ -96,24 +105,23 @@
 </div>
 
 
-
  <!-- 페이스북 -->
 <script type="text/javascript">
-$(document).ready(function(){
-    
-});
 
 function autoLogin(accessToken) {
     location.href = "fblogin?" + 
             "accessToken=" + accessToken;
 }
-
 function checkLoginState() {
     FB.getLoginStatus(function(response) { 
         if (response.status === 'connected') {
             autoLogin(response.authResponse.accessToken);
         } else {
-            alert("Facebook 로그인 실패!");
+        	swal({
+		        text: "Facebook 로그인 실패!",
+		        timer:3000,
+		        button:"확인"
+			});
         }
     });
 }
@@ -164,6 +172,46 @@ function loginWithKakao(){
     });
     
     
+}
+function submitbtnClick(){
+	$.ajax({
+	 	type:"POST",
+		data : {
+			email : $("#email").val(),
+			pwd : $("#pwd").val(),
+			save : $("#save").val()
+		},
+		url : "login.do",
+		success : function(data){
+			console.log(data);
+			if(data == -1){
+				swal({
+			        text: "정지된 회원입니다.",
+			        timer:3000,
+			        button:"확인"
+				});
+			}else if(data == -2){
+				swal({
+			        text: "탈퇴한 회원입니다.",
+			        timer:3000,
+			        button:"확인"
+				});
+			}else if(data == 0){
+				swal({
+					 text:"회원정보가 일치하지 않습니다.",
+					 timer:3000,
+					 button:"확인"
+				  });
+			}else if(data == 1){
+				location.href="../mainpage/mainpage";
+			}
+		}
+	});
+}
+
+
+function mainhome(){
+    location.href="/app/mainpage/mainpage";
 }
 </script>
  <!-- Kakao.Auth.logout(function () {  alert("카카오로그아웃");}); -->

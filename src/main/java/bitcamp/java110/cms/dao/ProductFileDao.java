@@ -16,5 +16,7 @@ public interface ProductFileDao {
   int insert(ProductFile profile);
   int update(ProductFile profile);
   
+  int delete(ProductFile profile);
+  
   
 }

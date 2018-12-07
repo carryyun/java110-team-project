@@ -32,10 +32,12 @@
 <!-- MAIN JS -->
 <script src="/js/masterpagejs/main.js"></script>
 <script src="/js/masterpagejs/bootstrap.min.js"></script>
+<link href="/css/common.css" rel="stylesheet">
 
 <style>
 #colorlib-aside {
     overflow: hidden;
+    position: absolute;
 }
 
 #th-pay th, #tb-pay td {
@@ -48,6 +50,18 @@
 </head>
 
 <body>
+
+<div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <jsp:include page="../headerMain.jsp"></jsp:include>
+            </div>
+            <!-- 카테고리 nav (스크립트로 임시 inclue) -->
+            <div class="col-lg-12">
+                <jsp:include page="../headerNav.jsp"></jsp:include>
+            </div>
+            </div>
+            </div>
 
     <div id="colorlib-page">
         <div class="container-wrap">
@@ -79,10 +93,10 @@
                                 data-nav-section="10">문의 목록 </a></li>
                             <li><a
                                 onclick="location.href='mentorreqlist'"
-                                data-nav-section="2">멘토 신청</a></li>
+                                data-nav-section="2">멘토 등록</a></li>
                             <li><a
                                 onclick="location.href='classreqlist'"
-                                data-nav-section="3">클래스 신청</a></li>
+                                data-nav-section="3">클래스 등록</a></li>
                             <li><a
                                 onclick="location.href='reportList'"
                                 data-nav-section="4">신고 접수 목록</a></li>
@@ -102,7 +116,7 @@
                                     주문 내역</a></li>
                             <li><a
                                 onclick="location.href='classOrderList'"
-                                data-nav-section="9" style="color: #2c98f0; font-weight: bold;"> 클래스 등록 내역 </a></li>
+                                data-nav-section="9" style="color: #2c98f0; font-weight: bold;"> 클래스 신청 내역 </a></li>
 
                         </ul>
                     </div>
@@ -118,14 +132,14 @@
 
                             <div class="about-desc">
 
-                                <h2 class="colorlib-heading">클래스 등록 내역</h2>
+                                <h1 class="colorlib-heading">클래스 신청 내역</h1>
 
                                 <div class="col-lg-12">
                                     <div class="col-lg-5" id="serch-men">
                                         <form action="#" method="get">
                                             <div class="input-group">
                                                 <input
-                                                    class="form-control"
+                                                    class="form-control" style="height:48px; font-size:20px;"
                                                     id="system-search"
                                                     name="q"
                                                     placeholder="Search for"
@@ -133,7 +147,7 @@
                                                     class="input-group-btn">
                                                     <button
                                                         type="submit"
-                                                        class="btn btn-default">
+                                                        class="btn btn-default" style="border:1px solid silver;">
                                                         <i
                                                             class="fas fa-search fa-3x"></i>
                                                     </button>
@@ -249,12 +263,12 @@
                                     var="pl" varStatus="i">
                                     <div id="popup${i.index}"
                                         class="overlay">
-                                        <div class="popupH">
+                                        <div class="popupHH">
                                             <h2>클래스 신청 내역</h2>
                                             <a class="close" href="#">×</a>
                                             <div class="content">
                                                 <br />
-                                                <div class="container">
+                                                <div class="container" style="width:100%;">
                                                     <div class="row">
 
                                                         <div
@@ -265,65 +279,73 @@
                                                                 style="list-style-type: none;">
                                                                 <tbody>
                                                                     <tr>
-                                                                    <td colspan="3"><li><span
+                                                                    <td colspan="6"><span
                                                                                 style="font-size: 20px;">신청번호:
                                                                             </span>
                                                                                 <span
-                                                                                class="pop-type">${pl.no }</span></li></td>
-                                                                        <td colspan="3"><li><span
+                                                                                class="pop-type">${pl.no }</span></td>
+                                                                        <td colspan="6"><span
                                                                                 style="font-size: 20px;">멘티:
                                                                             </span>
                                                                                 <span
-                                                                                class="pop-type">${pl.mete_name }(${pl.mete_nick})</span></li></td>
-                                                                        <td colspan="3"><li><span
+                                                                                class="pop-type">${pl.mete_name }(${pl.mete_nick})</span></td>
+                                                                        
+                                                                        
+                                                                    </tr>
+                                                                    <tr>
+                                                                    <td colspan="6"><span
                                                                                 style="font-size: 20px;">멘토:
                                                                             </span>
                                                                                 <span
-                                                                                class="pop-type">${pl.mete2_name }(${pl.mete2_nick})</span></li></td>
-                                                                        <td colspan="3"><li><span
+                                                                                class="pop-type">${pl.mete2_name }(${pl.mete2_nick})</span></td>
+                                                                        <td colspan="6"><span
                                                                                 style="font-size: 20px;">멘토 연락처:
                                                                             </span>
                                                                                 <span
-                                                                                class="pop-type">${pl.mete2_phone}</span></li></td>
-                                                                        
+                                                                                class="pop-type">${pl.mete2_phone}</span></td>
+                                                                    
                                                                     </tr>
 
+<tr>
+                                                                    
+                                                                    <td colspan="6"><span style="font-size: 20px;">수업날짜:
+                                                                            </span>
+                                                                            <span class="pop-type">${pl.timetable.date}</span></td>
+                                                                            <td colspan="6"><span style="font-size: 20px;">수업시간:
+                                                                            </span>
+                                                                            <span class="pop-type">${pl.timetable.stime}(${pl.time })</span></td>
+                                                                    
+                                                                    </tr>
+                                                                    
                                                                     <tr>
-                                                                        <td><li><span style="font-size: 20px;">카테고리:
+                                                                        <td colspan="3"><span style="font-size: 20px;">카테고리:
                                                                             </span>
-                                                                                <span class="pop-type">${pl.mtname }</span></li></td>
-                                                                                <td colspan="5"><li><span style="font-size: 20px;">클래스명:
+                                                                                <span class="pop-type">${pl.mtname }</span></td>
+                                                                                <td colspan="9"><span style="font-size: 20px;">클래스명:
                                                                             </span>
-                                                                            <span class="pop-type">${pl.cls_titl}</span></li></td>
-                                                                            <td colspan="2"><li><span style="font-size: 20px;">수업날짜:
-                                                                            </span>
-                                                                            <span class="pop-type">${pl.timetable.date}</span></li></td>
-                                                                            <td colspan="2"><li><span style="font-size: 20px;">수업시간:
-                                                                            </span>
-                                                                            <span class="pop-type">${pl.timetable.stime}(${pl.time })</span></li></td>
+                                                                            <span class="pop-type">${pl.cls_titl}</span></td>
+                                                                            
                                                                                 
                                                                     </tr>
+                                                                    
 
 
                                                                     <tr>
-                                                                        <td
-                                                                            colspan="4"><li><span
+                                                                        <td colspan="4"><span
                                                                                 style="font-size: 20px;">결제방법:
                                                                             </span>
                                                                                 <span
-                                                                                class="pop-type">${pl.payopt}</span></li></td>
-                                                                        <td
-                                                                            colspan="4"><li><span
+                                                                                class="pop-type">${pl.payopt}</span></td>
+                                                                        <td colspan="4"><span
                                                                                 style="font-size: 20px;">가격:
                                                                             </span>
                                                                                 <span
-                                                                                class="pop-type">${pl.cls_pric}</span></li></td>
-                                                                                <td
-                                                                            colspan="4"><li><span
+                                                                                class="pop-type">${pl.cls_pric}</span></td>
+                                                                                <td colspan="4"><span
                                                                                 style="font-size: 20px;">결제일:
                                                                             </span>
                                                                                 <span
-                                                                                class="pop-type">${pl.paydt}</span></li></td>
+                                                                                class="pop-type">${pl.paydt}</span></td>
                                                                                 
                                                                                 
                                                                                 
@@ -452,5 +474,34 @@ function checkItem(){
     
 }
 </script>
+
+<script>
+    
+        var testtTop;
+        var setId = "#colorlib-aside";
+        $(document).ready(function() {
+            $("div#footerCss").css("margin-top","0px");
+            testtTop = $("#colorlib-aside").offset().top;
+console.log(testtTop);
+        });
+
+         function scroll_follow(id) {
+            $(window).scroll(function() //스크롤이 움직일때마다 이벤트 발생
+            {
+                var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
+                console.log(position);
+                if (position > 157) {
+                    $(id).css("position", "absolute");
+                    $(id).css("top", (position-157) + "px");
+
+                } else {
+                    $(id).css("position", "absolute");
+                    $(id).css("top", (0) + "px");
+                }
+            });
+        }
+        scroll_follow(setId); 
+        
+    </script>
 
 </html>

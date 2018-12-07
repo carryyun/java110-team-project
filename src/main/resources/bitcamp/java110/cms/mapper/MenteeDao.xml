@@ -50,8 +50,8 @@
 	<update id="tempwd" parameterType="Mentee" >
 		UPDATE p_mete 
 		   SET
-		  	pwd = #{pwd}
-		 where email = #{email}
+		  	pwd=#{pwd}
+		 where email=#{email}
 	</update>
 	
 	<select id="findByNameEmail" parameterType="Mentee" resultType="String">
@@ -198,20 +198,22 @@
     
     <insert id="signup" parameterType="mentee"
             useGeneratedKeys="true" keyColumn="meno" keyProperty="no">
-        insert into p_mete(name,email,pwd,nick,rgdt)
-        values(#{name},#{email},#{pwd},#{nick},now())
+        insert into p_mete(name,email,pwd,nick,rgdt,sell,stat,mtstat)
+        values(#{name},#{email},password(LOWER(#{pwd})),#{nick},now(),#{sell},#{stat},#{mtstat})
     </insert> 
+    
     
     <insert id="fbsignup" parameterType="mentee"
             useGeneratedKeys="true" keyColumn="meno" keyProperty="no">
-        insert into p_mete(name,email,nick,rgdt)
-        values(#{name},#{email},#{nick},now())
+        insert into p_mete(name,email,nick,rgdt,sell,stat,mtstat)
+        values(#{name},#{email},#{nick},now(),'N','N','N')
     </insert> 
     
-    <delete id="delete" parameterType="int">
-        delete from p1_memb 
-        where mno=#{value}
-    </delete>
+    <update id="delete" parameterType="String">
+        update p_mete
+           set stat='S'
+         where pwd=password(#{pwd}) OR pwd=(#{pwd})
+    </update>
     
     
     
@@ -237,8 +239,9 @@
         from 
             p_mete mte
         where
-            LOWER(mte.email)=#{email} and LOWER(mte.pwd)=#{pwd}
-            <!-- mte.email=#{email} and mte.pwd=password(#{pwd}) -->
+            (mte.email=#{email} and mte.pwd=password(#{pwd}))
+            OR (mte.email=#{email} and mte.pwd=#{pwd})
+            
     </select> 
     
     <update id="updateMtstat" parameterType="Mentee">

@@ -27,5 +27,7 @@ public interface ProductService {
 
   int update(Product product);
   
+  int updatestat(Product product);
+  
   
 }

@@ -43,6 +43,12 @@
         values(#{pfname}, #{ptno});
     </insert>
     
+    <delete id="delete" parameterType="ProductFile">
+        delete from p_prdt_file
+        where
+            ptno = #{ptno} and
+            pfname = #{pfname}
+    </delete>
    
 <!--     <update id="update" parameterType="ProductFile">
         update p_cert

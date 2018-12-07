@@ -11,4 +11,6 @@ public interface ClassRepDao {
   int repChange(ClassRep classRep); // update
   List<ClassRep> findByCno(Map<String,Object> params);
   int countByCno(int no);
+  
+  ClassRep get(int no);
 }

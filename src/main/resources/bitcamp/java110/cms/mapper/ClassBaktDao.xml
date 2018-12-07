@@ -11,7 +11,11 @@
   <result column="meno" property="meno"/>
   <result column="ctno" property="ctno"/>
   
+  <result column="cno" property="classes.no"/>
+  
+  
   <result column="titl" property="classes.titl"/>
+  <result column="time" property="classes.time"/>
   <result column="pric" property="classes.pric"/>
   <result column="cfile" property="classes.cfile"/>
   
@@ -64,10 +68,13 @@
   
   <select id="findAllByMeno" resultMap="classBaktMap" parameterType="int">
        SELECT 
-           cls.titl, 
            mete2.nick, 
+           ttab.ctno,
+           ttab.cno,
            ttab.date, 
+           cls.titl, 
            cls.pric, 
+           cls.time, 
            cls.cfile, 
            ttab.stime,
            bakt.cbno

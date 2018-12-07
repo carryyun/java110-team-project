@@ -29,6 +29,12 @@
 
 }
 
+h2{
+    text-align: center;
+    text-shadow:-1px -1px 1px #000;
+    color: #fff;
+}
+
 .overlay {
     position: fixed;
     top: 0;
@@ -48,37 +54,62 @@
 }
 .content{
  padding: 15px;
+ border-radius:25px;
+ background-color:#fff9e8;
+ -webkit-box-shadow: inset 1px -2px 35px -6px rgba(0,0,0,0.64);
+    -moz-box-shadow: inset 1px -2px 35px -6px rgba(0,0,0,0.64);
+    box-shadow: inset 1px -2px 35px -6px rgba(0,0,0,0.64);
 }
 .popup {
     margin: 70px auto;
     padding: 20px;
-    background-color: gainsboro;
-    border-radius: 5px;
+    background-color: white;
+    border-radius: 15px;
     width: 55%;
     min-width:760px;
     height: auto;
     position: relative;
     transition: all 500ms ease-in-out;
+    -webkit-box-shadow: inset 1px -2px 35px -6px rgba(0,0,0,0.64);
+    -moz-box-shadow: inset 1px -2px 35px -6px rgba(0,0,0,0.64);
+    box-shadow: inset 1px -2px 35px -6px rgba(0,0,0,0.64);
 }
 .popupH {
     margin: 70px auto;
     padding: 20px;
-    background-color: gainsboro;
-    border-radius: 5px;
+    background-color: #f0dec8;
+    border-radius: 15px;
     width: 80%;
-    
     height: auto;
     position: relative;
     transition: all 500ms ease-in-out;
+    -webkit-box-shadow: inset 1px -2px 35px -6px rgba(0,0,0,0.64);
+    -moz-box-shadow: inset 1px -2px 35px -6px rgba(0,0,0,0.64);
+    box-shadow: inset 1px -2px 35px -6px rgba(0,0,0,0.64);
 }
 
-.popup h2, .popupH h2 {
+.popupHH {
+    
+    margin: 70px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius:25px;
+    width: 47%;
+    height: auto;
+    position: relative;
+    transition: all 500ms ease-in-out;
+    -webkit-box-shadow: inset 1px -2px 35px -6px rgba(0,0,0,0.64);
+    -moz-box-shadow: inset 1px -2px 35px -6px rgba(0,0,0,0.64);
+    box-shadow: inset 1px -2px 35px -6px rgba(0,0,0,0.64);
+}
+
+.popup h2, .popupH h2, .popupHH h2 {
     margin-top: 0;
     color: #333;
     font-family: Tahoma, Arial, sans-serif;
 }
 
-.popup .close, .popupH .close {
+.popup .close, .popupH .close, .popupHH .close {
     position: absolute;
     top: 20px;
     right: 30px;
@@ -89,15 +120,15 @@
     color: #333;
 }
 
-.popup .close:hover .popupH .close:hover {
+.popup .close:hover, .popupH .close:hover, .popupHH .close:hover {
     color: #06D85F;
 }
 
-.popup .content, .popupH .content {
+.popup .content, .popupH .content, .popupHH .content {
     max-height: auto; 
     overflow: auto;
     height: 550px;
-    background: whitesmoke;
+    background: white;
 }
 
 @media screen and (max-width: 300px) {
@@ -112,6 +143,10 @@
         min-width: 640px;
     }
     .popupH {
+        width: 50%;
+        min-width: 640px;
+    }
+    .popupHH {
         width: 50%;
         min-width: 640px;
     }

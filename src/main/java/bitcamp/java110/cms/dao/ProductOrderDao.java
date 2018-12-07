@@ -21,5 +21,7 @@ public interface ProductOrderDao {
   // 삽입
   int insert(ProductOrder productOrder);
   
+  int delInsert(ProductOrder productOrder);
+  
   
 }
