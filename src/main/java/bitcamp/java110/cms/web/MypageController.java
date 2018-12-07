@@ -70,7 +70,7 @@ public class MypageController {
   }
   
   @RequestMapping(value="deleteuser.do", method= {RequestMethod.POST})
-  public @ResponseBody int deleteuser(String withdrawalpwd,HttpSession session,Model result){
+  public @ResponseBody int deleteuser(String withdrawalpwd,HttpSession session){
     System.out.println("ASDASD");
     System.out.println(menteeService.delete(withdrawalpwd));
     if(menteeService.delete(withdrawalpwd) > 0) {
@@ -86,16 +86,11 @@ public class MypageController {
     Mentee mentee = (Mentee) session.getAttribute("loginUser");
     
     model.addAttribute("mentee", mentee);
-
   }
-  
   @GetMapping("menu1")
   public void menu1(Model model,HttpSession session) {
-    
     Mentee mentee = (Mentee) session.getAttribute("loginUser");
-    
     model.addAttribute("mentee", mentee);
-
   }
   
   @RequestMapping(value = "updateProfile.do", method = {RequestMethod.POST})

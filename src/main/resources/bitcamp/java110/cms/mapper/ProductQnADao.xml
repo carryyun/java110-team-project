@@ -17,7 +17,6 @@
         <result column="rgdt2"  property="rgdt2"/>
         <result column="nick"   property="mentee.nick"/>
         <result column="type"   property="type"/>
-        
         <result column="ptitl"    property="product.titl"/>
         <result column="me2nick"  property="mentee2.nick"/>
         <result column="me2name"  property="mentee2.name"/>
@@ -35,7 +34,7 @@
             anser,
             rgdt2
         from 
-            p_prdt_qna
+            p_prdt_qna 
         order by 
             qno asc
     </select>

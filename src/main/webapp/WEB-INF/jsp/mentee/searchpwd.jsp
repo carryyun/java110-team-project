@@ -54,12 +54,14 @@
             <div class="col-sm-12">
                    <hr/>
                     <div class="col-sm-6">
+                        <input type="button" class="btn btn-warning"id="backbtn" onclick="gohome();" value=뒤로가기>
+                    </div>
+                    
+                    <div class="col-sm-6">
                         <input type="submit" class="searchemail btn btn-warning" value=비밀번호찾기 onclick="wow();">
                     </div>
 
-                    <div class="col-sm-6">
-                        <input type="button" class="btn btn-warning"id="backbtn" onclick="gohome();" value=뒤로가기>
-                    </div>
+                    
             </div>
             </div><!-- button row-->
             

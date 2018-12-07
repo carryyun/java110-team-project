@@ -93,8 +93,7 @@
                                 <i class="fas fa-graduation-cap"></i>상세보기</a> 
                                 
                                 <a href="#" class="btn btn-lg btn-outline-primary text-uppercase"
-                                        onClick="clslikeins(${sessionScope.loginUser.no})"> 
-                                            <i class="fas fa-shopping-cart"></i> 찜클래스 </a>
+                                        onClick="clslikeins(${sessionScope.loginUser.no})">찜클래스 </a>
                                            
                         </div>
                         <!-- card-body.// -->

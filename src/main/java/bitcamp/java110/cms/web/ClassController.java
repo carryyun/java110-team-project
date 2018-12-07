@@ -114,9 +114,9 @@ public class ClassController {
         if(file.getOriginalFilename().equals(removefiles)) {
           files.remove((Object)file.getOriginalFilename());
         }else {
-          String filename = UUID.randomUUID().toString();
-          file.transferTo(new File(sc.getRealPath("/upload/img/test/" + filename+".png")));
-          filelist.add(filename);
+        String filename = UUID.randomUUID().toString();
+        file.transferTo(new File(sc.getRealPath("/upload/img/classImg/" + filename+ ".png")));
+        filelist.add(filename);
         }
       } 
     }
@@ -261,7 +261,7 @@ public class ClassController {
     model.addAttribute("locs", locs);
     model.addAttribute("clslist", clslist);
     model.addAttribute("bigTag", bigtag);
-  }
+  } 
   
   @RequestMapping(value="clsLoc.do" ,method= {RequestMethod.POST})
   public @ResponseBody List<Classes> clsLocdo(Model model, String locs,

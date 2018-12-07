@@ -26,18 +26,6 @@
 <%-- css --%>
 <link href="/css/masterDashboard.css" rel="stylesheet" />
 
-<%-- chart.js --%>
-<script
-    src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
-<script
-    src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
-<script
-    src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
-<script
-    src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
-
-</head>
-
 <body>
 <body style="background-color: #F2F4F7">
 
