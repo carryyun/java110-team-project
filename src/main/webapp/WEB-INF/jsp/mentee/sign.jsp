@@ -88,12 +88,14 @@
             <div class="col-sm-12">
                    <hr/>
                     <div class="col-sm-6">
+                        <input type="button" class="backbtn btn btn-warning" onclick="gohome();" value="뒤로가기">
+                    </div>
+                    
+                    <div class="col-sm-6">
                         <input type="button" onclick="signupCheck();" class="signupbtn btn btn-warning" value="회원가입" onclick="wow();">
                     </div>
 
-                    <div class="col-sm-6">
-                        <input type="button" class="backbtn btn btn-warning" onclick="gohome();" value="뒤로가기">
-                    </div>
+                    
             </div>
             </div><!-- button row-->
             

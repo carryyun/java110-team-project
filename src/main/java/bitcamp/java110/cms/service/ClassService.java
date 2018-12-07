@@ -7,6 +7,7 @@ public interface ClassService {
   List<Classes> list();
   List<Classes> listByBtno(int pageNo, int pageSize, int btno);
   List<Classes> listByMtno(int pageNo, int pageSize, int mtno);
+  List<Classes> listByLoc(int pageNo, int pageSize, String loc);
   List<Classes> classList(int no);
   List<Classes> findAllByList();
   

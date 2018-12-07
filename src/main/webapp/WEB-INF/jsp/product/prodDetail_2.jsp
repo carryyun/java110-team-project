@@ -167,9 +167,9 @@
                                             <td class="col-lg-2">${qna.rgdt}</td>
                                         </tr>
                                         <tr>
-                                            <td colspan="6" class="hiddenRow">
+                                            <td colspan="6" class="hiddenRow" style="width:1000px">
                                                 <div class="accordian-body collapse" id="demo1-${i.count}">
-                                                <div class="adddet col-lg-2" style="text-align: center;
+                                                <div class="adddet col-lg-12" style="text-align: center;
                                                 vertical-align: middle;
                                                             display : block;">질문 내용</div>
                                                 <div class="acco" id="cont">${qna.conts}</div><br>
@@ -178,7 +178,7 @@
                                                         String ans = (String)pageContext.getAttribute("ans");
                                                         if(ans==null){
                                                     %>
-                                                        <div class="adddet col-lg-2" style="text-align: center;
+                                                        <div class="adddet col-lg-12" style="text-align: center;
                                                             vertical-align: middle;
                                                             display : block;">질문 답변</div>
                                                             
@@ -227,17 +227,33 @@
 							
 							<button type="button" data-toggle="modal" data-target="#addQnaModal"
 							style="width: 120px; height: 40px; background-color: #606066; color: #ffffff">상품문의</button>
+                                        <!--여기에 코드 작성-->
                                         
-                                        <div class="modal fade" id="addQnaModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                        <c:choose>
+                                    <c:when test="${sessionScope.loginUser eq null}">
+                                        <div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                              <div class="modal-dialog" >
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title" class="replogin">로그인 후 이용가능합니다.</h4>
+                                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <div class="modal fade" id="addQnaModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" style="text-align: center" aria-hidden="true">
                                           <div class="modal-dialog">
                                             <div class="modal-content text-left">
                                                 <div class="modal-header">
-                                                    <h4 class="modal-title" id="repupdat">해당 게시글 수정하시겠습니까?</h4>
+                                                    <h4 class="modal-title" id="repupdat">상품 명: ${product.titl}</h4>
                                                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                                 </div>
                                                 <div class="modal-body">
+                                                    
                                                     <!-- content goes here -->
-                                                    <form action="#" id="qnaModal" style="width: 400px" method="post">
+                                                    <form action="detail?no=${product.no}" method="post">
                                                       <div class="form-group">
                                                         <label for="exampleInputEmail1">문의 유형</label>
                                                                 <input type="radio" name="type" onclick="qnaType()" class="qnatype" value="환불" id="qnaopt1" checked="checked"/>
@@ -248,11 +264,12 @@
                                                                 <label for="opt2">상품</label>
                                                                 <input type="radio" name="type" onclick="qnaType()" class="qnatype" value="기타" id="qnaopt4"/>
                                                                 <label for="opt2">기타</label>
-                                                                <input type="hidden" id="getQnaType" value="환불">
+                                                                <input type="hidden" id="getQnaType" value="환불"/>
                                                       </div>
                                                       <div class="form-group">
-                                                        <label for="exampleInputEmail1">Q&A 제목</label>
+                                                        <label for="exampleInputTitle1">Q&A 제목</label>
                                                         <input type="text" class="form-control" name="titl" id="qnatitl" placeholder="제목을 입력해주세요">
+                                                        
                                                       </div>
                                                       <div class="form-group">
                                                         <label for="exampleInputconts1">Q&A 내용</label>
@@ -260,16 +277,20 @@
                                                         <textarea name="qnaconts" id="qnaconts" rows="5" class="customWidth" style="resize: none; width:100%;" 
                                                         placeholder="내용을 입력해주세요"></textarea></div>
                                                       </div>
-                                                      <div class="text-right">
-	                                                      <button type="button" class="btn btn-default" 
-	                                                            onClick="addqna(${product.no});">등록하기</button>
-	                                                      <button type="reset" class="btn btn-default" data-dismiss="modal"  role="button">취소</button>
-                                                      </div>
+                                                      <button type="button" class="btn btn-default" data-dismiss="modal"
+                                                            onClick="addqna(${sessionScope.loginUser.no});">등록하기</button>
+                                                      <button type="button" class="btn btn-default" data-dismiss="modal"  role="button">취소</button>
                                                     </form>
+                                        
                                                 </div>
                                             </div>
                                           </div>
                                         </div>
+                                    </c:otherwise>
+                                </c:choose>
+                                        
+                                        <!--여기까지 코드 작성-->
+             
 								
 						</div>
 						<!-- <div class="col-lg-12"> -->

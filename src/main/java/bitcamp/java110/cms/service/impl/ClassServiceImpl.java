@@ -155,4 +155,14 @@ public class ClassServiceImpl implements ClassService{
     // TODO Auto-generated method stub
     return null;
   }
+
+  @Override
+  public List<Classes> listByLoc(int pageNo, int pageSize,String loc) {
+    HashMap<String, Object> params = new HashMap<>();
+    params.put("rowNo", (pageNo - 1) * pageSize);
+    params.put("size", pageSize);
+    params.put("loc", loc);
+    
+    return classDao.findAllByLoc(params);
+  }
 }

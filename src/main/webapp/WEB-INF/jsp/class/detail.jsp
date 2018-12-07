@@ -57,7 +57,7 @@
 <div class="col" style="position: absolute; height: 146px; background-color: white">
     <!-- 헤더 배경색 적용 -->
 </div>
-<div id="wrap" style="background-color: silver">
+<div id="wrap" style="background-color: #F2F4F7">
 <div> 
     <div class="container">
         <div class="row">
@@ -169,8 +169,8 @@
                             %>
                             
                             
-                            
-<%--                                 <h4 class="title mb-3 text-left">${detailclass.titl}　<i style="color:#FFB53C" id='owl-i' class='far fa-star' onclick='setLike(event,${detailclass.no})'></i></h4> --%>
+                                <h4 class="title mb-3 text-left">${detailclass.titl}　<i style="color:#FFB53C" id='owl-i' class='far fa-star' onclick='setLike(event,${detailclass.no})'></i></h4>
+
                                 <dl class="param param-feature text-left">
                                     <dd style="font-size: 1rem;">${detailclass.middleTag.name}</dd>
                                 </dl>
@@ -208,11 +208,11 @@
                                     <!-- col.// -->
 
                                 <dl class="param param-feature">
-                                            <select name="time" id="time">
-                                                <c:forEach items="${clstimelist}" var="t">
-                                                    <option value="${t.no}" >날짜 : ${t.date} , 시간 : ${t.stime}</option>
-                                                </c:forEach>
-                                            </select>
+                                     <select name="time" id="time">
+                                         <c:forEach items="${clstimelist}" var="t">
+                                             <option value="${t.no}" >날짜 : ${t.date} , 시간 : ${t.stime}</option>
+                                         </c:forEach>
+                                     </select>
                                 </dl>
                                 
                                 <hr>
@@ -251,7 +251,7 @@
             <!-- Links -->
             <div class="col-lg-12 col-md-12 mx-auto" id="detail">
             <div class="col-lg-12 px-0" id="testt"> 
-                            <ul class="under-navbar-nav col-lg-12 col-md-12" style="height:45px">
+                            <ul class="under-navbar-nav col-lg-12 col-md-12" style="height:45px;">
                                 <li class="under-nav-item"><a class="nav-link"
                                     href="#class_detail">
                                         <h5>요약</h5> 
@@ -274,7 +274,7 @@
                                 </a></li>
                             </ul>
                         </div>
-                <div class="detail_info" id="startTarget"> 
+                <div class="detail_info" id="startTarget" style="padding-left: 40px; padding-right:40px;"> 
                     <h3>요약</h3>
                     <hr class="FhrBotMargin" id="class_detail">
                     <!-- <div class="row"> -->
@@ -289,39 +289,35 @@
                 </div>
                 <!-- <div class="detail_info"> -->
                 
-                <div class="detail_info"  id="mentor-info">
+                <div class="detail_info" id="mentor-info" style="padding-left: 40px; padding-right:40px;">
                     <h3>강사소개</h3>
                     <hr class="Fhr">
                     ${detailclass.tinfo}
                 </div>
                 
-                <div class="detail_info">
-                    <hr class="Fhr" id="class-info">
+                <div class="detail_info" style="padding-left: 40px; padding-right:40px;">
                     <h3>강의설명</h3>
+                    <hr class="Fhr" id="class-info">
                     ${detailclass.cinfo}
                 </div>
-                    <div class="detail_info">
-                        <hr class="Fhr" id="location">
+                    <div class="detail_info" style="padding-left: 40px; padding-right:40px;">
                         <h3>위치</h3>
+                        <hr class="Fhr" id="location" style="margin-bottom: 7px;">
                         <div class ="row" >
                         <div id="map" style="width:500px; height:400px; margin-left:10px; float:left;"></div>
-                        <div class="dddd" style="float:right; width:200px; margin-top:60px;">
+                        <div class="dddd" style="float:right; width:160px; margin-top:60px;">
                         <div id="adr" class = "addr" style="height:50px;"><div><strong>기본 주소</strong></div>  ${detailclass.basAddr}</div>
                         <div id="adr" class = "addr"><div><strong>상세 주소</strong></div>  ${detailclass.detAddr}</div>
                         </div>
                         </div>
                     </div>
                 
-                <!-- <hr class="Fhr" id="class_info"> -->    
-                <div class="detail_info">
-                </div>  
                 <!-- <div class="detail_info"> -->  
                 <hr class="Fhr" id="class-review">   
                 <div class="detail_info">   
                     <div class="row" style="margin: 0 auto">    
                         <div class="col text-center">   
                             <c:set var="starint" value="${detailclass.star}"/>
-                            <strong>별점</strong>
                             <div class="rating col">
                                 <% int star = (int)pageContext.getAttribute("starint"); 
                                 for( int i=0;i<5;i++){
@@ -337,15 +333,15 @@
                                 %>
                             </div>  
                             <div>
-                                    <span class="glyphicon glyphicon-user"></span>후기인원 : ${countrep} 
+                                    <i class="fas fa-user"></i>total ${countrep} 
                             </div>  
                         </div>  
                     </div>  
                 </div>  
                 
-                <div class="container col-lg-12" id="prod_review">
+                <div class="container col-lg-12 px-0" id="prod_review">
                     <div class="row">
-                        <div class="col">
+                        <div class="col px-0">
                 <form class="form-horizontal" action="detail?no=${detailclass.no}" method="post">
                     <fieldset>
                     <table class="fixed-table w-100" >
@@ -353,8 +349,8 @@
                                 <td colspan="3">
                                     <!-- <div class=""> -->
                                             <!-- Message body -->
-                                     <div class="form-group">
-                                         <div class="col-lg-12">
+                                     <div class="form-group" >
+                                         <div class="col-lg-12" >
                                              <textarea class="form-control" id="conts" name="conts"
                                                  placeholder="클래스평을 등록해주세요." rows="5"></textarea>
                                          </div>
@@ -382,17 +378,18 @@
                         	</tr>
                         <!-- <div class="col-md-9 col-md-offset-0"> -->
                     </table>
-                                                           </fieldset>
-                                    </form>
-                                    </div>
+                                        </fieldset>
+                                </form>
+                          </div>
                     </div>
 
-                    <hr>
-                    <div class ="row">
-                        <div class="col-lg-12 col-md-12 mx-auto detail_info" id="replist">
-                        <hr class="Fhr" id="class-review">
+                    <div class ="col-lg-12 px-0" style="margin-left : 2px;">
+                    <div class="col-lg-12 col-md-12 detail_info"
+                    style="padding-left: 40px; padding-right:40px;">
                         <h3>클래스 후기</h3>
-                    
+                        <hr class="Fhr" id="class-review" style="margin-bottom:5px;">
+                        <div class="detail_info" id="replist"
+                        >
                         <c:forEach items="${clsreqlist}" var="r" varStatus="i">
                             <div class="media"
                                 style="border-bottom: 0.3px solid rgba(0, 0, 0, 0.5)">
@@ -475,8 +472,8 @@
                             </div>
                         </c:forEach>
                         </div>
+                        </div>
                     </div>
-                    <hr class="Fhr" id="qna">
                     <br><br>
                  <nav aria-label="Page navigation example" id="product-pn" 
                     style="margin : auto; margin-top: -40px;">
@@ -493,7 +490,7 @@
                                     for(int pno = 1; pno<=reppage; pno++){
                                 %>
                                     <li class="page-item"><a class="page-link" 
-                                    href="detail?no=${detailclass.no}&reppageNo=<%=pno%>&reppageSize=5"><%=pno%></a></li>
+                                    onClick="reppage(<%=pno%>)"><%=pno%></a></li>
                                 <%
                                     }
                                 %>
@@ -512,10 +509,10 @@
 					</jsp:include> --%>
 
 
-                    <div class="detail_info">
+                    <div class="detail_info" style="margin-left : 2px; padding-left: 40px; padding-right:40px;">
                         <h3>Q&A</h3>
                         <div class="row">
-                            <div class="col-lg-12">
+                            <div class="col-lg-12 mx-auto mb-4 px-5 pt-3">
                                 <table class="table table-condensed" id="qna_table" 
                                 style="margin: 0 auto; border-collapse:collapse;">
                                     <thead class="col-lg-12">
@@ -534,7 +531,7 @@
                                     <c:set var="qnasi" value="${countqna}" />
                                         <tr data-toggle="collapse" 
                                         data-target="#demo1-${i.count}" class="accordion-toggle row">
-                                            <!-- <td class="col-lg-1" scope="row" id="qna_th"></td> -->
+                                            <%-- <td class="col-lg-1" scope="row" id="qna_th">${i.count}</td> --%>
                                             <td class="col-lg-2">${cq.type}</td>
                                             <c:set var="yn" value="${cq.anser}"/>
                                             <%
@@ -548,7 +545,20 @@
                                             <%  
                                             }
                                             %>
-                                            <td class="col-lg-3">${cq.titl}</td>
+                                            <c:set var="cqtit" value="${cq.titl}"/>
+                                            <%
+                                            	String cqtitl = (String)pageContext.getAttribute("cqtit");
+	                                            if(cqtitl.length() > 8) {
+	                                            String longtitl = cqtitl.substring(0, 7);
+	                                        %>
+	                                        	<td class="col-lg-3"><%=longtitl%>..</td>
+	                                        <%      
+	                                            } else {
+	                                        %>
+	                                        	<td class="col-lg-3"><%=cqtitl%></td>
+	                                        <%
+	                                            }
+                                            %>
                                             <td class="col-lg-2">${cq.mentee.nick}</td>
                                             <td class="col-lg-2">${cq.rgdt}</td>
                                         </tr>
@@ -683,7 +693,8 @@
                         <c:set var="qnasi" value="${countqna}" />
                         <%
                             int qnasize = (int)pageContext.getAttribute("qnasi");
-                            int qnapage = (qnasize/5)+1;
+                        	int p=qnasize/5;
+                            int qnapage = (int)Math.ceil(p);
                         %>
                             <li class="page-item"><a class="page-link" 
                             onClick="prevqna(${countqna})">prev</a></li>
@@ -692,7 +703,7 @@
                                     for(int qno = 1; qno<=qnapage; qno++){
                                 %>
                                     <li class="page-item"><a class="page-link" 
-                                    href="detail?no=${detailclass.no}&qnapageNo=<%=qno%>&qnapageSize=5"><%=qno%></a></li>
+                                    onClick="qnapage(<%=qno%>)"><%=qno%></a></li>
                                 <%
                                 	System.out.println(qno);
                                     }
@@ -741,8 +752,6 @@ $('.accordian-body').on('show.bs.collapse', function () {
 function prev(pano) {
     console.log(pano);
     
-    var pagebu = (pano/5)+1;
-    var currectpage = <% request.getParameter("pageNo"); %>
     console.log(pagebu);
     console.log(currectpage);
     
@@ -820,14 +829,19 @@ function addqna(no) {
 	        		html +=' <c:set var="qnasi" value="${countqna}" />'
 	        		html +='    <tr data-toggle="collapse" '
 	        		html +='    data-target="#demo1-'+i+'" class="accordion-toggle row">'
-	        		html +='        <!-- <td class="col-lg-1" scope="row" id="qna_th"></td> -->'
+	        		html +='        <%-- <td class="col-lg-1" scope="row" id="qna_th">'+i+'</td> --%>'
 	        		html +='        <td class="col-lg-2">'+qnatype+'</td>'
 	        				         	if(qnaanser == null){
 	        		html +='            <td class="col-lg-2">미완료</td>'
 	        						  	}else{
 	        		html +='            <td class="col-lg-2">완료</td>'
 	        							}
-	        		html +='        <td class="col-lg-3">'+qnatitl+'</td>'
+                            if(qnatitl.length > 8) {
+                            var longtitl = qnatitl.substring(0, 7);
+                    html +=' <td class="col-lg-3">'+longtitl+'..</td>'
+                            } else {
+                    html +=' <td class="col-lg-3">'+qnatitl+'</td>'
+                            }
 	        		html +='        <td class="col-lg-2">'+qnanick+'</td>'
 	        		html +='        <td class="col-lg-2">'+qnargdt+'</td>'
 	        		html +='    </tr>'
@@ -920,17 +934,37 @@ function answerins(no,clsno,qno) {
 	        		var qnanick = data[i].mentee.nick;
 	        		var countqn = ${countqna};
 	        		
+					qnargdt = new Date();
+	        		
+	        		var dd= qnargdt.getDate();
+	        		var mm= qnargdt.getMonth();
+	        		var yy= qnargdt.getFullYear();
+	        		
+	        		if( dd < 10){
+	        		    dd = '0' + dd;
+	        		}
+	        		if( mm < 10){
+	        		    mm='0' +mm;
+	        		}
+	        		
+	        		qnargdt = yy+'-'+mm+'-'+dd;
+	        		
 	        		html +=' <c:set var="qnasi" value="${countqna}" />'
 	        		html +='    <tr data-toggle="collapse" '
 	        		html +='    data-target="#demo1-'+i+'" class="accordion-toggle row">'
-	        		html +='        <!-- <td class="col-lg-1" scope="row" id="qna_th"></td> -->'
+	        		html +='        <%-- <td class="col-lg-1" scope="row" id="qna_th">'+i+'</td> --%>'
 	        		html +='        <td class="col-lg-2">'+qnatype+'</td>'
 	        				         	if(qnaanser == null){
 	        		html +='            <td class="col-lg-2">미완료</td>'
 	        						  	}else{
 	        		html +='            <td class="col-lg-2">완료</td>'
 	        							}
-	        		html +='        <td class="col-lg-3">'+qnatitl+'</td>'
+                    		if(qnatitl.length > 8) {
+	                        var longtitl = qnatitl.substring(0, 7);
+	                html +=' <td class="col-lg-3">'+longtitl+'..</td>'
+	                        } else {
+	                html +=' <td class="col-lg-3">'+qnatitl+'</td>'
+	                        }
 	        		html +='        <td class="col-lg-2">'+qnanick+'</td>'
 	        		html +='        <td class="col-lg-2">'+qnargdt+'</td>'
 	        		html +='    </tr>'
@@ -1113,6 +1147,215 @@ function repins(no) { /* 후기(댓글) 추가버튼 */
         });
     }
 }
+
+function reppage(pno) {
+    var cno = ${detailclass.no};
+    var replist = $('div#replist');
+    
+    $.ajax({
+        type : "POST",
+        data : {
+            "no" : cno , 
+            "reppageNo" : pno
+        },
+        url : "reppage.do",
+        success : function(data) {
+            var html ="";
+            for (var i in data) {
+             var rno = data[i].no;
+	   		 var meno = data[i].meno;
+	   		 var conts = data[i].conts;
+	   		 var nick = data[i].mentee.nick;
+	   		 var phot = data[i].mentee.phot;
+	   		 
+	   		 html +=' <div class="media"'
+	   		 html +='     style="border-bottom: 0.3px solid rgba(0, 0, 0, 0.5)">'
+	   		 html +='     <div class="col-lg-2 text-center">'
+	   		 html +='         <img src="'+phot+'" alt="singup" id="circle">'
+	   		 html +='         '+nick+''
+	   		 html +='     </div>'
+	   		 html +='     <div id="rcont'+i+'" class="col-lg-10 media-body">'+conts+'</div>'
+	   		 html +='     <textarea class="repupda col-lg-9 media-body" id="repup'+i+'" rows="5" name="repup"'
+	   		 html +='                style =" margin-left:10px; width : 500px; display: none;"></textarea>'
+	   		     		if("${sessionScope.loginUser}" == ""){
+	   		 html +='         <button type="button" onClick="deleterepnull()"'
+	   		 html +='      class="delebtn" id="delebtn'+i+'">삭제</button>'
+	   		     		} else {
+	   		 html +='      <button type="button" data-toggle="modal" data-target="#deleteModal_'+rno+'"'
+	   		 html +='      class="delebtn" id="delebtn'+i+'">삭제</button>'
+	   		     		}
+	   		 html +='             <div class="modal fade" id="deleteModal_'+rno+'" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">'
+	   		 html +='               <div class="modal-dialog">'
+	   		 html +='                 <div class="modal-content">'
+	   		 html +='                     <div class="modal-header">'
+	   		 html +='                         <h4 class="modal-title" id="repdelet">해당 게시글 삭제하시겠습니까?</h4>'
+	   		 html +='                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>'
+	   		 html +='                     </div>'
+	   		 html +='                     <div class="modal-body">'
+	   		 html +='                          <form action="detail?no='+cno+'" method="post">'
+	   		 html +='                           <button type="button" class="btn btn-default" data-dismiss="modal"' 
+	   		 html +='                                 onClick="delerep(${sessionScope.loginUser.no} , '+rno+', '+meno+');">삭제하기</button>'
+	   		 html +='                           <button type="button" class="btn btn-default" data-dismiss="modal"  role="button">취소</button>'
+	   		 html +='                         </form>'
+	   		 html +='                     </div>'
+	   		 html +='                 </div>'
+	   		 html +='               </div>'
+	   		 html +='              </div>'
+	   		 			if("${sessionScope.loginUser}" == ""){
+	   		 html +='               <button type="button" class="edbtn" id="edbtn'+i+'"' 
+	   		 html +='      onClick="deleterepnull()" >수정</button>'
+	   		 			} else {
+	   		 html +='             <button type="button" class="edbtn" id="edbtn'+i+'"' 
+	   		 html +='     onClick="updarep('+no+' , '+rno+' , '+meno+' ,'+i+');" >수정</button>'
+	   		 			}
+	   		 html +='     <button type="button" class="updabtn" id="updabtn'+i+'" data-toggle="modal"' 
+	   		 html +='      data-target="#updateModal_'+rno+'"' 
+	   		 html +='       style="display:none;">수정완료</button>'
+	   		 html +='             <div class="modal fade" id="updateModal_'+rno+'" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">'
+	   		 html +='               <div class="modal-dialog">'
+	   		 html +='                 <div class="modal-content">'
+	   		 html +='                     <div class="modal-header">'
+	   		 html +='                         <h4 class="modal-title" id="repupdat">해당 게시글 수정하시겠습니까?</h4>'
+	   		 html +='                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>'
+	   		 html +='                     </div>'
+	   		 html +='                    <div class="modal-body">'
+	   		 html +='                         <form action="detail?no='+cno+'" method="post">'
+	   		 html +='                           <button type="button" class="btn btn-default" data-dismiss="modal"'
+	   		 html +='                                  onClick="updabtn(${sessionScope.loginUser.no},'+rno+' , '+i+')" >수정하기</button>'
+	   		 html +='                           <button type="button" class="btn btn-default" data-dismiss="modal" role="button"'
+	   		 html +='                           onClick="updano('+i+')">취소</button>'
+	   		 html +='                         </form>'
+	   		 html +='                     </div>'
+	   		 html +='                 </div>'
+	   		 html +='               </div>'
+	   		 html +='             </div>'
+	   		 html +=' 			</div>'
+	            }
+             replist.html(html);
+             $('textarea#conts').val("");
+        },error : function(error,status){
+            $('textarea#conts').val("");
+            swal({
+                text : "잠시후에 페이지가 이동됩니다.",
+                button : "확인",
+              })
+        }
+    });
+}
+
+function qnapage(qno) {
+    
+    var cno = ${detailclass.mentee.no};
+    var type = $('input:radio:checked.type').val();
+    var titl = $('input:text#titl').val();
+    var conts = $('textarea#qnaconts').val();
+    var cno = ${detailclass.no};
+    var clsmeno = ${detailclass.mentee.no};
+	var qnatablelist = $('#qnatablelist');
+	
+    $.ajax({
+           type : "POST" ,
+           data : {
+               "no" : cno ,
+               "qnapageNo" : qno
+           },
+           url : "qnapage.do",
+           success : function(data) {
+                 var html ="";
+               for(var i in data) {
+                   var cqno = data[i].no;
+        		var qnatitl = data[i].titl;
+        		var qnatype = data[i].type;
+        		var qnargdt = data[i].rgdt;
+        		var qnaconts = data[i].conts;
+        		var qnaanser = data[i].anser;
+        		var qnanick = data[i].mentee.nick;
+        		var countqn = ${countqna};
+        		
+        		qnargdt = new Date();
+        		
+        		var dd= qnargdt.getDate();
+        		var mm= qnargdt.getMonth();
+        		var yy= qnargdt.getFullYear();
+        		
+        		if( dd < 10){
+        		    dd = '0' + dd;
+        		}
+        		if( mm < 10){
+        		    mm='0' +mm;
+        		}
+        		
+        		qnargdt = yy+'-'+mm+'-'+dd;
+        		
+        		html +=' <c:set var="qnasi" value="${countqna}" />'
+        		html +='    <tr data-toggle="collapse" '
+        		html +='    data-target="#demo1-'+i+'" class="accordion-toggle row">'
+        		html +='        <%-- <td class="col-lg-1" scope="row" id="qna_th">'+i+'</td> --%>'
+        		html +='        <td class="col-lg-2">'+qnatype+'</td>'
+        				         	if(qnaanser == null){
+        		html +='            <td class="col-lg-2">미완료</td>'
+        						  	}else{
+        		html +='            <td class="col-lg-2">완료</td>'
+        							}
+                		if(qnatitl.length > 8) {
+	                    var longtitl = qnatitl.substring(0, 7);
+	            html +=' <td class="col-lg-3">'+longtitl+'..</td>'
+	                    } else {
+	            html +=' <td class="col-lg-3">'+qnatitl+'</td>'
+	                    }
+        		html +='        <td class="col-lg-2">'+qnanick+'</td>'
+        		html +='        <td class="col-lg-2">'+qnargdt+'</td>'
+        		html +='    </tr>'
+        		html +='    <tr>'
+        		html +='        <td colspan="6" class="hiddenRow">'
+        		html +='             <div class="accordian-body collapse" id="demo1-'+i+'">'
+        		html +='             <div class="adddet col-lg-2" style="text-align: center;'
+        		html +='            vertical-align: middle;'
+        		html +='                        display : block;">질문 내용</div>'
+        		html +='            <div class="acco" id="cont">'+qnaconts+'</div><br>'
+		         	 				 if(qnaanser == null){
+        		html +='                      <div class="adddet col-lg-2" style="text-align: center;'
+        		html +='                          vertical-align: middle;'
+        		html +='                         display : block;">질문 답변</div>'
+        		    						if("${sessionScope.loginUser}" == ""){
+        		html +='                              <div class="acco" id="ans'+i+'">답변이 등록되지 않았습니다.</div>'
+        		    						} else if("${sessionScope.loginUser.no}" == clsmeno) {
+                   html +='                            <form class="ansinss" action="detail?no='+cno+'" method="post">'
+                   html +='                                <label onClick="ansbtn('+i+')" class="allbtn"'
+                   html +='                                id="allbtn'+i+'">답변을 작성하시려면 클릭해주세요!</label>'
+                   html +='                                <textarea class="clsanser" id="cls'+i+'" rows="5" name="clsanser"'
+                   html +='                                style ="width : 500px; display: none;"></textarea>'
+                   html +='                                <div class="butmana" style="margin-left:10px;">'
+                   html +='                                    <button class="btn btn-default"' 
+                   html +='                                    onClick="answerins(${sessionScope.loginUser.no},cls'+i+','+cqno+')"'
+                   html +='                                     type="button" >등록</button>'
+                   html +='                                    <button class="btn btn-default" id="ansstat" type="button"' 
+                   html +='                                     onClick="answercansle('+i+')">취소</button>'
+                   html +='                                 </div>'
+                   html +='                              </form>'
+        		    						} else {
+                   html +='                            <div class="acco" id="ans'+i+'">답변이 등록되지 않았습니다.</div>'
+        		    						}
+                                   	}else{
+                   html +='                    <div class="adddet col-lg-2" style="text-align: center;'
+                   html +='                    vertical-align: middle;'
+                   html +='                        display : block;">질문 답변</div>'
+                   html +='                     <div class="acco" id="ans'+i+'">'+qnaanser+'</div>'
+                                   }
+                   html +='            </div>'
+                   html +='        </td>'
+                   html +='    </tr>'
+               }
+               qnatablelist.html(html);
+           },error : function(error,status){
+           swal({
+               text : "잠시후에 페이지가 이동됩니다.",
+               button : "확인",
+             })
+        }
+    });
+}
+
 
 /* no:${sessionScope.loginUser.no} , rno : ${r.no} , repmeno :  */
 function delerep(no , rno , repmeno){ /* 댓글 삭제 버튼 */
@@ -1525,8 +1768,6 @@ geocoder.addressSearch('${detailclass.basAddr}', function(result, status) {
             $(window).scroll(function() //스크롤이 움직일때마다 이벤트 발생
             {
                 var position = $(window).scrollTop()-testtTop + 58 - $("#headermain").offset().top - $("#headernav").offset().top; // 현재 스크롤바의 위치값을 반환합니다.
-                console.log("tTop:"+ testtTop)
-                console.log("po:"+ position);
                 if (position > 0) {
                     $(id).css("position", "fixed-top");
                     $(id).css("top", position + "px");
