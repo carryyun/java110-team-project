@@ -35,7 +35,17 @@
 		margin-top:20px;
 	}
 	.area_hotkeyword.PM_CL_realtimeKeyword_base li{
+		padding-left:3px;
 		margin-top:10px;
+	}
+	.area_hotkeyword.PM_CL_realtimeKeyword_base li:hover{ background-color: #FFB53C}
+	.area_hotkeyword.PM_CL_realtimeKeyword_base .ah_k{
+		color: black;
+	}
+	.area_hotkeyword.PM_CL_realtimeKeyword_base .ah_r{
+		margin-right:2px;
+		color: black;
+		font-weight:bolder;
 	}
 </style>
 </head>
