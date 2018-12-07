@@ -274,7 +274,7 @@
             p_mete
 
         SET 
-            pwd = #{pwd},
+            pwd = password(#{pwd}),
             bkname = #{bkname},
             bkno = #{bkno}
 

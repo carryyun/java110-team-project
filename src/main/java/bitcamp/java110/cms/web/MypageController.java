@@ -123,7 +123,8 @@ public class MypageController {
       @RequestParam("no") int noin,
       @RequestParam("carrin") String carrin, 
       @RequestParam("btno") int btnoin,
-      Mentor mentor, MentorTag mentorTag) throws Exception {
+      Mentor mentor, MentorTag mentorTag,
+      Mentee mentee) throws Exception {
     
       // string 에서 int값만 뽑아서  을 int type으로 변환
       String str1 = carrin;
@@ -142,11 +143,19 @@ public class MypageController {
       mentorTag.setMono(noin);
       mentorTag.setBtno(btnoin);
       
+      
       mentor.setNo(noin);
       mentor.setCarr(newCarr);
+      
+      char mtstat = 'I';
+      mentee.setMtstat(mtstat);
+      
+      
     
       mentorService.add(mentor);
       mentoTagService.add(mentorTag);
+      
+      menteeService.updateMtstat(mentee);
       
     
 

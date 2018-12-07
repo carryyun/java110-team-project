@@ -299,7 +299,7 @@
                              비밀번호
                                 </div>
                                 <div class="cont1" >
-                                   <input id="text2" type="text" name="pwd" value="${mentee.pwd}" readonly style="width:140px; border:none; ">
+                                   <input id="text2" type="password" name="pwd" value="${mentee.pwd}" readonly style="width:140px; border:none; ">
                                     
                                 </div>
                                 
@@ -446,6 +446,9 @@
    <div class="content"> 
   <form method="post"  action="imgupload" enctype="multipart/form-data" >
     <input type="hidden" name="no" value="${sessionScope.loginUser.no}">
+    
+    <input type="hidden" name="mtstat" value="${mentee.mtstat}">
+    
     <img src="${mentee.phot}">
        
     <div class="infobox">
