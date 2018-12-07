@@ -72,10 +72,17 @@
             <div class="col-lg-9 text-center" style="margin-bottom: 50px">
             <div style="padding-left: 5px; padding-right: 6px; margin-left:-3px; margin-bottom:-15px;">
             <div class="col-lg-12 col-md-12 mt-5 text-left" style="padding-top:10px; width:1100px; background-color:white;">
-                <h2>클래스 상세보기<a onclick="updateclsstat()" class="btn btn-lg btn-danger col-lg-1 py-1" 
-                	style="float : right; color:white; height: 38px;">삭제</a></h2>
+                <h2>클래스 상세보기
+                <c:choose>
+                	<c:when test="${sessionScope.loginUser.no eq detailclass.mentee.no}">
+                		<a onclick="updateclsstat()" class="btn btn-lg btn-danger col-lg-1 py-1" 
+                		style="float : right; color:white; height: 38px;">삭제</a>
+                	</c:when>
+                	<c:otherwise>
+                	</c:otherwise>
+                </c:choose>
+                	</h2>
                 <hr class="FhrBotMargin">
-                
             </div>
             </div>
                 <div class="row">
@@ -329,9 +336,9 @@
                     <div class="row" style="margin: 0 auto"> 
                     <h3>클래스 후기</h3>
                         <hr class="Fhr" id="class-review" style="margin-bottom:5px;">   
-                        <div class="col text-center">   
+                        <div class="col">   
                             <c:set var="starint" value="${detailclass.star}"/>
-                            <div class="rating col">
+                            <div class="rating col text-center">
                                 <% int star = (int)pageContext.getAttribute("starint"); 
                                 for( int i=0;i<5;i++){
                                   if(i<star){
@@ -345,8 +352,8 @@
                                 }
                                 %>
                             </div>  
-                            <div>
-                                    <i class="fas fa-user"></i>total ${countrep} 
+                            <div class="text-center">
+                                    <i class="fas fa-user text-center"></i>total ${countrep} 
                             </div>
                             <form class="form-horizontal" action="detail?no=${detailclass.no}" method="post">
                     <fieldset>
@@ -734,6 +741,14 @@ $('.accordian-body').on('show.bs.collapse', function () {
     <script src="/js/clean-blog.js"></script>
     
 <script>
+function updateclsstat() {
+    var cno = ${detailclass.no};
+    
+    console.log(cno);
+    
+    
+}
+
 function prev(pano) {
     console.log(pano);
     

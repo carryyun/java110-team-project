@@ -356,6 +356,19 @@ public class ClassController {
     return qnalist;
   }
   
+  /*@RequestMapping(value = "qnainsert", method = {RequestMethod.POST})
+  public @ResponseBody String updateclsstat(int no , String stat) {
+    
+    Classes classes = new Classes();
+    
+    classes.setNo(no);
+    classes.setStat(stat);
+    
+    classService.deleteclsstat(classes);
+
+    return "redirect:clscate";
+  }*/
+  
   @RequestMapping(value = "findBycno", method = {RequestMethod.POST})
   public @ResponseBody int ordercountlist(int no,HttpSession session) {
     
