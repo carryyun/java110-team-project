@@ -9,5 +9,8 @@ public interface BigTagDao {
   BigTag findByName(String name);
 
   BigTag findByNo(int no);
+  
+  
+  BigTag insert(BigTag bigTag);
 
 }

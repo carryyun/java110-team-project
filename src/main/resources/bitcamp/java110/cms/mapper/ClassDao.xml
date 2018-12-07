@@ -120,6 +120,16 @@
             ps.bas_addr REGEXP #{loc}
         limit #{rowNo},#{size}
     </select>
+    <select id="findAllByWord" resultMap="classMap" parameterType="map">
+        <include refid="selectAll"></include>
+        WHERE
+            ps.titl Like #{word}
+        OR
+            pe.nick Like #{word}
+        OR
+            pe.name Like #{word}
+        limit #{rowNo},#{size}
+    </select>
 	<select id="findAllByBtno" resultMap="classMap" parameterType="map">
         <include refid="selectAll"></include>
         WHERE

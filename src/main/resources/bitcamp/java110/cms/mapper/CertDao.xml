@@ -41,6 +41,8 @@
 		where ctno = #{ctno}
 	</select>
 	
+	
+    
 	<select id="findByMeno" resultMap="certMap" parameterType="Map">
         select 
             p.ctno,
@@ -61,6 +63,10 @@
         
     </select>
     
+    <select id="findByMeno2" resultMap="certMap" parameterType="int">
+        <include refid="select1"></include>
+        where meno = #{meno}
+    </select>
     
     <insert id="insertCert" parameterType="Cert">
        

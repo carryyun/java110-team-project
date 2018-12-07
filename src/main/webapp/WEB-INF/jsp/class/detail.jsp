@@ -68,13 +68,16 @@
             <div class="col-lg-12" id="headernav">
                 <jsp:include page="../headerNav.jsp"></jsp:include>
             </div>
-            
-            <div class="col-lg-12 col-md-12 mt-5">
-                <h2>클래스 상세보기</h2>
-                <hr class="FhrBotMargin">
-            </div>
             <div class="col-lg-12">
             <div class="col-lg-9 text-center" style="margin-bottom: 50px">
+            <div style="padding-left: 5px; padding-right: 6px; margin-left:-3px; margin-bottom:-15px;">
+            <div class="col-lg-12 col-md-12 mt-5 text-left" style="padding-top:10px; width:1100px; background-color:white;">
+                <h2>클래스 상세보기<a onclick="updateclsstat()" class="btn btn-lg btn-danger col-lg-1 py-1" 
+                	style="float : right; color:white; height: 38px;">삭제</a></h2>
+                <hr class="FhrBotMargin">
+                
+            </div>
+            </div>
                 <div class="row">
                     <aside class="col-lg-12 col-md-12 mx-auto">
                     <div class="col-lg-12 px-1">
@@ -169,8 +172,16 @@
                             %>
                             
                             
-                                <h4 class="title mb-3 text-left">${detailclass.titl}　<i style="color:#FFB53C" id='owl-i' class='far fa-star' onclick='setLike(event,${detailclass.no})'></i></h4>
-
+                                <h4 class="title mb-3 text-left">${detailclass.titl}
+                                <c:choose>
+                                <c:when test="${likeResult == 1}">
+	                                <i style="color:#FFB53C" id='owl-i' class='fas fa-star' onclick='setLike(event,${detailclass.no},this)'></i>
+                                </c:when>
+                                <c:otherwise>
+                                    <i style="color:#FFB53C" id='owl-i' class='far fa-star' onclick='setLike(event,${detailclass.no},this)'></i>
+                                </c:otherwise>
+                                </c:choose>
+                                </h4>
                                 <dl class="param param-feature text-left">
                                     <dd style="font-size: 1rem;">${detailclass.middleTag.name}</dd>
                                 </dl>
@@ -285,7 +296,7 @@
                         <div class = "shortinfo"><strong>총 수업시간</strong><div class="inf">${detailclass.time}시간</div></div>
                         <div class = "shortinfo"><strong>모집인원</strong><div class="inf">${detailclass.capa}명</div></div>
                     </div>
-                    <div style="margin-left : 40px;"><strong>멘토 : ${detailclass.mentee.nick}</strong></div>
+                    <div style="margin-left : 56px;"><strong>멘토 : ${detailclass.mentee.nick}</strong></div>
                 </div>
                 <!-- <div class="detail_info"> -->
                 
@@ -315,7 +326,9 @@
                 <!-- <div class="detail_info"> -->  
                 <hr class="Fhr" id="class-review">   
                 <div class="detail_info">   
-                    <div class="row" style="margin: 0 auto">    
+                    <div class="row" style="margin: 0 auto"> 
+                    <h3>클래스 후기</h3>
+                        <hr class="Fhr" id="class-review" style="margin-bottom:5px;">   
                         <div class="col text-center">   
                             <c:set var="starint" value="${detailclass.star}"/>
                             <div class="rating col">
@@ -334,25 +347,19 @@
                             </div>  
                             <div>
                                     <i class="fas fa-user"></i>total ${countrep} 
-                            </div>  
-                        </div>  
-                    </div>  
-                </div>  
-                
-                <div class="container col-lg-12 px-0" id="prod_review">
-                    <div class="row">
-                        <div class="col px-0">
-                <form class="form-horizontal" action="detail?no=${detailclass.no}" method="post">
+                            </div>
+                            <form class="form-horizontal" action="detail?no=${detailclass.no}" method="post">
                     <fieldset>
                     <table class="fixed-table w-100" >
                             <tr>
                                 <td colspan="3">
                                     <!-- <div class=""> -->
                                             <!-- Message body -->
-                                     <div class="form-group" >
-                                         <div class="col-lg-12" >
+                                     <div class="form-group" style="background-color:white;" >
+                                         <div class="col-lg-9" >
                                              <textarea class="form-control" id="conts" name="conts"
-                                                 placeholder="클래스평을 등록해주세요." rows="5"></textarea>
+                                                 placeholder="클래스평을 등록해주세요." rows="5"
+                                                 style="width:600px; margin-left:50px;"></textarea>
                                          </div>
                                      </div>
                                 </td>
@@ -380,16 +387,7 @@
                     </table>
                                         </fieldset>
                                 </form>
-                          </div>
-                    </div>
-
-                    <div class ="col-lg-12 px-0" style="margin-left : 2px;">
-                    <div class="col-lg-12 col-md-12 detail_info"
-                    style="padding-left: 40px; padding-right:40px;">
-                        <h3>클래스 후기</h3>
-                        <hr class="Fhr" id="class-review" style="margin-bottom:5px;">
-                        <div class="detail_info" id="replist"
-                        >
+                                <div class="detail_info" id="replist" >
                         <c:forEach items="${clsreqlist}" var="r" varStatus="i">
                             <div class="media"
                                 style="border-bottom: 0.3px solid rgba(0, 0, 0, 0.5)">
@@ -406,10 +404,6 @@
                                     <button type="button" onClick="deleterepnull()"
                                  class="delebtn" id="delebtn${i.index}">삭제</button>
                                 </c:when>
-                                <%-- <c:when test="${sessionScope.loginUser.no eq clsreqlist.mentee.no} ">
-                                    <button type="button" onClick="deleterepnull()"
-                                 class="delebtn" id="delebtn${i.index}">삭제</button>
-                                </c:when> --%>
                                 <c:otherwise>         
                                 <button type="button" data-toggle="modal" data-target="#deleteModal_${r.no}"
                                  class="delebtn" id="delebtn${i.index}">삭제</button>
@@ -472,11 +466,8 @@
                             </div>
                         </c:forEach>
                         </div>
-                        </div>
-                    </div>
-                    <br><br>
-                 <nav aria-label="Page navigation example" id="product-pn" 
-                    style="margin : auto; margin-top: -40px;">
+                        <nav aria-label="Page navigation example" id="product-pn" 
+                    style="margin : auto;">
                         <ul class="pagination justify-content-center">
                         <c:set var="repsi" value="${countrep}" />
                         <%
@@ -498,16 +489,11 @@
                             onClick="nextrep(${countrep})">next</a></li>
                         </ul>
                   </nav>
-                  <%-- <jsp:include page="/detail.jsp" flush="true">
-					    <jsp:param name="firstPageNo" value="${paging.firstPageNo}" />
-					    <jsp:param name="prevPageNo" value="${paging.prevPageNo}" />
-					    <jsp:param name="startPageNo" value="${paging.startPageNo}" />
-					    <jsp:param name="pageNo" value="${paging.pageNo}" />
-					    <jsp:param name="endPageNo" value="${paging.endPageNo}" />
-					    <jsp:param name="nextPageNo" value="${paging.nextPageNo}" />
-					    <jsp:param name="finalPageNo" value="${paging.finalPageNo}" />
-					</jsp:include> --%>
-
+                        </div>  
+                    </div>  
+                </div>  
+                
+                <div class="container col-lg-12 px-0" id="prod_review">
 
                     <div class="detail_info" style="margin-left : 2px; padding-left: 40px; padding-right:40px;">
                         <h3>Q&A</h3>
@@ -619,7 +605,7 @@
                                 </table>
                                 
                                 <div class="center"><button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block"
-                                style="width: 120px; height: 40px; float : right; background-color: #606066; color: #ffffff;">클래스 문의</button></div>
+                                style="margin-top:20px; width: 120px; height: 40px; float : right; background-color: #606066; color: #ffffff;">클래스 문의</button></div>
                                 <c:choose>
                                     <c:when test="${sessionScope.loginUser eq null}">
                                         <div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
@@ -705,7 +691,6 @@
                                     <li class="page-item"><a class="page-link" 
                                     onClick="qnapage(<%=qno%>)"><%=qno%></a></li>
                                 <%
-                                	System.out.println(qno);
                                     }
                                 %>
                             <li class="page-item"><a class="page-link" 
@@ -1206,7 +1191,7 @@ function reppage(pno) {
 	   		 html +='      onClick="deleterepnull()" >수정</button>'
 	   		 			} else {
 	   		 html +='             <button type="button" class="edbtn" id="edbtn'+i+'"' 
-	   		 html +='     onClick="updarep('+no+' , '+rno+' , '+meno+' ,'+i+');" >수정</button>'
+	   		 html +='     onClick="updarep(${sessionScope.loginUser.no} , '+rno+' , '+meno+' ,'+i+');" >수정</button>'
 	   		 			}
 	   		 html +='     <button type="button" class="updabtn" id="updabtn'+i+'" data-toggle="modal"' 
 	   		 html +='      data-target="#updateModal_'+rno+'"' 
@@ -1674,7 +1659,7 @@ function updabtn(sessionno,rno , teno) { /* 회원 인식해서 댓글 수정해
  var stmnActivateSpeed = 35; //스크롤을 인식하는 딜레이 (숫자가 클수록 느리게 인식)
  var stmnScrollSpeed = 20; //스크롤 속도 (클수록 느림)
  var stmnTimer; 
- var stmnsub = 300; // stmtEndPoint 맞춰줄 때 쓴다.
+ var stmnsub = 230; // stmtEndPoint 맞춰줄 때 쓴다.
  
  function RefreshStaticMenu() { 
   var stmnStartPoint, stmnEndPoint; 
@@ -1901,7 +1886,7 @@ function clsBaskt(no) {
 
 </script>
 <script>
-function setLike(evt,cno){
+function setLike(evt,cno,obj){
     evt.preventDefault();
     if('${sessionScope.loginUser}' != ''){
         $.ajax({
@@ -1917,6 +1902,8 @@ function setLike(evt,cno){
                     icon : "success",
                     button : "확인",
                   })
+                  $(obj).attr('class','fas fa-star');
+                $(obj).css("color","#FFB53C");
                 /* location.href="detail?no="+${detailclass.no}; */
             },error : function(error,status){
                 swal({
