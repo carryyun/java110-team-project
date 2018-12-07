@@ -49,7 +49,6 @@
 	}
 </style>
 </head>
-
 <body>
 	<div id="wrap" style="background-color: #fff">
 		<div class="col-lg-12 px-0"
