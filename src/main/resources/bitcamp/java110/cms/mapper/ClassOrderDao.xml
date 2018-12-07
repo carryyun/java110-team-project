@@ -17,20 +17,21 @@
         <result column="ctitl"      property="classes.titl"/>
         <result column="mentornick" property="mentornick"/>
         
-        <result column="date"  		property="timetable.date"/>
-        <result column="stime"  	property="timetable.stime"/>
-        <result column="ctime"  	property="classes.time"/>
-        <result column="cectno"  	property="cert.no"/>
-        <result column="cetype"  	property="cert.type"/>
-        <result column="cecnt"  	property="cert.cnt"/>
-        <result column="ceedt"  	property="cert.edt"/>
-        <result column="cectdt"  	property="cert.ctdt"/>
-        <result column="fname"  	property="classFile.fname"/>
-        <result column="cfno"  		property="classFile.no"/>
-        <result column="ccno"  		property="classes.no"/>  
+        <result column="date"  property="timetable.date"/>
+        <result column="stime"  property="timetable.stime"/>
+        <result column="ctime"  property="classes.time"/>
+        <result column="cectno"  property="cert.no"/>
+        <result column="cetype"  property="cert.type"/>
+        <result column="cecnt"  property="cert.cnt"/>
+        <result column="ceedt"  property="cert.edt"/>
+        <result column="cectdt"  property="cert.ctdt"/>
+        <result column="fname"  property="classFile.fname"/>
+        <result column="cfno"  property="classFile.no"/>
+        <result column="ccno"  property="classes.no"/> 
+        <result column="mtnm" property="middleTag.name"/>
+        <result column="btnm" property="bigTag.name"/> 
      
      	<result column="mtmeno" 	property="mentee.no"/>
-     
         <result column="mtname" 	property="mtname"/>
         <result column="titl" 		property="cls_titl"/>
         <result column="nick" 		property="mete_nick"/>
@@ -44,7 +45,7 @@
    
      <select id="findByMeno" resultMap="classOrderMap" parameterType="Map">
        
-       SELECT
+      SELECT
             co.ono,
             co.meno,
             co.time,
@@ -63,7 +64,10 @@
             ce.cnt as cecnt,
             ce.edt as ceedt,
             ce.ctdt as cectdt,
-            cf.fname
+            cf.fname,
+            mtag.mtname as mtnm,
+            btag.btname as btnm
+            
             
          FROM
             p_cls_order co JOIN p_mete me on co.meno = me.meno
@@ -71,8 +75,11 @@
             JOIN p_cls c ON ct.cno = c.cno
             JOIN p_meto mo ON c.mono =mo.mono
             JOIN p_mete me2 ON mo.mono = me2.meno
-            JOIN p_cert ce on me.meno= ce.meno
+            LEFT JOIN p_cert ce on me.meno= ce.meno
             Join p_cls_file cf on c.cno=cf.cno 
+            LEFT JOIN p_mtag mtag ON c.mtno = mtag.mtno
+            JOIN p_btag btag ON mtag.btno = btag.btno 
+        
         where
             me.meno=#{meno} 
         ORDER BY

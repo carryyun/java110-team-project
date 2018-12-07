@@ -30,9 +30,6 @@
          <result column="name2" property="mete2_name"/>
         <result column="pric" property="prdt_pric"/>
         <result column="phone" property="mete2_phone"/>
- 
-        
-        
     </resultMap>
     
     <select id="findAll" resultMap="productOrderMap">

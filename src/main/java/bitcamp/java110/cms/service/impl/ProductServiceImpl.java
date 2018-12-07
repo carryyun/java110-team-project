@@ -30,6 +30,11 @@ public class ProductServiceImpl implements ProductService {
 
     return productDao.findByNo(no);
   }
+  
+  @Override
+  public List<Product> hotItemlist() {
+    return productDao.hotItemlist();
+  }
 
 
   @Override

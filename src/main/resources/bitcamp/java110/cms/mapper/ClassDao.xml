@@ -349,6 +349,15 @@
         cno = #{no}
     </update>
     
+    <update id="deleteclsstat" parameterType="Classes">
+    update p_cls
+        <set>
+            <if test="stat != null">stat = #{stat}</if>
+        </set>
+       where 
+        cno = #{no}
+    </update>
+    
     <select id="serchByAll" resultMap="classMap" parameterType="map" >
         SELECT 
             ps.cno,

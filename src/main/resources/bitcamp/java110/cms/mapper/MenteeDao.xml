@@ -29,6 +29,8 @@
         <result column="mono"   property="classes.mono"/>
         <result column="titl"   property="classes.titl"/>
         <result column="pric"   property="classes.pric"/>
+        
+      
     </resultMap>
     
     <select id="checkemail"
