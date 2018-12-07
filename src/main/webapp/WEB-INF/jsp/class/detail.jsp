@@ -168,7 +168,7 @@
                             
                             
                             
-<%--                                 <h4 class="title mb-3 text-left">${detailclass.titl}　<i style="color:#FFB53C" id='owl-i' class='far fa-star' onclick='setLike(event,${detailclass.no})'></i></h4> --%>
+                                <h4 class="title mb-3 text-left">${detailclass.titl}　<i style="color:#FFB53C" id='owl-i' class='far fa-star' onclick='setLike(event,${detailclass.no})'></i></h4>
                                 <dl class="param param-feature text-left">
                                     <dd style="font-size: 1rem;">${detailclass.middleTag.name}</dd>
                                 </dl>

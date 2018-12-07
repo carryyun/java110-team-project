@@ -46,7 +46,7 @@
 
 
 <div id="wrap" style="background-color: #F2F4F7">
-        <div class="col" style="position: absolute; height: 150px; background-color: #fff">
+        <div class="col" style="position: absolute; height: 147px; background-color: #fff">
             <!-- 헤더 배경색 적용 -->
         </div>
         

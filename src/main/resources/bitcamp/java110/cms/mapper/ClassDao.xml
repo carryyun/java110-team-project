@@ -114,6 +114,12 @@
             inner join p_btag as btag
                 on pg.btno = btag.btno
     </sql>
+    <select id="findAllByLoc" resultMap="classMap" parameterType="map">
+        <include refid="selectAll"></include>
+        WHERE
+            ps.bas_addr REGEXP #{loc}
+        limit #{rowNo},#{size}
+    </select>
 	<select id="findAllByBtno" resultMap="classMap" parameterType="map">
         <include refid="selectAll"></include>
         WHERE
