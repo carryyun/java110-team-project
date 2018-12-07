@@ -349,12 +349,13 @@ function addqna(no){
     var qnatype = $('input#getQnaType').val();
     var qnatitl = $('input#qnatitl').val();
     var qnaconts = $('textarea#qnaconts').val();
-    var qnatitl = $('input#qnatitl').val();
+    var ptno = ${product.no};
+    /* var qnatitl = $('input#qnatitl').val(); */
 	$.ajax({
 	    type : "POST",
 	    data : {
 	        "meno" : "${sessionScope.loginUser.no}",
-            "ptno" : no,
+            "ptno" : ptno,
 	        "type" : qnatype,
 	        "titl" : qnatitl,
 	        "conts" : qnaconts
