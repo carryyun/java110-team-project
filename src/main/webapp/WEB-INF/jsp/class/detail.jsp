@@ -251,7 +251,7 @@
             <!-- Links -->
             <div class="col-lg-12 col-md-12 mx-auto" id="detail">
             <div class="col-lg-12 px-0" id="testt"> 
-                            <ul class="under-navbar-nav col-lg-12 col-md-12" style="height:45px; margin-left:-11px;">
+                            <ul class="under-navbar-nav col-lg-12 col-md-12" style="height:45px;">
                                 <li class="under-nav-item"><a class="nav-link"
                                     href="#class_detail">
                                         <h5>요약</h5> 
@@ -383,11 +383,13 @@
                           </div>
                     </div>
 
-                    <div class ="row col-lg-12 px-0" style="margin-left : 2px; padding-left: 40px; padding-right:40px;">
-                        <div class="col-lg-12 col-md-12 mx-auto detail_info" id="replist"
-                        style="margin-left : 2px; padding-left: 40px; padding-right:40px;">
+                    <div class ="col-lg-12 px-0" style="margin-left : 2px;">
+                    <div class="col-lg-12 col-md-12 detail_info"
+                    style="padding-left: 40px; padding-right:40px;">
                         <h3>클래스 후기</h3>
                         <hr class="Fhr" id="class-review" style="margin-bottom:5px;">
+                        <div class="detail_info" id="replist"
+                        >
                         <c:forEach items="${clsreqlist}" var="r" varStatus="i">
                             <div class="media"
                                 style="border-bottom: 0.3px solid rgba(0, 0, 0, 0.5)">
@@ -470,6 +472,7 @@
                             </div>
                         </c:forEach>
                         </div>
+                        </div>
                     </div>
                     <br><br>
                  <nav aria-label="Page navigation example" id="product-pn" 
@@ -487,7 +490,7 @@
                                     for(int pno = 1; pno<=reppage; pno++){
                                 %>
                                     <li class="page-item"><a class="page-link" 
-                                    href="detail?no=${detailclass.no}&reppageNo=<%=pno%>&reppageSize=5"><%=pno%></a></li>
+                                    onClick="reppage(<%=pno%>)"><%=pno%></a></li>
                                 <%
                                     }
                                 %>
@@ -686,7 +689,7 @@
                                     for(int qno = 1; qno<=qnapage; qno++){
                                 %>
                                     <li class="page-item"><a class="page-link" 
-                                    href="detail?no=${detailclass.no}&qnapageNo=<%=qno%>&qnapageSize=5"><%=qno%></a></li>
+                                    onClick="qnapage(<%=qno%>)"><%=qno%></a></li>
                                 <%
                                 	System.out.println(qno);
                                     }
@@ -1108,6 +1111,201 @@ function repins(no) { /* 후기(댓글) 추가버튼 */
     }
 }
 
+function reppage(pno) {
+    var cno = ${detailclass.no};
+    var replist = $('div#replist');
+    var no = ${sessionScope.loginUser.no};
+    
+    $.ajax({
+        type : "POST",
+        data : {
+            "no" : cno , 
+            "reppageNo" : pno
+        },
+        url : "reppage.do",
+        success : function(data) {
+            var html ="";
+            for (var i in data) {
+             var rno = data[i].no;
+	   		 var meno = data[i].meno;
+	   		 var conts = data[i].conts;
+	   		 var nick = data[i].mentee.nick;
+	   		 var phot = data[i].mentee.phot;
+	   		 
+	   		 html +=' <div class="media"'
+	   		 html +='     style="border-bottom: 0.3px solid rgba(0, 0, 0, 0.5)">'
+	   		 html +='     <div class="col-lg-2 text-center">'
+	   		 html +='         <img src="'+phot+'" alt="singup" id="circle">'
+	   		 html +='         '+nick+''
+	   		 html +='     </div>'
+	   		 html +='     <div id="rcont'+i+'" class="col-lg-10 media-body">'+conts+'</div>'
+	   		 html +='     <textarea class="repupda col-lg-9 media-body" id="repup'+i+'" rows="5" name="repup"'
+	   		 html +='                style =" margin-left:10px; width : 500px; display: none;"></textarea>'
+	   		     		if("${sessionScope.loginUser}" == ""){
+	   		 html +='         <button type="button" onClick="deleterepnull()"'
+	   		 html +='      class="delebtn" id="delebtn'+i+'">삭제</button>'
+	   		     		} else {
+	   		 html +='      <button type="button" data-toggle="modal" data-target="#deleteModal_'+rno+'"'
+	   		 html +='      class="delebtn" id="delebtn'+i+'">삭제</button>'
+	   		     		}
+	   		 html +='             <div class="modal fade" id="deleteModal_'+rno+'" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">'
+	   		 html +='               <div class="modal-dialog">'
+	   		 html +='                 <div class="modal-content">'
+	   		 html +='                     <div class="modal-header">'
+	   		 html +='                         <h4 class="modal-title" id="repdelet">해당 게시글 삭제하시겠습니까?</h4>'
+	   		 html +='                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>'
+	   		 html +='                     </div>'
+	   		 html +='                     <div class="modal-body">'
+	   		 html +='                          <form action="detail?no='+cno+'" method="post">'
+	   		 html +='                           <button type="button" class="btn btn-default" data-dismiss="modal"' 
+	   		 html +='                                 onClick="delerep('+no+' , '+rno+', '+meno+');">삭제하기</button>'
+	   		 html +='                           <button type="button" class="btn btn-default" data-dismiss="modal"  role="button">취소</button>'
+	   		 html +='                         </form>'
+	   		 html +='                     </div>'
+	   		 html +='                 </div>'
+	   		 html +='               </div>'
+	   		 html +='              </div>'
+	   		 			if("${sessionScope.loginUser}" == ""){
+	   		 html +='               <button type="button" class="edbtn" id="edbtn'+i+'"' 
+	   		 html +='      onClick="deleterepnull()" >수정</button>'
+	   		 			} else {
+	   		 html +='             <button type="button" class="edbtn" id="edbtn'+i+'"' 
+	   		 html +='     onClick="updarep('+no+' , '+rno+' , '+meno+' ,'+i+');" >수정</button>'
+	   		 			}
+	   		 html +='     <button type="button" class="updabtn" id="updabtn'+i+'" data-toggle="modal"' 
+	   		 html +='      data-target="#updateModal_'+rno+'"' 
+	   		 html +='       style="display:none;">수정완료</button>'
+	   		 html +='             <div class="modal fade" id="updateModal_'+rno+'" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">'
+	   		 html +='               <div class="modal-dialog">'
+	   		 html +='                 <div class="modal-content">'
+	   		 html +='                     <div class="modal-header">'
+	   		 html +='                         <h4 class="modal-title" id="repupdat">해당 게시글 수정하시겠습니까?</h4>'
+	   		 html +='                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>'
+	   		 html +='                     </div>'
+	   		 html +='                    <div class="modal-body">'
+	   		 html +='                         <form action="detail?no='+cno+'" method="post">'
+	   		 html +='                           <button type="button" class="btn btn-default" data-dismiss="modal"'
+	   		 html +='                                  onClick="updabtn('+no+','+rno+' , '+i+')" >수정하기</button>'
+	   		 html +='                           <button type="button" class="btn btn-default" data-dismiss="modal" role="button"'
+	   		 html +='                           onClick="updano('+i+')">취소</button>'
+	   		 html +='                         </form>'
+	   		 html +='                     </div>'
+	   		 html +='                 </div>'
+	   		 html +='               </div>'
+	   		 html +='             </div>'
+	   		 html +=' 			</div>'
+	            }
+             replist.html(html);
+             $('textarea#conts').val("");
+        },error : function(error,status){
+            $('textarea#conts').val("");
+            swal({
+                text : "잠시후에 페이지가 이동됩니다.",
+                button : "확인",
+              })
+        }
+    });
+}
+
+function qnapage(qno) {
+    
+    var cno = ${detailclass.mentee.no};
+    var type = $('input:radio:checked.type').val();
+    var titl = $('input:text#titl').val();
+    var conts = $('textarea#qnaconts').val();
+    var cno = ${detailclass.no};
+    var clsmeno = ${detailclass.mentee.no};
+	var qnatablelist = $('#qnatablelist');
+	
+    $.ajax({
+           type : "POST" ,
+           data : {
+               "no" : qno ,
+               "qnapageNo" : qno
+           },
+           url : "ansupdate.do",
+           success : function(data) {
+               swal({
+                   text : "해당후기에 해당하는 답변이 등록되었습니다",
+                   icon : "success",
+                   button : "확인",
+                 })
+                 var html ="";
+               for(var i in data) {
+                   var cqno = data[i].no;
+        		var qnatitl = data[i].titl;
+        		var qnatype = data[i].type;
+        		var qnargdt = data[i].rgdt;
+        		var qnaconts = data[i].conts;
+        		var qnaanser = data[i].anser;
+        		var qnanick = data[i].mentee.nick;
+        		var countqn = ${countqna};
+        		
+        		html +=' <c:set var="qnasi" value="${countqna}" />'
+        		html +='    <tr data-toggle="collapse" '
+        		html +='    data-target="#demo1-'+i+'" class="accordion-toggle row">'
+        		html +='        <!-- <td class="col-lg-1" scope="row" id="qna_th"></td> -->'
+        		html +='        <td class="col-lg-2">'+qnatype+'</td>'
+        				         	if(qnaanser == null){
+        		html +='            <td class="col-lg-2">미완료</td>'
+        						  	}else{
+        		html +='            <td class="col-lg-2">완료</td>'
+        							}
+        		html +='        <td class="col-lg-3">'+qnatitl+'</td>'
+        		html +='        <td class="col-lg-2">'+qnanick+'</td>'
+        		html +='        <td class="col-lg-2">'+qnargdt+'</td>'
+        		html +='    </tr>'
+        		html +='    <tr>'
+        		html +='        <td colspan="6" class="hiddenRow">'
+        		html +='             <div class="accordian-body collapse" id="demo1-'+i+'">'
+        		html +='             <div class="adddet col-lg-2" style="text-align: center;'
+        		html +='            vertical-align: middle;'
+        		html +='                        display : block;">질문 내용</div>'
+        		html +='            <div class="acco" id="cont">'+qnaconts+'</div><br>'
+		         	 				 if(qnaanser == null){
+        		html +='                      <div class="adddet col-lg-2" style="text-align: center;'
+        		html +='                          vertical-align: middle;'
+        		html +='                         display : block;">질문 답변</div>'
+        		    						if("${sessionScope.loginUser}" == ""){
+        		html +='                              <div class="acco" id="ans'+i+'">답변이 등록되지 않았습니다.</div>'
+        		    						} else if("${sessionScope.loginUser.no}" == clsmeno) {
+                   html +='                            <form class="ansinss" action="detail?no='+cno+'" method="post">'
+                   html +='                                <label onClick="ansbtn('+i+')" class="allbtn"'
+                   html +='                                id="allbtn'+i+'">답변을 작성하시려면 클릭해주세요!</label>'
+                   html +='                                <textarea class="clsanser" id="cls'+i+'" rows="5" name="clsanser"'
+                   html +='                                style ="width : 500px; display: none;"></textarea>'
+                   html +='                                <div class="butmana" style="margin-left:10px;">'
+                   html +='                                    <button class="btn btn-default"' 
+                   html +='                                    onClick="answerins(${sessionScope.loginUser.no},cls'+i+','+cqno+')"'
+                   html +='                                     type="button" >등록</button>'
+                   html +='                                    <button class="btn btn-default" id="ansstat" type="button"' 
+                   html +='                                     onClick="answercansle('+i+')">취소</button>'
+                   html +='                                 </div>'
+                   html +='                              </form>'
+        		    						} else {
+                   html +='                            <div class="acco" id="ans'+i+'">답변이 등록되지 않았습니다.</div>'
+        		    						}
+                                   	}else{
+                   html +='                    <div class="adddet col-lg-2" style="text-align: center;'
+                   html +='                    vertical-align: middle;'
+                   html +='                        display : block;">질문 답변</div>'
+                   html +='                     <div class="acco" id="ans'+i+'">'+qnaanser+'</div>'
+                                   }
+                   html +='            </div>'
+                   html +='        </td>'
+                   html +='    </tr>'
+               }
+               qnatablelist.html(html);
+           },error : function(error,status){
+               swal({
+                   text : "잠시후에 페이지가 이동됩니다.",
+                   button : "확인",
+                 })
+            }
+        });
+    }
+}
+
 /* no:${sessionScope.loginUser.no} , rno : ${r.no} , repmeno :  */
 function delerep(no , rno , repmeno){ /* 댓글 삭제 버튼 */
     var cno = ${detailclass.no};
@@ -1519,8 +1717,6 @@ geocoder.addressSearch('${detailclass.basAddr}', function(result, status) {
             $(window).scroll(function() //스크롤이 움직일때마다 이벤트 발생
             {
                 var position = $(window).scrollTop()-testtTop + 58 - $("#headermain").offset().top - $("#headernav").offset().top; // 현재 스크롤바의 위치값을 반환합니다.
-                console.log("tTop:"+ testtTop)
-                console.log("po:"+ position);
                 if (position > 0) {
                     $(id).css("position", "fixed-top");
                     $(id).css("top", position + "px");

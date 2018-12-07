@@ -274,6 +274,24 @@ public class ClassController {
     model.addAttribute("countqna",countqna);
   }
 
+  @RequestMapping(value = "reppage.do", method = {RequestMethod.POST})
+  public @ResponseBody List<ClassRep> reppage(int no ,
+      @RequestParam(defaultValue="2") int reppageNo, @RequestParam(defaultValue="5") int reppageSize) {
+
+    List<ClassRep> replist = classrepService.listbycno(no, reppageNo, reppageSize);
+
+    return replist;
+  }
+  
+  @RequestMapping(value = "qnapage.do", method = {RequestMethod.POST})
+  public @ResponseBody List<ClassQna> qnapage(int no ,
+      @RequestParam(defaultValue="2") int qnapageNo, @RequestParam(defaultValue="5") int qnapageSize) {
+
+    List<ClassQna> qnalist = classqnaService.listbycno(no, qnapageNo, qnapageSize);
+
+    return qnalist;
+  }
+  
   @RequestMapping(value = "findBycno", method = {RequestMethod.POST})
   public @ResponseBody int ordercountlist(int no,HttpSession session) {
     
