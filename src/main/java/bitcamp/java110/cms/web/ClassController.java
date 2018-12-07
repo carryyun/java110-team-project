@@ -247,6 +247,35 @@ public class ClassController {
     return scrollClsList;
   }
   
+  @GetMapping("clsLoc")
+  public void clsLoc(Model model, String locs, @RequestParam(defaultValue="1") int pageNo,@RequestParam(defaultValue="6") int pageSize) {
+    System.out.println("locs="+locs);
+    String replelocs = locs.replaceAll(",","|");
+    System.out.println("locs="+replelocs);
+    List<Classes> clslist=classService.listByLoc(pageNo,pageSize,replelocs);
+    
+    BigTag bigtag = null;
+    
+    bigtag = bigTagService.get(1);
+    
+    model.addAttribute("locs", locs);
+    model.addAttribute("clslist", clslist);
+    model.addAttribute("bigTag", bigtag);
+  } 
+  
+  @RequestMapping(value="clsLoc.do" ,method= {RequestMethod.POST})
+  public @ResponseBody List<Classes> clsLocdo(Model model, String locs,
+      @RequestParam(defaultValue="2") int pageNo, @RequestParam(defaultValue="6") int pageSize) {
+//    System.out.println("locs="+locs);
+    locs = locs.replaceAll(",","|");
+//    System.out.println("locs="+locs);
+    List<Classes> clslist=classService.listByLoc(pageNo,pageSize,locs);
+    
+    return clslist;
+  }
+  
+  
+
   @RequestMapping("detail")
   public void findByCno(@RequestParam(defaultValue="1") int reppageNo, @RequestParam(defaultValue="5") int reppageSize, 
       @RequestParam(defaultValue="1") int qnapageNo, @RequestParam(defaultValue="5") int qnapageSize, 
@@ -339,7 +368,7 @@ public class ClassController {
   public void qnaupdate(ClassQna classqna) {
 
     classqna.setNo(5);
-    //classqna.setMeno(7);
+    //classqna.setMeno(7); 
     //classqna.setCno(cno);
     classqna.setTitl("고정은씨는 이 글을 보시오!!");
     classqna.setConts("응 넌 낚였어");
@@ -609,4 +638,6 @@ public class ClassController {
     }
     return "complete";
   }
+  
+  
 }

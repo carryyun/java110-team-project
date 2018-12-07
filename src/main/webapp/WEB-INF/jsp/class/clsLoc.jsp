@@ -363,18 +363,26 @@ margin-bottom: 0.25rem;
     var pageNo=parseInt(2);
     var btno = $('input#getbtno').val();
     $(document).ready(function(){
-    
+        var splitCode = '${locs}'.split(",");
+
+        for (var idx in splitCode) {
+
+            $("input[name=loc][value=" + splitCode[idx] + "]").attr("checked", true);
+
+        }
     });
 		$(window).scroll(function() {
+		    var loclist = '${locs}';
+		    console.log(loclist);
 		    if($(window).scrollTop() == $(document).height() - window.innerHeight+17) {
 		        var html = "";
 		        $.ajax({
 		            type : "POST" , 
 		            data : {
 		                "pageNo" : pageNo,
-		                "no" : btno
+		                "locs" : '${locs}'
 		            },
-		            url : "clsCate.do" ,
+		            url : "clsLoc.do" ,
 		            success : function(data) {
 		                html ="";
 		                for (var i in data) {
@@ -468,7 +476,6 @@ function getLocation(){
 function replaceAll(str, searchStr, replaceStr) {
     return str.split(searchStr).join(replaceStr);
   }
-
 </script>
 </body>
 

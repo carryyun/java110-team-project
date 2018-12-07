@@ -46,7 +46,7 @@
 
 
 <div id="wrap" style="background-color: #F2F4F7">
-        <div class="col" style="position: absolute; height: 150px; background-color: #fff">
+        <div class="col" style="position: absolute; height: 147px; background-color: #fff">
             <!-- 헤더 배경색 적용 -->
         </div>
         
@@ -349,12 +349,13 @@ function addqna(no){
     var qnatype = $('input#getQnaType').val();
     var qnatitl = $('input#qnatitl').val();
     var qnaconts = $('textarea#qnaconts').val();
-    var qnatitl = $('input#qnatitl').val();
+    var ptno = ${product.no};
+    /* var qnatitl = $('input#qnatitl').val(); */
 	$.ajax({
 	    type : "POST",
 	    data : {
 	        "meno" : "${sessionScope.loginUser.no}",
-            "ptno" : no,
+            "ptno" : ptno,
 	        "type" : qnatype,
 	        "titl" : qnatitl,
 	        "conts" : qnaconts
