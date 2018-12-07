@@ -20,6 +20,8 @@ public interface ProductOrderService {
   
 
   int add(ProductOrder productOrder);
+  
+  int adddeliveryinfo(ProductOrder productOrder);
 
 
 }

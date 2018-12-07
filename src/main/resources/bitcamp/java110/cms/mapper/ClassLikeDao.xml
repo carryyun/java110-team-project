@@ -8,7 +8,7 @@
     <resultMap type="ClassLike" id="classlikeMap">
         <id column="clno" 		property="no"/>
         <result column="meno"  	property="meno"/>
-        <result column="cno"    property="cno"/>
+        <result column="clsno"    property="cno"/>
         
         <result column="titl" 	property="classes.titl"/>
         <result column="cfile" 	property="classes.cfile"/>

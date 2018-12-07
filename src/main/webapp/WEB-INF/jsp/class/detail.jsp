@@ -172,8 +172,16 @@
                             %>
                             
                             
-                                <h4 class="title mb-3 text-left">${detailclass.titl}　<i style="color:#FFB53C" id='owl-i' class='far fa-star' onclick='setLike(event,${detailclass.no})'></i></h4>
-
+                                <h4 class="title mb-3 text-left">${detailclass.titl}
+                                <c:choose>
+                                <c:when test="${likeResult == 1}">
+	                                <i style="color:#FFB53C" id='owl-i' class='fas fa-star' onclick='setLike(event,${detailclass.no},this)'></i>
+                                </c:when>
+                                <c:otherwise>
+                                    <i style="color:#FFB53C" id='owl-i' class='far fa-star' onclick='setLike(event,${detailclass.no},this)'></i>
+                                </c:otherwise>
+                                </c:choose>
+                                </h4>
                                 <dl class="param param-feature text-left">
                                     <dd style="font-size: 1rem;">${detailclass.middleTag.name}</dd>
                                 </dl>
@@ -1878,7 +1886,7 @@ function clsBaskt(no) {
 
 </script>
 <script>
-function setLike(evt,cno){
+function setLike(evt,cno,obj){
     evt.preventDefault();
     if('${sessionScope.loginUser}' != ''){
         $.ajax({
@@ -1894,6 +1902,8 @@ function setLike(evt,cno){
                     icon : "success",
                     button : "확인",
                   })
+                  $(obj).attr('class','fas fa-star');
+                $(obj).css("color","#FFB53C");
                 /* location.href="detail?no="+${detailclass.no}; */
             },error : function(error,status){
                 swal({

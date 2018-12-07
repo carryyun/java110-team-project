@@ -266,10 +266,32 @@ public class ClassController {
   @RequestMapping(value="clsLoc.do" ,method= {RequestMethod.POST})
   public @ResponseBody List<Classes> clsLocdo(Model model, String locs,
       @RequestParam(defaultValue="2") int pageNo, @RequestParam(defaultValue="6") int pageSize) {
-//    System.out.println("locs="+locs);
     locs = locs.replaceAll(",","|");
-//    System.out.println("locs="+locs);
     List<Classes> clslist=classService.listByLoc(pageNo,pageSize,locs);
+    
+    return clslist;
+  }
+  
+  
+  @GetMapping("clsSerch")
+  public void clsSerch(Model model, String word, @RequestParam(defaultValue="1") int pageNo,@RequestParam(defaultValue="6") int pageSize) {
+    String Nword = "%"+ word +"%";
+    List<Classes> clslist=classService.listByWord(pageNo,pageSize,Nword);
+
+    BigTag bigtag = null;
+    
+    bigtag = bigTagService.get(1);
+    
+    model.addAttribute("word", word);
+    model.addAttribute("clslist", clslist);
+    model.addAttribute("bigTag", bigtag);
+  } 
+  
+  @RequestMapping(value="clsSerch.do" ,method= {RequestMethod.POST})
+  public @ResponseBody List<Classes> clsSerchdo(Model model, String word,
+      @RequestParam(defaultValue="2") int pageNo, @RequestParam(defaultValue="6") int pageSize) {
+    String Nword = "%"+ word +"%";
+    List<Classes> clslist=classService.listByWord(pageNo,pageSize,Nword);
     
     return clslist;
   }
@@ -293,6 +315,18 @@ public class ClassController {
     paging.setPageNo(reppageNo);
     paging.setPageSize(reppageSize);
     paging.setTotalCount(countrep);*/
+    
+    Mentee loginUser = (Mentee) session.getAttribute("loginUser");
+    int likeResult = 0;
+    if(loginUser != null) {
+      List<ClassLike> likelist = classlikeService.listByMeno(loginUser.getNo());
+      for(ClassLike cl : likelist) {
+        if(cl.getCno() == detailclass.getNo()) {
+          likeResult = 1;
+        }
+      }
+    }
+    
 
     model.addAttribute("clsreqlist",clsreqlist);
     model.addAttribute("detailclass",detailclass);
@@ -301,6 +335,7 @@ public class ClassController {
     model.addAttribute("clstimelist",clstimelist);
     model.addAttribute("countrep",countrep);
     model.addAttribute("countqna",countqna);
+    model.addAttribute("likeResult",likeResult);
   }
 
   @RequestMapping(value = "reppage.do", method = {RequestMethod.POST})

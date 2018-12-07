@@ -103,10 +103,41 @@
              
           // 클래스 관리   
              $(document).ready(function() {
-                 $("#menu5").load("/app/mypage/menu5");
+                 
+                 var mtstat = $('#stat').attr('name');
+                 
+                 if (mtstat == "") {
+                     
+                     $("#menu5disable").load("/app/mypage/menu5disable");
+                 }
+
+                 else if(mtstat == "N"){
+                     $("#menu5disable").load("/app/mypage/menu5disable");
+                 }
+
+                 else if(mtstat == "I"){
+                   
+                     $("#menu5disable2").load("/app/mypage/menu5disable2");
+                     
+                 }
+                 
+                 else if(mtstat == "Y"){
+                     $("#menu5").load("/app/mypage/menu5");
+                     
+                 }
+
+
+                 
+                 
              });
             
+           // 테스트 시작
              
+           
+                
+
+             
+            // 테스트 끝
              
              
           // 상품 관리   

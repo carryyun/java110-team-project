@@ -3,19 +3,18 @@ package bitcamp.java110.cms.web;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import bitcamp.java110.cms.domain.ClassLike;
 import bitcamp.java110.cms.domain.ClassPopul;
-import bitcamp.java110.cms.domain.Classes;
-import bitcamp.java110.cms.domain.Product;
+import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.ProductPopul;
+import bitcamp.java110.cms.service.ClassLikeService;
 import bitcamp.java110.cms.service.ClassPopulService;
 import bitcamp.java110.cms.service.ProductPopulService;
 
@@ -25,16 +24,18 @@ public class MainController {
 
   ProductPopulService productPopulService;
   ClassPopulService classPopulService;
+  ClassLikeService classLikeService;
   ServletContext sc;
 
   public MainController(ProductPopulService productPopulService,
-      ClassPopulService classPopulService) {
+      ClassPopulService classPopulService, ClassLikeService classLikeService) {
     this.productPopulService = productPopulService;
     this.classPopulService = classPopulService;
+    this.classLikeService = classLikeService;
   }
   
   @GetMapping("mainpage")
-  public void mainpage(Model model) {
+  public void mainpage(Model model, HttpSession session) {
     List<ProductPopul> pp_list = productPopulService.list();
     List<ProductPopul> pp_product=new ArrayList<>();
     for (ProductPopul p: pp_list ) {
@@ -51,7 +52,7 @@ public class MainController {
     
     
     
-    List<ClassPopul> cp_list = classPopulService.list();      
+    List<ClassPopul> cp_list = classPopulService.list();
     List<ClassPopul> cp_class=new ArrayList<>();
     for (ClassPopul c: cp_list ) {
       cp_class.add(c);
@@ -63,6 +64,17 @@ public class MainController {
     } catch (JsonProcessingException e) {
       System.out.println(e.getMessage());
     }
+    
+    Mentee loginUser = (Mentee) session.getAttribute("loginUser");
+    if(loginUser != null) {
+      List<ClassLike> clike_popul = classLikeService.listByMeno(loginUser.getNo());
+      System.out.println("실행");
+      model.addAttribute("clike_popul", clike_popul );
+      for(ClassLike c : clike_popul) {
+        System.out.println(c.getCno());
+      }
+    }
+    
     
   }
   

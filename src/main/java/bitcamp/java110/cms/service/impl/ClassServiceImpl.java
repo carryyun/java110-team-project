@@ -165,4 +165,11 @@ public class ClassServiceImpl implements ClassService{
     
     return classDao.findAllByLoc(params);
   }
+  public List<Classes> listByWord(int pageNo, int pageSize,String word){
+    HashMap<String, Object> params = new HashMap<>();
+    params.put("rowNo", (pageNo - 1) * pageSize);
+    params.put("size", pageSize);
+    params.put("word", word);
+    return classDao.findAllByWord(params);
+  }
 }
