@@ -203,7 +203,7 @@ function submitbtnClick(){
 					 button:"확인"
 				  });
 			}else if(data == 1){
-				location.href="../mainpage/mainpage";
+			    history.go(-1);/* 로그인 후 이전 페이지로 돌아가기 */
 			}
 		}
 	});
@@ -212,6 +212,7 @@ function submitbtnClick(){
 
 function mainhome(){
     location.href="/app/mainpage/mainpage";
+   
 }
 </script>
  <!-- Kakao.Auth.logout(function () {  alert("카카오로그아웃");}); -->
