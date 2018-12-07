@@ -203,7 +203,8 @@ function submitbtnClick(){
 					 button:"확인"
 				  });
 			}else if(data == 1){
-			    history.go(-1);/* 로그인 후 이전 페이지로 돌아가기 */
+			
+			    location.href="../mainpage/mainpage";
 			}
 		}
 	});
