@@ -203,7 +203,7 @@ function submitbtnClick(){
 					 button:"확인"
 				  });
 			}else if(data == 1){
-				location.href="../mainpage/mainpage";
+			    history.back();
 			}
 		}
 	});
