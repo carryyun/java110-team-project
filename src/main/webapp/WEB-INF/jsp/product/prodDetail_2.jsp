@@ -167,7 +167,7 @@
                                             <td class="col-lg-2">${qna.rgdt}</td>
                                         </tr>
                                         <tr>
-                                            <td colspan="6" class="hiddenRow">
+                                            <td colspan="6" class="hiddenRow" style="width:1000px">
                                                 <div class="accordian-body collapse" id="demo1-${i.count}">
                                                 <div class="adddet col-lg-12" style="text-align: center;
                                                 vertical-align: middle;
@@ -232,7 +232,7 @@
                                         <c:choose>
                                     <c:when test="${sessionScope.loginUser eq null}">
                                         <div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-                                              <div class="modal-dialog">
+                                              <div class="modal-dialog" >
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h4 class="modal-title" class="replogin">로그인 후 이용가능합니다.</h4>
