@@ -1,9 +1,15 @@
 package bitcamp.java110.cms.web;
 
+import java.awt.AlphaComposite;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageOutputStream;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
@@ -147,24 +153,35 @@ public class ProductController {
 
 
   @GetMapping("detail")
-  public void detail(Model model, int no) {
+  public void detail(Model model, int no,
+      @RequestParam(defaultValue = "1") int pageNo,
+      @RequestParam(defaultValue = "5") int pageSize) {
     
     Product product = productService.get(no);
     Classes detailclass = classService.findBycno(product.getClasses().getNo());
     System.out.println(product.getPhot());
     product.setProductFile(productFileService.listByPtno(no));
     
-    List<ProductRep> replyList = productRepSerivce.listByPtno(no);
+    List<ProductRep> replyList = productRepSerivce.listByPtno(pageNo,pageSize,no);
     Classes prdtcls = classService.findbyptno(no);
-    List<ProductQnA> prodQnaList = productQnAService.listByPtno(3, 5, no);
+    List<ProductQnA> prodQnaList = productQnAService.listByPtno(pageNo, pageSize, no);
+    
+    List<ProductQnA> countQna = productQnAService.listByPtno(1, 200, no);
+    int countqna = countQna.size()/5;
+    if(countQna.size()%5 >0) countqna++;
+    model.addAttribute("countqna", countqna);
+    
+    List<ProductRep> forRepSize = productRepSerivce.listByPtno(1,200,no);
+    int repPageSize = forRepSize.size()/5;
+    if(forRepSize.size()%5 > 0) repPageSize++;
+    model.addAttribute("repCnt", forRepSize.size());
+    model.addAttribute("repPageSize", repPageSize);
     
     model.addAttribute("product", product);
-    // product - 웹에서 쓸 이름(아무거나 써도됨)
     model.addAttribute("replyList", replyList);
     model.addAttribute("prdtcls", prdtcls);
     model.addAttribute("prodQnaList", prodQnaList);
     model.addAttribute("detailclass",detailclass);
-    /* model.addAttribute("clslist",clslist); */
   }
 
 
@@ -209,17 +226,21 @@ public class ProductController {
 
 //상품평 등록
   @RequestMapping(value = "addrep.do", method = {RequestMethod.GET, RequestMethod.POST})
-  public @ResponseBody List<ProductRep> addrep(ProductRep productRep) {
+  public @ResponseBody List<ProductRep> addrep(
+      @RequestParam(defaultValue = "1") int pageNo,
+      @RequestParam(defaultValue = "5") int pageSize,ProductRep productRep) {
     productRepSerivce.add(productRep);
-    List<ProductRep> productRepList = productRepSerivce.listByPtno(productRep.getPtno());
+    List<ProductRep> productRepList = productRepSerivce.listByPtno(pageNo,pageSize,productRep.getPtno());
     return productRepList;
   }
   
 //상품평 삭제
   @RequestMapping(value = "removerep.do", method = {RequestMethod.GET, RequestMethod.POST})
-  public @ResponseBody List<ProductRep> removerep(int ptno, int rno) {
+  public @ResponseBody List<ProductRep> removerep(int ptno,
+      @RequestParam(defaultValue = "1") int pageNo,
+      @RequestParam(defaultValue = "5") int pageSize, int rno) {
     productRepSerivce.delete(rno);
-    List<ProductRep> productRepList = productRepSerivce.listByPtno(ptno);
+    List<ProductRep> productRepList = productRepSerivce.listByPtno(pageNo,pageSize,ptno);
     return productRepList;
   }
 
@@ -262,7 +283,12 @@ public class ProductController {
     model.addAttribute("paymentList", paymentList);
 
   }
-
+  
+  // 팝업용 창닫기 jsp
+  @GetMapping("addProductAfter")
+  public void addProductAfter() {
+    
+  }
 
   // 2018.11.29 -> ?.?
   @PostMapping(value = "addProduct.do")
@@ -276,8 +302,13 @@ public class ProductController {
       if (!file.getOriginalFilename().equals("")) {
         String filename = UUID.randomUUID().toString();
         file.transferTo(new File(sc.getRealPath("/upload/img/prdtImg/" + filename + ".png")));
+        /*BufferedImage img = ImageIO.read(new File(sc.getRealPath("/upload/img/prdtImg/" + filename + ".png")));
+        int type = img.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : img.getType();
+        BufferedImage resizeImage = resizeImageWithHint(img, type);
+        
+        ImageIO.write(resizeImage,"png", new File("/upload/img/prdtImg/" + filename + ".png"));*/
+
         String fname = "/upload/img/prdtImg/" + filename + ".png";
-        System.out.println(fname);
         if (index == 0) {
           product.setPhot(fname);
           productService.update(product);
@@ -291,8 +322,23 @@ public class ProductController {
       }
     }
     
-    return "detail?no=" + result;
+    return "redirect:addProductAfter";
   }
+/*  private static BufferedImage resizeImageWithHint(BufferedImage originalImage, int type) {
+    
+    BufferedImage resizedImage = new BufferedImage(400, 300, type);
+    Graphics2D g = resizedImage.createGraphics();
+    g.drawImage(originalImage, 0, 0, 400, 300, null);
+    g.dispose();
+    g.setComposite(AlphaComposite.Src);
+ 
+    g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+        RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+    g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+    g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+ 
+    return resizedImage;
+  }*/
   
   @PostMapping(value = "updateProduct.do")
   public String updateProductdo(Product product, List<MultipartFile> files, String deleteFile, HttpSession session)
@@ -391,6 +437,24 @@ public class ProductController {
       productOrderService.add(order);
       }
     return "complete";
+  }
+  
+  
+  @RequestMapping(value = "repLoad.do", method = {RequestMethod.GET, RequestMethod.POST})
+  public @ResponseBody List<ProductRep> repLoaddo(int ptno,
+      @RequestParam(defaultValue = "1") int pageNo,
+      @RequestParam(defaultValue = "5") int pageSize) {
+    List<ProductRep> productRepList = productRepSerivce.listByPtno(pageNo,pageSize,ptno);
+    return productRepList;
+  }
+  
+  @RequestMapping(value = "qnaLoad.do", method = {RequestMethod.GET, RequestMethod.POST})
+  public @ResponseBody List<ProductQnA> qnaLoaddo(int ptno,
+      @RequestParam(defaultValue = "1") int pageNo,
+      @RequestParam(defaultValue = "5") int pageSize) {
+    List<ProductQnA> productQnaList = productQnAService.listByPtno(pageNo,pageSize,ptno);
+    
+    return productQnaList;
   }
   
   

@@ -208,8 +208,10 @@ div.row.imgDiv {
         
         $("button#submitBtn").click(function(){
             document.getElementById('myForm').submit();
-            return false; 
         });
+        $('#myForm').submit(function(){
+            closepage();
+        })
         
         /* document.getElementById('submitBtn').click = function(){
             

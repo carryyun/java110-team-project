@@ -57,7 +57,7 @@
 <div class="col" style="position: absolute; height: 146px; background-color: white">
     <!-- 헤더 배경색 적용 -->
 </div>
-<div id="wrap" style="background-color: #F2F4F7">
+<div id="wrap" style="background-color: #F2F4F7; padding-bottom: 80px">
 <div> 
     <div class="container">
         <div class="row">
@@ -1271,7 +1271,7 @@ function qnapage(qno) {
            success : function(data) {
                  var html ="";
                for(var i in data) {
-                   var cqno = data[i].no;
+                var cqno = data[i].no;
         		var qnatitl = data[i].titl;
         		var qnatype = data[i].type;
         		var qnargdt = data[i].rgdt;

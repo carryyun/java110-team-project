@@ -19,8 +19,13 @@ public class ProductRepServiceImpl implements ProductRepService {
   @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 
   @Override
-  public List<ProductRep> listByPtno(int ptno) {
-    return productRepDao.findAllByPtno(ptno);
+  public List<ProductRep> listByPtno(int pageNo, int pageSize, int ptno) {
+    HashMap<String, Object> params = new HashMap<>();
+    params.put("rowNo", (pageNo - 1) * pageSize);
+    params.put("size", pageSize);
+    params.put("ptno", ptno);
+    
+    return productRepDao.findAllByPtno(params);
   }
   
   @Override

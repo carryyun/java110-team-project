@@ -132,6 +132,7 @@
             p_prdt_qna qna inner join p_mete mete
             on qna.meno = mete.meno
         where ptno=#{productno}
+        limit #{rowNo},#{size}
     </select>
     
   

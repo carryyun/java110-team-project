@@ -79,8 +79,8 @@
 </div>
 </div>
 
-<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/js/jquery.raty.min.js"></script>
 <script src="/js/clean-blog.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
@@ -542,6 +542,151 @@ $('.accordian-body').on('show.bs.collapse', function () {
         .find(".collapse.in")
         .not(this)
 })
+</script>
+
+<script>
+function repPaging(rpageNo){
+	$.ajax({
+	    type : "POST",
+	    data : {
+	        "ptno" : ${product.no},
+	        "pageNo" : rpageNo
+	    },
+	    url : "repLoad.do",
+	    success : function(result) {
+	        var html="";
+	        var addrep_target = $('div#addrep_target');
+	        for(var item in result){
+	            html+= '<div class="col-lg-12 my-3">';
+	            html+= '    <div class="container pb-3" style="border-bottom: 0.5px solid rgba(0, 0, 0, 0.5)">';
+	            html+= '    <div class="row">';
+	            html+= '        <div class="col-lg-2 text-center">';
+	            html+= '            <img src="' + result[item].mentee.phot + '" alt="singup" id="circle"><br>';
+	            html+=                result[item].mentee.nick;
+	            html+= '        </div>';
+	            html+= '        <div class="col-lg-9 media-body">'+ result[item].conts +'</div>';
+	            html+= '<c:if test="${sessionScope.loginUser != \'\' }">';
+	            html+= '<c:if test="${sessionScope.loginUser.no} =='+ result[item].mentee.no +'">';
+	            html+= '  <div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="removerep('+result[item].no +')"><i class="fas fa-trash-alt"></i></a> </div>';
+	            html+= '</c:if>';
+	            html+= '</c:if>';
+	            
+	            html+= '        </div>';
+	            html+= '    </div>';
+	            html+= '</div>';
+	        }
+	        addrep_target.html(html);
+	    },
+	    error : function(error, status) {
+	        console.log(error);
+	    }
+	});
+}
+
+function qnaPaging(rpageNo){
+    var prodmeno = ${product.meno};
+    $.ajax({
+        type : "POST",
+        data : {
+            "ptno" : ${product.no},
+            "pageNo" : rpageNo
+        },
+        url : "qnaLoad.do",
+        success : function(data) {
+            var html="";
+            var addqna_target = $('tbody#qna_target');
+            for(var i in data){
+                var cqno = data[i].no;
+                var qnatitl = data[i].titl;
+                var qnatype = data[i].type;
+                var qnargdt = data[i].rgdt;
+                var qnaconts = data[i].conts;
+                var qnaanser = data[i].anser;
+                var qnanick = data[i].mentee.nick;
+                var countqn = ${countqna};
+                
+                qnargdt = new Date();
+                
+                var dd= qnargdt.getDate();
+                var mm= qnargdt.getMonth();
+                var yy= qnargdt.getFullYear();
+                
+                if( dd < 10){
+                    dd = '0' + dd;
+                }
+                if( mm < 10){
+                    mm='0' +mm;
+                }
+                
+                qnargdt = yy+'-'+mm+'-'+dd;
+                
+                html +=' <c:set var="qnasi" value="${countqna}" />'
+                html +='    <tr data-toggle="collapse" '
+                html +='    data-target="#demo1-'+(parseInt(i)+1)+'" class="accordion-toggle row">'
+                html +='        <td class="col-lg-1" scope="row" id="qna_th">'+((rpageNo-1)*5+(parseInt(i)+1))+'</td>'
+                html +='        <td class="col-lg-2">'+qnatype+'</td>'
+                                    if(qnaanser == null){
+                html +='            <td class="col-lg-2">미완료</td>'
+                                    }else{
+                html +='            <td class="col-lg-2">완료</td>'
+                                    }
+                        if(qnatitl.length > 8) {
+                        var longtitl = qnatitl.substring(0, 7);
+                html +=' <td class="col-lg-3">'+longtitl+'..</td>'
+                        } else {
+                html +=' <td class="col-lg-3">'+qnatitl+'</td>'
+                        }
+                html +='        <td class="col-lg-2">'+qnanick+'</td>'
+                html +='        <td class="col-lg-2">'+qnargdt+'</td>'
+                html +='    </tr>'
+                html +='    <tr>'
+                html +='        <td colspan="6" class="hiddenRow" style="width:1000px">'
+                html +='             <div class="accordian-body collapse" id="demo1-'+i+'">'
+                html +='             <div class="adddet col-lg-12" style="text-align: center;'
+                html +='            vertical-align: middle;'
+                html +='                        display : block;">질문 내용</div>'
+                html +='            <div class="acco" id="cont">'+qnaconts+'</div><br>'
+                                     if(qnaanser == null){
+                html +='                      <div class="adddet col-lg-12" style="text-align: center;'
+                html +='                          vertical-align: middle;'
+                html +='                         display : block;">질문 답변</div>'
+                                            if("${sessionScope.loginUser}" == ""){
+                html +='                              <div class="acco" id="ans'+i+'">답변이 등록되지 않았습니다.</div>'
+                                            } else if("${sessionScope.loginUser.no}" == prodmeno) {
+                   html +='                            <form class="ansinss" action="detail?no='+cno+'" method="post">'
+                   html +='                                <label onClick="ansbtn('+i+')" class="allbtn"'
+                   html +='                                id="allbtn'+i+'">답변을 작성하시려면 클릭해주세요!</label>'
+                   html +='                                <textarea class="clsanser" id="cls'+i+'" rows="5" name="clsanser"'
+                   html +='                                style ="width : 500px; display: none;"></textarea>'
+                   html +='                                <div class="butmana" style="margin-left:10px;">'
+                   html +='                                    <button class="btn btn-default"' 
+                   html +='                                    onClick="answerins(${sessionScope.loginUser.no},cls'+i+','+cqno+')"'
+                   html +='                                     type="button" >등록</button>'
+                   html +='                                    <button class="btn btn-default" id="ansstat" type="button"' 
+                   html +='                                     onClick="answercansle('+i+')">취소</button>'
+                   html +='                                 </div>'
+                   html +='                              </form>'
+                                            } else {
+                   html +='                            <div class="acco" id="ans'+i+'">답변이 등록되지 않았습니다.</div>'
+                                            }
+                                    }else{
+                   html +='                    <div class="adddet col-lg-2" style="text-align: center;'
+                   html +='                    vertical-align: middle;'
+                   html +='                        display : block;">질문 답변</div>'
+                   html +='                     <div class="acco" id="ans'+i+'">'+qnaanser+'</div>'
+                                   }
+                   html +='            </div>'
+                   html +='        </td>'
+                   html +='    </tr>'
+                
+            }
+            addqna_target.html(html);
+        },
+        error : function(error, status) {
+            console.log(error);
+        }
+    });
+}
 </script>
 </body>
 

@@ -55,7 +55,7 @@
 							%>
 						</div>
 						<div>
-							<i class="fas fa-user"></i>total ${fn:length(replyList)} 
+							<i class="fas fa-user"></i>total ${repCnt}
 						</div>
 					</div>
 				</div>
@@ -90,10 +90,11 @@
                                     <!-- <div class="col-md-9 col-md-offset-0"> -->
                                 </table>
                     </div>
-                    <div class="row" id="addrep_target">
+                    <div class="row">
                     <div class="col-lg-12">
 	                    <hr class="Fhr">
                     </div>
+                    <div class="col-lg-12 px-0" id="addrep_target">
 		                <c:forEach items="${replyList}" var="r" varStatus="i">
 		                    <div class="col-lg-12 my-3">
 			                    <div class="container pb-3" style="border-bottom: 0.5px solid rgba(0, 0, 0, 0.5)">
@@ -115,8 +116,29 @@
 			                    
 		                    </div>
 		                </c:forEach>
+		                </div>
                     </div>
                     <!-- <table width="100%" border="0"> -->
+                    <!--페이지 넘버-->
+    <nav aria-label="Page navigation example" id="product-pn">
+        <ul class="pagination justify-content-center">
+            <li class="page-item disabled "><a class="page-link" href="#"
+                tabindex="-1"> <</a></li>
+                <c:set var="reppage" value="${repPageSize}"/>
+                
+                <%
+	                int repsize = (int)pageContext.getAttribute("reppage");
+                    for(int pno = 1; pno<= repsize ; pno++){
+                %>
+                    <li class="page-item"><a class="page-link" 
+                    onClick="repPaging(<%=pno%>)"><%=pno%></a></li>
+                <%
+                    }
+                %>
+                
+            <li class="page-item"><a class="page-link" href="javaScript:void(0)">></a></li>
+        </ul>
+    </nav>
 			</div>
             </div>
 
@@ -144,10 +166,9 @@
 								
 								
 								
-									<tbody class="col-lg-12">
+									<tbody class="col-lg-12" id="qna_target">
 								<c:forEach items="${prodQnaList}" var="qna" varStatus="i">
-										<tr data-toggle="collapse" 
-                                        data-target="#demo1-${i.count}" class="accordion-toggle row">
+										<tr data-toggle="collapse" data-target="#demo1-${i.count}" class="accordion-toggle row">
                                             <td class="col-lg-1" scope="row" id="qna_th">${i.count}</td>
                                             <td class="col-lg-2">${qna.type}</td>
                                             <c:set var="yn" value="${qna.anser}"/>
@@ -253,7 +274,7 @@
                                                 <div class="modal-body">
                                                     
                                                     <!-- content goes here -->
-                                                    <form action="detail?no=${product.no}" method="post">
+                                                    <form action="detail?no=${product.no}" id="qnaModal" method="post">
                                                       <div class="form-group">
                                                         <label for="exampleInputEmail1">문의 유형</label>
                                                                 <input type="radio" name="type" onclick="qnaType()" class="qnatype" value="환불" id="qnaopt1" checked="checked"/>
@@ -316,12 +337,12 @@
 		<ul class="pagination justify-content-center">
 			<li class="page-item disabled "><a class="page-link" href="#"
 				tabindex="-1"> <</a></li>
-			<li class="page-item"><a class="page-link" href="#">1</a></li>
-			<li class="page-item"><a class="page-link" href="#">2</a></li>
-			<li class="page-item"><a class="page-link" href="#">3</a></li>
-			<li class="page-item"><a class="page-link" href="#">4</a></li>
-			<li class="page-item"><a class="page-link" href="#">5</a></li>
-			<li class="page-item"><a class="page-link" href="#">></a></li>
+			<li class="page-item"><a class="page-link" href="javaScript:void(0)" onclick="qnaPaging(1)">1</a></li>
+			<li class="page-item"><a class="page-link" href="javaScript:void(0)" onclick="qnaPaging(2)">2</a></li>
+			<li class="page-item"><a class="page-link" href="javaScript:void(0)" onclick="qnaPaging(3)">3</a></li>
+			<li class="page-item"><a class="page-link" href="javaScript:void(0)" onclick="qnaPaging(4)">4</a></li>
+			<li class="page-item"><a class="page-link" href="javaScript:void(0)" onclick="qnaPaging(5)">5</a></li>
+			<li class="page-item"><a class="page-link" href="javaScript:void(0)">></a></li>
 		</ul>
 	</nav>
 

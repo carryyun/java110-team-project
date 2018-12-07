@@ -15,11 +15,10 @@
         <result column="meno" property="meno" />
 		<result column="nick" property="mentee.nick" />
 		<result column="mp" property="mentee.phot" />
-
 	</resultMap>
 
 	<select id="findAllByPtno" resultMap="productRepMap"
-		parameterType="int">
+		parameterType="map">
 		SELECT
 		pr.rno,
 		pr.conts,
@@ -32,10 +31,9 @@
 		join p_mete mete
 		on
 		pr.meno = mete.meno and
-		pr.ptno = #{value}
+		pr.ptno = #{ptno}
+        limit #{rowNo},#{size}
 	</select>
-
-
 
 
 	<select id="findAll" resultMap="productRepMap">
