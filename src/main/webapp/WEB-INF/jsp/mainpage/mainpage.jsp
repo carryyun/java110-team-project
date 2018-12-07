@@ -89,7 +89,7 @@
                     <div class="col-lg-2 border-right border-secondary">
                         <div class="col">
                             <h2 class="mb-4" style="font-size: 1.5rem; font-weight: 700;">카테고리</h2>
-                            <ul class="ml-3">
+                            <ul>
                                 <c:forEach items="${BTlist}" var="bt">
                                     <li><a href="../class/clsCate?no=${bt.no}">${bt.name}</a></li>
                                 </c:forEach>
@@ -134,7 +134,7 @@
     <!-- 오늘의 추천작품 container-->
 
     <!-- 오늘의 추천작품 carousel-->
-    <div class="container">
+    <div class="container" style="margin-bottom: 80px">
         <div class="row">
             <div class="col">
                 <div id="owl-hotItem" class="owl-carousel col-lg-10 mt-2 px-1" style="margin:0 auto;">

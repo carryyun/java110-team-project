@@ -203,7 +203,8 @@ function submitbtnClick(){
 					 button:"확인"
 				  });
 			}else if(data == 1){
-			    history.back();
+			
+			    location.href="../mainpage/mainpage";
 			}
 		}
 	});
@@ -212,6 +213,7 @@ function submitbtnClick(){
 
 function mainhome(){
     location.href="/app/mainpage/mainpage";
+   
 }
 </script>
  <!-- Kakao.Auth.logout(function () {  alert("카카오로그아웃");}); -->

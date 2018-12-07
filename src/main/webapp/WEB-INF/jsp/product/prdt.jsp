@@ -60,7 +60,7 @@
             <!-- 헤더 배경색 적용 -->
         </div>
 
-		<div class="container" style="background-color: white">
+		<div class="container" style="background-color: white; margin-bottom: 80px">
 			<!-- Header (스크립트로 임시 inclue) -->
 			<div class="row">
 				<div class="col-lg-12" >
