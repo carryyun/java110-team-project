@@ -18,13 +18,18 @@
 
 <body>
 	<div id="wrap" style="background-color: #fff">
-		<div class="col" style="position: absolute; height: 105px; background-color: white">
-			<!-- 헤더 배경색 적용 -->
-		</div>
+		<div class="col-lg-12 px-0"
+            style="position: absolute; height: 105px; background-color: white">
+            <!-- 헤더 배경색 적용 -->
+        </div>
+        <div class="col-lg-12 px-0" 
+            style="position: absolute; top:105px; height: 44px; background-color: #f3f3f3">
+            <!-- 헤더 배경색 적용 -->
+        </div>
 
-		<div class="container">
+		<div class="container" style="margin-bottom: 80px">
 			<div class="row">
-				<div class="col" style="position: absolute; height: 105px; background-color: white">
+				<div class="col" style="position: absolute; height: 105px;">
 					<!-- 헤더 배경색 적용 -->
 				</div>
 

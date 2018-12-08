@@ -7,7 +7,7 @@ import bitcamp.java110.cms.domain.ProductRep;
 public interface ProductRepDao {
   
   // 공예품번호 조회
-  List<ProductRep> findAllByPtno(int no); 
+  List<ProductRep> findAllByPtno(Map<String,Object> params); 
   
   // 전체 조회
   List<ProductRep> findAll(Map<String,Object> params); 
@@ -17,7 +17,6 @@ public interface ProductRepDao {
   
   // 작성자번호 조회
   List<ProductRep> findAllByMeno(Map<String,Object> params); 
-  
 
   
   // 삽입

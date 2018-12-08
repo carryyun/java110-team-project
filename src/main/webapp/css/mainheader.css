@@ -110,16 +110,16 @@ div.dropdown-content a {
     transform: translate3d(0, 100%, 0); */
   }
   #mainNav.is-fixed .navbar-brand {
-    color: #212529;
+    color: #FFB53C;
   }
   #mainNav.is-fixed .navbar-brand:focus, #mainNav.is-fixed .navbar-brand:hover {
-    color: #0085A1;
+    color: #FFB53C;
   }
   #mainNav.is-fixed .navbar-nav > li.nav-item a {
-    color: #212529;
+    color: #000;
   }
   #mainNav.is-fixed .navbar-nav > li.nav-item a:focus, #mainNav.is-fixed .navbar-nav > li.nav-item a:hover {
-    color: #0085A1;
+    color: #000;
   }
 }
 

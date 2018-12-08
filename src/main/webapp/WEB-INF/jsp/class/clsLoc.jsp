@@ -102,7 +102,7 @@ margin-bottom: 0.25rem;
             <!-- 헤더 배경색 적용 -->
         </div>
 
-		<div class="container" style="background-color: white">
+		<div class="container" style="background-color: white; margin-bottom: 80px">
 			<!-- Header (스크립트로 임시 inclue) -->
 			<div class="row">
 				<div class="col-lg-12" style="z-index: 100">
@@ -373,7 +373,6 @@ margin-bottom: 0.25rem;
     });
 		$(window).scroll(function() {
 		    var loclist = '${locs}';
-		    console.log(loclist);
 		    if($(window).scrollTop() == $(document).height() - window.innerHeight+17) {
 		        var html = "";
 		        $.ajax({
@@ -470,7 +469,6 @@ function getLocation(){
     var repleLoc = decodeURIComponent(getCheck).replace(/\+/g, '%20');
     repleLoc= replaceAll(repleLoc, "loc=", "");
     repleLoc= replaceAll(repleLoc, "&", ",");
-    console.log(repleLoc);
     location.href="clsLoc?locs="+repleLoc;
 }
 function replaceAll(str, searchStr, replaceStr) {

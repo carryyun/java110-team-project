@@ -82,6 +82,13 @@
     <!-- meno에 임의로 값을 5로 넣었기 때문에 나중에 변경해 주어야 함  -->
     </insert>
     
+    <insert id="insertQuestion" parameterType="Cs" useGeneratedKeys="true" keyColumn="csno" keyProperty="no">
+    <!-- parameter Type: domain명, useGeneratedKeys:자동증가, keyColumn: db 컬럼명, keyproperty: domain에 이름  -->
+            insert into p_cs(meno,cstype, titl, conts, rgdt) 
+            values(#{meno},#{cstype}, #{titl}, #{conts}, now())
+    <!-- meno에 임의로 값을 5로 넣었기 때문에 나중에 변경해 주어야 함  -->
+    </insert>
+    
     <delete id="delete" parameterType="int">
         delete from p_cs
         where csno=#{value}
