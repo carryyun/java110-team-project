@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import bitcamp.java110.cms.domain.ClassOrder;
 import bitcamp.java110.cms.domain.Classes;
@@ -194,10 +195,21 @@ public class MasterPageController {
    * 1:1 문의
   */
   @GetMapping("csList")
-  public void csList(Model model) {
-    List<Cs> csList = csService.findByMaster();
+  public void csList(Model model, 
+      @RequestParam(defaultValue="1") int cspageNo, 
+      @RequestParam(defaultValue="10") int cspageSize) {
+    List<Cs> csList = csService.findByMaster(cspageNo, cspageSize);
     model.addAttribute("csList",csList);
+    
+    int countList = csService.countByMaster();
+    model.addAttribute("countList",countList);
    
+  }
+  @RequestMapping(value = "csPage.do", method= {RequestMethod.POST})
+  public @ResponseBody List<Cs> cspage(@RequestParam(defaultValue="2") int cspageNo, 
+      @RequestParam(defaultValue="10") int cspageSize) {
+    List<Cs> cspa = csService.csPage(cspageNo, cspageSize);
+    return cspa;
   }
   
   @RequestMapping(value = "masterans.do", method= {RequestMethod.POST})

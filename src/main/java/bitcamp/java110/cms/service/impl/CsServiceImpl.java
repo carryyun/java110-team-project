@@ -59,8 +59,12 @@ public class CsServiceImpl implements CsService {
   }
 
   @Override
-  public List<Cs> findByMaster() {
-    return csDao.findByMaster();
+  public List<Cs> findByMaster(int cspageNo, int cspageSize) {
+    HashMap<String, Object> params = new HashMap<>();
+    params.put("cspageNo", (cspageNo - 1) * cspageSize);
+    params.put("cspageSize", cspageSize);
+    
+    return csDao.findByMaster(params);
   }
 
   @Override
@@ -71,6 +75,18 @@ public class CsServiceImpl implements CsService {
    
    return csDao.pageMaster(params);
    
+  }
+  @Override
+  public int countByMaster() {
+    return csDao.countByMaster();
+  }
+  @Override
+  public List<Cs> csPage(int cspageNo, int cspageSize) {
+    HashMap<String, Object> params = new HashMap<>();
+    params.put("cspageNo", (cspageNo-1) * cspageSize);
+    params.put("cspageSize", cspageSize);
+    
+    return csDao.csPage(params);
   }
   
   

@@ -9,8 +9,10 @@ public interface CsService {
   Cs get(int no);
   void delete(int no);
   int update(Cs cs);
-  List<Cs>findByMaster();
+  List<Cs>findByMaster(int cspageNo, int cspageSize);
   List<Cs> pageMaster(int pageNo, int pageSize);
   int addQuestioninfo(Cs cs);
+  int countByMaster();
+  List<Cs> csPage(int cspageNo, int cspageSize);
   
 }
