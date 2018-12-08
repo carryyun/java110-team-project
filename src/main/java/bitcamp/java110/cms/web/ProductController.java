@@ -145,6 +145,7 @@ public class ProductController {
     } catch (JsonProcessingException e) {
       System.out.println(e.getMessage());
     }
+    
 
     model.addAttribute("productList", productList);
   }

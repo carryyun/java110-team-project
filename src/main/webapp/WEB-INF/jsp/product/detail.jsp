@@ -150,6 +150,7 @@
         </div>
          </div>
 
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/vendor/jquery/jquery.min.js"></script>
 <script>
 $('.accordian-body').on('show.bs.collapse', function () {
@@ -158,7 +159,6 @@ $('.accordian-body').on('show.bs.collapse', function () {
         .not(this)
 })
 </script>
-<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/js/jquery.raty.min.js"></script>
 <script src="/js/clean-blog.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
