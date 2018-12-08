@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <html>
 
@@ -45,6 +46,12 @@
     vertical-align: middle;
     text-align: center
 }
+    button.note-btn.btn.btn-default.btn-sm{
+        font-size: 12px !important;
+    }
+    #mainNav .navbar-brand{
+        margin-bottom: 40px !important;
+    }
 </style>
 
 </head>
@@ -162,7 +169,7 @@
                                         <td class="text-center">${pl.smalltag.name}</td> <!-- 카테고리 -->
                                         <td class="text-center"><a class="button" href="../product/detail?no=${pl.no }">${pl.titl}</a></td> <!-- 상품명-->
                                         <td class="text-center">${pl.mentee.name}(${pl.mentee.nick})</td><!-- 판매자명 -->
-                                        <td class="text-center">￦${pl.pric}</td> <!-- 가격 -->
+                                        <td class="num text-center">￦<fmt:formatNumber value="${pl.pric}" groupingUsed="true"/></td> <!-- 가격 -->
                                         <td class="text-center bold">${pl.stock}</td> <!-- 재고 -->
                                         <td class="text-center bold">${pl.rgdt}</td> <!-- 등록일 -->
                                     </tr>
@@ -209,6 +216,12 @@
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <script>
+
+
+
+  
+
+   
     $(document)
             .ready(
                     function() {
@@ -281,14 +294,12 @@
         $(document).ready(function() {
             $("div#footerCss").css("margin-top","0px");
             testtTop = $("#colorlib-aside").offset().top;
-console.log(testtTop);
         });
 
          function scroll_follow(id) {
             $(window).scroll(function() //스크롤이 움직일때마다 이벤트 발생
             {
                 var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
-                console.log(position);
                 if (position > 157) {
                     $(id).css("position", "absolute");
                     $(id).css("top", (position-157) + "px");

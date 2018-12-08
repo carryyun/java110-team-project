@@ -11,6 +11,6 @@ public interface CsService {
   int update(Cs cs);
   List<Cs>findByMaster();
   int addQuestioninfo(Cs cs);
-  
+  List<Cs> pageMaster(int pageNo, int pageSize);
   
 }

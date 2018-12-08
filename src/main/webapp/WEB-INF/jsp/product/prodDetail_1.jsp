@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 <head>
 <link href="/css/owl.carousel.css" rel="stylesheet">
@@ -116,7 +117,7 @@ input[type="number"]::-webkit-inner-spin-button {
 							<div class="row">
 								<div class="col-lg-12">
 									<div id="transPric" class="mb-3" style="font-size: 1.75rem; font-weight: 700;float: left">
-										${product.pric}
+										<fmt:formatNumber value="${product.pric}" groupingUsed="true"/>
 									</div>
 									<div class="mb-3" style="font-size: 1.75rem; font-weight: 700;float: left">
 									     원
@@ -124,7 +125,7 @@ input[type="number"]::-webkit-inner-spin-button {
 								</div>
                             </div>
 							<div class="mb-3" style="margin-top: 74px">
-								<div>배송비 ${product.deli}원</div>
+								<div>배송비 <fmt:formatNumber value="${product.deli}" groupingUsed="true"/>원</div>
 							</div>
 
 							<hr class="FhrMargin">
@@ -134,7 +135,7 @@ input[type="number"]::-webkit-inner-spin-button {
 								    <div class="row">
 								        <div class="col-lg-12">
 								            <div style="float: left;">수량</div>
-								            <div style="float: left; font-size: 12px; margin-top: 4px; color: #999">(남은수량: ${product.stock}개)</div>
+								            <div style="float: left; font-size: 12px; margin-top: 4px; color: #999">(남은수량: <fmt:formatNumber value="${product.stock}" groupingUsed="true"/>개)</div>
 								        </div>
 								        <div class="col-lg-4">
 								            <button onclick="cntM()" style="width: 20px; height: 26px; margin-top: 10px">-</button>
@@ -143,8 +144,8 @@ input[type="number"]::-webkit-inner-spin-button {
 								        </div>
 								        <div class="col-lg-8 px-0">
 		                                        <div class="col-lg-5 text-right pl-0" style="float: left;margin-top: 10px">총 결제금액</div>
-	                                            <div class="col-lg-7 text-left px-0" style="float: left;font-weight: 600; font-size: 1.5rem" id="num">${product.pric + product.deli}원</div>
-	                                            <input type="hidden" id="totalPric" value="${product.pric + product.deli}">
+	                                            <div class="col-lg-7 text-left px-0" style="float: left;font-weight: 600; font-size: 1.5rem" id="num"><fmt:formatNumber value="${product.pric + product.deli}" groupingUsed="true"/>원</div>
+	                                            <input type="hidden" id="totalPric" value="<fmt:formatNumber value="${product.pric + product.deli}" groupingUsed="true"/>">
                                         </div>
 								    </div>
 								</div>

@@ -43,6 +43,12 @@
     vertical-align: middle;
     text-align: center
 }
+    button.note-btn.btn.btn-default.btn-sm{
+        font-size: 12px !important;
+    }
+    #mainNav .navbar-brand{
+        margin-bottom: 40px !important;
+    }
 </style>
 </head>
 
