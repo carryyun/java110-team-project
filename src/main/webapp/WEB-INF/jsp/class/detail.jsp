@@ -58,7 +58,7 @@
 <div class="col" style="position: absolute; height: 146px; background-color: white">
     <!-- 헤더 배경색 적용 -->
 </div>
-<div id="wrap" style="background-color: silver; padding-bottom: 80px">
+<div id="wrap" style="background-color: #F2F4F7; padding-bottom: 80px">
 <div> 
     <div class="container">
         <div class="row">
@@ -443,7 +443,7 @@
                                     <c:when test="${sessionScope.loginUser.no eq r.meno}">
                                         <button type="button" class="edbtn btn btn-warning" id="edbtn${i.index}" 
                                 onClick="updarep(${sessionScope.loginUser.no} , ${r.no} , ${r.meno} ,${i.index});"
-                                style="padding-right: 6px; padding-left: 6px; padding-top: 3px; padding-bottom: 3px; color:white;">수정</button>
+                                style="padding-right: 6px; padding-left: 6px; padding-top: 3px; padding-bottom: 3px; color:white; margin-left:3px;">수정</button>
                                     </c:when>
                                     <c:otherwise>
                                         
@@ -1128,7 +1128,7 @@ function repins(no) { /* 후기(댓글) 추가버튼 */
 	        		 html +='              </div>'
 	        		 			if(no == meno){
 	        		 html +='             <button type="button" class="edbtn btn btn-warning" id="edbtn'+i+'"' 
-	        		 html +='     onClick="updarep('+no+' , '+rno+' , '+meno+' ,'+i+');" style="padding-right: 6px; padding-left: 6px; padding-top: 3px; padding-bottom: 3px;  color:white;">수정</button>'
+	        		 html +='     onClick="updarep('+no+' , '+rno+' , '+meno+' ,'+i+');" style="padding-right: 6px; padding-left: 6px; padding-top: 3px; padding-bottom: 3px; color:white; margin-left:3px;">수정</button>'
 	        		 			} else {
 	        		 html +=''
 	        		 			}
@@ -1221,7 +1221,7 @@ function reppage(no,pno) {
 	   		 html +='              </div>'
 		 					if(no == meno){
 		     html +='             <button type="button" class="edbtn btn btn-warning" id="edbtn'+i+'"' 
-		     html +='     onClick="updarep('+no+' , '+rno+' , '+meno+' ,'+i+');" style="padding-right: 6px; padding-left: 6px; padding-top: 3px; padding-bottom: 3px;  color:white;">수정</button>'
+		     html +='     onClick="updarep('+no+' , '+rno+' , '+meno+' ,'+i+');" style="padding-right: 6px; padding-left: 6px; padding-top: 3px; padding-bottom: 3px; color:white; margin-left:3px;">수정</button>'
 		        		 	} else {
 		        		 	}
 	   		 html +='     <button type="button" class="updabtn btn btn-warning" id="updabtn'+i+'" data-toggle="modal"' 
@@ -1438,7 +1438,7 @@ function delerep(no , rno , repmeno){ /* 댓글 삭제 버튼 */
 	        		 html +='              </div>'
 		 								if(no == meno){
 		 			 html +='             <button type="button" class="edbtn btn btn-warning" id="edbtn'+i+'"' 
-		 			 html +='     onClick="updarep('+no+' , '+rno+' , '+meno+' ,'+i+');" style="padding-right: 6px; padding-left: 6px; padding-top: 3px; padding-bottom: 3px; color:white;">수정</button>'
+		 			 html +='     onClick="updarep('+no+' , '+rno+' , '+meno+' ,'+i+');" style="padding-right: 6px; padding-left: 6px; padding-top: 3px; padding-bottom: 3px; color:white; margin-left:3px;">수정</button>'
 		 					        	} else {
 		 					        	}
 	        		 html +='     <button type="button" class="updabtn btn btn-warning" id="updabtn'+i+'" data-toggle="modal"' 
@@ -1637,7 +1637,7 @@ function updabtn(sessionno,rno , teno) { /* 회원 인식해서 댓글 수정해
 	        		 html +='              </div>'
 		 								if(no == meno){
 		 			 html +='             <button type="button" class="edbtn btn btn-warning" id="edbtn'+i+'"' 
-		 			 html +='     onClick="updarep('+no+' , '+rno+' , '+meno+' ,'+i+');" style="padding-right: 6px; padding-left: 6px; padding-top: 3px; padding-bottom: 3px; color:white;">수정</button>'
+		 			 html +='     onClick="updarep('+no+' , '+rno+' , '+meno+' ,'+i+');" style="padding-right: 6px; padding-left: 6px; padding-top: 3px; padding-bottom: 3px; color:white; margin-left:3px;">수정</button>'
 		 					        	} else {
 		 					        	}
 	        		 html +='     <button type="button" class="updabtn btn btn-warning" id="updabtn'+i+'" data-toggle="modal"' 
