@@ -259,12 +259,11 @@ $("img.lazy").lazyload({
 	                        html+=                result[item].mentee.nick;
 	                        html+= '        </div>';
 	                        html+= '        <div class="col-lg-9 media-body">'+ result[item].conts +'</div>';
-	                        html+= '<c:if test="${sessionScope.loginUser != \'\' }">';
-	                        html+= '<c:if test="${sessionScope.loginUser.no == r.meno }">';
-	                        html+= '  <div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="removerep(${r.no})"><i class="fas fa-trash-alt"></i></a> </div>';
-	                        html+= '</c:if>';
-	                        html+= '</c:if>';
-	                        
+	                        if(${sessionScope.loginUser != null}){
+	                            if(${sessionScope.loginUser.no} == result[item].meno){
+	                                html+= '  <div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="removerep('+result[item].no +')"><i class="fas fa-trash-alt"></i></a> </div>';
+	                            }
+	                        }
 	                        html+= '        </div>';
 	                        html+= '    </div>';
 	                        html+= '</div>';
@@ -393,12 +392,11 @@ function removerep(rno){
                     html+=                result[item].mentee.nick;
                     html+= '        </div>';
                     html+= '        <div class="col-lg-9 media-body">'+ result[item].conts +'</div>';
-                    html+= '<c:if test="${sessionScope.loginUser != \'\' }">';
-                    html+= '<c:if test="${sessionScope.loginUser.no == r.meno }">';
-                    html+= '  <div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="removerep(${r.no})"><i class="fas fa-trash-alt"></i></a> </div>';
-                    html+= '</c:if>';
-                    html+= '</c:if>';
-                    
+                    if(${sessionScope.loginUser != null}){
+                        if(${sessionScope.loginUser.no} == result[item].meno){
+                            html+= '  <div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="removerep('+result[item].no +')"><i class="fas fa-trash-alt"></i></a> </div>';
+                        }
+                    }
                     html+= '        </div>';
                     html+= '    </div>';
                     html+= '</div>';
