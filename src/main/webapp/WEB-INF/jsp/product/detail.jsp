@@ -260,7 +260,7 @@ $("img.lazy").lazyload({
 	                        html+= '        </div>';
 	                        html+= '        <div class="col-lg-9 media-body">'+ result[item].conts +'</div>';
 	                        if(${sessionScope.loginUser != null}){
-	                            if(${sessionScope.loginUser.no} == result[item].meno){
+	                            if('${sessionScope.loginUser.no}' == result[item].meno ){
 	                                html+= '  <div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="removerep('+result[item].no +')"><i class="fas fa-trash-alt"></i></a> </div>';
 	                            }
 	                        }
@@ -393,7 +393,7 @@ function removerep(rno){
                     html+= '        </div>';
                     html+= '        <div class="col-lg-9 media-body">'+ result[item].conts +'</div>';
                     if(${sessionScope.loginUser != null}){
-                        if(${sessionScope.loginUser.no} == result[item].meno){
+                        if('${sessionScope.loginUser.no}' == result[item].meno){
                             html+= '  <div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="removerep('+result[item].no +')"><i class="fas fa-trash-alt"></i></a> </div>';
                         }
                     }
@@ -642,7 +642,7 @@ function repPaging(rpageNo){
 	            html+= '        </div>';
 	            html+= '        <div class="col-lg-9 media-body">'+ result[item].conts +'</div>';
 	            if(${sessionScope.loginUser != null}){
-	                if(${sessionScope.loginUser.no} == result[item].meno){
+	                if('${sessionScope.loginUser.no}' == result[item].meno ){
 	                    html+= '  <div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="removerep('+result[item].no +')"><i class="fas fa-trash-alt"></i></a> </div>';
 	                }
 	            }
@@ -764,12 +764,12 @@ function qnaPaging(rpageNo){
 }
 
 function qnaCheck(){
-    if(${sessionScope.loginUser == null}){
+    if('${sessionScope.loginUser}' == ''){
         swal({
             text : "로그인 후 이용가능합니다..",
             button : "확인",
           })
-          return false
+          return false;
     }
 }
 </script>

@@ -115,7 +115,7 @@ public class ClassController {
         }else {
         String filename = UUID.randomUUID().toString();
         file.transferTo(new File(sc.getRealPath("/upload/img/classImg/" + filename+ ".png")));
-        filelist.add(filename);
+        filelist.add("/upload/img/classImg/" + filename+ ".png");
         }
       } 
     }

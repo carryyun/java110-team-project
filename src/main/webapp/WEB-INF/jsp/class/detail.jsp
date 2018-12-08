@@ -93,9 +93,9 @@
                                     <div id="carouselExampleIndicators" class="carousel slide" data-interval="false" data-ride="carousel">
                                       <ol class="carousel-indicators">
                                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                                        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                                      <c:forEach items="${clsfilelist}" var="cf" varStatus="i">
+                                        <li data-target="#carouselExampleIndicators" data-slide-to="${i.count}"></li>
+                                      </c:forEach>
                                       </ol>
                                       <div class="carousel-inner">
                                         
@@ -112,7 +112,7 @@
                                              String cfileurl = cfile.substring(cfileidx+1);
                                         %>
                                             <div class="carousel-item active">
-                                              <iframe width="100%" height="445" style="margin-left:-10px;" src="https://www.youtube.com/embed/<%=cfileurl%>" 
+                                              <iframe width="100%" height="445px" style="margin-left:-10px;" src="https://www.youtube.com/embed/${detailclass.cfile}" 
                                               frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
                                               allowfullscreen></iframe>
                                         <%
@@ -131,11 +131,10 @@
                                                 </div>
                                             <%    
                                                 }else {
-                                                 int idx = fna.indexOf("=");
-                                                 String fnaurl = fna.substring(idx+1);
+                                                 System.out.println(fna);
                                             %>
                                                 <div class="carousel-item">
-                                                  <iframe width="100%" height="445" style="margin-left:-10px;" src="https://www.youtube.com/embed/<%=fnaurl%>" 
+                                                  <iframe width="100%" height="445" style="margin-left:-10px;" src="https://www.youtube.com/embed/<%=fna%>" 
                                                   frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
                                                   allowfullscreen></iframe>
                                                 </div>
