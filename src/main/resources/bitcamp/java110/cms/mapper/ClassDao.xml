@@ -123,6 +123,8 @@
     <select id="findAllByWord" resultMap="classMap" parameterType="map">
         <include refid="selectAll"></include>
         WHERE
+        	ps.stat = 'Y'
+        AND
             ps.titl Like #{word}
         OR
             pe.nick Like #{word}
@@ -133,12 +135,16 @@
 	<select id="findAllByBtno" resultMap="classMap" parameterType="map">
         <include refid="selectAll"></include>
         WHERE
+        	ps.stat = 'Y'
+        AND
             btag.btno=#{btno}
             limit #{rowNo},#{size}
     </select>
     <select id="findAllByMtno" resultMap="classMap" parameterType="map">
         <include refid="selectAll"></include>
         WHERE
+        	ps.stat = 'Y'
+        AND
             pg.mtno=#{mtno}
         ORDER by ps.cno asc
     </select>
@@ -162,12 +168,15 @@
             on cls.mtno = mtag.mtno and
             cls.cno = cert.cno and
             cert.meno = mete.meno
+        where cls.stat = 'Y'
         order by 
             cls.cno desc
     </select>
  
     <select id="findAll" resultMap="classMap" parameterType="map">
         <include refid="select1"></include>
+        where 
+        	ps.stat = 'Y'
 		order by
 			cno asc;
     </select>
@@ -226,17 +235,17 @@
             inner join p_mtag as ptg
             	on ps.mtno = ptg.mtno
 		where
-			cno =  #{no}
+			cno =  #{no} AND ps.stat = 'Y'
 	</select>
 
 	<select id="findBytag" resultMap="classMap" parameterType="int">
 		<include refid="select1"></include>
-		where pg.mtno = #{mtno}
+		where pg.mtno = #{mtno} AND ps.stat = 'Y'
 	</select>
 	
 	<select id ="findByba" resultMap="classMap" parameterType="String">
 		<include refid="select1"></include>
-		where bas_addr = #{basAddr}
+		where bas_addr = #{basAddr} AND ps.stat = 'Y'
 	</select>
     
     <insert id="classinsert" parameterType="Classes"
@@ -304,7 +313,7 @@
             JOIN p_cls_ttab ct ON c.cno = ct.cno
             
        where
-            mo.mono=#{mono}
+            mo.mono=#{mono} AND c.stat = 'Y'
        
     </select>
     
@@ -330,7 +339,7 @@
             LEFT JOIN p_cert cert ON me2.meno = cert.meno
             
        where
-            c.cno=#{cno}
+            c.cno=#{cno} AND ps.stat = 'Y'
             
       ORDER BY
            ct.ctno asc
@@ -386,7 +395,7 @@
                 or ps.cinfo Like "%{str}%"
                 or pe.name Like "%{str}%"
                 or pe.nick Like "%{str}%"
-    
+    	where ps.stat = 'Y'
     </select>
     
 </mapper>
