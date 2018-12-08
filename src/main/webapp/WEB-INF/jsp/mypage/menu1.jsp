@@ -267,8 +267,8 @@
                                 <B>닉네임</B>&nbsp;
                                 <input id="text1" type="text" name="닉네임" value="&nbsp;${mentee.nick}" readonly style="width:140px; border:none; ">
                                 </div>
-                                <div id="wrapper" class="pop" style=" position: relative; right: -50px; bottom: -60px">
-                                <button class="fancy">멘토신청</button>
+                                <div id="wrapper" name="${mentee.mtstat}" class="pop" style=" position: relative; right: -50px; bottom: -60px">
+                                <button class="fancy" >멘토신청</button>
                                 </div> 
                                   
                             </div>
@@ -464,7 +464,12 @@
     
 <select name="btno" id="soflow" >
   <option>분야 선택</option>
+   <option>1</option>
+   <option>2</option>
+   <option>3</option>
+   <option>4</option>
    <option>5</option>
+   
 
 
 </select>
@@ -588,6 +593,12 @@
             
             <script>
             
+            
+            
+            
+            
+          
+            
             $("#btn-cancle").click(function(){
                 $(".pop").removeClass("hide");
                 return $(".popup").removeClass("show");
@@ -596,8 +607,34 @@
             
             (function() {
                 $(".pop").click(function(){
-                  $(".pop").addClass("hide");
-                  return $(".popup").addClass("show");
+                    
+                    var judge = $('#wrapper').attr('name')
+                    console.log(judge);
+                    
+                    if(judge == 'I'){
+                        
+                        swal({
+                            title: "멘토신청은 한번만 가능합니다!",
+                            text: "한분야의 전문가, 프로페셔널~ ",
+                            icon: "warning",
+                            buttons: true,
+                            dangerMode: true,
+                            })
+                        
+                        
+                     } 
+                    
+                    else{
+                        
+                        $(".pop").addClass("hide");
+                        
+                        
+                        return $(".popup").addClass("show");
+                        
+                    }
+                 
+                  
+                  
                 });
 
                 $(".icon i").click(function(){
@@ -706,6 +743,8 @@ function handleFileSelect2(evt2) {
 
              
 
+  
+ 
 
 
             </script>

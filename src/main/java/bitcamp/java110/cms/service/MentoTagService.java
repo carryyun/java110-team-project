@@ -14,9 +14,11 @@ public interface MentoTagService {
   List<MentorTag> listByBtno(int pageNo, int pageSize, int btno);
   
   // 입력(추가)
-  int add(MentorTag mentoTag);
+  int add(MentorTag mentorTag);
  
   // 삭제
   void delete(int no);
+  
+  int update(MentorTag mentorTag);
   
 }

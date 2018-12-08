@@ -10,6 +10,8 @@ public interface MentorDao {
 
   int delete(int no);
 
+  int update(Mentor mentor);
+  
   Mentor findByNo(int no); // 멘티 번호
   // 로그인을 체크하기위해 필요한 메소드 
   Mentee findByEmailPassword(Map<String,Object> params);

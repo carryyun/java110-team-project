@@ -122,6 +122,7 @@
                     <div class="author-img" style="background-image: url(${mentee.phot};"></div>
                     <h1 id="colorlib-logo"><a href="index.html">${mentee.name}</a></h1>
                     <span id="stat" name="${mentee.mtstat}"class="position;" style="display:none" ><B>멘토 경력 ${mentor.carr} 년</B><br></span>
+                    <span id="judgestat" name="&{mentor.carr}" style="display:none">
                   <span id="stathidden"  class="position;" style="display:"> <br></span> 
                 </div>
 
