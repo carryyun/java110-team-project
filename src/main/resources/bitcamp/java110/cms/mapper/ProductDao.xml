@@ -362,7 +362,7 @@ where
     </set>
         where
             ptno=#{no}
-    </update>
+    </update> 
     
     <update id="updatestat" parameterType="product">
         UPDATE 
