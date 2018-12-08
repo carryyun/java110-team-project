@@ -1,15 +1,9 @@
 package bitcamp.java110.cms.web;
 
-import java.awt.AlphaComposite;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import javax.imageio.ImageIO;
-import javax.imageio.stream.ImageOutputStream;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
@@ -109,7 +103,6 @@ public class ProductController {
     for(int x=0; x<5; x++) {
       hotItemlist.add(hotItemlists.get(x));
     }
-    System.out.println(hotItemlist);
     model.addAttribute("hotItemlist", hotItemlist);
     
     for (ProductPopul p : pp_list) {
@@ -165,7 +158,6 @@ public class ProductController {
     
     Product product = productService.get(no);
     Classes detailclass = classService.findBycno(product.getClasses().getNo());
-    System.out.println(product.getPhot());
     product.setProductFile(productFileService.listByPtno(no));
     
     List<ProductRep> replyList = productRepSerivce.listByPtno(pageNo,pageSize,no);
@@ -349,8 +341,6 @@ public class ProductController {
     productService.update(product);
     int result = product.getNo();
     
-    System.out.println(product);
-    System.out.println(deleteFile);
     String[] str = deleteFile.split("&");
     for(String s:str) {
       ProductFile profile = new ProductFile();
@@ -359,19 +349,16 @@ public class ProductController {
       productFileService.delete(profile);
     }
     
-    int index = 0;
     for (MultipartFile file : files) {
       if (!file.getOriginalFilename().equals("")) {
         String filename = UUID.randomUUID().toString();
         file.transferTo(new File(sc.getRealPath("/upload/img/prdtImg/" + filename + ".png")));
         String fname = "/upload/img/prdtImg/" + filename + ".png";
-        System.out.println(fname);
         ProductFile productFile = new ProductFile();
         productFile.setPfname(fname);
         productFile.setPtno(result);
 
         productFileService.add(productFile);
-        index++;
       }
     }
     
@@ -388,7 +375,6 @@ public class ProductController {
   
   @GetMapping("prdtSerch")
   public void prdtSerch(String titl,Model model) {
-    System.out.println(titl);
     List<Product> serchList = productService.serchByTitl(1, 10, titl);
     
     model.addAttribute("serchList", serchList);
@@ -398,8 +384,6 @@ public class ProductController {
  @RequestMapping(value = "clslikeins.do", method = {RequestMethod.POST})
   public @ResponseBody String clslikeins(ClassLike classlike) {
     
-    System.out.println(classlike.getMeno());
-    System.out.println(classlike.getCno());
     classlikeService.likeadd(classlike);
     
     return "redirect:detail?no="+classlike.getCno();

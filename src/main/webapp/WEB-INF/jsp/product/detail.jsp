@@ -38,7 +38,9 @@
 <link rel="stylesheet" href="/css/footer.css">
     
 <style type="text/css">
-
+    a.page-link{
+        color : #007bff !important;
+    }
 </style>
 
 
@@ -148,9 +150,14 @@
         </div>
          </div>
 
-<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
->>>>>>> df4a87355a7074c5c73929fbb363abdae83ad8a6
 <script src="/vendor/jquery/jquery.min.js"></script>
+<script>
+$('.accordian-body').on('show.bs.collapse', function () {
+    $(this).closest("table")
+        .find(".collapse.in")
+        .not(this)
+})
+</script>
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/js/jquery.raty.min.js"></script>
 <script src="/js/clean-blog.js"></script>
@@ -636,12 +643,11 @@ function repPaging(rpageNo){
 	            html+=                result[item].mentee.nick;
 	            html+= '        </div>';
 	            html+= '        <div class="col-lg-9 media-body">'+ result[item].conts +'</div>';
-	            html+= '<c:if test="${sessionScope.loginUser != \'\' }">';
-	            html+= '<c:if test="${sessionScope.loginUser.no} =='+ result[item].mentee.no +'">';
-	            html+= '  <div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="removerep('+result[item].no +')"><i class="fas fa-trash-alt"></i></a> </div>';
-	            html+= '</c:if>';
-	            html+= '</c:if>';
-	            
+	            if(${sessionScope.loginUser != null}){
+	                if(${sessionScope.loginUser.no} == result[item].meno){
+	                    html+= '  <div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="removerep('+result[item].no +')"><i class="fas fa-trash-alt"></i></a> </div>';
+	                }
+	            }
 	            html+= '        </div>';
 	            html+= '    </div>';
 	            html+= '</div>';
@@ -757,6 +763,16 @@ function qnaPaging(rpageNo){
             console.log(error);
         }
     });
+}
+
+function qnaCheck(){
+    if(${sessionScope.loginUser == null}){
+        swal({
+            text : "로그인 후 이용가능합니다..",
+            button : "확인",
+          })
+          return false
+    }
 }
 </script>
 </body>
