@@ -104,9 +104,10 @@
 			                            ${r.mentee.nick}
 			                        </div>
 			                        
-			                        <div class="col-lg-9 media-body">${r.conts}</div>
+			                        <div class="col-lg-8 media-body">${r.conts}</div>
 			                        <c:if test="${sessionScope.loginUser != '' }">
 			                          <c:if test="${sessionScope.loginUser.no == r.meno }">
+			                          	<div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="updaterep(${r.no})"><i class="far fa-edit"></i></a> </div>
 				                        <div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="removerep(${r.no})"><i class="fas fa-trash-alt"></i></a> </div>
 			                          </c:if>
 			                        </c:if>
