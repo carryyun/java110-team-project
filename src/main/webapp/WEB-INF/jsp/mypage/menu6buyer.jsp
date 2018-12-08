@@ -6,31 +6,30 @@
 
 <style>
 	.view{
+		width: 30%;
 		text-align: center;
 		background-color:#2c98f0;
 		margin-bottom:1px;
 		color:#fff;
 		border:1px solid #2c98f0;
 	}
-	#delever{
+	#submitdelbtn{
+		float:right;
+	}
+	#delivery{
 		width: 30%;
 		height: 30px;
+		margin-bottom: 3px;
 	}
 	#delnum{
 		width: 100%;
-	}
-	#delever{
-		margin-bottom: 10px;
+		margin-bottom: 5px;
 	}
 	#delnum::-webkit-inner-spin-button,
     #delnum::-webkit-outer-spin-button {
         -webkit-appearance: none;             
         margin: 0;         
     } 
-
-
-출처: http://godffs.tistory.com/2540 [.Net 개발자]
-
 </style>
 
 <div class="col-lg-12"> 
@@ -110,8 +109,8 @@
                                                       <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
 													    type = "number" maxlength = "20" id="delnum"  />
                                                     </div>	
-                                                      <button type="button" class="btn btn-success" id="submitdelbtn" onClick="submitDelivery()">입력 완료</button>
-                                                      <button type="button" class="btn btn-primary" data-dismiss="modal"  role="button">취소</button>
+                                                      <button type="button" class="btn btn-primary" data-dismiss="modal"id="submitdelbtn"  role="button">취소</button>
+                                                      <button type="button" class="btn btn-primary"  onClick="submitDelivery()">입력 완료</button>
                                                       <input type="hidden" id="delptno" value='${ptno}'>
                                                 </div>
                                             </div>
@@ -140,6 +139,13 @@ function writeparc(){
       }); 
       */
       
+$("#submitdelbtn").click(function(){
+  		$("#deliveryinfo")
+    .find("#delnum,select")
+       .val('')
+       .end();
+});
+    
      
 function submitDelivery(){
 		console.log($("#delnum").val().length);

@@ -75,8 +75,8 @@
                 <h2>클래스 상세보기
                 <c:choose>
                 	<c:when test="${sessionScope.loginUser.no eq detailclass.mentee.no}">
-                		<a onclick="updateclsstat()" class="btn btn-lg btn-danger col-lg-1 py-1" 
-                		style="float : right; color:white; height: 38px;">삭제</a>
+                		<a onclick="updateclsstat()" class="btn btn-lg btn-danger col-lg-1 py-1 text-center" 
+                		style="float : right; color:white; height: 38px; text-align:center;">삭제</a>
                 	</c:when>
                 	<c:otherwise>
                 	</c:otherwise>
@@ -407,13 +407,12 @@
                                 <textarea class="repupda col-lg-9 media-body" id="repup${i.index}" rows="5" name="repup"
                                       style =" margin-left:10px; width : 500px; display: none;"></textarea>
                                 <c:choose>
-                                <c:when test="${sessionScope.loginUser eq null}">
-                                    <button type="button" onClick="deleterepnull()"
+                                <c:when test="${sessionScope.loginUser.no eq r.meno}">
+                                	<button type="button" data-toggle="modal" data-target="#deleteModal_${r.no}"
                                  class="delebtn btn btn-danger" id="delebtn${i.index}">삭제</button>
                                 </c:when>
                                 <c:otherwise>         
-                                <button type="button" data-toggle="modal" data-target="#deleteModal_${r.no}"
-                                 class="delebtn btn btn-danger" id="delebtn${i.index}">삭제</button>
+                               
                                  </c:otherwise>
                                  </c:choose>
                                 
@@ -438,13 +437,12 @@
                                         </div>
                                         
                                 <c:choose>
-                                    <c:when test="${sessionScope.loginUser eq null}">
+                                    <c:when test="${sessionScope.loginUser.no eq r.meno}">
                                         <button type="button" class="edbtn btn btn-warning" id="edbtn${i.index}" 
-                                onClick="deleterepnull()" >수정</button>
+                                onClick="updarep(${sessionScope.loginUser.no} , ${r.no} , ${r.meno} ,${i.index});">수정</button>
                                     </c:when>
                                     <c:otherwise>
-                                        <button type="button" class="edbtn btn btn-warning" id="edbtn${i.index}" 
-                                onClick="updarep(${sessionScope.loginUser.no} , ${r.no} , ${r.meno} ,${i.index});" >수정</button>
+                                        
                                     </c:otherwise>
                                 </c:choose>
                                 

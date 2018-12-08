@@ -204,7 +204,9 @@ function submitbtnClick(){
 				  });
 			}else if(data == 1){
 			
-			    location.href="../mainpage/mainpage";
+			    /* location.href="../mainpage/mainpage"; */
+			    location.href = document.referrer;/* 뒤로가기 후 새로고침 */
+			    
 			}
 		}
 	});
