@@ -193,10 +193,7 @@ public class ProductController {
 
   @GetMapping("prdtQna")
   public void prdtQna() {
-
   }
-
-
 
   // 2018.11.28 수정 -> cert list 불러오기
   @RequestMapping(value = "getCertList.do", method = {RequestMethod.GET, RequestMethod.POST})

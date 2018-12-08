@@ -249,7 +249,6 @@ public class ClassController {
   
   @GetMapping("clsLoc")
   public void clsLoc(Model model, String locs, @RequestParam(defaultValue="1") int pageNo,@RequestParam(defaultValue="6") int pageSize) {
-    System.out.println("locs="+locs);
     String replelocs = locs.replaceAll(",","|");
     System.out.println("locs="+replelocs);
     List<Classes> clslist=classService.listByLoc(pageNo,pageSize,replelocs);

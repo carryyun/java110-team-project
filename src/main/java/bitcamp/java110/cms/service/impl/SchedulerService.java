@@ -12,6 +12,7 @@ import bitcamp.java110.cms.dao.ProductDao;
 import bitcamp.java110.cms.dao.ProductRepDao;
 import bitcamp.java110.cms.domain.ClassRep;
 import bitcamp.java110.cms.domain.Classes;
+import bitcamp.java110.cms.domain.Product;
 import bitcamp.java110.cms.domain.ProductRep;
 
 @Service
@@ -23,8 +24,8 @@ public class SchedulerService {
   @Autowired ClassRepDao classRepDao;
 
   //스케줄러 이용
-  @Scheduled(fixedRate=30000)
-  public void test() {
+  @Scheduled(fixedRate=6000000)
+  public void StarSetter() {
     List<Classes> classesList = classDao.findAllStar();
     for(Classes classes : classesList) {
       Map<String, Object> params = new HashMap<>();
@@ -45,8 +46,40 @@ public class SchedulerService {
           classes.setStar(1);
           classDao.classupdate(classes);
         }
+      }else {
+        classes.setStar(1);
+        classDao.classupdate(classes);
       }
     }
-    System.out.println("30초마다 나옴");
+    
+    // 상품
+    List<Product> productList = productDao.findAllStar();
+    for(Product product : productList) {
+      Map<String, Object> params = new HashMap<>();
+      params.put("rowNo", 0);
+      params.put("size", 300);
+      params.put("no", product.getNo());
+      int tot = 0;
+      List<ProductRep> productRepList = productRepDao.findAllStar(params);
+      for(ProductRep productRep:productRepList) {
+        tot+=productRep.getStar();
+      }
+      if(tot>0) {
+        int avg = tot/productRepList.size();
+        if(avg>0) {
+          product.setStar(avg);
+          productDao.update(product);
+        }else {
+          product.setStar(1);
+          productDao.update(product);
+        }
+      }else {
+        product.setStar(1);
+        productDao.update(product);
+      }
+    }
+    
+    
+    System.out.println("StarSetter Scheduled.(10분)");
   }
 }
