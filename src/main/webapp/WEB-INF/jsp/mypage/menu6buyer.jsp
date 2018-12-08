@@ -29,7 +29,6 @@
     } 
 
 
-출처: http://godffs.tistory.com/2540 [.Net 개발자]
 
 </style>
 
@@ -129,17 +128,6 @@
 
 <script>
 
-/* 
-function writeparc(){
-    
-     swal("Write something here:", {
-        content: "input",
-      })
-      .then((value) => {
-        swal(`You typed: ${value}`);
-      }); 
-      */
-      
      
 function submitDelivery(){
 		console.log($("#delnum").val().length);
