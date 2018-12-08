@@ -85,6 +85,8 @@
 
 
 
+
+
     
 <sql id="selectAll">
 select
@@ -356,6 +358,7 @@ where
         <if test="phot!=null">phot= #{phot},</if>
         <if test="ctno>0">ctno= #{ctno},</if>
         <if test="stno>0">stno= #{stno},</if>
+        <if test="star>0">star= #{star},</if>
     </set>
         where
             ptno=#{no}

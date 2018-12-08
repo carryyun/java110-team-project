@@ -16,6 +16,20 @@
 		<result column="nick" property="mentee.nick" />
 		<result column="mp" property="mentee.phot" />
 	</resultMap>
+    
+    <resultMap type="productRep" id="star">
+        <result column="star"       property="star"/>
+    </resultMap>
+    
+    <select id="findAllStar" resultMap="star" parameterType="map">
+        select 
+            star
+        from 
+            p_prdt_rep
+        where
+            ptno = #{no}
+        limit #{rowNo},#{size};
+    </select>
 
 	<select id="findAllByPtno" resultMap="productRepMap"
 		parameterType="map">

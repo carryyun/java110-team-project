@@ -18,6 +18,19 @@
         <result column="mp"			property="mentee.phot"/>
         <result column="phone"      property="mentee.phone"/>
     </resultMap>
+    <resultMap type="ClassRep" id="star">
+        <result column="star"       property="star"/>
+    </resultMap>
+    
+    <select id="findAllStar" resultMap="star" parameterType="map">
+        select 
+            star
+        from 
+            p_cls_rep
+        where
+            cno = #{no}
+        limit #{rowNo},#{size};
+    </select>
     
     <select id="findAll" resultMap="crepMap">
         select 
