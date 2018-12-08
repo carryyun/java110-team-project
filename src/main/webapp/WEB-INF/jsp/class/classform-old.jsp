@@ -5,6 +5,7 @@
 	pageEncoding="UTF-8" 
 	trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 <head>
 
@@ -216,7 +217,7 @@
 											<div class="row">
 												<div class="col-lg-12 product-description__category secondary-text">
 													${c.middleTag.name }</div>
-												<div class="col-lg-12 product-description__price">${c.pric }원</div>
+												<div class="col-lg-12 product-description__price"><fmt:formatNumber value="${c.pric }" groupingUsed="true"/>원</div>
 											</div>
 											<hr />
 											<!-- 멘토 이름 -->

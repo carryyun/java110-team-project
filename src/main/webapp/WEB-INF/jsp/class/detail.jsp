@@ -3,7 +3,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
 <html>
 <head>
 <meta charset="utf-8">
@@ -175,7 +176,7 @@
                                     <dd style="font-size: 1rem;">${detailclass.middleTag.name}</dd>
                                 </dl>
                                 <dl class="param param-feature text-left">
-                                    ${detailclass.pric}원
+                                    <fmt:formatNumber value="${detailclass.pric}" groupingUsed="true"/>원
                                 </dl>
 
                                 <dl class="param param-feature text-left">
@@ -281,9 +282,9 @@
                     <div>
                         <img style = "width:200px; height:200px; float:left;"src="${detailclass.mentee.phot}" alt="${detailclass.mentee.phot}">
                         <br><br><br>
-                        <div class = "shortinfo"><strong>금액</strong><div class="inf">${detailclass.pric}원</div></div>
+                        <div class = "shortinfo"><strong>금액</strong><div class="inf"><fmt:formatNumber value="${detailclass.pric}" groupingUsed="true"/>원</div></div>
                         <div class = "shortinfo"><strong>총 수업시간</strong><div class="inf">${detailclass.time}시간</div></div>
-                        <div class = "shortinfo"><strong>모집인원</strong><div class="inf">${detailclass.capa}명</div></div>
+                        <div class = "shortinfo"><strong>모집인원</strong><div class="inf"><fmt:formatNumber value="${detailclass.capa}" groupingUsed="true"/>명</div></div>
                     </div>
                     <div style="margin-left : 40px;"><strong>멘토 : ${detailclass.mentee.nick}</strong></div>
                 </div>

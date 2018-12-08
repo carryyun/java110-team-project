@@ -2,7 +2,8 @@
     contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     trimDirectiveWhitespaces="true"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,7 +35,7 @@ table, th, td {
     <td>${c.no}</td>
     <td>${c.titl}</td>
     <td>${c.conts}</td>
-    <td>${c.pric}</td>
+    <td><fmt:formatNumber value="${c.pric}" groupingUsed="true"/></td>
     <td>${c.rgdt}</td>
     <td>${c.time}</td>
     <td>${c.cfile}</td>

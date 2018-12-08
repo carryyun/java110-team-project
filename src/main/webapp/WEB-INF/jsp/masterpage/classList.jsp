@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"
     trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <html>
 
@@ -43,6 +44,14 @@
     vertical-align: middle;
     text-align: center
 }
+
+    button.note-btn.btn.btn-default.btn-sm{
+        font-size: 12px !important;
+    }
+    #mainNav .navbar-brand{
+        margin-bottom: 40px !important;
+    }
+
 </style>
 
 </head>
@@ -181,7 +190,7 @@
                                                         class="text-center">${pl.mentee.name}(${pl.mentee.nick})</td>
                                                     <!-- 멘토명 -->
                                                     <td
-                                                        class="text-center">￦${pl.pric}</td>
+                                                        class="text-center">￦<fmt:formatNumber value="${pl.pric}" groupingUsed="true"/></td>
                                                     <!-- 가격 -->
                                                     <td
                                                         class="text-center bold">${pl.rgdt}</td>
@@ -252,6 +261,7 @@
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <script>
+
 $(document).ready(function() {
     var activeSystemClass = $('.list-group-item.active');
 

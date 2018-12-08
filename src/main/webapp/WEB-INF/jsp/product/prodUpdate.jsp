@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <html>
 <head>
@@ -15,6 +16,7 @@
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
 <link href="/css/common.css" rel="stylesheet">
+
 
 
 <style>
@@ -104,7 +106,7 @@ div.row.imgDiv {
 									<div class="row">
 										<div class="col-lg-12">재고</div>
 										<div class="col-lg-12">
-											<input type="text" class="detailInfo" id="stock" name="stock" value="${product.stock}">
+											<input type="text" class="detailInfo" id="stock" name="stock" value="<fmt:formatNumber value="${product.stock}" groupingUsed="true"/>">
 										</div>
 									</div>
 								</div>
@@ -112,7 +114,7 @@ div.row.imgDiv {
 									<div class="row">
 										<div class="col-lg-12">가격</div>
 										<div class="col-lg-12">
-											<input type="text" class="detailInfo" name="pric" value="${product.pric}"/>
+											<input type="text" class="detailInfo" name="pric" value="<fmt:formatNumber value="${product.pric}" groupingUsed="true"/>"/>
 										</div>
 									</div>
 								</div>
@@ -120,7 +122,7 @@ div.row.imgDiv {
 									<div class="row">
 										<div class="col-lg-12">택배비</div>
 										<div class="col-lg-12">
-											<input type="text" class="inputid detailInfo" name="deli" value="${product.deli}"/>
+											<input type="text" class="inputid detailInfo" name="deli" value="<fmt:formatNumber value="${product.deli}" groupingUsed="true"/>"/>
 
 										</div>
 									</div>

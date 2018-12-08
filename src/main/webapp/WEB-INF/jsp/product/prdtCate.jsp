@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
 	trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 
 <head>
@@ -148,7 +149,7 @@
 																<div class="col-lg-7 product-description__category secondary-text">
 																	${pl.middleTagName} - ${pl.smalltag.name} <br>
 																</div>
-																<div class="col-lg-5 product-description__price">${pl.pric}원</div>
+																<div class="col-lg-5 product-description__price"><fmt:formatNumber value="${pl.pric}" groupingUsed="true"/>원</div>
 															</div>
 															<hr class="NoMarginHr">
 															<!-- 멘토 이름 -->

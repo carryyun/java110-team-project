@@ -64,6 +64,12 @@ color: #2c98f0;
 text-weight: bold;
 }
 
+    button.note-btn.btn.btn-default.btn-sm{
+        font-size: 12px !important;
+    }
+    #mainNav .navbar-brand{
+        margin-bottom: 40px !important;
+    }
 
 
 </style>
