@@ -244,10 +244,8 @@
 							</table>
 						</div>
 						<div class="col-lg-12 text-right">
-							 <!-- <button onclick="location.href='prdtQna'">상품 문의</button>  -->
-							
 							<button type="button" data-toggle="modal" data-target="#addQnaModal"
-							style="width: 120px; height: 40px; background-color: #606066; color: #ffffff">상품문의</button>
+							style="width: 120px; height: 40px; margin-top:30px; background-color: #606066; color: #ffffff" onclick="qnaCheck()">상품문의</button>
                                         <!--여기에 코드 작성-->
                                         
                                         <c:choose>
@@ -311,7 +309,18 @@
                                 </c:choose>
                                         
                                         <!--여기까지 코드 작성-->
-             
+                            <nav aria-label="Page navigation example" id="product-pn">
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item disabled "><a class="page-link" href="#"
+                                        tabindex="-1"> <</a></li>
+                                    <li class="page-item"><a class="page-link" href="javaScript:void(0)" onclick="qnaPaging(1)">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="javaScript:void(0)" onclick="qnaPaging(2)">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="javaScript:void(0)" onclick="qnaPaging(3)">3</a></li>
+                                    <li class="page-item"><a class="page-link" href="javaScript:void(0)" onclick="qnaPaging(4)">4</a></li>
+                                    <li class="page-item"><a class="page-link" href="javaScript:void(0)" onclick="qnaPaging(5)">5</a></li>
+                                    <li class="page-item"><a class="page-link" href="javaScript:void(0)">></a></li>
+                                </ul>
+                            </nav>
 								
 						</div>
 						<!-- <div class="col-lg-12"> -->
@@ -333,17 +342,6 @@
 
 
 	<!--페이지 넘버-->
-	<nav aria-label="Page navigation example" id="product-pn">
-		<ul class="pagination justify-content-center">
-			<li class="page-item disabled "><a class="page-link" href="#"
-				tabindex="-1"> <</a></li>
-			<li class="page-item"><a class="page-link" href="javaScript:void(0)" onclick="qnaPaging(1)">1</a></li>
-			<li class="page-item"><a class="page-link" href="javaScript:void(0)" onclick="qnaPaging(2)">2</a></li>
-			<li class="page-item"><a class="page-link" href="javaScript:void(0)" onclick="qnaPaging(3)">3</a></li>
-			<li class="page-item"><a class="page-link" href="javaScript:void(0)" onclick="qnaPaging(4)">4</a></li>
-			<li class="page-item"><a class="page-link" href="javaScript:void(0)" onclick="qnaPaging(5)">5</a></li>
-			<li class="page-item"><a class="page-link" href="javaScript:void(0)">></a></li>
-		</ul>
-	</nav>
+	
 
 </div>
