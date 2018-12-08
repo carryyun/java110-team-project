@@ -258,9 +258,10 @@ $("img.lazy").lazyload({
                            html+= '            <img src="' + result[item].mentee.phot + '" alt="singup" id="circle"><br>';
                            html+=                result[item].mentee.nick;
                            html+= '        </div>';
-                           html+= '        <div class="col-lg-9 media-body">'+ result[item].conts +'</div>';
+                           html+= '        <div class="col-lg-8 media-body">'+ result[item].conts +'</div>';
                            if(${sessionScope.loginUser != null}){
                                if(${sessionScope.loginUser.no} == result[item].meno){
+                            	   html+= '  <div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="updaterep('+result[item].no +')"><i class="far fa-edit"></i></a></div>';
                                    html+= '  <div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="removerep('+result[item].no +')"><i class="fas fa-trash-alt"></i></a> </div>';
                                }
                            }
@@ -371,6 +372,48 @@ function checkLeng(obj){
     }
 }
 
+//수정버튼 여기서부터 . 
+var befoetext;
+function updaterep(rno){
+	var flag;
+	var aftertext;
+	if(flag == null){
+		befoetext =$('.col-lg-1.media-body').parent().children().eq(1).text();
+		$('.col-lg-1.media-body').parent().children().eq(1).empty();
+		$('.col-lg-1.media-body').parent().children().eq(2).empty();
+		$('.col-lg-1.media-body').parent().children().eq(1).append('<textarea class="aftertest" style="width:100%; height:6rem;">'+befoetext+'</textarea>');
+		$('.col-lg-1.media-body').parent().children().eq(2).append('<a href="javascript:void(0)" onclick="updaterepcomplete('+rno+')"><i class="far fa-edit"></i></a>')
+		flag=$('.col-lg-1.media-body').parent().children().eq(1).children().attr("class");
+	}
+}
+
+function updaterepcomplete(rno){
+	var completetext = $('.aftertest').val();
+	console.log(${product.no});
+	console.log(rno);
+	$.ajax({
+		type : "POST",
+		data : {
+			conts : completetext,
+			no : rno,
+			ptno : ${product.no}
+		},
+		url : "updaterep.do",
+		success(result){
+			$('.col-lg-1.media-body').parent().children().eq(1).empty();
+			$('.col-lg-1.media-body').parent().children().eq(2).empty();
+			$('.col-lg-1.media-body').parent().children().eq(1).append(completetext);
+			$('.col-lg-1.media-body').parent().children().eq(2).append('<div class="col-lg-1 media-body"><a href="javascript:void(0)"onclick="updaterep('+rno+')"><i class="far fa-edit"></i></a></div>');
+			swal({
+				text:"댓글수정완료",
+				button:"확인"
+			});
+		}
+	});
+}
+
+
+
 function removerep(rno){
     if('${sessionScope.loginUser}' != ''){
         $.ajax({
@@ -391,9 +434,10 @@ function removerep(rno){
                     html+= '            <img src="' + result[item].mentee.phot + '" alt="singup" id="circle"><br>';
                     html+=                result[item].mentee.nick;
                     html+= '        </div>';
-                    html+= '        <div class="col-lg-9 media-body">'+ result[item].conts +'</div>';
+                    html+= '        <div class="col-lg-8 media-body">'+ result[item].conts +'</div>';
                     if(${sessionScope.loginUser != null}){
                         if(${sessionScope.loginUser.no} == result[item].meno){
+                        	html+= '  <div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="updaterep('+result[item].no +')"><i class="far fa-edit"></i></a>';
                             html+= '  <div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="removerep('+result[item].no +')"><i class="fas fa-trash-alt"></i></a> </div>';
                         }
                     }
@@ -622,6 +666,7 @@ $('.accordian-body').on('show.bs.collapse', function () {
 
 <script>
 function repPaging(rpageNo){
+	
    $.ajax({
        type : "POST",
        data : {
@@ -640,10 +685,10 @@ function repPaging(rpageNo){
                html+= '            <img src="' + result[item].mentee.phot + '" alt="singup" id="circle"><br>';
                html+=                result[item].mentee.nick;
                html+= '        </div>';
-               html+= '        <div class="col-lg-9 media-body">'+ result[item].conts +'</div>';
+               html+= '        <div class="col-lg-8 media-body">'+ result[item].conts +'</div>';
                if(${sessionScope.loginUser != null}){
                    if(${sessionScope.loginUser.no} == result[item].meno){
-                       html+= '  <div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="removerep('+result[item].no +')"><i class="fas fa-trash-alt"></i></a> </div>';
+                       html+= '  	<div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="removerep('+result[item].no +')"><i class="fas fa-trash-alt"></i></a> </div>';
                    }
                }
                html+= '        </div>';
