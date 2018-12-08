@@ -3,6 +3,7 @@
     pageEncoding="UTF-8"
     trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
 
 <html>
 <head>
@@ -89,7 +90,7 @@
 													<h5 class="media-heading">
 														판매자 : ${r.mentee.nick }
 													</h5>
-													<span></span><span class="text-warning"><strong>인당 최대 수량: ${r.product.stock}개</strong></span>
+													<span></span><span class="text-warning"><strong>인당 최대 수량: <fmt:formatNumber value="${r.product.stock}" groupingUsed="true"/>개</strong></span>
 												</div>
 											</div>
 										</td>

@@ -80,6 +80,20 @@
         <result column="certtype"   property="cert.type"/>
     </resultMap>
     
+    <resultMap type="Classes" id="classStar">
+        <id     column="cno"        property="no"/>
+        <result column="star"   property="star"/>
+    </resultMap>
+    
+    <select id="findAllStar" resultMap="classStar">
+        select
+            cno,
+            star
+        from
+            p_cls
+        limit 0,500
+    </select>
+    
     
     <sql id="select1">
         select 
@@ -277,6 +291,7 @@
     			<if test="edt != null">edt = now(),</if>
     			<if test="mono > 0">mono = #{mono},</if>
     			<if test="mtno > 0">mtno = #{mtno}</if>
+                <if test="star > 0">star = #{star}</if>
     		</set>
     	where 
     		cno = #{no}
