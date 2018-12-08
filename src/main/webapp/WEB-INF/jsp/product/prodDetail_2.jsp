@@ -125,7 +125,6 @@
             <li class="page-item disabled "><a class="page-link" href="#"
                 tabindex="-1"> <</a></li>
                 <c:set var="reppage" value="${repPageSize}"/>
-                
                 <%
 	                int repsize = (int)pageContext.getAttribute("reppage");
                     for(int pno = 1; pno<= repsize ; pno++){
@@ -311,13 +310,20 @@
                                         <!--여기까지 코드 작성-->
                             <nav aria-label="Page navigation example" id="product-pn">
                                 <ul class="pagination justify-content-center">
-                                    <li class="page-item disabled "><a class="page-link" href="#"
+                                    <li class="page-item disabled "><a class="page-link" href="javaScript:void(0)"
                                         tabindex="-1"> <</a></li>
-                                    <li class="page-item"><a class="page-link" href="javaScript:void(0)" onclick="qnaPaging(1)">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="javaScript:void(0)" onclick="qnaPaging(2)">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="javaScript:void(0)" onclick="qnaPaging(3)">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="javaScript:void(0)" onclick="qnaPaging(4)">4</a></li>
-                                    <li class="page-item"><a class="page-link" href="javaScript:void(0)" onclick="qnaPaging(5)">5</a></li>
+                                        
+                                        <c:set var="qnapage" value="${countqna}"/>
+						                <%
+						                    int qnasize = (int)pageContext.getAttribute("qnapage");
+						                    if(qnasize<1) qnasize=1;
+						                    for(int qno = 1; qno<= qnasize ; qno++){
+						                %>
+						                    <li class="page-item"><a class="page-link" href="javaScript:void(0)"
+						                    onClick="qnaPaging(<%=qno%>)"><%=qno%></a></li>
+						                <%
+						                    }
+						                %>
                                     <li class="page-item"><a class="page-link" href="javaScript:void(0)">></a></li>
                                 </ul>
                             </nav>
