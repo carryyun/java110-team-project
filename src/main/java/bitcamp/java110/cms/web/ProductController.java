@@ -151,8 +151,6 @@ public class ProductController {
     model.addAttribute("productList", productList);
   }
 
-
-
   @GetMapping("detail")
   public void detail(Model model, int no,
       @RequestParam(defaultValue = "1") int pageNo,
