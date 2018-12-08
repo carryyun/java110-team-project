@@ -3,7 +3,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
 <html>
 <head>
 <meta charset="utf-8">
@@ -40,11 +41,18 @@
 
 <style type="text/css">
 #STATICMENU { 
-	margin: 0pt; padding: 0pt;  
-	position: absolute; right: 0px; top: 0px;
-	transform: translateX(95%);
-	width : 300px;
-	}
+    margin: 0px;
+    padding: 10px;
+    position: absolute; right: 0px; top: 0px;
+    transform: translateX(95%);
+    width : 290px;
+    background-color: white;
+    }
+
+#STATICMENU select#time{
+    font-size: 14px;
+}
+
 .mstcheck{
  position: absolute;
  right: 0;
@@ -67,112 +75,190 @@
             <div class="col-lg-12">
                 <jsp:include page="../headerNav.jsp"></jsp:include>
             </div>
-            
-            <div class="col-lg-12 col-md-12 mt-5">
-	            <h2>클래스 상세보기</h2>
-	            <hr class="FhrBotMargin">
-            </div>
+        
             <div class="col-lg-12">
-            <div class="col-lg-9 text-center">
+            <div class="col-lg-9 text-center" style="margin-bottom: 50px">
+            <div style="padding-left: 5px; padding-right: 6px; margin-left:-3px; margin-bottom:-15px;">
+            <div class="col-lg-12 col-md-12 mt-5 text-left" style="padding-top:10px; width:1100px; background-color:white;">
+                <h2>클래스 상세보기
+                <c:choose>
+                    <c:when test="${sessionScope.loginUser.no eq detailclass.mentee.no}">
+                        <a onclick="updateclsstat()" class="btn btn-lg btn-danger col-lg-1 py-1 text-center" 
+                        style="float : right; color:white; height: 38px; text-align:center;">삭제</a>
+                    </c:when>
+                    <c:otherwise>
+                    </c:otherwise>
+                </c:choose>
+                    </h2>
+                <hr class="FhrBotMargin">
+            </div>
+            </div>
                 <div class="row">
                     <aside class="col-lg-12 col-md-12 mx-auto">
+                    <div class="col-lg-12 px-1">
                         <article class="gallery-wrap">
                                 <div>
-				                    <div id="carouselExampleIndicators" class="carousel slide" data-interval="false" data-ride="carousel">
-									  <ol class="carousel-indicators">
-									    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-									    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-									    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-									    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-									  </ol>
-									  <div class="carousel-inner">
-									    
-									    <c:set var="cfl" value="${detailclass.cfile}"/>
-									    <%
+                                    <div id="carouselExampleIndicators" class="carousel slide" data-interval="false" data-ride="carousel">
+                                      <ol class="carousel-indicators">
+                                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                                      </ol>
+                                      <div class="carousel-inner">
+                                        
+                                        <c:set var="cfl" value="${detailclass.cfile}"/>
+                                        <%
                                             String cfile = (String)pageContext.getAttribute("cfl");
                                             if(cfile.endsWith("jpg") || cfile.endsWith("png")){
                                         %>    
                                         <div class="carousel-item active">
-									      <img style="width=100%; margin-left:-10px;" class="d-block w-100" src="${detailclass.cfile}" alt="First slide">
-									      <%     
+                                          <img style="width:99.5%; height:445px;" class="d-block w-100" src="${detailclass.cfile}" alt="First slide">
+                                          <%     
                                             }else {
                                              int cfileidx = cfile.indexOf("=");
                                              String cfileurl = cfile.substring(cfileidx+1);
                                         %>
-                                            <div class="carousel-item active" style="margin-bottom: -5px;">
-                                              <iframe width="100%" height="450" style="margin-left:-10px;" src="https://www.youtube.com/embed/<%=cfileurl%>" 
+                                            <div class="carousel-item active">
+                                              <iframe width="100%" height="445" style="margin-left:-10px;" src="https://www.youtube.com/embed/<%=cfileurl%>" 
                                               frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
                                               allowfullscreen></iframe>
                                         <%
                                             }
                                         %>
-									      
-									    </div>
-									    <c:forEach items="${clsfilelist}" var="cf" varStatus="i">
-									    	<c:set var="divi" value="${cf.fname}"/>
-									    	<%
-									    		String fna = (String)pageContext.getAttribute("divi");
-									    		if(fna.endsWith("jpg") || fna.endsWith("png")){
-									    	%>	  
-									    		<div class="carousel-item">
-											      <img class="d-block w-100" style="width:100%; height:450px; margin-left:-10px; " 
-											      src="${cf.fname}" alt="${i.count}">
-											    </div>
-									    	<%	  
-									    		}else {
-									    		 int idx = fna.indexOf("=");
-									    		 String fnaurl = fna.substring(idx+1);
-									    	%>
-											    <div class="carousel-item" style="margin-bottom: -5px;">
-											      <iframe width="100%" height="450" style="margin-left:-10px;" src="https://www.youtube.com/embed/<%=fnaurl%>" 
-											      frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-											      allowfullscreen></iframe>
-											    </div>
-											<%
-									    		}
-											%>
-										</c:forEach>
-									  </div>
-									  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-									    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-									  </a>
-									  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-									    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-									  </a>
-									</div>
-								</div>
+                                          
+                                        </div>
+                                        <c:forEach items="${clsfilelist}" var="cf" varStatus="i">
+                                            <c:set var="divi" value="${cf.fname}"/>
+                                            <%
+                                                String fna = (String)pageContext.getAttribute("divi");
+                                                if(fna.endsWith("jpg") || fna.endsWith("png")){
+                                            %>    
+                                                <div class="carousel-item">
+                                                  <img style="width:99.5%; height:445px;" src="${cf.fname}" alt="${i.count}">
+                                                </div>
+                                            <%    
+                                                }else {
+                                                 int idx = fna.indexOf("=");
+                                                 String fnaurl = fna.substring(idx+1);
+                                            %>
+                                                <div class="carousel-item">
+                                                  <iframe width="100%" height="445" style="margin-left:-10px;" src="https://www.youtube.com/embed/<%=fnaurl%>" 
+                                                  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                                                  allowfullscreen></iframe>
+                                                </div>
+                                            <%
+                                                }
+                                            %>
+                                        </c:forEach>
+                                      </div>
+                                      <a class="carousel-control-prev" style="height: 50px; margin-top: 25%;" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                      </a>
+                                      <a class="carousel-control-next" style="height: 50px; margin-top: 25%;" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                      </a>
+                                    </div>
+                                </div>
                             </div>
-						</article>
+                        </article>
+                        </div>
                     </aside>
                     <!-- 사이드바 -->
                     <div id="STATICMENU">
-                    	<aside class="col-lg-8">
-                        <article class="card-body p-3">
+                        <div class="col-lg-12 px-0">
+                        <div class="card-body p-1">
                             <div class="text-center">
-                            <img style="width: 200px; height:200px;" src="${detailclass.cfile}" alt=""/>
-                                <h3 class="title mb-3">${detailclass.titl}</h3>
-                                <dl class="param param-feature">
-                                    <dd>${detailclass.middleTag.name}</dd>
+                            
+                            <%
+                                if(cfile.endsWith("jpg") || cfile.endsWith("png")){
+                            %>    
+                            <img style="width: 100%; height:150px;" src="${detailclass.cfile}" alt=""/>
+                              <%     
+                                }else {
+                                 int cfileidx = cfile.indexOf("=");
+                                 String cfileurl = cfile.substring(cfileidx+1);
+                            %>
+                                  <iframe width="100%" height="150px" src="https://www.youtube.com/embed/<%=cfileurl%>" 
+                                  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                                  allowfullscreen></iframe>
+                            <%
+                                }
+                            %>
+                            
+                            
+                                <h4 class="title mb-3 text-left">${detailclass.titl}
+                                <c:choose>
+                                <c:when test="${likeResult == 1}">
+                                    <i style="color:#FFB53C" id='owl-i' class='fas fa-star' onclick='setLike(event,${detailclass.no},this)'></i>
+                                </c:when>
+                                <c:otherwise>
+                                    <i style="color:#FFB53C" id='owl-i' class='far fa-star' onclick='setLike(event,${detailclass.no},this)'></i>
+                                </c:otherwise>
+                                </c:choose>
+                                </h4>
+                                <dl class="param param-feature text-left">
+                                    <dd style="font-size: 1rem;">${detailclass.middleTag.name}</dd>
                                 </dl>
-                                <dl class="param param-feature">
-                                    ${detailclass.pric}원
+                                <dl class="param param-feature text-left">
+                                    <fmt:formatNumber value="${detailclass.pric}" groupingUsed="true"/>원
                                 </dl>
 
-                                <dl class="param param-feature">
-                                    	${detailclass.mentee.nick} 멘토
-                                </dl>
+                                <dl class="param param-feature text-left">
+                                        ${detailclass.mentee.nick} 멘토
+                                </dl> 
                                 
-                                <dl class="param param-feature">
+                                <dl class="param param-feature text-left">
                                             <dd>${detailclass.basAddr}</dd>
                                 </dl>
                                 
+                                <dl class="text-left">
+                                    <c:set var="clsstar" value ="${detailclass.star}"/>
+                                    <%
+                                        int clsstar = (int)pageContext.getAttribute("clsstar");
+                                    for(int i=0; i<5;i++){
+                                      if(i<clsstar){
+                                    %>
+                                    <img class="starimg" alt="star-on-big" src="/upload/img/raty/star-on-big.png"
+                                    style="width:20px; height:20px;">
+                                    <%}else{
+                                        %>
+                                    <img class="starimg" alt="star-off-big" src="/upload/img/raty/star-off-big.png"
+                                    style="width:20px; height:20px;">
+                                    <%
+                                            }
+                                        }
+                                    %>
+                                </dl>
                                         <!-- item-property .// -->
                                     <!-- col.// -->
 
-                            </div>
-                        </article>
+                                <dl class="param param-feature">
+                                     <select name="time" id="time">
+                                         <c:forEach items="${clstimelist}" var="t">
+                                             <option value="${t.no}" >날짜 : ${t.date} , 시간 : ${t.stime}</option>
+                                         </c:forEach>
+                                     </select>
+                                </dl>
+                                
+                                <hr>
+                                <!-- row.// -->
+                                <!---->
+                                <%-- <a href="#" class="btn btn-lg btn-outline-primary text-uppercase"
+                                        onClick="clslikeins(${sessionScope.loginUser.no});"> 
+                                            <i class="fas fa-shopping-cart"></i> 찜클래스 </a> --%>
+                                
+                          
+                                <button class="btn btn-lg btn-outline-primary text-uppercase"
+                                onClick="clsBaskt(${sessionScope.loginUser.no})"> 
+                                <i class="fas fa-shopping-cart"></i>장바구니</button>
+                                        
+                                <a href="#" class="btn btn-lg btn-primary text-uppercase"
+                                onClick="orderCls()"> 결제하기</a>
+                            </div> 
+                        </div>
                         <!-- card-body.// -->
-                    </aside>
+                    </div>
                     
                     </div>
                     <!-- 사이드바 끝 -->
@@ -185,30 +271,30 @@
             <!-- <div class="col-lg-12 col-md-12 text-center"> -->
         </div>
         <!-- <div class="row"> -->
-						<div class="col-lg-12" id="testt">
-				            <ul class="under-navbar-nav col-lg-9 col-md-12">
-				                <li class="under-nav-item"><a class="nav-link"
-				                    href="#class_detail">
-				                        <h4>요약</h4> 
-				                </a></li>
-				                <li class="under-nav-item"><a class="nav-link"
-				                    href="#mentor-info">
-				                        <h4>강사소개</h4>
-				                </a></li>
-				                <li class="under-nav-item"><a class="nav-link" 
-				                	href="#class-info">
-				                        <h4>강의설명</h4>
-				                </a></li>
-				                <li class="under-nav-item"><a class="nav-link" 
-				                	href="#location">
-				                        <h4>위치</h4>
-				                </a></li>
-				                <li class="under-nav-item"><a class="nav-link" 
-				                	href="#class-review">
-				                        <h4>클래스 후기</h4>
-				                </a></li>
-				            </ul>
-			        	</div>
+						<div class="col-lg-12 px-0" id="testt"> 
+                            <ul class="under-navbar-nav col-lg-12 col-md-12" style="height:45px;">
+                                <li class="under-nav-item"><a class="nav-link"
+                                    href="#class_detail">
+                                        <h5>요약</h5> 
+                                </a></li>
+                                <li class="under-nav-item"><a class="nav-link"
+                                    href="#mentor-info">
+                                        <h5>강사소개</h5>
+                                </a></li>
+                                <li class="under-nav-item"><a class="nav-link" 
+                                    href="#class-info">
+                                        <h5>강의설명</h5>
+                                </a></li>
+                                <li class="under-nav-item"><a class="nav-link" 
+                                    href="#location">
+                                        <h5>위치</h5>
+                                </a></li>
+                                <li class="under-nav-item"><a class="nav-link" 
+                                    href="#class-review">
+                                        <h5>클래스 후기</h5>
+                                </a></li>
+                            </ul>
+                        </div>
     <!--요약 , 강사소개 , 강의설명,  위치, 클래스후기-->
         <div class="row">
           <div class="col-lg-9">
@@ -282,11 +368,17 @@
         </footer>
 
 </body>
-<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="/js/clean-blog.js"></script>
-
+<script>
+$('.accordian-body').on('show.bs.collapse', function () {
+    $(this).closest("table")
+        .find(".collapse.in")
+        .not(this)
+})
+</script>
 <script>
 function clsject() {
     if($("#reje").css("display") == "none"){
@@ -355,7 +447,7 @@ function clicky(no){
  var stmnActivateSpeed = 35; //스크롤을 인식하는 딜레이 (숫자가 클수록 느리게 인식)
  var stmnScrollSpeed = 20; //스크롤 속도 (클수록 느림)
  var stmnTimer; 
- var stmnsub = 300; // stmtEndPoint 맞춰줄 때 쓴다.
+ var stmnsub = 230; // stmtEndPoint 맞춰줄 때 쓴다.
  
  function RefreshStaticMenu() { 
   var stmnStartPoint, stmnEndPoint; 
@@ -432,7 +524,6 @@ geocoder.addressSearch('${detailclass.basAddr}', function(result, status) {
         var testtTop;
         var setId = "#testt";
         $(document).ready(function() {
-            $("#headerNav").load("headerNav.html")
 
             testtTop = $("#detail").offset().top;
             console.log(testtTop);
@@ -445,17 +536,18 @@ geocoder.addressSearch('${detailclass.basAddr}', function(result, status) {
         function scroll_follow(id) {
             $(window).scroll(function() //스크롤이 움직일때마다 이벤트 발생
             {
-                var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
-                if (position > 985) {
+                var position = $(window).scrollTop()-testtTop + 58 - $("#headermain").offset().top; // 현재 스크롤바의 위치값을 반환합니다.
+                if (position > 0) {
                     $(id).css("position", "fixed-top");
                     $(id).css("top", position + "px");
-                    $(id).css("width", "1110px");
+                    /* $(id).css("width", "100%"); */
 
                 } else {
-                    $(id).css("top", (testtTop) + "px");
+                    $(id).css("top", (-45) + "px");
                     $(id).css("position", "absolute");
-                    $(id).css("width", "1110px");
+                    /* $(id).css("width", "100%"); */
                 }
+
             });
         }
         scroll_follow(setId);

@@ -85,7 +85,6 @@ public class ClassController {
   }
   @PostMapping("findAll")
   public void findAll() {
-    List<Classes> clist= classService.classList(5);
   }
   @RequestMapping(value = "classadd", method=RequestMethod.GET)
   public void classinsert() {
@@ -398,9 +397,6 @@ public class ClassController {
 
   @GetMapping("qnalist")
   public void qnalist() {
-
-    List<ClassQna> clist= classqnaService.classqnalist(4,10,5);
-
   }
 
   @RequestMapping(value = "qnainsert", method = {RequestMethod.POST})
@@ -660,7 +656,7 @@ public class ClassController {
         classOrderService.orderadd(order);
         return "complete";
       }else {
-        int baktNo = Integer.parseInt(str[0]);  //      str[0] = BasketNo
+        //int baktNo = Integer.parseInt(str[0]);  //      str[0] = BasketNo
         int ttabNo = Integer.parseInt(str[1]);      //      str[1] = TtabNo
         int meno = Integer.parseInt(str[2]);      //      str[2] = Meno
         int time = Integer.parseInt(str[3]);      //      str[3] = Time
