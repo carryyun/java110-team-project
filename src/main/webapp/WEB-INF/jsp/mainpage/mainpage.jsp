@@ -74,7 +74,7 @@
     <!-- main carousel container-->
     <!-- 메인 carousel -->
     <div class="col-lg-12 px-0" 
-            style="position: absolute; top:504px; height: 41px; background-color: #f3f3f3">
+    style="position: absolute; top:504px; height: 41px; background-color: #f3f3f3">
             <!-- 헤더 배경색 적용 -->
         </div>
     <div class="container">
@@ -89,20 +89,20 @@
             <div class="row">
                     <div class="col-lg-2 border-right border-secondary">
                         <div class="col">
-                            <h2 class="mb-4">카테고리</h2>
-                            <ul class="ml-3">
+                            <h2 class="mb-4" style="font-size: 1.5rem; font-weight: 700;">카테고리</h2>
+                            <ul>
                                 <c:forEach items="${BTlist}" var="bt">
                                     <li><a href="../class/clsCate?no=${bt.no}">${bt.name}</a></li>
                                 </c:forEach>
                             </ul>
                         </div>
                     </div>
-
+ 
                     <!-- 인싸예감 클래스(카르셀) -->
                     <div class="col-lg-10">
                         <div class="row">
                             <div class="col">
-                                <h2 class="mb-4">인싸예감 클래스</h2>
+                                <h2 class="mb-4" style="font-size: 1.5rem; font-weight: 700;">인싸예감 클래스</h2>
                                 <div id="owl-hotCls" class="owl-carousel col-lg-10 mt-2" style="margin:0 auto">
 
                                 </div>
@@ -124,7 +124,7 @@
         <hr class="Fhr" />
         <div class="row  my-3">
             <div class="col-lg-6 text-left">
-                <h2>오늘의 추천작품</h2>
+                <h3 style="font-size: 1.5rem; font-weight: 700;">오늘의 추천작품</h3>
             </div>
             <div class="col-lg-6 text-right">
                 <a class="btn btn-primary float-right mb-3" href="../product/prdt">작품 더보기 </a>
@@ -135,7 +135,7 @@
     <!-- 오늘의 추천작품 container-->
 
     <!-- 오늘의 추천작품 carousel-->
-    <div class="container">
+    <div class="container" style="margin-bottom: 80px">
         <div class="row">
             <div class="col">
                 <div id="owl-hotItem" class="owl-carousel col-lg-10 mt-2 px-1" style="margin:0 auto;">
@@ -148,7 +148,7 @@
             </div>
         </div>
     </div>
-
+    
     <footer>
         <div class="col px-0">
             <jsp:include page="../footer.jsp"></jsp:include>
@@ -168,7 +168,7 @@
     $(document).ready(function(){
         $('#menusubs').remove();
     });
-    function setLike(evt,cno){
+    function setLike(evt,cno,obj){
         evt.preventDefault();
         if('${sessionScope.loginUser}' != ''){
             $.ajax({
@@ -184,6 +184,8 @@
                         icon : "success",
                         button : "확인",
                       })
+		        $(obj).attr('class','fas fa-star');
+		        $(obj).css("color","#FFB53C");
                     /* location.href="detail?no="+${detailclass.no}; */
                 },error : function(error,status){
                     swal({
@@ -243,7 +245,6 @@
                
            }else{
                cfile=cfile.right(11);
-               console.log(cfile);
                cfile= "" + "https://i.ytimg.com/vi/" + cfile + "/mqdefault.jpg"
            }
            
@@ -252,7 +253,29 @@
            content += "<div class='row' id='owl-row'>"
            content += '<div class="imgcover col-lg-12" style="height: 200px;position:absolute;">'
            content += '</div>'
-           content += "<i id='owl-i' class='far fa-star' onclick='setLike(event,"+ cno +")'></i>"
+           <c:set var="stopLoop" value="true"/>
+           <c:set var="lastAddStar" value="true"/>
+           if('${sessionScope.loginUser}'==''){ 
+               content += "<i id='owl-i' class='far fa-star' onclick='setLike(event,"+ cno +",this)'></i>"
+           }else{
+	           <c:forEach items="${clike_popul}" var="cp">
+	           <c:if test="${stopLoop}">
+		           if(${cp.cno} == cno){
+			           content += "<i style='color:#FFB53C' id='owl-i' class='fas fa-star' onclick='setLike(event,"+ cno +",this)'></i>";
+			           <c:set var="stopLoop" value="false"/>
+			           <c:set var="lastAddStar" value="false"/>
+		           }else if(${cp.cno} != cno){
+		               <c:set var="stopLoop" value="true"/>
+	                   <c:set var="lastAddStar" value="true"/> // stopLoop와 lastAddStar가 forEach안에서 조건에 걸리는게 없는데 false로 바뀌는거같음
+		           }
+	           </c:if>
+	           </c:forEach>
+	           <c:if test="${lastAddStar}">
+				   content += "<i id='owl-i' class='far fa-star' onclick='setLike(event,"+ cno +",this)'></i>";
+               </c:if>
+           }
+           <c:set var="stopLoop" value="true"/>
+           <c:set var="lastAddStar" value="true"/>
            content += '<div style="padding: 0 5px; top: 20px; width: auto; height: auto; position: absolute; background-color: #f58500; color: white; border-bottom-right-radius: 10px">'+nick+'</div>'
            content += '<div style="padding: 0 5px; top: 45px; width: auto; height: auto; position: absolute; background-color: #333873; color: white; border-bottom-right-radius: 10px">'+name+' 멘토</div>'
            
@@ -350,8 +373,8 @@
        </script> 
 <script>
 $(document).ready(function() { 
-console.log(1);
-console.log('${sessionScope.loginUser}');
+// console.log(1);
+// console.log('${sessionScope.loginUser}');
 });
 </script>
 </body>

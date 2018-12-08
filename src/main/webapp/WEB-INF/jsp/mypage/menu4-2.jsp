@@ -37,7 +37,7 @@
                         <td>${c.titl}</td>
                         <td>${c.rgdt}</td>
                         <td>처리상태</td>
-                        
+                        <%-- <a href="../class/detail?no=${c.classes.no}"><img src="${c.classFile.fname}" width="200px" height="150px"></a> --%>
 
                     </tr>
                     <tr>

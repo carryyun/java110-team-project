@@ -21,6 +21,11 @@ public class CsServiceImpl implements CsService {
     return csDao.insert(cs);
     
   }
+  @Override
+  public int addQuestioninfo(Cs cs) {
+    return csDao.insertQuestion(cs);
+  }
+  
 
   @Override
   public List<Cs> list(int pageNo, int pageSize,int meno) {

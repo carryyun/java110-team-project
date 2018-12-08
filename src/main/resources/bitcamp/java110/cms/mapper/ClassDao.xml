@@ -80,6 +80,20 @@
         <result column="certtype"   property="cert.type"/>
     </resultMap>
     
+    <resultMap type="Classes" id="classStar">
+        <id     column="cno"        property="no"/>
+        <result column="star"   property="star"/>
+    </resultMap>
+    
+    <select id="findAllStar" resultMap="classStar">
+        select
+            cno,
+            star
+        from
+            p_cls
+        limit 0,500
+    </select>
+    
     
     <sql id="select1">
         select 
@@ -120,15 +134,31 @@
             ps.bas_addr REGEXP #{loc}
         limit #{rowNo},#{size}
     </select>
+    <select id="findAllByWord" resultMap="classMap" parameterType="map">
+        <include refid="selectAll"></include>
+        WHERE
+        	ps.stat = 'Y'
+        AND
+            ps.titl Like #{word}
+        OR
+            pe.nick Like #{word}
+        OR
+            pe.name Like #{word}
+        limit #{rowNo},#{size}
+    </select>
 	<select id="findAllByBtno" resultMap="classMap" parameterType="map">
         <include refid="selectAll"></include>
         WHERE
+        	ps.stat = 'Y'
+        AND
             btag.btno=#{btno}
             limit #{rowNo},#{size}
     </select>
     <select id="findAllByMtno" resultMap="classMap" parameterType="map">
         <include refid="selectAll"></include>
         WHERE
+        	ps.stat = 'Y'
+        AND
             pg.mtno=#{mtno}
         ORDER by ps.cno asc
     </select>
@@ -152,12 +182,15 @@
             on cls.mtno = mtag.mtno and
             cls.cno = cert.cno and
             cert.meno = mete.meno
+        where cls.stat = 'Y'
         order by 
             cls.cno desc
     </select>
  
     <select id="findAll" resultMap="classMap" parameterType="map">
         <include refid="select1"></include>
+        where 
+        	ps.stat = 'Y'
 		order by
 			cno asc;
     </select>
@@ -216,17 +249,17 @@
             inner join p_mtag as ptg
             	on ps.mtno = ptg.mtno
 		where
-			cno =  #{no}
+			cno =  #{no} AND ps.stat = 'Y'
 	</select>
 
 	<select id="findBytag" resultMap="classMap" parameterType="int">
 		<include refid="select1"></include>
-		where pg.mtno = #{mtno}
+		where pg.mtno = #{mtno} AND ps.stat = 'Y'
 	</select>
 	
 	<select id ="findByba" resultMap="classMap" parameterType="String">
 		<include refid="select1"></include>
-		where bas_addr = #{basAddr}
+		where bas_addr = #{basAddr} AND ps.stat = 'Y'
 	</select>
     
     <insert id="classinsert" parameterType="Classes"
@@ -258,6 +291,7 @@
     			<if test="edt != null">edt = now(),</if>
     			<if test="mono > 0">mono = #{mono},</if>
     			<if test="mtno > 0">mtno = #{mtno}</if>
+                <if test="star > 0">star = #{star}</if>
     		</set>
     	where 
     		cno = #{no}
@@ -294,7 +328,7 @@
             JOIN p_cls_ttab ct ON c.cno = ct.cno
             
        where
-            mo.mono=#{mono}
+            mo.mono=#{mono} AND c.stat = 'Y'
        
     </select>
     
@@ -320,7 +354,7 @@
             LEFT JOIN p_cert cert ON me2.meno = cert.meno
             
        where
-            c.cno=#{cno}
+            c.cno=#{cno} AND ps.stat = 'Y'
             
       ORDER BY
            ct.ctno asc
@@ -333,6 +367,15 @@
     update p_cls
         <set>
             <if test="note != null">note = #{note},</if>
+            <if test="stat != null">stat = #{stat}</if>
+        </set>
+       where 
+        cno = #{no}
+    </update>
+    
+    <update id="deleteclsstat" parameterType="Classes">
+    update p_cls
+        <set>
             <if test="stat != null">stat = #{stat}</if>
         </set>
        where 
@@ -367,7 +410,7 @@
                 or ps.cinfo Like "%{str}%"
                 or pe.name Like "%{str}%"
                 or pe.nick Like "%{str}%"
-    
+    	where ps.stat = 'Y'
     </select>
     
 </mapper>

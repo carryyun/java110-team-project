@@ -6,12 +6,14 @@ import bitcamp.java110.cms.domain.Classes;
 
 public interface ClassDao {
   List<Classes> findAll();
-
+  List<Classes> findAllStar();
+  
   List<Classes> findAllList();
 
   List<Classes> findAllByBtno(Map<String,Object> params);
   List<Classes> findAllByMtno(Map<String,Object> params);
   List<Classes> findAllByLoc(Map<String,Object> params);
+  List<Classes> findAllByWord(Map<String,Object> params);
   
   List<Classes> findAllByList(); // 클래스 전체 목록
 
@@ -41,4 +43,6 @@ public interface ClassDao {
   List<Classes> manageByCno(int cno);
   
   int statupdate(Classes classes);
+  
+  int deleteclsstat(Classes classes);
 }

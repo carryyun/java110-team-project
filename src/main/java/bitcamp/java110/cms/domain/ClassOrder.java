@@ -19,7 +19,8 @@ public class ClassOrder {
   private Timetable timetable;
   private Cert cert;
   private ClassFile classFile;
-  
+  private MiddleTag middleTag;
+  private BigTag bigTag;
 
   private String mentornick;
   
@@ -35,6 +36,18 @@ public class ClassOrder {
   private Time stime;
   
     
+  public MiddleTag getMiddleTag() {
+    return middleTag;
+  }
+  public void setMiddleTag(MiddleTag middleTag) {
+    this.middleTag = middleTag;
+  }
+  public BigTag getBigTag() {
+    return bigTag;
+  }
+  public void setBigTag(BigTag bigTag) {
+    this.bigTag = bigTag;
+  }
   
   public String getMete2_phone() {
     return mete2_phone;

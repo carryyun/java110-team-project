@@ -58,7 +58,7 @@
 <div class="col" style="position: absolute; height: 146px; background-color: white">
     <!-- 헤더 배경색 적용 -->
 </div>
-<div id="wrap" style="background-color: #F2F4F7">
+<div id="wrap" style="background-color: #F2F4F7; padding-bottom: 80px">
 <div> 
     <div class="container">
         <div class="row">
@@ -69,13 +69,23 @@
             <div class="col-lg-12" id="headernav">
                 <jsp:include page="../headerNav.jsp"></jsp:include>
             </div>
-            
-            <div class="col-lg-12 col-md-12 mt-5">
-                <h2>클래스 상세보기</h2>
-                <hr class="FhrBotMargin">
-            </div>
             <div class="col-lg-12">
             <div class="col-lg-9 text-center" style="margin-bottom: 50px">
+            <div style="padding-left: 5px; padding-right: 6px; margin-left:-3px; margin-bottom:-15px;">
+            <div class="col-lg-12 col-md-12 mt-5 text-left" style="padding-top:10px; width:1100px; background-color:white;">
+                <h2>클래스 상세보기
+                <c:choose>
+                	<c:when test="${sessionScope.loginUser.no eq detailclass.mentee.no}">
+                		<a onclick="updateclsstat()" class="btn btn-lg btn-danger col-lg-1 py-1 text-center" 
+                		style="float : right; color:white; height: 38px; text-align:center;">삭제</a>
+                	</c:when>
+                	<c:otherwise>
+                	</c:otherwise>
+                </c:choose>
+                	</h2>
+                <hr class="FhrBotMargin">
+            </div>
+            </div>
                 <div class="row">
                     <aside class="col-lg-12 col-md-12 mx-auto">
                     <div class="col-lg-12 px-1">
@@ -170,8 +180,16 @@
                             %>
                             
                             
-                                <h4 class="title mb-3 text-left">${detailclass.titl}　<i style="color:#FFB53C" id='owl-i' class='far fa-star' onclick='setLike(event,${detailclass.no})'></i></h4>
-
+                                <h4 class="title mb-3 text-left">${detailclass.titl}
+                                <c:choose>
+                                <c:when test="${likeResult == 1}">
+	                                <i style="color:#FFB53C" id='owl-i' class='fas fa-star' onclick='setLike(event,${detailclass.no},this)'></i>
+                                </c:when>
+                                <c:otherwise>
+                                    <i style="color:#FFB53C" id='owl-i' class='far fa-star' onclick='setLike(event,${detailclass.no},this)'></i>
+                                </c:otherwise>
+                                </c:choose>
+                                </h4>
                                 <dl class="param param-feature text-left">
                                     <dd style="font-size: 1rem;">${detailclass.middleTag.name}</dd>
                                 </dl>
@@ -286,7 +304,7 @@
                         <div class = "shortinfo"><strong>총 수업시간</strong><div class="inf">${detailclass.time}시간</div></div>
                         <div class = "shortinfo"><strong>모집인원</strong><div class="inf"><fmt:formatNumber value="${detailclass.capa}" groupingUsed="true"/>명</div></div>
                     </div>
-                    <div style="margin-left : 40px;"><strong>멘토 : ${detailclass.mentee.nick}</strong></div>
+                    <div style="margin-left : 56px;"><strong>멘토 : ${detailclass.mentee.nick}</strong></div>
                 </div>
                 <!-- <div class="detail_info"> -->
                 
@@ -316,10 +334,12 @@
                 <!-- <div class="detail_info"> -->  
                 <hr class="Fhr" id="class-review">   
                 <div class="detail_info">   
-                    <div class="row" style="margin: 0 auto">    
-                        <div class="col text-center">   
+                    <div class="row" style="margin: 0 auto"> 
+                    <h3>클래스 후기</h3>
+                        <hr class="Fhr" id="class-review" style="margin-bottom:5px;">   
+                        <div class="col">   
                             <c:set var="starint" value="${detailclass.star}"/>
-                            <div class="rating col">
+                            <div class="rating col text-center">
                                 <% int star = (int)pageContext.getAttribute("starint"); 
                                 for( int i=0;i<5;i++){
                                   if(i<star){
@@ -333,27 +353,21 @@
                                 }
                                 %>
                             </div>  
-                            <div>
-                                    <i class="fas fa-user"></i>total ${countrep} 
-                            </div>  
-                        </div>  
-                    </div>  
-                </div>  
-                
-                <div class="container col-lg-12 px-0" id="prod_review">
-                    <div class="row">
-                        <div class="col px-0">
-                <form class="form-horizontal" action="detail?no=${detailclass.no}" method="post">
+                            <div class="text-center">
+                                    <i class="fas fa-user text-center"></i>total ${countrep} 
+                            </div>
+                            <form class="form-horizontal" action="detail?no=${detailclass.no}" method="post">
                     <fieldset>
                     <table class="fixed-table w-100" >
                             <tr>
                                 <td colspan="3">
                                     <!-- <div class=""> -->
                                             <!-- Message body -->
-                                     <div class="form-group" >
-                                         <div class="col-lg-12" >
+                                     <div class="form-group" style="background-color:white;" >
+                                         <div class="col-lg-9" >
                                              <textarea class="form-control" id="conts" name="conts"
-                                                 placeholder="클래스평을 등록해주세요." rows="5"></textarea>
+                                                 placeholder="클래스평을 등록해주세요." rows="5"
+                                                 style="width:600px; margin-left:50px;"></textarea>
                                          </div>
                                      </div>
                                 </td>
@@ -381,16 +395,7 @@
                     </table>
                                         </fieldset>
                                 </form>
-                          </div>
-                    </div>
-
-                    <div class ="col-lg-12 px-0" style="margin-left : 2px;">
-                    <div class="col-lg-12 col-md-12 detail_info"
-                    style="padding-left: 40px; padding-right:40px;">
-                        <h3>클래스 후기</h3>
-                        <hr class="Fhr" id="class-review" style="margin-bottom:5px;">
-                        <div class="detail_info" id="replist"
-                        >
+                                <div class="detail_info" id="replist" >
                         <c:forEach items="${clsreqlist}" var="r" varStatus="i">
                             <div class="media"
                                 style="border-bottom: 0.3px solid rgba(0, 0, 0, 0.5)">
@@ -403,17 +408,12 @@
                                 <textarea class="repupda col-lg-9 media-body" id="repup${i.index}" rows="5" name="repup"
                                       style =" margin-left:10px; width : 500px; display: none;"></textarea>
                                 <c:choose>
-                                <c:when test="${sessionScope.loginUser eq null}">
-                                    <button type="button" onClick="deleterepnull()"
-                                 class="delebtn" id="delebtn${i.index}">삭제</button>
+                                <c:when test="${sessionScope.loginUser.no eq r.meno}">
+                                	<button type="button" data-toggle="modal" data-target="#deleteModal_${r.no}"
+                                 class="delebtn btn btn-danger" id="delebtn${i.index}">삭제</button>
                                 </c:when>
-                                <%-- <c:when test="${sessionScope.loginUser.no eq clsreqlist.mentee.no} ">
-                                    <button type="button" onClick="deleterepnull()"
-                                 class="delebtn" id="delebtn${i.index}">삭제</button>
-                                </c:when> --%>
                                 <c:otherwise>         
-                                <button type="button" data-toggle="modal" data-target="#deleteModal_${r.no}"
-                                 class="delebtn" id="delebtn${i.index}">삭제</button>
+                               
                                  </c:otherwise>
                                  </c:choose>
                                 
@@ -438,13 +438,12 @@
                                         </div>
                                         
                                 <c:choose>
-                                    <c:when test="${sessionScope.loginUser eq null}">
-                                        <button type="button" class="edbtn" id="edbtn${i.index}" 
-                                onClick="deleterepnull()" >수정</button>
+                                    <c:when test="${sessionScope.loginUser.no eq r.meno}">
+                                        <button type="button" class="edbtn btn btn-warning" id="edbtn${i.index}" 
+                                onClick="updarep(${sessionScope.loginUser.no} , ${r.no} , ${r.meno} ,${i.index});">수정</button>
                                     </c:when>
                                     <c:otherwise>
-                                        <button type="button" class="edbtn" id="edbtn${i.index}" 
-                                onClick="updarep(${sessionScope.loginUser.no} , ${r.no} , ${r.meno} ,${i.index});" >수정</button>
+                                        
                                     </c:otherwise>
                                 </c:choose>
                                 
@@ -473,11 +472,8 @@
                             </div>
                         </c:forEach>
                         </div>
-                        </div>
-                    </div>
-                    <br><br>
-                 <nav aria-label="Page navigation example" id="product-pn" 
-                    style="margin : auto; margin-top: -40px;">
+                        <nav aria-label="Page navigation example" id="product-pn" 
+                    style="margin : auto;">
                         <ul class="pagination justify-content-center">
                         <c:set var="repsi" value="${countrep}" />
                         <%
@@ -499,16 +495,11 @@
                             onClick="nextrep(${countrep})">next</a></li>
                         </ul>
                   </nav>
-                  <%-- <jsp:include page="/detail.jsp" flush="true">
-					    <jsp:param name="firstPageNo" value="${paging.firstPageNo}" />
-					    <jsp:param name="prevPageNo" value="${paging.prevPageNo}" />
-					    <jsp:param name="startPageNo" value="${paging.startPageNo}" />
-					    <jsp:param name="pageNo" value="${paging.pageNo}" />
-					    <jsp:param name="endPageNo" value="${paging.endPageNo}" />
-					    <jsp:param name="nextPageNo" value="${paging.nextPageNo}" />
-					    <jsp:param name="finalPageNo" value="${paging.finalPageNo}" />
-					</jsp:include> --%>
-
+                        </div>  
+                    </div>  
+                </div>  
+                
+                <div class="container col-lg-12 px-0" id="prod_review">
 
                     <div class="detail_info" style="margin-left : 2px; padding-left: 40px; padding-right:40px;">
                         <h3>Q&A</h3>
@@ -518,7 +509,7 @@
                                 style="margin: 0 auto; border-collapse:collapse;">
                                     <thead class="col-lg-12">
                                         <tr class="row">
-                                            <th scope="col" class="col-lg-1" id="qna_th">번호</th>
+                                            <!-- <th scope="col" class="col-lg-1" id="qna_th">번호</th> -->
                                             <th scope="col" class="col-lg-2" id="qna_th">문의유형</th>
                                             <th scope="col" class="col-lg-2" id="qna_th">답변상태</th>
                                             <th scope="col" class="col-lg-3" id="qna_th">질문 제목</th>
@@ -532,7 +523,7 @@
                                     <c:set var="qnasi" value="${countqna}" />
                                         <tr data-toggle="collapse" 
                                         data-target="#demo1-${i.count}" class="accordion-toggle row">
-                                            <td class="col-lg-1" scope="row" id="qna_th">${i.count}</td>
+                                            <%-- <td class="col-lg-1" scope="row" id="qna_th">${i.count}</td> --%>
                                             <td class="col-lg-2">${cq.type}</td>
                                             <c:set var="yn" value="${cq.anser}"/>
                                             <%
@@ -546,7 +537,20 @@
                                             <%  
                                             }
                                             %>
-                                            <td class="col-lg-3">${cq.titl}</td>
+                                            <c:set var="cqtit" value="${cq.titl}"/>
+                                            <%
+                                            	String cqtitl = (String)pageContext.getAttribute("cqtit");
+	                                            if(cqtitl.length() > 8) {
+	                                            String longtitl = cqtitl.substring(0, 7);
+	                                        %>
+	                                        	<td class="col-lg-3"><%=longtitl%>..</td>
+	                                        <%      
+	                                            } else {
+	                                        %>
+	                                        	<td class="col-lg-3"><%=cqtitl%></td>
+	                                        <%
+	                                            }
+                                            %>
                                             <td class="col-lg-2">${cq.mentee.nick}</td>
                                             <td class="col-lg-2">${cq.rgdt}</td>
                                         </tr>
@@ -607,7 +611,7 @@
                                 </table>
                                 
                                 <div class="center"><button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block"
-                                style="width: 120px; height: 40px; float : right; background-color: #606066; color: #ffffff;">클래스 문의</button></div>
+                                style="margin-top:20px; width: 120px; height: 40px; float : right; background-color: #606066; color: #ffffff;">클래스 문의</button></div>
                                 <c:choose>
                                     <c:when test="${sessionScope.loginUser eq null}">
                                         <div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
@@ -681,7 +685,8 @@
                         <c:set var="qnasi" value="${countqna}" />
                         <%
                             int qnasize = (int)pageContext.getAttribute("qnasi");
-                            int qnapage = (qnasize/5)+1;
+                        	int p=qnasize/5;
+                            int qnapage = (int)Math.ceil(p);
                         %>
                             <li class="page-item"><a class="page-link" 
                             onClick="prevqna(${countqna})">prev</a></li>
@@ -692,7 +697,6 @@
                                     <li class="page-item"><a class="page-link" 
                                     onClick="qnapage(<%=qno%>)"><%=qno%></a></li>
                                 <%
-                                	System.out.println(qno);
                                     }
                                 %>
                             <li class="page-item"><a class="page-link" 
@@ -736,11 +740,38 @@ $('.accordian-body').on('show.bs.collapse', function () {
     <script src="/js/clean-blog.js"></script>
     
 <script>
+function updateclsstat() {
+
+    swal({
+        title: "삭제 하시겠습니까?",
+        text: "삭제한 게시물은 복구할 수 없습니다.",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    }).then((willDelete) => {
+        var cno = ${detailclass.no};
+        var stat = 'N';
+        
+        $.ajax({
+            type : "POST" ,
+            data : {
+                "no" : cno ,
+                "stat" : stat
+            },
+            url : "updateclsstat.do" , 
+            success : function(){
+                swal({
+                    text : "삭제되었습니다.",
+                    button : "확인",
+                })
+            }
+        })
+  });
+}
+
 function prev(pano) {
     console.log(pano);
     
-    var pagebu = (pano/5)+1;
-    var currectpage = <% request.getParameter("pageNo"); %>
     console.log(pagebu);
     console.log(currectpage);
     
@@ -818,14 +849,19 @@ function addqna(no) {
 	        		html +=' <c:set var="qnasi" value="${countqna}" />'
 	        		html +='    <tr data-toggle="collapse" '
 	        		html +='    data-target="#demo1-'+i+'" class="accordion-toggle row">'
-	        		html +='        <!-- <td class="col-lg-1" scope="row" id="qna_th"></td> -->'
+	        		html +='        <%-- <td class="col-lg-1" scope="row" id="qna_th">'+i+'</td> --%>'
 	        		html +='        <td class="col-lg-2">'+qnatype+'</td>'
 	        				         	if(qnaanser == null){
 	        		html +='            <td class="col-lg-2">미완료</td>'
 	        						  	}else{
 	        		html +='            <td class="col-lg-2">완료</td>'
 	        							}
-	        		html +='        <td class="col-lg-3">'+qnatitl+'</td>'
+                            if(qnatitl.length > 8) {
+                            var longtitl = qnatitl.substring(0, 7);
+                    html +=' <td class="col-lg-3">'+longtitl+'..</td>'
+                            } else {
+                    html +=' <td class="col-lg-3">'+qnatitl+'</td>'
+                            }
 	        		html +='        <td class="col-lg-2">'+qnanick+'</td>'
 	        		html +='        <td class="col-lg-2">'+qnargdt+'</td>'
 	        		html +='    </tr>'
@@ -918,17 +954,37 @@ function answerins(no,clsno,qno) {
 	        		var qnanick = data[i].mentee.nick;
 	        		var countqn = ${countqna};
 	        		
+					qnargdt = new Date();
+	        		
+	        		var dd= qnargdt.getDate();
+	        		var mm= qnargdt.getMonth();
+	        		var yy= qnargdt.getFullYear();
+	        		
+	        		if( dd < 10){
+	        		    dd = '0' + dd;
+	        		}
+	        		if( mm < 10){
+	        		    mm='0' +mm;
+	        		}
+	        		
+	        		qnargdt = yy+'-'+mm+'-'+dd;
+	        		
 	        		html +=' <c:set var="qnasi" value="${countqna}" />'
 	        		html +='    <tr data-toggle="collapse" '
 	        		html +='    data-target="#demo1-'+i+'" class="accordion-toggle row">'
-	        		html +='        <!-- <td class="col-lg-1" scope="row" id="qna_th"></td> -->'
+	        		html +='        <%-- <td class="col-lg-1" scope="row" id="qna_th">'+i+'</td> --%>'
 	        		html +='        <td class="col-lg-2">'+qnatype+'</td>'
 	        				         	if(qnaanser == null){
 	        		html +='            <td class="col-lg-2">미완료</td>'
 	        						  	}else{
 	        		html +='            <td class="col-lg-2">완료</td>'
 	        							}
-	        		html +='        <td class="col-lg-3">'+qnatitl+'</td>'
+                    		if(qnatitl.length > 8) {
+	                        var longtitl = qnatitl.substring(0, 7);
+	                html +=' <td class="col-lg-3">'+longtitl+'..</td>'
+	                        } else {
+	                html +=' <td class="col-lg-3">'+qnatitl+'</td>'
+	                        }
 	        		html +='        <td class="col-lg-2">'+qnanick+'</td>'
 	        		html +='        <td class="col-lg-2">'+qnargdt+'</td>'
 	        		html +='    </tr>'
@@ -1047,10 +1103,10 @@ function repins(no) { /* 후기(댓글) 추가버튼 */
 	        		 html +='                style =" margin-left:10px; width : 500px; display: none;"></textarea>'
 	        		     		if("${sessionScope.loginUser}" == ""){
 	        		 html +='         <button type="button" onClick="deleterepnull()"'
-	        		 html +='      class="delebtn" id="delebtn'+i+'">삭제</button>'
+	        		 html +='      class="delebtn btn btn-danger" id="delebtn'+i+'">삭제</button>'
 	        		     		} else {
 	        		 html +='      <button type="button" data-toggle="modal" data-target="#deleteModal_'+rno+'"'
-	        		 html +='      class="delebtn" id="delebtn'+i+'">삭제</button>'
+	        		 html +='      class="delebtn btn btn-danger" id="delebtn'+i+'">삭제</button>'
 	        		     		}
 	        		 html +='             <div class="modal fade" id="deleteModal_'+rno+'" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">'
 	        		 html +='               <div class="modal-dialog">'
@@ -1070,10 +1126,10 @@ function repins(no) { /* 후기(댓글) 추가버튼 */
 	        		 html +='               </div>'
 	        		 html +='              </div>'
 	        		 			if("${sessionScope.loginUser}" == ""){
-	        		 html +='               <button type="button" class="edbtn" id="edbtn'+i+'"' 
+	        		 html +='               <button type="button" class="edbtn btn btn-warning" id="edbtn'+i+'"' 
 	        		 html +='      onClick="deleterepnull()" >수정</button>'
 	        		 			} else {
-	        		 html +='             <button type="button" class="edbtn" id="edbtn'+i+'"' 
+	        		 html +='             <button type="button" class="edbtn btn btn-warning" id="edbtn'+i+'"' 
 	        		 html +='     onClick="updarep('+no+' , '+rno+' , '+meno+' ,'+i+');" >수정</button>'
 	        		 			}
 	        		 html +='     <button type="button" class="updabtn" id="updabtn'+i+'" data-toggle="modal"' 
@@ -1115,7 +1171,6 @@ function repins(no) { /* 후기(댓글) 추가버튼 */
 function reppage(pno) {
     var cno = ${detailclass.no};
     var replist = $('div#replist');
-    var no = ${sessionScope.loginUser.no};
     
     $.ajax({
         type : "POST",
@@ -1144,10 +1199,10 @@ function reppage(pno) {
 	   		 html +='                style =" margin-left:10px; width : 500px; display: none;"></textarea>'
 	   		     		if("${sessionScope.loginUser}" == ""){
 	   		 html +='         <button type="button" onClick="deleterepnull()"'
-	   		 html +='      class="delebtn" id="delebtn'+i+'">삭제</button>'
+	   		 html +='      class="delebtn btn btn-danger" id="delebtn'+i+'">삭제</button>'
 	   		     		} else {
 	   		 html +='      <button type="button" data-toggle="modal" data-target="#deleteModal_'+rno+'"'
-	   		 html +='      class="delebtn" id="delebtn'+i+'">삭제</button>'
+	   		 html +='      class="delebtn btn btn-danger" id="delebtn'+i+'">삭제</button>'
 	   		     		}
 	   		 html +='             <div class="modal fade" id="deleteModal_'+rno+'" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">'
 	   		 html +='               <div class="modal-dialog">'
@@ -1159,7 +1214,7 @@ function reppage(pno) {
 	   		 html +='                     <div class="modal-body">'
 	   		 html +='                          <form action="detail?no='+cno+'" method="post">'
 	   		 html +='                           <button type="button" class="btn btn-default" data-dismiss="modal"' 
-	   		 html +='                                 onClick="delerep('+no+' , '+rno+', '+meno+');">삭제하기</button>'
+	   		 html +='                                 onClick="delerep(${sessionScope.loginUser.no} , '+rno+', '+meno+');">삭제하기</button>'
 	   		 html +='                           <button type="button" class="btn btn-default" data-dismiss="modal"  role="button">취소</button>'
 	   		 html +='                         </form>'
 	   		 html +='                     </div>'
@@ -1167,11 +1222,11 @@ function reppage(pno) {
 	   		 html +='               </div>'
 	   		 html +='              </div>'
 	   		 			if("${sessionScope.loginUser}" == ""){
-	   		 html +='               <button type="button" class="edbtn" id="edbtn'+i+'"' 
+	   		 html +='               <button type="button" class="edbtn btn btn-warning" id="edbtn'+i+'"' 
 	   		 html +='      onClick="deleterepnull()" >수정</button>'
 	   		 			} else {
-	   		 html +='             <button type="button" class="edbtn" id="edbtn'+i+'"' 
-	   		 html +='     onClick="updarep('+no+' , '+rno+' , '+meno+' ,'+i+');" >수정</button>'
+	   		 html +='             <button type="button" class="edbtn btn btn-warning" id="edbtn'+i+'"' 
+	   		 html +='     onClick="updarep(${sessionScope.loginUser.no} , '+rno+' , '+meno+' ,'+i+');" >수정</button>'
 	   		 			}
 	   		 html +='     <button type="button" class="updabtn" id="updabtn'+i+'" data-toggle="modal"' 
 	   		 html +='      data-target="#updateModal_'+rno+'"' 
@@ -1186,7 +1241,7 @@ function reppage(pno) {
 	   		 html +='                    <div class="modal-body">'
 	   		 html +='                         <form action="detail?no='+cno+'" method="post">'
 	   		 html +='                           <button type="button" class="btn btn-default" data-dismiss="modal"'
-	   		 html +='                                  onClick="updabtn('+no+','+rno+' , '+i+')" >수정하기</button>'
+	   		 html +='                                  onClick="updabtn(${sessionScope.loginUser.no},'+rno+' , '+i+')" >수정하기</button>'
 	   		 html +='                           <button type="button" class="btn btn-default" data-dismiss="modal" role="button"'
 	   		 html +='                           onClick="updano('+i+')">취소</button>'
 	   		 html +='                         </form>'
@@ -1221,19 +1276,14 @@ function qnapage(qno) {
     $.ajax({
            type : "POST" ,
            data : {
-               "no" : qno ,
+               "no" : cno ,
                "qnapageNo" : qno
            },
-           url : "ansupdate.do",
+           url : "qnapage.do",
            success : function(data) {
-               swal({
-                   text : "해당후기에 해당하는 답변이 등록되었습니다",
-                   icon : "success",
-                   button : "확인",
-                 })
                  var html ="";
                for(var i in data) {
-                   var cqno = data[i].no;
+                var cqno = data[i].no;
         		var qnatitl = data[i].titl;
         		var qnatype = data[i].type;
         		var qnargdt = data[i].rgdt;
@@ -1242,17 +1292,37 @@ function qnapage(qno) {
         		var qnanick = data[i].mentee.nick;
         		var countqn = ${countqna};
         		
+        		qnargdt = new Date();
+        		
+        		var dd= qnargdt.getDate();
+        		var mm= qnargdt.getMonth();
+        		var yy= qnargdt.getFullYear();
+        		
+        		if( dd < 10){
+        		    dd = '0' + dd;
+        		}
+        		if( mm < 10){
+        		    mm='0' +mm;
+        		}
+        		
+        		qnargdt = yy+'-'+mm+'-'+dd;
+        		
         		html +=' <c:set var="qnasi" value="${countqna}" />'
         		html +='    <tr data-toggle="collapse" '
         		html +='    data-target="#demo1-'+i+'" class="accordion-toggle row">'
-        		html +='        <!-- <td class="col-lg-1" scope="row" id="qna_th"></td> -->'
+        		html +='        <%-- <td class="col-lg-1" scope="row" id="qna_th">'+i+'</td> --%>'
         		html +='        <td class="col-lg-2">'+qnatype+'</td>'
         				         	if(qnaanser == null){
         		html +='            <td class="col-lg-2">미완료</td>'
         						  	}else{
         		html +='            <td class="col-lg-2">완료</td>'
         							}
-        		html +='        <td class="col-lg-3">'+qnatitl+'</td>'
+                		if(qnatitl.length > 8) {
+	                    var longtitl = qnatitl.substring(0, 7);
+	            html +=' <td class="col-lg-3">'+longtitl+'..</td>'
+	                    } else {
+	            html +=' <td class="col-lg-3">'+qnatitl+'</td>'
+	                    }
         		html +='        <td class="col-lg-2">'+qnanick+'</td>'
         		html +='        <td class="col-lg-2">'+qnargdt+'</td>'
         		html +='    </tr>'
@@ -1298,14 +1368,14 @@ function qnapage(qno) {
                }
                qnatablelist.html(html);
            },error : function(error,status){
-               swal({
-                   text : "잠시후에 페이지가 이동됩니다.",
-                   button : "확인",
-                 })
-            }
-        });
-    }
+           swal({
+               text : "잠시후에 페이지가 이동됩니다.",
+               button : "확인",
+             })
+        }
+    });
 }
+
 
 /* no:${sessionScope.loginUser.no} , rno : ${r.no} , repmeno :  */
 function delerep(no , rno , repmeno){ /* 댓글 삭제 버튼 */
@@ -1350,10 +1420,10 @@ function delerep(no , rno , repmeno){ /* 댓글 삭제 버튼 */
 	        		 html +='                style =" margin-left:10px; width : 500px; display: none;"></textarea>'
 	        		     if("${sessionScope.loginUser}" == ""){
 	        		 html +='         <button type="button" onClick="deleterepnull()"'
-	        		 html +='      class="delebtn" id="delebtn'+i+'">삭제</button>'
+	        		 html +='      class="delebtn btn btn-danger" id="delebtn'+i+'">삭제</button>'
 	        		     } else {
 	        		 html +='      <button type="button" data-toggle="modal" data-target="#deleteModal_'+rno+'"'
-	        		 html +='      class="delebtn" id="delebtn'+i+'">삭제</button>'
+	        		 html +='      class="delebtn btn btn-danger" id="delebtn'+i+'">삭제</button>'
 	        		     }
 	        		 html +='             <div class="modal fade" id="deleteModal_'+rno+'" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">'
 	        		 html +='               <div class="modal-dialog">'
@@ -1373,10 +1443,10 @@ function delerep(no , rno , repmeno){ /* 댓글 삭제 버튼 */
 	        		 html +='               </div>'
 	        		 html +='              </div>'
 	        		 	if("${sessionScope.loginUser}" == ""){
-	        		 html +='               <button type="button" class="edbtn" id="edbtn'+i+'"' 
+	        		 html +='               <button type="button" class="edbtn btn btn-warning" id="edbtn'+i+'"' 
 	        		 html +='      onClick="deleterepnull()" >수정</button>'
 	        		 	} else {
-	        		 html +='             <button type="button" class="edbtn" id="edbtn'+i+'"' 
+	        		 html +='             <button type="button" class="edbtn btn btn-warning" id="edbtn'+i+'"' 
 	        		 html +='     onClick="updarep('+no+' , '+rno+' , '+meno+' ,'+i+');" >수정</button>'
 	        		 	}
 	        		 html +='     <button type="button" class="updabtn" id="updabtn'+i+'" data-toggle="modal"' 
@@ -1553,10 +1623,10 @@ function updabtn(sessionno,rno , teno) { /* 회원 인식해서 댓글 수정해
 	        		 html +='                style =" margin-left:10px; width : 500px; display: none;"></textarea>'
 	        		     	if("${sessionScope.loginUser}" == ""){
 	        		 html +='         <button type="button" onClick="deleterepnull()"'
-	        		 html +='      class="delebtn" id="delebtn'+i+'">삭제</button>'
+	        		 html +='      class="delebtn btn btn-danger" id="delebtn'+i+'">삭제</button>'
 	        		     	} else {
 	        		 html +='      <button type="button" data-toggle="modal" data-target="#deleteModal_'+rno+'"'
-	        		 html +='      class="delebtn" id="delebtn'+i+'">삭제</button>'
+	        		 html +='      class="delebtn btn btn-danger" id="delebtn'+i+'">삭제</button>'
 	        		     	}
 	        		 html +='             <div class="modal fade" id="deleteModal_'+rno+'" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">'
 	        		 html +='               <div class="modal-dialog">'
@@ -1576,10 +1646,10 @@ function updabtn(sessionno,rno , teno) { /* 회원 인식해서 댓글 수정해
 	        		 html +='               </div>'
 	        		 html +='              </div>'
 	        		 	if("${sessionScope.loginUser}" == ""){
-	        		 html +='               <button type="button" class="edbtn" id="edbtn'+i+'"' 
+	        		 html +='               <button type="button" class="edbtn btn btn-warning" id="edbtn'+i+'"' 
 	        		 html +='      onClick="deleterepnull()" >수정</button>'
 	        		 	} else {
-	        		 html +='             <button type="button" class="edbtn" id="edbtn'+i+'"' 
+	        		 html +='             <button type="button" class="edbtn btn btn-warning" id="edbtn'+i+'"' 
 	        		 html +='     onClick="updarep('+sessionno+' , '+rno+' , '+meno+' ,'+i+');" >수정</button>'
 	        		 	}
 	        		 html +='     <button type="button" class="updabtn" id="updabtn'+i+'" data-toggle="modal"' 
@@ -1624,7 +1694,7 @@ function updabtn(sessionno,rno , teno) { /* 회원 인식해서 댓글 수정해
  var stmnActivateSpeed = 35; //스크롤을 인식하는 딜레이 (숫자가 클수록 느리게 인식)
  var stmnScrollSpeed = 20; //스크롤 속도 (클수록 느림)
  var stmnTimer; 
- var stmnsub = 300; // stmtEndPoint 맞춰줄 때 쓴다.
+ var stmnsub = 230; // stmtEndPoint 맞춰줄 때 쓴다.
  
  function RefreshStaticMenu() { 
   var stmnStartPoint, stmnEndPoint; 
@@ -1851,7 +1921,7 @@ function clsBaskt(no) {
 
 </script>
 <script>
-function setLike(evt,cno){
+function setLike(evt,cno,obj){
     evt.preventDefault();
     if('${sessionScope.loginUser}' != ''){
         $.ajax({
@@ -1867,6 +1937,8 @@ function setLike(evt,cno){
                     icon : "success",
                     button : "확인",
                   })
+                  $(obj).attr('class','fas fa-star');
+                $(obj).css("color","#FFB53C");
                 /* location.href="detail?no="+${detailclass.no}; */
             },error : function(error,status){
                 swal({

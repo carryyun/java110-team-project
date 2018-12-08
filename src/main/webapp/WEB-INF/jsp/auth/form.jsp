@@ -203,7 +203,10 @@ function submitbtnClick(){
 					 button:"확인"
 				  });
 			}else if(data == 1){
-				location.href="../mainpage/mainpage";
+			
+			    /* location.href="../mainpage/mainpage"; */
+			    location.href = document.referrer;/* 뒤로가기 후 새로고침 */
+			    
 			}
 		}
 	});
@@ -212,6 +215,7 @@ function submitbtnClick(){
 
 function mainhome(){
     location.href="/app/mainpage/mainpage";
+   
 }
 </script>
  <!-- Kakao.Auth.logout(function () {  alert("카카오로그아웃");}); -->

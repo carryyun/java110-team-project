@@ -1,5 +1,6 @@
 <%@page import="bitcamp.java110.cms.domain.Mentee"%>
 <%@page import="bitcamp.java110.cms.domain.Mentor"%>
+<%@page import="bitcamp.java110.cms.domain.Cert"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -32,26 +33,26 @@
     <link rel="stylesheet" href="/css/mypagecss/button/switchbtn.css">
     <link rel="stylesheet" href="/css/mypagecss/button/flipbtn.css">
     <link rel="stylesheet" href="/css/mypagecss/button/togglebtn.css">
-    <!-- <link rel="stylesheet" href="/css/mypagecss/button/slider.css"> -->
     
     <!--  sweetalert   -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js "></script>
     <!-- Animate.css -->
     <link rel="stylesheet" href="/css/mypagecss/animate.css">
     <!-- Bootstrap  -->
     <link href="/css/mypagecss/bootstrap.css" rel="stylesheet">
     <!-- Theme style  -->
     <link rel="stylesheet" href="/css/mypagecss/style.css">
+     <!-- 멘토신청 popup css  -->
+    <link href="/css/mypagecss/popup.css" rel="stylesheet">
+    
     <!-- J Query -->
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <!-- Load JS-->
-    <script src=/js/mypagejs/hideshow.js></script> 
-   
+    <script src=/js/mypagejs/hideshow.js></script>
+    <!-- 멘토신청 popup JS-->
+  <!--   <script src=/js/mypagejs/popup.js></script>  -->
         
-        
-      
-    
 
     <script>
     
@@ -106,7 +107,8 @@
                 <div class="text-center">
                     <div class="author-img" style="background-image: url(${mentee.phot};"></div>
                     <h1 id="colorlib-logo"><a href="index.html">${mentee.name}</a></h1>
-                    <span class="position"><a href="">MIT Universe.</a><br>{멘토자격증}</span>
+                    <span id="stat" name="${mentee.mtstat}"class="position"><B>멘토 경력 ${mentor.carr} 년</B><br></span>
+                    
                 </div>
 
                 <nav id="colorlib-main-menu" role="navigation" class="navbar">
@@ -122,11 +124,7 @@
                     </div>
                 </nav>
 
-                <div class="colorlib-footer">
-                    <p><small><a href="">Haru</a></small></p>
-
-                </div>
-
+                
             </aside>
 
             <div id="colorlib-main">
@@ -217,7 +215,6 @@
       <input type="radio" id="btn-menu4-1" name="switch_3" value="1" onclick="div_OnOff(this.value);"     checked/>
       <label for="btn-menu4-1">1:1문의</label>
       
-
       <input type="radio" id="2ndswitch" name="switch_3" value="2" onclick="div_OnOff(this.value);" />
       <label class="3bro" for="2ndswitch" >클래스</label>
       
@@ -306,6 +303,8 @@
                                  <hr color="black"    >
                    
                     <div id="menu5"></div>
+                    <div id="menu5disable"></div>
+                    <div id="menu5disable2"></div>
                         
                     </div>
                     </div>

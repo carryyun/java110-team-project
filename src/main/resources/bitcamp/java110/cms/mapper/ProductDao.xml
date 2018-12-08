@@ -73,6 +73,19 @@
         <result column="me2bas"     property="mentee2.bas_addr"/>
         <result column="me2det"     property="mentee2.det_addr"/>
     </resultMap>
+    
+    <select id="hotItemlist" resultMap="productMap">
+    	SELECT PD.ptno, PD.titl
+ 		  FROM (SELECT ptno, COUNT(*) as cnt
+  		  FROM p_prdt_order P
+      GROUP BY ptno) CNT, p_prdt PD
+         WHERE PD.ptno=CNT.ptno
+      ORDER BY cnt DESC
+    </select>
+
+
+
+
 
     
 <sql id="selectAll">
@@ -123,6 +136,8 @@ ON
     order by 
         ptno DESC
     </select>
+    
+  
     
     <select id="findAllByStno" resultMap="productMap" parameterType="map">
     <include refid="selectAll" />
@@ -343,10 +358,11 @@ where
         <if test="phot!=null">phot= #{phot},</if>
         <if test="ctno>0">ctno= #{ctno},</if>
         <if test="stno>0">stno= #{stno},</if>
+        <if test="star>0">star= #{star},</if>
     </set>
         where
             ptno=#{no}
-    </update>
+    </update> 
     
     <update id="updatestat" parameterType="product">
         UPDATE 

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 <style>
 .modal-header .close{
@@ -266,9 +267,10 @@
                                 <B>닉네임</B>&nbsp;
                                 <input id="text1" type="text" name="닉네임" value="&nbsp;${mentee.nick}" readonly style="width:140px; border:none; ">
                                 </div>
-                                <div id="wrapper" style=" position: relative; right: -50px; bottom: -60px">
+                                <div id="wrapper" class="pop" style=" position: relative; right: -50px; bottom: -60px">
                                 <button class="fancy">멘토신청</button>
-                                </div>
+                                </div> 
+                                  
                             </div>
                           
                          <div class="toggle toggle--knob" style="position:absolute; right:30px; top:0; ">
@@ -348,7 +350,7 @@
                     <div class="services  color-3" >
                         
                             <div class=profile-title>
-                                <h3>비밀번호 변경</h3>
+                                <h3>연락처 변경</h3>
                             </div>
                             <div class="profile-contents" style="height: 50px;" >
                                 <div class="title1" style="text-align:left;" >
@@ -432,8 +434,131 @@
                 </div>
                 
                 
+                 <!-- popup start  -->
+                 
+                  <div class="popup">
+ 
+  <div class="header">
+    <div class="title"><h3>멘토 신청</h3> </div>
+    <div class="icon"><i class="fa fa-send" title="Send"></i></div>
+  </div>
+  
+   <div class="content"> 
+  <form method="post"  action="imgupload" enctype="multipart/form-data" >
+    <input type="hidden" name="no" value="${sessionScope.loginUser.no}">
+    <img src="${mentee.phot}">
+       
+    <div class="infobox">
+        이름&nbsp;&nbsp;: ${mentee.name}<br>
+        닉네임&nbsp;&nbsp;&nbsp;: ${mentee.nick}<br>
+        휴대전화 : ${mentee.phone}<br>
+        출금은행 : ${mentee.bkname}<br>
+        계좌번호 : ${mentee.bkno}<br>
+        
+    <hr>
+    
+    <div class="nope" >
+    
+<select name="btno" id="soflow" >
+  <option>분야 선택</option>
+   <option>5</option>
+
+
+</select>
+
+<select name="carrin"  id="soflow2">
+  <option>경력 선택</option>
+     <%
+                  String Result = "";
+                  
+                  for (int i = 1; i <= 20; i++){
+                           if (i < 20){
+                                   Result += "<option>"+i+"년"+"</option>";
+                           }
+                           else{
+                                   Result += "<option>"+i+"년이상"+"</option>" ;
+                           }
+                  }
+%>
+                     
+ <%= Result  %>   
+        
+
+</select>
+</div>
+    
+    </div>
+ 
+  
+  
+ 
+  <!-- upload file1 code-->
+<div id="headbox" >
+<h3>작품</h3>
+ </div>
+ 
+  <div class="drop">
+    <div class="cont">
+      <i class="fa fa-cloud-upload"></i>
+      <div class="tit">
+        Drag & Drop
+      </div>
+      <div class="desc">
+        당신의 작품을 보여주세요!
+        <br> (이미지파일을 업로드해주세요)
+      </div>
+      <div class="browse">
+        Haru
+      </div>
+    </div>
+    <output id="list"></output><input id="files"  name="fileUpload1" type="file" accept="image/*" multiple/>
+  </div>
+  
+  <!-- upload file1 code-->
+  
+    <!-- upload file2 code-->
+<div id="headbox2" >
+<h3>자격증</h3>
+ </div>
+ 
+  <div class="drop2">
+    <div class="cont">
+      <i class="fa fa-cloud-upload"></i>
+      <div class="tit">
+        Drag & Drop
+      </div>
+      <div class="desc">
+        멘토로써의 자격을 보여주세요!
+        <br> (이미지파일을 업로드해주세요)
+      </div>
+      <div class="browse">
+        Haru
+      </div>
+    </div>
+    <output id="list2"></output><input id="files2"  name="fileUpload2" type="file" accept="image/*" multiple/>
+  </div>
+  
+  <!-- upload file2 code-->
+ 
+ 
+ <button id="btn-sub" class="btn btn-warning" type="submit" >신청</button>
+ <button id="btn-cancle" class="btn btn-danger" type="button">취소</button>
+
+  
+ 
+ 
+  
+  
+ </form>
+</div>
+  
+</div>
+
+<!-- popup end  -->
+                
                 
                 <div class="leave" >
+
                    		 회원탈퇴를 하시려면<a href="#withdrawal" class="btn-leave" data-toggle="modal" data-target="#withdrawal">여기</a>를 누르세요
                 </div>
                 
@@ -458,4 +583,127 @@
             
             
             
+            <script>
+            
+            $("#btn-cancle").click(function(){
+                $(".pop").removeClass("hide");
+                return $(".popup").removeClass("show");
+              });
+            
+            
+            (function() {
+                $(".pop").click(function(){
+                  $(".pop").addClass("hide");
+                  return $(".popup").addClass("show");
+                });
+
+                $(".icon i").click(function(){
+                  $(".pop").removeClass("hide");
+                  return $(".popup").removeClass("show");
+                });
+
+              }).call(this);
+
+             
+
+
+              /* upalod js*/
+
+              // File Upload
+              var drop = $("input");
+drop.on('dragenter', function (e) {
+  $(".drop").css({
+    "border": "4px dashed #09f",
+    "background": "rgba(0, 153, 255, .05)"
+  });
+  $(".cont").css({
+    "color": "#09f"
+  });
+}).on('dragleave dragend mouseout drop', function (e) {
+  $(".drop").css({
+    "border": "3px dashed #DADFE3",
+    "background": "transparent"
+  });
+  $(".cont").css({
+    "color": "#8E99A5"
+  });
+});
+
+
+
+function handleFileSelect(evt) {
+  var files = evt.target.files; // FileList object
+  
+  // Loop through the FileList and render image files as thumbnails.
+  for (var i = 0, f; f = files[i]; i++) {
+
+    // Only process image files.
+    if (!f.type.match('image.*')) {
+      continue;
+    }
+
+    var reader = new FileReader();
+
+    // Closure to capture the file information.
+    reader.onload = (function(theFile) {
+      return function(e) {
+        // Render thumbnail.
+        var span = document.createElement('span');
+        span.innerHTML = ['<img class="thumb" src="', e.target.result,
+                          '" title="', escape(theFile.name), '"/>'].join('');
+        document.getElementById('list').insertBefore(span, null);
+   
+      };
+    })(f);
+
+    // Read in the image file as a data URL.
+    reader.readAsDataURL(f);
+  }
+ 
+  
+  
+}
+
+$('#files').change(handleFileSelect);
+
+
+function handleFileSelect2(evt2) {
+    var files = evt2.target.files; // FileList object
+    
+    // Loop through the FileList and render image files as thumbnails.
+    for (var i = 0, f; f = files[i]; i++) {
+
+      // Only process image files.
+      if (!f.type.match('image.*')) {
+        continue;
+      }
+
+      var reader = new FileReader();
+
+      // Closure to capture the file information.
+      reader.onload = (function(theFile) {
+        return function(e) {
+          // Render thumbnail.
+          var span = document.createElement('span');
+          span.innerHTML = ['<img class="thumb2" src="', e.target.result,
+                            '" title="', escape(theFile.name), '"/>'].join('');
+          document.getElementById('list2').insertBefore(span, null);
+     
+        };
+      })(f);
+
+      // Read in the image file as a data URL.
+      reader.readAsDataURL(f);
+    }
+   
+    
+  }
+
+  $('#files2').change(handleFileSelect2);
+
+             
+
+
+
+            </script>
   
