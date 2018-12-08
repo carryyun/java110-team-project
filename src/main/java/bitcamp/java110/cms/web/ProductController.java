@@ -50,7 +50,7 @@ import bitcamp.java110.cms.service.ProductRepService;
 import bitcamp.java110.cms.service.ProductService;
 import bitcamp.java110.cms.service.SmallTagService;
 
-@Controller
+@Controller 
 @RequestMapping("/product")
 public class ProductController {
 
