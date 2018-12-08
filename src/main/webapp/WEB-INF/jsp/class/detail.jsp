@@ -3,7 +3,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
 <html>
 <head>
 <meta charset="utf-8">
@@ -75,8 +76,8 @@
                 <h2>클래스 상세보기
                 <c:choose>
                 	<c:when test="${sessionScope.loginUser.no eq detailclass.mentee.no}">
-                		<a onclick="updateclsstat()" class="btn btn-lg btn-danger col-lg-1 py-1" 
-                		style="float : right; color:white; height: 38px;">삭제</a>
+                		<a onclick="updateclsstat()" class="btn btn-lg btn-danger col-lg-1 py-1 text-center" 
+                		style="float : right; color:white; height: 38px; text-align:center;">삭제</a>
                 	</c:when>
                 	<c:otherwise>
                 	</c:otherwise>
@@ -193,7 +194,7 @@
                                     <dd style="font-size: 1rem;">${detailclass.middleTag.name}</dd>
                                 </dl>
                                 <dl class="param param-feature text-left">
-                                    ${detailclass.pric}원
+                                    <fmt:formatNumber value="${detailclass.pric}" groupingUsed="true"/>원
                                 </dl>
 
                                 <dl class="param param-feature text-left">
@@ -299,9 +300,9 @@
                     <div>
                         <img style = "width:200px; height:200px; float:left;"src="${detailclass.mentee.phot}" alt="${detailclass.mentee.phot}">
                         <br><br><br>
-                        <div class = "shortinfo"><strong>금액</strong><div class="inf">${detailclass.pric}원</div></div>
+                        <div class = "shortinfo"><strong>금액</strong><div class="inf"><fmt:formatNumber value="${detailclass.pric}" groupingUsed="true"/>원</div></div>
                         <div class = "shortinfo"><strong>총 수업시간</strong><div class="inf">${detailclass.time}시간</div></div>
-                        <div class = "shortinfo"><strong>모집인원</strong><div class="inf">${detailclass.capa}명</div></div>
+                        <div class = "shortinfo"><strong>모집인원</strong><div class="inf"><fmt:formatNumber value="${detailclass.capa}" groupingUsed="true"/>명</div></div>
                     </div>
                     <div style="margin-left : 56px;"><strong>멘토 : ${detailclass.mentee.nick}</strong></div>
                 </div>
@@ -386,7 +387,8 @@
 	                               		<div class="col-md-12 col-lg-12 text-right" style="vertical-align: middle;">
 	                                       <button id="repbtn" type="button" onClick="repins(${sessionScope.loginUser.no});" 
 	                                       class="btn btn-primary btn-md"
-	                                           style="background-color: #606066; color: #ffffff">등록</button>
+	                                           style="background-color: #606066; color: #ffffff;
+	                                           border : 1px solid #606066">등록</button>
 	                               		</div>
 	                             </td>
                         	</tr>
@@ -407,13 +409,13 @@
                                 <textarea class="repupda col-lg-9 media-body" id="repup${i.index}" rows="5" name="repup"
                                       style =" margin-left:10px; width : 500px; display: none;"></textarea>
                                 <c:choose>
-                                <c:when test="${sessionScope.loginUser eq null}">
-                                    <button type="button" onClick="deleterepnull()"
-                                 class="delebtn btn btn-danger" id="delebtn${i.index}">삭제</button>
+                                <c:when test="${sessionScope.loginUser.no eq r.meno}">
+                                	<button type="button" data-toggle="modal" data-target="#deleteModal_${r.no}"
+                                 class="delebtn btn btn-danger" id="delebtn${i.index}"
+                                 style="padding-right: 6px; padding-left: 6px; padding-top: 3px; padding-bottom: 3px;">삭제</button>
                                 </c:when>
                                 <c:otherwise>         
-                                <button type="button" data-toggle="modal" data-target="#deleteModal_${r.no}"
-                                 class="delebtn btn btn-danger" id="delebtn${i.index}">삭제</button>
+                               
                                  </c:otherwise>
                                  </c:choose>
                                 
@@ -438,19 +440,19 @@
                                         </div>
                                         
                                 <c:choose>
-                                    <c:when test="${sessionScope.loginUser eq null}">
+                                    <c:when test="${sessionScope.loginUser.no eq r.meno}">
                                         <button type="button" class="edbtn btn btn-warning" id="edbtn${i.index}" 
-                                onClick="deleterepnull()" >수정</button>
+                                onClick="updarep(${sessionScope.loginUser.no} , ${r.no} , ${r.meno} ,${i.index});"
+                                style="padding-right: 6px; padding-left: 6px; padding-top: 3px; padding-bottom: 3px; color:white; margin-left:3px;">수정</button>
                                     </c:when>
                                     <c:otherwise>
-                                        <button type="button" class="edbtn btn btn-warning" id="edbtn${i.index}" 
-                                onClick="updarep(${sessionScope.loginUser.no} , ${r.no} , ${r.meno} ,${i.index});" >수정</button>
+                                        
                                     </c:otherwise>
                                 </c:choose>
                                 
-                                <button type="button" class="updabtn" id="updabtn${i.index}" data-toggle="modal" 
+                                <button type="button" class="updabtn btn btn-warning" id="updabtn${i.index}" data-toggle="modal" 
                                 data-target="#updateModal_${r.no}" 
-                                 style="display:none;">수정완료</button>
+                                 style="display:none; padding-right: 6px; padding-left: 6px; padding-top: 3px; padding-bottom: 3px; color:white;">수정완료</button>
                                         <div class="modal fade" id="updateModal_${r.no}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                           <div class="modal-dialog">
                                             <div class="modal-content">
@@ -488,7 +490,7 @@
                                     for(int pno = 1; pno<=reppage; pno++){
                                 %>
                                     <li class="page-item"><a class="page-link" 
-                                    onClick="reppage(<%=pno%>)"><%=pno%></a></li>
+                                    onClick="reppage(${sessionScope.loginUser.no},<%=pno%>)"><%=pno%></a></li>
                                 <%
                                     }
                                 %>
@@ -752,7 +754,6 @@ function updateclsstat() {
     }).then((willDelete) => {
         var cno = ${detailclass.no};
         var stat = 'N';
-        
         $.ajax({
             type : "POST" ,
             data : {
@@ -1102,12 +1103,11 @@ function repins(no) { /* 후기(댓글) 추가버튼 */
 	        		 html +='     <div id="rcont'+i+'" class="col-lg-10 media-body">'+conts+'</div>'
 	        		 html +='     <textarea class="repupda col-lg-9 media-body" id="repup'+i+'" rows="5" name="repup"'
 	        		 html +='                style =" margin-left:10px; width : 500px; display: none;"></textarea>'
-	        		     		if("${sessionScope.loginUser}" == ""){
-	        		 html +='         <button type="button" onClick="deleterepnull()"'
-	        		 html +='      class="delebtn btn btn-danger" id="delebtn'+i+'">삭제</button>'
-	        		     		} else {
+	        		     		if(no == meno){
 	        		 html +='      <button type="button" data-toggle="modal" data-target="#deleteModal_'+rno+'"'
-	        		 html +='      class="delebtn btn btn-danger" id="delebtn'+i+'">삭제</button>'
+	        		 html +='      class="delebtn btn btn-danger" id="delebtn'+i+'" style="padding-right: 6px; padding-left: 6px; padding-top: 3px; padding-bottom: 3px;">삭제</button>'
+	        		     		} else {
+	        		 html +=''
 	        		     		}
 	        		 html +='             <div class="modal fade" id="deleteModal_'+rno+'" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">'
 	        		 html +='               <div class="modal-dialog">'
@@ -1126,16 +1126,15 @@ function repins(no) { /* 후기(댓글) 추가버튼 */
 	        		 html +='                 </div>'
 	        		 html +='               </div>'
 	        		 html +='              </div>'
-	        		 			if("${sessionScope.loginUser}" == ""){
-	        		 html +='               <button type="button" class="edbtn btn btn-warning" id="edbtn'+i+'"' 
-	        		 html +='      onClick="deleterepnull()" >수정</button>'
-	        		 			} else {
+	        		 			if(no == meno){
 	        		 html +='             <button type="button" class="edbtn btn btn-warning" id="edbtn'+i+'"' 
-	        		 html +='     onClick="updarep('+no+' , '+rno+' , '+meno+' ,'+i+');" >수정</button>'
+	        		 html +='     onClick="updarep('+no+' , '+rno+' , '+meno+' ,'+i+');" style="padding-right: 6px; padding-left: 6px; padding-top: 3px; padding-bottom: 3px; color:white; margin-left:3px;">수정</button>'
+	        		 			} else {
+	        		 html +=''
 	        		 			}
-	        		 html +='     <button type="button" class="updabtn" id="updabtn'+i+'" data-toggle="modal"' 
+	        		 html +='     <button type="button" class="updabtn btn btn-warning" id="updabtn'+i+'" data-toggle="modal"' 
 	        		 html +='      data-target="#updateModal_'+rno+'"' 
-	        		 html +='       style="display:none;">수정완료</button>'
+	        		 html +='       style="display:none; padding-right: 6px; padding-left: 6px; padding-top: 3px; padding-bottom: 3px; color:white;">수정완료</button>'
 	        		 html +='             <div class="modal fade" id="updateModal_'+rno+'" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">'
 	        		 html +='               <div class="modal-dialog">'
 	        		 html +='                 <div class="modal-content">'
@@ -1169,7 +1168,7 @@ function repins(no) { /* 후기(댓글) 추가버튼 */
     }
 }
 
-function reppage(pno) {
+function reppage(no,pno) {
     var cno = ${detailclass.no};
     var replist = $('div#replist');
     
@@ -1198,13 +1197,11 @@ function reppage(pno) {
 	   		 html +='     <div id="rcont'+i+'" class="col-lg-10 media-body">'+conts+'</div>'
 	   		 html +='     <textarea class="repupda col-lg-9 media-body" id="repup'+i+'" rows="5" name="repup"'
 	   		 html +='                style =" margin-left:10px; width : 500px; display: none;"></textarea>'
-	   		     		if("${sessionScope.loginUser}" == ""){
-	   		 html +='         <button type="button" onClick="deleterepnull()"'
-	   		 html +='      class="delebtn btn btn-danger" id="delebtn'+i+'">삭제</button>'
-	   		     		} else {
-	   		 html +='      <button type="button" data-toggle="modal" data-target="#deleteModal_'+rno+'"'
-	   		 html +='      class="delebtn btn btn-danger" id="delebtn'+i+'">삭제</button>'
-	   		     		}
+		     				if(no == meno){
+		     html +='      <button type="button" data-toggle="modal" data-target="#deleteModal_'+rno+'"'
+		     html +='      class="delebtn btn btn-danger" id="delebtn'+i+'" style="padding-right: 6px; padding-left: 6px; padding-top: 3px; padding-bottom: 3px;">삭제</button>'
+		     				}else {
+		        		    }
 	   		 html +='             <div class="modal fade" id="deleteModal_'+rno+'" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">'
 	   		 html +='               <div class="modal-dialog">'
 	   		 html +='                 <div class="modal-content">'
@@ -1222,16 +1219,14 @@ function reppage(pno) {
 	   		 html +='                 </div>'
 	   		 html +='               </div>'
 	   		 html +='              </div>'
-	   		 			if("${sessionScope.loginUser}" == ""){
-	   		 html +='               <button type="button" class="edbtn btn btn-warning" id="edbtn'+i+'"' 
-	   		 html +='      onClick="deleterepnull()" >수정</button>'
-	   		 			} else {
-	   		 html +='             <button type="button" class="edbtn btn btn-warning" id="edbtn'+i+'"' 
-	   		 html +='     onClick="updarep(${sessionScope.loginUser.no} , '+rno+' , '+meno+' ,'+i+');" >수정</button>'
-	   		 			}
-	   		 html +='     <button type="button" class="updabtn" id="updabtn'+i+'" data-toggle="modal"' 
+		 					if(no == meno){
+		     html +='             <button type="button" class="edbtn btn btn-warning" id="edbtn'+i+'"' 
+		     html +='     onClick="updarep('+no+' , '+rno+' , '+meno+' ,'+i+');" style="padding-right: 6px; padding-left: 6px; padding-top: 3px; padding-bottom: 3px; color:white; margin-left:3px;">수정</button>'
+		        		 	} else {
+		        		 	}
+	   		 html +='     <button type="button" class="updabtn btn btn-warning" id="updabtn'+i+'" data-toggle="modal"' 
 	   		 html +='      data-target="#updateModal_'+rno+'"' 
-	   		 html +='       style="display:none;">수정완료</button>'
+	   		 html +='       style="display:none; padding-right: 6px; padding-left: 6px; padding-top: 3px; padding-bottom: 3px; color:white;">수정완료</button>'
 	   		 html +='             <div class="modal fade" id="updateModal_'+rno+'" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">'
 	   		 html +='               <div class="modal-dialog">'
 	   		 html +='                 <div class="modal-content">'
@@ -1419,13 +1414,11 @@ function delerep(no , rno , repmeno){ /* 댓글 삭제 버튼 */
 	        		 html +='     <div id="rcont'+i+'" class="col-lg-10 media-body">'+conts+'</div>'
 	        		 html +='     <textarea class="repupda col-lg-9 media-body" id="repup'+i+'" rows="5" name="repup"'
 	        		 html +='                style =" margin-left:10px; width : 500px; display: none;"></textarea>'
-	        		     if("${sessionScope.loginUser}" == ""){
-	        		 html +='         <button type="button" onClick="deleterepnull()"'
-	        		 html +='      class="delebtn btn btn-danger" id="delebtn'+i+'">삭제</button>'
-	        		     } else {
-	        		 html +='      <button type="button" data-toggle="modal" data-target="#deleteModal_'+rno+'"'
-	        		 html +='      class="delebtn btn btn-danger" id="delebtn'+i+'">삭제</button>'
-	        		     }
+     		     					if(no == meno){
+     		         html +='      <button type="button" data-toggle="modal" data-target="#deleteModal_'+rno+'"'
+     		         html +='      class="delebtn btn btn-danger" id="delebtn'+i+'" style="padding-right: 6px; padding-left: 6px; padding-top: 3px; padding-bottom: 3px;">삭제</button>'
+     		        		     	} else {
+     		        		     	}
 	        		 html +='             <div class="modal fade" id="deleteModal_'+rno+'" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">'
 	        		 html +='               <div class="modal-dialog">'
 	        		 html +='                 <div class="modal-content">'
@@ -1443,16 +1436,14 @@ function delerep(no , rno , repmeno){ /* 댓글 삭제 버튼 */
 	        		 html +='                 </div>'
 	        		 html +='               </div>'
 	        		 html +='              </div>'
-	        		 	if("${sessionScope.loginUser}" == ""){
-	        		 html +='               <button type="button" class="edbtn btn btn-warning" id="edbtn'+i+'"' 
-	        		 html +='      onClick="deleterepnull()" >수정</button>'
-	        		 	} else {
-	        		 html +='             <button type="button" class="edbtn btn btn-warning" id="edbtn'+i+'"' 
-	        		 html +='     onClick="updarep('+no+' , '+rno+' , '+meno+' ,'+i+');" >수정</button>'
-	        		 	}
-	        		 html +='     <button type="button" class="updabtn" id="updabtn'+i+'" data-toggle="modal"' 
+		 								if(no == meno){
+		 			 html +='             <button type="button" class="edbtn btn btn-warning" id="edbtn'+i+'"' 
+		 			 html +='     onClick="updarep('+no+' , '+rno+' , '+meno+' ,'+i+');" style="padding-right: 6px; padding-left: 6px; padding-top: 3px; padding-bottom: 3px; color:white; margin-left:3px;">수정</button>'
+		 					        	} else {
+		 					        	}
+	        		 html +='     <button type="button" class="updabtn btn btn-warning" id="updabtn'+i+'" data-toggle="modal"' 
 	        		 html +='      data-target="#updateModal_'+rno+'"' 
-	        		 html +='       style="display:none;">수정완료</button>'
+	        		 html +='       style="display:none; padding-right: 6px; padding-left: 6px; padding-top: 3px; padding-bottom: 3px; color:white;">수정완료</button>'
 	        		 html +='             <div class="modal fade" id="updateModal_'+rno+'" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">'
 	        		 html +='               <div class="modal-dialog">'
 	        		 html +='                 <div class="modal-content">'
@@ -1622,13 +1613,11 @@ function updabtn(sessionno,rno , teno) { /* 회원 인식해서 댓글 수정해
 	        		 html +='     <div id="rcont'+i+'" class="col-lg-10 media-body">'+conts+'</div>'
 	        		 html +='     <textarea class="repupda col-lg-9 media-body" id="repup'+i+'" rows="5" name="repup"'
 	        		 html +='                style =" margin-left:10px; width : 500px; display: none;"></textarea>'
-	        		     	if("${sessionScope.loginUser}" == ""){
-	        		 html +='         <button type="button" onClick="deleterepnull()"'
-	        		 html +='      class="delebtn btn btn-danger" id="delebtn'+i+'">삭제</button>'
-	        		     	} else {
-	        		 html +='      <button type="button" data-toggle="modal" data-target="#deleteModal_'+rno+'"'
-	        		 html +='      class="delebtn btn btn-danger" id="delebtn'+i+'">삭제</button>'
-	        		     	}
+     		     						if(no == meno){
+     		         html +='      <button type="button" data-toggle="modal" data-target="#deleteModal_'+rno+'"'
+     		         html +='      class="delebtn btn btn-danger" id="delebtn'+i+'" style="padding-right: 6px; padding-left: 6px; padding-top: 3px; padding-bottom: 3px;">삭제</button>'
+     		        		     		} else {
+     		        		     		}
 	        		 html +='             <div class="modal fade" id="deleteModal_'+rno+'" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">'
 	        		 html +='               <div class="modal-dialog">'
 	        		 html +='                 <div class="modal-content">'
@@ -1646,16 +1635,14 @@ function updabtn(sessionno,rno , teno) { /* 회원 인식해서 댓글 수정해
 	        		 html +='                 </div>'
 	        		 html +='               </div>'
 	        		 html +='              </div>'
-	        		 	if("${sessionScope.loginUser}" == ""){
-	        		 html +='               <button type="button" class="edbtn btn btn-warning" id="edbtn'+i+'"' 
-	        		 html +='      onClick="deleterepnull()" >수정</button>'
-	        		 	} else {
-	        		 html +='             <button type="button" class="edbtn btn btn-warning" id="edbtn'+i+'"' 
-	        		 html +='     onClick="updarep('+sessionno+' , '+rno+' , '+meno+' ,'+i+');" >수정</button>'
-	        		 	}
-	        		 html +='     <button type="button" class="updabtn" id="updabtn'+i+'" data-toggle="modal"' 
+		 								if(no == meno){
+		 			 html +='             <button type="button" class="edbtn btn btn-warning" id="edbtn'+i+'"' 
+		 			 html +='     onClick="updarep('+no+' , '+rno+' , '+meno+' ,'+i+');" style="padding-right: 6px; padding-left: 6px; padding-top: 3px; padding-bottom: 3px; color:white; margin-left:3px;">수정</button>'
+		 					        	} else {
+		 					        	}
+	        		 html +='     <button type="button" class="updabtn btn btn-warning" id="updabtn'+i+'" data-toggle="modal"' 
 	        		 html +='      data-target="#updateModal_'+rno+'"' 
-	        		 html +='       style="display:none;">수정완료</button>'
+	        		 html +='       style="display:none; padding-right: 6px; padding-left: 6px; padding-top: 3px; padding-bottom: 3px; color:white;">수정완료</button>'
 	        		 html +='             <div class="modal fade" id="updateModal_'+rno+'" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">'
 	        		 html +='               <div class="modal-dialog">'
 	        		 html +='                 <div class="modal-content">'

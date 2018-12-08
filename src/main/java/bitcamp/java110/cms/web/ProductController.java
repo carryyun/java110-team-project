@@ -44,7 +44,7 @@ import bitcamp.java110.cms.service.ProductRepService;
 import bitcamp.java110.cms.service.ProductService;
 import bitcamp.java110.cms.service.SmallTagService;
 
-@Controller
+@Controller 
 @RequestMapping("/product")
 public class ProductController {
 
@@ -188,10 +188,7 @@ public class ProductController {
 
   @GetMapping("prdtQna")
   public void prdtQna() {
-
   }
-
-
 
   // 2018.11.28 수정 -> cert list 불러오기
   @RequestMapping(value = "getCertList.do", method = {RequestMethod.GET, RequestMethod.POST})

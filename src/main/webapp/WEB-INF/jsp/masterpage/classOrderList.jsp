@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -44,6 +45,13 @@
     vertical-align: middle;
     text-align: center
 }
+
+    button.note-btn.btn.btn-default.btn-sm{
+        font-size: 12px !important;
+    }
+    #mainNav .navbar-brand{
+        margin-bottom: 40px !important;
+    }
 </style>
 
 
@@ -203,7 +211,7 @@
                                                             class="text-center">${pl.mete2_nick}</td>
                                                         <!-- 판매자 -->
                                                         <td
-                                                            class="text-center">￦${pl.cls_pric}</td>
+                                                            class="text-center"><fmt:formatNumber value="${pl.cls_pric}" groupingUsed="true"/>원</td>
                                                         <!-- 가격 -->
                                                         <td
                                                             class="text-center bold">${pl.paydt}</td>
@@ -340,7 +348,7 @@
                                                                                 style="font-size: 20px;">가격:
                                                                             </span>
                                                                                 <span
-                                                                                class="pop-type">${pl.cls_pric}</span></td>
+                                                                                class="pop-type"><fmt:formatNumber value="${pl.cls_pric}" groupingUsed="true"/></span></td>
                                                                                 <td colspan="4"><span
                                                                                 style="font-size: 20px;">결제일:
                                                                             </span>
@@ -482,14 +490,12 @@ function checkItem(){
         $(document).ready(function() {
             $("div#footerCss").css("margin-top","0px");
             testtTop = $("#colorlib-aside").offset().top;
-console.log(testtTop);
         });
 
          function scroll_follow(id) {
             $(window).scroll(function() //스크롤이 움직일때마다 이벤트 발생
             {
                 var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
-                console.log(position);
                 if (position > 157) {
                     $(id).css("position", "absolute");
                     $(id).css("top", (position-157) + "px");

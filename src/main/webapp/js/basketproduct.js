@@ -3,6 +3,11 @@ $(document).ready(function () {
     /* Set rates + misc */
     var shippingRate = 0;
     var fadeTime = 100;
+    
+    function comma(str) {
+        str = String(str);
+        return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+    }
 
 
     /* Assign actions */
@@ -63,12 +68,13 @@ $(document).ready(function () {
 
     /* Update quantity */
     function updateQuantity(quantityInput) {
-        console.log(quantityInput);
         /* Calculate line price */
         var productRow = $(quantityInput).parent().parent();
         var price = parseInt(productRow.children('.product-price').text());
+        
         var quantity = $(quantityInput).val();
         var deli = parseInt(productRow.children('.del').text());
+        
         var linePrice = (price * quantity) + deli;
         var allPri = price * quantity;
 

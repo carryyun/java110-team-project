@@ -10,7 +10,7 @@ public interface CsService {
   void delete(int no);
   int update(Cs cs);
   List<Cs>findByMaster();
+  List<Cs> pageMaster(int pageNo, int pageSize);
   int addQuestioninfo(Cs cs);
-  
   
 }

@@ -2,6 +2,7 @@ package bitcamp.java110.cms.dao;
 
 import java.util.List;
 import java.util.Map;
+import bitcamp.java110.cms.domain.ClassRep;
 import bitcamp.java110.cms.domain.ProductRep;
 
 public interface ProductRepDao {
@@ -11,7 +12,7 @@ public interface ProductRepDao {
   
   // 전체 조회
   List<ProductRep> findAll(Map<String,Object> params); 
-
+  List<ProductRep> findAllStar(Map<String,Object> params);
   // 댓글번호 조회
   ProductRep findByNo(int no); // 댓글번호 조회
   

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -44,6 +45,12 @@
     vertical-align: middle;
     text-align: center
 }
+    button.note-btn.btn.btn-default.btn-sm{
+        font-size: 12px !important;
+    }
+    #mainNav .navbar-brand{
+        margin-bottom: 40px !important;
+    }
 </style>
 
 
@@ -175,7 +182,7 @@
                                     <td class="text-center">${pl.stname}</td> <!-- 카테고리 -->
                                     <td class="text-center">${pl.prdt_titl}</td> <!-- 상품명 -->
                                     <td class="text-center">${pl.mete_nick}</td><!-- 구매자 -->
-                                    <td class="text-center">${pl.prdt_pric}원</td><!-- 가격 -->
+                                    <td class="text-center"><fmt:formatNumber value="${pl.prdt_pric}" groupingUsed="true"/>원</td><!-- 가격 -->
                                     <td class="text-center bold">${pl.paydt}</td><!--결제일 -->
                                     <td
                                                         class="text-center">
@@ -278,7 +285,7 @@
                                                                     <tr>
                                                                         <td><span style="font-size: 20px;">가격:
                                                                             </span>
-                                                                                <span class="pop-type">${pl.prdt_pric}원</span></td>
+                                                                                <span class="pop-type"><fmt:formatNumber value="${pl.prdt_pric}" groupingUsed="true"/>원</span></td>
                                                                                 <td><span style="font-size: 20px;">수량:
                                                                             </span>
                                                                                 <span class="pop-type">${pl.cnt}개</span></td>
