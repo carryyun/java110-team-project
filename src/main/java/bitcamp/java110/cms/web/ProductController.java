@@ -1,15 +1,9 @@
 package bitcamp.java110.cms.web;
 
-import java.awt.AlphaComposite;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import javax.imageio.ImageIO;
-import javax.imageio.stream.ImageOutputStream;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
@@ -152,6 +146,7 @@ public class ProductController {
     } catch (JsonProcessingException e) {
       System.out.println(e.getMessage());
     }
+    
 
     model.addAttribute("productList", productList);
   }

@@ -148,7 +148,6 @@
          </div>
 
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
->>>>>>> df4a87355a7074c5c73929fbb363abdae83ad8a6
 <script src="/vendor/jquery/jquery.min.js"></script>
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/js/jquery.raty.min.js"></script>
