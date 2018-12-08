@@ -259,12 +259,11 @@ $("img.lazy").lazyload({
                            html+=                result[item].mentee.nick;
                            html+= '        </div>';
                            html+= '        <div class="col-lg-9 media-body">'+ result[item].conts +'</div>';
-                           html+= '<c:if test="${sessionScope.loginUser != \'\' }">';
-                           html+= '<c:if test="${sessionScope.loginUser.no == r.meno }">';
-                           html+= '  <div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="removerep(${r.no})"><i class="fas fa-trash-alt"></i></a> </div>';
-                           html+= '</c:if>';
-                           html+= '</c:if>';
-                           
+                           if(${sessionScope.loginUser != null}){
+                               if(${sessionScope.loginUser.no} == result[item].meno){
+                                   html+= '  <div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="removerep('+result[item].no +')"><i class="fas fa-trash-alt"></i></a> </div>';
+                               }
+                           }
                            html+= '        </div>';
                            html+= '    </div>';
                            html+= '</div>';
@@ -393,12 +392,11 @@ function removerep(rno){
                     html+=                result[item].mentee.nick;
                     html+= '        </div>';
                     html+= '        <div class="col-lg-9 media-body">'+ result[item].conts +'</div>';
-                    html+= '<c:if test="${sessionScope.loginUser != \'\' }">';
-                    html+= '<c:if test="${sessionScope.loginUser.no == r.meno }">';
-                    html+= '  <div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="removerep(${r.no})"><i class="fas fa-trash-alt"></i></a> </div>';
-                    html+= '</c:if>';
-                    html+= '</c:if>';
-                    
+                    if(${sessionScope.loginUser != null}){
+                        if(${sessionScope.loginUser.no} == result[item].meno){
+                            html+= '  <div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="removerep('+result[item].no +')"><i class="fas fa-trash-alt"></i></a> </div>';
+                        }
+                    }
                     html+= '        </div>';
                     html+= '    </div>';
                     html+= '</div>';
@@ -658,40 +656,6 @@ function repPaging(rpageNo){
            console.log(error);
        }
    });
-	$.ajax({
-	    type : "POST",
-	    data : {
-	        "ptno" : ${product.no},
-	        "pageNo" : rpageNo
-	    },
-	    url : "repLoad.do",
-	    success : function(result) {
-	        var html="";
-	        var addrep_target = $('div#addrep_target');
-	        for(var item in result){
-	            html+= '<div class="col-lg-12 my-3">';
-	            html+= '    <div class="container pb-3" style="border-bottom: 0.5px solid rgba(0, 0, 0, 0.5)">';
-	            html+= '    <div class="row">';
-	            html+= '        <div class="col-lg-2 text-center">';
-	            html+= '            <img src="' + result[item].mentee.phot + '" alt="singup" id="circle"><br>';
-	            html+=                result[item].mentee.nick;
-	            html+= '        </div>';
-	            html+= '        <div class="col-lg-9 media-body">'+ result[item].conts +'</div>';
-	            if(${sessionScope.loginUser != null}){
-	                if(${sessionScope.loginUser.no} == result[item].meno){
-	                    html+= '  <div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="removerep('+result[item].no +')"><i class="fas fa-trash-alt"></i></a> </div>';
-	                }
-	            }
-	            html+= '        </div>';
-	            html+= '    </div>';
-	            html+= '</div>';
-	        }
-	        addrep_target.html(html);
-	    },
-	    error : function(error, status) {
-	        console.log(error);
-	    }
-	});
 }
 
 function qnaPaging(rpageNo){
