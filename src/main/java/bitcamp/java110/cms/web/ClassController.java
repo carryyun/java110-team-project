@@ -299,7 +299,7 @@ public class ClassController {
   @RequestMapping("detail")
   public void findByCno(@RequestParam(defaultValue="1") int reppageNo, @RequestParam(defaultValue="5") int reppageSize, 
       @RequestParam(defaultValue="1") int qnapageNo, @RequestParam(defaultValue="5") int qnapageSize, 
-      Model model,int no ,HttpSession session) {
+      Model model,int no,HttpSession session) {
 
     List<ClassRep> clsreqlist = classrepService.listbycno(no , reppageNo , reppageSize);
     Classes detailclass = classService.findBycno(no);
@@ -308,7 +308,9 @@ public class ClassController {
     List<Timetable> clstimelist = timetableService.findByCno(no);
     int countrep = classrepService.countbycno(no);
     int countqna = classqnaService.countbycno(no);
-
+    
+    /*List<ClassOrder> clsorderlist = classOrderService.findBycnoFormeno(no);*/
+    
     /*Paging paging = new Paging();
     paging.setPageNo(reppageNo);
     paging.setPageSize(reppageSize);
@@ -325,7 +327,6 @@ public class ClassController {
       }
     }
     
-
     model.addAttribute("clsreqlist",clsreqlist);
     model.addAttribute("detailclass",detailclass);
     model.addAttribute("clsqnalist",clsqnalist);
@@ -334,6 +335,7 @@ public class ClassController {
     model.addAttribute("countrep",countrep);
     model.addAttribute("countqna",countqna);
     model.addAttribute("likeResult",likeResult);
+    /*model.addAttribute("clsorderlist", clsorderlist);*/
   }
 
   @RequestMapping(value = "reppage.do", method = {RequestMethod.POST})
@@ -367,7 +369,7 @@ public class ClassController {
     return "redirect:clscate";
   }
   
-  @RequestMapping(value = "findBycno", method = {RequestMethod.POST})
+  @RequestMapping(value = "countorder.do", method = {RequestMethod.POST})
   public @ResponseBody int ordercountlist(int no,HttpSession session) {
     
     Mentee mentee = (Mentee) session.getAttribute("loginUser");

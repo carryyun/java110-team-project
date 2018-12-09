@@ -11,5 +11,7 @@ public interface ClassOrderDao {
 
   List<ClassOrder> findAllMaster(Map<String, Object> params); // 관리자조회
   
-  int findBycno(int no , int rono);
+  int findBycno(Map<String, Object> params);
+  
+  List<ClassOrder> findBycnoFormeno(int no);
 }

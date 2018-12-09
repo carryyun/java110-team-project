@@ -122,7 +122,7 @@
 
     </select>
     
-    <select id="findBycno" resultMap="classOrderMap" parameterType="int">
+    <select id="findBycno" resultType="int" parameterType="map">
         select
 			count(*)
 		from
@@ -134,6 +134,20 @@
 				on pct.cno = pc.cno
 		where
 			pc.cno=#{no} AND pm.meno =#{meno};
+    </select>
+    
+    <select id="findBycnoFormeno" resultMap="classOrderMap" parameterType="map">
+        select
+			pco.meno
+		from
+			p_mete as pm inner join p_cls_order as pco
+				on pm.meno = pco.meno
+			inner join p_cls_ttab as pct
+				on pco.ctno = pct.ctno
+			inner join p_cls as pc
+				on pct.cno = pc.cno
+		where
+			pc.cno= #{no}
     </select>
 
     <insert id="orderinsert" parameterType="classOrder"

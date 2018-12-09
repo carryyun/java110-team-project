@@ -238,7 +238,7 @@ dd,dl{
 .addr{
 	text-align : center;
 	vertical-align: middle; 
-	margin-left: 80px;
+	margin-left: 70px;
 	margin-top : 60px;
 	float : right;
 }
@@ -260,3 +260,10 @@ dd,dl{
         text-align: left;
         vertical-align: middle;
 }
+.repupda{
+	resize: none;
+}
+.qnatr {
+	background-color :#B3C6FF;
+} 
+
