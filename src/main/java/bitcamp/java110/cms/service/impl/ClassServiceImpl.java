@@ -26,7 +26,7 @@ public class ClassServiceImpl implements ClassService{
   @Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
   @Override
   public void classadd(Classes classes, List<String> filelist,
-      String removefiles, String days,String date,String edate,String stime, String etime,int loginUserNo) {
+      String removefiles, String days,String date,String edate,String stime, String etime,int loginUserNo,String selmtag) {
     System.out.println(loginUserNo);
     if(classes.getDetAddr() == null) {
       classes.setDetAddr(null);
@@ -35,7 +35,7 @@ public class ClassServiceImpl implements ClassService{
     }else if(classes.getCfile().length() > 0) {
       classes.setCfile(classes.getCfile().substring(classes.getCfile().length()-11, classes.getCfile().length()));
     }
-    classes.setMtno(loginUserNo);
+    classes.setMtno(Integer.parseInt(selmtag));
     classes.setMono(loginUserNo);
     classDao.classinsert(classes);
     if(classes.getType().equals("단기")) {

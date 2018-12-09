@@ -316,7 +316,9 @@
                         }
                     }
                     content += "</div>"
-                    content += "<div class='col-lg-6' id='owl-col3'>" + pric + "￦</div>"
+                    pric = "" + pric;
+                    pric = pric.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,')
+                    content += "<div class='col-lg-6' id='owl-col3'>" + pric + "원</div>"
                     content += "</div>"
                     content += "</div>"
                     content += "</a>"
