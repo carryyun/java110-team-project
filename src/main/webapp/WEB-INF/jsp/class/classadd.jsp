@@ -75,6 +75,116 @@
                 </div>
                 </div>
                 <div style="position:absolute; width: 500px; float:right; top: 0;">
+                <div id="tagselcetdiv">
+  				<input type="text" class="view" readonly value="대분류 선택">
+                <select id="bigtagSel" style="width:25%; height:26px;">
+                <option hidden selected></option>
+                <option value="2">음악</option>
+                <option value="3">뷰티</option>
+                <option value="4">댄스</option>
+                <option value="5">프로그래밍</option>
+                <option value="6">외국어</option>
+                <option value="7">실무역량</option>
+                <option value="8">운동</option>
+                <option value="9">기타</option>
+                </select>
+                <input type="text" class="view" readonly value="중분류 선택">
+                <select id="MiddletagSel2" style="width:25%; height:26px; display:none;">
+                <option hidden selected></option>
+                <option value="1">보컬</option>
+                <option value="2">피아노</option>
+                <option value="3">미디작곡</option>
+                <option value="4">기타연주</option>
+                <option value="5" >국악</option>
+                <option value="6">무용</option>
+                <option value="7">디제잉</option>
+                <option value="8">드럼</option>
+                <option value="9">랩</option>
+                <option value="10">바이올린</option>
+                <option value="11">성악</option>
+                </select>
+                 <select id="MiddletagSel3" style="width:25%; height:26px; display:none;">
+                <option hidden selected></option>
+                <option value="12">메이크업</option>
+                <option value="13">퍼스널컬러</option>
+                <option value="14">헤어</option>
+                <option value="15">패션</option>
+                <option value="16">네일</option> 
+                </select>
+                 <select id="MiddletagSel4" style="width:25%; height:26px; display:none;">
+                <option hidden selected></option>
+                <option value="17">삼바</option>
+                <option value="18">룸바</option>
+                <option value="19">차차차</option>
+                <option value="20">자이브</option>
+                <option value="21">파소도블레</option>
+                <option value="22" >왈츠</option>
+                <option value="23">퀵스텝</option>
+                </select>
+                 <select id="MiddletagSel5" style="width:25%; height:26px; display:none;">
+                <option hidden selected></option>
+                <option value="24">Web개발</option>
+                <option value="25">App개발</option>
+                <option value="26">파이썬</option>
+                <option value="27">자바</option>
+                <option value="28">아두이노</option>
+                <option value="29">DataBase</option>
+                <option value="30">워드프레스</option>
+                <option value="31">알고리즘</option>
+                <option value="32">해킹</option>
+                <option value="33">게임제작</option>
+                </select>
+                 <select id="MiddletagSel6" style="width:25%; height:26px; display:none;">
+                <option hidden selected></option>
+                <option value="34">영어회화</option>
+                <option value="35">중국어</option>
+                <option value="36">토익/토플</option>
+                <option value="37">일본어</option>
+                <option value="38">프랑스어</option>
+                <option value="39">스페인어</option>
+                <option value="40">오픽/토스</option>
+                <option value="41">영작문</option>
+                </select>
+                 <select id="MiddletagSel7" style="width:25%; height:26px; display:none;">
+                <option hidden selected></option>
+                <option value="42">엑셀</option>
+                <option value="43">파워포인트</option>
+                <option value="44">디지털마케팅</option>
+                <option value="45">프레젠테이션</option>
+                <option value="46">브랜딩</option>
+                <option value="47">창업</option>
+                <option value="48">기획서</option>
+                <option value="49">재무회계</option>
+                </select>
+                 <select id="MiddletagSel8" style="width:25%; height:26px; display:none;">
+                <option hidden selected></option>
+                <option value="50">파워워킹</option>
+                <option value="51">수영</option>
+                <option value="52">자전거</option>
+                <option value="53">에어로빅</option>
+                <option value="54">등산</option>
+                <option value="55">다이어트</option>
+                <option value="56">고강도운동</option>
+                </select>
+                 <select id="MiddletagSel9" style="width:25%; height:26px; display:none;">
+                <option hidden selected></option>
+                <option value="57">플라워</option>
+                <option value="58">여행</option>
+                <option value="59">술</option>
+                <option value="60">커피</option>
+                <option value="61">요리</option>
+                <option value="62">사진</option>
+                <option value="63">미술</option>
+                <option value="64">바둑</option>
+                <option value="65">낚시</option>
+                <option value="66">독서</option>
+                <option value="67">십자수수예</option>
+                <option value="68">기타</option> 
+                </select>
+                 <select id="MiddletagSelBase" style="width:25%; height:26px;">
+                <option hidden selected></option>
+                </select>
+  				</div>
                <div id="pay-div">
                 <input type="text" class="view" readonly value="시간당 금액" >
                 <input type="number" name="pric" id="cpay" maxlength="6" placeholder="시간당 수업금액을 입력해주세요.">원
@@ -128,6 +238,8 @@
                  <input type="hidden" id="type" name="type" value="단기"> 
                  <input type="button" id="back-home-btn" value="Go Home">  
               	 <input type="button" id="clsinsert" onclick="emptychk();" value="클래스 등록" />
+              	 <input type="hidden" id="selbigtag" name="selbtag">
+              	 <input type="hidden" id="selmtag" name="selmtag"> 
               </form>
             </div>
         </div>
@@ -283,6 +395,18 @@ function emptychk(){
 				button:"확인"
 			});
     		return false;
+	}else if($('#bigtagSel option:selected').val() == ''){
+		swal({
+			text:"대분류를 선택해주세요.",
+			button:"확인"
+		});
+		return false;
+	}else if($('#selmtag').val() == ''){
+		swal({
+			text:"소분류를 선택해주세요.",
+			button:"확인"
+		});
+		return false;
 	}else {
 		swal({
 		        title: "클래스 신청이 완료되었습니다.", 
@@ -294,6 +418,133 @@ function emptychk(){
 		        });
 	}
 }
+
+$( "#bigtagSel").change(function() {
+	var sel = $('#bigtagSel option:selected').val();
+	if(sel == 2){
+		$('#selmtag').val('');
+		$('#MiddletagSel2').val('');
+		$('#MiddletagSel3').css('display','none');
+		$('#MiddletagSel4').css('display','none');
+		$('#MiddletagSel5').css('display','none');
+		$('#MiddletagSel6').css('display','none');
+		$('#MiddletagSel7').css('display','none');
+		$('#MiddletagSel8').css('display','none');
+		$('#MiddletagSel9').css('display','none');
+		$('#MiddletagSelBase').css('display','none');
+		$('#MiddletagSel2').css('display','inline-block');
+		console.log($('#MiddletagSel2 option:selected').val());
+		$('#MiddletagSel2').click(function(){
+			$('#selmtag').val($('#MiddletagSel2 option:selected').val());
+		});
+	}else if(sel == 3){
+		$('#selmtag').val('');
+		$('#MiddletagSel3').val('');
+		$('#MiddletagSel2').css('display','none');
+		$('#MiddletagSel4').css('display','none');
+		$('#MiddletagSel5').css('display','none');
+		$('#MiddletagSel6').css('display','none');
+		$('#MiddletagSel7').css('display','none');
+		$('#MiddletagSel8').css('display','none');
+		$('#MiddletagSel9').css('display','none');
+		$('#MiddletagSelBase').css('display','none');
+		$('#MiddletagSel3').css('display','inline-block');
+		$('#MiddletagSel3').click(function(){
+			$('#selmtag').val($('#MiddletagSel3 option:selected').val());
+		});
+	}else if(sel == 4){
+		$('#selmtag').val('');
+		$('#MiddletagSel4').val('');
+		$('#MiddletagSel2').css('display','none');
+		$('#MiddletagSel3').css('display','none');
+		$('#MiddletagSel5').css('display','none');
+		$('#MiddletagSel6').css('display','none');
+		$('#MiddletagSel7').css('display','none');
+		$('#MiddletagSel8').css('display','none');
+		$('#MiddletagSel9').css('display','none');
+		$('#MiddletagSelBase').css('display','none');
+		$('#MiddletagSel4').css('display','inline-block');
+		$('#MiddletagSel4').click(function(){
+			$('#selmtag').val($('#MiddletagSel4 option:selected').val());
+		});
+	}else if(sel == 5){
+		$('#selmtag').val('');
+		$('#MiddletagSel5').val('');
+		$('#MiddletagSel2').css('display','none');
+		$('#MiddletagSel3').css('display','none');
+		$('#MiddletagSel4').css('display','none');
+		$('#MiddletagSel6').css('display','none');
+		$('#MiddletagSel7').css('display','none');
+		$('#MiddletagSel8').css('display','none');
+		$('#MiddletagSel9').css('display','none');
+		$('#MiddletagSelBase').css('display','none');
+		$('#MiddletagSel5').css('display','inline-block');
+		$('#MiddletagSel5').click(function(){
+			$('#selmtag').val($('#MiddletagSel5 option:selected').val());
+		});
+	}else if(sel == 6){
+		$('#selmtag').val('');
+		$('#MiddletagSel6').val('');
+		$('#MiddletagSel2').css('display','none');
+		$('#MiddletagSel3').css('display','none');
+		$('#MiddletagSel4').css('display','none');
+		$('#MiddletagSel5').css('display','none');
+		$('#MiddletagSel7').css('display','none');
+		$('#MiddletagSel8').css('display','none');
+		$('#MiddletagSel9').css('display','none');
+		$('#MiddletagSelBase').css('display','none');
+		$('#MiddletagSel6').css('display','inline-block');
+		$('#MiddletagSel6').click(function(){
+			$('#selmtag').val($('#MiddletagSel6 option:selected').val());
+		});
+	}else if(sel == 7){
+		$('#selmtag').val('');
+		$('#MiddletagSel7').val('');
+		$('#MiddletagSel2').css('display','none');
+		$('#MiddletagSel3').css('display','none');
+		$('#MiddletagSel4').css('display','none');
+		$('#MiddletagSel5').css('display','none');
+		$('#MiddletagSel6').css('display','none');
+		$('#MiddletagSel8').css('display','none');
+		$('#MiddletagSel9').css('display','none');
+		$('#MiddletagSelBase').css('display','none');
+		$('#MiddletagSel7').css('display','inline-block');
+		$('#MiddletagSel7').click(function(){
+			$('#selmtag').val($('#MiddletagSel7 option:selected').val());
+		});
+	}else if(sel == 8){
+		$('#selmtag').val('');
+		$('#MiddletagSel8').val('');
+		$('#MiddletagSel2').css('display','none');
+		$('#MiddletagSel3').css('display','none');
+		$('#MiddletagSel4').css('display','none');
+		$('#MiddletagSel5').css('display','none');
+		$('#MiddletagSel6').css('display','none');
+		$('#MiddletagSel7').css('display','none');
+		$('#MiddletagSel9').css('display','none');
+		$('#MiddletagSelBase').css('display','none');
+		$('#MiddletagSel8').css('display','inline-block');
+		$('#MiddletagSel8').click(function(){
+			$('#selmtag').val($('#MiddletagSel8 option:selected').val());
+		});
+	}else if(sel == 9){
+		$('#selmtag').val('');
+		$('#MiddletagSel9').val('');
+		$('#MiddletagSel2').css('display','none');
+		$('#MiddletagSel3').css('display','none');
+		$('#MiddletagSel4').css('display','none');
+		$('#MiddletagSel5').css('display','none');
+		$('#MiddletagSel6').css('display','none');
+		$('#MiddletagSel7').css('display','none');
+		$('#MiddletagSel8').css('display','none');
+		$('#MiddletagSelBase').css('display','none');
+		$('#MiddletagSel9').css('display','inline-block');
+		$('#MiddletagSel9').click(function(){
+			$('#selmtag').val($('#MiddletagSel9 option:selected').val());
+		});
+	}
+	$('#selbigtag').val($('#bigtagSel option:selected').val());
+});
 
 
 	
