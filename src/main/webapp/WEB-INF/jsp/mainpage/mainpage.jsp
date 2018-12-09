@@ -135,7 +135,7 @@
             
         </div><!-- 추천작품 row -->
     </div>
-    <!-- 오늘의 추천작품 container-->
+    <!-- 오늘의 추천작품 container--> 
 
     <!-- 오늘의 추천작품 carousel-->
     <div class="container" style="margin-bottom: 80px">
