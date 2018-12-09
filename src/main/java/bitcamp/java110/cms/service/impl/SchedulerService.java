@@ -1,5 +1,6 @@
 package bitcamp.java110.cms.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import bitcamp.java110.cms.dao.ClassDao;
+import bitcamp.java110.cms.dao.ClassOrderDao;
 import bitcamp.java110.cms.dao.ClassRepDao;
 import bitcamp.java110.cms.dao.ProductDao;
 import bitcamp.java110.cms.dao.ProductRepDao;
@@ -22,6 +24,7 @@ public class SchedulerService {
   @Autowired ProductRepDao productRepDao;
   @Autowired ClassDao classDao;
   @Autowired ClassRepDao classRepDao;
+  @Autowired ClassOrderDao classOrderDao;
 
   //스케줄러 이용
   @Scheduled(fixedRate=6000000)
@@ -51,6 +54,8 @@ public class SchedulerService {
         classDao.classupdate(classes);
       }
     }
+   
+    
     
     // 상품
     List<Product> productList = productDao.findAllStar();
@@ -82,4 +87,31 @@ public class SchedulerService {
     
     System.out.println("StarSetter Scheduled.(10분)");
   }
+  
+  List<Classes> prepopularitylist = new ArrayList<>();
+  // 인기예감 클래스로 변경 
+  @Scheduled(fixedRate=600000)
+  public void popularityClass(){
+    List<Integer> popularityClasslist = classOrderDao.selpopularityclass();
+    for(int no=0; no<popularityClasslist.size(); no++) {
+      prepopularitylist.add(classDao.popularityCallBack(popularityClasslist.get(no)));
+    }
+    for(int no : popularityClasslist) {
+      classDao.popularityUpdate(no);
+    }
+  }   
+  
+  // 인기예감 선정전 원래클래스로 변경
+  @Scheduled(fixedRate=599000)
+  public void prepopularityClass() {
+    for(int x=0; x<prepopularitylist.size(); x++) {
+      Map<String,Object> preparms = new HashMap<>();
+      preparms.put("mtno", prepopularitylist.get(x).getMtno());
+      preparms.put("no", prepopularitylist.get(x).getNo());
+      System.out.println(preparms.get("mtno"));
+      System.out.println(preparms.get("no"));
+      classDao.popularitypreCallbackUpdate(preparms);
+    }
+  }
+  
 }

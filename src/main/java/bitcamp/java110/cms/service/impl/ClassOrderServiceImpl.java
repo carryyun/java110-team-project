@@ -46,10 +46,19 @@ public class ClassOrderServiceImpl implements ClassOrderService{
 
 
   @Override
-  public int listByCno(int no , int rono) {
+  public int listByCno(int no , int meno) {
     
-    return classorderDao.findBycno(no,rono);
+    HashMap<String, Object> params = new HashMap<>();
+    params.put("no", no);
+    params.put("meno", meno);
+    
+    return classorderDao.findBycno(params);
   }
 
 
+  @Override
+  public List<ClassOrder> findBycnoFormeno(int no) {
+    
+    return classorderDao.findBycnoFormeno(no);
+  }
 }
