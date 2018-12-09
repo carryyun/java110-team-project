@@ -92,94 +92,80 @@
                 <select id="MiddletagSel2" style="width:25%; height:26px; display:none;">
                 <option hidden selected></option>
                 <option value="1">보컬</option>
-                <option value="2">피아노</option>
-                <option value="3">미디작곡</option>
-                <option value="4">기타연주</option>
-                <option value="5" >국악</option>
-                <option value="6">무용</option>
-                <option value="7">디제잉</option>
-                <option value="8">드럼</option>
-                <option value="9">랩</option>
-                <option value="10">바이올린</option>
-                <option value="11">성악</option>
+                <option value="2">미디작곡</option>
+                <option value="3">기타연주</option>
+                <option value="4">국악</option>
+                <option value="5">디제잉</option>
+                <option value="6">드럼</option>
+                <option value="7">랩</option>
                 </select>
                  <select id="MiddletagSel3" style="width:25%; height:26px; display:none;">
                 <option hidden selected></option>
-                <option value="12">메이크업</option>
-                <option value="13">퍼스널컬러</option>
-                <option value="14">헤어</option>
-                <option value="15">패션</option>
-                <option value="16">네일</option> 
+                <option value="8">메이크업</option>
+                <option value="9">퍼스널컬러</option>
+                <option value="10">헤어</option>
+                <option value="11">패션</option>
+                <option value="12">네일</option> 
                 </select>
                  <select id="MiddletagSel4" style="width:25%; height:26px; display:none;">
                 <option hidden selected></option>
-                <option value="17">삼바</option>
-                <option value="18">룸바</option>
-                <option value="19">차차차</option>
-                <option value="20">자이브</option>
-                <option value="21">파소도블레</option>
-                <option value="22" >왈츠</option>
-                <option value="23">퀵스텝</option>
+                <option value="13">삼바</option>
+                <option value="14">룸바</option>
+                <option value="15">차차차</option>
+                <option value="16">자이브</option>
+                <option value="17">파소도블레</option>
+                <option value="18" >왈츠</option>
+                <option value="19">퀵스텝</option>
                 </select>
                  <select id="MiddletagSel5" style="width:25%; height:26px; display:none;">
                 <option hidden selected></option>
-                <option value="24">Web개발</option>
-                <option value="25">App개발</option>
-                <option value="26">파이썬</option>
-                <option value="27">자바</option>
-                <option value="28">아두이노</option>
-                <option value="29">DataBase</option>
-                <option value="30">워드프레스</option>
-                <option value="31">알고리즘</option>
-                <option value="32">해킹</option>
-                <option value="33">게임제작</option>
+                <option value="20">Web개발</option>
+                <option value="21">App개발</option>
+                <option value="22">파이썬</option>
+                <option value="23">자바</option>
+                <option value="24">아두이노</option>
+                <option value="25">DataBase</option>
+                <option value="26">워드프레스</option>
                 </select>
                  <select id="MiddletagSel6" style="width:25%; height:26px; display:none;">
                 <option hidden selected></option>
-                <option value="34">영어회화</option>
-                <option value="35">중국어</option>
-                <option value="36">토익/토플</option>
-                <option value="37">일본어</option>
-                <option value="38">프랑스어</option>
-                <option value="39">스페인어</option>
-                <option value="40">오픽/토스</option>
-                <option value="41">영작문</option>
+                <option value="27">영어회화</option>
+                <option value="28">중국어</option>
+                <option value="29">토익/토플</option>
+                <option value="30">일본어</option>
+                <option value="31">프랑스어</option>
+                <option value="32">스페인어</option>
+                <option value="33">영작문</option>
                 </select>
                  <select id="MiddletagSel7" style="width:25%; height:26px; display:none;">
                 <option hidden selected></option>
-                <option value="42">엑셀</option>
-                <option value="43">파워포인트</option>
-                <option value="44">디지털마케팅</option>
-                <option value="45">프레젠테이션</option>
-                <option value="46">브랜딩</option>
-                <option value="47">창업</option>
-                <option value="48">기획서</option>
-                <option value="49">재무회계</option>
+                <option value="34">엑셀</option>
+                <option value="35">파워포인트</option>
+                <option value="36">프레젠테이션</option>
+                <option value="37">브랜딩</option>
+                <option value="38">창업</option>
+                <option value="39">기획서</option>
+                <option value="40">재무회계</option>
                 </select>
                  <select id="MiddletagSel8" style="width:25%; height:26px; display:none;">
                 <option hidden selected></option>
-                <option value="50">파워워킹</option>
-                <option value="51">수영</option>
-                <option value="52">자전거</option>
-                <option value="53">에어로빅</option>
-                <option value="54">등산</option>
-                <option value="55">다이어트</option>
-                <option value="56">고강도운동</option>
+                <option value="41">파워워킹</option>
+                <option value="42">수영</option>
+                <option value="43">자전거</option>
+                <option value="44">에어로빅</option>
+                <option value="45">등산</option>
+                <option value="46">다이어트</option>
+                <option value="47">고강도운동</option>
                 </select>
                  <select id="MiddletagSel9" style="width:25%; height:26px; display:none;">
                 <option hidden selected></option>
-                <option value="57">플라워</option>
-                <option value="58">여행</option>
-                <option value="59">술</option>
-                <option value="60">커피</option>
-                <option value="61">요리</option>
-                <option value="62">사진</option>
-                <option value="63">미술</option>
-                <option value="64">바둑</option>
-                <option value="65">낚시</option>
-                <option value="66">독서</option>
-                <option value="67">십자수수예</option>
-                <option value="68">기타</option> 
+                <option value="48">플라워</option>
+                <option value="49">커피</option>
+                <option value="50">요리</option>
+                <option value="51">사진</option>
+                <option value="52">독서</option>
+                <option value="53">십자수수예</option>
+                <option value="54">기타</option> 
                 </select>
                  <select id="MiddletagSelBase" style="width:25%; height:26px;">
                 <option hidden selected></option>
