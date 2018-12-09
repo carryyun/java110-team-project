@@ -123,9 +123,12 @@
     <div class="container">
         <hr class="Fhr" />
         <div class="row  my-3">
-            <div class="col-lg-6 text-left">
-                <h3 style="font-size: 1.5rem; font-weight: 700;">오늘의 추천작품</h3>
-            </div>
+            <div class="col-lg-2 text-left">
+            <h3 style="font-size: 1.5rem; font-weight: 700; float: left;">추천작품</h3>
+        </div>
+        <div class="col-lg-4 text-left">
+            <h4 style="font-size: 1rem; color:#a9a9a9; margin-top:9px; margin-left:-40px; float: left;">오늘의 추천작품을 만나보세요</h4>
+        </div>
             <div class="col-lg-6 text-right">
                 <a class="btn btn-primary float-right mb-3" href="../product/prdt">작품 더보기 </a>
             </div>
@@ -148,6 +151,193 @@
             </div>
         </div>
     </div>
+    
+    <div class="container" style="margin-bottom: 80px">
+    <hr class="Fhr">
+    <div class="row  my-3">
+        <div class="col-lg-2 text-left">
+            <h3 style="font-size: 1.5rem; font-weight: 700; float: left;">실시간 후기</h3>
+        </div>
+        <div class="col-lg-4 text-left">
+            <h4 style="font-size: 1rem; color:#a9a9a9; margin-top:9px; margin-left:-40px; float: left;">회원들의 후기를 들어보세요</h4>
+        </div>
+        <div class="col-lg-6 text-right">
+            <a class="btn btn-primary float-right mb-3" href="../product/prdt">작품 더보기 </a>
+        </div>
+        
+    </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="row">
+                   <!-- 실시간 클래스 후기 -->
+                   <div class="col-lg-10 mx-auto px-2 py-2 mb-3" style="background-color: #e9e9e9">
+                        <div class="col-lg-3 p-0" style="float: left">
+                            <img style="width: 110px; height: 110px" alt="/upload/img/pro1.png" src="/upload/img/pro1.png">
+                        </div>
+                        <div class="col-lg-9 px-2 py-0" style="float: left">
+                            <div id="Titl" style="font-size: 15px; font-weight: 600">
+                                [정말 재밌는 클래스]
+                            </div>
+                            <div id="repConts" style="font-size: 13px;color: #6e6e6e">
+                                "안녕하세요? 정말 재밌게 들었습니다 시간가는줄을 모르겠는데요? 내일 또 들어야겠네요. 수업과는 별개로 궁금한 내용을 물어봤는데 정말 불친절하게 대답해주시고 좋더라구요."
+                            </div>
+                            <div id="repMete" style="margin-top:5px; font-size: 14px">
+                                <img alt="/upload/img/joboa.png" src="/upload/img/joboa.png" style="width: 25px; height: 25px; border-radius: 50%;float: left">
+                                <div id="repMete_Nick" style="float: left; margin-top: 3px;">
+                                    "조보아"
+                                </div>
+                            </div>
+                        </div>
+                   </div>
+                   
+                   <div class="col-lg-10 mx-auto px-2 py-2 mb-3" style="background-color: #e9e9e9">
+                        <div class="col-lg-3 p-0" style="float: left">
+                            <img style="width: 110px; height: 110px" alt="/upload/img/pro1.png" src="/upload/img/pro1.png">
+                        </div>
+                        <div class="col-lg-9 px-2 py-0" style="float: left">
+                            <div id="Titl" style="font-size: 15px; font-weight: 600">
+                                [정말 재밌는 클래스]
+                            </div>
+                            <div id="repConts" style="font-size: 13px;color: #6e6e6e">
+                                "안녕하세요? 정말 재밌게 들었습니다 시간가는줄을 모르겠는데요? 내일 또 들어야겠네요. 수업과는 별개로 궁금한 내용을 물어봤는데 정말 불친절하게 대답해주시고 좋더라구요."
+                            </div>
+                            <div id="repMete" style="margin-top:5px; font-size: 14px">
+                                <img alt="/upload/img/joboa.png" src="/upload/img/joboa.png" style="width: 25px; height: 25px; border-radius: 50%;float: left">
+                                <div id="repMete_Nick" style="float: left; margin-top: 3px;">
+                                    "조보아"
+                                </div>
+                            </div>
+                        </div>
+                   </div>
+                   
+                   <div class="col-lg-10 mx-auto px-2 py-2 mb-3" style="background-color: #e9e9e9">
+                        <div class="col-lg-3 p-0" style="float: left">
+                            <img style="width: 110px; height: 110px" alt="/upload/img/pro1.png" src="/upload/img/pro1.png">
+                        </div>
+                        <div class="col-lg-9 px-2 py-0" style="float: left">
+                            <div id="Titl" style="font-size: 15px; font-weight: 600">
+                                [정말 재밌는 클래스]
+                            </div>
+                            <div id="repConts" style="font-size: 13px;color: #6e6e6e">
+                                "안녕하세요? 정말 재밌게 들었습니다 시간가는줄을 모르겠는데요? 내일 또 들어야겠네요. 수업과는 별개로 궁금한 내용을 물어봤는데 정말 불친절하게 대답해주시고 좋더라구요."
+                            </div>
+                            <div id="repMete" style="margin-top:5px; font-size: 14px">
+                                <img alt="/upload/img/joboa.png" src="/upload/img/joboa.png" style="width: 25px; height: 25px; border-radius: 50%;float: left">
+                                <div id="repMete_Nick" style="float: left; margin-top: 3px;">
+                                    "조보아"
+                                </div>
+                            </div>
+                        </div>
+                   </div>
+                   
+                   <div class="col-lg-10 mx-auto px-2 py-2 mb-3" style="background-color: #e9e9e9">
+                        <div class="col-lg-3 p-0" style="float: left">
+                            <img style="width: 110px; height: 110px" alt="/upload/img/pro1.png" src="/upload/img/pro1.png">
+                        </div>
+                        <div class="col-lg-9 px-2 py-0" style="float: left">
+                            <div id="Titl" style="font-size: 15px; font-weight: 600">
+                                [정말 재밌는 클래스]
+                            </div>
+                            <div id="repConts" style="font-size: 13px;color: #6e6e6e">
+                                "안녕하세요? 정말 재밌게 들었습니다 시간가는줄을 모르겠는데요? 내일 또 들어야겠네요. 수업과는 별개로 궁금한 내용을 물어봤는데 정말 불친절하게 대답해주시고 좋더라구요."
+                            </div>
+                            <div id="repMete" style="margin-top:5px; font-size: 14px">
+                                <img alt="/upload/img/joboa.png" src="/upload/img/joboa.png" style="width: 25px; height: 25px; border-radius: 50%;float: left">
+                                <div id="repMete_Nick" style="float: left; margin-top: 3px;">
+                                    "조보아"
+                                </div>
+                            </div>
+                        </div>
+                   </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="row">
+                   <!-- 실시간 상품 후기 -->
+                   <div class="col-lg-10 mx-auto px-2 py-2 mb-3" style="background-color: #e9e9e9">
+                        <div class="col-lg-3 p-0" style="float: left">
+                            <img style="width: 110px; height: 110px" alt="/upload/img/pro1.png" src="/upload/img/pro1.png">
+                        </div>
+                        <div class="col-lg-9 px-2 py-0" style="float: left">
+                            <div id="Titl" style="font-size: 15px; font-weight: 600">
+                                [정말 재밌는 클래스]
+                            </div>
+                            <div id="repConts" style="font-size: 13px;color: #6e6e6e">
+                                "안녕하세요? 정말 재밌게 들었습니다 시간가는줄을 모르겠는데요? 내일 또 들어야겠네요. 수업과는 별개로 궁금한 내용을 물어봤는데 정말 불친절하게 대답해주시고 좋더라구요."
+                            </div>
+                            <div id="repMete" style="margin-top:5px; font-size: 14px">
+                                <img alt="/upload/img/joboa.png" src="/upload/img/joboa.png" style="width: 25px; height: 25px; border-radius: 50%;float: left">
+                                <div id="repMete_Nick" style="float: left; margin-top: 3px;">
+                                    "조보아"
+                                </div>
+                            </div>
+                        </div>
+                   </div>
+                   
+                   <div class="col-lg-10 mx-auto px-2 py-2 mb-3" style="background-color: #e9e9e9">
+                        <div class="col-lg-3 p-0" style="float: left">
+                            <img style="width: 110px; height: 110px" alt="/upload/img/pro1.png" src="/upload/img/pro1.png">
+                        </div>
+                        <div class="col-lg-9 px-2 py-0" style="float: left">
+                            <div id="Titl" style="font-size: 15px; font-weight: 600">
+                                [정말 재밌는 클래스]
+                            </div>
+                            <div id="repConts" style="font-size: 13px;color: #6e6e6e">
+                                "안녕하세요? 정말 재밌게 들었습니다 시간가는줄을 모르겠는데요? 내일 또 들어야겠네요. 수업과는 별개로 궁금한 내용을 물어봤는데 정말 불친절하게 대답해주시고 좋더라구요."
+                            </div>
+                            <div id="repMete" style="margin-top:5px; font-size: 14px">
+                                <img alt="/upload/img/joboa.png" src="/upload/img/joboa.png" style="width: 25px; height: 25px; border-radius: 50%;float: left">
+                                <div id="repMete_Nick" style="float: left; margin-top: 3px;">
+                                    "조보아"
+                                </div>
+                            </div>
+                        </div>
+                   </div>
+                   
+                   <div class="col-lg-10 mx-auto px-2 py-2 mb-3" style="background-color: #e9e9e9">
+                        <div class="col-lg-3 p-0" style="float: left">
+                            <img style="width: 110px; height: 110px" alt="/upload/img/pro1.png" src="/upload/img/pro1.png">
+                        </div>
+                        <div class="col-lg-9 px-2 py-0" style="float: left">
+                            <div id="Titl" style="font-size: 15px; font-weight: 600">
+                                [정말 재밌는 클래스]
+                            </div>
+                            <div id="repConts" style="font-size: 13px;color: #6e6e6e">
+                                "안녕하세요? 정말 재밌게 들었습니다 시간가는줄을 모르겠는데요? 내일 또 들어야겠네요. 수업과는 별개로 궁금한 내용을 물어봤는데 정말 불친절하게 대답해주시고 좋더라구요."
+                            </div>
+                            <div id="repMete" style="margin-top:5px; font-size: 14px">
+                                <img alt="/upload/img/joboa.png" src="/upload/img/joboa.png" style="width: 25px; height: 25px; border-radius: 50%;float: left">
+                                <div id="repMete_Nick" style="float: left; margin-top: 3px;">
+                                    "조보아"
+                                </div>
+                            </div>
+                        </div>
+                   </div>
+                   
+                   <div class="col-lg-10 mx-auto px-2 py-2 mb-3" style="background-color: #e9e9e9">
+                        <div class="col-lg-3 p-0" style="float: left">
+                            <img style="width: 110px; height: 110px" alt="/upload/img/pro1.png" src="/upload/img/pro1.png">
+                        </div>
+                        <div class="col-lg-9 px-2 py-0" style="float: left">
+                            <div id="Titl" style="font-size: 15px; font-weight: 600">
+                                [정말 재밌는 클래스]
+                            </div>
+                            <div id="repConts" style="font-size: 13px;color: #6e6e6e">
+                                "안녕하세요? 정말 재밌게 들었습니다 시간가는줄을 모르겠는데요? 내일 또 들어야겠네요. 수업과는 별개로 궁금한 내용을 물어봤는데 정말 불친절하게 대답해주시고 좋더라구요."
+                            </div>
+                            <div id="repMete" style="margin-top:5px; font-size: 14px">
+                                <img alt="/upload/img/joboa.png" src="/upload/img/joboa.png" style="width: 25px; height: 25px; border-radius: 50%;float: left">
+                                <div id="repMete_Nick" style="float: left; margin-top: 3px;">
+                                    "조보아"
+                                </div>
+                            </div>
+                        </div>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     
     <footer>
         <div class="col px-0">

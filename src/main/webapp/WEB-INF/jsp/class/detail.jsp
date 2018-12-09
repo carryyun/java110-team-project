@@ -736,7 +736,7 @@ $('.accordian-body').on('show.bs.collapse', function () {
     <script src="/vendor/jquery/jquery.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-    <script src="/js/jery.raty.min.js"></script>
+    <script src="/js/jquery.raty.min.js"></script>
     <script src="/js/clean-blog.js"></script>
     
 <script>
@@ -1717,10 +1717,11 @@ function updabtn(sessionno,rno , teno) { /* 회원 인식해서 댓글 수정해
     <!-- Custom scripts for this template -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=74d4f74bdd85b5f1c1d2492eaf6b2a88&libraries=services"></script>
 <script>
+
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
         center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        level: 7 // 지도의 확대 레벨
+        level: 3 // 지도의 확대 레벨
     }; 
 
 // 지도를 생성합니다    
@@ -1739,7 +1740,7 @@ geocoder.addressSearch('${detailclass.basAddr}', function(result, status) {
         
         var Circle = new daum.maps.Circle({
             center : new daum.maps.LatLng(result[0].y, result[0].x),  // 원의 중심좌표 
-            radius: 1000, // 미터 단위의 원의 반지름
+            radius: 100, // 미터 단위의 원의 반지름
             strokeWeight: 5, // 선의 두께 
             strokeColor: '#75B8FA', // 선의 색깔
             strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명
@@ -1944,18 +1945,6 @@ function setLike(evt,cno,obj){
                 swal({
                     text : "이미 찜클래스에 등록된 클래스입니다.",
                     button : "확인",
-                  })
-            }
-        });
-    }else{
-        swal({
-            text : "로그인 후 이용 가능합니다",
-            button : "확인",
-          })
-    }
-}
-</script>
-</html>,
                   })
             }
         });

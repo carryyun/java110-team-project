@@ -248,9 +248,19 @@ public class ClassController {
   
   @GetMapping("clsLoc")
   public void clsLoc(Model model, String locs, @RequestParam(defaultValue="1") int pageNo,@RequestParam(defaultValue="6") int pageSize) {
-    String replelocs = locs.replaceAll(",","|");
-    System.out.println("locs="+replelocs);
-    List<Classes> clslist=classService.listByLoc(pageNo,pageSize,replelocs);
+    
+    List<Classes> clslist = null;
+    if(locs.contains(" ")) {
+      // 주소중 2번째 스페이스까지의 주소만 뽑기위해
+      int pos = locs.indexOf(" ");
+      pos = locs.indexOf(" ",pos+1);
+      String replelocs = locs.substring(0,pos);
+      clslist=classService.listByLoc(pageNo,pageSize,replelocs);
+    }else {
+      String replelocs = locs.replaceAll(",","|");
+      clslist=classService.listByLoc(pageNo,pageSize,replelocs);
+    }
+
     
     BigTag bigtag = null;
     
