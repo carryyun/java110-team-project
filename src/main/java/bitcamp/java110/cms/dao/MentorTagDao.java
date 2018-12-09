@@ -21,5 +21,9 @@ public interface MentorTagDao {
   // 삭제
   int delete(int no);
   
+  // 수정
+  int update(MentorTag mentoTag);
+  
+  
   
 }

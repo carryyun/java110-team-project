@@ -16,18 +16,6 @@
     <meta name="keywords" content="" />
     <meta name="author" content="" />
 
-    <!-- Facebook and Twitter integration -->
-    <meta property="og:title" content="" />
-    <meta property="og:image" content="" />
-    <meta property="og:url" content="" />
-    <meta property="og:site_name" content="" />
-    <meta property="og:description" content="" />
-    <meta name="twitter:title" content="" />
-    <meta name="twitter:image" content="" />
-    <meta name="twitter:url" content="" />
-    <meta name="twitter:card" content="" />
-
-
     <!--    버튼-->
     <link rel="stylesheet" href="/css/mypagecss/button/skyblue-gradient.css">
     <link rel="stylesheet" href="/css/mypagecss/button/switchbtn.css">
@@ -50,11 +38,23 @@
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <!-- Load JS-->
     <script src=/js/mypagejs/hideshow.js></script>
-    <!-- 멘토신청 popup JS-->
-  <!--   <script src=/js/mypagejs/popup.js></script>  -->
         
 
     <script>
+    
+    // 마이페이지 멘토 경력 조건
+    
+    $(document).ready(function() {
+       console.log($('#stat').attr('name'));
+     if($('#stat').attr('name') == 'Y' ){
+            document.getElementById(id="stat").style.display = "";
+            document.getElementById(id="stathidden").style.display = "none";
+      } 
+     else{
+         document.getElementById(id="stat").style.display = "none";
+         document.getElementById(id="stathidden").style.display = " ";
+     }
+    });
     
      /* menu4 btn 스크립트 */ 
     function div_OnOff(v){
@@ -111,8 +111,8 @@
                 <div class="text-center">
                     <div class="author-img" style="background-image: url(${mentee.phot};"></div>
                     <h1 id="colorlib-logo"><a href="index.html">${mentee.name}</a></h1>
-                    <span id="stat" name="${mentee.mtstat}"class="position"><B>멘토 경력 ${mentor.carr} 년</B><br></span>
-                    
+                    <span id="stat" name="${mentee.mtstat}" class="position;" style="display:none" ><B>멘토 경력 ${mentor.carr} 년</B><br></span>
+                  <span id="stathidden"  class="position;" style="display:"> <br></span> 
                 </div>
 
                 <nav id="colorlib-main-menu" role="navigation" class="navbar">
@@ -427,12 +427,11 @@
 
 </body>
     <!-- jQuery -->
-    <script src="/js/mypagejs/jquery.min.js"></script>
+   <!--  <script src="/js/mypagejs/jquery.min.js"></script> -->
     <!-- Waypoints -->
     <script src="/js/mypagejs/jquery.waypoints.min.js"></script>
     <!-- Counters -->
     <script src="/js/mypagejs/jquery.countTo.js"></script>
-    
     <!-- MAIN JS -->
     <script src="/js/mypagejs/main.js"></script>
     <script src="/js/mypagejs/bootstrap.min.js"></script>

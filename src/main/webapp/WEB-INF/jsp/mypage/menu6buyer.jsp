@@ -30,6 +30,7 @@
         -webkit-appearance: none;             
         margin: 0;         
     } 
+    
 </style>
 
 <div class="col-lg-12"> 
@@ -58,7 +59,6 @@
                     
                   
                     <c:forEach items="${pmanage2}" var="p" varStatus="i">
-                        
                         <tr id="tb-pay">
                             <td>${i.count}</td>
                             <td>${p.productOrder.paydt}<br> (<fmt:formatDate value="${p.productOrder.paydt}"
@@ -67,9 +67,10 @@
                             <td>${p.productOrder.tot_pric}(${p.productOrder.cnt})개<br>${p.productOrder.payopt}</td>
 
                             <td>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deliveryinfo">배송정보입력</button>
+                                <button type="button"   onclick="clickOno(this.name)" name="${p.productOrder.no}" class="btn btn-primary" data-toggle="modal" data-target="#deliveryinfo">배송정보입력</button>
                             </td>
                             </tr>
+                           <%--  <input type="hidden" class="ono" name="${p.productOrder.no}"> --%>
                     </c:forEach>
                 </tbody>
                 
@@ -110,8 +111,8 @@
 													    type = "number" maxlength = "20" id="delnum"  />
                                                     </div>	
                                                       <button type="button" class="btn btn-primary" data-dismiss="modal"id="submitdelbtn"  role="button">취소</button>
-                                                      <button type="button" class="btn btn-primary"  onClick="submitDelivery()">입력 완료</button>
-                                                      <input type="hidden" id="delptno" value='${ptno}'>
+                                                      <button type="button" class="btn btn-primary" id="submitOno" name="" onClick="submitDelivery(this.name)">입력 완료</button>
+                                                     
                                                 </div>
                                             </div>
                                           </div>
@@ -128,17 +129,6 @@
 
 <script>
 
-/* 
-function writeparc(){
-    
-     swal("Write something here:", {
-        content: "input",
-      })
-      .then((value) => {
-        swal(`You typed: ${value}`);
-      }); 
-      */
-      
 $("#submitdelbtn").click(function(){
   		$("#deliveryinfo")
     .find("#delnum,select")
@@ -146,10 +136,26 @@ $("#submitdelbtn").click(function(){
        .end();
 });
     
+    
+function clickOno(ono){
+   
+    console.log("ono : "+ono);
+    
+    $('#submitOno').attr('name',ono)
+    
+    console.log( "setono"+$('#submitOno').attr('name'));
      
-function submitDelivery(){
+    
+}
+
+
+
+
+     
+ function submitDelivery(getOno){
 		console.log($("#delnum").val().length);
 		console.log($("#delivery option:selected").val());
+		  
 		if($("#delnum").val() == ""){
 			swal({
 		        text: "송장번호를 적어주세요.",
@@ -170,7 +176,7 @@ function submitDelivery(){
 			data : {
 				parcname: $("#delivery option:selected").val(),
 				parcno	: $("#delnum").val(),
-				delptno : $("#delptno").val()
+				ono : getOno
 			},
 			url : "deliveryinsert.do",
 			success : function(data){
@@ -198,7 +204,7 @@ function submitDelivery(){
 			}
 		});
 	}
-}
+} 
    
 
 $("#menu6re").click(function(){

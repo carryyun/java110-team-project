@@ -52,8 +52,13 @@ public class MentoTagServiceImpl implements MentoTagService {
 
 
   @Override
-  public int add(MentorTag mentoTag) {
-    return mentoTagDao.insert(mentoTag);
+  public int add(MentorTag mentorTag) {
+    return mentoTagDao.insert(mentorTag);
+  }
+  
+  @Override
+  public int update(MentorTag mentorTag) {
+    return mentoTagDao.update(mentorTag);
   }
 
   @Transactional

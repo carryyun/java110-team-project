@@ -13,7 +13,7 @@ public class ProductOrder {
   private String payopt; // 결제방법
   private Date paydt; // 날짜시간
   private String parc_name; // 택배사
-  private int parc_no; // 송장번호
+  private String parc_no; // 송장번호
   
   private Mentee mentee;
   private Product product;
@@ -76,10 +76,10 @@ public class ProductOrder {
   public void setParc_name(String parc_name) {
     this.parc_name = parc_name;
   }
-  public int getParc_no() {
+  public String getParc_no() {
     return parc_no;
   }
-  public void setParc_no(int parc_no) {
+  public void setParc_no(String parc_no) {
     this.parc_no = parc_no;
   }
   public Mentee getMentee() {

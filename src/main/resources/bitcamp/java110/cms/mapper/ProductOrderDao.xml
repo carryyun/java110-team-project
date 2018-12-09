@@ -139,7 +139,7 @@
     	update p_prdt_order 
     	   set parc_name=#{parc_name},
     	   	   parc_no=#{parc_no}
-    	 where ptno=#{ptno}
+    	 where ono=#{no}
     </update>
     
     <select id="findAllByMeno" 
