@@ -43,4 +43,13 @@
         order by
             cpno DESC
     </select>
+      
+    <insert id="insert" useGeneratedKeys="true" keyColumn="cpno" keyProperty="no" >
+    	insert into p_cls_popul(cno) values(#{no})
+    </insert>
+    
+    <delete id="delete">
+    	delete
+    	  from p_cls_popul
+    </delete>
 </mapper>

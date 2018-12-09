@@ -7,5 +7,6 @@ public interface ClassPopulDao {
   
   // 전체조회
   List<ClassPopul> findAll(); 
-
+  int insert(int no);
+  int delete();
 }
