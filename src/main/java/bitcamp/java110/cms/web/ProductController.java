@@ -237,6 +237,15 @@ public class ProductController {
     List<ProductRep> productRepList = productRepSerivce.listByPtno(pageNo,pageSize,ptno);
     return productRepList;
   }
+//상품평 수정
+  @RequestMapping(value = "updaterep.do", method = {RequestMethod.GET, RequestMethod.POST})
+  public @ResponseBody List<ProductRep> updaterep(int ptno,
+      @RequestParam(defaultValue = "1") int pageNo,
+      @RequestParam(defaultValue = "5") int pageSize, ProductRep productrep) {
+      productRepSerivce.update(productrep);
+      List<ProductRep> productRepList = productRepSerivce.listByPtno(pageNo,pageSize,ptno);
+      return productRepList;
+  }
 
   @RequestMapping(value = "addqna.do", method = {RequestMethod.GET, RequestMethod.POST})
   public @ResponseBody int addqna(ProductQnA productQnA) {
