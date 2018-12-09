@@ -609,9 +609,8 @@
                 $(".pop").click(function(){
                     
                     var judge = $('#wrapper').attr('name')
-                    console.log(judge);
                     
-                    if(judge == 'I'){
+                    if(/* judge == 'Y' || */ judge == 'I'){
                         
                         swal({
                             title: "멘토신청은 한번만 가능합니다!",
