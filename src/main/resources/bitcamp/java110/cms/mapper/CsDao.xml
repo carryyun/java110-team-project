@@ -35,8 +35,11 @@
     </sql>
     
     <select id="findByMaster" resultMap="csMap" parameterType="Map">
-    select
-            cs.csno,
+    select *
+        from (
+            select
+                @rownum:=@rownum+1 as rnum,
+               cs.csno,
             cs.cstype,
             cs.titl,
             cs.rgdt,
@@ -46,14 +49,31 @@
             cs.meno as meno,
             mete.name,
             mete.nick
-        from
+            from
             p_cs cs join p_mete mete 
             on cs.meno = mete.meno
-       order by
-            csno
+                ,(select @rownum:=0)r
+           order by
+            cs.csno desc
+            ) as a
+        where rnum limit #{cspageNo},#{cspageSize}
     </select>
     
-    <select id="pageMaster" resultMap="csMap" parameterType="Map">
+    <select id="countByMaster" resultType="int" parameterType="int">
+    select
+            COUNT(*)
+            
+            from
+            p_cs cs join p_mete mete 
+            on cs.meno = mete.meno
+            
+           order by
+            cs.csno desc
+    
+    </select>
+    
+    
+    <select id="csPage" resultMap="csMap" parameterType="Map">
     select *
         from (
             select

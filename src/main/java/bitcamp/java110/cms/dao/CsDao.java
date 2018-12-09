@@ -10,8 +10,10 @@ public interface CsDao {
   Cs findByNo(int no);
   int delete(int no);
   int update(Cs cs);
-  List<Cs> findByMaster();//마스터 페이지 문의
+  List<Cs> findByMaster(Map<String, Object> params);//마스터 페이지 문의
   List<Cs> pageMaster(Map<String, Object> params);
   int insertQuestion(Cs cs);
+  int countByMaster();
+  List<Cs> csPage(Map<String, Object> params);
   
 }
