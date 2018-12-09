@@ -262,7 +262,7 @@ $("img.lazy").lazyload({
 	                        if(${sessionScope.loginUser != null}){
 	                            if('${sessionScope.loginUser.no}' == result[item].meno ){
 	                                html+= '  <div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="removerep('+result[item].no +')"><i class="fas fa-trash-alt"></i></a> </div>';
-	                            }
+	                            } 
 	                        }
 	                        html+= '        </div>';
 	                        html+= '    </div>';
@@ -619,7 +619,7 @@ $('.accordian-body').on('show.bs.collapse', function () {
         .not(this)
 })
 </script>
-
+ 
 <script>
 function repPaging(rpageNo){
 	$.ajax({
