@@ -14,4 +14,7 @@ public interface ClassOrderDao {
   int findBycno(Map<String, Object> params);
   
   List<ClassOrder> findBycnoFormeno(int no);
+  int findBycno(int no , int rono);
+  
+  List<Integer> selpopularityclass();
 }
