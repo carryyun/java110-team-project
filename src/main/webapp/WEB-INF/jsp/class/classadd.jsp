@@ -40,6 +40,9 @@
     #mainNav .navbar-brand{
     	margin-bottom: 50px !important;
     }
+    .modal-backdrop.in{
+    	display:none !important;
+    }
     </style>
     </head>
     
@@ -222,7 +225,7 @@
                  <input id="days" type="hidden" name="days">
                  <input id="removefiles" type="hidden" name="removefiles">
                  <input type="hidden" id="type" name="type" value="단기"> 
-                 <input type="button" id="back-home-btn" value="Go Home">  
+                 <input type="button" id="back-home-btn" onclick="back_btn()" value="뒤로가기">  
               	 <input type="button" id="clsinsert" onclick="emptychk();" value="클래스 등록" />
               	 <input type="hidden" id="selbigtag" name="selbtag">
               	 <input type="hidden" id="selmtag" name="selmtag"> 
@@ -403,6 +406,10 @@ function emptychk(){
 		       		document.getElementById('uploadForm').submit();
 		        });
 	}
+}
+
+function back_btn(){
+	history.back();
 }
 
 $( "#bigtagSel").change(function() {
