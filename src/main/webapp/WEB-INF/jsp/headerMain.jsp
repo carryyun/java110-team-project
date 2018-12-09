@@ -32,7 +32,7 @@ function mover(){
 <nav class="navbar navbar-expand-lg mx-auto fixed-top mb-2" id="mainNav">
 	<a class="navbar-brand" href="/app/mainpage/mainpage">하루</a>
 	<div class="search" style="position: relative;">
-			<input type="text" id="getWord" class="search-form" autocomplete="off" placeholder="클래스 또는 멘토 검색"> 
+			<input type="text" id="getWord" class="search-form" autocomplete="off" placeholder="클래스 또는 멘토 검색" onkeypress="if(event.keyCode==13) {location.href='../class/clsSerch?word='+$('#getWord').val(); return false;}"> 
             <a href="#" onclick="location.href='../class/clsSerch?word='+$('#getWord').val()"><i class="fas fa-search fa-2x"></i></a>	
 	</div> 
 	<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
