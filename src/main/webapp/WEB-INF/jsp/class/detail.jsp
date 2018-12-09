@@ -368,7 +368,7 @@
                                          <c:choose>
                                          	<c:when test="${sessionScope.loginUser eq null}">
                                          		<textarea class="form-control" id="logincontnull" name="conts"
-                                                 placeholder="로그인 후 이용가능합니다." rows="5"
+                                                 placeholder="로그인 후 이용가능합니다." rows="5" disabled="disabled"
                                                  style="width:600px; margin-left:50px; resize : none;"></textarea>
                                          	</c:when>
                                          	<c:otherwise>
