@@ -92,6 +92,8 @@ public class SchedulerService {
   // 인기예감 클래스로 변경 
   @Scheduled(fixedRate=6000000)
   public void popularityClass(){
+    System.out.println("StartSetter Scheeduled");
+    System.out.println("popularityClassSystem start");
     List<Integer> popularityClasslist = classOrderDao.selpopularityclass();
       classPopulDao.delete();
     for(int no : popularityClasslist) {

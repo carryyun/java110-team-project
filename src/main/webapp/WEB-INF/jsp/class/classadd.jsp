@@ -176,7 +176,8 @@
   				</div>
                <div id="pay-div">
                 <input type="text" class="view" readonly value="시간당 금액" >
-                <input type="number" name="pric" id="cpay" maxlength="6" placeholder="시간당 수업금액을 입력해주세요.">원
+                <input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                name="pric" id="cpay" maxlength="6" placeholder="시간당 수업금액을 입력해주세요.">원
                </div> 
                <div id="allday-btn" style="display:none;">
                <input type="text" class="view" readonly value="수업날짜">
@@ -194,7 +195,7 @@
                </div>
                <div id="divcapa">
                 <input type="text" class="view" readonly value="모집인원">
-                <input type="number" name="capa" id="rnumber"  min="1" maxlength="2" placeholder="모집인원을 입력해주세요.">
+                <input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"name="capa" id="rnumber"  min="1" maxlength="2" placeholder="모집인원을 입력해주세요.">
                </div>
                 <div id="pst">
                     <input type="text" id="posi" readonly value="수업장소"><br>
@@ -353,32 +354,13 @@ function emptychk(){
 			button:"확인"
 		});
 		return false;
-	}else if($("#ctime2").val().length == 4 && $("#ctime").val().length == 5){
-		swal({
-			text:"시작시간이 끝나는시간보다 작아야합니다",
-			button:"확인"
-		});
-		return false;
-	}else if($("#ctime2").val().length == 5 && $("#ctime").val().length == 5 && $("#ctime2").val().substr(0,2) < $("#ctime").val().substr(0,2)){
+	}else if($("#ctime2").val().substr(0,2) < $("#ctime").val().substr(0,2)){
     		swal({
 				text:"시작시간이 끝나는시간보다 작아야합니다",
 				button:"확인"
 			});
     		return false;
-	}else if($("#ctime2").val().length == 5 && $("#ctime").val().length == 5 &&  $("#ctime2").val().substr(0,2) == $("#ctime").val().substr(0,2)){
-    		swal({
-				text:"시작시간과 끝나는시간이 같으면안됩니다.",
-				button:"확인"
-			});
-    		return false;
-		
-	}else if($("#ctime2").val().length == 4 && $("#ctime").val().length == 4 && $("#ctime2").val().substr(0,1) < $("#ctime").val().substr(0,1)){
-    		swal({
-				text:"시작시간이 끝나는시간보다 작아야합니다",
-				button:"확인"
-			});
-    		return false;
-	}else if($("#ctime2").val().length == 4 && $("#ctime").val().length == 4 && $("#ctime2").val().substr(0,1) == $("#ctime").val().substr(0,1)){
+	}else if($("#ctime2").val().substr(0,2) == $("#ctime").val().substr(0,2)){
     		swal({
 				text:"시작시간과 끝나는시간이 같으면안됩니다.",
 				button:"확인"
@@ -392,7 +374,7 @@ function emptychk(){
 		return false;
 	}else if($('#selmtag').val() == ''){
 		swal({
-			text:"소분류를 선택해주세요.",
+			text:"중분류를 선택해주세요.",
 			button:"확인"
 		});
 		return false;
@@ -620,9 +602,13 @@ $(document.body).on('click', '.remove-file-btn', function (event) {
 
    $( "#ctime" ).timepicker({
 	   interval: 60,
-	   timeFormat :'H:mm',
+	   timeFormat :'HH:mm',
 	   change: function(time) { 
-       $("#ctime2").timepicker("option","minTime", time);
+		    var ct2 = $("#ctime2").val().substr(0,2);
+			var ct1 = $("#ctime").val().substr(0,2);
+	    	var alltime = ct2-ct1
+ 	  		$("#cttime").val(Math.abs(alltime));	 
+      	    $("#ctime2").timepicker("option","minTime", time);
 	   }
    });
        
@@ -641,38 +627,12 @@ $(document.body).on('click', '.remove-file-btn', function (event) {
    
    $( "#ctime2" ).timepicker({
 	   interval: 60,
-	   timeFormat :'H:mm',
+	   timeFormat :'HH:mm',
 	   change: function(){
-		   if($("#ctime2").val().length == 5){
-			    if($("#ctime").val().length == 5){
-					var ct2 = $("#ctime2").val().substr(0,2);
-					var ct1 = $("#ctime").val().substr(0,2);
-			    	var alltime = ct2-ct1
-			    	if(ct2 > ct1)
-			  	  		$("#cttime").val(Math.abs(alltime));	    		
-			    	
-			    }else if($("#ctime").val().length == 4){
-			    	var ct2 = $("#ctime2").val().substr(0,2);
-					var ct1 = $("#ctime").val().substr(0,1);
-			    	var alltime = ct2-ct1
-			    	if(Math.abs(ct2)>Math.abs(ct1))
-			  	  		$("#cttime").val(Math.abs(alltime));	    		
-			    }
-			}else if($("#ctime2").val().length == 4){
-				if($("#ctime").val().length == 4){
-					var ct2 = $("#ctime2").val().substr(0,1);
-					var ct1 = $("#ctime").val().substr(0,1);
-			    	var alltime = ct2-ct1
-			    	if(ct2 > ct1)
-			  	  		$("#cttime").val(Math.abs(alltime));	    		
-				}else if($("#ctime").val().length == 5){
-					var ct2 = $("#ctime2").val().substr(0,1);
-					var ct1 = $("#ctime").val().substr(0,2);
-			    	var alltime = ct2-ct1
-			    	if(Math.abs(ct2)>Math.abs(ct1))
-			  	  		$("#cttime").val(Math.abs(alltime));	    		
-				}
-			}
+			var ct2 = $("#ctime2").val().substr(0,2);
+			var ct1 = $("#ctime").val().substr(0,2);
+	    	var alltime = ct2-ct1
+  	  		$("#cttime").val(Math.abs(alltime));	    		
 	   }
    });
 	 //  change: function(time) {
