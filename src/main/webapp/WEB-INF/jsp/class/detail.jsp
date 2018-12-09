@@ -76,7 +76,7 @@
                 <h2>클래스 상세보기
                 <c:choose>
                 	<c:when test="${sessionScope.loginUser.no eq detailclass.mentee.no}">
-                		<a onclick="updateclsstat()" class="btn btn-lg btn-danger col-lg-1 py-1 text-center" 
+                		<a onclick="updateclsstat()" class="btn btn-lg btn-danger py-1" 
                 		style="float : right; color:white; height: 38px; text-align:center;">삭제</a>
                 	</c:when>
                 	<c:otherwise>
@@ -1613,7 +1613,7 @@ function updabtn(sessionno,rno , teno) { /* 회원 인식해서 댓글 수정해
 	        		 html +='     <div id="rcont'+i+'" class="col-lg-10 media-body">'+conts+'</div>'
 	        		 html +='     <textarea class="repupda col-lg-9 media-body" id="repup'+i+'" rows="5" name="repup"'
 	        		 html +='                style =" margin-left:10px; width : 500px; display: none;"></textarea>'
-     		     						if(no == meno){
+     		     						if(sessionno == meno){
      		         html +='      <button type="button" data-toggle="modal" data-target="#deleteModal_'+rno+'"'
      		         html +='      class="delebtn btn btn-danger" id="delebtn'+i+'" style="padding-right: 6px; padding-left: 6px; padding-top: 3px; padding-bottom: 3px;">삭제</button>'
      		        		     		} else {
@@ -1635,9 +1635,9 @@ function updabtn(sessionno,rno , teno) { /* 회원 인식해서 댓글 수정해
 	        		 html +='                 </div>'
 	        		 html +='               </div>'
 	        		 html +='              </div>'
-		 								if(no == meno){
+		 								if(sessionno == meno){
 		 			 html +='             <button type="button" class="edbtn btn btn-warning" id="edbtn'+i+'"' 
-		 			 html +='     onClick="updarep('+no+' , '+rno+' , '+meno+' ,'+i+');" style="padding-right: 6px; padding-left: 6px; padding-top: 3px; padding-bottom: 3px; color:white; margin-left:3px;">수정</button>'
+		 			 html +='     onClick="updarep('+sessionno+' , '+rno+' , '+meno+' ,'+i+');" style="padding-right: 6px; padding-left: 6px; padding-top: 3px; padding-bottom: 3px; color:white; margin-left:3px;">수정</button>'
 		 					        	} else {
 		 					        	}
 	        		 html +='     <button type="button" class="updabtn btn btn-warning" id="updabtn'+i+'" data-toggle="modal"' 
