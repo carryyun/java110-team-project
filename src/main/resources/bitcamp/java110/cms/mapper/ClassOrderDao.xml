@@ -42,6 +42,14 @@
         <result column="phone" 		property="mete2_phone"/>
     </resultMap>
     
+    <select id="selpopularityclass" resultType="int">
+   		SELECT ctno
+	  	  FROM p_cls_order
+  	  GROUP BY ctno
+  	  ORDER BY COUNT(*) DESC
+  		 LIMIT 5
+    </select>
+    
    
      <select id="findByMeno" resultMap="classOrderMap" parameterType="Map">
        

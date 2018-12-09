@@ -12,4 +12,6 @@ public interface ClassOrderDao {
   List<ClassOrder> findAllMaster(Map<String, Object> params); // 관리자조회
   
   int findBycno(int no , int rono);
+  
+  List<Integer> selpopularityclass();
 }
