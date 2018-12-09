@@ -16,18 +16,6 @@
     <meta name="keywords" content="" />
     <meta name="author" content="" />
 
-    <!-- Facebook and Twitter integration -->
-    <meta property="og:title" content="" />
-    <meta property="og:image" content="" />
-    <meta property="og:url" content="" />
-    <meta property="og:site_name" content="" />
-    <meta property="og:description" content="" />
-    <meta name="twitter:title" content="" />
-    <meta name="twitter:image" content="" />
-    <meta name="twitter:url" content="" />
-    <meta name="twitter:card" content="" />
-
-
     <!--    버튼-->
     <link rel="stylesheet" href="/css/mypagecss/button/skyblue-gradient.css">
     <link rel="stylesheet" href="/css/mypagecss/button/switchbtn.css">
@@ -50,8 +38,6 @@
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <!-- Load JS-->
     <script src=/js/mypagejs/hideshow.js></script>
-    <!-- 멘토신청 popup JS-->
-  <!--   <script src=/js/mypagejs/popup.js></script>  -->
         
 
     <script>
@@ -62,11 +48,11 @@
        console.log($('#stat').attr('name'));
      if($('#stat').attr('name') == 'Y' ){
             document.getElementById(id="stat").style.display = "";
-            document.getElementById(id="stathiddn").style.display = "none";
+            document.getElementById(id="stathidden").style.display = "none";
       } 
      else{
          document.getElementById(id="stat").style.display = "none";
-         document.getElementById(id="stathiddn").style.display = "";
+         document.getElementById(id="stathidden").style.display = " ";
      }
     });
     
@@ -121,8 +107,7 @@
                 <div class="text-center">
                     <div class="author-img" style="background-image: url(${mentee.phot};"></div>
                     <h1 id="colorlib-logo"><a href="index.html">${mentee.name}</a></h1>
-                    <span id="stat" name="${mentee.mtstat}"class="position;" style="display:none" ><B>멘토 경력 ${mentor.carr} 년</B><br></span>
-                    <span id="judgestat" name="&{mentor.carr}" style="display:none">
+                    <span id="stat" name="${mentee.mtstat}" class="position;" style="display:none" ><B>멘토 경력 ${mentor.carr} 년</B><br></span>
                   <span id="stathidden"  class="position;" style="display:"> <br></span> 
                 </div>
 
@@ -230,7 +215,6 @@
       <input type="radio" id="btn-menu4-1" name="switch_3" value="1" onclick="div_OnOff(this.value);"     checked/>
       <label for="btn-menu4-1">1:1문의</label>
       
-
       <input type="radio" id="2ndswitch" name="switch_3" value="2" onclick="div_OnOff(this.value);" />
       <label class="3bro" for="2ndswitch" >클래스</label>
       
@@ -434,12 +418,11 @@
 
 </body>
     <!-- jQuery -->
-    <script src="/js/mypagejs/jquery.min.js"></script>
+   <!--  <script src="/js/mypagejs/jquery.min.js"></script> -->
     <!-- Waypoints -->
     <script src="/js/mypagejs/jquery.waypoints.min.js"></script>
     <!-- Counters -->
     <script src="/js/mypagejs/jquery.countTo.js"></script>
-    
     <!-- MAIN JS -->
     <script src="/js/mypagejs/main.js"></script>
     <script src="/js/mypagejs/bootstrap.min.js"></script>

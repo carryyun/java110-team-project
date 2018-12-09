@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,14 +70,14 @@
                                     <dt>
                                         <h4>가격</h4>
                                     </dt>
-                                    <dd>${product.pric}원</dd>
+                                    <dd><fmt:formatNumber value="${product.pric}" groupingUsed="true"/>원</dd>
                                 </dl>
 
                                 <dl class="param param-feature">
                                     <dt>
                                         <h4>택배비</h4>
                                     </dt>
-                                    <dd>${product.deli}원</dd>
+                                    <dd><fmt:formatNumber value="${product.deli}" groupingUsed="true"/>원</dd>
                                 </dl>
 
 
@@ -88,7 +89,7 @@
                                             <dt>
                                                 <h4>남은수량</h4>
                                             </dt>
-                                            <dd>${product.stock}개</dd>
+                                            <dd><fmt:formatNumber value="${product.stock}" groupingUsed="true"/>개</dd>
                                         </dl>
                                         <!-- item-property .// -->
                                     </div>

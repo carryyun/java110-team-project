@@ -4,6 +4,7 @@
 	trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 
 <head>
@@ -30,9 +31,25 @@
 <link href="/css/common.css" rel="stylesheet">
 
 <!-- ===============필수포함=============== -->
-
+<style>
+	.area_hotkeyword.PM_CL_realtimeKeyword_base{
+		margin-top:20px;
+	}
+	.area_hotkeyword.PM_CL_realtimeKeyword_base li{
+		padding-left:3px;
+		margin-top:10px;
+	}
+	.area_hotkeyword.PM_CL_realtimeKeyword_base li:hover{ background-color: #FFB53C}
+	.area_hotkeyword.PM_CL_realtimeKeyword_base .ah_k{
+		color: black;
+	}
+	.area_hotkeyword.PM_CL_realtimeKeyword_base .ah_r{
+		margin-right:2px;
+		color: black;
+		font-weight:bolder;
+	}
+</style>
 </head>
-
 <body>
 	<div id="wrap" style="background-color: #fff">
 		<div class="col-lg-12 px-0"
@@ -44,7 +61,7 @@
             <!-- 헤더 배경색 적용 -->
         </div>
 
-		<div class="container" style="background-color: white">
+		<div class="container" style="background-color: white; margin-bottom: 80px">
 			<!-- Header (스크립트로 임시 inclue) -->
 			<div class="row">
 				<div class="col-lg-12" >
@@ -63,7 +80,7 @@
 						<div class="col-lg-9">
 							<div class="row">
 								<div class="col" style="border-right: 1px solid rgb(217, 217, 217);">
-									<h2>오늘의 핫 아이템</h2>
+									<h2 style="font-size: 1.5rem; font-weight: 700;">오늘의 핫 아이템</h2>
 									<hr color="#FFB53C" style="height:4px;margin-top:10px;margin-bottom:15px"/>
 									<div id="owl-hotItem" class="owl-carousel col-lg-10 mt-2" style="margin: 0 auto"></div>
 									<div class="owl-btns">
@@ -78,12 +95,39 @@
 							</div>
 						</div>
 						<div class="col-lg-3 text-left">
-						<h2>상품 검색</h2>
+						<h2 style="font-size: 1.5rem; font-weight: 700;">상품 검색</h2>
 						<hr color="#FFB53C" style=" height:4px;margin-top:10px;margin-bottom:15px"/>
 						
 						  <input type="text" id="serchconts" style="height:40px; width:98%; border: 4px solid #FFB53C;" onkeypress="if(event.keyCode==13) {serchProduct();}"> 
 						  <button onclick="serchProduct()" style="border:none; background: none;"><i style="position:relative;margin-left:-50px ;font-size: 20px;" class="fas fa-search"></i></button>
+							<div>
+							<div class="area_hotkeyword PM_CL_realtimeKeyword_base">
+							<div class="ah_roll PM_CL_realtimeKeyword_rolling_base" aria-hidden="false">
+							<h3 class="blind" style="font-size: 1.5rem; font-weight: 700;">인기 주문 목록</h3>
+							<div class="ah_roll_area PM_CL_realtimeKeyword_rolling"> 
+							<ul class="ah_l">
+							<c:forEach items="${hotItemlist}" var="h" varStatus="o">
+							<li class="ah_item">
+							<a href="detail?no=${h.no}" class="ah_a" data-clk="lve.keyword" >
+							<span class="ah_r">${o.count}</span>
+							<c:choose>
+								<c:when test="${fn:length(h.titl) > 17}">
+					              <span class="ah_k">${fn:substring(h.titl,0,17)}...</span>
+					            </c:when>
+					            <c:otherwise>
+					              <span class="ah_k">${h.titl}</span>
+					            </c:otherwise> 
+							</c:choose>
+							</a>
+							</li>
+							</c:forEach>
+							</ul>
+							</div>
+							</div>
+							</div>	
 						</div>
+						
+						
 
 						<hr class="FhrMargin" style="background:none ;">
 					</div>
@@ -153,7 +197,7 @@
                                                                       }
                                                                     %>
 																</div>
-																<div class="col-lg-5 product-description__price">${pl.pric}원</div>
+																<div class="col-lg-5 product-description__price"><fmt:formatNumber value="${pl.pric}" groupingUsed="true"/>원</div>
 															</div>
 															<hr class="NoMarginHr">
 															<!-- 멘토 이름 -->

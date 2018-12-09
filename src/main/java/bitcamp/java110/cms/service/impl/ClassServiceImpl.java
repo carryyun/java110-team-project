@@ -172,4 +172,10 @@ public class ClassServiceImpl implements ClassService{
     params.put("word", word);
     return classDao.findAllByWord(params);
   }
+
+  @Override
+  public int deleteclsstat(Classes classes) {
+    
+    return classDao.deleteclsstat(classes);
+  }
 }

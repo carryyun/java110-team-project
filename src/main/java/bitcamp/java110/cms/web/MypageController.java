@@ -104,11 +104,8 @@ public class MypageController {
     
     Mentee mentee = (Mentee) session.getAttribute("loginUser");
     model.addAttribute("mentee", mentee);
-    
     Mentor mentor = mentorService.get(mentee.getNo());
     model.addAttribute("mentor", mentor);
-    
-    
   }
   @GetMapping("menu1")
   public void menu1(Model model,HttpSession session) {
@@ -428,16 +425,22 @@ public class MypageController {
     return classService.manageByCno(cno);
   }
   @RequestMapping(value = "deliveryinsert.do", method = {RequestMethod.POST})
-  public @ResponseBody int deliveryInsert(String parcname,int parcno, String delptno) {
-    System.out.println(parcname);
+  public @ResponseBody int deliveryInsert(String parcname,String parcno, int ono) {
+    
     System.out.println(parcno);
-    System.out.println(delptno);
+    
     ProductOrder order = new ProductOrder();
     order.setParc_name(parcname);
     order.setParc_no(parcno);
-    order.setPtno(Integer.parseInt(delptno));
-    
+    order.setNo(ono);
     return productOrderSerivce.adddeliveryinfo(order);
+  }
+  
+  @RequestMapping(value = "questionInsert.do", method = {RequestMethod.POST})
+  public @ResponseBody int questionInsert(HttpSession session, Cs cs) {
+    Mentee mentee = (Mentee) session.getAttribute("loginUser");
+    cs.setMeno(mentee.getNo());
+    return csService.addQuestioninfo(cs);
   }
   
 /*  @RequestMapping(value = "buyerList.do", method = {RequestMethod.POST})

@@ -3,6 +3,7 @@
     pageEncoding="UTF-8"
     trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
 
 <html>
 <head>
@@ -18,13 +19,18 @@
 
 <body>
 	<div id="wrap" style="background-color: #fff">
-		<div class="col" style="position: absolute; height: 105px; background-color: white">
-			<!-- 헤더 배경색 적용 -->
-		</div>
+		<div class="col-lg-12 px-0"
+            style="position: absolute; height: 105px; background-color: white">
+            <!-- 헤더 배경색 적용 -->
+        </div>
+        <div class="col-lg-12 px-0" 
+            style="position: absolute; top:105px; height: 44px; background-color: #f3f3f3">
+            <!-- 헤더 배경색 적용 -->
+        </div>
 
-		<div class="container">
+		<div class="container" style="margin-bottom: 80px">
 			<div class="row">
-				<div class="col" style="position: absolute; height: 105px; background-color: white">
+				<div class="col" style="position: absolute; height: 105px;">
 					<!-- 헤더 배경색 적용 -->
 				</div>
 
@@ -84,7 +90,7 @@
 													<h5 class="media-heading">
 														판매자 : ${r.mentee.nick }
 													</h5>
-													<span></span><span class="text-warning"><strong>인당 최대 수량: ${r.product.stock}개</strong></span>
+													<span></span><span class="text-warning"><strong>인당 최대 수량: <fmt:formatNumber value="${r.product.stock}" groupingUsed="true"/>개</strong></span>
 												</div>
 											</div>
 										</td>

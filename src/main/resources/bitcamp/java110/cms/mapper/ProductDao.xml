@@ -73,6 +73,31 @@
         <result column="me2bas"     property="mentee2.bas_addr"/>
         <result column="me2det"     property="mentee2.det_addr"/>
     </resultMap>
+    
+    <select id="hotItemlist" resultMap="productMap">
+    	SELECT PD.ptno, PD.titl
+ 		  FROM (SELECT ptno, COUNT(*) as cnt
+  		  FROM p_prdt_order P
+      GROUP BY ptno) CNT, p_prdt PD
+         WHERE PD.ptno=CNT.ptno
+      ORDER BY cnt DESC
+    </select>
+
+
+    <resultMap type="product" id="productStar">
+        <id     column="ptno"        property="no"/>
+        <result column="star"   property="star"/>
+    </resultMap>
+    
+    <select id="findAllStar" resultMap="productStar">
+        select
+            ptno,
+            star
+        from
+            p_prdt
+        limit 0,500
+    </select>
+
 
     
 <sql id="selectAll">
@@ -123,6 +148,8 @@ ON
     order by 
         ptno DESC
     </select>
+    
+  
     
     <select id="findAllByStno" resultMap="productMap" parameterType="map">
     <include refid="selectAll" />
@@ -336,17 +363,18 @@ where
     <set> 
         <if test="titl!=null">titl= #{titl},</if>
         <if test="conts!=null">conts=#{conts},</if>
-        <if test="pric!=null">pric= #{pric},</if>
-        <if test="deli!=null">deli= #{deli},</if>
+        <if test="pric>0">pric= #{pric},</if>
+        <if test="deli>0">deli= #{deli},</if>
         <if test="star>0">star= #{star},</if>
         <if test="stock>0">stock= #{stock},</if>
         <if test="phot!=null">phot= #{phot},</if>
         <if test="ctno>0">ctno= #{ctno},</if>
         <if test="stno>0">stno= #{stno},</if>
+        <if test="star>0">star= #{star},</if>
     </set>
         where
             ptno=#{no}
-    </update>
+    </update> 
     
     <update id="updatestat" parameterType="product">
         UPDATE 

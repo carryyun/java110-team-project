@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import bitcamp.java110.cms.domain.ClassFile;
 import bitcamp.java110.cms.domain.ClassOrder;
 import bitcamp.java110.cms.domain.Classes;
 import bitcamp.java110.cms.domain.Cs;
@@ -17,7 +18,9 @@ import bitcamp.java110.cms.domain.Notice;
 import bitcamp.java110.cms.domain.Product;
 import bitcamp.java110.cms.domain.ProductOrder;
 import bitcamp.java110.cms.domain.Report;
+import bitcamp.java110.cms.domain.Timetable;
 import bitcamp.java110.cms.service.BigTagService;
+import bitcamp.java110.cms.service.ClassFileService;
 import bitcamp.java110.cms.service.ClassOrderService;
 import bitcamp.java110.cms.service.ClassService;
 import bitcamp.java110.cms.service.CsService;
@@ -30,6 +33,7 @@ import bitcamp.java110.cms.service.ProductOrderService;
 import bitcamp.java110.cms.service.ProductPopulService;
 import bitcamp.java110.cms.service.ProductService;
 import bitcamp.java110.cms.service.ReportService;
+import bitcamp.java110.cms.service.TimetableService;
 
 @Controller
 @RequestMapping("/masterpage")
@@ -50,6 +54,9 @@ public class MasterPageController {
   CsService csService;
   
   
+  ClassFileService classFileService;
+  TimetableService timetableService;
+  
 
   public MasterPageController(
       MenteeService menteeService,
@@ -64,7 +71,9 @@ public class MasterPageController {
       MentorLicenseService mentorlicenseService,
       ReportService reportService,
       NoticeService noticeService,
-      CsService csService) {
+      CsService csService,
+      ClassFileService classFileService,
+      TimetableService timetableService) {
     
    this.menteeService = menteeService;
    this.mentorService = mentorService;
@@ -79,6 +88,9 @@ public class MasterPageController {
    this.reportService = reportService;
    this.noticeService = noticeService;
    this.csService = csService;
+   
+   this.classFileService = classFileService;
+   this.timetableService = timetableService;
   }
 
 
@@ -181,6 +193,16 @@ public class MasterPageController {
     Classes detailclass = classService.findBycno(no);
     
     model.addAttribute("detailclass",detailclass);
+    
+    List<ClassFile> clsfilelist = classFileService.findByCno(no);
+    List<Timetable> clstimelist = timetableService.findByCno(no);
+
+    
+    
+
+    model.addAttribute("detailclass",detailclass);
+    model.addAttribute("clsfilelist",clsfilelist);
+    model.addAttribute("clstimelist",clstimelist);
   }
 
   @GetMapping("classreqlist")

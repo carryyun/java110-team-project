@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
 	trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,10 +22,15 @@
 </head>
 <body>
 <div id="wrap" style="background-color: #fff; height: 100%">
-        <div class="col" style="position: absolute; height: 105px; background-color: white">
+        <div class="col-lg-12 px-0"
+            style="position: absolute; height: 105px; background-color: white">
             <!-- 헤더 배경색 적용 -->
         </div>
-	<div class="container">
+        <div class="col-lg-12 px-0" 
+            style="position: absolute; top:105px; height: 44px; background-color: #f3f3f3">
+            <!-- 헤더 배경색 적용 -->
+        </div>
+	<div class="container" style="margin-bottom: 80px;">
 		<div class="row">
 			<!-- 버튼 -->
 			<div class="col-lg-12" style="z-index: 100">
@@ -75,7 +81,7 @@
 											<span></span><span class="text-warning"><strong>당일 취소 불가</strong></span>
 										</div>
 									</div>
-								<td class="col-2 text-center"><strong>￦ ${r.classes.pric}</strong></td>
+								<td class="col-2 text-center"><strong><fmt:formatNumber value="${r.classes.pric}" groupingUsed="true"/>원</strong></td>
 								<td class="col-2 "><button type="button" class="btncancel btn btn-outline-dark"
 										value=${r.no }>찜 취소</button></td>
 							</tr>

@@ -6,7 +6,8 @@ import bitcamp.java110.cms.domain.Classes;
 
 public interface ClassDao {
   List<Classes> findAll();
-
+  List<Classes> findAllStar();
+  
   List<Classes> findAllList();
 
   List<Classes> findAllByBtno(Map<String,Object> params);
@@ -42,4 +43,6 @@ public interface ClassDao {
   List<Classes> manageByCno(int cno);
   
   int statupdate(Classes classes);
+  
+  int deleteclsstat(Classes classes);
 }

@@ -4,6 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 
 <head>
@@ -102,7 +103,7 @@ margin-bottom: 0.25rem;
             <!-- 헤더 배경색 적용 -->
         </div>
 
-		<div class="container" style="background-color: white">
+		<div class="container" style="background-color: white;margin-bottom: 80px">
 			<!-- Header (스크립트로 임시 inclue) -->
 			<div class="row">
 				<div class="col-lg-12" style="z-index: 100">
@@ -279,7 +280,7 @@ margin-bottom: 0.25rem;
                                                                       }
                                                                     %>
 																</div>
-																<div class="col-lg-5 product-description__price">${cl.pric}원</div>
+																<div class="col-lg-5 product-description__price"><fmt:formatNumber value="${cl.pric}" groupingUsed="true"/>원</div>
 															</div>
 															<hr class="NoMarginHr">
 															<!-- 멘토 이름 -->

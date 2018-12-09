@@ -5,7 +5,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bitcamp.java110.cms.dao.CertDao">
 
-    <resultMap type="Cert" id="certMap">
+    <resultMap type="Cert" id="certMap"> 
         <id column="ctno" property="no"/>
         <result column="cno"  property="cno"/>
         <result column="meno"    property="meno"/>

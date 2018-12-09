@@ -21,6 +21,11 @@ public class CsServiceImpl implements CsService {
     return csDao.insert(cs);
     
   }
+  @Override
+  public int addQuestioninfo(Cs cs) {
+    return csDao.insertQuestion(cs);
+  }
+  
 
   @Override
   public List<Cs> list(int pageNo, int pageSize,int meno) {
@@ -57,4 +62,16 @@ public class CsServiceImpl implements CsService {
   public List<Cs> findByMaster() {
     return csDao.findByMaster();
   }
+
+  @Override
+  public List<Cs> pageMaster(int cspageNo, int cspageSize) {
+   HashMap<String, Object> params = new HashMap<>();
+   params.put("cspageNo", (cspageNo - 1) * cspageSize);
+   params.put("cspageSize", cspageSize);
+   
+   return csDao.pageMaster(params);
+   
+  }
+  
+  
 }

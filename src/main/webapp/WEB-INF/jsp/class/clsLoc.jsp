@@ -4,6 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 
 <head>
@@ -102,7 +103,7 @@ margin-bottom: 0.25rem;
             <!-- 헤더 배경색 적용 -->
         </div>
 
-		<div class="container" style="background-color: white">
+		<div class="container" style="background-color: white; margin-bottom: 80px">
 			<!-- Header (스크립트로 임시 inclue) -->
 			<div class="row">
 				<div class="col-lg-12" style="z-index: 100">
@@ -117,9 +118,9 @@ margin-bottom: 0.25rem;
 				<!-- Main Content -->
 				<div class="container col-lg-12 my-3" style="background-color: #white">
 					<div class="row">
-						<div class="col-lg-2 border-right border-secondary">
+						<div class="col-lg-2 pl-4 border-right border-secondary">
 							<div class="col">
-								<h2>${bigTag.name}</h2>
+								<h2 style="font-size: 1.5rem; font-weight: 700;">${bigTag.name}</h2>
 								<input type="hidden" id="getbtno" value="${bigTag.no}">
 								<ul>
 									<c:forEach items="${MTlist}" varStatus="j">
@@ -127,11 +128,11 @@ margin-bottom: 0.25rem;
 											<c:choose>
 												<c:when
 													test="${selectedNo > 0 && MTlist[j.index].no == selectedNo}">
-													<li class="ml-3"><a class="selected"
+													<li><a class="selected"
 														href="../class/clsCate?type=mtag&no=${MTlist[j.index].no}">${MTlist[j.index].name}</a></li>
 												</c:when>
 												<c:otherwise>
-													<li class="ml-3"><a
+													<li><a
 														href="../class/clsCate?type=mtag&no=${MTlist[j.index].no}">${MTlist[j.index].name}</a></li>
 												</c:otherwise>
 											</c:choose>
@@ -144,7 +145,7 @@ margin-bottom: 0.25rem;
 						
 						<div class="col-lg-2">
                             <div class="col">
-                                <h2>지역선택</h2>
+                                <h2 style="font-size: 1.5rem; font-weight: 700;">지역선택</h2>
                             </div>
                         </div>
 						<!--  여기에 코드작성-->
@@ -279,7 +280,7 @@ margin-bottom: 0.25rem;
                                                                       }
                                                                     %>
 																</div>
-																<div class="col-lg-5 product-description__price">${cl.pric}원</div>
+																<div class="col-lg-5 product-description__price"><fmt:formatNumber value="${cl.pric}" groupingUsed="true"/>원</div>
 															</div>
 															<hr class="NoMarginHr">
 															<!-- 멘토 이름 -->
@@ -373,7 +374,6 @@ margin-bottom: 0.25rem;
     });
 		$(window).scroll(function() {
 		    var loclist = '${locs}';
-		    console.log(loclist);
 		    if($(window).scrollTop() == $(document).height() - window.innerHeight+17) {
 		        var html = "";
 		        $.ajax({
@@ -470,7 +470,6 @@ function getLocation(){
     var repleLoc = decodeURIComponent(getCheck).replace(/\+/g, '%20');
     repleLoc= replaceAll(repleLoc, "loc=", "");
     repleLoc= replaceAll(repleLoc, "&", ",");
-    console.log(repleLoc);
     location.href="clsLoc?locs="+repleLoc;
 }
 function replaceAll(str, searchStr, replaceStr) {

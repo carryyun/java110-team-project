@@ -66,7 +66,7 @@
                     <div class="col-sm-4">
                         <label class="pass">비밀번호</label></div>
                     <div class="col-sm-8">
-                        <input type="password" name="pwd" id="pass" placeholder="비밀번호를 입력해 주세요" class="form-control" oninput="checkPwd()" style="width: 250px;">
+                        <input type="password" name="pwd" id="pass" placeholder="비밀번호를 8자이상 입력해 주세요" class="form-control" oninput="checkPwd()" style="width: 250px;">
                     </div>
                 </div>
             </div>
@@ -129,7 +129,8 @@ function chkName(){
 
 
 function gohome(){
-	location.href="/app/auth/form";
+	 /* location.href="/app/auth/form"; */
+     history.back();
 }
 
 function checknick(){

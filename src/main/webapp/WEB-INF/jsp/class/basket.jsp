@@ -3,6 +3,7 @@
     pageEncoding="UTF-8"
     trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -18,15 +19,17 @@
 
 <body>
     <div id="wrap" style="background-color: #fff">
-        <div class="col" style="position: absolute; height: 105px; background-color: white">
+        <div class="col-lg-12 px-0"
+            style="position: absolute; height: 105px; background-color: white">
+            <!-- 헤더 배경색 적용 -->
+        </div>
+        <div class="col-lg-12 px-0" 
+            style="position: absolute; top:105px; height: 44px; background-color: #f3f3f3">
             <!-- 헤더 배경색 적용 -->
         </div>
 
-        <div class="container">
+        <div class="container" style="margin-bottom: 80px">
             <div class="row">
-                <div class="col" style="position: absolute; height: 105px; background-color: white">
-                    <!-- 헤더 배경색 적용 -->
-                </div>
 
                 <div class="col-lg-12" style="z-index: 100">
                     <jsp:include page="../headerMain.jsp"></jsp:include>
@@ -87,7 +90,7 @@
                                     </td>
                                     <td class="product-quantity col-2 text-center"><strong>${r.timetable.date }</strong></td>
                                     <td class="product-price col-1 text-center"><strong>${r.timetable.stime }</strong></td>
-                                    <td class="product-line-price col-2 text-center">${r.classes.pric }</td>
+                                    <td class="product-line-price col-2 text-center"> <fmt:formatNumber value="${r.classes.pric }" groupingUsed="true"/></td>
                                     <td class="product-removal col-1" id="del-button">
                                         <button type="button" class="btn btn-danger" value=${r.no } >삭제
                                         </button>
@@ -105,7 +108,7 @@
                                         <div class="totals-item totals-item-total">
                                             <label> 최종 결제 금액</label>
                                             <c:forEach items="${sumList}" var="r" varStatus="i">
-                                            <div class="totals-value" id="cart-total">${r.sum }</div>
+                                            <div class="totals-value" id="cart-total"><fmt:formatNumber value="${r.sum }" groupingUsed="true"/></div>
                                             </c:forEach>
                                         </div>
                                     </div>

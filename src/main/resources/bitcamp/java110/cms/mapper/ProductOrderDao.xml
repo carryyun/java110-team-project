@@ -30,9 +30,6 @@
          <result column="name2" property="mete2_name"/>
         <result column="pric" property="prdt_pric"/>
         <result column="phone" property="mete2_phone"/>
- 
-        
-        
     </resultMap>
     
     <select id="findAll" resultMap="productOrderMap">
@@ -142,7 +139,7 @@
     	update p_prdt_order 
     	   set parc_name=#{parc_name},
     	   	   parc_no=#{parc_no}
-    	 where ptno=#{ptno}
+    	 where ono=#{no}
     </update>
     
     <select id="findAllByMeno" 
