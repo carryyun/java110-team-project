@@ -35,7 +35,7 @@
 <link href="/css/common.css" rel="stylesheet">
 <link href="/css/prod_detail.css" rel="stylesheet">
 
-<link rel="stylesheet" href="/css/footer.css">
+
     
 <style type="text/css">
     a.page-link{
@@ -85,70 +85,11 @@
 
 
 <!-- 풋터추가 -->
-<div class="col px-0 text-center " id="footerCss">
-    <div class="footes">        
-            <div class="row ">
-                <!-- footer-about -->
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">
-                    <div class="footer-widget ">
-                        <div class="footer-title">COMPANY</div>
-                        <ul class="list-unstyled">
-                            <li><a href="#">회사소개</a></li>
-
-                        </ul>
-                    </div>
-                </div>
-                <!-- /.footer-about -->
-                <!-- footer-about -->
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">
-                    <div class="footer-widget ">
-                        <div class="footer-title">POLISH</div>
-                        <ul class="list-unstyled">
-                            <li><a href="#">이용약관</a></li>
-                            <li><a href="#">개인정보처리방침</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- /.footer-about -->
-
-                <!-- footer-links -->
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">
-                    <div class="footer-widget ">
-                        <div class="footer-title">SUPPORT</div>
-                        <ul class="list-unstyled">
-                            <li><a href="#">공지사항</a></li>
-                            <li><a href="#">FAQ</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- /.footer-links -->
-                <!-- footer-links -->
-                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-6 col-6 ">
-                    <div class="footer-widget ">
-                        <div class="footer-title">
-                            CONTACT
-                            <!-- <div class="ft-logo"><img src="/upload/img/logo.png" alt="logo" style="width: 200px;"></div> -->
-                        </div>
-                        <p><b>카카오톡 플러스</b><br>: @Haru</p>
-
-                        <p><b>고객센터 운영시간</b><br>평일 AM 10:00 ~ PM 06:00<br>점심 AM 12:30 ~ PM 01:30</p>
-
-                    </div>
-                </div>
-                <!-- /.footer-links -->
-                <!-- tiny-footer -->
-            </div>
-            <div class="row ">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center ">
-                    <div class="tiny-footer">
-                        <p>상호 : (주)하루 | 주소 : 비트캠프 서울시 서초구 서초동 1327-15 비트아카데미빌딩 | 사업자등록번호 : 767-88-00000 | 대표자명 : 오호라 </p>
-                        <p>Copyright ⓒ2018 Haru inc, ltd. All rights reserved</p>
-                    </div>
-                </div> 
-                <!-- /. tiny-footer -->
-            </div>
-        </div>
-         </div>
+		<footer>
+			<div class="col px-0">
+				<jsp:include page="../footer.jsp"></jsp:include>
+			</div>
+		</footer>
 
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/vendor/jquery/jquery.min.js"></script>
@@ -225,6 +166,61 @@ $("img.lazy").lazyload({
                   })
             });
         }else{
+	        $('button#repbtn').click(function(){
+	            var repconts = $('#repconts').val();
+	            var repstar = $('#star1-score').val();
+	            var repptno = ${product.no};
+	            $.ajax({
+	                type : "POST",
+	                data : {
+	                    "conts" : repconts,
+	                    "meno" : "${sessionScope.loginUser.no}",
+	                    "ptno" : repptno,
+	                    "star" : repstar
+	                },
+	                url : "addrep.do",
+	                success : function(result) {
+	                    $('#repconts').val("");
+	                    $('#star1').empty();
+	                    $('#star1').raty({
+	                        path : "/upload/img/raty/",
+	                        start : 1,
+	                        starOff : 'star-off-big.png',
+	                        starOn : 'star-on-big.png',
+	                        width : 200
+	                    });
+	                    var html="";
+	                    var addrep_target = $('div#addrep_target');
+	                    for(var item in result){
+	                        html+= '<div class="col-lg-12 my-3">';
+	                        html+= '    <div class="container pb-3" style="border-bottom: 0.5px solid rgba(0, 0, 0, 0.5)">';
+	                        html+= '    <div class="row">';
+	                        html+= '        <div class="col-lg-2 text-center">';
+	                        html+= '            <img src="' + result[item].mentee.phot + '" alt="singup" id="circle"><br>';
+	                        html+=                result[item].mentee.nick;
+	                        html+= '        </div>';
+	                        html+= '        <div class="col-lg-9 media-body">'+ result[item].conts +'</div>';
+	                        if(${sessionScope.loginUser != null}){
+	                            if("${sessionScope.loginUser.no}" == result[item].meno ){
+	                                html+= '  <div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="removerep('+result[item].no +')"><i class="fas fa-trash-alt"></i></a> </div>';
+	                            }  
+	                        }
+	                        html+= '        </div>';
+	                        html+= '    </div>';
+	                        html+= '</div>';
+	                    }
+	                    addrep_target.html(html);
+	                },
+	                error : function(error, status) {
+	                    if(error.status == "500"){
+	                        swal({
+	                            text : "이미 상품평을 등록하셨습니다.",
+	                            button : "확인",
+	                          })
+	                    }
+	                }
+	            });
+	        });
            $('button#repbtn').click(function(){
                var repconts = $('#repconts').val();
                var repstar = $('#star1-score').val();
@@ -258,9 +254,122 @@ $("img.lazy").lazyload({
                            html+= '            <img src="' + result[item].mentee.phot + '" alt="singup" id="circle"><br>';
                            html+=                result[item].mentee.nick;
                            html+= '        </div>';
-                           html+= '        <div class="col-lg-9 media-body">'+ result[item].conts +'</div>';
+                           html+= '        <div class="col-lg-8 media-body">'+ result[item].conts +'</div>';
                            if(${sessionScope.loginUser != null}){
                                if(${sessionScope.loginUser.no} == result[item].meno){
+                            	   html+= '  <div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="updaterep('+result[item].no +')"><i class="far fa-edit"></i></a></div>';
+                                   html+= '  <div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="removerep('+result[item].no +')"><i class="fas fa-trash-alt"></i></a> </div>';
+                               }
+                           }
+                           html+= '        </div>';
+                           html+= '    </div>';
+                           html+= '</div>';
+                       }
+                       addrep_target.html(html);
+                   },
+                   error : function(error, status) {
+                       if(error.status == "500"){
+                           swal({
+                               text : "이미 상품평을 등록하셨습니다.",
+                               button : "확인",
+                             })
+                       }
+                   }
+               });
+           });
+           $('button#repbtn').click(function(){
+               var repconts = $('#repconts').val();
+               var repstar = $('#star1-score').val();
+               var repptno = ${product.no};
+               $.ajax({
+                   type : "POST",
+                   data : {
+                       "conts" : repconts,
+                       "meno" : "${sessionScope.loginUser.no}",
+                       "ptno" : repptno,
+                       "star" : repstar
+                   },
+                   url : "addrep.do",
+                   success : function(result) {
+                       $('#repconts').val("");
+                       $('#star1').empty();
+                       $('#star1').raty({
+                           path : "/upload/img/raty/",
+                           start : 1,
+                           starOff : 'star-off-big.png',
+                           starOn : 'star-on-big.png',
+                           width : 200
+                       });
+                       var html="";
+                       var addrep_target = $('div#addrep_target');
+                       for(var item in result){
+                           html+= '<div class="col-lg-12 my-3">';
+                           html+= '    <div class="container pb-3" style="border-bottom: 0.5px solid rgba(0, 0, 0, 0.5)">';
+                           html+= '    <div class="row">';
+                           html+= '        <div class="col-lg-2 text-center">';
+                           html+= '            <img src="' + result[item].mentee.phot + '" alt="singup" id="circle"><br>';
+                           html+=                result[item].mentee.nick;
+                           html+= '        </div>';
+                           html+= '        <div class="col-lg-8 media-body">'+ result[item].conts +'</div>';
+                           if(${sessionScope.loginUser != null}){
+                               if('${sessionScope.loginUser.no}' == result[item].meno){
+                            	   html+= '  <div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="updaterep('+result[item].no +')"><i class="far fa-edit"></i></a></div>';
+                                   html+= '  <div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="removerep('+result[item].no +')"><i class="fas fa-trash-alt"></i></a> </div>';
+                               } 
+                           }
+                           html+= '        </div>';
+                           html+= '    </div>';
+                           html+= '</div>';
+                       }
+                       addrep_target.html(html);
+                   },
+                   error : function(error, status) {
+                       if(error.status == "500"){
+                           swal({
+                               text : "이미 상품평을 등록하셨습니다.",
+                               button : "확인",
+                             })
+                       }
+                   }
+               });
+           });
+           $('button#repbtn').click(function(){
+               var repconts = $('#repconts').val();
+               var repstar = $('#star1-score').val();
+               var repptno = ${product.no};
+               $.ajax({
+                   type : "POST",
+                   data : {
+                       "conts" : repconts,
+                       "meno" : "${sessionScope.loginUser.no}",
+                       "ptno" : repptno,
+                       "star" : repstar
+                   },
+                   url : "addrep.do",
+                   success : function(result) {
+                       $('#repconts').val("");
+                       $('#star1').empty();
+                       $('#star1').raty({
+                           path : "/upload/img/raty/",
+                           start : 1,
+                           starOff : 'star-off-big.png',
+                           starOn : 'star-on-big.png',
+                           width : 200
+                       });
+                       var html="";
+                       var addrep_target = $('div#addrep_target');
+                       for(var item in result){
+                           html+= '<div class="col-lg-12 my-3">';
+                           html+= '    <div class="container pb-3" style="border-bottom: 0.5px solid rgba(0, 0, 0, 0.5)">';
+                           html+= '    <div class="row">';
+                           html+= '        <div class="col-lg-2 text-center">';
+                           html+= '            <img src="' + result[item].mentee.phot + '" alt="singup" id="circle"><br>';
+                           html+=                result[item].mentee.nick;
+                           html+= '        </div>';
+                           html+= '        <div class="col-lg-8 media-body">'+ result[item].conts +'</div>';
+                           if(${sessionScope.loginUser != null}){
+                               if('${sessionScope.loginUser.no}' == result[item].meno){
+                            	   html+= '  <div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="updaterep('+result[item].no +')"><i class="far fa-edit"></i></a></div>';
                                    html+= '  <div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="removerep('+result[item].no +')"><i class="fas fa-trash-alt"></i></a> </div>';
                                }
                            }
@@ -371,6 +480,48 @@ function checkLeng(obj){
     }
 }
 
+//수정버튼 여기서부터 . 
+var befoetext;
+function updaterep(rno){
+	var flag;
+	var aftertext;
+	if(flag == null){
+		befoetext =$('.col-lg-1.media-body').parent().children().eq(1).text();
+		$('.col-lg-1.media-body').parent().children().eq(1).empty();
+		$('.col-lg-1.media-body').parent().children().eq(2).empty();
+		$('.col-lg-1.media-body').parent().children().eq(1).append('<textarea class="aftertest" style="width:100%; height:6rem;">'+befoetext+'</textarea>');
+		$('.col-lg-1.media-body').parent().children().eq(2).append('<a href="javascript:void(0)" onclick="updaterepcomplete('+rno+')"><i class="far fa-edit"></i></a>')
+		flag=$('.col-lg-1.media-body').parent().children().eq(1).children().attr("class");
+	}
+}
+
+function updaterepcomplete(rno){
+	var completetext = $('.aftertest').val();
+	console.log(${product.no});
+	console.log(rno);
+	$.ajax({
+		type : "POST",
+		data : {
+			conts : completetext,
+			no : rno,
+			ptno : ${product.no}
+		},
+		url : "updaterep.do",
+		success(result){
+			$('.col-lg-1.media-body').parent().children().eq(1).empty();
+			$('.col-lg-1.media-body').parent().children().eq(2).empty();
+			$('.col-lg-1.media-body').parent().children().eq(1).append(completetext);
+			$('.col-lg-1.media-body').parent().children().eq(2).append('<div class="col-lg-1 media-body"><a href="javascript:void(0)"onclick="updaterep('+rno+')"><i class="far fa-edit"></i></a></div>');
+			swal({
+				text:"댓글수정완료",
+				button:"확인"
+			});
+		}
+	});
+}
+
+
+
 function removerep(rno){
     if('${sessionScope.loginUser}' != ''){
         $.ajax({
@@ -391,9 +542,10 @@ function removerep(rno){
                     html+= '            <img src="' + result[item].mentee.phot + '" alt="singup" id="circle"><br>';
                     html+=                result[item].mentee.nick;
                     html+= '        </div>';
-                    html+= '        <div class="col-lg-9 media-body">'+ result[item].conts +'</div>';
+                    html+= '        <div class="col-lg-8 media-body">'+ result[item].conts +'</div>';
                     if(${sessionScope.loginUser != null}){
-                        if(${sessionScope.loginUser.no} == result[item].meno){
+                        if('${sessionScope.loginUser.no}' == result[item].meno){
+                        	html+= '  <div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="updaterep('+result[item].no +')"><i class="far fa-edit"></i></a>';
                             html+= '  <div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="removerep('+result[item].no +')"><i class="fas fa-trash-alt"></i></a> </div>';
                         }
                     }
@@ -438,9 +590,10 @@ function addqna(no){
        },
        url : "addqna.do",
        success : function(result) {
-           $('#addQnaModal').modal('hide');
-           $('.modal-backdrop.fade.show').remove();
+//            $('#addQnaModal').modal('hide');
+//            $('.modal-backdrop.fade.show').remove();
            $('form#qnaModal')[0].reset();
+           qnaPaging(1);
        },
        error : function(error, status) {
            
@@ -622,40 +775,40 @@ $('.accordian-body').on('show.bs.collapse', function () {
 
 <script>
 function repPaging(rpageNo){
-   $.ajax({
-       type : "POST",
-       data : {
-           "ptno" : ${product.no},
-           "pageNo" : rpageNo
-       },
-       url : "repLoad.do",
-       success : function(result) {
-           var html="";
-           var addrep_target = $('div#addrep_target');
-           for(var item in result){
-               html+= '<div class="col-lg-12 my-3">';
-               html+= '    <div class="container pb-3" style="border-bottom: 0.5px solid rgba(0, 0, 0, 0.5)">';
-               html+= '    <div class="row">';
-               html+= '        <div class="col-lg-2 text-center">';
-               html+= '            <img src="' + result[item].mentee.phot + '" alt="singup" id="circle"><br>';
-               html+=                result[item].mentee.nick;
-               html+= '        </div>';
-               html+= '        <div class="col-lg-9 media-body">'+ result[item].conts +'</div>';
-               if(${sessionScope.loginUser != null}){
-                   if(${sessionScope.loginUser.no} == result[item].meno){
-                       html+= '  <div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="removerep('+result[item].no +')"><i class="fas fa-trash-alt"></i></a> </div>';
-                   }
-               }
-               html+= '        </div>';
-               html+= '    </div>';
-               html+= '</div>';
-           }
-           addrep_target.html(html);
-       },
-       error : function(error, status) {
-           console.log(error);
-       }
-   });
+	$.ajax({
+	    type : "POST",
+	    data : {
+	        "ptno" : ${product.no},
+	        "pageNo" : rpageNo
+	    },
+	    url : "repLoad.do",
+	    success : function(result) {
+	        var html="";
+	        var addrep_target = $('div#addrep_target');
+	        for(var item in result){
+	            html+= '<div class="col-lg-12 my-3">';
+	            html+= '    <div class="container pb-3" style="border-bottom: 0.5px solid rgba(0, 0, 0, 0.5)">';
+	            html+= '    <div class="row">';
+	            html+= '        <div class="col-lg-2 text-center">';
+	            html+= '            <img src="' + result[item].mentee.phot + '" alt="singup" id="circle"><br>';
+	            html+=                result[item].mentee.nick;
+	            html+= '        </div>';
+	            html+= '        <div class="col-lg-9 media-body">'+ result[item].conts +'</div>';
+	            if(${sessionScope.loginUser != null}){
+	                if('${sessionScope.loginUser.no}' == result[item].meno ){
+	                    html+= '  <div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="removerep('+result[item].no +')"><i class="fas fa-trash-alt"></i></a> </div>';
+	                }
+	            }
+	            html+= '        </div>';
+	            html+= '    </div>';
+	            html+= '</div>';
+	        }
+	        addrep_target.html(html);
+	    },
+	    error : function(error, status) {
+	        console.log(error);
+	    }
+	});
 }
 
 function qnaPaging(rpageNo){
@@ -716,7 +869,7 @@ function qnaPaging(rpageNo){
                 html +='    </tr>'
                 html +='    <tr>'
                 html +='        <td colspan="6" class="hiddenRow" style="width:1000px">'
-                html +='             <div class="accordian-body collapse" id="demo1-'+i+'">'
+                html +='             <div class="accordian-body collapse" id="demo1-'+(parseInt(i)+1)+'">'
                 html +='             <div class="adddet col-lg-12" style="text-align: center;'
                 html +='            vertical-align: middle;'
                 html +='                        display : block;">질문 내용</div>'
@@ -728,7 +881,7 @@ function qnaPaging(rpageNo){
                                             if("${sessionScope.loginUser}" == ""){
                 html +='                              <div class="acco" id="ans'+i+'">답변이 등록되지 않았습니다.</div>'
                                             } else if("${sessionScope.loginUser.no}" == prodmeno) {
-                   html +='                            <form class="ansinss" action="detail?no='+cno+'" method="post">'
+                   html +='                            <form class="ansinss" action="detail?no='+${product.no}+'" method="post">'
                    html +='                                <label onClick="ansbtn('+i+')" class="allbtn"'
                    html +='                                id="allbtn'+i+'">답변을 작성하시려면 클릭해주세요!</label>'
                    html +='                                <textarea class="clsanser" id="cls'+i+'" rows="5" name="clsanser"'
@@ -764,12 +917,12 @@ function qnaPaging(rpageNo){
 }
 
 function qnaCheck(){
-    if(${sessionScope.loginUser == null}){
+    if('${sessionScope.loginUser}' == ''){
         swal({
             text : "로그인 후 이용가능합니다..",
             button : "확인",
           })
-          return false
+          return false;
     }
 }
 </script>

@@ -14,9 +14,9 @@ public interface ClassService {
   
   Classes findbyptno(int ptno);
   Classes findBycno(int no);
-  Classes findAllBycno(int no);
+  Classes findAllBycno(int no); 
   void classadd(Classes classes, List<String> filelist,String removefiles,
-      String days,String date,String edate,String stime, String etime,int loginUserNo);
+      String days,String date,String edate,String stime, String etime,int loginUserNo, String selmtag);
   int classupdate(Classes classes);
   
   // 클래스 신청목록

@@ -226,13 +226,10 @@
 				<!-- Footer -->
 
 			</div>
+			
 		</div>
 
-		<footer>
-			<div class="col px-0">
-				<jsp:include page="../footer.jsp"></jsp:include>
-			</div>
-		</footer>
+		
 
 		<div class="modal fade" id="squarespaceModal" tabindex="-1"
 			role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
@@ -252,7 +249,13 @@
 		<!-- <select>
 		  <option onselect="">
 		</select> -->
+		
 	</div>
+		<footer>
+			<div class="col px-0">
+				<jsp:include page="../footer.jsp"></jsp:include>
+			</div>
+		</footer>
 	<!-- ===============필수포함=============== -->
 	<!-- Bootstrap core JavaScript -->
 	<script src="/vendor/jquery/jquery.min.js"></script>
@@ -316,7 +319,9 @@
                         }
                     }
                     content += "</div>"
-                    content += "<div class='col-lg-6' id='owl-col3'>" + pric + "￦</div>"
+                    pric = "" + pric;
+                    pric = pric.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,')
+                    content += "<div class='col-lg-6' id='owl-col3'>" + pric + "원</div>"
                     content += "</div>"
                     content += "</div>"
                     content += "</a>"

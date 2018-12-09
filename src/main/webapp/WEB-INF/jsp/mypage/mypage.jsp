@@ -101,7 +101,11 @@
 
     <div id="colorlib-page">
         <div class="container-wrap">
-
+			<div class="row"></div>
+			<%-- <div class="col-lg-12" id="headermain">
+                <jsp:include page="../headerMain.jsp"></jsp:include>
+            </div> --%>
+			
             <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
             <aside id="colorlib-aside" role="complementary" class="border js-fullheight">
                 <div class="text-center">
@@ -334,7 +338,12 @@
     </div><!-- end:colorlib-page -->
 
     <!-- Footer -->
-    <footer id="myFooter">
+    	<footer>
+            <div class="col px-0">
+                <jsp:include page="../footer.jsp"></jsp:include>
+            </div>
+        </footer>
+    <!-- <footer id="myFooter">
         <div class="container">
             <div class="row">
 
@@ -356,11 +365,11 @@
                     <h5><a href="#">이용약관</a></h5>
                 </div>
 
-                <!--
+                
                 <div class="col-sm-2">
                      <h5>개인정보처리방침</h5>
                 </div>
--->
+
 
 
 
@@ -408,7 +417,7 @@
 
         </div>
 
-    </footer>
+    </footer> -->
 
 
     

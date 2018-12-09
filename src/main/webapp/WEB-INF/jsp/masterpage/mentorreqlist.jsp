@@ -519,14 +519,12 @@ function checkItem(){
         $(document).ready(function() {
             $("div#footerCss").css("margin-top","0px");
             testtTop = $("#colorlib-aside").offset().top;
-console.log(testtTop);
         });
 
          function scroll_follow(id) {
             $(window).scroll(function() //스크롤이 움직일때마다 이벤트 발생
             {
                 var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
-                console.log(position);
                 if (position > 157) {
                     $(id).css("position", "absolute");
                     $(id).css("top", (position-157) + "px");

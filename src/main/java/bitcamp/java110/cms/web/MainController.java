@@ -16,7 +16,9 @@ import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.ProductPopul;
 import bitcamp.java110.cms.service.ClassLikeService;
 import bitcamp.java110.cms.service.ClassPopulService;
+import bitcamp.java110.cms.service.ClassRepService;
 import bitcamp.java110.cms.service.ProductPopulService;
+import bitcamp.java110.cms.service.ProductRepService;
 
 @Controller
 @RequestMapping("/mainpage")
@@ -26,12 +28,18 @@ public class MainController {
   ClassPopulService classPopulService;
   ClassLikeService classLikeService;
   ServletContext sc;
+  
+  ClassRepService classRepService;
+  ProductRepService productRepService;
 
   public MainController(ProductPopulService productPopulService,
-      ClassPopulService classPopulService, ClassLikeService classLikeService) {
+      ClassPopulService classPopulService, ClassLikeService classLikeService,
+      ClassRepService classRepService, ProductRepService productRepService) {
     this.productPopulService = productPopulService;
     this.classPopulService = classPopulService;
     this.classLikeService = classLikeService;
+    this.classRepService = classRepService;
+    this.productRepService = productRepService;
   }
   
   @GetMapping("mainpage")
@@ -74,6 +82,7 @@ public class MainController {
         System.out.println(c.getCno());
       }
     }
+    
     
     
   }
