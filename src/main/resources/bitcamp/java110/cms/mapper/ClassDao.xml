@@ -127,6 +127,42 @@
             inner join p_btag as btag
                 on pg.btno = btag.btno
     </sql>
+    
+    <select id="findAllByOrder" resultMap="classMap" parameterType="map">
+    SELECT
+            ps.cno,
+            ps.titl,
+            ps.pric,
+            pe.name,
+            pe.nick,
+            pe.phot,
+            ps.bas_addr,
+            pg.mtname,
+            ps.cfile,
+            ps.star,
+            btag.btno,
+            btag.btname
+    FROM
+          p_cls_order corder
+          join p_cls_ttab ttab
+            ON corder.ctno = ttab.ctno
+          join p_mtag as pg
+          inner join p_cls as ps
+            on ps.mtno = pg.mtno
+          inner join p_meto as po 
+            on po.mono = ps.mono
+          inner join p_mete as pe
+            on po.mono = pe.meno
+          inner join p_btag as btag
+            on pg.btno = btag.btno
+          
+          where ttab.cno = ps.cno
+      GROUP BY cno
+      ORDER BY COUNT(*) DESC
+         LIMIT #{rowNo},#{size}
+    
+    </select>
+    
     <select id="findAllByLoc" resultMap="classMap" parameterType="map">
         <include refid="selectAll"></include>
         WHERE
@@ -153,6 +189,7 @@
             btag.btno=#{btno}
             limit #{rowNo},#{size}
     </select>
+    
     <select id="findAllByMtno" resultMap="classMap" parameterType="map">
         <include refid="selectAll"></include>
         WHERE

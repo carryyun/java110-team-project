@@ -8,7 +8,7 @@ public interface ProductRepDao {
   
   // 공예품번호 조회
   List<ProductRep> findAllByPtno(Map<String,Object> params); 
-  
+  List<ProductRep> findAllByRgdt();
   // 전체 조회
   List<ProductRep> findAll(Map<String,Object> params); 
   List<ProductRep> findAllStar(Map<String,Object> params);

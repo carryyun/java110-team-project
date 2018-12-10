@@ -7,7 +7,6 @@ public class ClassRep {
   private int no;
   private int meno;
   private int cno;
-  private String titl;
   private String conts;
   private int star;
   private String phot;
@@ -17,6 +16,7 @@ public class ClassRep {
   private Mentee mentee;
   private Mentor mentor;
   
+  private String titl; // 클래스의 titl
   
   public Mentor getMentor() {
     return mentor;

@@ -17,6 +17,7 @@
         <result column="nick"		property="mentee.nick"/>
         <result column="mp"			property="mentee.phot"/>
         <result column="phone"      property="mentee.phone"/>
+        <result column="cfile"      property="classes.cfile"/>
     </resultMap>
     <resultMap type="ClassRep" id="star">
         <result column="star"       property="star"/>
@@ -55,7 +56,28 @@
 		    order by 
 		    	psp.rno asc
     </select>
-    
+    <select id="findAllByRgdt" resultMap="crepMap">
+        select 
+            psp.rno,
+            pe.nick,
+            pe.phot as mp,
+            psp.conts,
+            psp.phot,
+            psp.star,
+            psp.rgdt,
+            pe.meno,
+            ps.cno,
+            ps.titl,
+            ps.cfile
+        from
+            p_mete as pe inner join p_cls_rep as psp
+                on pe.meno = psp.meno
+            inner join p_cls as ps
+                on psp.cno = ps.cno
+        order by 
+            psp.rgdt desc
+        limit 0,4
+    </select>
     <select id="findByCno" resultMap="crepMap" parameterType="int">
         select *
 		from (

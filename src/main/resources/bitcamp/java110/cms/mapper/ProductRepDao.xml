@@ -15,6 +15,8 @@
         <result column="meno" property="meno" />
 		<result column="nick" property="mentee.nick" />
 		<result column="mp" property="mentee.phot" />
+        <result column="titl" property="titl" />
+        <result column="prdtphot" property="prdtphot" />
 	</resultMap>
     
     <resultMap type="productRep" id="star">
@@ -30,7 +32,30 @@
             ptno = #{no}
         limit #{rowNo},#{size};
     </select>
-
+    
+    <select id="findAllByRgdt" resultMap="productRepMap">
+        select 
+            psp.rno,
+            pe.nick,
+            pe.phot as mp,
+            psp.conts,
+            psp.phot,
+            psp.star,
+            psp.rgdt,
+            pe.meno,
+            prdt.ptno,
+            prdt.titl,
+            prdt.phot as prdtphot
+        from
+            p_mete as pe inner join p_prdt_rep as psp
+                on pe.meno = psp.meno
+            inner join p_prdt as prdt
+                on psp.ptno = prdt.ptno
+        order by 
+            psp.rgdt desc
+        limit 0,4
+    </select>
+    
 	<select id="findAllByPtno" resultMap="productRepMap"
 		parameterType="map">
 		SELECT

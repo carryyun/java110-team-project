@@ -142,9 +142,15 @@ margin-bottom: 0.25rem;
 							</div>
 						</div>
 						
-						<div class="col-lg-2">
+<!-- 						<div class="col-lg-2"> -->
                             <div class="col">
                                 <h2 style="font-size: 1.5rem; font-weight: 700;">지역선택</h2>
+                                <div class="ml-1" data-target="#mapModal" data-toggle="modal" style="cursor: pointer;">
+                                    <div class="col-lg-5 px-0" style="text-align:center ;font-size: 14px">
+                                       <i class="fas fa-map-marked-alt fa-2x"></i>
+                                    </div>
+                                    <div class="col-lg-5 px-0" style="text-align:center ;font-size: 14px">지도검색</div>
+                                </div>
                             </div>
                         </div>
 						<!--  여기에 코드작성-->
@@ -320,6 +326,29 @@ margin-bottom: 0.25rem;
 		</footer>
 
 
+<!-- Modal -->
+<div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="max-width: 800px" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel" style="margin-top: 2px;">지역검색</h4>
+        <input id="inputAddr" class="ml-3 mr-2 my-1" type="text" onkeypress="if(event.keyCode==13) {$('#SerchAddr').click(); return false;}" style="height:35px; border-radius: 20px; border: 2px solid #ec5453"> 
+        <i id="SerchAddr" style="color:#ec5453; font-size: 26px;margin-top: 8px" class="fas fa-search"></i>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="map" style="width:750px; height:400px; margin-left:10px;"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+        <button type="button" class="btn btn-primary" id="SerchLocBtn">지역검색</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 	</div>
 
 	<!-- ===============필수포함=============== -->
@@ -335,6 +364,95 @@ margin-bottom: 0.25rem;
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 	<!-- ===============필수포함=============== -->
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=74d4f74bdd85b5f1c1d2492eaf6b2a88&libraries=services"></script>
+<script>
+$('#mapModal').on('shown.bs.modal', function (e) {
+    console.log(123);
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+        mapOption = {
+            center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+            level: 7 // 지도의 확대 레벨
+        }; 
+    
+    // 지도를 생성합니다    
+    var map = new daum.maps.Map(mapContainer, mapOption);
+    
+    // 주소-좌표 변환 객체를 생성합니다
+    var geocoder = new daum.maps.services.Geocoder();
+    
+    var marker = new daum.maps.Marker(), // 클릭한 위치를 표시할 마커입니다
+    infowindow = new daum.maps.InfoWindow({zindex:1}); // 클릭한 위치에 대한 주소를 표시할 인포윈도우입니다
+    
+    geocoder.addressSearch('서울 서초구', function(r, s) {
+        // 정상적으로 검색이 완료됐으면 
+         if (s === daum.maps.services.Status.OK) {
+            var setCoord = new daum.maps.LatLng(r[0].y, r[0].x);
+            // 결과값으로 받은 위치를 마커로 표시합니다
+            /* marker.setPosition(setCoord);
+            marker.setMap(map); */
+            map.panTo(setCoord);
+         }
+    });
+    $('#SerchAddr').attr('onclick', '').unbind('click');
+    $('#SerchAddr').click(function(){
+        var addr = $('#inputAddr').val();
+        // 주소로 좌표를 검색합니다
+        geocoder.addressSearch(addr, function(r, s) {
+            // 정상적으로 검색이 완료됐으면 
+             if (s === daum.maps.services.Status.OK) {
+                var coor = new daum.maps.LatLng(r[0].y, r[0].x);
+                // 결과값으로 받은 위치를 마커로 표시합니다
+                /* marker.setPosition(coor);
+                marker.setMap(map); */
+                map.panTo(coor);
+             }
+        });
+    });
+    
+    daum.maps.event.addListener(map, 'click', function(mouseEvent) {
+        searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
+            if (status === daum.maps.services.Status.OK) {
+                var detailAddr = !!result[0].road_address ? '<div style="font-size:12px;height:40px;padding:3px;">도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
+                detailAddr += '<div style="font-size:12px;height:40px;padding:3px;">지번 주소 : ' + result[0].address.address_name + '</div>';
+                
+                var content = '<div class="bAddr">' +
+                                detailAddr + 
+                            '</div>';
+                
+                // 마커를 클릭한 위치에 표시합니다 
+                marker.setPosition(mouseEvent.latLng);
+                marker.setMap(map);
+
+                // 인포윈도우에 클릭한 위치에 대한 법정동 상세 주소정보를 표시합니다
+                infowindow.setContent(content);
+                infowindow.open(map, marker);
+                
+                map.panTo(mouseEvent.latLng);
+                var addrSetter = result[0].address.address_name;
+                
+                $('#SerchLocBtn').attr('onclick', '').unbind('click');
+                $('#SerchLocBtn').click(function(){
+//                  console.log(mouseEvent.latLng);
+//                  console.log(addrSetter);
+                    location.href="clsLoc?locs="+addrSetter;
+                });
+            }   
+        });
+    });
+    
+    function searchAddrFromCoords(coords, callback) {
+        // 좌표로 행정동 주소 정보를 요청합니다
+        geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);         
+    }
+    
+    function searchDetailAddrFromCoords(coords, callback) {
+        // 좌표로 법정동 상세 주소 정보를 요청합니다
+        geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
+    }
+});
+
+</script>
 
 	<script>
 	function showClassAdd(mtstat){
