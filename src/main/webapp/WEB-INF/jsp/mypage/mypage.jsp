@@ -16,18 +16,6 @@
     <meta name="keywords" content="" />
     <meta name="author" content="" />
 
-    <!-- Facebook and Twitter integration -->
-    <meta property="og:title" content="" />
-    <meta property="og:image" content="" />
-    <meta property="og:url" content="" />
-    <meta property="og:site_name" content="" />
-    <meta property="og:description" content="" />
-    <meta name="twitter:title" content="" />
-    <meta name="twitter:image" content="" />
-    <meta name="twitter:url" content="" />
-    <meta name="twitter:card" content="" />
-
-
     <!--    버튼-->
     <link rel="stylesheet" href="/css/mypagecss/button/skyblue-gradient.css">
     <link rel="stylesheet" href="/css/mypagecss/button/switchbtn.css">
@@ -50,11 +38,23 @@
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <!-- Load JS-->
     <script src=/js/mypagejs/hideshow.js></script>
-    <!-- 멘토신청 popup JS-->
-  <!--   <script src=/js/mypagejs/popup.js></script>  -->
         
 
     <script>
+    
+    // 마이페이지 멘토 경력 조건
+    
+    $(document).ready(function() {
+       console.log($('#stat').attr('name'));
+     if($('#stat').attr('name') == 'Y' ){
+            document.getElementById(id="stat").style.display = "";
+            document.getElementById(id="stathidden").style.display = "none";
+      } 
+     else{
+         document.getElementById(id="stat").style.display = "none";
+         document.getElementById(id="stathidden").style.display = " ";
+     }
+    });
     
      /* menu4 btn 스크립트 */ 
     function div_OnOff(v){
@@ -101,14 +101,18 @@
 
     <div id="colorlib-page">
         <div class="container-wrap">
-
+			<div class="row"></div>
+			<%-- <div class="col-lg-12" id="headermain">
+                <jsp:include page="../headerMain.jsp"></jsp:include>
+            </div> --%>
+			
             <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
             <aside id="colorlib-aside" role="complementary" class="border js-fullheight">
                 <div class="text-center">
                     <div class="author-img" style="background-image: url(${mentee.phot};"></div>
                     <h1 id="colorlib-logo"><a href="index.html">${mentee.name}</a></h1>
-                    <span id="stat" name="${mentee.mtstat}"class="position"><B>멘토 경력 ${mentor.carr} 년</B><br></span>
-                    
+                    <span id="stat" name="${mentee.mtstat}" class="position;" style="display:none" ><B>멘토 경력 ${mentor.carr} 년</B><br></span>
+                  <span id="stathidden"  class="position;" style="display:"> <br></span> 
                 </div>
 
                 <nav id="colorlib-main-menu" role="navigation" class="navbar">
@@ -334,7 +338,12 @@
     </div><!-- end:colorlib-page -->
 
     <!-- Footer -->
-    <footer id="myFooter">
+    	<footer>
+            <div class="col px-0">
+                <jsp:include page="../footer.jsp"></jsp:include>
+            </div>
+        </footer>
+    <!-- <footer id="myFooter">
         <div class="container">
             <div class="row">
 
@@ -356,11 +365,11 @@
                     <h5><a href="#">이용약관</a></h5>
                 </div>
 
-                <!--
+                
                 <div class="col-sm-2">
                      <h5>개인정보처리방침</h5>
                 </div>
--->
+
 
 
 
@@ -408,7 +417,7 @@
 
         </div>
 
-    </footer>
+    </footer> -->
 
 
     
@@ -418,12 +427,11 @@
 
 </body>
     <!-- jQuery -->
-    <script src="/js/mypagejs/jquery.min.js"></script>
+   <!--  <script src="/js/mypagejs/jquery.min.js"></script> -->
     <!-- Waypoints -->
     <script src="/js/mypagejs/jquery.waypoints.min.js"></script>
     <!-- Counters -->
     <script src="/js/mypagejs/jquery.countTo.js"></script>
-    
     <!-- MAIN JS -->
     <script src="/js/mypagejs/main.js"></script>
     <script src="/js/mypagejs/bootstrap.min.js"></script>

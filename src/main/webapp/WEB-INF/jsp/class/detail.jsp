@@ -73,16 +73,7 @@
             <div class="col-lg-9 text-center" style="margin-bottom: 50px">
             <div style="padding-left: 5px; padding-right: 6px; margin-left:-3px; margin-bottom:-15px;">
             <div class="col-lg-12 col-md-12 mt-5 text-left" style="padding-top:10px; width:1100px; background-color:white;">
-                <h2>클래스 상세보기
-                <c:choose>
-                	<c:when test="${sessionScope.loginUser.no eq detailclass.mentee.no}">
-                		<a onclick="updateclsstat()" class="btn btn-lg btn-danger col-lg-1 py-1 text-center" 
-                		style="float : right; color:white; height: 38px; text-align:center;">삭제</a>
-                	</c:when>
-                	<c:otherwise>
-                	</c:otherwise>
-                </c:choose>
-                	</h2>
+                
                 <hr class="FhrBotMargin">
             </div>
             </div>
@@ -94,9 +85,9 @@
                                     <div id="carouselExampleIndicators" class="carousel slide" data-interval="false" data-ride="carousel">
                                       <ol class="carousel-indicators">
                                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                                        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                                      <c:forEach items="${clsfilelist}" var="cf" varStatus="i">
+                                        <li data-target="#carouselExampleIndicators" data-slide-to="${i.count}"></li>
+                                      </c:forEach>
                                       </ol>
                                       <div class="carousel-inner">
                                         
@@ -113,7 +104,7 @@
                                              String cfileurl = cfile.substring(cfileidx+1);
                                         %>
                                             <div class="carousel-item active">
-                                              <iframe width="100%" height="445" style="margin-left:-10px;" src="https://www.youtube.com/embed/<%=cfileurl%>" 
+                                              <iframe width="100%" height="445px" style="margin-left:-10px;" src="https://www.youtube.com/embed/${detailclass.cfile}" 
                                               frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
                                               allowfullscreen></iframe>
                                         <%
@@ -132,11 +123,10 @@
                                                 </div>
                                             <%    
                                                 }else {
-                                                 int idx = fna.indexOf("=");
-                                                 String fnaurl = fna.substring(idx+1);
+                                                 System.out.println(fna);
                                             %>
                                                 <div class="carousel-item">
-                                                  <iframe width="100%" height="445" style="margin-left:-10px;" src="https://www.youtube.com/embed/<%=fnaurl%>" 
+                                                  <iframe width="100%" height="445" style="margin-left:-10px;" src="https://www.youtube.com/embed/<%=fna%>" 
                                                   frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
                                                   allowfullscreen></iframe>
                                                 </div>
@@ -294,7 +284,15 @@
                             </ul>
                         </div>
                 <div class="detail_info" id="startTarget" style="padding-left: 40px; padding-right:40px;"> 
-                    <h3>요약</h3>
+                    <h3 style="font-weight:900;">요약
+                    <c:choose>
+                	<c:when test="${sessionScope.loginUser.no eq detailclass.mentee.no}">
+                		<a onclick="updateclsstat()" class="btn btn-lg btn-danger py-1" 
+                		style="float : right; color:white; height: 38px; text-align:center;">삭제</a>
+                	</c:when>
+                	<c:otherwise>
+                	</c:otherwise>
+                </c:choose></h3>
                     <hr class="FhrBotMargin" id="class_detail">
                     <!-- <div class="row"> -->
                     <div>
@@ -309,23 +307,24 @@
                 <!-- <div class="detail_info"> -->
                 
                 <div class="detail_info" id="mentor-info" style="padding-left: 40px; padding-right:40px;">
-                    <h3>강사소개</h3>
+                    <h3 style="font-weight:900;">강사소개</h3>
                     <hr class="Fhr">
+                    <br>
                     ${detailclass.tinfo}
                 </div>
                 
                 <div class="detail_info" style="padding-left: 40px; padding-right:40px;">
-                    <h3>강의설명</h3>
+                    <h3 style="font-weight: 900;">강의설명</h3>
                     <hr class="Fhr" id="class-info">
                     ${detailclass.cinfo}
                 </div>
                     <div class="detail_info" style="padding-left: 40px; padding-right:40px;">
-                        <h3>위치</h3>
+                        <h3 style="font-weight:900;">위치</h3>
                         <hr class="Fhr" id="location" style="margin-bottom: 7px;">
                         <div class ="row" >
                         <div id="map" style="width:500px; height:400px; margin-left:10px; float:left;"></div>
                         <div class="dddd" style="float:right; width:160px; margin-top:60px;">
-                        <div id="adr" class = "addr" style="height:50px;"><div><strong>기본 주소</strong></div>  ${detailclass.basAddr}</div>
+                        <div id="adr" class = "addr" style="margin-right:10px;"><div><strong>기본 주소</strong></div>  ${detailclass.basAddr}</div>
                         <div id="adr" class = "addr"><div><strong>상세 주소</strong></div>  ${detailclass.detAddr}</div>
                         </div>
                         </div>
@@ -334,10 +333,11 @@
                 <!-- <div class="detail_info"> -->  
                 <hr class="Fhr" id="class-review">   
                 <div class="detail_info">   
-                    <div class="row" style="margin: 0 auto"> 
-                    <h3>클래스 후기</h3>
+                    <div class="row" style="margin: 0 auto; padding-left: 27px; padding-right:40px;"> 
+                    <h3 style="font-weight: 900;">클래스 후기</h3>
                         <hr class="Fhr" id="class-review" style="margin-bottom:5px;">   
-                        <div class="col">   
+                        <div class="col">
+                        <h1 class="rating-num text-center">${detailclass.star}</h1>
                             <c:set var="starint" value="${detailclass.star}"/>
                             <div class="rating col text-center">
                                 <% int star = (int)pageContext.getAttribute("starint"); 
@@ -365,9 +365,19 @@
                                             <!-- Message body -->
                                      <div class="form-group" style="background-color:white;" >
                                          <div class="col-lg-9" >
-                                             <textarea class="form-control" id="conts" name="conts"
+                                         <c:choose>
+                                         	<c:when test="${sessionScope.loginUser eq null}">
+                                         		<textarea class="form-control" id="logincontnull" name="conts"
+                                                 placeholder="로그인 후 이용가능합니다." rows="5" disabled="disabled"
+                                                 style="width:600px; margin-left:50px; resize : none;"></textarea>
+                                         	</c:when>
+                                         	<c:otherwise>
+                                         		<textarea class="form-control" id="conts" name="conts"
                                                  placeholder="클래스평을 등록해주세요." rows="5"
-                                                 style="width:600px; margin-left:50px;"></textarea>
+                                                 style="width:600px; margin-left:50px; resize : none;"></textarea>
+                                         	</c:otherwise>
+                                         </c:choose>
+                                             
                                          </div>
                                      </div>
                                 </td>
@@ -407,7 +417,7 @@
                                 </div>
                                 <div id="rcont${i.index}" class="col-lg-10 media-body">${r.conts}</div>
                                 <textarea class="repupda col-lg-9 media-body" id="repup${i.index}" rows="5" name="repup"
-                                      style =" margin-left:10px; width : 500px; display: none;"></textarea>
+                                      style =" margin-left:10px; width : 500px; display: none; resize: none;"></textarea>
                                 <c:choose>
                                 <c:when test="${sessionScope.loginUser.no eq r.meno}">
                                 	<button type="button" data-toggle="modal" data-target="#deleteModal_${r.no}"
@@ -475,6 +485,7 @@
                             </div>
                         </c:forEach>
                         </div>
+                        </div>  
                         <nav aria-label="Page navigation example" id="product-pn" 
                     style="margin : auto;">
                         <ul class="pagination justify-content-center">
@@ -483,36 +494,35 @@
                             int repsize = (int)pageContext.getAttribute("repsi");
                             int reppage = (repsize/5)+1;
                         %>
-                            <li class="page-item"><a class="page-link" 
-                            onClick="prevrep(${countrep})">prev</a></li>
+                            <%-- <li class="page-item"><a class="page-link" 
+                            onClick="prevrep(${countrep})">prev</a></li> --%>
                                 
                                 <%
                                     for(int pno = 1; pno<=reppage; pno++){
                                 %>
                                     <li class="page-item"><a class="page-link" 
-                                    onClick="reppage(${sessionScope.loginUser.no},<%=pno%>)"><%=pno%></a></li>
+                                    onClick="reppage(<%=pno%>)"><%=pno%></a></li>
                                 <%
                                     }
                                 %>
-                            <li class="page-item"><a class="page-link" 
-                            onClick="nextrep(${countrep})">next</a></li>
+                            <%-- <li class="page-item"><a class="page-link" 
+                            onClick="nextrep(${countrep})">next</a></li> --%>
                         </ul>
                   </nav>
-                        </div>  
                     </div>  
                 </div>  
                 
                 <div class="container col-lg-12 px-0" id="prod_review">
 
                     <div class="detail_info" style="margin-left : 2px; padding-left: 40px; padding-right:40px;">
-                        <h3>Q&A</h3>
+                        <h3 style="font-weight: 900;">Q&A</h3>
                         <div class="row">
                             <div class="col-lg-12 mx-auto mb-4 px-5 pt-3">
                                 <table class="table table-condensed" id="qna_table" 
                                 style="margin: 0 auto; border-collapse:collapse;">
-                                    <thead class="col-lg-12">
-                                        <tr class="row">
-                                            <!-- <th scope="col" class="col-lg-1" id="qna_th">번호</th> -->
+                                    <thead class="qnathead col-lg-12">
+                                        <tr class="qnatr row">
+                                            <th scope="col" class="col-lg-1" id="qna_th">번호</th>
                                             <th scope="col" class="col-lg-2" id="qna_th">문의유형</th>
                                             <th scope="col" class="col-lg-2" id="qna_th">답변상태</th>
                                             <th scope="col" class="col-lg-3" id="qna_th">질문 제목</th>
@@ -525,8 +535,9 @@
                                     <c:forEach items="${clsqnalist}" var="cq" varStatus="i">
                                     <c:set var="qnasi" value="${countqna}" />
                                         <tr data-toggle="collapse" 
-                                        data-target="#demo1-${i.count}" class="accordion-toggle row">
-                                            <%-- <td class="col-lg-1" scope="row" id="qna_th">${i.count}</td> --%>
+                                        data-target="#demo1-${i.count}" class="accordion-toggle row"
+                                         onMouseOver=bgColor="#F2F2F2" onMouseOut=bgColor="">
+                                            <td class="col-lg-1" scope="row" id="qna_th">${i.count}</td>
                                             <td class="col-lg-2">${cq.type}</td>
                                             <c:set var="yn" value="${cq.anser}"/>
                                             <%
@@ -614,7 +625,7 @@
                                 </table>
                                 
                                 <div class="center"><button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block"
-                                style="margin-top:20px; width: 120px; height: 40px; float : right; background-color: #606066; color: #ffffff;">클래스 문의</button></div>
+                                style="margin-top:20px; width: 120px; height: 40px; float : right; background-color: #606066; color: #ffffff;" >클래스 문의</button></div>
                                 <c:choose>
                                     <c:when test="${sessionScope.loginUser eq null}">
                                         <div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
@@ -691,8 +702,8 @@
                         	int p=qnasize/5;
                             int qnapage = (int)Math.ceil(p);
                         %>
-                            <li class="page-item"><a class="page-link" 
-                            onClick="prevqna(${countqna})">prev</a></li>
+                            <%-- <li class="page-item"><a class="page-link" 
+                            onClick="prevqna(${countqna})">prev</a></li> --%>
                                 
                                 <%
                                     for(int qno = 1; qno<=qnapage; qno++){
@@ -702,8 +713,8 @@
                                 <%
                                     }
                                 %>
-                            <li class="page-item"><a class="page-link" 
-                            onClick="nextqna(${countrep})">next</a></li>
+                            <%-- <li class="page-item"><a class="page-link" 
+                            onClick="nextqna(${countrep})">next</a></li> --%>
                         </ul>
                     </nav>
                 
@@ -772,11 +783,6 @@ function updateclsstat() {
 }
 
 function prev(pano) {
-    console.log(pano);
-    
-    console.log(pagebu);
-    console.log(currectpage);
-    
     
     /* location.href="detail?no=${detailclass.no}&pageNo=1&pageSize=5"; */
 }
@@ -798,9 +804,36 @@ function addqna(no) {
     var clsmeno = ${detailclass.mentee.no};
 	var qnatablelist = $('#qnatablelist');
     
+	var countorder = 0;
+    		
+	$.ajax({
+	    type : "POST" , 
+	    data : {
+	        "no" : cno ,
+	        "meno" : no
+	    },
+	    url : "countorder.do",
+	    susccess : function(data) {
+	        countorder = data
+	    },error : function(error,status){
+	        swal({
+	            text : "로그인 후 이용가능합니다..",
+	            button : "확인",
+	          })
+	     }
+	});
+	console.log(countorder);
+	
     if(titl == "" || conts == ""  ) {
         swal({
             title: "필수 입력항목을 입력안하셨습니다.",
+            button : "확인",
+          })
+    } else if(countorder < 1) {
+        $('#titl').val("");
+        $('#qnaconts').val("");
+        swal({
+            text : "클래스를 수강후 Q&A 등록이 가능합니다.",
             button : "확인",
           })
     } else {
@@ -850,8 +883,8 @@ function addqna(no) {
 	        		
 	        		html +=' <c:set var="qnasi" value="${countqna}" />'
 	        		html +='    <tr data-toggle="collapse" '
-	        		html +='    data-target="#demo1-'+i+'" class="accordion-toggle row">'
-	        		html +='        <%-- <td class="col-lg-1" scope="row" id="qna_th">'+i+'</td> --%>'
+	        		html +='    data-target="#demo1-'+i+'" class="accordion-toggle row" onMouseOver=bgColor="#F2F2F2" onMouseOut=bgColor="">'
+	        		html +='        <td class="col-lg-1" scope="row" id="qna_th">'+(parseInt(i)+1)+'</td>'
 	        		html +='        <td class="col-lg-2">'+qnatype+'</td>'
 	        				         	if(qnaanser == null){
 	        		html +='            <td class="col-lg-2">미완료</td>'
@@ -973,8 +1006,8 @@ function answerins(no,clsno,qno) {
 	        		
 	        		html +=' <c:set var="qnasi" value="${countqna}" />'
 	        		html +='    <tr data-toggle="collapse" '
-	        		html +='    data-target="#demo1-'+i+'" class="accordion-toggle row">'
-	        		html +='        <%-- <td class="col-lg-1" scope="row" id="qna_th">'+i+'</td> --%>'
+	        		html +='    data-target="#demo1-'+i+'" class="accordion-toggle row" onMouseOver=bgColor="#F2F2F2" onMouseOut=bgColor="">'
+	        		html +='        <td class="col-lg-1" scope="row" id="qna_th">'+i+'</td>'
 	        		html +='        <td class="col-lg-2">'+qnatype+'</td>'
 	        				         	if(qnaanser == null){
 	        		html +='            <td class="col-lg-2">미완료</td>'
@@ -1046,6 +1079,8 @@ function deleterepnull(){
             button : "확인",
           })
 }
+
+/* no : ${sessionScope.loginUser.no}; */
 function repins(no) { /* 후기(댓글) 추가버튼 */
     var cno = ${detailclass.no};
     var conts = $('textarea#conts').val();
@@ -1053,14 +1088,42 @@ function repins(no) { /* 후기(댓글) 추가버튼 */
     var phot = $('input:file#phot').val();
 	var replist = $('div#replist');
     
+	console.log(cno);
+	console.log(no);
+	
+	var countorder = 0;
+	
+	$.ajax({
+	    type : "POST" , 
+	    data : {
+	        "no" : cno ,
+	        "meno" : no
+	    },
+	    url : "countorder.do",
+	    susccess : function(data) {
+	        countorder = data
+	    },error : function(error,status){
+	        swal({
+	            text : "로그인 후 이용가능합니다..",
+	            button : "확인",
+	          })
+	     }
+	});
+	
     if(conts == ""){
         swal({
             text : "내용이 비어있으면 후기가 등록이 안됩니다.",
             button : "확인",
           })
-    }else if("${sessionScope.loginUser}" == ""){
+    } else if("${sessionScope.loginUser}" == ""){
         swal({
             text : "로그인 후 이용가능합니다..",
+            button : "확인",
+          })
+    } else if(countorder < 1){
+        $('textarea#conts').val("");
+        swal({
+            text : "클래스를 수강후 댓글등록이 가능합니다.",
             button : "확인",
           })
     } else {
@@ -1088,12 +1151,6 @@ function repins(no) { /* 후기(댓글) 추가버튼 */
 	        		 var nick = data[i].mentee.nick;
 	        		 var phot = data[i].mentee.phot;
 	        		 
-	        		 console.log(rno);
-	        		 console.log(meno);
-	        		 console.log(conts);
-	        		 console.log(nick);
-	        		 console.log(phot);
-	        		 
 	        		 html +=' <div class="media"'
 	        		 html +='     style="border-bottom: 0.3px solid rgba(0, 0, 0, 0.5)">'
 	        		 html +='     <div class="col-lg-2 text-center">'
@@ -1102,7 +1159,7 @@ function repins(no) { /* 후기(댓글) 추가버튼 */
 	        		 html +='     </div>'
 	        		 html +='     <div id="rcont'+i+'" class="col-lg-10 media-body">'+conts+'</div>'
 	        		 html +='     <textarea class="repupda col-lg-9 media-body" id="repup'+i+'" rows="5" name="repup"'
-	        		 html +='                style =" margin-left:10px; width : 500px; display: none;"></textarea>'
+	        		 html +='                style =" margin-left:10px; width : 500px; display: none; resize:none;"></textarea>'
 	        		     		if(no == meno){
 	        		 html +='      <button type="button" data-toggle="modal" data-target="#deleteModal_'+rno+'"'
 	        		 html +='      class="delebtn btn btn-danger" id="delebtn'+i+'" style="padding-right: 6px; padding-left: 6px; padding-top: 3px; padding-bottom: 3px;">삭제</button>'
@@ -1168,7 +1225,7 @@ function repins(no) { /* 후기(댓글) 추가버튼 */
     }
 }
 
-function reppage(no,pno) {
+function reppage(pno) {
     var cno = ${detailclass.no};
     var replist = $('div#replist');
     
@@ -1196,8 +1253,8 @@ function reppage(no,pno) {
 	   		 html +='     </div>'
 	   		 html +='     <div id="rcont'+i+'" class="col-lg-10 media-body">'+conts+'</div>'
 	   		 html +='     <textarea class="repupda col-lg-9 media-body" id="repup'+i+'" rows="5" name="repup"'
-	   		 html +='                style =" margin-left:10px; width : 500px; display: none;"></textarea>'
-		     				if(no == meno){
+	   		 html +='                style =" margin-left:10px; width : 500px; display: none; resize:none;"></textarea>'
+		     				if("${sessionScope.loginUser.no}" == meno){
 		     html +='      <button type="button" data-toggle="modal" data-target="#deleteModal_'+rno+'"'
 		     html +='      class="delebtn btn btn-danger" id="delebtn'+i+'" style="padding-right: 6px; padding-left: 6px; padding-top: 3px; padding-bottom: 3px;">삭제</button>'
 		     				}else {
@@ -1219,9 +1276,9 @@ function reppage(no,pno) {
 	   		 html +='                 </div>'
 	   		 html +='               </div>'
 	   		 html +='              </div>'
-		 					if(no == meno){
+		 					if("${sessionScope.loginUser.no}" == meno){
 		     html +='             <button type="button" class="edbtn btn btn-warning" id="edbtn'+i+'"' 
-		     html +='     onClick="updarep('+no+' , '+rno+' , '+meno+' ,'+i+');" style="padding-right: 6px; padding-left: 6px; padding-top: 3px; padding-bottom: 3px; color:white; margin-left:3px;">수정</button>'
+		     html +='     onClick="updarep("${sessionScope.loginUser.no}" , '+rno+' , '+meno+' ,'+i+');" style="padding-right: 6px; padding-left: 6px; padding-top: 3px; padding-bottom: 3px; color:white; margin-left:3px;">수정</button>'
 		        		 	} else {
 		        		 	}
 	   		 html +='     <button type="button" class="updabtn btn btn-warning" id="updabtn'+i+'" data-toggle="modal"' 
@@ -1305,8 +1362,8 @@ function qnapage(qno) {
         		
         		html +=' <c:set var="qnasi" value="${countqna}" />'
         		html +='    <tr data-toggle="collapse" '
-        		html +='    data-target="#demo1-'+i+'" class="accordion-toggle row">'
-        		html +='        <%-- <td class="col-lg-1" scope="row" id="qna_th">'+i+'</td> --%>'
+        		html +='    data-target="#demo1-'+i+'" class="accordion-toggle row" onMouseOver=bgColor="#F2F2F2" onMouseOut=bgColor="">'
+        		html +='        <td class="col-lg-1" scope="row" id="qna_th">'+((qno-1)*5+(parseInt(i)+1))+'</td>'
         		html +='        <td class="col-lg-2">'+qnatype+'</td>'
         				         	if(qnaanser == null){
         		html +='            <td class="col-lg-2">미완료</td>'
@@ -1413,7 +1470,7 @@ function delerep(no , rno , repmeno){ /* 댓글 삭제 버튼 */
 	        		 html +='     </div>'
 	        		 html +='     <div id="rcont'+i+'" class="col-lg-10 media-body">'+conts+'</div>'
 	        		 html +='     <textarea class="repupda col-lg-9 media-body" id="repup'+i+'" rows="5" name="repup"'
-	        		 html +='                style =" margin-left:10px; width : 500px; display: none;"></textarea>'
+	        		 html +='                style =" margin-left:10px; width : 500px; display: none; resize:none;"></textarea>'
      		     					if(no == meno){
      		         html +='      <button type="button" data-toggle="modal" data-target="#deleteModal_'+rno+'"'
      		         html +='      class="delebtn btn btn-danger" id="delebtn'+i+'" style="padding-right: 6px; padding-left: 6px; padding-top: 3px; padding-bottom: 3px;">삭제</button>'
@@ -1546,7 +1603,7 @@ function updarep(no , rno , repmeno , teno) { /* 댓글 회원 인식해서 수�
     } else if( no = repmeno) {
         if($("#repup"+teno).css("display") == "none"){
             $("#updabtn"+teno).show();
-            $("#repup"+teno).val($("#rcont"+teno).val()).show();
+            $("#repup"+teno).val($("#rcont"+teno).text()).show();
             $("#rcont"+teno).hide();
             $("#edbtn"+teno).hide();
             $("#delebtn"+teno).hide();
@@ -1612,8 +1669,8 @@ function updabtn(sessionno,rno , teno) { /* 회원 인식해서 댓글 수정해
 	        		 html +='     </div>'
 	        		 html +='     <div id="rcont'+i+'" class="col-lg-10 media-body">'+conts+'</div>'
 	        		 html +='     <textarea class="repupda col-lg-9 media-body" id="repup'+i+'" rows="5" name="repup"'
-	        		 html +='                style =" margin-left:10px; width : 500px; display: none;"></textarea>'
-     		     						if(no == meno){
+	        		 html +='                style =" margin-left:10px; width : 500px; display: none; resize:none;"></textarea>'
+     		     						if(sessionno == meno){
      		         html +='      <button type="button" data-toggle="modal" data-target="#deleteModal_'+rno+'"'
      		         html +='      class="delebtn btn btn-danger" id="delebtn'+i+'" style="padding-right: 6px; padding-left: 6px; padding-top: 3px; padding-bottom: 3px;">삭제</button>'
      		        		     		} else {
@@ -1635,9 +1692,9 @@ function updabtn(sessionno,rno , teno) { /* 회원 인식해서 댓글 수정해
 	        		 html +='                 </div>'
 	        		 html +='               </div>'
 	        		 html +='              </div>'
-		 								if(no == meno){
+		 								if(sessionno == meno){
 		 			 html +='             <button type="button" class="edbtn btn btn-warning" id="edbtn'+i+'"' 
-		 			 html +='     onClick="updarep('+no+' , '+rno+' , '+meno+' ,'+i+');" style="padding-right: 6px; padding-left: 6px; padding-top: 3px; padding-bottom: 3px; color:white; margin-left:3px;">수정</button>'
+		 			 html +='     onClick="updarep('+sessionno+' , '+rno+' , '+meno+' ,'+i+');" style="padding-right: 6px; padding-left: 6px; padding-top: 3px; padding-bottom: 3px; color:white; margin-left:3px;">수정</button>'
 		 					        	} else {
 		 					        	}
 	        		 html +='     <button type="button" class="updabtn btn btn-warning" id="updabtn'+i+'" data-toggle="modal"' 
@@ -1680,7 +1737,7 @@ function updabtn(sessionno,rno , teno) { /* 회원 인식해서 댓글 수정해
  var stmnGAP2 = 50; // 스크롤시 브라우저 위쪽과 떨어지는 거리 
  var stmnBASE = 0; // 스크롤 시작위치 
  var stmnActivateSpeed = 35; //스크롤을 인식하는 딜레이 (숫자가 클수록 느리게 인식)
- var stmnScrollSpeed = 20; //스크롤 속도 (클수록 느림)
+ var stmnScrollSpeed = 1; //스크롤 속도 (클수록 느림)
  var stmnTimer; 
  var stmnsub = 230; // stmtEndPoint 맞춰줄 때 쓴다.
  
@@ -1705,10 +1762,11 @@ function updabtn(sessionno,rno , teno) { /* 회원 인식해서 댓글 수정해
     <!-- Custom scripts for this template -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=74d4f74bdd85b5f1c1d2492eaf6b2a88&libraries=services"></script>
 <script>
+
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
         center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        level: 7 // 지도의 확대 레벨
+        level: 3 // 지도의 확대 레벨
     }; 
 
 // 지도를 생성합니다    
@@ -1727,7 +1785,7 @@ geocoder.addressSearch('${detailclass.basAddr}', function(result, status) {
         
         var Circle = new daum.maps.Circle({
             center : new daum.maps.LatLng(result[0].y, result[0].x),  // 원의 중심좌표 
-            radius: 1000, // 미터 단위의 원의 반지름
+            radius: 100, // 미터 단위의 원의 반지름
             strokeWeight: 5, // 선의 두께 
             strokeColor: '#75B8FA', // 선의 색깔
             strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명

@@ -25,6 +25,11 @@ public class MentorServiceImpl implements MentorService {
   public int delete(int no) {
     return 0;
   }
+  
+  @Override
+  public int update(Mentor mentor) {
+    return mentorDao.update(mentor);
+  }
 
   @Override
   public List<Mentor> listByNick(int pageSize, String nick) {

@@ -85,7 +85,6 @@ public class ClassController {
   }
   @PostMapping("findAll")
   public void findAll() {
-    List<Classes> clist= classService.classList(5);
   }
   @RequestMapping(value = "classadd", method=RequestMethod.GET)
   public void classinsert() {
@@ -93,7 +92,8 @@ public class ClassController {
 
   @RequestMapping(value = "classadd", method=RequestMethod.POST)
   public String classinsert(Classes c,List<MultipartFile> files,
-      String removefiles, String days,String date,String edate,String stime, String etime,HttpSession session) throws Exception {
+      String removefiles, String days,String date,String edate,
+      String selmtag, String stime, String etime,HttpSession session) throws Exception {
     List<String> filelist = new ArrayList<>();
     System.out.println(removefiles);
     System.out.println(days);
@@ -116,7 +116,7 @@ public class ClassController {
         }else {
         String filename = UUID.randomUUID().toString();
         file.transferTo(new File(sc.getRealPath("/upload/img/classImg/" + filename+ ".png")));
-        filelist.add(filename);
+        filelist.add("/upload/img/classImg/" + filename+ ".png");
         }
       } 
     }
@@ -126,7 +126,7 @@ public class ClassController {
     Mentee loginUser = new Mentee();
     loginUser = (Mentee) session.getAttribute("loginUser");
     System.out.println(loginUser.getNo());
-    classService.classadd(c, filelist, removefiles, days,date, edate,stime,etime,loginUser.getNo());
+    classService.classadd(c, filelist, removefiles, days,date, edate,stime,etime,loginUser.getNo(),selmtag);
     return "redirect:../mainpage/mainpage";
   }
 
@@ -249,9 +249,19 @@ public class ClassController {
   
   @GetMapping("clsLoc")
   public void clsLoc(Model model, String locs, @RequestParam(defaultValue="1") int pageNo,@RequestParam(defaultValue="6") int pageSize) {
-    String replelocs = locs.replaceAll(",","|");
-    System.out.println("locs="+replelocs);
-    List<Classes> clslist=classService.listByLoc(pageNo,pageSize,replelocs);
+    
+    List<Classes> clslist = null;
+    if(locs.contains(" ")) {
+      // 주소중 2번째 스페이스까지의 주소만 뽑기위해
+      int pos = locs.indexOf(" ");
+      pos = locs.indexOf(" ",pos+1);
+      String replelocs = locs.substring(0,pos);
+      clslist=classService.listByLoc(pageNo,pageSize,replelocs);
+    }else {
+      String replelocs = locs.replaceAll(",","|");
+      clslist=classService.listByLoc(pageNo,pageSize,replelocs);
+    }
+
     
     BigTag bigtag = null;
     
@@ -300,7 +310,7 @@ public class ClassController {
   @RequestMapping("detail")
   public void findByCno(@RequestParam(defaultValue="1") int reppageNo, @RequestParam(defaultValue="5") int reppageSize, 
       @RequestParam(defaultValue="1") int qnapageNo, @RequestParam(defaultValue="5") int qnapageSize, 
-      Model model,int no ,HttpSession session) {
+      Model model,int no,HttpSession session) {
 
     List<ClassRep> clsreqlist = classrepService.listbycno(no , reppageNo , reppageSize);
     Classes detailclass = classService.findBycno(no);
@@ -309,7 +319,9 @@ public class ClassController {
     List<Timetable> clstimelist = timetableService.findByCno(no);
     int countrep = classrepService.countbycno(no);
     int countqna = classqnaService.countbycno(no);
-
+    
+    /*List<ClassOrder> clsorderlist = classOrderService.findBycnoFormeno(no);*/
+    
     /*Paging paging = new Paging();
     paging.setPageNo(reppageNo);
     paging.setPageSize(reppageSize);
@@ -326,7 +338,6 @@ public class ClassController {
       }
     }
     
-
     model.addAttribute("clsreqlist",clsreqlist);
     model.addAttribute("detailclass",detailclass);
     model.addAttribute("clsqnalist",clsqnalist);
@@ -335,6 +346,7 @@ public class ClassController {
     model.addAttribute("countrep",countrep);
     model.addAttribute("countqna",countqna);
     model.addAttribute("likeResult",likeResult);
+    /*model.addAttribute("clsorderlist", clsorderlist);*/
   }
 
   @RequestMapping(value = "reppage.do", method = {RequestMethod.POST})
@@ -368,7 +380,7 @@ public class ClassController {
     return "redirect:clscate";
   }
   
-  @RequestMapping(value = "findBycno", method = {RequestMethod.POST})
+  @RequestMapping(value = "countorder.do", method = {RequestMethod.POST})
   public @ResponseBody int ordercountlist(int no,HttpSession session) {
     
     Mentee mentee = (Mentee) session.getAttribute("loginUser");
@@ -398,9 +410,6 @@ public class ClassController {
 
   @GetMapping("qnalist")
   public void qnalist() {
-
-    List<ClassQna> clist= classqnaService.classqnalist(4,10,5);
-
   }
 
   @RequestMapping(value = "qnainsert", method = {RequestMethod.POST})
@@ -660,7 +669,7 @@ public class ClassController {
         classOrderService.orderadd(order);
         return "complete";
       }else {
-        int baktNo = Integer.parseInt(str[0]);  //      str[0] = BasketNo
+        //int baktNo = Integer.parseInt(str[0]);  //      str[0] = BasketNo
         int ttabNo = Integer.parseInt(str[1]);      //      str[1] = TtabNo
         int meno = Integer.parseInt(str[2]);      //      str[2] = Meno
         int time = Integer.parseInt(str[3]);      //      str[3] = Time

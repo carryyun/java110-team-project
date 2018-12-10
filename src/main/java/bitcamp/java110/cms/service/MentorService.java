@@ -24,6 +24,7 @@ public interface MentorService {
  
  int delete(int no);
  
+ int update(Mentor mentor);
  
  // 멘토신청 회원번호 목록 
  List<Mentor> listByMetoStat();

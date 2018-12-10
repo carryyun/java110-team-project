@@ -104,9 +104,10 @@
 			                            ${r.mentee.nick}
 			                        </div>
 			                        
-			                        <div class="col-lg-9 media-body">${r.conts}</div>
+			                        <div class="col-lg-8 media-body">${r.conts}</div>
 			                        <c:if test="${sessionScope.loginUser != '' }">
 			                          <c:if test="${sessionScope.loginUser.no == r.meno }">
+			                          	<div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="updaterep(${r.no})"><i class="far fa-edit"></i></a> </div>
 				                        <div class="col-lg-1 media-body"><a href="javascript:void(0)" onclick="removerep(${r.no})"><i class="fas fa-trash-alt"></i></a> </div>
 			                          </c:if>
 			                        </c:if>
@@ -125,7 +126,6 @@
             <li class="page-item disabled "><a class="page-link" href="#"
                 tabindex="-1"> <</a></li>
                 <c:set var="reppage" value="${repPageSize}"/>
-                
                 <%
 	                int repsize = (int)pageContext.getAttribute("reppage");
                     for(int pno = 1; pno<= repsize ; pno++){
@@ -244,10 +244,8 @@
 							</table>
 						</div>
 						<div class="col-lg-12 text-right">
-							 <!-- <button onclick="location.href='prdtQna'">상품 문의</button>  -->
-							
 							<button type="button" data-toggle="modal" data-target="#addQnaModal"
-							style="width: 120px; height: 40px; background-color: #606066; color: #ffffff">상품문의</button>
+							style="width: 120px; height: 40px; margin-top:30px; background-color: #606066; color: #ffffff" onclick="qnaCheck()">상품문의</button>
                                         <!--여기에 코드 작성-->
                                         
                                         <c:choose>
@@ -311,7 +309,25 @@
                                 </c:choose>
                                         
                                         <!--여기까지 코드 작성-->
-             
+                            <nav aria-label="Page navigation example" id="product-pn">
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item disabled "><a class="page-link" href="javaScript:void(0)"
+                                        tabindex="-1"> <</a></li>
+                                        
+                                        <c:set var="qnapage" value="${countqna}"/>
+						                <%
+						                    int qnasize = (int)pageContext.getAttribute("qnapage");
+						                    if(qnasize<1) qnasize=1;
+						                    for(int qno = 1; qno<= qnasize ; qno++){
+						                %>
+						                    <li class="page-item"><a class="page-link" href="javaScript:void(0)"
+						                    onClick="qnaPaging(<%=qno%>)"><%=qno%></a></li>
+						                <%
+						                    }
+						                %>
+                                    <li class="page-item"><a class="page-link" href="javaScript:void(0)">></a></li>
+                                </ul>
+                            </nav>
 								
 						</div>
 						<!-- <div class="col-lg-12"> -->
@@ -333,17 +349,6 @@
 
 
 	<!--페이지 넘버-->
-	<nav aria-label="Page navigation example" id="product-pn">
-		<ul class="pagination justify-content-center">
-			<li class="page-item disabled "><a class="page-link" href="#"
-				tabindex="-1"> <</a></li>
-			<li class="page-item"><a class="page-link" href="javaScript:void(0)" onclick="qnaPaging(1)">1</a></li>
-			<li class="page-item"><a class="page-link" href="javaScript:void(0)" onclick="qnaPaging(2)">2</a></li>
-			<li class="page-item"><a class="page-link" href="javaScript:void(0)" onclick="qnaPaging(3)">3</a></li>
-			<li class="page-item"><a class="page-link" href="javaScript:void(0)" onclick="qnaPaging(4)">4</a></li>
-			<li class="page-item"><a class="page-link" href="javaScript:void(0)" onclick="qnaPaging(5)">5</a></li>
-			<li class="page-item"><a class="page-link" href="javaScript:void(0)">></a></li>
-		</ul>
-	</nav>
+	
 
 </div>

@@ -80,7 +80,7 @@
 						<div class="col-lg-9">
 							<div class="row">
 								<div class="col" style="border-right: 1px solid rgb(217, 217, 217);">
-									<h2>오늘의 핫 아이템</h2>
+									<h2 style="font-size: 1.5rem; font-weight: 700;">오늘의 핫 아이템</h2>
 									<hr color="#FFB53C" style="height:4px;margin-top:10px;margin-bottom:15px"/>
 									<div id="owl-hotItem" class="owl-carousel col-lg-10 mt-2" style="margin: 0 auto"></div>
 									<div class="owl-btns">
@@ -95,7 +95,7 @@
 							</div>
 						</div>
 						<div class="col-lg-3 text-left">
-						<h2>상품 검색</h2>
+						<h2 style="font-size: 1.5rem; font-weight: 700;">상품 검색</h2>
 						<hr color="#FFB53C" style=" height:4px;margin-top:10px;margin-bottom:15px"/>
 						
 						  <input type="text" id="serchconts" style="height:40px; width:98%; border: 4px solid #FFB53C;" onkeypress="if(event.keyCode==13) {serchProduct();}"> 
@@ -103,7 +103,7 @@
 							<div>
 							<div class="area_hotkeyword PM_CL_realtimeKeyword_base">
 							<div class="ah_roll PM_CL_realtimeKeyword_rolling_base" aria-hidden="false">
-							<h3 class="blind">인기 주문 목록</h3>
+							<h3 class="blind" style="font-size: 1.5rem; font-weight: 700;">인기 주문 목록</h3>
 							<div class="ah_roll_area PM_CL_realtimeKeyword_rolling"> 
 							<ul class="ah_l">
 							<c:forEach items="${hotItemlist}" var="h" varStatus="o">
@@ -226,13 +226,10 @@
 				<!-- Footer -->
 
 			</div>
+			
 		</div>
 
-		<footer>
-			<div class="col px-0">
-				<jsp:include page="../footer.jsp"></jsp:include>
-			</div>
-		</footer>
+		
 
 		<div class="modal fade" id="squarespaceModal" tabindex="-1"
 			role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
@@ -252,7 +249,13 @@
 		<!-- <select>
 		  <option onselect="">
 		</select> -->
+		
 	</div>
+		<footer>
+			<div class="col px-0">
+				<jsp:include page="../footer.jsp"></jsp:include>
+			</div>
+		</footer>
 	<!-- ===============필수포함=============== -->
 	<!-- Bootstrap core JavaScript -->
 	<script src="/vendor/jquery/jquery.min.js"></script>
@@ -316,7 +319,9 @@
                         }
                     }
                     content += "</div>"
-                    content += "<div class='col-lg-6' id='owl-col3'>" + pric + "￦</div>"
+                    pric = "" + pric;
+                    pric = pric.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,')
+                    content += "<div class='col-lg-6' id='owl-col3'>" + pric + "원</div>"
                     content += "</div>"
                     content += "</div>"
                     content += "</a>"

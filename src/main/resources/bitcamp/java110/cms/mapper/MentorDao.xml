@@ -57,6 +57,20 @@
     </insert>
     
     
+    <update id="update" parameterType="mentor">
+        
+        UPDATE
+           p_meto
+
+        SET 
+            carr = #{carr}
+
+        WHERE 
+            mono = #{no}
+
+    </update>
+    
+    
     
       
     <select id="findByEmailPassword" 

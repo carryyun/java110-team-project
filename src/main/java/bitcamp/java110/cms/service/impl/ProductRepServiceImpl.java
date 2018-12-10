@@ -28,6 +28,8 @@ public class ProductRepServiceImpl implements ProductRepService {
     return productRepDao.findAllByPtno(params);
   }
   
+  
+  
   @Override
   public List<ProductRep> list(int pageNo, int pageSize) {
 
@@ -72,5 +74,5 @@ public class ProductRepServiceImpl implements ProductRepService {
   public int delete(int no) {
     return productRepDao.delete(no);
   }
-
+  
 }

@@ -177,7 +177,7 @@
                                             </tr>
                                         </thead>
                                         
-                                        <tbody>
+                                        <tbody id="masterCs">
                                             <c:forEach
                                                 items="${csList}"
                                                 var="rl" varStatus="i">
@@ -231,15 +231,22 @@
                                                     <span
                                                     class="sr-only">Previous</span>
                                             </a></li>
-                                            <li class="page-item"><a
+                                            <c:set var="cscount" value="${countList}"/>
+                                            <% int csco = (int)pageContext.getAttribute("cscount");
+                                            int csd = csco/10;
+                                            int cspage = (int)Math.ceil(csd)+1;
+                                            
+                                            for(int cso=1; cso<=cspage; cso++){
+                                              %>
+                                              
+                                              <li class="page-item"><a
                                                 class="page-link"
-                                                href="#">1</a></li>
-                                            <li class="page-item"><a
-                                                class="page-link"
-                                                href="#">2</a></li>
-                                            <li class="page-item"><a
-                                                class="page-link"
-                                                href="#">3</a></li>
+                                                onclick="cspage(<%=cso%>)"><%=cso%></a></li>
+                                              
+                                              <%
+                                            }
+                                            %>
+                                            
                                             <li class="page-item"><a
                                                 class="page-link"
                                                 href="#"
@@ -254,107 +261,76 @@
 
 
                                 <!-- popup-->
-                                <c:forEach items="${csList}"
-                                    var="rl" varStatus="i">
+                                <c:forEach items="${csList}" var="rl"
+                                    varStatus="i">
                                     <div id="popup${i.index}"
                                         class="overlay">
                                         <div class="popupHH">
                                             <h2>문의 상세 보기</h2>
                                             <a class="close" href="#">×</a>
                                             <div class="content">
-                                                <div class="container" style="width:100%;">
+                                                <div class="container"
+                                                    style="width: 100%;">
                                                     <div class="row">
 
-                                                        <div
-                                                            class="col-lg-12">
-                                                            <table
-                                                                class="table table-bordered"
-                                                                id="block-tab"
-                                                                style="list-style-type: none;">
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td colspan="2"><span
-                                                                                style="font-size: 20px;">글쓴이:
-                                                                            </span>
-                                                                                <span
-                                                                                class="pop-type">${rl.mete_name}(${rl.mete_nick })</span></td>
-                                                                        
-                                                                        
-                                                                        <td
-                                                                            colspan="3"><span
-                                                                                style="font-size: 20px;">문의날짜:
-                                                                            </span>
-                                                                                <span
-                                                                                class="pop-type">${rl.rgdt}</span></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                    <td
-                                                                            colspan="7"><span
-                                                                                style="font-size: 20px;">제목:
-                                                                            </span>
-                                                                                <span
-                                                                                class="pop-type">${rl.titl}</span></td>
-                                                                    
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td
-                                                                            colspan="12"
-                                                                            style="height: auto"><span
-                                                                                style="font-size: 20px;">내용:
-                                                                            </span>
-                                                                                <span
-                                                                                class="pop-type">${rl.conts}</span></td>
-                                                                    </tr>
-                                                                    <c:set var="yn" value="${rl.anser }"/>
-                                                                <% String qna = (String)pageContext.getAttribute("yn");
-                                                                   if(qna != null){%>
-                                                                    <tr>
-                                                                        <td colspan="12" style="height:auto; font-weight:bold;"><span style="font-size: 20px;">답변:</span>
-                                                                        <span class="pop-type">${rl.anser }</span></td>
-                                                                    </tr>
-                                                                    <%}%>
-                                                                   
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                        
-                                                       <!--  답변 창  -->
-                                                         <c:set var="yn2" value="${rl.anser }"/>
-                                                                <% String qna2 = (String)pageContext.getAttribute("yn2");
+                                        <div
+                                            class="col-lg-12">
+                                            <table
+                                                class="table table-bordered"
+                                                id="block-tab"
+                                                style="list-style-type: none;">
+                                                <tbody>
+                                                    <tr>
+                                                        <td colspan="2"><span style="font-size: 20px;">글쓴이:
+                                                        </span>
+                                                            <span class="pop-type">${rl.mete_name}(${rl.mete_nick })</span></td>
+                                                        <td colspan="3"><span style="font-size: 20px;">문의날짜:
+                                                        </span>
+                                                            <span class="pop-type">${rl.rgdt}</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="7"><span style="font-size: 20px;">제목:</span>
+                                                            <span class="pop-type">${rl.titl}</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="12" style="height: auto"><span style="font-size: 20px;">내용: </span>
+                                                            <span class="pop-type">${rl.conts}</span></td>
+                                                    </tr>
+                                                    <c:set var="yn" value="${rl.anser }" />
+                                                    <%
+                                                      String qna = (String) pageContext.getAttribute("yn");
+                                                        if (qna != null) {
+                                                    %>
+                                                    <tr>
+                                                        <td colspan="12" style="height: auto; font-weight: bold;"><span style="font-size: 20px;">답변:</span>
+                                                            <span class="pop-type">${rl.anser }</span></td>
+                                                    </tr>
+                                                    <%}%>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                                        <!--  답변 창  -->
+                                                        <c:set var="yn2"
+                                                            value="${rl.anser }" />
+                                                        <% String qna2 = (String)pageContext.getAttribute("yn2");
                                                                    if(qna2 == null){%>
-                                                            <div
-                                                                class="col-lg-12">
-                                                                <div
-                                                                    class="form-group">
-                                                                    
-                                                                    <textarea
-                                                                        class="form-control z-depth-1"
-                                                                        rows="6"
-                                                                        id="anser${i.index}" placeholder="답변 작성하기.." style="width: 100%; border:1px solid black;"></textarea>
-                                                                </div>
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group">
+
+                                                                <textarea class="form-control z-depth-1" rows="6" id="anser${i.index}"
+                                                                    placeholder="답변 작성하기.." style="width: 100%; border: 1px solid black;"></textarea>
                                                             </div>
+                                                        </div>
                                                         <!-- 12 -->
-                                                        
-                                                        <div
-                                                            class="col-lg-12">
-                                                            
-                                                        
-                                                            <button
-                                                                type="button"
-                                                                class="btn btn-primary"
-                                                                id="mas-p2"
-                                                                name="Y"
-                                                                onclick="anserclick(${i.index}, ${rl.no})"
-                                                                
-                                                                >답변하기</button>
-                                                        
+                                                        <div class="col-lg-12">
+                                                            <button type="button" class="btn btn-primary" id="mas-p2"
+                                                                name="Y" onclick="anserclick(${i.index}, ${rl.no})">답변하기</button>
                                                         </div>
                                                         <%} %>
                                                     </div>
                                                     <!-- popup row-->
                                                 </div>
                                                 <!-- popup container -->
-
                                             </div>
                                         </div>
                                     </div>
@@ -384,6 +360,63 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!-- 181121고친거 -->
 <script>
+
+function cspage(cso){
+    var masterCs = $("#masterCs");
+    
+    $.ajax({
+        type: "POST",
+        data:{
+            cspageNo: cso
+        },
+        url: "csPage.do",
+        success: function(data){
+            
+            var html = "";
+            for(var i in data){
+                var titl = data[i].titl;
+                var cstype = data[i].cstype;
+                var name = data[i].mete_name;
+                var nick = data[i].mete_nick;
+                var rgdt = data[i].rgdt;
+                var anser = data[i].anser;
+                
+                rgdt = new Date();
+                
+                var dd= rgdt.getDate();
+                var mm= rgdt.getMonth();
+                var yy= rgdt.getFullYear();
+                
+                if( dd < 10){
+                    dd = '0' + dd;
+                }
+                if( mm < 10){
+                    mm='0' +mm;
+                }
+                
+                rgdt = yy+'-'+mm+'-'+dd;
+               
+                html += '<tr id="rmv${rl.no}">'
+                html += '<td class="text-center">'+(parseInt(i)+1)+'</td>'
+                html += '<td class="text-center">'+titl+'</td>'
+                html += '<td class="text-center">'+cstype+'</td>'
+                html += '<td class="text-center">'+name+'('+nick+')</td>'
+                html += '<td class="text-center">'+rgdt+'</td>'
+                         if(anser == null){
+                   
+                    html += '<td class="text-center">미완료</td>'
+                    }else{ 
+                        html += '<td class="text-center">완료</td>'
+                        } 
+                            html += '<td class="text-center"><button class="btn btn-light" id="block-cho"><a class="button" href="#popup'+i+'" style="color:black;">상세보기</a></button></td>'
+                    html += '</tr>'
+                    
+            }
+            
+            masterCs.html(html);
+        }
+    })
+}
 
 //답변하기 버튼 클릭
 function anserclick(index, csno){

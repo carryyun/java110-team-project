@@ -1,6 +1,7 @@
 package bitcamp.java110.cms.web;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import javax.servlet.ServletContext;
@@ -110,6 +111,9 @@ public class MypageController {
   public void menu1(Model model,HttpSession session) {
     Mentee mentee = (Mentee) session.getAttribute("loginUser");
     model.addAttribute("mentee", mentee);
+    
+    Mentor mentor = mentorService.get(mentee.getNo());
+    model.addAttribute("mentor", mentor);
   }
   
   
@@ -120,57 +124,114 @@ public class MypageController {
       @RequestParam("no") int noin,
       @RequestParam("carrin") String carrin, 
       @RequestParam("btno") int btnoin,
-      Mentor mentor, MentorTag mentorTag) throws Exception {
+      Mentor mentor, MentorTag mentorTag,
+      Mentee mentee) throws Exception {
     
       // string 에서 int값만 뽑아서  을 int type으로 변환
-      String str1 = carrin;
-      String str3 = new String();
     
     
-      for(int i = 0 ; i < str1.length(); i ++)
-      {    
-        if(48 <= str1.charAt(i) && str1.charAt(i) <= 57)
-            str3 += str1.charAt(i);
-      }
+    String str1 = carrin;
+    String str3 = new String();
+
+
+    for(int i = 0 ; i < str1.length(); i ++)
+    {    
+      if(48 <= str1.charAt(i) && str1.charAt(i) <= 57)
+        str3 += str1.charAt(i);
+    }
+
+    int newCarr = Integer.parseInt(str3);
+    // string 에서 int값만 뽑아서  을 int type으로 변환
     
-      int newCarr = Integer.parseInt(str3);
-      // string 에서 int값만 뽑아서  을 int type으로 변환
     
-      mentorTag.setMono(noin);
-      mentorTag.setBtno(btnoin);
+   
+    // 멘토 신청 처음
+    
+     mentor = mentorService.get(noin);
+     int nono = mentor.getCarr();
+     System.out.println(nono);
+     
+    if ( nono == 0) {
+      char mtstat = 'I';
+      mentee.setMtstat(mtstat);
       
       mentor.setNo(noin);
       mentor.setCarr(newCarr);
-    
+      
+      mentorTag.setMono(noin);
+      mentorTag.setBtno(btnoin);
+      
+      menteeService.updateMtstat(mentee);
+      
       mentorService.add(mentor);
+      
       mentoTagService.add(mentorTag);
       
-    
-
-
- 
-
       
+    }
+    
+    // 신청한적이있다면 
+    else {
+      char mtstat = 'I';
+      mentee.setMtstat(mtstat);
+
+      mentor.setNo(noin);
+      mentor.setCarr(newCarr);
+
+
+      menteeService.updateMtstat(mentee); // 신청할때마다 I로 넘김
+
+      mentorService.update(mentor);  // 경력은 업데이트
+      
+      List <MentorTag> mo = mentoTagService.listByMono(1, 10, noin);
+      List<Integer> setMtaglist = new ArrayList<>();
+      
+      for(MentorTag  m: mo) {
+        setMtaglist.add(m.getBtno());
+      }
+      
+      if(setMtaglist.contains(btnoin)) {
+      }
+      else {
+        mentorTag.setMono(noin);
+        mentorTag.setBtno(btnoin);
+        mentoTagService.add(mentorTag);
+      }
+      
+//      for(MentorTag  m: mo) {
+//          System.out.println(m.getBtno());
+//         
+//          if( btnoin == m.getBtno()) {  // btnoin이 btno와 일치하는게 있다면(btno와 가 이미 있다면) update
+////            mentorTag.setMono(noin);
+////            mentorTag.setBtno(btnoin);
+////            mentoTagService.update(mentorTag); // 
+//          }
+//          else if(  btnoin != m.getBtno() ) { // 없으면 add
+//            mentorTag.setMono(noin);
+//            mentorTag.setBtno(btnoin);
+//            mentoTagService.add(mentorTag);
+//          }
+//          
+//      }
+      
+
+    }
+
 
         
     for(MultipartFile file : files) {
       if(file.getOriginalFilename().length() > 2 ) {
-        
         String filename = UUID.randomUUID().toString();
         file.transferTo(new File(sc.getRealPath("/upload/img/meto_file/" + filename+".png")));
-       
       } 
     }
     
     for(MultipartFile file : files2) {
       if(file.getOriginalFilename().length() > 2 ) {
-        
         String filename = UUID.randomUUID().toString();
         file.transferTo(new File(sc.getRealPath("/upload/img/meto_licn/" + filename+".png")));
-       
       } 
     }
-    
     return "redirect:mypage";
   }
 
@@ -188,7 +249,7 @@ public class MypageController {
 
     */  
     
-    
+  
   @RequestMapping(value = "updateProfile.do", method = {RequestMethod.POST})
   public @ResponseBody int updateProfile(Mentee mentee) {
     
@@ -364,11 +425,14 @@ public class MypageController {
     return classService.manageByCno(cno);
   }
   @RequestMapping(value = "deliveryinsert.do", method = {RequestMethod.POST})
-  public @ResponseBody int deliveryInsert(String parcname,int parcno, String delptno) {
+  public @ResponseBody int deliveryInsert(String parcname,String parcno, int ono) {
+    
+    System.out.println(parcno);
+    
     ProductOrder order = new ProductOrder();
     order.setParc_name(parcname);
     order.setParc_no(parcno);
-    order.setPtno(Integer.parseInt(delptno));
+    order.setNo(ono);
     return productOrderSerivce.adddeliveryinfo(order);
   }
   

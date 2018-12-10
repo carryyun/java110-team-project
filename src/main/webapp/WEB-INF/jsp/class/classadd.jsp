@@ -40,6 +40,9 @@
     #mainNav .navbar-brand{
     	margin-bottom: 50px !important;
     }
+    .modal-backdrop.in{
+    	display:none !important;
+    }
     </style>
     </head>
     
@@ -75,9 +78,106 @@
                 </div>
                 </div>
                 <div style="position:absolute; width: 500px; float:right; top: 0;">
+                <div id="tagselcetdiv">
+  				<input type="text" class="view" readonly value="대분류 선택">
+                <select id="bigtagSel" style="width:25%; height:26px;">
+                <option hidden selected></option>
+                <option value="2">음악</option>
+                <option value="3">뷰티</option>
+                <option value="4">댄스</option>
+                <option value="5">프로그래밍</option>
+                <option value="6">외국어</option>
+                <option value="7">실무역량</option>
+                <option value="8">운동</option>
+                <option value="9">기타</option>
+                </select>
+                <input type="text" class="view" readonly value="중분류 선택">
+                <select id="MiddletagSel2" style="width:25%; height:26px; display:none;">
+                <option hidden selected></option>
+                <option value="1">보컬</option>
+                <option value="2">미디작곡</option>
+                <option value="3">기타연주</option>
+                <option value="4">국악</option>
+                <option value="5">디제잉</option>
+                <option value="6">드럼</option>
+                <option value="7">랩</option>
+                </select>
+                 <select id="MiddletagSel3" style="width:25%; height:26px; display:none;">
+                <option hidden selected></option>
+                <option value="8">메이크업</option>
+                <option value="9">퍼스널컬러</option>
+                <option value="10">헤어</option>
+                <option value="11">패션</option>
+                <option value="12">네일</option> 
+                </select>
+                 <select id="MiddletagSel4" style="width:25%; height:26px; display:none;">
+                <option hidden selected></option>
+                <option value="13">삼바</option>
+                <option value="14">룸바</option>
+                <option value="15">차차차</option>
+                <option value="16">자이브</option>
+                <option value="17">파소도블레</option>
+                <option value="18" >왈츠</option>
+                <option value="19">퀵스텝</option>
+                </select>
+                 <select id="MiddletagSel5" style="width:25%; height:26px; display:none;">
+                <option hidden selected></option>
+                <option value="20">Web개발</option>
+                <option value="21">App개발</option>
+                <option value="22">파이썬</option>
+                <option value="23">자바</option>
+                <option value="24">아두이노</option>
+                <option value="25">DataBase</option>
+                <option value="26">워드프레스</option>
+                </select>
+                 <select id="MiddletagSel6" style="width:25%; height:26px; display:none;">
+                <option hidden selected></option>
+                <option value="27">영어회화</option>
+                <option value="28">중국어</option>
+                <option value="29">토익/토플</option>
+                <option value="30">일본어</option>
+                <option value="31">프랑스어</option>
+                <option value="32">스페인어</option>
+                <option value="33">영작문</option>
+                </select>
+                 <select id="MiddletagSel7" style="width:25%; height:26px; display:none;">
+                <option hidden selected></option>
+                <option value="34">엑셀</option>
+                <option value="35">파워포인트</option>
+                <option value="36">프레젠테이션</option>
+                <option value="37">브랜딩</option>
+                <option value="38">창업</option>
+                <option value="39">기획서</option>
+                <option value="40">재무회계</option>
+                </select>
+                 <select id="MiddletagSel8" style="width:25%; height:26px; display:none;">
+                <option hidden selected></option>
+                <option value="41">파워워킹</option>
+                <option value="42">수영</option>
+                <option value="43">자전거</option>
+                <option value="44">에어로빅</option>
+                <option value="45">등산</option>
+                <option value="46">다이어트</option>
+                <option value="47">고강도운동</option>
+                </select>
+                 <select id="MiddletagSel9" style="width:25%; height:26px; display:none;">
+                <option hidden selected></option>
+                <option value="48">플라워</option>
+                <option value="49">커피</option>
+                <option value="50">요리</option>
+                <option value="51">사진</option>
+                <option value="52">독서</option>
+                <option value="53">십자수수예</option>
+                <option value="54">기타</option> 
+                </select>
+                 <select id="MiddletagSelBase" style="width:25%; height:26px;">
+                <option hidden selected></option>
+                </select>
+  				</div>
                <div id="pay-div">
                 <input type="text" class="view" readonly value="시간당 금액" >
-                <input type="number" name="pric" id="cpay" maxlength="6" placeholder="시간당 수업금액을 입력해주세요.">원
+                <input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                name="pric" id="cpay" maxlength="6" placeholder="시간당 수업금액을 입력해주세요.">원
                </div> 
                <div id="allday-btn" style="display:none;">
                <input type="text" class="view" readonly value="수업날짜">
@@ -95,7 +195,7 @@
                </div>
                <div id="divcapa">
                 <input type="text" class="view" readonly value="모집인원">
-                <input type="number" name="capa" id="rnumber"  min="1" maxlength="2" placeholder="모집인원을 입력해주세요.">
+                <input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"name="capa" id="rnumber"  min="1" maxlength="2" placeholder="모집인원을 입력해주세요.">
                </div>
                 <div id="pst">
                     <input type="text" id="posi" readonly value="수업장소"><br>
@@ -126,8 +226,10 @@
                  <input id="days" type="hidden" name="days">
                  <input id="removefiles" type="hidden" name="removefiles">
                  <input type="hidden" id="type" name="type" value="단기"> 
-                 <input type="button" id="back-home-btn" value="Go Home">  
+                 <input type="button" id="back-home-btn" onclick="back_btn()" value="뒤로가기">  
               	 <input type="button" id="clsinsert" onclick="emptychk();" value="클래스 등록" />
+              	 <input type="hidden" id="selbigtag" name="selbtag">
+              	 <input type="hidden" id="selmtag" name="selmtag"> 
               </form>
             </div>
         </div>
@@ -252,37 +354,30 @@ function emptychk(){
 			button:"확인"
 		});
 		return false;
-	}else if($("#ctime2").val().length == 4 && $("#ctime").val().length == 5){
+	}else if($("#ctime2").val().substr(0,2) < $("#ctime").val().substr(0,2)){
+    		swal({
+				text:"시작시간이 끝나는시간보다 작아야합니다",
+				button:"확인"
+			});
+    		return false;
+	}else if($("#ctime2").val().substr(0,2) == $("#ctime").val().substr(0,2)){
+    		swal({
+				text:"시작시간과 끝나는시간이 같으면안됩니다.",
+				button:"확인"
+			});
+    		return false;
+	}else if($('#bigtagSel option:selected').val() == ''){
 		swal({
-			text:"시작시간이 끝나는시간보다 작아야합니다",
+			text:"대분류를 선택해주세요.",
 			button:"확인"
 		});
 		return false;
-	}else if($("#ctime2").val().length == 5 && $("#ctime").val().length == 5 && $("#ctime2").val().substr(0,2) < $("#ctime").val().substr(0,2)){
-    		swal({
-				text:"시작시간이 끝나는시간보다 작아야합니다",
-				button:"확인"
-			});
-    		return false;
-	}else if($("#ctime2").val().length == 5 && $("#ctime").val().length == 5 &&  $("#ctime2").val().substr(0,2) == $("#ctime").val().substr(0,2)){
-    		swal({
-				text:"시작시간과 끝나는시간이 같으면안됩니다.",
-				button:"확인"
-			});
-    		return false;
-		
-	}else if($("#ctime2").val().length == 4 && $("#ctime").val().length == 4 && $("#ctime2").val().substr(0,1) < $("#ctime").val().substr(0,1)){
-    		swal({
-				text:"시작시간이 끝나는시간보다 작아야합니다",
-				button:"확인"
-			});
-    		return false;
-	}else if($("#ctime2").val().length == 4 && $("#ctime").val().length == 4 && $("#ctime2").val().substr(0,1) == $("#ctime").val().substr(0,1)){
-    		swal({
-				text:"시작시간과 끝나는시간이 같으면안됩니다.",
-				button:"확인"
-			});
-    		return false;
+	}else if($('#selmtag').val() == ''){
+		swal({
+			text:"중분류를 선택해주세요.",
+			button:"확인"
+		});
+		return false;
 	}else {
 		swal({
 		        title: "클래스 신청이 완료되었습니다.", 
@@ -294,6 +389,137 @@ function emptychk(){
 		        });
 	}
 }
+
+function back_btn(){
+	history.back();
+}
+
+$( "#bigtagSel").change(function() {
+	var sel = $('#bigtagSel option:selected').val();
+	if(sel == 2){
+		$('#selmtag').val('');
+		$('#MiddletagSel2').val('');
+		$('#MiddletagSel3').css('display','none');
+		$('#MiddletagSel4').css('display','none');
+		$('#MiddletagSel5').css('display','none');
+		$('#MiddletagSel6').css('display','none');
+		$('#MiddletagSel7').css('display','none');
+		$('#MiddletagSel8').css('display','none');
+		$('#MiddletagSel9').css('display','none');
+		$('#MiddletagSelBase').css('display','none');
+		$('#MiddletagSel2').css('display','inline-block');
+		console.log($('#MiddletagSel2 option:selected').val());
+		$('#MiddletagSel2').click(function(){
+			$('#selmtag').val($('#MiddletagSel2 option:selected').val());
+		});
+	}else if(sel == 3){
+		$('#selmtag').val('');
+		$('#MiddletagSel3').val('');
+		$('#MiddletagSel2').css('display','none');
+		$('#MiddletagSel4').css('display','none');
+		$('#MiddletagSel5').css('display','none');
+		$('#MiddletagSel6').css('display','none');
+		$('#MiddletagSel7').css('display','none');
+		$('#MiddletagSel8').css('display','none');
+		$('#MiddletagSel9').css('display','none');
+		$('#MiddletagSelBase').css('display','none');
+		$('#MiddletagSel3').css('display','inline-block');
+		$('#MiddletagSel3').click(function(){
+			$('#selmtag').val($('#MiddletagSel3 option:selected').val());
+		});
+	}else if(sel == 4){
+		$('#selmtag').val('');
+		$('#MiddletagSel4').val('');
+		$('#MiddletagSel2').css('display','none');
+		$('#MiddletagSel3').css('display','none');
+		$('#MiddletagSel5').css('display','none');
+		$('#MiddletagSel6').css('display','none');
+		$('#MiddletagSel7').css('display','none');
+		$('#MiddletagSel8').css('display','none');
+		$('#MiddletagSel9').css('display','none');
+		$('#MiddletagSelBase').css('display','none');
+		$('#MiddletagSel4').css('display','inline-block');
+		$('#MiddletagSel4').click(function(){
+			$('#selmtag').val($('#MiddletagSel4 option:selected').val());
+		});
+	}else if(sel == 5){
+		$('#selmtag').val('');
+		$('#MiddletagSel5').val('');
+		$('#MiddletagSel2').css('display','none');
+		$('#MiddletagSel3').css('display','none');
+		$('#MiddletagSel4').css('display','none');
+		$('#MiddletagSel6').css('display','none');
+		$('#MiddletagSel7').css('display','none');
+		$('#MiddletagSel8').css('display','none');
+		$('#MiddletagSel9').css('display','none');
+		$('#MiddletagSelBase').css('display','none');
+		$('#MiddletagSel5').css('display','inline-block');
+		$('#MiddletagSel5').click(function(){
+			$('#selmtag').val($('#MiddletagSel5 option:selected').val());
+		});
+	}else if(sel == 6){
+		$('#selmtag').val('');
+		$('#MiddletagSel6').val('');
+		$('#MiddletagSel2').css('display','none');
+		$('#MiddletagSel3').css('display','none');
+		$('#MiddletagSel4').css('display','none');
+		$('#MiddletagSel5').css('display','none');
+		$('#MiddletagSel7').css('display','none');
+		$('#MiddletagSel8').css('display','none');
+		$('#MiddletagSel9').css('display','none');
+		$('#MiddletagSelBase').css('display','none');
+		$('#MiddletagSel6').css('display','inline-block');
+		$('#MiddletagSel6').click(function(){
+			$('#selmtag').val($('#MiddletagSel6 option:selected').val());
+		});
+	}else if(sel == 7){
+		$('#selmtag').val('');
+		$('#MiddletagSel7').val('');
+		$('#MiddletagSel2').css('display','none');
+		$('#MiddletagSel3').css('display','none');
+		$('#MiddletagSel4').css('display','none');
+		$('#MiddletagSel5').css('display','none');
+		$('#MiddletagSel6').css('display','none');
+		$('#MiddletagSel8').css('display','none');
+		$('#MiddletagSel9').css('display','none');
+		$('#MiddletagSelBase').css('display','none');
+		$('#MiddletagSel7').css('display','inline-block');
+		$('#MiddletagSel7').click(function(){
+			$('#selmtag').val($('#MiddletagSel7 option:selected').val());
+		});
+	}else if(sel == 8){
+		$('#selmtag').val('');
+		$('#MiddletagSel8').val('');
+		$('#MiddletagSel2').css('display','none');
+		$('#MiddletagSel3').css('display','none');
+		$('#MiddletagSel4').css('display','none');
+		$('#MiddletagSel5').css('display','none');
+		$('#MiddletagSel6').css('display','none');
+		$('#MiddletagSel7').css('display','none');
+		$('#MiddletagSel9').css('display','none');
+		$('#MiddletagSelBase').css('display','none');
+		$('#MiddletagSel8').css('display','inline-block');
+		$('#MiddletagSel8').click(function(){
+			$('#selmtag').val($('#MiddletagSel8 option:selected').val());
+		});
+	}else if(sel == 9){
+		$('#selmtag').val('');
+		$('#MiddletagSel9').val('');
+		$('#MiddletagSel2').css('display','none');
+		$('#MiddletagSel3').css('display','none');
+		$('#MiddletagSel4').css('display','none');
+		$('#MiddletagSel5').css('display','none');
+		$('#MiddletagSel6').css('display','none');
+		$('#MiddletagSel7').css('display','none');
+		$('#MiddletagSel8').css('display','none');
+		$('#MiddletagSelBase').css('display','none');
+		$('#MiddletagSel9').css('display','inline-block');
+		$('#MiddletagSel9').click(function(){
+			$('#selmtag').val($('#MiddletagSel9 option:selected').val());
+		});
+	}
+	$('#selbigtag').val($('#bigtagSel option:selected').val());
+});
 
 
 	
@@ -376,9 +602,13 @@ $(document.body).on('click', '.remove-file-btn', function (event) {
 
    $( "#ctime" ).timepicker({
 	   interval: 60,
-	   timeFormat :'H:mm',
+	   timeFormat :'HH:mm',
 	   change: function(time) { 
-       $("#ctime2").timepicker("option","minTime", time);
+		    var ct2 = $("#ctime2").val().substr(0,2);
+			var ct1 = $("#ctime").val().substr(0,2);
+	    	var alltime = ct2-ct1
+ 	  		$("#cttime").val(Math.abs(alltime));	 
+      	    $("#ctime2").timepicker("option","minTime", time);
 	   }
    });
        
@@ -397,38 +627,12 @@ $(document.body).on('click', '.remove-file-btn', function (event) {
    
    $( "#ctime2" ).timepicker({
 	   interval: 60,
-	   timeFormat :'H:mm',
+	   timeFormat :'HH:mm',
 	   change: function(){
-		   if($("#ctime2").val().length == 5){
-			    if($("#ctime").val().length == 5){
-					var ct2 = $("#ctime2").val().substr(0,2);
-					var ct1 = $("#ctime").val().substr(0,2);
-			    	var alltime = ct2-ct1
-			    	if(ct2 > ct1)
-			  	  		$("#cttime").val(Math.abs(alltime));	    		
-			    	
-			    }else if($("#ctime").val().length == 4){
-			    	var ct2 = $("#ctime2").val().substr(0,2);
-					var ct1 = $("#ctime").val().substr(0,1);
-			    	var alltime = ct2-ct1
-			    	if(Math.abs(ct2)>Math.abs(ct1))
-			  	  		$("#cttime").val(Math.abs(alltime));	    		
-			    }
-			}else if($("#ctime2").val().length == 4){
-				if($("#ctime").val().length == 4){
-					var ct2 = $("#ctime2").val().substr(0,1);
-					var ct1 = $("#ctime").val().substr(0,1);
-			    	var alltime = ct2-ct1
-			    	if(ct2 > ct1)
-			  	  		$("#cttime").val(Math.abs(alltime));	    		
-				}else if($("#ctime").val().length == 5){
-					var ct2 = $("#ctime2").val().substr(0,1);
-					var ct1 = $("#ctime").val().substr(0,2);
-			    	var alltime = ct2-ct1
-			    	if(Math.abs(ct2)>Math.abs(ct1))
-			  	  		$("#cttime").val(Math.abs(alltime));	    		
-				}
-			}
+			var ct2 = $("#ctime2").val().substr(0,2);
+			var ct1 = $("#ctime").val().substr(0,2);
+	    	var alltime = ct2-ct1
+  	  		$("#cttime").val(Math.abs(alltime));	    		
 	   }
    });
 	 //  change: function(time) {

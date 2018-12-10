@@ -94,7 +94,6 @@
         limit 0,500
     </select>
     
-    
     <sql id="select1">
         select 
             ps.cno,ps.titl,ps.pric,ps.bas_addr,pg.mtno,pe.meno
@@ -249,7 +248,7 @@
             inner join p_mtag as ptg
             	on ps.mtno = ptg.mtno
 		where
-			cno =  #{no} AND ps.stat = 'Y'
+			cno =  #{no} AND (ps.stat = 'Y' OR ps.stat = 'I')
 	</select>
 
 	<select id="findBytag" resultMap="classMap" parameterType="int">

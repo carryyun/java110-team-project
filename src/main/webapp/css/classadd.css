@@ -116,7 +116,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
 
 #classinfo{
-    position: relative; height: 650px;
+    position: relative; height: 700px;
 }
 
 #filetable{
@@ -145,7 +145,7 @@ input.upload{/*input type="file" tag 투명하게 처리*/
   border: none;
 }
 #allday-btn,#alldaytime,#onetime,#divcapa,#pst,#filebox,#oneday-btn,#type-chk-btn,#pay-div,#posi,#video-url,
-#sample6_postcode,#sample6_address,#sample6_address2,#imgInput{
+#sample6_postcode,#sample6_address,#sample6_address2,#imgInput,#tagselcetdiv{
 	margin-bottom: 3px;
 }
 #cpay,#ctime,#sample6_address,#sample6_address2,#imgInput,#cttime,#ctime2,#rnumber,#cdate,#cdate2,#sample6_postcode{
