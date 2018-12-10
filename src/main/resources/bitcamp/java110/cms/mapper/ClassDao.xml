@@ -94,23 +94,6 @@
         limit 0,500
     </select>
     
-    <update id="popularityUpdate" parameterType="int">
-    	update p_cls
-    	   set mtno=70
-    	 where cno=#{no}
-    </update>
-    
-    <select id="popularityCallBack" parameterType="int" resultMap="classMapOrigin">
-    	select cno, mtno
-    	  from p_cls
-    	 where cno=#{no}
-    </select>
-    
-    <update id="popularitypreCallbackUpdate" parameterType="map">
-    	update p_cls
-    	   set mtno=#{mtno}
-    	 where cno=#{no}
-    </update>
     <sql id="select1">
         select 
             ps.cno,ps.titl,ps.pric,ps.bas_addr,pg.mtno,pe.meno
