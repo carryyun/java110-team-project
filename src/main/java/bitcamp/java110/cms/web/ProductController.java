@@ -197,7 +197,6 @@ public class ProductController {
   
   @GetMapping("prodRegister")
   public void prodRegister() {
-  
   }
 
   // 2018.11.23 수정 -> 18.11.28수정

@@ -97,7 +97,13 @@
 			<mvc:mapping path="/product/prodRegister"/>
 			<mvc:mapping path="/product/prodUpdate"/>
 			<mvc:mapping path="/mypage/*"/>
-			<mvc:mapping path="/master/*"/>
+			<mvc:mapping path="/masterpage/*"/>
+			<mvc:mapping path="/mentee/resultemail"/>
+			<mvc:mapping path="/mentee/resultpwd"/>
+			<mvc:mapping path="/class/like"/>
+			<mvc:mapping path="/class/basket"/>
+			<mvc:mapping path="/payment/*"/>
+			<mvc:mapping path="/product/basket"/>
 			<bean 
 				class="bitcamp.java110.cms.web.interceptor.AuthInterceptor2" />
 		</mvc:interceptor>
