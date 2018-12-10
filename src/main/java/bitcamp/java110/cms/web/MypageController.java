@@ -123,7 +123,7 @@ public class MypageController {
     Mentor mentor = mentorService.get(reMeno);
     model.addAttribute("mentor", mentor);
   }
-  
+   
   
   
   @RequestMapping(value = "imgupload", method=RequestMethod.POST)
