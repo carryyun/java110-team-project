@@ -27,7 +27,7 @@ ul#RankingUl li:nth-child(odd){
     background-color: #f0f0f0;
 }
 ul#RankingUl li:nth-child(even){
-    background-color: #fcfcfc;
+    background-color: #fcfcfc; 
 }
 ul#RankingUl li:hover{
     background-color: #FFB53C;
