@@ -221,35 +221,30 @@
     {
     if ( chkbox.checked == true )
     {
-        text6.readOnly = false;
-        text6.style.border = "solid";
-        text6.style.borderColor = "#A64DB6";
+        $('#findpstno').css('display','inline-block');
         
-        text7.readOnly = false;
-        text7.style.border = "solid";
-        text7.style.borderColor = "#A64DB6";
+        sample6_postcode.style.border = "solid";
+        sample6_postcode.style.borderColor = "#A64DB6";
         
-        text8.readOnly = false;
-        text8.style.border = "solid";
-        text8.style.borderColor = "#A64DB6";
+        sample6_address.style.border = "solid";
+        sample6_address.style.borderColor = "#A64DB6";
+        
+        sample6_address2.readOnly = false;
+        sample6_address2.style.border = "solid";
+        sample6_address2.style.borderColor = "#A64DB6";
        
-    }
-    else
+    }else
     {
-        text6.readOnly = true;
-        text6.style.border = "none";
+    	sample6_address2.readOnly = true;
+    	sample6_postcode.style.border = "none";
         
-        text7.readOnly = true;
-        text7.style.border = "none";
+        sample6_address.style.border = "none";
         
-        text8.readOnly = true;
-        text8.style.border = "none";
-        
-        
-        var newpstno = $('#text6').val();
-        var newbas= $('#text7').val();
-        var newdet= $('#text8').val();
-      
+        sample6_address2.style.border = "none";
+
+        var newpstno = $('#sample6_postcode').val();
+        var newbas= $('#sample6_address').val();
+        var newdet= $('#sample6_address2').val();
         
         $.ajax({
             type: "POST",
@@ -259,10 +254,8 @@
                 "bas_addr" : newbas,
                 "det_addr" : newdet
                 },
-                
          url: "updateAddr.do", 
          success : function() {
-            
              swal({
                    text : "변경 완료",
                  button : "확인"
@@ -274,7 +267,9 @@
                      })
                      }
              }); 
+        $('#findpstno').css('display','none');
     }
+    
 }
 
 
@@ -291,8 +286,8 @@
                                 <div class="author-img" style="background-image: url(${mentee.phot}); position: absolute;">
                                 </div>
                                 <div class="cont1" >
-                                <B>닉네임</B>&nbsp;
-                                <input id="text1" type="text" name="닉네임" value="&nbsp;${mentee.nick}" readonly style="width:140px; border:none; ">
+                                <B>닉네임</B>
+                                <input id="text1" type="text" name="닉네임" value="${mentee.nick}" readonly style="width:140px; border:none; ">
                                 </div>
                                 <div id="wrapper" name="${mentee.mtstat}" class="pop" style=" position: relative; right: -50px; bottom: -60px">
                                 <button class="fancy" >멘토신청</button>
@@ -419,38 +414,15 @@
                                 <h3>주소지 변경</h3>
                             </div>
                             <div class="profile-contents" style="height: 50px;" >
-                                <div class="title1" style="text-align:left;" >
-                                                            우편번호
-                                </div>
-                                <div class="cont1" >
-                                   <input id="text6" type="text" name="pwd" value="${mentee.pstno}" readonly style="width:140px; border:none; ">
-                                    
-                                </div>
-                                
-                                
+                                   <input id="sample6_postcode" style="width:30%; border:none;" type="text" name="pwd" value="${mentee.pstno}" readonly style="width:140px; border:none; ">
+                                   <input type="button" id="findpstno" style="display:none;" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
                             </div>
                             <div class="profile-contents" style="height: 50px;">
-                                <div class="title1"  style="text-align:left;" >
-                                기본주소
+                                    <input id="sample6_address" type="text" style="width:100%; border:none;" name="bk" value="${mentee.bas_addr}" readonly style="width:140px; border:none; ">
                                 </div>
-                             <div class="cont1" >
-                                    <input id="text7" type="text" name="bk" value="${mentee.bas_addr}" readonly style="width:140px; border:none; ">
-                                   
-                                </div>
-                                
-                                
-                            </div>
-                            
                             <div class="profile-contents" style="height: 50px;">
-                                <div class="title1"  style="text-align:left;" >
-                                상세주소
-                                </div>
-                             <div class="cont1" >
-                                    <input id="text8" type="text" name="bk" value="${mentee.det_addr}" readonly style="width:140px; border:none; ">
-                                   
-                                </div>
-                                
-                                
+                                    <input id="sample6_address2" type="text" style="width:100%; border:none;" name="bk" value="${mentee.det_addr}" readonly style="width:140px; border:none; ">
+                            </div>
                             </div>
                            
                              <div class="toggle toggle--knob" style="position:absolute; right:30px; top:0; ">
@@ -485,7 +457,7 @@
         출금은행 : ${mentee.bkname}<br>
         계좌번호 : ${mentee.bkno}<br>
         
-    <hr>
+    <hr> 
     
     <div class="nope" >
     
@@ -619,13 +591,36 @@
             
             
             <script>
-      
             
-            
-            
-            
-            
-          
+            function sample6_execDaumPostcode() {
+                new daum.Postcode({
+                    oncomplete: function(data) {
+                   
+                        var fullAddr = ''; 
+                        var extraAddr = ''; 
+
+                        if (data.userSelectedType === 'R') {
+                            fullAddr = data.roadAddress;
+                        } else { 
+                            fullAddr = data.jibunAddress;
+                        }
+
+                        if(data.userSelectedType === 'R'){
+                            if(data.bname !== ''){
+                                extraAddr += data.bname;
+                            }
+                            if(data.buildingName !== ''){
+                                extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                            }
+                            fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+                        }
+                        document.getElementById('sample6_postcode').value = data.zonecode; 
+                        document.getElementById('sample6_address').value = fullAddr;
+
+                        document.getElementById('sample6_address2').focus();
+                    }
+                }).open();
+            }    
             
             $("#btn-cancle").click(function(){
                 $(".pop").removeClass("hide");
@@ -647,7 +642,7 @@
                             buttons: true,
                             dangerMode: true,
                             })
-                          
+                          wk
                            
                      } 
                     
