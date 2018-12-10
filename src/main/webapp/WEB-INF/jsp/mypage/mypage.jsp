@@ -119,8 +119,8 @@
 </head>
 
 <body>
-          <div class="navbar">
-            <div class="container" >
+         <nav class="navbar navbar-fixed-top" style=" background-color: #ffffff;" >
+           <div class="container" >
         <div class="row">
         
             <div class="col-lg-12" >
@@ -130,19 +130,19 @@
              
             
             </div>
-            </div>
+            </div> 
             
-            </div>
+            </nav>
          
              
              
             
-                <div id="colorlib-page">
+                <div id="colorlib-page" >
         <div class="container-wrap">
 			<div class="row" ></div>
 		
             <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
-            <aside id="colorlib-aside" role="complementary" class="border js-fullheight">
+            <aside id="colorlib-aside" role="complementary" class="border js-fullheight" style="top:150px;">
                 <div class="text-center">
                     <div class="author-img" style="background-image: url(${mentee.phot};"></div>
                     <h1 id="colorlib-logo"><a href="index.html">${mentee.name}</a></h1>
@@ -166,21 +166,19 @@
                 
             </aside>
             
-            
+          
 
-            <div id="colorlib-main">
+            <div id="colorlib-main" ">
 
-
-
+ 
                 <section class="colorlib-about" data-section="about" >
                     <div class="colorlib-narrow-content">
                         <div class="row" style=" display:block;">
                             
-                              
                                     
                                         <div class="about-desc">
 
-                                            <h2 class="colorlib-heading">회원정보수정</h2>
+                                            <h2 class="colorlib-heading" style="margin-top: 120px;">회원정보수정</h2>
                                             <hr color="black">
                                         </div>
                                   
