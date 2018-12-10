@@ -47,7 +47,7 @@
 	  	  FROM p_cls_order
   	  GROUP BY ctno
   	  ORDER BY COUNT(*) DESC
-  		 LIMIT 5
+  		 LIMIT 6
     </select>
     
    

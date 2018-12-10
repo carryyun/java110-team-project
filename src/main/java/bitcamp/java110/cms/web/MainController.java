@@ -12,11 +12,15 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import bitcamp.java110.cms.domain.ClassLike;
 import bitcamp.java110.cms.domain.ClassPopul;
+import bitcamp.java110.cms.domain.ClassRep;
+import bitcamp.java110.cms.domain.Classes;
 import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.ProductPopul;
+import bitcamp.java110.cms.domain.ProductRep;
 import bitcamp.java110.cms.service.ClassLikeService;
 import bitcamp.java110.cms.service.ClassPopulService;
 import bitcamp.java110.cms.service.ClassRepService;
+import bitcamp.java110.cms.service.ClassService;
 import bitcamp.java110.cms.service.ProductPopulService;
 import bitcamp.java110.cms.service.ProductRepService;
 
@@ -31,15 +35,19 @@ public class MainController {
   
   ClassRepService classRepService;
   ProductRepService productRepService;
+  
+  ClassService classService;
 
   public MainController(ProductPopulService productPopulService,
       ClassPopulService classPopulService, ClassLikeService classLikeService,
-      ClassRepService classRepService, ProductRepService productRepService) {
+      ClassRepService classRepService, ProductRepService productRepService,
+      ClassService classService) {
     this.productPopulService = productPopulService;
     this.classPopulService = classPopulService;
     this.classLikeService = classLikeService;
     this.classRepService = classRepService;
     this.productRepService = productRepService;
+    this.classService = classService;
   }
   
   @GetMapping("mainpage")
@@ -77,14 +85,26 @@ public class MainController {
     if(loginUser != null) {
       List<ClassLike> clike_popul = classLikeService.listByMeno(loginUser.getNo());
       System.out.println("실행");
-      model.addAttribute("clike_popul", clike_popul );
+      model.addAttribute("clike_popul", clike_popul);
       for(ClassLike c : clike_popul) {
         System.out.println(c.getCno());
       }
     }
     
     
+    List<ClassRep> classRepList = classRepService.listbyRgdt();
+    List<ProductRep> productRepList = productRepService.listbyRgdt();
     
+    model.addAttribute("classRepList", classRepList);
+    model.addAttribute("productRepList", productRepList);
+    
+    List<Classes> classRanking = classService.listByOrder(1, 10, 10);
+    
+    model.addAttribute("classRanking",classRanking);
+    
+    for(Classes c: classRanking) {
+      System.out.println(c.getTitl());
+    }
   }
   
   

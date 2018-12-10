@@ -146,6 +146,12 @@ margin-bottom: 0.25rem;
 						<div class="col-lg-2">
                             <div class="col">
                                 <h2 style="font-size:1.5rem; font-weight: 700;">지역선택</h2>
+                                <div class="ml-1" data-target="#mapModal" data-toggle="modal" style="cursor: pointer;">
+	                                <div class="col-lg-5 px-0" style="text-align:center ;font-size: 14px">
+	                                   <i class="fas fa-map-marked-alt fa-2x"></i>
+	                                </div>
+	                                <div class="col-lg-5 px-0" style="text-align:center ;font-size: 14px">지도검색</div>
+                                </div>
                             </div>
                         </div>
 						<!--  여기에 코드작성-->
@@ -154,68 +160,68 @@ margin-bottom: 0.25rem;
 						<div class="box">
 							<div class="row">
 								<label> <input type="checkbox" name="loc" class="loc" value="가산"> <span
-									class="yes">가산디지털(5)</span>
+									class="yes">가산디지털</span>
 								</label> <label> <input type="checkbox" name="loc" class="loc" value="강남"> <span
-									class="yes">강남(16)</span>
+									class="yes">강남</span>
 								</label> <label> <input type="checkbox" name="loc" class="loc" value="건대"> <span
-									class="yes">건대(7)</span>
+									class="yes">건대</span>
 								</label> <label> <input type="checkbox" name="loc" class="loc" value="구로"> <span
-									class="yes">구로(6)</span>
+									class="yes">구로</span>
 								</label>
 							</div>
 
 							<div class="row">
 								<label> <input type="checkbox" name="loc" class="loc" value="노량진"> <span
-									class="yes">노량진(3)</span>
+									class="yes">노량진</span>
 								</label> <label> <input type="checkbox" name="loc" class="loc" value="동작"> <span
-									class="yes">동작(6)</span>
+									class="yes">동작</span>
 								</label> <label> <input type="checkbox" name="loc" class="loc" value="대구"> <span
-									class="yes">대구중앙(3)</span>
+									class="yes">대구중앙</span>
 								</label> <label> <input type="checkbox" name="loc" class="loc" value="마포"> <span
-									class="yes">마포(4)</span>
+									class="yes">마포</span>
 								</label>
 							</div>
 							<div class="row">
 								<label> <input type="checkbox" name="loc" class="loc" value="부평"> <span
-									class="yes">부평(11)</span>
+									class="yes">부평</span>
 								</label> <label> <input type="checkbox" name="loc" class="loc" value="부산대"> <span
-									class="yes">부산대(3)</span>
+									class="yes">부산대</span>
 								</label> <label> <input type="checkbox" name="loc" class="loc" value="서면"> <span
-									class="yes">부산서면(12)</span>
+									class="yes">부산서면</span>
 								</label> <label> <input type="checkbox" name="loc" class="loc" value="분당"> <span
-									class="yes">분당(5)</span>
+									class="yes">분당</span>
 								</label>
 							</div>
 							<div class="row">
 								<label> <input type="checkbox" name="loc" class="loc" value="신림"> <span
-									class="yes">신림(4)</span>
+									class="yes">신림</span>
 								</label> <label> <input type="checkbox" name="loc" class="loc" value="수원"> <span
-									class="yes">수원(11)</span>
+									class="yes">수원</span>
 								</label> <label> <input type="checkbox" name="loc" class="loc" value="송도"> <span
-									class="yes">송도(6)</span>
+									class="yes">송도</span>
 								</label> <label> <input type="checkbox" name="loc" class="loc" value="사당"> <span
-									class="yes">사당(12)</span>
+									class="yes">사당</span>
 								</label>
 							</div>
 							<div class="row">
 								<label> <input type="checkbox" name="loc" class="loc" value="영등포"> <span
-									class="yes">영등포(6)</span>
+									class="yes">영등포</span>
 								</label> <label> <input type="checkbox" name="loc" class="loc" value="일산"> <span
-									class="yes">일산(6)</span>
+									class="yes">일산</span>
 								</label> <label> <input type="checkbox" name="loc" class="loc" value="종로"> <span
-									class="yes">종로(6)</span>
+									class="yes">종로</span>
 								</label> <label> <input type="checkbox" name="loc" class="loc" value="혜화"> <span
-									class="yes">혜화(5)</span>
+									class="yes">혜화</span>
 								</label>
 							</div>
 						</div>
                     </div>
                     <div class="col-lg-1 text-center">
                     <div class="col-lg-12 px-0 text-center">
-                    <i class="fas fa-map-marked-alt fa-2x" style="margin-top:20px;"></i>
+                    
                     </div>
-                    <div class="col-lg-12 px-0 text-center" style="margin-bottom: 100px">
-                    <span style="font-size: 14px">지도검색</span>
+                    <div class="col-lg-12 px-0 text-center" style="margin-bottom: 155px">
+                      
                     </div>
                     <button class="btn btn-primary" onclick="getLocation()">검색</button>
                     
@@ -327,8 +333,6 @@ margin-bottom: 0.25rem;
 				<jsp:include page="../footer.jsp"></jsp:include>
 			</div>
 		</footer>
-		123123
-    <button data-target="#mapModal" data-toggle="modal">Map</button>
 <!-- Modal -->
 <div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" style="max-width: 800px" role="document">
@@ -455,13 +459,6 @@ $('#mapModal').on('shown.bs.modal', function (e) {
 });
 
 </script>
-
-
-
-
-
-
-
 
 	<script>
 	function showClassAdd(mtstat){

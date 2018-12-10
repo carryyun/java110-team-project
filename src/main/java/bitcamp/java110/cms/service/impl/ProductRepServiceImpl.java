@@ -74,5 +74,12 @@ public class ProductRepServiceImpl implements ProductRepService {
   public int delete(int no) {
     return productRepDao.delete(no);
   }
+
+
+
+  @Override
+  public List<ProductRep> listbyRgdt() {
+    return productRepDao.findAllByRgdt();
+  }
   
 }

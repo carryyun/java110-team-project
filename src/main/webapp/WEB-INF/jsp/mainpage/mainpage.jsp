@@ -3,6 +3,7 @@
     trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <html>
 <head>
@@ -20,6 +21,18 @@
 <link href="/css/clean-blog.css" rel="stylesheet">
 <link href="/css/common.css" rel="stylesheet">
 <link href="/css/main-menu.css" rel="stylesheet">
+
+<style type="text/css">
+ul#RankingUl li:nth-child(odd){
+    background-color: #f0f0f0;
+}
+ul#RankingUl li:nth-child(even){
+    background-color: #fcfcfc; 
+}
+ul#RankingUl li:hover{
+    background-color: #FFB53C;
+}
+</style>
 
 </head>
 <body>
@@ -83,36 +96,76 @@
             <div class="col-12" style="margin-top: -2px;">
                 <jsp:include page="../headerNav.jsp"></jsp:include>
             </div>
+            
 
             <!-- 사이드바 -->
             <div class="col-12 my-3">
-            <div class="row">
-                    <div class="col-lg-2 border-right border-secondary">
-                        <div class="col">
-                            <h2 class="mb-4" style="font-size: 1.5rem; font-weight: 700;">카테고리</h2>
-                            <ul>
-                                <c:forEach items="${BTlist}" var="bt">
-                                    <li><a href="../class/clsCate?no=${bt.no}">${bt.name}</a></li>
+                <div class="row">
+                    <!-- 인싸예감 클래스(카르셀) -->
+                    <div class="col-lg-9 border-right border-secondary">
+                        <div class="row">
+	                            <div class="col-lg-12 text-left">
+	                                <div class="row">
+			                            <div class="col-lg-3 text-left">
+								           <h3 style="font-size: 1.5rem; font-weight: 700; float: left;">추천 클래스</h3>
+								        </div>
+					                    <div class="col-lg-9 text-left">
+		                                   <h4 style="font-size: 1rem; color:#a9a9a9; margin-left:-64px ;margin-top:9px; float: left;">오늘의 추천 클래스를 수강해보세요</h4>
+		                                </div>
+	                                </div>
+						        </div>
+						        <div class="col-lg-12 text-left">
+                                <div id="owl-hotCls" class="owl-carousel col-lg-10 mt-2" style="margin:0 auto">
+
+                                    </div>
+                                    <div class="owl-btns">
+                                        <div class="cusnextCls"><i class="fas fa-angle-right"></i></div>
+                                        <div class="cusprevCls"><i class="fas fa-angle-left"></i></div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="col-lg-3 ">
+                        <div class="col px-0">
+                            <h2 class="mb-4" style="font-size: 1.5rem; font-weight: 700;">클래스 랭킹</h2>
+                            <ul id="RankingUl">
+                                <c:forEach items="${classRanking}" var="cr" varStatus="i">
+                                <c:choose>
+                                    <c:when test="${i.count == 1 }">
+                                        <li class="py-2 pl-2" onclick="location.href='../class/detail?no=${cr.no}'">
+	                                        <img style="width: 18px; height: 24px; margin-right: 9px" alt="/upload/img/Goldmedal.png" src="/upload/img/Goldmedal.png">
+	                                        <a href="../class/detail?no=${cr.no}">${cr.titl}</a>
+                                        </li>
+                                    </c:when>
+                                    <c:when test="${i.count == 2 }">
+                                        <li class="py-2 pl-2" onclick="location.href='../class/detail?no=${cr.no}'">
+	                                        <img style="width: 18px; height: 24px; margin-right: 9px" alt="/upload/img/Goldmedal.png" src="/upload/img/Silvermedal.png">
+	                                        <a href="../class/detail?no=${cr.no}">${cr.titl}</a>
+                                        </li>
+                                    </c:when>
+                                    <c:when test="${i.count == 3 }">
+                                        <li class="py-2 pl-2" onclick="location.href='../class/detail?no=${cr.no}'">
+	                                        <img style="width: 18px; height: 24px; margin-right: 9px" alt="/upload/img/Goldmedal.png" src="/upload/img/Bronzemedal.png">
+	                                        <a href="../class/detail?no=${cr.no}">${cr.titl}</a>
+                                        </li>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <li class="py-2 pl-2" onclick="location.href='../class/detail?no=${cr.no}'">
+                                           <span style="width:24px ; display:inline-flex; text-align:center ; font-weight: 600; margin-left: 3px">${i.count}.</span>
+                                           <a href="../class/detail?no=${cr.no}">${cr.titl}</a>
+                                        </li>
+                                    </c:otherwise>
+                                </c:choose>
+                                
+                                
+                                    
                                 </c:forEach>
                             </ul>
                         </div>
                     </div>
  
-                    <!-- 인싸예감 클래스(카르셀) -->
-                    <div class="col-lg-10">
-                        <div class="row">
-                            <div class="col">
-                                <h2 class="mb-4" style="font-size: 1.5rem; font-weight: 700;">인싸예감 클래스</h2>
-                                <div id="owl-hotCls" class="owl-carousel col-lg-10 mt-2" style="margin:0 auto">
-
-                                </div>
-                                <div class="owl-btns">
-                                    <div class="cusnextCls"><i class="fas fa-angle-right"></i></div>
-                                    <div class="cusprevCls"><i class="fas fa-angle-left"></i></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     </div>
                     </div>
         </div>
@@ -129,9 +182,9 @@
         <div class="col-lg-4 text-left">
             <h4 style="font-size: 1rem; color:#a9a9a9; margin-top:9px; margin-left:-40px; float: left;">오늘의 추천작품을 만나보세요</h4>
         </div>
-            <div class="col-lg-6 text-right">
-                <a class="btn btn-primary float-right mb-3" href="../product/prdt">작품 더보기 </a>
-            </div>
+        <div class="col-lg-6 text-right">
+            <a class="btn btn-primary float-right mb-3" href="../product/prdt">작품 더보기 </a>
+        </div>
             
         </div><!-- 추천작품 row -->
     </div>
@@ -170,169 +223,71 @@
             <div class="col-lg-6">
                 <div class="row">
                    <!-- 실시간 클래스 후기 -->
-                   <div class="col-lg-10 mx-auto px-2 py-2 mb-3" style="background-color: #e9e9e9">
-                        <div class="col-lg-3 p-0" style="float: left">
-                            <img style="width: 110px; height: 110px" alt="/upload/img/pro1.png" src="/upload/img/pro1.png">
-                        </div>
-                        <div class="col-lg-9 px-2 py-0" style="float: left">
-                            <div id="Titl" style="font-size: 15px; font-weight: 600">
-                                [정말 재밌는 클래스]
-                            </div>
-                            <div id="repConts" style="font-size: 13px;color: #6e6e6e">
-                                "안녕하세요? 정말 재밌게 들었습니다 시간가는줄을 모르겠는데요? 내일 또 들어야겠네요. 수업과는 별개로 궁금한 내용을 물어봤는데 정말 불친절하게 대답해주시고 좋더라구요."
-                            </div>
-                            <div id="repMete" style="margin-top:5px; font-size: 14px">
-                                <img alt="/upload/img/joboa.png" src="/upload/img/joboa.png" style="width: 25px; height: 25px; border-radius: 50%;float: left">
-                                <div id="repMete_Nick" style="float: left; margin-top: 3px;">
-                                    "조보아"
-                                </div>
-                            </div>
-                        </div>
-                   </div>
                    
+                   <c:forEach items="${classRepList}" var="cr">
                    <div class="col-lg-10 mx-auto px-2 py-2 mb-3" style="background-color: #e9e9e9">
                         <div class="col-lg-3 p-0" style="float: left">
-                            <img style="width: 110px; height: 110px" alt="/upload/img/pro1.png" src="/upload/img/pro1.png">
+                            <img style="width: 110px; height: 110px" alt="${cr.classes.cfile}" src="${cr.classes.cfile}">
                         </div>
                         <div class="col-lg-9 px-2 py-0" style="float: left">
                             <div id="Titl" style="font-size: 15px; font-weight: 600">
-                                [정말 재밌는 클래스]
+                                ${cr.titl}
                             </div>
-                            <div id="repConts" style="font-size: 13px;color: #6e6e6e">
-                                "안녕하세요? 정말 재밌게 들었습니다 시간가는줄을 모르겠는데요? 내일 또 들어야겠네요. 수업과는 별개로 궁금한 내용을 물어봤는데 정말 불친절하게 대답해주시고 좋더라구요."
+                            <div id="repConts" style="height:57px; font-size: 13px;color: #6e6e6e">
+                            <c:choose>
+                                <c:when test="${fn:length(cr.conts) >85}">
+                                        ${fn:substring(cr.conts,0,85)}...
+                                </c:when>
+                                <c:otherwise>
+                                    ${cr.conts}
+                                </c:otherwise>
+                            </c:choose>
                             </div>
                             <div id="repMete" style="margin-top:5px; font-size: 14px">
-                                <img alt="/upload/img/joboa.png" src="/upload/img/joboa.png" style="width: 25px; height: 25px; border-radius: 50%;float: left">
+                                <img alt="${cr.mentee.phot}" src="${cr.mentee.phot}" style="width: 25px; height: 25px; border-radius: 50%;float: left">
                                 <div id="repMete_Nick" style="float: left; margin-top: 3px;">
-                                    "조보아"
+                                    ${cr.mentee.nick}
                                 </div>
                             </div>
                         </div>
                    </div>
+                   </c:forEach>
                    
-                   <div class="col-lg-10 mx-auto px-2 py-2 mb-3" style="background-color: #e9e9e9">
-                        <div class="col-lg-3 p-0" style="float: left">
-                            <img style="width: 110px; height: 110px" alt="/upload/img/pro1.png" src="/upload/img/pro1.png">
-                        </div>
-                        <div class="col-lg-9 px-2 py-0" style="float: left">
-                            <div id="Titl" style="font-size: 15px; font-weight: 600">
-                                [정말 재밌는 클래스]
-                            </div>
-                            <div id="repConts" style="font-size: 13px;color: #6e6e6e">
-                                "안녕하세요? 정말 재밌게 들었습니다 시간가는줄을 모르겠는데요? 내일 또 들어야겠네요. 수업과는 별개로 궁금한 내용을 물어봤는데 정말 불친절하게 대답해주시고 좋더라구요."
-                            </div>
-                            <div id="repMete" style="margin-top:5px; font-size: 14px">
-                                <img alt="/upload/img/joboa.png" src="/upload/img/joboa.png" style="width: 25px; height: 25px; border-radius: 50%;float: left">
-                                <div id="repMete_Nick" style="float: left; margin-top: 3px;">
-                                    "조보아"
-                                </div>
-                            </div>
-                        </div>
-                   </div>
-                   
-                   <div class="col-lg-10 mx-auto px-2 py-2 mb-3" style="background-color: #e9e9e9">
-                        <div class="col-lg-3 p-0" style="float: left">
-                            <img style="width: 110px; height: 110px" alt="/upload/img/pro1.png" src="/upload/img/pro1.png">
-                        </div>
-                        <div class="col-lg-9 px-2 py-0" style="float: left">
-                            <div id="Titl" style="font-size: 15px; font-weight: 600">
-                                [정말 재밌는 클래스]
-                            </div>
-                            <div id="repConts" style="font-size: 13px;color: #6e6e6e">
-                                "안녕하세요? 정말 재밌게 들었습니다 시간가는줄을 모르겠는데요? 내일 또 들어야겠네요. 수업과는 별개로 궁금한 내용을 물어봤는데 정말 불친절하게 대답해주시고 좋더라구요."
-                            </div>
-                            <div id="repMete" style="margin-top:5px; font-size: 14px">
-                                <img alt="/upload/img/joboa.png" src="/upload/img/joboa.png" style="width: 25px; height: 25px; border-radius: 50%;float: left">
-                                <div id="repMete_Nick" style="float: left; margin-top: 3px;">
-                                    "조보아"
-                                </div>
-                            </div>
-                        </div>
-                   </div>
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="row">
                    <!-- 실시간 상품 후기 -->
-                   <div class="col-lg-10 mx-auto px-2 py-2 mb-3" style="background-color: #e9e9e9">
-                        <div class="col-lg-3 p-0" style="float: left">
-                            <img style="width: 110px; height: 110px" alt="/upload/img/pro1.png" src="/upload/img/pro1.png">
-                        </div>
-                        <div class="col-lg-9 px-2 py-0" style="float: left">
-                            <div id="Titl" style="font-size: 15px; font-weight: 600">
-                                [정말 재밌는 클래스]
-                            </div>
-                            <div id="repConts" style="font-size: 13px;color: #6e6e6e">
-                                "안녕하세요? 정말 재밌게 들었습니다 시간가는줄을 모르겠는데요? 내일 또 들어야겠네요. 수업과는 별개로 궁금한 내용을 물어봤는데 정말 불친절하게 대답해주시고 좋더라구요."
-                            </div>
-                            <div id="repMete" style="margin-top:5px; font-size: 14px">
-                                <img alt="/upload/img/joboa.png" src="/upload/img/joboa.png" style="width: 25px; height: 25px; border-radius: 50%;float: left">
-                                <div id="repMete_Nick" style="float: left; margin-top: 3px;">
-                                    "조보아"
-                                </div>
-                            </div>
-                        </div>
-                   </div>
                    
+                   <c:forEach items="${productRepList}" var="pr">
                    <div class="col-lg-10 mx-auto px-2 py-2 mb-3" style="background-color: #e9e9e9">
                         <div class="col-lg-3 p-0" style="float: left">
-                            <img style="width: 110px; height: 110px" alt="/upload/img/pro1.png" src="/upload/img/pro1.png">
+                            <img style="width: 110px; height: 110px" alt="${pr.prdtphot}" src="${pr.prdtphot}">
                         </div>
                         <div class="col-lg-9 px-2 py-0" style="float: left">
                             <div id="Titl" style="font-size: 15px; font-weight: 600">
-                                [정말 재밌는 클래스]
+                                ${pr.titl}
                             </div>
-                            <div id="repConts" style="font-size: 13px;color: #6e6e6e">
-                                "안녕하세요? 정말 재밌게 들었습니다 시간가는줄을 모르겠는데요? 내일 또 들어야겠네요. 수업과는 별개로 궁금한 내용을 물어봤는데 정말 불친절하게 대답해주시고 좋더라구요."
+                            <div id="repConts" style="height:57px; font-size: 13px;color: #6e6e6e">
+                            <c:choose>
+	                            <c:when test="${fn:length(pr.conts) >85}">
+	                                    ${fn:substring(pr.conts,0,85)}...
+	                            </c:when>
+	                            <c:otherwise>
+								    ${pr.conts}
+								</c:otherwise>
+                            </c:choose>
                             </div>
                             <div id="repMete" style="margin-top:5px; font-size: 14px">
-                                <img alt="/upload/img/joboa.png" src="/upload/img/joboa.png" style="width: 25px; height: 25px; border-radius: 50%;float: left">
+                                <img alt="${pr.mentee.phot}" src="${pr.mentee.phot}" style="width: 25px; height: 25px; border-radius: 50%;float: left">
                                 <div id="repMete_Nick" style="float: left; margin-top: 3px;">
-                                    "조보아"
+                                    ${pr.mentee.nick}
                                 </div>
                             </div>
                         </div>
                    </div>
+                   </c:forEach>
                    
-                   <div class="col-lg-10 mx-auto px-2 py-2 mb-3" style="background-color: #e9e9e9">
-                        <div class="col-lg-3 p-0" style="float: left">
-                            <img style="width: 110px; height: 110px" alt="/upload/img/pro1.png" src="/upload/img/pro1.png">
-                        </div>
-                        <div class="col-lg-9 px-2 py-0" style="float: left">
-                            <div id="Titl" style="font-size: 15px; font-weight: 600">
-                                [정말 재밌는 클래스]
-                            </div>
-                            <div id="repConts" style="font-size: 13px;color: #6e6e6e">
-                                "안녕하세요? 정말 재밌게 들었습니다 시간가는줄을 모르겠는데요? 내일 또 들어야겠네요. 수업과는 별개로 궁금한 내용을 물어봤는데 정말 불친절하게 대답해주시고 좋더라구요."
-                            </div>
-                            <div id="repMete" style="margin-top:5px; font-size: 14px">
-                                <img alt="/upload/img/joboa.png" src="/upload/img/joboa.png" style="width: 25px; height: 25px; border-radius: 50%;float: left">
-                                <div id="repMete_Nick" style="float: left; margin-top: 3px;">
-                                    "조보아"
-                                </div>
-                            </div>
-                        </div>
-                   </div>
-                   
-                   <div class="col-lg-10 mx-auto px-2 py-2 mb-3" style="background-color: #e9e9e9">
-                        <div class="col-lg-3 p-0" style="float: left">
-                            <img style="width: 110px; height: 110px" alt="/upload/img/pro1.png" src="/upload/img/pro1.png">
-                        </div>
-                        <div class="col-lg-9 px-2 py-0" style="float: left">
-                            <div id="Titl" style="font-size: 15px; font-weight: 600">
-                                [정말 재밌는 클래스]
-                            </div>
-                            <div id="repConts" style="font-size: 13px;color: #6e6e6e">
-                                "안녕하세요? 정말 재밌게 들었습니다 시간가는줄을 모르겠는데요? 내일 또 들어야겠네요. 수업과는 별개로 궁금한 내용을 물어봤는데 정말 불친절하게 대답해주시고 좋더라구요."
-                            </div>
-                            <div id="repMete" style="margin-top:5px; font-size: 14px">
-                                <img alt="/upload/img/joboa.png" src="/upload/img/joboa.png" style="width: 25px; height: 25px; border-radius: 50%;float: left">
-                                <div id="repMete_Nick" style="float: left; margin-top: 3px;">
-                                    "조보아"
-                                </div>
-                            </div>
-                        </div>
-                   </div>
                 </div>
             </div>
         </div>
@@ -348,11 +303,11 @@
     <!-- Bootstrap core JavaScript -->
 <script src="/vendor/jquery/jquery.min.js"></script>
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script> -->
-	<!-- js 추가 -->
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	
-	<script src="/js/clean-blog.js"></script>
+   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script> -->
+   <!-- js 추가 -->
+   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+   
+   <script src="/js/clean-blog.js"></script>
     <script src="/js/owl.carousel.js"></script>
     <script>
     $(document).ready(function(){
@@ -374,8 +329,8 @@
                         icon : "success",
                         button : "확인",
                       })
-		        $(obj).attr('class','fas fa-star');
-		        $(obj).css("color","#FFB53C");
+              $(obj).attr('class','fas fa-star');
+              $(obj).css("color","#FFB53C");
                     /* location.href="detail?no="+${detailclass.no}; */
                 },error : function(error,status){
                     swal({
@@ -448,20 +403,20 @@
            if('${sessionScope.loginUser}'==''){ 
                content += "<i id='owl-i' class='far fa-star' onclick='setLike(event,"+ cno +",this)'></i>"
            }else{
-	           <c:forEach items="${clike_popul}" var="cp">
-	           <c:if test="${stopLoop}">
-		           if(${cp.cno} == cno){
-			           content += "<i style='color:#FFB53C' id='owl-i' class='fas fa-star' onclick='setLike(event,"+ cno +",this)'></i>";
-			           <c:set var="stopLoop" value="false"/>
-			           <c:set var="lastAddStar" value="false"/>
-		           }else if(${cp.cno} != cno){
-		               <c:set var="stopLoop" value="true"/>
-	                   <c:set var="lastAddStar" value="true"/> // stopLoop와 lastAddStar가 forEach안에서 조건에 걸리는게 없는데 false로 바뀌는거같음
-		           }
-	           </c:if>
-	           </c:forEach>
-	           <c:if test="${lastAddStar}">
-				   content += "<i id='owl-i' class='far fa-star' onclick='setLike(event,"+ cno +",this)'></i>";
+              <c:forEach items="${clike_popul}" var="cp">
+              <c:if test="${stopLoop}">
+                 if(${cp.cno} == cno){
+                    content += "<i style='color:#FFB53C' id='owl-i' class='fas fa-star' onclick='setLike(event,"+ cno +",this)'></i>";
+                    <c:set var="stopLoop" value="false"/>
+                    <c:set var="lastAddStar" value="false"/>
+                 }else if(${cp.cno} != cno){
+                     <c:set var="stopLoop" value="true"/>
+                      <c:set var="lastAddStar" value="true"/> // stopLoop와 lastAddStar가 forEach안에서 조건에 걸리는게 없는데 false로 바뀌는거같음
+                 }
+              </c:if>
+              </c:forEach>
+              <c:if test="${lastAddStar}">
+               content += "<i id='owl-i' class='far fa-star' onclick='setLike(event,"+ cno +",this)'></i>";
                </c:if>
            }
            <c:set var="stopLoop" value="true"/>
@@ -550,7 +505,7 @@
       $(".cusnextCls").click(function() {
           owlCls.trigger('next.owl.carousel');
       });
-	
+   
       $(".cusprevCls").click(function() {
           owlCls.trigger('prev.owl.carousel');
       });

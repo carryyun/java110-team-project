@@ -32,6 +32,14 @@
         <result column="phone" property="mete2_phone"/>
     </resultMap>
     
+     <select id="selrecommendproduct" resultType="int">
+    	select ptno
+    	  from p_prdt_order
+      group by ptno
+      order by count(*) desc
+         limit 8
+    </select>
+    
     <select id="findAll" resultMap="productOrderMap">
         select
             ono,
@@ -185,6 +193,26 @@
         insert into p_prdt_order(meno,ptno,cnt,tot_pric,payopt,paydt)
         values(#{meno},#{ptno},#{cnt},#{tot_pric},#{payopt},now())
     </insert> 
+    
+    
+    <select id="findByNo" resultMap="productOrderMap">
+        select
+            ono,
+            meno,
+            ptno,
+            cnt,
+            tot_pric,
+            payopt,
+            paydt,
+            parc_name,
+            parc_no
+        from 
+            p_prdt_order
+        where
+            ono=#{no}
+       
+    </select>
+    
     
 
 </mapper>

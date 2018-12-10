@@ -7,5 +7,8 @@ public interface ProductPopulDao {
   
   // 전체조회
   List<ProductPopul> findAll(); 
+  
+  int insert(int no);
+  int delete();
 
 }
