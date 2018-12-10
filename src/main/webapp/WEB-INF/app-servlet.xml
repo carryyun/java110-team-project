@@ -34,6 +34,7 @@
 			<!-- <mvc:mapping path="/product/prdt" /> <mvc:mapping path="/mainpage/mainpage" 
 				/> -->
 			<mvc:mapping path="/**" />
+			
 			<!-- 인터셉터가 제외될 URL 입니다. -->
 			<mvc:exclude-mapping path="/product/getCertList.do" />
 			<mvc:exclude-mapping path="/class/qnainsert" />
@@ -84,6 +85,21 @@
             <mvc:exclude-mapping path="/**/*.do" />
 			<bean
 				class="bitcamp.java110.cms.web.interceptor.AuthInterceptor" />
+		</mvc:interceptor>
+		
+		
+		<mvc:interceptor>
+			<!-- 인터셉터가 적용될 URL 입니다. -->
+			<!-- <mvc:mapping path="/product/prdt" /> <mvc:mapping path="/mainpage/mainpage" 
+				/> -->
+			<!-- 인터셉터가 제외될 URL 입니다. -->
+			<mvc:mapping path="/class/classadd"/>
+			<mvc:mapping path="/product/prodRegister"/>
+			<mvc:mapping path="/product/prodUpdate"/>
+			<mvc:mapping path="/mypage/*"/>
+			<mvc:mapping path="/master/*"/>
+			<bean 
+				class="bitcamp.java110.cms.web.interceptor.AuthInterceptor2" />
 		</mvc:interceptor>
 	</mvc:interceptors>
 

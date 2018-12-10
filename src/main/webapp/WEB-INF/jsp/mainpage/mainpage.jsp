@@ -122,13 +122,12 @@
     <!-- 오늘의 추천작품 -->
     <div class="container">
         <hr class="Fhr" />
-        <div class="row my-3">
+        <div class="row  my-3">
             <div class="col-lg-2 text-left">
-            
-            <h3 style="font-size: 1.5rem; margin-left:15px; font-weight: 700; float: left;">추천작품</h3>
+            <h3 style="font-size: 1.5rem; font-weight: 700; float: left;">추천작품</h3>
         </div>
         <div class="col-lg-4 text-left">
-            <h4 style="font-size: 1rem; color:#a9a9a9; margin-top:9px; margin-left:-65px; float: left;">오늘의 추천작품을 만나보세요</h4>
+            <h4 style="font-size: 1rem; color:#a9a9a9; margin-top:9px; margin-left:-40px; float: left;">오늘의 추천작품을 만나보세요</h4>
         </div>
             <div class="col-lg-6 text-right">
                 <a class="btn btn-primary float-right mb-3" href="../product/prdt">작품 더보기 </a>
@@ -157,14 +156,14 @@
     <hr class="Fhr">
     <div class="row  my-3">
         <div class="col-lg-2 text-left">
-            <h3 style="font-size: 1.5rem; margin-left:15px; font-weight: 700; float: left;">실시간 후기</h3>
+            <h3 style="font-size: 1.5rem; font-weight: 700; float: left;">실시간 후기</h3>
         </div>
         <div class="col-lg-4 text-left">
             <h4 style="font-size: 1rem; color:#a9a9a9; margin-top:9px; margin-left:-40px; float: left;">회원들의 후기를 들어보세요</h4>
         </div>
-        <!-- <div class="col-lg-6 text-right">
+        <div class="col-lg-6 text-right">
             <a class="btn btn-primary float-right mb-3" href="../product/prdt">작품 더보기 </a>
-        </div> -->
+        </div>
         
     </div>
         <div class="row">
@@ -349,11 +348,11 @@
     <!-- Bootstrap core JavaScript -->
 <script src="/vendor/jquery/jquery.min.js"></script>
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script> -->
-	<!-- js 추가 -->
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	
-	<script src="/js/clean-blog.js"></script>
+   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script> -->
+   <!-- js 추가 -->
+   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+   
+   <script src="/js/clean-blog.js"></script>
     <script src="/js/owl.carousel.js"></script>
     <script>
     $(document).ready(function(){
@@ -375,8 +374,8 @@
                         icon : "success",
                         button : "확인",
                       })
-		        $(obj).attr('class','fas fa-star');
-		        $(obj).css("color","#FFB53C");
+              $(obj).attr('class','fas fa-star');
+              $(obj).css("color","#FFB53C");
                     /* location.href="detail?no="+${detailclass.no}; */
                 },error : function(error,status){
                     swal({
@@ -449,20 +448,20 @@
            if('${sessionScope.loginUser}'==''){ 
                content += "<i id='owl-i' class='far fa-star' onclick='setLike(event,"+ cno +",this)'></i>"
            }else{
-	           <c:forEach items="${clike_popul}" var="cp">
-	           <c:if test="${stopLoop}">
-		           if(${cp.cno} == cno){
-			           content += "<i style='color:#FFB53C' id='owl-i' class='fas fa-star' onclick='setLike(event,"+ cno +",this)'></i>";
-			           <c:set var="stopLoop" value="false"/>
-			           <c:set var="lastAddStar" value="false"/>
-		           }else if(${cp.cno} != cno){
-		               <c:set var="stopLoop" value="true"/>
-	                   <c:set var="lastAddStar" value="true"/> // stopLoop와 lastAddStar가 forEach안에서 조건에 걸리는게 없는데 false로 바뀌는거같음
-		           }
-	           </c:if>
-	           </c:forEach>
-	           <c:if test="${lastAddStar}">
-				   content += "<i id='owl-i' class='far fa-star' onclick='setLike(event,"+ cno +",this)'></i>";
+              <c:forEach items="${clike_popul}" var="cp">
+              <c:if test="${stopLoop}">
+                 if(${cp.cno} == cno){
+                    content += "<i style='color:#FFB53C' id='owl-i' class='fas fa-star' onclick='setLike(event,"+ cno +",this)'></i>";
+                    <c:set var="stopLoop" value="false"/>
+                    <c:set var="lastAddStar" value="false"/>
+                 }else if(${cp.cno} != cno){
+                     <c:set var="stopLoop" value="true"/>
+                      <c:set var="lastAddStar" value="true"/> // stopLoop와 lastAddStar가 forEach안에서 조건에 걸리는게 없는데 false로 바뀌는거같음
+                 }
+              </c:if>
+              </c:forEach>
+              <c:if test="${lastAddStar}">
+               content += "<i id='owl-i' class='far fa-star' onclick='setLike(event,"+ cno +",this)'></i>";
                </c:if>
            }
            <c:set var="stopLoop" value="true"/>
@@ -551,7 +550,7 @@
       $(".cusnextCls").click(function() {
           owlCls.trigger('next.owl.carousel');
       });
-	
+   
       $(".cusprevCls").click(function() {
           owlCls.trigger('prev.owl.carousel');
       });
