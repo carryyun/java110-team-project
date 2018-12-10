@@ -353,7 +353,7 @@ input[type="number"]::-webkit-inner-spin-button {
                     <div class="services  color-2" >
                         
                             <div class=profile-title>
-                                <h3>비밀번호 변경</h3>
+                                <h3>회원정보 변경</h3>
                             </div>
                             <div class="profile-contents" style="height: 50px;" >
                                 <div class="title1" style="text-align:left;" >
