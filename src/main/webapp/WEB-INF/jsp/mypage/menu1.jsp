@@ -286,8 +286,8 @@
                                 <div class="author-img" style="background-image: url(${mentee.phot}); position: absolute;">
                                 </div>
                                 <div class="cont1" >
-                                <B>닉네임</B>&nbsp;
-                                <input id="text1" type="text" name="닉네임" value="&nbsp;${mentee.nick}" readonly style="width:140px; border:none; ">
+                                <B>닉네임</B>
+                                <input id="text1" type="text" name="닉네임" value="${mentee.nick}" readonly style="width:140px; border:none; ">
                                 </div>
                                 <div id="wrapper" name="${mentee.mtstat}" class="pop" style=" position: relative; right: -50px; bottom: -60px">
                                 <button class="fancy" >멘토신청</button>
