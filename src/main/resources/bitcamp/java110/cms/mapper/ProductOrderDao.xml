@@ -37,7 +37,7 @@
     	  from p_prdt_order
       group by ptno
       order by count(*) desc
-         limit 5
+         limit 8
     </select>
     
     <select id="findAll" resultMap="productOrderMap">
