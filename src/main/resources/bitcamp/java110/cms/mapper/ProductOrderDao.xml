@@ -32,6 +32,14 @@
         <result column="phone" property="mete2_phone"/>
     </resultMap>
     
+     <select id="selrecommendproduct" resultType="int">
+    	select ptno
+    	  from p_prdt_order
+      group by ptno
+      order by count(*) desc
+         limit 5
+    </select>
+    
     <select id="findAll" resultMap="productOrderMap">
         select
             ono,
