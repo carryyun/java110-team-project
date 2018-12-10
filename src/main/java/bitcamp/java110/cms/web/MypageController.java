@@ -397,7 +397,7 @@ public class MypageController {
     model.addAttribute("pmanage", pmanage );
     
   }
-  
+   
   
   @RequestMapping(value="menu6buyer", method = {RequestMethod.GET, RequestMethod.POST})
   public void menu6buyer(Model model,int ptno) {
