@@ -37,7 +37,6 @@ import bitcamp.java110.cms.service.MentorService;
 import bitcamp.java110.cms.service.ProductOrderService;
 import bitcamp.java110.cms.service.ProductQnAService;
 import bitcamp.java110.cms.service.ProductService;
-import bitcamp.java110.cms.service.impl.ProductOrderServiceImpl;
 
 @Controller
 @RequestMapping("/mypage")
@@ -103,12 +102,8 @@ public class MypageController {
   @GetMapping("mypage")
   public void mypage(Model model,HttpSession session) {
     
-    Mentee imentee = (Mentee) session.getAttribute("loginUser");
-    int reMeno = imentee.getNo();
-   
-    Mentee mentee = menteeService.get(reMeno);
+    Mentee mentee = (Mentee) session.getAttribute("loginUser");
     model.addAttribute("mentee", mentee);
-    
     Mentor mentor = mentorService.get(mentee.getNo());
     model.addAttribute("mentor", mentor);
   }

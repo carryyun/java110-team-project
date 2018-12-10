@@ -46,7 +46,7 @@
     
     // 마이페이지 멘토 경력 조건
     
-    $(document).ready(function() {
+     $(document).ready(function() {
        console.log($('#stat').attr('name'));
      if($('#stat').attr('name') == 'Y' ){
             document.getElementById(id="stat").style.display = "";
@@ -113,7 +113,7 @@
                 <div class="text-center">
                     <div class="author-img" style="background-image: url(${mentee.phot};"></div>
                     <h1 id="colorlib-logo"><a href="index.html">${mentee.name}</a></h1>
-                    <span id="stat" name="${mentee.mtstat}" class="position;" style="display:none" ><B>멘토 경력 ${mentor.carr} 년</B><br></span>
+                     <span id="stat" name="${mentee.mtstat}" class="position;" style="display:none" ><B>멘토 경력 ${mentor.carr} 년</B><br></span>
                   <span id="stathidden"  class="position;" style="display:"> <br></span> 
                 </div>
 
