@@ -103,17 +103,24 @@ public class MypageController {
   @GetMapping("mypage")
   public void mypage(Model model,HttpSession session) {
     
-    Mentee mentee = (Mentee) session.getAttribute("loginUser");
+    Mentee imentee = (Mentee) session.getAttribute("loginUser");
+    int reMeno = imentee.getNo();
+   
+    Mentee mentee = menteeService.get(reMeno);
     model.addAttribute("mentee", mentee);
+    
     Mentor mentor = mentorService.get(mentee.getNo());
     model.addAttribute("mentor", mentor);
   }
   @GetMapping("menu1")
   public void menu1(Model model,HttpSession session) {
-    Mentee mentee = (Mentee) session.getAttribute("loginUser");
+    Mentee imentee = (Mentee) session.getAttribute("loginUser");
+    int reMeno = imentee.getNo();
+   
+    Mentee mentee = menteeService.get(reMeno);
     model.addAttribute("mentee", mentee);
     
-    Mentor mentor = mentorService.get(mentee.getNo());
+    Mentor mentor = mentorService.get(reMeno);
     model.addAttribute("mentor", mentor);
   }
   
@@ -199,23 +206,6 @@ public class MypageController {
         mentoTagService.add(mentorTag);
       }
       
-//      for(MentorTag  m: mo) {
-//          System.out.println(m.getBtno());
-//         
-//          if( btnoin == m.getBtno()) {  // btnoin이 btno와 일치하는게 있다면(btno와 가 이미 있다면) update
-////            mentorTag.setMono(noin);
-////            mentorTag.setBtno(btnoin);
-////            mentoTagService.update(mentorTag); // 
-//          }
-//          else if(  btnoin != m.getBtno() ) { // 없으면 add
-//            mentorTag.setMono(noin);
-//            mentorTag.setBtno(btnoin);
-//            mentoTagService.add(mentorTag);
-//          }
-//          
-//      }
-      
-
     }
 
 
@@ -280,9 +270,10 @@ public class MypageController {
   @GetMapping("menu2")
   public void menu2(Model model,HttpSession session) {
 
+    Mentee imentee = (Mentee) session.getAttribute("loginUser");
+    int reMeno = imentee.getNo();
     
-    Mentee mentee = (Mentee) session.getAttribute("loginUser");
-    List<ClassOrder> colist = classOrderService.listByMeno(4,10,mentee.getNo());
+    List<ClassOrder> colist = classOrderService.listByMeno(4,10,reMeno);
     model.addAttribute("colist", colist );
     
   }
@@ -291,16 +282,20 @@ public class MypageController {
   @GetMapping("menu3-1")
   public void menu3_1(Model model,HttpSession session) {
     
-    Mentee mentee = (Mentee) session.getAttribute("loginUser");
-    List<ClassOrder> colist = classOrderService.listByMeno(4,10,mentee.getNo());
+    Mentee imentee = (Mentee) session.getAttribute("loginUser");
+    int reMeno = imentee.getNo();
+    
+    List<ClassOrder> colist = classOrderService.listByMeno(4,10,reMeno);
     model.addAttribute("colist", colist );
  }
   
   @GetMapping("menu3-2")
   public void menu3_2(Model model,HttpSession session) {
     
-    Mentee mentee = (Mentee) session.getAttribute("loginUser");
-    List<ProductOrder> polist = productOrderSerivce.listByMeno(4,10,mentee.getNo());
+    Mentee imentee = (Mentee) session.getAttribute("loginUser");
+    int reMeno = imentee.getNo();
+    
+    List<ProductOrder> polist = productOrderSerivce.listByMeno(4,10,reMeno);
     model.addAttribute("polist", polist );
     
   }
@@ -308,8 +303,10 @@ public class MypageController {
   @GetMapping("menu4-1")
   public void menu4_1(Model model,HttpSession session) {
     
-    Mentee mentee = (Mentee) session.getAttribute("loginUser");
-    List<Cs> cslist = csService.list(4,10,mentee.getNo());
+    Mentee imentee = (Mentee) session.getAttribute("loginUser");
+    int reMeno = imentee.getNo();
+    
+    List<Cs> cslist = csService.list(4,10,reMeno);
     
     model.addAttribute("cslist",cslist);
     
@@ -319,40 +316,50 @@ public class MypageController {
   
   @GetMapping("menu4-2")
   public void menu4_2(Model model,HttpSession session) {
-    Mentee mentee = (Mentee) session.getAttribute("loginUser");
-    List<ClassQna> cqlist = classQnaService.classqnalist(4,10,mentee.getNo());
+    Mentee imentee = (Mentee) session.getAttribute("loginUser");
+    int reMeno = imentee.getNo();
+    
+    List<ClassQna> cqlist = classQnaService.classqnalist(4,10,reMeno);
     model.addAttribute("cqlist", cqlist );
     
   }
   
   @GetMapping("menu4-3")
   public void menu4_3(Model model,HttpSession session) {
-    Mentee mentee = (Mentee) session.getAttribute("loginUser");
-    List<ClassQna> cqlist2 = classQnaService.classqnalist2(4,10,mentee.getNo());
+    Mentee imentee = (Mentee) session.getAttribute("loginUser");
+    int reMeno = imentee.getNo();
+    
+    List<ClassQna> cqlist2 = classQnaService.classqnalist2(4,10,reMeno);
     model.addAttribute("cqlist2", cqlist2 );
     
   }
   
   @GetMapping("menu4-4")
   public void menu4_4(Model model,HttpSession session) {
-    Mentee mentee = (Mentee) session.getAttribute("loginUser");
-    List<ProductQnA> pqlist = productQnAService.listByMeno(4,10,mentee.getNo());
+    Mentee imentee = (Mentee) session.getAttribute("loginUser");
+    int reMeno = imentee.getNo();
+    
+    List<ProductQnA> pqlist = productQnAService.listByMeno(4,10,reMeno);
     model.addAttribute("pqlist", pqlist );
     
   }
   
   @GetMapping("menu4-5")
   public void menu4_5(Model model,HttpSession session) {
-    Mentee mentee = (Mentee) session.getAttribute("loginUser");
-    List<ProductQnA> pqlist2 = productQnAService.listByMeno2(4,10,mentee.getNo());
+    Mentee imentee = (Mentee) session.getAttribute("loginUser");
+    int reMeno = imentee.getNo();
+    
+    List<ProductQnA> pqlist2 = productQnAService.listByMeno2(4,10,reMeno);
     model.addAttribute("pqlist2", pqlist2 );
   }
   
   @GetMapping("menu5")
   public void menu5(Model model,HttpSession session) { 
     
-    Mentee mentee = (Mentee) session.getAttribute("loginUser");
-    List<Classes> cmanage = classService.manageByMono(mentee.getNo());
+    Mentee imentee = (Mentee) session.getAttribute("loginUser");
+    int reMeno = imentee.getNo();
+    
+    List<Classes> cmanage = classService.manageByMono(reMeno);
     model.addAttribute("cmanage",cmanage);
     
     
@@ -383,8 +390,10 @@ public class MypageController {
   
   @GetMapping("menu6")
   public void menu6(Model model,HttpSession session) {
-    Mentee mentee = (Mentee) session.getAttribute("loginUser");
-    List<Product> pmanage = productService.listBySeller(1,10,mentee.getNo());
+    Mentee imentee = (Mentee) session.getAttribute("loginUser");
+    int reMeno = imentee.getNo();
+    
+    List<Product> pmanage = productService.listBySeller(1,10,reMeno);
     model.addAttribute("pmanage", pmanage );
     
   }
