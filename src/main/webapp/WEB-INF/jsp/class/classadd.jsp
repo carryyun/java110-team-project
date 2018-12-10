@@ -61,7 +61,7 @@
   <!--method="post"  enctype="multipart/form-data"-->
   <form action="classadd" method="post" id="uploadForm" enctype="multipart/form-data">
              <div>
-              <input type="text" name="titl" id="ctitl" placeholder="#제목을 입력해주세요  #Haru #클래스등록">
+              <input type="text" name="titl" id="ctitl" maxlength="50" placeholder="#제목을 입력해주세요  #Haru #클래스등록">
              </div>
               <div id="classinfo">
                <div style="width: 500px; height: auto; float: right; top:0">
@@ -202,7 +202,7 @@
                     <input type="text" name="pstno" id="sample6_postcode" readonly placeholder="우편번호">
                     <input type="button" id="findpstno" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
                     <input type="text" name="basAddr" id="sample6_address" readonly placeholder="주소">
-                    <input type="text" name="detAddr" id="sample6_address2" placeholder="상세주소">
+                    <input type="text" name="detAddr" id="sample6_address2" maxlength="25" placeholder="상세주소">
                  </div>
                  <div id="file-box">
                      <input type="text" class="view" id="video-url" readonly value="동영상  URL"><br>
@@ -826,12 +826,16 @@ $(document).ready(function(){
         } 
 
         today = yyyy+'-'+mm+'-'+dd;
+        today2 = yyyy+2+'-'+mm+'-'+dd;
         
     $('#calendar').fullCalendar({
        header: {
         left: 'title',
         center: '',
         right: 'today prev,next'
+      },validRange: {
+          start: today,
+          end: today2
       },
       defaultDate: today,
       editable: false, 

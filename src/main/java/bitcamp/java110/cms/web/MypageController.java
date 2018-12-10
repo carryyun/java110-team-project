@@ -125,10 +125,16 @@ public class MypageController {
     int reMeno = imentee.getNo();
    
     Mentee mentee = menteeService.get(reMeno);
-    model.addAttribute("mentee", mentee);
+    if(mentee.getPhot() == null) {
+      mentee.setPhot("/upload/images/images.png");
+      model.addAttribute("mentee", mentee);
+    }else {
+      model.addAttribute("mentee", mentee);
+    }
+    
     
     Mentor mentor = mentorService.get(reMeno);
-    model.addAttribute("mentor", mentor);
+      model.addAttribute("mentor", mentor);
   }
    
   

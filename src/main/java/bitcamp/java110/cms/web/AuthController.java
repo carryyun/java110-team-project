@@ -80,9 +80,14 @@ public class AuthController {
             }else if(loginUser.getStat() == 'S' ) {
               return -2;
             }else {
-            // 회원 정보를 세션에 보관한다.
-            session.setAttribute("loginUser", loginUser);
-            return 1;
+              if(loginUser.getPhot() == null) {
+                loginUser.setPhot("/upload/images/images.png");
+                session.setAttribute("loginUser", loginUser);
+                return 1;
+              }else {
+                session.setAttribute("loginUser", loginUser);
+                return 1;
+              }
             }
             
         }else {

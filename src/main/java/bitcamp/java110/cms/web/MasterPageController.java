@@ -54,7 +54,6 @@ public class MasterPageController {
   NoticeService noticeService;
   CsService csService;
   
-  
   ClassFileService classFileService;
   TimetableService timetableService;
   
