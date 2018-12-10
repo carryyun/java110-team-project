@@ -41,7 +41,7 @@
                             <td>
                             <span id="productState" name="${p.parc_no}"></span>
                                 <button type="button" class="btn btn-primary"
-                                    onclick="searchparc()">배송조회</button>
+                                    onclick="searchparc()" style="margin-top:5px">배송조회</button>
                                     
                                     <script>
                                     function searchparc(){
