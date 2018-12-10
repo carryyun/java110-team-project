@@ -149,7 +149,7 @@ public class MypageController {
     // 멘토 신청 처음
     
      mentor = mentorService.get(noin);
-     int nono = mentor.getCarr();
+     int nono = mentor.getCarr(); 
      System.out.println(nono);
      
     if ( nono == 0) {
