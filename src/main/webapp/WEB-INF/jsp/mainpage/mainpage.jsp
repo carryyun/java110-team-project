@@ -303,11 +303,11 @@ ul#RankingUl li:hover{
     <!-- Bootstrap core JavaScript -->
 <script src="/vendor/jquery/jquery.min.js"></script>
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script> -->
-	<!-- js 추가 -->
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	
-	<script src="/js/clean-blog.js"></script>
+   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script> -->
+   <!-- js 추가 -->
+   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+   
+   <script src="/js/clean-blog.js"></script>
     <script src="/js/owl.carousel.js"></script>
     <script>
     $(document).ready(function(){
@@ -329,8 +329,8 @@ ul#RankingUl li:hover{
                         icon : "success",
                         button : "확인",
                       })
-		        $(obj).attr('class','fas fa-star');
-		        $(obj).css("color","#FFB53C");
+              $(obj).attr('class','fas fa-star');
+              $(obj).css("color","#FFB53C");
                     /* location.href="detail?no="+${detailclass.no}; */
                 },error : function(error,status){
                     swal({
@@ -403,20 +403,20 @@ ul#RankingUl li:hover{
            if('${sessionScope.loginUser}'==''){ 
                content += "<i id='owl-i' class='far fa-star' onclick='setLike(event,"+ cno +",this)'></i>"
            }else{
-	           <c:forEach items="${clike_popul}" var="cp">
-	           <c:if test="${stopLoop}">
-		           if(${cp.cno} == cno){
-			           content += "<i style='color:#FFB53C' id='owl-i' class='fas fa-star' onclick='setLike(event,"+ cno +",this)'></i>";
-			           <c:set var="stopLoop" value="false"/>
-			           <c:set var="lastAddStar" value="false"/>
-		           }else if(${cp.cno} != cno){
-		               <c:set var="stopLoop" value="true"/>
-	                   <c:set var="lastAddStar" value="true"/> // stopLoop와 lastAddStar가 forEach안에서 조건에 걸리는게 없는데 false로 바뀌는거같음
-		           }
-	           </c:if>
-	           </c:forEach>
-	           <c:if test="${lastAddStar}">
-				   content += "<i id='owl-i' class='far fa-star' onclick='setLike(event,"+ cno +",this)'></i>";
+              <c:forEach items="${clike_popul}" var="cp">
+              <c:if test="${stopLoop}">
+                 if(${cp.cno} == cno){
+                    content += "<i style='color:#FFB53C' id='owl-i' class='fas fa-star' onclick='setLike(event,"+ cno +",this)'></i>";
+                    <c:set var="stopLoop" value="false"/>
+                    <c:set var="lastAddStar" value="false"/>
+                 }else if(${cp.cno} != cno){
+                     <c:set var="stopLoop" value="true"/>
+                      <c:set var="lastAddStar" value="true"/> // stopLoop와 lastAddStar가 forEach안에서 조건에 걸리는게 없는데 false로 바뀌는거같음
+                 }
+              </c:if>
+              </c:forEach>
+              <c:if test="${lastAddStar}">
+               content += "<i id='owl-i' class='far fa-star' onclick='setLike(event,"+ cno +",this)'></i>";
                </c:if>
            }
            <c:set var="stopLoop" value="true"/>
@@ -505,7 +505,7 @@ ul#RankingUl li:hover{
       $(".cusnextCls").click(function() {
           owlCls.trigger('next.owl.carousel');
       });
-	
+   
       $(".cusprevCls").click(function() {
           owlCls.trigger('prev.owl.carousel');
       });
