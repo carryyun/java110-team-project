@@ -397,7 +397,7 @@ public class MypageController {
     List<Product> pmanage2 = productService.listBySeller2(1,10,ptno);
     model.addAttribute("pmanage2", pmanage2 );
     
-       
+        
   }
   
   
