@@ -95,8 +95,10 @@
 											</div>
 										</td>
 										<td class="product-price col-2 text-center">${r.product.pric }</td>
-										<td class="product-quantity col-1 text-center"><input type="number" id="cnt${i.index}" name="produc1"
-											min="1" max="${r.product.stock}" style="width:70px" value="${r.cnt}"></td>
+										<td class="product-quantity col-1 text-center">
+										  <input type="number" id="cnt${i.index}" name="produc1" 
+											min="1" max="${r.product.stock}" style="width:70px" value="${r.cnt}">
+										</td>
 										<td class="del col-1 text-center">${r.product.deli}</td>
 										<td class="product-line-price col-2 text-center">${(r.product.pric * r.cnt)+r.product.deli }</td>
 										<td class="product-removal col-1" id="del-button">
@@ -233,6 +235,55 @@
 	        
 	    }
 	}
+	</script>
+	<script>
+	
+	function checkLeng(obj){
+	    if (obj.value.length > obj.maxLength){
+	        obj.value = obj.value.slice(0, obj.maxLength);
+	      }  
+	    if( obj.value > ${product.stock}){
+	        obj.value = ${product.stock};
+	    }
+	    if( obj.value < 1){
+	        obj.value = 1;
+	    }
+	}
+	
+	function cntP(){
+	    var cnt = parseInt($('input#inputCnt').val()) +1;
+	    if(cnt>${product.stock}) cnt = ${product.stock};
+	    if(cnt>99) cnt=99;
+	    
+	    $('input#inputCnt').val(cnt);
+	    changePric(cnt);
+	}
+	function cntM(){
+	    var cnt = parseInt($('input#inputCnt').val()) -1;
+	    if(cnt<1) cnt=1;
+	    $('input#inputCnt').val(cnt);
+	    changePric(cnt);
+	}
+
+	/* 얘가 필요있는지 없는지는 아직 잘 모르겠음 */
+	function changePric(cnt){
+	    var check = parseInt($('input#inputCnt').val());
+	    if(check<1) check=1;
+	    
+	    check = parseInt($('input#inputCnt').val());
+	    if(check>${product.stock}) check = ${product.stock};
+	    if(check>999) check=999;
+	    
+	    var getPric = parseInt(${product.pric}) * cnt;
+	    var getDeli = parseInt(${product.deli});
+	    $('input#totalPric').val(getPric+getDeli);
+	    var total =  String(getPric+getDeli);
+	    
+	    total = total.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+	    document.getElementById('num').innerHTML=(total+"원");
+	    
+	}
+	
 	</script>
 </body>
 </html>
