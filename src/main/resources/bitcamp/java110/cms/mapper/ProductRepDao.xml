@@ -100,15 +100,10 @@
 
 	<insert id="insert" parameterType="productRep"
 		useGeneratedKeys="true" keyColumn="rno" keyProperty="no">
-        <if test="phot!=null">
-            insert into p_prdt_rep(meno,ptno,conts,star,rgdt,phot)
-            values(#{meno},#{ptno},#{conts},#{star},now(),#{phot})
-        </if>
         
-        <if test="phot==null">
             insert into p_prdt_rep(meno,ptno,conts,star,rgdt)
             values(#{meno},#{ptno},#{conts},#{star},now())
-        </if>
+       
   
 		
 	</insert>
