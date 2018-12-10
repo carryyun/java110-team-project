@@ -6,6 +6,7 @@ import bitcamp.java110.cms.domain.ClassRep;
 
 public interface ClassRepDao {
   List<ClassRep> findAll();
+  List<ClassRep> findAllByRgdt();
   List<ClassRep> findAllStar(Map<String,Object> params);
   int repinsert(ClassRep classRep);
   int repDelete(int no);

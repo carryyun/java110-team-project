@@ -7,9 +7,8 @@ import bitcamp.java110.cms.domain.Classes;
 public interface ClassDao {
   List<Classes> findAll();
   List<Classes> findAllStar();
-  
   List<Classes> findAllList();
-
+  List<Classes> findAllByOrder(Map<String,Object> params);
   List<Classes> findAllByBtno(Map<String,Object> params);
   List<Classes> findAllByMtno(Map<String,Object> params);
   List<Classes> findAllByLoc(Map<String,Object> params);

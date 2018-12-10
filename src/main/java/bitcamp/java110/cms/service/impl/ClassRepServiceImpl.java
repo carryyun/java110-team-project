@@ -60,4 +60,9 @@ public class ClassRepServiceImpl implements ClassRepService{
     return classRepDao.get(no);
   }
 
+  @Override
+  public List<ClassRep> listbyRgdt() {
+    return classRepDao.findAllByRgdt();
+  }
+
 }

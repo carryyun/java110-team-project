@@ -14,8 +14,27 @@ public class ProductRep {
   private String phot; // 사진
   
   private Mentee mentee;
+  
+  private String titl;  // 상품의 titl
+  private String prdtphot; // 상품의 phot
 
+  
+  
+  public String getPrdtphot() {
+    return prdtphot;
+  }
 
+  public void setPrdtphot(String prdtphot) {
+    this.prdtphot = prdtphot;
+  }
+
+  public String getTitl() {
+    return titl;
+  }
+
+  public void setTitl(String titl) {
+    this.titl = titl;
+  }
 
   public Mentee getMentee() {
     return mentee;

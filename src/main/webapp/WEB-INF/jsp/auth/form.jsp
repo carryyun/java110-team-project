@@ -203,8 +203,13 @@ function submitbtnClick(){
 					 button:"확인"
 				  });
 			}else if(data == 1){
-			     
-			     location.href = document.referrer;/* 뒤로가기 후 새로고침 */
+				
+				
+			    if(document.referrer == ""){
+			    	location.href = "../mainpage/mainpage";
+			    }else{
+					location.href = document.referrer;
+			    }
 			}
 		}
 	});

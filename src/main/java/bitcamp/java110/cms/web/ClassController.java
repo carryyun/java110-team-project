@@ -192,18 +192,22 @@ public class ClassController {
     return null;
   }
 
-  @RequestMapping("cls")
+  /*@RequestMapping("cls")
   public void cls(Model model) {
     List<Classes> clslist = classService.list();
     model.addAttribute("clslist", clslist);
   }
-
+*/
   @RequestMapping("clsCate")
   public void clsCate(Model model, int no, String type) {
     BigTag bigtag = null;
     List<Classes> clslist = null;
-    if(type == null) {
-      clslist = classService.listByBtno(1, 9, no);
+    if(type == null & no!=1) {
+      clslist = classService.listByBtno(1, 6, no);
+      bigtag = bigTagService.get(no);
+      model.addAttribute("selectedNo", 0);
+    }else if(type == null & no==1) {
+      clslist = classService.listByOrder(1, 6, 45);
       bigtag = bigTagService.get(no);
       model.addAttribute("selectedNo", 0);
     }else if("mtag".equals(type)) {
@@ -239,8 +243,10 @@ public class ClassController {
   public @ResponseBody List<Classes> clsCatedo(int no, String type,
       @RequestParam(defaultValue="2") int pageNo, @RequestParam(defaultValue="6") int pageSize) {
     List<Classes> scrollClsList = null;
-    if(type == null) {
+    if(type == null & no != 1) {
       scrollClsList = classService.listByBtno(pageNo, pageSize, no);
+    }if(type == null & no == 1) {
+      scrollClsList = classService.listByOrder(pageNo, pageSize, 50);
     }else if("mtag".equals(type)) {
       scrollClsList = classService.listByMtno(pageNo, pageSize, no);
     }
@@ -386,10 +392,10 @@ public class ClassController {
     Mentee mentee = (Mentee) session.getAttribute("loginUser");
     
     int clsorderlist = classOrderService.listByCno(no , mentee.getNo());
-    System.out.println(clsorderlist);
+    
     return clsorderlist;
   }
-
+  
   @RequestMapping("findByptno")
   public void findByptno(Model model,int no) {
     Classes prdtcls = classService.findbyptno(no);

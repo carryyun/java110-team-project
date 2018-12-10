@@ -178,4 +178,20 @@ public class ClassServiceImpl implements ClassService{
     
     return classDao.deleteclsstat(classes);
   }
+
+  @Override
+  public List<Classes> listByOrder(int pageNo, int pageSize, int max) {
+    if(pageSize>max) {
+      pageNo=1;
+      pageSize=0;
+    }
+    
+    HashMap<String, Object> params = new HashMap<>();
+    params.put("rowNo", (pageNo - 1) * pageSize);
+    params.put("size", pageSize);
+    params.put("max", max);
+    
+    
+    return classDao.findAllByOrder(params);
+  }
 }

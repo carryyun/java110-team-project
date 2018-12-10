@@ -9,7 +9,7 @@ public interface ProductRepService {
   // 공예품 번호로 조회
   List<ProductRep> listByPtno(int pageNo, int pageSize, int ptno);
   
-  
+  List<ProductRep> listbyRgdt();
   
   List<ProductRep> list(int pageNo, int pageSize);
 
