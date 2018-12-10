@@ -20,6 +20,8 @@
         <result column="nick"   property="nick"/>
     </resultMap>
     
+   
+    
     <select id="findAll" resultMap="productPopulMap">
         select
             popul.ppno,
@@ -47,5 +49,14 @@
         order by
             ppno DESC
     </select>
+    
+    <insert id="insert" useGeneratedKeys="true" keyColumn="ppno" keyProperty="no" >
+    	insert into p_prdt_popul(ptno) values(#{no})
+    </insert>
+    
+    <delete id="delete">
+    	delete
+    	  from p_prdt_popul
+    </delete>
    
 </mapper>

@@ -11,6 +11,8 @@ import bitcamp.java110.cms.dao.ClassOrderDao;
 import bitcamp.java110.cms.dao.ClassPopulDao;
 import bitcamp.java110.cms.dao.ClassRepDao;
 import bitcamp.java110.cms.dao.ProductDao;
+import bitcamp.java110.cms.dao.ProductOrderDao;
+import bitcamp.java110.cms.dao.ProductPopulDao;
 import bitcamp.java110.cms.dao.ProductRepDao;
 import bitcamp.java110.cms.domain.ClassRep;
 import bitcamp.java110.cms.domain.Classes;
@@ -26,6 +28,8 @@ public class SchedulerService {
   @Autowired ClassRepDao classRepDao;
   @Autowired ClassOrderDao classOrderDao;
   @Autowired ClassPopulDao classPopulDao;
+  @Autowired ProductOrderDao productOrderDao;
+  @Autowired ProductPopulDao productPopulDao;
 
   //스케줄러 이용
   @Scheduled(fixedRate=6000000)
@@ -92,12 +96,23 @@ public class SchedulerService {
   // 인기예감 클래스로 변경 
   @Scheduled(fixedRate=6000000)
   public void popularityClass(){
-    System.out.println("StartSetter Scheeduled");
     System.out.println("popularityClassSystem start");
     List<Integer> popularityClasslist = classOrderDao.selpopularityclass();
       classPopulDao.delete();
     for(int no : popularityClasslist) {
       classPopulDao.insert(no); 
     }
-  }   
+  }    
+  
+  // 추천작품 1시간마다 리쉣
+  @Scheduled(fixedRate=6000000)
+  public void recommendProduct() {
+    System.out.println("recommendProductSystem start");
+    List<Integer> recommendProductlist = productOrderDao.selrecommendproduct();
+      productPopulDao.delete(); 
+    for(int no : recommendProductlist) {
+      productPopulDao.insert(no);
+    }
+    
+  }
 }
