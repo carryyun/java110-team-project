@@ -65,6 +65,8 @@
         <result column="paydt"     property="productOrder.paydt"/>
         <result column="parc_name"  property="productOrder.parc_name"/>
         <result column="parc_no"    property="productOrder.parc_no"/>
+        <result column="pomeno"    property="productOrder.meno"/>
+        <result column="pocnt"    property="productOrder.cnt"/>
         
         <result column="me2name"    property="mentee2.name"/>
         <result column="me2nick"    property="mentee2.nick"/>
@@ -310,6 +312,7 @@ where
                 p.*,
                 po.ono as poono,
                 po.cnt as pocnt,
+                po.meno as pomeno,
                 po.parc_no,
                 po.tot_pric as popric,
                 po.payopt,

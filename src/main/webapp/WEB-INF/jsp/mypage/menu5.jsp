@@ -23,7 +23,7 @@
 					 <c:forEach items="${cmanage}" var="c" varStatus="i">
 					<tr id="tb-pay">
 						<td>${i.count}</td>
-						<td><a href="../class/detail?no=${c.no}">${c.titl} ${c.no}</a></td>
+						<td><a href="../class/detail?no=${c.no}">${c.titl}</a></td>
 						<td>${c.bigTag.name}-${c.bigTag.name}</td>
 						<td><button onclick="getMenteeList(${c.no})"  class="btn-primary"  style="width:100px;"> ${c.capa-c.timetable.capa}/ ${c.capa} 명</button></td>
 					</tr>

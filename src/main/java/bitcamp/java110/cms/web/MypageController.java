@@ -37,6 +37,7 @@ import bitcamp.java110.cms.service.MentorService;
 import bitcamp.java110.cms.service.ProductOrderService;
 import bitcamp.java110.cms.service.ProductQnAService;
 import bitcamp.java110.cms.service.ProductService;
+import bitcamp.java110.cms.service.impl.ProductOrderServiceImpl;
 
 @Controller
 @RequestMapping("/mypage")
@@ -143,12 +144,12 @@ public class MypageController {
     int newCarr = Integer.parseInt(str3);
     // string 에서 int값만 뽑아서  을 int type으로 변환
     
-    
+     
    
     // 멘토 신청 처음
     
      mentor = mentorService.get(noin);
-     int nono = mentor.getCarr();
+     int nono = mentor.getCarr(); 
      System.out.println(nono);
      
     if ( nono == 0) {
@@ -395,27 +396,10 @@ public class MypageController {
     
     List<Product> pmanage2 = productService.listBySeller2(1,10,ptno);
     model.addAttribute("pmanage2", pmanage2 );
-    model.addAttribute("ptno", ptno);
+    
        
   }
   
- /* @GetMapping("menu6buyer")
-  public void menu6buyer(Model model,HttpSession session) {
-    Mentee mentee = (Mentee) session.getAttribute("loginUser");
-    List<Product> pmanage = productService.listBySeller(1,10,mentee.getNo());
-    
-    int i = 0;
-    for(Product p: pmanage) {
-    System.out.println(p.getNo());
-    
-    i++;
-    
-    List<Product> pmanage2i= productService.listBySeller2(1,10,p.getNo());
-    
-    model.addAttribute("pmanage2"+i, pmanage2i ); 
-    }
-   
-  }*/
   
   
   @RequestMapping(value = "getMenteeList.do", method = {RequestMethod.POST})

@@ -36,9 +36,10 @@
 <div class="col-lg-12"> 
 	<div class="panel panel-default">
 	
-    <span id="menu6re" style="dispay:inline; font-size:25px;">상품관리</span>
-    <span style="dispay:inline; width:200px; font-size:20px;">&nbsp;&nbsp;>&nbsp;>&nbsp;&nbsp;주문자목록</span>
-    
+
+    <span id="menu6re" style="dispay:inline; font-size:24px; font-weight:900; color: #80848F;  vertical-align: middle;" >상품 목록</span>&nbsp;<img src="/upload/img/nexticon.png" width="4%">
+    <span style="dispay:inline; width:200px; font-size:24px; color : black;  font-weight: 900; vertical-align: middle; ">주문자 목록</span>
+ 
  
 		<div class="panel-body">
 		<table class="table table-condensed" style="border-collapse: collapse;">
@@ -63,19 +64,63 @@
                             <td>${i.count}</td>
                             <td>${p.productOrder.paydt}<br> (<fmt:formatDate value="${p.productOrder.paydt}"
                                     pattern="yyyyMMdd" />${p.productOrder.no})</td>
-                            <td>${p.mentee2.name}</td>
+                            <td><a data-toggle="modal" data-target="#buyerinfo${p.productOrder.no}" name="${p.productOrder.no}">${p.mentee2.name}</a></td>
                             <td>${p.productOrder.tot_pric}(${p.productOrder.cnt})개<br>${p.productOrder.payopt}</td>
 
                             <td>
+                                <span> 입금전/입금완료/발송완료 조건</span>
                                 <button type="button"   onclick="clickOno(this.name)" name="${p.productOrder.no}" class="btn btn-primary" data-toggle="modal" data-target="#deliveryinfo">배송정보입력</button>
                             </td>
                             </tr>
-                           <%--  <input type="hidden" class="ono" name="${p.productOrder.no}"> --%>
+                            
+                          
+                            
                     </c:forEach>
                 </tbody>
                 
             </table>
+             <c:forEach items="${pmanage2}" var="p" varStatus="i">
+              <div class="modal fade" id="buyerinfo${p.productOrder.no}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                             <table class="table table-condensed" style="border-collapse: collapse;">
+                     <tr>
+                        <td width="20%">상품명</td>
+                        <td>${p.titl}</td>
+                     </tr>
+                     
+                      <tr>
+                        <td width="20%">수량</td>
+                        <td>${p.productOrder.cnt}</td>
+                     </tr>
+                     
+                      <tr>
+                        <td width="20%">결제금액</td>
+                        <td>${p.productOrder.tot_pric}</td>
+                     </tr>
+                     
+                     
+                      <tr>
+                        <td width="20%">연락처</td>
+                        <td>${p.mentee2.phone}</td>
+                     </tr>
+                     
+                      <tr>
+                        <td width="20%">주소</td>
+                        <td>${p.mentee2.pstno}/${p.mentee2.bas_addr}/${p.mentee2.det_addr}</td>
+                     </tr>
+                                </tbody>
+                             
+                             </table>
+                        </div>
+                    </div>
+                                                
+                </div>
+                                               
             
+            </div>
+              </c:forEach>
              		<div class="modal fade" id="deliveryinfo" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                           <div class="modal-dialog">
                                             <div class="modal-content">
@@ -137,6 +182,8 @@ $("#submitdelbtn").click(function(){
 });
     
     
+
+    
 function clickOno(ono){
    
     console.log("ono : "+ono);
@@ -144,7 +191,6 @@ function clickOno(ono){
     $('#submitOno').attr('name',ono)
     
     console.log( "setono"+$('#submitOno').attr('name'));
-     
     
 }
 
