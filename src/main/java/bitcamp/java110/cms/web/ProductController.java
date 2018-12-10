@@ -91,6 +91,8 @@ public class ProductController {
     this.classlikeService =classlikeService;
     this.productOrderService = productOrderService;
   }
+  
+  
 
   @GetMapping("prdt")
   public void prdt(@RequestParam(defaultValue = "1") int pageNo,
@@ -191,6 +193,10 @@ public class ProductController {
   public @ResponseBody List<Cert> getCertList(int no) {
     List<Cert> certList = certService.listByMeno(5, 5, no);
     return certList;
+  }
+  
+  @GetMapping("prodRegister")
+  public void prodRegister() {
   }
 
   // 2018.11.23 수정 -> 18.11.28수정
