@@ -40,14 +40,33 @@
     <script src=/js/mypagejs/hideshow.js></script>
     <!-- 우편 번호 -->
     <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-        
-
+    
+   
+   <!--  HeaderMain -->
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"    crossorigin="anonymous">
+<link href="/css/mypagecss/myheader.css" rel="stylesheet">
+<link href="/css/common.css" rel="stylesheet">
+     <!--  HeaderNav -->
+ <link href="/css/category.css" rel="stylesheet">
+   
+     <!-- Custom fonts for this template -->
+    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <!-- Custom styles for this template -->
+    <link href="/css/category.css" rel="stylesheet">
+    
+    <!-- 폰트 추가 -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
+    </head>
+    <!-- Category Navigation -->
+    <!-- <hr class="Fhr"> -->
+   
+   
+   
     <script>
     
     // 마이페이지 멘토 경력 조건
     
      $(document).ready(function() {
-       console.log($('#stat').attr('name'));
      if($('#stat').attr('name') == 'Y' ){
             document.getElementById(id="stat").style.display = "";
             document.getElementById(id="stathidden").style.display = "none";
@@ -100,16 +119,30 @@
 </head>
 
 <body>
-
-    <div id="colorlib-page">
+         <nav class="navbar navbar-fixed-top" style=" background-color: #ffffff;" >
+           <div class="container" >
+        <div class="row">
+        
+            <div class="col-lg-12" >
+            <jsp:include page="/app/mypage/headerMainMy.jsp"></jsp:include>
+               <jsp:include page="/app/mypage/headerNavMy.jsp"></jsp:include>
+            </div>
+             
+            
+            </div>
+            </div> 
+            
+            </nav>
+         
+             
+             
+            
+                <div id="colorlib-page" >
         <div class="container-wrap">
-			<div class="row"></div>
-			<%-- <div class="col-lg-12" id="headermain">
-                <jsp:include page="../headerMain.jsp"></jsp:include>
-            </div> --%>
-			
+			<div class="row" ></div>
+		
             <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
-            <aside id="colorlib-aside" role="complementary" class="border js-fullheight">
+            <aside id="colorlib-aside" role="complementary" class="border js-fullheight" style="top:150px;">
                 <div class="text-center">
                     <div class="author-img" style="background-image: url(${mentee.phot};"></div>
                     <h1 id="colorlib-logo"><a href="index.html">${mentee.name}</a></h1>
@@ -132,26 +165,26 @@
 
                 
             </aside>
+            
+          
 
-            <div id="colorlib-main">
+            <div id="colorlib-main" ">
 
-
-
+ 
                 <section class="colorlib-about" data-section="about" >
                     <div class="colorlib-narrow-content">
-                        <div class="row">
+                        <div class="row" style=" display:block;">
                             
-                              
                                     
                                         <div class="about-desc">
 
-                                            <h2 class="colorlib-heading">회원정보수정</h2>
+                                            <h2 class="colorlib-heading" style="margin-top: 120px;">회원정보수정</h2>
                                             <hr color="black">
                                         </div>
                                   
                             
                                 <!--   회원정보수정 load-->
-                                <div id="menu1"> </div>
+                                <div id="menu1" > </div>
 
 
                         </div>
@@ -164,13 +197,13 @@
 
                 <section class="colorlib-services" data-section="services">
                     <div class="colorlib-narrow-content">
-                        <div class="row"   >
+                        <div class="row"  style=" display:block;" >
 
                                     <h2 class="colorlib-heading">수강목록</h2>
                                     <hr color="black">
                                      
                                 <!--   수강목록 load-->
-                                <div id="menu2"> </div>
+                                <div id="menu2" > </div>
                         </div>
                     </div>
 
@@ -182,25 +215,23 @@
 
                 <section class="colorlib-skills" data-section="skills">
                     <div class="colorlib-narrow-content">
-                        <div class="row"   >
+                        <div class="row"  style=" display:block;">
 
-                                    <h2 class="colorlib-heading">결제내역</h2>
+                                    <h2 class="colorlib-heading" >결제내역</h2>
                                     <hr color="black"    >
                                
                            
                           
                         
   <div class="switch-field">
-      <input type="radio" id="classbkt" name="switch_2" value="yes" checked/>
+      <input type="radio" id="classbkt" name="switch_2" value="yes" style="display:block"checked/>
       <label for="classbkt">클래스</label>
-      <input type="radio" id="productbkt" name="switch_2" value="no" />
+      <input type="radio" id="productbkt" name="switch_2" value="no" style="display:block"/>
       <label for="productbkt">상품</label>
     </div>
                    
-                        
                         <div id="menu3-1"> </div>
                         <div id="menu3-2"> </div>
-                        
           
 
                     </div>
@@ -211,7 +242,7 @@
                
                  <section class="colorlib-skills" data-section="education"  >
                     <div class="colorlib-narrow-content"  >
-                        <div class="row"  >
+                        <div class="row" style=" display:block;" >
 
                                     <h2 class="colorlib-heading">내 활동보기</h2>
                                     <hr color="black"    >
@@ -304,7 +335,7 @@
                
                 <section class="colorlib-experience" data-section="experience">
                     <div class="colorlib-narrow-content">
-                        <div class="row">
+                        <div class="row" style=" display:block;">
                                 <h2 class="colorlib-heading" >클래스 관리</h2>
                                  <hr color="black"    >
                    
@@ -320,7 +351,7 @@
 
                 <section class="colorlib-work" data-section="work">
                     <div class="colorlib-narrow-content">
-                    <div class="row">
+                    <div class="row" style=" display:block;">
                                 <h2 class="colorlib-heading animate-box">상품 관리</h2>
                                   <hr color="black"    >
                         

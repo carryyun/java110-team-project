@@ -107,6 +107,18 @@ public class MypageController {
     Mentor mentor = mentorService.get(mentee.getNo());
     model.addAttribute("mentor", mentor);
   }
+  
+  @GetMapping("headerMainMy")
+  public void headerMainMy(Model model,HttpSession session) {
+    
+    
+  }
+  
+  @GetMapping("headerNavMy")
+  public void headerNavMy(Model model,HttpSession session) {
+    
+    
+  }
   @GetMapping("menu1")
   public void menu1(Model model,HttpSession session) {
     Mentee imentee = (Mentee) session.getAttribute("loginUser");
