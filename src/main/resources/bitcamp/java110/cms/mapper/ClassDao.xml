@@ -196,7 +196,7 @@
         	ps.stat = 'Y'
         AND
             pg.mtno=#{mtno}
-        ORDER by ps.cno asc
+        ORDER by ps.cno desc
     </select>
 	
 	<select id="findAllByList" resultMap="classMap"> <!-- 이게 전체리스트출력하는거임 -->
@@ -228,7 +228,7 @@
         where 
         	ps.stat = 'Y'
 		order by
-			cno asc;
+			cno desc;
     </select>
     
     <select id="findByptno" resultMap="classMap" parameterType="int">
@@ -394,7 +394,7 @@
             c.cno=#{cno} AND c.stat = 'Y'
             
       ORDER BY
-           ct.ctno asc
+           ct.ctno desc
           
            
     </select>
@@ -448,6 +448,7 @@
                 or pe.name Like "%{str}%"
                 or pe.nick Like "%{str}%"
     	where ps.stat = 'Y'
+    	order by ps.cno desc
     </select>
     
 </mapper>

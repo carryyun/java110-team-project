@@ -116,11 +116,25 @@ public class MasterPageController {
   }
 
   @GetMapping("classOrderList")
-  public void cls(Model model) {
-    List<ClassOrder> classOrderList = classOrderService.listByMaster(3, 5);
+  public void cls(Model model,
+      @RequestParam(defaultValue="1") int pageNo, @RequestParam(defaultValue="10") int pageSize) {
+    List<ClassOrder> classOrderList = classOrderService.listByMaster(pageNo, pageSize);
     model.addAttribute("classOrderList", classOrderList);
+    
+    int countorder = classOrderService.countorderlist();
+    
+    model.addAttribute("countorder", countorder);
   }
 
+  @RequestMapping(value = "classOrderpage.do", method = {RequestMethod.POST})
+  public @ResponseBody List<ClassOrder> classOrderpage(@RequestParam(defaultValue="2") int pageNo, 
+      @RequestParam(defaultValue="10") int pageSize) {
+    
+    List<ClassOrder> OrderList = classOrderService.listByMaster(pageNo, pageSize);
+    
+    return OrderList;
+  }
+  
   /*
    * 멘토신청목록 관련
    */
