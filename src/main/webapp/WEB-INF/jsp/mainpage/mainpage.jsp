@@ -122,12 +122,13 @@
     <!-- 오늘의 추천작품 -->
     <div class="container">
         <hr class="Fhr" />
-        <div class="row  my-3">
+        <div class="row my-3">
             <div class="col-lg-2 text-left">
-            <h3 style="font-size: 1.5rem; font-weight: 700; float: left;">추천작품</h3>
+            
+            <h3 style="font-size: 1.5rem; margin-left:15px; font-weight: 700; float: left;">추천작품</h3>
         </div>
         <div class="col-lg-4 text-left">
-            <h4 style="font-size: 1rem; color:#a9a9a9; margin-top:9px; margin-left:-40px; float: left;">오늘의 추천작품을 만나보세요</h4>
+            <h4 style="font-size: 1rem; color:#a9a9a9; margin-top:9px; margin-left:-65px; float: left;">오늘의 추천작품을 만나보세요</h4>
         </div>
             <div class="col-lg-6 text-right">
                 <a class="btn btn-primary float-right mb-3" href="../product/prdt">작품 더보기 </a>
@@ -156,14 +157,14 @@
     <hr class="Fhr">
     <div class="row  my-3">
         <div class="col-lg-2 text-left">
-            <h3 style="font-size: 1.5rem; font-weight: 700; float: left;">실시간 후기</h3>
+            <h3 style="font-size: 1.5rem; margin-left:15px; font-weight: 700; float: left;">실시간 후기</h3>
         </div>
         <div class="col-lg-4 text-left">
             <h4 style="font-size: 1rem; color:#a9a9a9; margin-top:9px; margin-left:-40px; float: left;">회원들의 후기를 들어보세요</h4>
         </div>
-        <div class="col-lg-6 text-right">
+        <!-- <div class="col-lg-6 text-right">
             <a class="btn btn-primary float-right mb-3" href="../product/prdt">작품 더보기 </a>
-        </div>
+        </div> -->
         
     </div>
         <div class="row">
