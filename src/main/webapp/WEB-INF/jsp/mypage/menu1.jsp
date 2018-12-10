@@ -6,6 +6,12 @@
 .modal-header .close{
 	margin-top: -20px;
 }
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 </style>
 
 <script type="text/javascript">
@@ -86,60 +92,93 @@
     
   
     
-    function cbox2(chkbox,meno)
-    {
-    if ( chkbox.checked == true )
-    {
-        text2.readOnly = false;
-        text2.style.border = "solid";
-        text2.style.borderColor = "#EB5554";
-        
-        text31.readOnly = false;
-        text31.style.border = "solid";
-        text31.style.borderColor = "#EB5554";
-        text32.readOnly = false;
-        text32.style.border = "solid";
-        text32.style.borderColor = "#EB5554";
+    function cbox2(chkbox,meno){
+	    if ( chkbox.checked == true ){
+	        text2.readOnly = false;
+	        text2.style.border = "solid";
+	        text2.style.borderColor = "#EB5554";
+        	
+	        $('#sectext31').css('display','none');
+	        $('#text31').css('display','inline-block');
+	        text31.style.border = "solid";
+	        text31.style.borderColor = "#EB5554";
+	        text32.readOnly = false;
+	        text32.style.border = "solid";
+	        text32.style.borderColor = "#EB5554";
        
-    }
-    else
-    {
-        text2.readOnly = true;
-        text2.style.border = "none";
-        
-        text31.readOnly = true;
-        text31.style.border = "none";
-        text32.readOnly = true;
-        text32.style.border = "none";
-        
-        var newpwd = $('#text2').val();
-        var newbkname = $('#text31').val();
-        var newbkno = $('#text32').val();
-        
-        console.log(newpwd+newbkname+newbkno);
-        $.ajax({
-            type: "POST",
-            data: {
-                "no" : meno,
-                "pwd" : newpwd,
-                "bkname" : newbkname,
-                "bkno" : newbkno
-                },
-         url: "updatePwd.do", 
-         success : function() {
-            
-             swal({
-                   text : "변경 완료",
-                 button : "확인"
-                 })
-             },error : function(error,status){
-                 swal({
-                     text : "비밀번호는 최소 ?? 글자 이상이어야합니다.",
-                     button : "확인"
-                     })
-                     }
-             }); 
-    }
+	    }else{
+	    	$('#sectext31').css('display','inline-block');
+	    	$('#text31').css('display','none');
+	        text2.readOnly = true;
+	        text2.style.border = "none";
+	        
+	        text31.style.border = "none";
+	        text32.readOnly = true;
+	        text32.style.border = "none";
+	        
+	        var newpwd = $('#text2').val();
+	        var newbkname = $('#text31 option:selected').val();
+	        var newbkno = $('#text32').val();
+        	$('#sectext31').val($('#text31 option:selected').val());
+	        
+	        if(newpwd.length < 8){
+	        	swal({
+	                text : "비밀번호는 최소 8자 이상입니다.",
+	              button : "확인"
+	              }).then(function(){
+	            	  $('#sectext31').val('');
+	            		 $('#text2').val('');
+	            		 $('#text32').val('');
+	              });
+	        }else if($('#text31 option:selected').val() == ''){
+	        	swal({
+	                text : "은행을 선택해주세요.",
+	              button : "확인"
+	              }).then(function(){
+	            	  $('#sectext31').val('');
+	            		 $('#text2').val('');
+	            		 $('#text32').val('');
+	              });
+	        }else if($('#text32').val() == ''){
+	        	swal({
+	                text : "출금계좌를적어주세요.",
+	              button : "확인"
+	              }).then(function(){
+	            	  $('#sectext31').val('');
+	            		 $('#text2').val('');
+	            		 $('#text32').val('');
+	              });
+	        }else{
+	        	$.ajax({
+	            type: "POST",
+	            data: {
+	                "no" : meno,
+	                "pwd" : newpwd,
+	                "bkname" : newbkname,
+	                "bkno" : newbkno
+	                },
+		         url: "updatePwd.do", 
+		         success : function() {
+		             swal({
+		                   text : "변경 완료",
+		                 button : "확인"
+		                 }).then(function(){
+		            		 $('#text2').val('');
+                         })
+	            	 }, error:function(request,status,error){
+	            		 swal({
+			                   text : "변경 실패",
+			                 button : "확인"
+			                 }).then(function(){
+			                	 $('#sectext31').val('');
+			            		 $('#text2').val('');
+			            		 $('#text32').val('');
+			                 });
+	            	 }
+
+		        });
+	    	}
+    	}
     }
     
     
@@ -286,8 +325,8 @@
                                 <div class="author-img" style="background-image: url(${mentee.phot}); position: absolute;">
                                 </div>
                                 <div class="cont1" >
-                                <B>닉네임</B>
-                                <input id="text1" type="text" name="닉네임" value="${mentee.nick}" readonly style="width:140px; border:none; ">
+                                <B>닉네임</B>&nbsp;
+                                <input id="text1" type="text" name="닉네임" value="&nbsp;${mentee.nick}" readonly style="width:140px; border:none; ">
                                 </div>
                                 <div id="wrapper" name="${mentee.mtstat}" class="pop" style=" position: relative; right: -50px; bottom: -60px">
                                 <button class="fancy" >멘토신청</button>
@@ -321,7 +360,7 @@
                              비밀번호
                                 </div>
                                 <div class="cont1" >
-                                   <input id="text2" type="password" name="pwd" value="${mentee.pwd}" readonly style="width:140px; border:none; ">
+                                   <input id="text2" type="password" maxlength="20" name="pwd" readonly style="width:140px; border:none; ">
                                     
                                 </div>
                                 
@@ -332,11 +371,24 @@
                                 은행
                                 </div>
                              <div class="cont1" >
-                                    <input id="text31" type="text" name="bk" value="${mentee.bkname}" readonly style="width:140px; border:none; ">
-                                   
+                             		<input type="text" id="sectext31" value="${mentee.bkname}" readonly style="width:140px; border:none; display:inline-block;"/>
+                                	 <select id="text31" style="width:140px; border:none; display:none;">
+						                <option hidden selected></option>
+						                <option value="NH농협은행">NH농협은행</option>
+						                <option value="신한은행">신한은행</option>
+						                <option value="우리은행">우리은행</option>
+						                <option value="제일은행">SC제일은행</option>
+						                <option value="하나은행">하나은행</option>
+						                <option value="IBK기업은행">IBK기업은행</option>
+						                <option value="KB국민은행">KB국민은행</option>
+						                <option value="KEB외한은행">KEB외한은행</option>
+						                <option value="부산은행">부산은행</option>
+						                <option value="제주은행">제주은행</option>
+						                <option value="씨티뱅크">씨티뱅크</option>
+						                <option value="수협중앙회">수협중앙회</option>
+						                <option value="KJB광주은행">KJB광주은행</option>
+						                </select>
                                 </div>
-                                
-                                
                             </div>
                             
                             <div class="profile-contents" style="height: 50px;">
@@ -344,8 +396,8 @@
                                 출금계좌
                                 </div>
                              <div class="cont1" >
-                                    <input id="text32" type="text" name="bk" value="${mentee.bkno}" readonly style="width:140px; border:none; ">
-                                   
+                                    <input id="text32" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                    type="number" name="bk" value="${mentee.bkno}" maxlength="20" readonly style="width:140px; border:none; margin: 0;">
                                 </div>
                                 
                                 
@@ -457,7 +509,7 @@
         출금은행 : ${mentee.bkname}<br>
         계좌번호 : ${mentee.bkno}<br>
         
-    <hr> 
+    <hr>
     
     <div class="nope" >
     
@@ -642,7 +694,7 @@
                             buttons: true,
                             dangerMode: true,
                             })
-                          wk
+                          
                            
                      } 
                     
@@ -745,6 +797,32 @@ function handleFileSelect2(evt2) {
       // Closure to capture the file information.
       reader.onload = (function(theFile) {
         return function(e) {
+          // Render thumbnail.
+          var span = document.createElement('span');
+          span.innerHTML = ['<img class="thumb2" src="', e.target.result,
+                            '" title="', escape(theFile.name), '"/>'].join('');
+          document.getElementById('list2').insertBefore(span, null);
+     
+        };
+      })(f);
+
+      // Read in the image file as a data URL.
+      reader.readAsDataURL(f);
+    }
+   
+    
+  }
+
+  $('#files2').change(handleFileSelect2);
+
+             
+
+  
+ 
+
+
+            </script>
+  
           // Render thumbnail.
           var span = document.createElement('span');
           span.innerHTML = ['<img class="thumb2" src="', e.target.result,
