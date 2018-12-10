@@ -9,6 +9,9 @@
 </style>
 
 <script type="text/javascript">
+
+
+
   
  function submitbtn(){
 	 $.ajax({
@@ -147,28 +150,52 @@
         text4.readOnly = false;
         text4.style.border = "solid";
         text4.style.borderColor = "#F9BD41";
+      
+        function autoHypenPhone(str){
+    	    str = str.replace(/[^0-9]/g, '');
+    	    var tmp = '';
+    	    if( str.length < 4){
+    	      return str;
+    	    }else if(str.length < 7){
+    	      tmp += str.substr(0, 3);
+    	      tmp += '-';
+    	      tmp += str.substr(3);
+    	      return tmp;
+    	    }else if(str.length < 11){
+    	      tmp += str.substr(0, 3);
+    	      tmp += '-';
+    	      tmp += str.substr(3, 3);
+    	      tmp += '-';
+    	      tmp += str.substr(6);
+    	      return tmp;
+    	    }else{        
+    	      tmp += str.substr(0, 3);
+    	      tmp += '-';
+    	      tmp += str.substr(3, 4);
+    	      tmp += '-';
+    	      tmp += str.substr(7);
+    	      return tmp;
+    	    }
+    	    return str;
+    	  }
+    		var cellPhone = document.getElementById('text4');
+	    	text4.onkeyup = function(event){
+	    	event = event || window.event;
+	    	var _val = this.value.trim();
+	    	this.value = autoHypenPhone(_val) ;
+	    	}
         
-        text5.readOnly = false;
-        text5.style.border = "solid";
-        text5.style.borderColor = "#F9BD41";
-       
     }
     else
     {
         text4.readOnly = true;
         text4.style.border = "none";
         
-        text5.readOnly = true;
-        text5.style.border = "none";
-        
-         var newphone = $('#text4').val();
-      
-        
         $.ajax({
             type: "POST",
             data: {
                 "no" : meno,
-                "phone" : newphone 
+                "phone" : $("#text4").val()
                 },
          url: "updatePhone.do", 
          success : function() {
@@ -357,7 +384,7 @@
                                                     핸드폰 번호                          
                                 </div>
                                 <div class="cont1" >
-                                   <input id="text4" type="text" name="pwd" value="${mentee.phone}" readonly style="width:140px; border:none; ">
+                                   <input id="text4" type="text" name="phone" maxlength="13" value="${mentee.phone}" readonly style="width:140px; border:none; ">
                                     
                                 </div>
                                 
@@ -592,6 +619,7 @@
             
             
             <script>
+      
             
             
             
