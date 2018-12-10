@@ -38,6 +38,8 @@
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <!-- Load JS-->
     <script src=/js/mypagejs/hideshow.js></script>
+    <!-- 우편 번호 -->
+    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
         
 
     <script>

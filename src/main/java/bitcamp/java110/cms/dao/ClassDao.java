@@ -15,12 +15,6 @@ public interface ClassDao {
   List<Classes> findAllByLoc(Map<String,Object> params);
   List<Classes> findAllByWord(Map<String,Object> params);
   
-  int popularitypreCallbackUpdate(Map<String,Object> params);
-  
-  int popularityUpdate(int no);
-  
-  Classes popularityCallBack(int no);
-  
   List<Classes> findAllByList(); // 클래스 전체 목록
 
   List<Classes> classform(int no);

@@ -385,12 +385,8 @@ public class ClassController {
     
     Mentee mentee = (Mentee) session.getAttribute("loginUser");
     
-    System.out.println(mentee.getNo());
-    
     int clsorderlist = classOrderService.listByCno(no , mentee.getNo());
-    
     System.out.println(clsorderlist);
-    
     return clsorderlist;
   }
 

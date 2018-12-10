@@ -95,8 +95,10 @@
 											</div>
 										</td>
 										<td class="product-price col-2 text-center">${r.product.pric }</td>
-										<td class="product-quantity col-1 text-center"><input type="number" id="cnt${i.index}" name="produc1"
-											min="1" max="${r.product.stock}" style="width:70px" value="${r.cnt}"></td>
+										<td class="product-quantity col-1 text-center">
+										  <input type="number" id="cnt${i.index}" name="produc1" 
+											min="1" max="${r.product.stock}" style="width:70px" value="${r.cnt}">
+										</td>
 										<td class="del col-1 text-center">${r.product.deli}</td>
 										<td class="product-line-price col-2 text-center">${(r.product.pric * r.cnt)+r.product.deli }</td>
 										<td class="product-removal col-1" id="del-button">
@@ -234,5 +236,6 @@
 	    }
 	}
 	</script>
+
 </body>
 </html>

@@ -9,6 +9,9 @@
 </style>
 
 <script type="text/javascript">
+
+
+
   
  function submitbtn(){
 	 $.ajax({
@@ -147,28 +150,52 @@
         text4.readOnly = false;
         text4.style.border = "solid";
         text4.style.borderColor = "#F9BD41";
+      
+        function autoHypenPhone(str){
+    	    str = str.replace(/[^0-9]/g, '');
+    	    var tmp = '';
+    	    if( str.length < 4){
+    	      return str;
+    	    }else if(str.length < 7){
+    	      tmp += str.substr(0, 3);
+    	      tmp += '-';
+    	      tmp += str.substr(3);
+    	      return tmp;
+    	    }else if(str.length < 11){
+    	      tmp += str.substr(0, 3);
+    	      tmp += '-';
+    	      tmp += str.substr(3, 3);
+    	      tmp += '-';
+    	      tmp += str.substr(6);
+    	      return tmp;
+    	    }else{        
+    	      tmp += str.substr(0, 3);
+    	      tmp += '-';
+    	      tmp += str.substr(3, 4);
+    	      tmp += '-';
+    	      tmp += str.substr(7);
+    	      return tmp;
+    	    }
+    	    return str;
+    	  }
+    		var cellPhone = document.getElementById('text4');
+	    	text4.onkeyup = function(event){
+	    	event = event || window.event;
+	    	var _val = this.value.trim();
+	    	this.value = autoHypenPhone(_val) ;
+	    	}
         
-        text5.readOnly = false;
-        text5.style.border = "solid";
-        text5.style.borderColor = "#F9BD41";
-       
     }
     else
     {
         text4.readOnly = true;
         text4.style.border = "none";
         
-        text5.readOnly = true;
-        text5.style.border = "none";
-        
-         var newphone = $('#text4').val();
-      
-        
         $.ajax({
             type: "POST",
             data: {
                 "no" : meno,
-                "phone" : newphone 
+                "phone" : $("#text4").val()
                 },
          url: "updatePhone.do", 
          success : function() {
@@ -194,35 +221,30 @@
     {
     if ( chkbox.checked == true )
     {
-        text6.readOnly = false;
-        text6.style.border = "solid";
-        text6.style.borderColor = "#A64DB6";
+        $('#findpstno').css('display','inline-block');
         
-        text7.readOnly = false;
-        text7.style.border = "solid";
-        text7.style.borderColor = "#A64DB6";
+        sample6_postcode.style.border = "solid";
+        sample6_postcode.style.borderColor = "#A64DB6";
         
-        text8.readOnly = false;
-        text8.style.border = "solid";
-        text8.style.borderColor = "#A64DB6";
+        sample6_address.style.border = "solid";
+        sample6_address.style.borderColor = "#A64DB6";
+        
+        sample6_address2.readOnly = false;
+        sample6_address2.style.border = "solid";
+        sample6_address2.style.borderColor = "#A64DB6";
        
-    }
-    else
+    }else
     {
-        text6.readOnly = true;
-        text6.style.border = "none";
+    	sample6_address2.readOnly = true;
+    	sample6_postcode.style.border = "none";
         
-        text7.readOnly = true;
-        text7.style.border = "none";
+        sample6_address.style.border = "none";
         
-        text8.readOnly = true;
-        text8.style.border = "none";
-        
-        
-        var newpstno = $('#text6').val();
-        var newbas= $('#text7').val();
-        var newdet= $('#text8').val();
-      
+        sample6_address2.style.border = "none";
+
+        var newpstno = $('#sample6_postcode').val();
+        var newbas= $('#sample6_address').val();
+        var newdet= $('#sample6_address2').val();
         
         $.ajax({
             type: "POST",
@@ -232,10 +254,8 @@
                 "bas_addr" : newbas,
                 "det_addr" : newdet
                 },
-                
          url: "updateAddr.do", 
          success : function() {
-            
              swal({
                    text : "변경 완료",
                  button : "확인"
@@ -247,7 +267,9 @@
                      })
                      }
              }); 
+        $('#findpstno').css('display','none');
     }
+    
 }
 
 
@@ -357,7 +379,7 @@
                                                     핸드폰 번호                          
                                 </div>
                                 <div class="cont1" >
-                                   <input id="text4" type="text" name="pwd" value="${mentee.phone}" readonly style="width:140px; border:none; ">
+                                   <input id="text4" type="text" name="phone" maxlength="13" value="${mentee.phone}" readonly style="width:140px; border:none; ">
                                     
                                 </div>
                                 
@@ -392,38 +414,15 @@
                                 <h3>주소지 변경</h3>
                             </div>
                             <div class="profile-contents" style="height: 50px;" >
-                                <div class="title1" style="text-align:left;" >
-                                                            우편번호
-                                </div>
-                                <div class="cont1" >
-                                   <input id="text6" type="text" name="pwd" value="${mentee.pstno}" readonly style="width:140px; border:none; ">
-                                    
-                                </div>
-                                
-                                
+                                   <input id="sample6_postcode" style="width:30%; border:none;" type="text" name="pwd" value="${mentee.pstno}" readonly style="width:140px; border:none; ">
+                                   <input type="button" id="findpstno" style="display:none;" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
                             </div>
                             <div class="profile-contents" style="height: 50px;">
-                                <div class="title1"  style="text-align:left;" >
-                                기본주소
+                                    <input id="sample6_address" type="text" style="width:100%; border:none;" name="bk" value="${mentee.bas_addr}" readonly style="width:140px; border:none; ">
                                 </div>
-                             <div class="cont1" >
-                                    <input id="text7" type="text" name="bk" value="${mentee.bas_addr}" readonly style="width:140px; border:none; ">
-                                   
-                                </div>
-                                
-                                
-                            </div>
-                            
                             <div class="profile-contents" style="height: 50px;">
-                                <div class="title1"  style="text-align:left;" >
-                                상세주소
-                                </div>
-                             <div class="cont1" >
-                                    <input id="text8" type="text" name="bk" value="${mentee.det_addr}" readonly style="width:140px; border:none; ">
-                                   
-                                </div>
-                                
-                                
+                                    <input id="sample6_address2" type="text" style="width:100%; border:none;" name="bk" value="${mentee.det_addr}" readonly style="width:140px; border:none; ">
+                            </div>
                             </div>
                            
                              <div class="toggle toggle--knob" style="position:absolute; right:30px; top:0; ">
@@ -593,11 +592,35 @@
             
             <script>
             
-            
-            
-            
-            
-          
+            function sample6_execDaumPostcode() {
+                new daum.Postcode({
+                    oncomplete: function(data) {
+                   
+                        var fullAddr = ''; 
+                        var extraAddr = ''; 
+
+                        if (data.userSelectedType === 'R') {
+                            fullAddr = data.roadAddress;
+                        } else { 
+                            fullAddr = data.jibunAddress;
+                        }
+
+                        if(data.userSelectedType === 'R'){
+                            if(data.bname !== ''){
+                                extraAddr += data.bname;
+                            }
+                            if(data.buildingName !== ''){
+                                extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                            }
+                            fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+                        }
+                        document.getElementById('sample6_postcode').value = data.zonecode; 
+                        document.getElementById('sample6_address').value = fullAddr;
+
+                        document.getElementById('sample6_address2').focus();
+                    }
+                }).open();
+            }    
             
             $("#btn-cancle").click(function(){
                 $(".pop").removeClass("hide");
