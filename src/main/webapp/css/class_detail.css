@@ -33,11 +33,11 @@ h6 {
   font-family: 'Noto Sans KR', sans-serif;
 }
 
-a {
+/* a {
   color: #212529;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
-}
+} */
 
 a:focus, a:hover {
   color: #0085A1;
