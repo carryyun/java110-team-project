@@ -1,0 +1,102 @@
+/* 카테고리 nav 관련 */
+nav.navbar{
+    padding: 0;
+    /* z-index: 4; */
+}
+#categoryNav{
+  /* 카테고리 가로정렬 ? */
+  margin: 0 auto;
+}
+nav.navbar.navbar-expand-lg:not(#mainNav){
+ padding-top: 2px;
+ padding-bottom: 1px;
+  /* border-top: 1px solid #6e6e6e; */
+  /* border-bottom: 1px solid #6e6e6e */;
+}
+#categoryNav > .navbar-nav{
+  /* 카테고리 세로정렬 ? */
+  display: flex;
+  flex-grow: 1;
+  flex-direction: row;
+
+}
+#categoryNav > .navbar-nav > li.nav-item {
+
+  
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-family: 'Noto Sans KR', sans-serif;
+  text-align: center;
+}
+#categoryNav > .navbar-nav > li.nav-item:hover {
+/*   border-top: 1px solid #6e6e6e;
+  border-bottom: 1px solid #6e6e6e; */
+  border-top: 1px solid #B9B9B9;
+
+  
+  
+  /* font-size: 20px; */
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+#categoryNav > .navbar-nav > li.nav-item > a {
+  padding: 8px;
+  color: #6e6e6e;
+  min-width: 123px;
+}
+#categoryNav > .navbar-nav > li.nav-item > a:hover{
+  padding: 4px 7px 7px 7px;
+  border-bottom: 4px solid #FFB53C;
+  border-left: 1px solid #B9B9B9;
+  border-right: 1px solid #B9B9B9;
+  min-width: 123px;
+}
+
+
+nav.navbar{
+    /* background-color: #fff; */
+}
+
+/* 카테고리 서브메뉴 관련 */
+div.menusubs{
+    position: relative;
+    width: 97.5%;
+    z-index: 6;
+    text-align: left;
+    margin-top: 0px;
+    margin: 0 auto;
+    /* margin-bottom: 20px; */
+}
+div.menusubs .localNav {
+    position: absolute;
+    display: none;
+    background-color: white;
+    border-bottom: 2px solid #6e6e6e;
+    border-left: 2px solid #6e6e6e;
+    border-right: 2px solid #6e6e6e;
+    height: 100px;
+    padding: 10px 20px;
+}
+
+div.menusubs .localNav li {
+    display: inline;
+    width:50px;
+}
+.localNav ul, .localNav li {
+    list-style: none;
+    padding: 10px 5px;
+
+}
+div.menusubs .localNav li a{
+    padding: 5px 10px;
+}
+
+div.menusubs ul{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
