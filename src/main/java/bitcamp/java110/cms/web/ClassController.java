@@ -192,12 +192,12 @@ public class ClassController {
     return null;
   }
 
-  @RequestMapping("cls")
+  /*@RequestMapping("cls")
   public void cls(Model model) {
     List<Classes> clslist = classService.list();
     model.addAttribute("clslist", clslist);
   }
-
+*/
   @RequestMapping("clsCate")
   public void clsCate(Model model, int no, String type) {
     BigTag bigtag = null;
@@ -386,10 +386,10 @@ public class ClassController {
     Mentee mentee = (Mentee) session.getAttribute("loginUser");
     
     int clsorderlist = classOrderService.listByCno(no , mentee.getNo());
-    System.out.println(clsorderlist);
+    
     return clsorderlist;
   }
-
+  
   @RequestMapping("findByptno")
   public void findByptno(Model model,int no) {
     Classes prdtcls = classService.findbyptno(no);
