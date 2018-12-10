@@ -186,5 +186,25 @@
         values(#{meno},#{ptno},#{cnt},#{tot_pric},#{payopt},now())
     </insert> 
     
+    
+    <select id="findByNo" resultMap="productOrderMap">
+        select
+            ono,
+            meno,
+            ptno,
+            cnt,
+            tot_pric,
+            payopt,
+            paydt,
+            parc_name,
+            parc_no
+        from 
+            p_prdt_order
+        where
+            ono=#{no}
+       
+    </select>
+    
+    
 
 </mapper>

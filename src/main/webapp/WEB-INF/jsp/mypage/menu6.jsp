@@ -9,7 +9,7 @@
 <div class="col-lg-12"> 
     <div class="panel panel-default">
 
-
+ <span style="dispay:inline; font-size:24px; font-weight:900; color:black; vertical-align: middle;" >상품 목록</span>
         <div class="panel-body">
         <table class="table table-condensed" style="border-collapse: collapse;">
 

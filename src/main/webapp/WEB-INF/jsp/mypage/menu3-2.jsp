@@ -39,6 +39,7 @@
                             <td>${p.sellernick}</td>
                             <td>${p.tot_pric}(${p.cnt})개<br>${p.payopt}</td>
                             <td>
+                            <span id="productState" name="${p.parc_no}"></span>
                                 <button type="button" class="btn btn-primary"
                                     onclick="searchparc()">배송조회</button>
                                     
@@ -88,4 +89,24 @@
 
 
 
+<script>
 
+
+$(document).ready(function() {
+    
+    var judge = $('#productState').attr('name')
+    
+    if(judge == null){
+        
+        $('#productState').text('결제완료')
+    }
+   
+    else if(judge != null){
+        
+    $('#productState').text('배송중')
+        
+    }
+    
+});
+
+</script>

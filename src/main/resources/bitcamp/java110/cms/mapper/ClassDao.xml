@@ -369,8 +369,9 @@
             JOIN p_mete me2 ON co.meno = me2.meno
             LEFT JOIN p_cert cert ON me2.meno = cert.meno
             
+            
        where
-            c.cno=#{cno} AND ps.stat = 'Y'
+            c.cno=#{cno} AND c.stat = 'Y'
             
       ORDER BY
            ct.ctno asc
