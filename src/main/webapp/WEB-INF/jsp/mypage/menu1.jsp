@@ -457,7 +457,7 @@
         출금은행 : ${mentee.bkname}<br>
         계좌번호 : ${mentee.bkno}<br>
         
-    <hr>
+    <hr> 
     
     <div class="nope" >
     
