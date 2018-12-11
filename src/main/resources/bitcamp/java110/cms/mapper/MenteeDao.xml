@@ -311,5 +311,18 @@
 
     </update>
     
+     <update id="updatePhoto" parameterType="Mentee">
+        
+        UPDATE
+            p_mete
+
+        SET 
+            phot = #{phot}
+
+        WHERE 
+            meno = #{no}
+
+    </update>
+    
     
 </mapper>

@@ -102,10 +102,15 @@ public class MypageController {
   @GetMapping("mypage")
   public void mypage(Model model,HttpSession session) {
     
-    Mentee mentee = (Mentee) session.getAttribute("loginUser");
+    Mentee imentee = (Mentee) session.getAttribute("loginUser");
+    int reMeno = imentee.getNo();
+    
+    Mentee mentee = mentorService.get(reMeno);
     model.addAttribute("mentee", mentee);
-    Mentor mentor = mentorService.get(mentee.getNo());
+    
+    Mentee mentor = mentorService.get(reMeno);
     model.addAttribute("mentor", mentor);
+    
   }
   
   @GetMapping("headerMainMy")
@@ -131,7 +136,36 @@ public class MypageController {
     model.addAttribute("mentor", mentor);
   }
    
-  
+  @RequestMapping(value = "photoupload", method=RequestMethod.POST)
+  public String  photoupload(@RequestParam("photoUpdate") List<MultipartFile> photo,
+      @RequestParam("meno") int meno,
+       Mentee mentee
+      ) throws Exception {
+    
+    
+
+    String filename = "";
+    
+    for(MultipartFile file : photo) {
+      if(file.getOriginalFilename().length() > 2 ) {
+        filename = UUID.randomUUID().toString();
+        file.transferTo(new File(sc.getRealPath("/upload/img/" + filename+".png")));
+      } 
+    }
+    
+    System.out.println(filename);
+    
+    String phot ="/upload/img/"+ filename+".png";
+    
+    mentee.setNo(meno);
+    mentee.setPhot(phot);
+    
+    System.out.println(mentee.getPhot());
+    
+    menteeService.updatePhoto(mentee);
+    
+  return "redirect:mypage";
+}
   
   @RequestMapping(value = "imgupload", method=RequestMethod.POST)
   public String  imgupload(@RequestParam("fileUpload1") List<MultipartFile> files,
@@ -272,6 +306,12 @@ public class MypageController {
     return menteeService.updateAddr(mentee);
   }
   
+ /* @RequestMapping(value = "updatePhoto.do", method = {RequestMethod.POST})
+  public @ResponseBody int updatePhoto(Mentee mentee) {
+    
+    return menteeService.updatePhoto(mentee);
+  }
+  */
   
   
   @GetMapping("menu2")
