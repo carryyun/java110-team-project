@@ -159,7 +159,7 @@
 															<div style="padding: 0 5px; top: 75px; width: auto; height: auto; position: absolute; background-color: #f58500; color: white; border-bottom-right-radius: 10px">${pl.mentee.name}
 															</div>
 															<div style="padding: 0 5px; top: 100px; width: auto; height: auto; position: absolute; background-color: #333873; color: white; border-bottom-right-radius: 10px">${pl.mentee.nick}
-																멘토</div>
+															</div>
 														</div>
 													</div>
 													<div class="product-description">
@@ -308,7 +308,11 @@
                     content += '</div>'
                     content += '<div style="padding: 0 5px; top: 20px; width: auto; height: auto; position: absolute; background-color: #f58500; color: white; border-bottom-right-radius: 10px">'+nick+'</div>'
                     content += "<img id='owl-img' src=\"" + phot + "\" alt=\"" + titl + "\">"
-                    content += "<div class='col-lg-9' id='owl-col2'>" + titl + "</div>"
+                    if(titl.length>21){
+                        content += "<div class='col-lg-9' id='owl-col2'>" + titl.substring(0,21) + "...</div>"
+                    }else{
+                        content += "<div class='col-lg-9' id='owl-col2'>" + titl + "</div>" 
+                    }
                     content += "<div class='col-lg-3' id='owl-coltag'>" + stname + "</div>"
                     content += "<div class='col-lg-6' id='owl-colstar'>"
                     for(var j=0; j<5; j++) {
