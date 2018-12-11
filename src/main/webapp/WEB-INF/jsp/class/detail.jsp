@@ -84,8 +84,10 @@
                                     <div id="carouselExampleIndicators" class="carousel slide" data-interval="false" data-ride="carousel">
                                       <ol class="carousel-indicators">
                                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                                      <c:forEach items="${clsfilelist}" var="cf" varStatus="i">
-                                        <li data-target="#carouselExampleIndicators" data-slide-to="${i.count}"></li>
+                                      <c:forEach items="${clsfilelist}" var="cfIndi" varStatus="z">
+                                      <c:if test="${z.index ne 0}">
+                                        <li data-target="#carouselExampleIndicators" data-slide-to="${z.index}"></li>
+                                      </c:if>
                                       </c:forEach>
                                       </ol>
                                       <div class="carousel-inner">
