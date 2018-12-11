@@ -108,7 +108,7 @@
 							<ul class="ah_l">
 							<c:forEach items="${hotItemlist}" var="h" varStatus="o">
 							<li class="ah_item">
-							<a href="detail?no=${h.no}" class="ah_a" data-clk="lve.keyword" >
+							<a href="detail?no=${h.no}" target="_blank" class="ah_a" data-clk="lve.keyword" >
 							<span class="ah_r">${o.count}</span>
 							<c:choose>
 								<c:when test="${fn:length(h.titl) > 17}">
