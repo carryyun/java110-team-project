@@ -8,6 +8,8 @@ public interface ProductOrderService {
   List<ProductOrder> list(int pageNo, int pageSize);
   
   List<ProductOrder> listByMaster(int pageNo, int pageSize);
+  List<ProductOrder> proPage(int pageNo, int pageSize);
+  int countpro();
 
   // 주문 번호로 조회
   ProductOrder get(int no);

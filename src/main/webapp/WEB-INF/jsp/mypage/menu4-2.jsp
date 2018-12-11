@@ -2,6 +2,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<script>
+
+//  답변 처리상태
+$(document).ready(function() {
+    <c:forEach items="${cslist}" var="cc" varStatus="i">
+  var answer = $('.answer'+${i.index}).text();
+  if(!answer){
+        $('.answerState'+${i.index}).text("답변대기");
+    } 
+  else {
+        $('.answerState'+${i.index}).text("답변완료");
+    } 
+    </c:forEach>    
+});
+
+</script>
+
+
 <div class="col-lg-12">
     <div class="panel panel-default">
        
@@ -19,11 +38,13 @@
                 <thead>
                     <tr>
                        
-                        <th>No.</th>
-                        <th>클래스</th>
-                        <th>제목</th>
-                        <th>문의일자</th>
-                        <th>처리상태</th>
+                        
+                        
+                        <th width="5%">No.</th>
+                        <th width="35%">클래스</th>
+                        <th width="25%" >제목</th>
+                        <th width="15%">문의일자</th>
+                        <th width="15%">처리상태</th>
                     </tr>
                 </thead>
 
@@ -36,7 +57,7 @@
                         <td>${c.classes.titl}</td>
                         <td>${c.titl}</td>
                         <td>${c.rgdt}</td>
-                        <td>처리상태</td>
+                        <td id="answerState${i.index}"></td>
                         <%-- <a href="../class/detail?no=${c.classes.no}"><img src="${c.classFile.fname}" width="200px" height="150px"></a> --%>
 
                     </tr>
@@ -47,16 +68,16 @@
                                     <thead>
                                         <tr>
                                            <td class="qcontents">문의내용</td>
-                                            <td>${c.conts}
+                                            <td >${c.conts}
                                             </td>
                                         </tr>
-                                        
+                                         
                                     </thead>
                                     <tbody>
 
                                         <tr>
                                             <td class="qcontents">답변내용</td>
-                                            <td>${c.anser}</td>
+                                            <td id="answer${i.index}">${c.anser}</td>
                                         </tr>
 
                                     </tbody>

@@ -510,7 +510,8 @@ $('#mapModal').on('shown.bs.modal', function (e) {
 				button: "확인"
 			});
 		}else if('${sessionScope.loginUser.mtstat}' == 'Y'){
-			window.open('classadd');
+			location.href='classadd';
+			//window.open('classadd');
 		}else if('${sessionScope.loginUser.mtstat}' == 'I'){
 			swal({
 				title: "아직 멘토 심사 기간이 안끝났습니다.",

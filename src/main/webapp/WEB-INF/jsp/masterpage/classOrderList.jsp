@@ -2,6 +2,7 @@
     pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -179,9 +180,7 @@
                                                     <th
                                                         class="text-center">구매자</th>
                                                     <th
-                                                        class="text-center">판매자</th>
-                                                    <th
-                                                        class="text-center">가격</th>
+                                                        class="text-center">가격(원)</th>
                                                     <th
                                                         class="text-center">결제일</th>
                                                         <th
@@ -200,15 +199,13 @@
                                                         <td
                                                             class="text-center">${pl.mtname}</td>
                                                         <!-- 카테고리 -->
+                                                        <c:set var="TextValue" value="${pl.cls_titl}"/>
                                                         <td
-                                                            class="text-center">${pl.cls_titl}</td>
+                                                            class="text-center">${fn:substring(TextValue,0,25) }</td>
                                                         <!-- 클래스명 -->
                                                         <td
                                                             class="text-center">${pl.mete_nick}</td>
                                                         <!-- 구매자 -->
-                                                        <td
-                                                            class="text-center">${pl.mete2_nick}</td>
-                                                        <!-- 판매자 -->
                                                         <td
                                                             class="text-center"><fmt:formatNumber value="${pl.cls_pric}" groupingUsed="true"/>원</td>
                                                         <!-- 가격 -->
@@ -249,10 +246,6 @@
                                             	int p=cor/10+1;
                                             	int c = (int)Math.ceil(p);
                                             	
-                                            	System.out.println(cor);
-                                            	System.out.println(p);
-                                            	System.out.println(c);
-                                            	
                                             	for(int ono=1; ono<=c; ono++){
                                             	System.out.println(ono);
                                             %>
@@ -280,7 +273,7 @@
                                     var="pl" varStatus="i">
                                     <div id="popup${i.index}"
                                         class="overlay">
-                                        <div class="popupHH">
+                                        <div class="popupH">
                                             <h2>클래스 신청 내역</h2>
                                             <a class="close" href="#">×</a>
                                             <div class="content">
@@ -335,34 +328,38 @@
                                                                     </tr>
                                                                     
                                                                     <tr>
-                                                                        <td colspan="3"><span style="font-size: 20px;">카테고리:
-                                                                            </span>
-                                                                                <span class="pop-type">${pl.mtname }</span></td>
-                                                                                <td colspan="9"><span style="font-size: 20px;">클래스명:
+                                                                    <td colspan="12"><span style="font-size: 20px;">클래스명:
                                                                             </span>
                                                                             <span class="pop-type">${pl.cls_titl}</span></td>
-                                                                            
+                                                                    
+                                                                    </tr>
+                                                                    
+                                                                    <tr>
+                                                                        <td colspan="6"><span style="font-size: 20px;">카테고리:
+                                                                            </span>
+                                                                                <span class="pop-type">${pl.mtname }</span></td>
+                                                                                <td colspan="6"><span
+                                                                                style="font-size: 20px;">결제일:
+                                                                            </span>
+                                                                                <span
+                                                                                class="pop-type">${pl.paydt}</span></td>
                                                                                 
                                                                     </tr>
                                                                     
 
 
                                                                     <tr>
-                                                                        <td colspan="4"><span
+                                                                        <td colspan="6"><span
                                                                                 style="font-size: 20px;">결제방법:
                                                                             </span>
                                                                                 <span
                                                                                 class="pop-type">${pl.payopt}</span></td>
-                                                                        <td colspan="4"><span
+                                                                        <td colspan="6"><span
                                                                                 style="font-size: 20px;">가격:
                                                                             </span>
                                                                                 <span
                                                                                 class="pop-type"><fmt:formatNumber value="${pl.cls_pric}" groupingUsed="true"/></span></td>
-                                                                                <td colspan="4"><span
-                                                                                style="font-size: 20px;">결제일:
-                                                                            </span>
-                                                                                <span
-                                                                                class="pop-type">${pl.paydt}</span></td>
+                                                                                
                                                                                 
                                                                                 
                                                                                 
@@ -491,6 +488,11 @@ function checkItem(){
     
 }
 
+function addComma(num) {
+    var regexp = /\B(?=(\d{3})+(?!\d))/g;
+    return num.toString().replace(regexp, ',');
+  }
+
 function orpage(ono) {
     
     var clsorderlist = $('#clsorderlist');
@@ -502,12 +504,13 @@ function orpage(ono) {
         },
         url : "classOrderpage.do",
         success : function(data) {
+            
 	        var html = "";
-	        
 	        for (var i in data) {
 	        	
 	            var mtname = data[i].mtname;
-	            var titl = data[i].cls_titl;
+	            var str = data[i].cls_titl;
+	            var titl = str.substring(0,25);
 	            var nick = data[i].mete_nick;
 	            var nick2 = data[i].mete2_nick;
 	            var pric = data[i].cls_pric;
@@ -533,8 +536,7 @@ function orpage(ono) {
 	            html+= '        <td class="text-center">'+mtname+'</td>'
 	            html+= '        <td class="text-center">'+titl+'</td>'
 	            html+= '        <td class="text-center">'+nick+'</td>'
-	            html+= '        <td class="text-center">'+nick2+'</td>'
-	            html+= '        <td class="text-center">'+pric+'원</td>'
+	            html+= '        <td class="text-center">'+addComma(pric)+'</td>'
 	            html+= '        <td class="text-center bold">'+paydt+'</td>'
 	            html+= '        <td class="text-center"><a class="btn btn-light" href="#popup'+i+'" style="color:black;">상세 보기</a></td>'
 	            html+= '    	</tr>'

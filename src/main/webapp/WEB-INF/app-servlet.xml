@@ -65,7 +65,6 @@
             
             <!-- my page -->
             <mvc:exclude-mapping path="/mypage/getMenteeList.do" />
-            <mvc:exclude-mapping path="/mypage/buyerList.do" />
             <mvc:exclude-mapping path="/mypage/insertCert.do" />
             <mvc:exclude-mapping path="/mypage/updateProfile.do" />
             <mvc:exclude-mapping path="/mypage/updatePwd.do" />
@@ -74,7 +73,8 @@
             <mvc:exclude-mapping path="/mypage/deleteuser.do"/>
             <mvc:exclude-mapping path="/mypage/deliveryinsert.do"/>
             <mvc:exclude-mapping path="/mypage/questionInsert.do"/>
-             <mvc:exclude-mapping path="/mypage/updatePhoto.do"/>
+            <mvc:exclude-mapping path="/mypage/updatePhoto.do"/>
+            <!-- <mvc:exclude-mapping path="/mypage/buyerList.do" /> -->
             
          
             
