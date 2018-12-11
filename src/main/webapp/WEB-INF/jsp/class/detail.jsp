@@ -1396,7 +1396,7 @@ function qnapage(qno) {
                 		if(qnatitl.length > 8) {
 	                    var longtitl = qnatitl.substring(0, 7);
 	            html +=' <td class="col-lg-3">'+longtitl+'..</td>'
-	                    } else {
+	                    } else { 
 	            html +=' <td class="col-lg-3">'+qnatitl+'</td>'
 	                    }
         		html +='        <td class="col-lg-2">'+qnanick+'</td>'
