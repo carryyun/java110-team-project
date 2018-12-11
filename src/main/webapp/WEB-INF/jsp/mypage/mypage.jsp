@@ -118,8 +118,8 @@
          /* a tag 속성  */
 
 
-         a:link { color: black; }
-         a:visited { color: black; }
+         a:link { color: #6E6E6E; }
+         a:visited { color: #6E6E6E; }
          a:hover { color: #00BFFF; }
          
          
