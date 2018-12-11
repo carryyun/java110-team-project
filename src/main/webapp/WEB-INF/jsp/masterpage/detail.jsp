@@ -340,7 +340,7 @@
 	                    <div id="adr" class = "addr" style="height:50px;"><div><strong>기본 주소</strong></div>  ${detailclass.basAddr}</div>
 	                    <div id="adr" class = "addr"><div><strong>상세 주소</strong></div>  ${detailclass.detAddr}</div>
 	                    </div>
-	                    </div>
+	                    </div> 
 	                </div>
                 
                 <!-- <div class="row"> -->
