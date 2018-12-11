@@ -7,7 +7,9 @@ public interface ProductService {
  
   List<Product> list(); 
   
-  List<Product> findAllByList(); // 전체 상품 조회
+  List<Product> findAllByList(int pageNo, int pageSize); // 전체 상품 조회
+  List<Product> pdalist(int pageNo, int pageSize);
+  int countpdall();
   
   Product get(int no); // 공예품 번호로 조회
   

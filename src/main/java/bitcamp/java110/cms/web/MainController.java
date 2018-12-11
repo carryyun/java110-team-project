@@ -86,9 +86,9 @@ public class MainController {
       List<ClassLike> clike_popul = classLikeService.listByMeno(loginUser.getNo());
       System.out.println("실행");
       model.addAttribute("clike_popul", clike_popul);
-      for(ClassLike c : clike_popul) {
+/*      for(ClassLike c : clike_popul) {
         System.out.println(c.getCno());
-      }
+      }*/
     }
     
     
