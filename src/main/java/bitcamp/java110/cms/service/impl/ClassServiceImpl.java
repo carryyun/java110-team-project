@@ -30,9 +30,11 @@ public class ClassServiceImpl implements ClassService{
     System.out.println(loginUserNo);
     if(classes.getDetAddr() == null) {
       classes.setDetAddr(null);
-    }else if((classes.getCfile().equals(""))){
+    }
+    if((classes.getCfile().equals(""))){
       classes.setCfile("");
-    }else if(classes.getCfile().length() > 0) {
+    }
+    if(classes.getCfile().length() > 0 & !( classes.getCfile().endsWith("jpg") | classes.getCfile().endsWith("png")  ) ) {
       classes.setCfile(classes.getCfile().substring(classes.getCfile().length()-11, classes.getCfile().length()));
     }
     classes.setMtno(Integer.parseInt(selmtag));
