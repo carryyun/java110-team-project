@@ -84,7 +84,7 @@
 		<result column="stime" property="timetable.stime" />
 		<result column="time" property="time" />
 	</resultMap>
-
+ 
 	<resultMap type="Classes" id="classStar">
 		<id column="cno" property="no" />
 		<result column="star" property="star" />
