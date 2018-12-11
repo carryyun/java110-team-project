@@ -30,6 +30,9 @@
                 <a class="nav-link" href="../class/clsCate?no=${bt.no}" id="menu0${i.count}">${bt.name}</a>
               </li>
             </c:forEach>
+            <li class="nav-item" style="margin:0 auto;display: inline-block;">
+                <a class="nav-link" href="../product/prdt">작품장터</a>
+              </li>
           </ul>
         </div>
     </nav>

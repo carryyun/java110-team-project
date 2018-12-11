@@ -168,7 +168,20 @@
                                 }
                             %>
                             
-                            
+                             <c:set var="declstit" value="${detailclass.titl}"/>
+                                            <%
+                                            	String declsti = (String)pageContext.getAttribute("declstit");
+	                                            if(declsti.length() > 8) {
+	                                            String clslongtitl = declsti.substring(0, 7);
+	                                        %>
+	                                        	<td class="col-lg-3"><%=clslongtitl%>..</td>
+	                                        <%      
+	                                            } else {
+	                                        %>
+	                                        	<td class="col-lg-3"><%=declsti%></td>
+	                                        <%
+	                                            }
+                                            %>
                                 <h4 class="title mb-3 text-left">${detailclass.titl}
                                 <c:choose>
                                 <c:when test="${likeResult == 1}">
