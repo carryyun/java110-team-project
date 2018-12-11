@@ -2,6 +2,7 @@
     pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -170,19 +171,20 @@
                                                 <th class="text-center">카테고리</th>
                                                 <th class="text-center">상품명</th>
                                                 <th class="text-center">구매자</th>
-                                                <th class="text-center">가격</th>
+                                                <th class="text-center">가격(원)</th>
                                                 <th class="text-center">결제일</th>
                                                 <th class="text-center">상세보기</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="masterPro">
                             <c:forEach items="${productOrderList}" var="pl" varStatus="i">
                                 <tr>
                                     <td class="text-center">${i.count}</td>
                                     <td class="text-center">${pl.stname}</td> <!-- 카테고리 -->
-                                    <td class="text-center">${pl.prdt_titl}</td> <!-- 상품명 -->
+                                    <c:set var="TextValue" value="${pl.prdt_titl}"/>
+                                    <td class="text-center">${fn:substring(TextValue,0,25) }</td> <!-- 상품명 -->
                                     <td class="text-center">${pl.mete_nick}</td><!-- 구매자 -->
-                                    <td class="text-center"><fmt:formatNumber value="${pl.prdt_pric}" groupingUsed="true"/>원</td><!-- 가격 -->
+                                    <td class="text-center"><fmt:formatNumber value="${pl.prdt_pric}" groupingUsed="true"/></td><!-- 가격 -->
                                     <td class="text-center bold">${pl.paydt}</td><!--결제일 -->
                                     <td
                                                         class="text-center">
@@ -212,15 +214,18 @@
                                                     <span
                                                     class="sr-only">Previous</span>
                                             </a></li>
+                                            <c:set var="procount" value="${countList}"/>
+                                            <% int proco = (int)pageContext.getAttribute("procount");
+                                            int prod = proco/10;
+                                            int propage = (int)Math.ceil(prod)+1;
+                                            
+                                            for(int proo=1; proo<=propage; proo++){
+                                            %>
                                             <li class="page-item"><a
                                                 class="page-link"
-                                                href="#">1</a></li>
-                                            <li class="page-item"><a
-                                                class="page-link"
-                                                href="#">2</a></li>
-                                            <li class="page-item"><a
-                                                class="page-link"
-                                                href="#">3</a></li>
+                                                onclick="propage(<%=proo%>)"><%=proo%></a></li>
+                                                <%} %>
+                                            
                                             <li class="page-item"><a
                                                 class="page-link"
                                                 href="#"
@@ -239,7 +244,7 @@
                                     var="pl" varStatus="i">
                                     <div id="popup${i.index}"
                                         class="overlay">
-                                        <div class="popupHH">
+                                        <div class="popupH">
                                             <h2>상품 주문 내역</h2>
                                             <a class="close" href="#">×</a>
                                             <div class="content">
@@ -285,7 +290,7 @@
                                                                     <tr>
                                                                         <td><span style="font-size: 20px;">가격:
                                                                             </span>
-                                                                                <span class="pop-type"><fmt:formatNumber value="${pl.prdt_pric}" groupingUsed="true"/>원</span></td>
+                                                                                <span class="pop-type"><fmt:formatNumber value="${pl.prdt_pric}" groupingUsed="true"/></span></td>
                                                                                 <td><span style="font-size: 20px;">수량:
                                                                             </span>
                                                                                 <span class="pop-type">${pl.cnt}개</span></td>
@@ -354,6 +359,73 @@
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- 181121고친거 -->
 <script>
+
+function addComma(num) {
+    var regexp = /\B(?=(\d{3})+(?!\d))/g;
+    return num.toString().replace(regexp, ',');
+  }
+  
+function propage(proo){
+    var masterPro = ('#masterPro');
+    
+    
+    $.ajax({
+       type: "POST",
+       data:{
+           pageNo: proo
+       },
+       url: "proPage.do",
+       success: function(data){
+           
+           var html ="";
+           for (var i in data) {
+               var stname = data[i].stname;
+               var str = data[i].prdt_titl;
+               var titl = str.substring(0,25); 
+               var nick = data[i].mete_nick;
+               var pric = data[i].prdt_pric;
+               var rgdt = data[i].paydt;
+               
+              
+               var newrgdt = new Date(rgdt);
+               
+               var dd = newrgdt.getDate();
+               var mm = newrgdt.getMonth();
+               var yy = newrgdt.getFullYear();
+               
+               if(dd < 10){
+                   dd = '0' + dd;
+               }
+               if(mm < 10){
+                   mm = '0' + mm;
+               }
+               
+               newrgdt = yy+'-'+mm+'-'+dd;
+               
+               console.log(stname);
+               console.log(titl);
+               console.log(nick);
+               console.log(pric);
+               console.log(newrgdt);
+               
+               
+               html += '<tr>'
+               html += '<td class="text-center">'+((proo-1)*10+(parseInt(i)+1))+'</td>'
+               html += '<td class="text-center">'+stname+'</td>'
+               html += '<td class="text-center">'+titl+'</td>' 
+               html += '<td class="text-center">'+nick+'</td>'
+               html += '<td class="text-center">'+addComma(pric)+'</td>'
+               html += '<td class="text-center bold">'+newrgdt+'</td>'
+               html += '<td class="text-center"><a class="btn btn-light" href="#popup'+i+'" style="color:black;">상세 보기</a></td>'
+               html += '</tr>'
+               } 
+            var setDiv = document.querySelector("#masterPro");
+            setDiv.innerHTML=html;
+       
+       }
+   });
+}
+
 $(document).ready(function() {
     var activeSystemClass = $('.list-group-item.active');
 
