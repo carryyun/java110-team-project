@@ -43,11 +43,12 @@
     
    
    <!--  HeaderMain -->
-   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"    crossorigin="anonymous">
-<link href="/css/mypagecss/myheader.css" rel="stylesheet">
-<link href="/css/common.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"    crossorigin="anonymous">
+    <link href="/css/mypagecss/myheader.css" rel="stylesheet">
+    <link href="/css/common.css" rel="stylesheet">
+     
      <!--  HeaderNav -->
- <link href="/css/category.css" rel="stylesheet">
+    <link href="/css/category.css" rel="stylesheet">
    
      <!-- Custom fonts for this template -->
     <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -56,11 +57,9 @@
     
     <!-- 폰트 추가 -->
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
+    
+
     </head>
-    <!-- Category Navigation -->
-    <!-- <hr class="Fhr"> -->
-   
-   
    
     <script>
     
@@ -141,7 +140,7 @@
         <div class="container-wrap">
 			<div class="row" ></div>
 		
-            <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
+            <a href="#"  class="js-colorlib-nav-toggle colorlib-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
             <aside id="colorlib-aside" role="complementary" class="border js-fullheight" style="top:150px;">
                 <div class="text-center">
                     <div class="author-img" style="background-image: url(${mentee.phot};"></div>
@@ -371,92 +370,11 @@
     </div><!-- end:colorlib-page -->
 
     <!-- Footer -->
-    	<footer>
-            <div class="col px-0">
+    	<footer  >
+            <div class="col px-0"  style="z-index:10000;" >
                 <jsp:include page="../footer.jsp"></jsp:include>
             </div>
         </footer>
-    <!-- <footer id="myFooter">
-        <div class="container">
-            <div class="row">
-
-
-                <div class="col-sm-2" style="height: 100%;">
-                    <h5><a href="#">회사소개</a></h5>
-
-                </div>
-
-                <div class="col-sm-2" style="height: 100%;">
-                    <h5><a href="#">공지사항</a></h5>
-
-                </div>
-                <div class="col-sm-2" style="height: 100%;">
-                    <h5><a href="#">고객센터</a></h5>
-
-                </div>
-                <div class="col-sm-2" style="height: 100%;">
-                    <h5><a href="#">이용약관</a></h5>
-                </div>
-
-                
-                <div class="col-sm-2">
-                     <h5>개인정보처리방침</h5>
-                </div>
-
-
-
-
-
-
-
-
-                <div class="col-sm-3" style="text-align: right;">
-                    <h2 class="logo"><a href="#"> HARU </a></h2>
-                    <p><b>카카오톡 플러스</b><br>: @Haru</p>
-
-                    <p><b>고객센터 운영시간</b><br>평일 AM 10:00 ~ PM 06:00<br>점심 AM 12:30 ~ PM 01:30</p>
-
-
-
-                    <div class="social-networks" >
-                        <ul style="text-align: right;">
-                            <li class="list-inline-item" style="position: relative;">
-                                <a href="#" class="twitter"><i class="fab fa-twitter  fa-inverse"></i></a>
-                            </li>
-
-                            <li class="list-inline-item" style="position: relative;">
-                                <a href="#" class="facebook"><i class="fab fa-facebook-f  fa-inverse"></i></a>
-                            </li>
-
-                            <li class="list-inline-item" style="position: relative;">
-                                <a href="#" class="google"><i class="fab fa-google-plus  fa-inverse"></i></a>
-                            </li>
-
-                        </ul>
-
-
-                        <button  type="button" class="btn btn-default" style=" margin-right: 0;">Contact us</button>
-                    </div>
-                </div>
-
-
-
-
-                <div class="footer-copyright" style="text-align: left;">
-                    <p>상호 : (주)하루 | 주소 : 비트캠프 서울시 서초구 서초동 1327-15 비트아카데미빌딩 | 사업자등록번호 : 767-88-00000 | 대표자명 : 오호라 </p>
-                    <p>Copyright ⓒ2018 Haru inc, ltd. All rights reserved </p>
-                </div>
-            </div>
-
-        </div>
-
-    </footer> -->
-
-
-    
-    
-
-
 
 </body>
     <!-- jQuery -->

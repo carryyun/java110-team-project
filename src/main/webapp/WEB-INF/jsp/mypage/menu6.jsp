@@ -36,10 +36,11 @@
                             
                             
                             <td>
-                            <button type="button" class="btn btn-primary" style="width:100px; margin:2px;">수정</button>
-                            <button type="button" class="btn btn-primary" style="width:100px; margin:2px;">삭제</button>
-                            <button type="button" class="btn btn-primary" style="width:100px; margin:2px;">판매종료</button>
+                            <a href="../product/prodUpdate?no=${p.no}">
+                            <button type="button" class="btn btn-primary" style="width:100px; margin:2px;">수정</button></a>
+                           
                             
+                            <button type="button" class="btn btn-primary" onclick="updatestat()" style="width:100px; margin:2px;">삭제</button>
                             
                             <form action="javascript:void(0)" id="buyer${i.index}" method="post" >
                             <input name="ptno" id="ptno${i.index}" type="hidden" value="${p.no}"/>
@@ -85,8 +86,30 @@
     
    </c:forEach> 
     
+   // 상품삭제
    
-
+   function updatestat(){
+    swal({
+        title: "삭제 하시겠습니까?",
+        text: "삭제한 게시물은 복구할 수 없습니다.",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    }).then((willDelete) => {
+        if (willDelete) {
+            swal({
+                text : "삭제되었습니다.",
+                button : "확인",
+            }).then((willDelete) => {
+                if(willDelete){
+                  location.href="../product/updatestat?no=${p.no}&stat=N";
+                }
+              })
+        } else {
+          
+        }
+      });
+}
 </script>
 
 

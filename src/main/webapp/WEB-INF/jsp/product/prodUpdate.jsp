@@ -199,7 +199,7 @@ div.row.imgDiv {
         $('#mainNav').css("padding", "0");
         $('#mainNav').css("border", "0");
         $('#mainNav').css("margin-top", "21");
-        $('div.note-editable').html("${product.conts}");
+        $('div.note-editable').html('${product.conts}');
         $("button#submitBtn").click(function(){
             document.getElementById('myForm').submit();
             return false; 
