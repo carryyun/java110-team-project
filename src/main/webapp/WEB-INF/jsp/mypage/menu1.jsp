@@ -1057,24 +1057,7 @@ $('.image-upload-wrap').bind('dragover', function () {
 
 
             </script>
-  
-          // Render thumbnail.
-          var span = document.createElement('span');
-          span.innerHTML = ['<img class="thumb2" src="', e.target.result,
-                            '" title="', escape(theFile.name), '"/>'].join('');
-          document.getElementById('list2').insertBefore(span, null);
-     
-        };
-      })(f);
 
-      // Read in the image file as a data URL.
-      reader.readAsDataURL(f);
-    }
-   
-    
-  }
-
-  $('#files2').change(handleFileSelect2);
 
              
 
@@ -1082,5 +1065,4 @@ $('.image-upload-wrap').bind('dragover', function () {
  
 
 
-            </script>
   
