@@ -84,7 +84,6 @@ public class MainController {
     Mentee loginUser = (Mentee) session.getAttribute("loginUser");
     if(loginUser != null) {
       List<ClassLike> clike_popul = classLikeService.listByMeno(loginUser.getNo());
-      System.out.println("실행");
       model.addAttribute("clike_popul", clike_popul);
 /*      for(ClassLike c : clike_popul) {
         System.out.println(c.getCno());
@@ -103,7 +102,7 @@ public class MainController {
     model.addAttribute("classRanking",classRanking);
     
     for(Classes c: classRanking) {
-      System.out.println(c.getTitl());
+//      System.out.println(c.getTitl());
     }
   }
   

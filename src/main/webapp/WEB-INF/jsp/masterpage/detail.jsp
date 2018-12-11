@@ -332,12 +332,12 @@
                     ${detailclass.cinfo}
                 </div>
 	                <div class="detail_info">
-	                    <hr class="Fhr" id="location">
 	                    <h3>위치</h3>
-	                    <div class ="row" >
+	                    <hr class="FhrBotMargin" id="location">
+	                    <div class ="row">
 	                    <div class="col-lg-8" id="map" style="width:100%; height:400px; margin-left:10px; float:left;"></div>
-	                    <div class="dddd col-lg-3" style="margin-top:60px;">
-	                    <div id="adr" class = "addr" style="height:50px;"><div><strong>기본 주소</strong></div>  ${detailclass.basAddr}</div>
+	                    <div class="dddd col-lg-3 mx-auto" style="margin-top:60px;">
+	                    <div id="adr" class = "addr"><div><strong>기본 주소</strong></div>  ${detailclass.basAddr}</div>
 	                    <div id="adr" class = "addr"><div><strong>상세 주소</strong></div>  ${detailclass.detAddr}</div>
 	                    </div>
 	                    </div> 

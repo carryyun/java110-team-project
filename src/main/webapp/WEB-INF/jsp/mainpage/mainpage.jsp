@@ -59,21 +59,21 @@ ul#RankingUl li:hover{
                 <div class="carousel-inner" role="listbox">
                     <div class="carousel-item">
                         <div class="view">
-                            <img class="w-100" src="/upload/img/banner_1.png" alt="First slide">
+                            <img class="w-100" src="/upload/img/banner_1.png" alt="banner1">
                             <div class="mask rgba-black-light"></div>
                         </div>
                     </div>
                     <div class="carousel-item active">
                         <!--Mask color-->
                         <div class="view">
-                            <img class="w-100 " src="/upload/img/banner_2.png" alt="Second slide">
+                            <img class="w-100" src="/upload/img/banner_2.png" alt="banner2">
                             <div class="mask rgba-black-strong"></div>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <!--Mask color-->
                         <div class="view">
-                            <img class="w-100" src="/upload/img/banner_3.png" alt="Third slide">
+                            <img class="w-100" src="/upload/img/banner_3.png" alt="banner3">
                             <div class="mask rgba-black-slight"></div>
                         </div>
                     </div>

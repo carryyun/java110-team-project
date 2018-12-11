@@ -368,4 +368,10 @@ public class MasterPageController {
     
   }// dashBoard end
   
+  
+  
+  @GetMapping("report")
+  public void report() {
+    
+  }
 }

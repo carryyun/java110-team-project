@@ -382,8 +382,8 @@
 			<if test="detAddr != null">det_addr = #{detAddr},</if>
 			<if test="edt != null">edt = now(),</if>
 			<if test="mono > 0">mono = #{mono},</if>
-			<if test="mtno > 0">mtno = #{mtno}</if>
-			<if test="star > 0">star = #{star}</if>
+			<if test="mtno > 0">mtno = #{mtno},</if>
+			<if test="star > -1">star = #{star},</if>
 		</set>
 		where
 		cno = #{no}
