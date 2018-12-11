@@ -260,12 +260,26 @@ ul#RankingUl li:hover{
                    <!-- 실시간 클래스 후기 -->
                    
                    <c:forEach items="${classRepList}" var="cr">
-                   <div class="col-lg-10 mx-auto px-2 py-2 mb-3" style="background-color: #e9e9e9">
+                   <div class="col-lg-10 mx-auto px-2 py-2 mb-3" style="background-color: #f0f0f0">
                         <div class="col-lg-3 p-0" style="float: left">
-                            <img style="width: 110px; height: 110px" alt="${cr.classes.cfile}" src="${cr.classes.cfile}">
+                            <c:set var="transFile" value="${cr.classes.cfile}" />
+                            <%
+                                String transFile = (String)pageContext.getAttribute("transFile");
+                                if(transFile.endsWith("jpg") || transFile.endsWith("png")){
+                            %>
+                            <img style="width: 110px; height: 116px; margin-top: 9px;" alt="${cr.classes.cfile}" src="${cr.classes.cfile}">
+                            <%
+                                }else{
+                                  
+                            %>
+                            <img style="width: 110px; height: 116px; margin-top: 9px;" alt="${cr.classes.cfile}" src="https://i.ytimg.com/vi/${cr.classes.cfile}/mqdefault.jpg">
+                            <%
+                                }
+                            %>
+                            
                         </div>
-                        <div class="col-lg-9 px-2 py-0" style="float: left">
-                            <div id="Titl" style="font-size: 15px; font-weight: 600">
+                        <div class="col-lg-9 px-2 py-0" style="height:131px; float: left">
+                            <div id="Titl" style="height: 44px;font-size: 15px; font-weight: 600">
                                 ${cr.titl}
                             </div>
                             <div id="repConts" style="height:57px; font-size: 13px;color: #6e6e6e">
@@ -295,12 +309,12 @@ ul#RankingUl li:hover{
                    <!-- 실시간 상품 후기 -->
                    
                    <c:forEach items="${productRepList}" var="pr">
-                   <div class="col-lg-10 mx-auto px-2 py-2 mb-3" style="background-color: #e9e9e9">
+                   <div class="col-lg-10 mx-auto px-2 py-2 mb-3" style="background-color: #f0f0f0">
                         <div class="col-lg-3 p-0" style="float: left">
-                            <img style="width: 110px; height: 110px" alt="${pr.prdtphot}" src="${pr.prdtphot}">
+                            <img style="width: 110px; height: 110px; margin-top: 12px;" alt="${pr.prdtphot}" src="${pr.prdtphot}">
                         </div>
-                        <div class="col-lg-9 px-2 py-0" style="float: left">
-                            <div id="Titl" style="font-size: 15px; font-weight: 600">
+                        <div class="col-lg-9 px-2 py-0" style="height:131px; float: left">
+                            <div id="Titl" style="height: 44px;font-size: 15px; font-weight: 600">
                                 ${pr.titl}
                             </div>
                             <div id="repConts" style="height:57px; font-size: 13px;color: #6e6e6e">

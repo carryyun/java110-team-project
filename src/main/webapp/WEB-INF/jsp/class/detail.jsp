@@ -787,7 +787,11 @@ function updateclsstat() {
                 swal({
                     text : "삭제되었습니다.",
                     button : "확인",
-                })
+                }).then((willDelete) => { 
+                    if (willDelete) {
+                        location.href="../class/clsCate?no=1";
+                    }
+                  });
             }
         })
   });
