@@ -5,7 +5,7 @@
 
 <div class="col-lg-12">
     <div class="panel panel-default">
-                <h2 class="colorlib-heading">상품 답변내역</h2>
+                <h2 class="colorlib-heading" style="margin-top:0;">상품 답변내역</h2>
 
          <div class="panel-body">
             <table class="table table-condensed" style="border-collapse:collapse;">

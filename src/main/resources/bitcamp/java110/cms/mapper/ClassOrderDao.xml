@@ -97,37 +97,41 @@
     </select>
     
     
-    <select id="findAllMaster" resultMap="classOrderMap">
-        select
-            mtag.mtname,
-            cls.titl,
-            mete.nick nick,
-            mete2.nick nick2,
-            cls.pric,
-            ttab.date,
-            ttab.stime,
-            mete.name name1,
-            mete2.name name2,
-            mete2.phone, 
-            paydt,
-            corder.ono
-
-        from
-            p_cls_order as corder 
-            inner join p_cls_ttab as ttab
-            inner join p_cls as cls
-            inner join p_mtag as mtag
-            inner join p_mete as mete
-            inner join p_mete as mete2
-        on
-            corder.ctno = ttab.ctno and
-            ttab.cno = cls.cno and
-            cls.mtno = mtag.mtno and
-            corder.meno = mete.meno and
-            mete2.meno = cls.mono
-        order by
-            ono asc
-
+    <select id="findAllMaster" resultMap="classOrderMap"  parameterType="Map">
+        select * from(
+			select
+			    		@rownum:=@rownum+1 as rnum,
+			            mtag.mtname,
+			            cls.titl,
+			            mete.nick nick,
+			            mete2.nick nick2,
+			            cls.pric,
+			            ttab.date,
+			            ttab.stime,
+			            mete.name name1,
+			            mete2.name name2,
+			            mete2.phone, 
+			            paydt,
+			            corder.ono
+			
+			        from
+			            p_cls_order as corder 
+			            inner join p_cls_ttab as ttab
+			            inner join p_cls as cls
+			            inner join p_mtag as mtag
+			            inner join p_mete as mete
+			            inner join p_mete as mete2
+			        on
+			            corder.ctno = ttab.ctno and
+			            ttab.cno = cls.cno and
+			            cls.mtno = mtag.mtno and
+			            corder.meno = mete.meno and
+			            mete2.meno = cls.mono
+			    		,(select @rownum:=0)r
+			        order by
+			            ono asc
+			    )as a
+    	where rnum limit #{pageNo},#{pageSize};
     </select>
     
     <select id="findBycno" resultType="int" parameterType="map">
@@ -157,6 +161,26 @@
 		where
 			pc.cno= #{no}
     </select>
+
+	<select id="countorderlist"  resultType="int" parameterType="int">
+		select
+			count(*)
+        from
+            p_cls_order as corder 
+            inner join p_cls_ttab as ttab
+            inner join p_cls as cls
+            inner join p_mtag as mtag
+            inner join p_mete as mete
+            inner join p_mete as mete2
+        on
+            corder.ctno = ttab.ctno and
+            ttab.cno = cls.cno and
+            cls.mtno = mtag.mtno and
+            corder.meno = mete.meno and
+            mete2.meno = cls.mono
+        order by
+            ono asc
+	</select>
 
     <insert id="orderinsert" parameterType="classOrder"
     useGeneratedKeys="true" keyColumn="ono" keyProperty="no">

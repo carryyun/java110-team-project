@@ -6,7 +6,7 @@
     <div class="panel panel-default">
        
         
-            <h2 class="colorlib-heading">클래스 질문내역</h2>
+            <h2 class="colorlib-heading" style="margin-top:0;">클래스 질문내역</h2>
        
             
        

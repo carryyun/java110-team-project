@@ -107,16 +107,34 @@ public class MypageController {
     Mentor mentor = mentorService.get(mentee.getNo());
     model.addAttribute("mentor", mentor);
   }
+  
+  @GetMapping("headerMainMy")
+  public void headerMainMy(Model model,HttpSession session) {
+    
+    
+  }
+  
+  @GetMapping("headerNavMy")
+  public void headerNavMy(Model model,HttpSession session) {
+    
+    
+  }
   @GetMapping("menu1")
   public void menu1(Model model,HttpSession session) {
     Mentee imentee = (Mentee) session.getAttribute("loginUser");
     int reMeno = imentee.getNo();
    
     Mentee mentee = menteeService.get(reMeno);
-    model.addAttribute("mentee", mentee);
+    if(mentee.getPhot() == null) {
+      mentee.setPhot("/upload/images/images.png");
+      model.addAttribute("mentee", mentee);
+    }else {
+      model.addAttribute("mentee", mentee);
+    }
+    
     
     Mentor mentor = mentorService.get(reMeno);
-    model.addAttribute("mentor", mentor);
+      model.addAttribute("mentor", mentor);
   }
    
   

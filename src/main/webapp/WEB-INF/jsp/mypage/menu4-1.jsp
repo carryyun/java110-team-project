@@ -6,7 +6,7 @@
 <div class="col-lg-12">
     <div class="panel panel-default">
         
-            <h2 class="colorlib-heading">1:1 문의내역 
+            <h2 class="colorlib-heading" style="margin-top:0;">1:1 문의내역 
                             <button type="button" class="btn btn-primary" 
                             data-toggle="modal" data-target="#questioninfo" style="float:right;" >1:1문의하기</button>
         </h2>

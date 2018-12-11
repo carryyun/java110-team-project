@@ -14,4 +14,6 @@ public interface ClassOrderService {
   int listByCno(int no , int meno);
   
   List<ClassOrder> findBycnoFormeno(int no);
+  
+  int countorderlist();
 }

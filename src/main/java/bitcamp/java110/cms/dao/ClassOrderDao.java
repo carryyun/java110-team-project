@@ -17,4 +17,6 @@ public interface ClassOrderDao {
   int findBycno(int no , int rono);
   
   List<Integer> selpopularityclass();
+  
+  int countorderlist();
 }
