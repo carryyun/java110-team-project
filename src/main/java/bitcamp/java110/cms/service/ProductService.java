@@ -7,6 +7,8 @@ public interface ProductService {
  
   List<Product> list(); 
   
+  List<Product> listForScroll(int pageNo, int pageSize); 
+  
   List<Product> findAllByList(int pageNo, int pageSize); // 전체 상품 조회
   List<Product> pdalist(int pageNo, int pageSize);
   int countpdall();
