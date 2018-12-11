@@ -389,7 +389,6 @@ div.box label {
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=74d4f74bdd85b5f1c1d2492eaf6b2a88&libraries=services"></script>
 	<script>
 $('#mapModal').on('shown.bs.modal', function (e) {
-    console.log(123);
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
         mapOption = {
             center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -570,6 +569,8 @@ $('#mapModal').on('shown.bs.modal', function (e) {
 		    					                                  }
 		    					                              }
 		    				    html+= '					</div>'
+	                            pric = "" + pric;
+                                pric = pric.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,')
 		    				    html+= '					<div class="col-lg-5 product-description__price">'+pric+'원</div>'
 		    				    html+= '				</div>'
 		    				    html+= '				<hr class="NoMarginHr">'

@@ -352,6 +352,7 @@ public class ProductController {
   @PostMapping(value = "updateProduct.do")
   public String updateProductdo(Product product, List<MultipartFile> files, String deleteFile, HttpSession session)
       throws Exception {
+    System.out.println(product.getConts());
     productService.update(product);
     int result = product.getNo();
     
@@ -362,7 +363,7 @@ public class ProductController {
       profile.setPtno(result);
       productFileService.delete(profile);
     }
-    
+     
     for (MultipartFile file : files) {
       if (!file.getOriginalFilename().equals("")) {
         String filename = UUID.randomUUID().toString();
@@ -376,7 +377,7 @@ public class ProductController {
       }
     }
     
-    return "detail?no=" + result;
+    return "redirect:detail?no=" + result;
   }
   @GetMapping("updatestat")
   public String updatestat(int no, String stat) {

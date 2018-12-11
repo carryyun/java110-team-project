@@ -474,7 +474,13 @@ ul#RankingUl li:hover{
            content += '<div style="padding: 0 5px; top: 45px; width: auto; height: auto; position: absolute; background-color: #333873; color: white; border-bottom-right-radius: 10px">'+name+' 멘토</div>'
            
            content += "<img id='owl-img' src=\"" +cfile+ "\" alt=\"" +titl+ "\">"
-           content += "<div class='col-lg-8' id='owl-col2'>" + titl + "</div>"
+           
+           if(titl.length>21){
+               content += "<div class='col-lg-8' id='owl-col2'>" + titl.substring(0,21) + "...</div>"
+           }else{
+               content += "<div class='col-lg-8' id='owl-col2'>" + titl + "</div>" 
+           }
+           
            content += "<div class='col-lg-4' id='owl-coltag'>" + mtname + "</div>"
            
            content += "<div class='col-lg-6' id='owl-colstar'>"
@@ -528,7 +534,12 @@ ul#RankingUl li:hover{
              content += '</div>'
              content += '<div style="padding: 0 5px; top: 20px; width: auto; height: auto; position: absolute; background-color: #f58500; color: white; border-bottom-right-radius: 10px">'+nick+'</div>'
              content += "<img id='owl-img' src=\"" +phot+ "\" alt=\"" +titl+ "\">"
-             content += "<div class='col-lg-9' id='owl-col2'>" + titl + "</div>"
+             
+             if(titl.length>21){
+                 content += "<div class='col-lg-9' id='owl-col2'>" + titl.substring(0,21) + "...</div>"
+             }else{
+                 content += "<div class='col-lg-9' id='owl-col2'>" + titl + "</div>" 
+             }
              content += "<div class='col-lg-3' id='owl-coltag'>" + stname + "</div>"
              content += "<div class='col-lg-6' id='owl-colstar'>"
              for(var j=0; j<5; j++) {
