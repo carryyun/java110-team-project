@@ -169,7 +169,7 @@
                                             <tr>
                                                 <th class="text-center">No</th>
                                                 <th class="text-center">제목</th>
-                                                <th class="text-center">내용</th>
+                                                <th class="text-center">문의유형</th>
                                                 <th class="text-center">글쓴이</th>
                                                 <th class="text-center">질문 등록일</th>
                                                 <th class="text-center">답변 유무</th>

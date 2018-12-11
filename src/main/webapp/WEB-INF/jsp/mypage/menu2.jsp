@@ -49,9 +49,11 @@
                                 <c:if test="${c.cert.type == '수료증' }">
                                                           
                                                                  수료<br>                      
-                                    ${c.cert.type}<br>
+                                    <div style="border:2px solid black">
+                                    <b>${c.cert.type}</b><br>
                                     ${c.bigTag.name}<br>
                                     ${c.middleTag.name}<br>
+                                    </span>
                                     <%-- ${c.cert.cnt}<br>
                                     ${c.cert.ctdt}<br>
                                     ${c.cert.edt} --%>

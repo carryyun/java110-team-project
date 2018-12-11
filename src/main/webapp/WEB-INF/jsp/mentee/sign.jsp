@@ -56,7 +56,7 @@
                     <div class="col-sm-4">
                         <label class="mail">이메일</label></div>
                     <div class="col-sm-8">
-                        <input type="email" name="email" id="useremail" placeholder="이메일을 입력해 주세요" class="form-control" oninput="checkemail()" style="width: 250px;">
+                        <input type="email" name="email" id="useremail" placeholder="이메일을 입력해 주세요" maxlength="25" class="form-control" oninput="checkemail()" style="width: 250px;">
                     </div>
                 </div>
             </div>
@@ -66,7 +66,7 @@
                     <div class="col-sm-4">
                         <label class="pass">비밀번호</label></div>
                     <div class="col-sm-8">
-                        <input type="password" name="pwd" id="pass" placeholder="비밀번호를 8자이상 입력해 주세요" class="form-control" oninput="checkPwd()" style="width: 250px;">
+                        <input type="password" name="pwd" id="pass" placeholder="비밀번호를 8자이상 입력해 주세요" maxlength="25" class="form-control" oninput="checkPwd()" style="width: 250px;">
                     </div>
                 </div>
             </div>

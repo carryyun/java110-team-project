@@ -170,25 +170,73 @@ ON
     </select>
     
     <select id="findAllByList" resultMap="productMap">
-    select
-        prdt.ptno,
+    select *
+        from (
+            select
+                @rownum:=@rownum+1 as rnum,
+               prdt.ptno,
         stag.stname,
         prdt.titl, 
         mete.nick,
         mete.name,
         prdt.pric,
-        prdt.stock,
+        prdt.stat,
         prdt.rgdt
-    from
-        p_prdt as prdt 
+            from
+            p_prdt as prdt 
         inner join p_stag as stag
         inner join p_mete as mete
-
-    on  prdt.stno = stag.stno and
+            
+            on  prdt.stno = stag.stno and
         prdt.meno = mete.meno
-     
-    order by
+                ,(select @rownum:=0)r
+           order by
         prdt.ptno asc
+            ) as a
+        where rnum limit #{pageNo},#{pageSize}
+    </select>
+    
+    <select id="countpdall" resultType="int" parameterType="int">
+    select
+           COUNT(*)
+        
+      from
+           p_prdt as prdt 
+            inner join p_stag as stag
+            inner join p_mete as mete
+        
+       on  prdt.stno = stag.stno and
+           prdt.meno = mete.meno
+    order by
+           prdt.ptno asc
+    
+    </select>
+    
+    <select id="pdalist" resultMap="productMap">
+    select *
+        from (
+            select
+                @rownum:=@rownum+1 as rnum,
+               prdt.ptno,
+        stag.stname,
+        prdt.titl, 
+        mete.nick,
+        mete.name,
+        prdt.pric,
+        prdt.stat,
+        prdt.rgdt
+            from
+            p_prdt as prdt 
+        inner join p_stag as stag
+        inner join p_mete as mete
+            
+            on  prdt.stno = stag.stno and
+        prdt.meno = mete.meno
+                ,(select @rownum:=0)r
+           order by
+        prdt.ptno asc
+            ) as a
+        where rnum limit #{pageNo},#{pageSize}
     </select>
 
     <select id="findByNo" 

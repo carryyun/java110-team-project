@@ -32,7 +32,20 @@
 <!-- 이거임시추가 -->
 
 <!-- ===============필수포함=============== -->
-
+<style>
+div.product-description__title > div > div{
+    height : 45px;
+}
+div.product-description__title > div > div > a{
+    word-break:break-all;
+    display:block;
+    clear:none;
+    min-width:290px;
+    max-width:290px;
+    width:290px;
+    white-space: normal; 
+}
+</style>
 <style>
 /* 여기에 임시 추가 */
 div.box label {
@@ -519,7 +532,7 @@ $('#mapModal').on('shown.bs.modal', function (e) {
 		        		    
 		        		    html+= '<div class="col-lg-4">'
 		    				    html+= '	<article class="card-wrapper">'
-		    				    html+= ' 		<div class="image-holder" onClick="location.href="detail?no='+cno+'"">'
+	    				        html+= '      <div class="image-holder" onClick="openInNewTab(\'detail?no='+cno+'\')">'
 		    				    html+= '			<a href="detail?no='+cno+'" class="image-holder__-link"></a>'
 		    				    html+= '			<div class="image-liquid image-holder--original">'
 		    				        html+= '<a href="#" onclick="openInNewTab(\'detail?no='+ cno +'  \');">'
