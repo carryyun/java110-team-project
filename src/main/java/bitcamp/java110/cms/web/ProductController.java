@@ -456,7 +456,7 @@ public class ProductController {
       @RequestParam(defaultValue = "5") int pageSize) {
     List<ProductQnA> productQnaList = productQnAService.listByPtno(pageNo,pageSize,ptno);
     
-    return productQnaList;
+    return productQnaList; 
   }
   
   
