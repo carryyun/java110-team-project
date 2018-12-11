@@ -67,8 +67,7 @@ div.row.imgDiv {
 				<input type="hidden" name="meno" value="${sessionScope.loginUser.no}">
                 <input type="hidden" id="deleteFile" name="deleteFile" value="">
                 <input type="hidden" id="ptno" name="no" value="${product.no}">
-                
-                
+                <input type="hidden" id="conts" name="conts" value="${product.conts}">
 
 				<div class="col-lg-12">
 					<div class="row">
@@ -114,7 +113,8 @@ div.row.imgDiv {
 									<div class="row">
 										<div class="col-lg-12">가격</div>
 										<div class="col-lg-12">
-											<input type="text" class="detailInfo" name="pric" value="<fmt:formatNumber value="${product.pric}" groupingUsed="true"/>"/>
+											<input type="text" class="detailInfo" name="pric" value="${product.pric}"/>
+<%-- 											<input type="text" class="detailInfo" name="pric" value="<fmt:formatNumber value="${product.pric}" groupingUsed="true"/>"/> --%>
 										</div>
 									</div>
 								</div>
@@ -122,7 +122,8 @@ div.row.imgDiv {
 									<div class="row">
 										<div class="col-lg-12">택배비</div>
 										<div class="col-lg-12">
-											<input type="text" class="inputid detailInfo" name="deli" value="<fmt:formatNumber value="${product.deli}" groupingUsed="true"/>"/>
+											<input type="text" class="inputid detailInfo" name="deli" value="${product.deli}"/>
+<%-- 											<input type="text" class="inputid detailInfo" name="deli" value="<fmt:formatNumber value="${product.deli}" groupingUsed="true"/>"/> --%>
 
 										</div>
 									</div>
@@ -205,6 +206,9 @@ div.row.imgDiv {
             return false; 
         });
         
+        $('div.note-editable').blur(function(){
+            $('input#conts').val($('div.note-editable').html());
+        });
         loadImg();
     });
 </script>
@@ -245,8 +249,6 @@ div.row.imgDiv {
                 console.log("filesArr[i]="+filesArr[i] +  " ," + i);
                 console.log("filesArr[j]="+filesArr[j] +  " ," + j);
                 f = filesArr[j];
-                /* console.log(f);
-                console.log(e); */
                 html += "<div class='row imgDiv' id='imgDiv"+j + "' style='float:left; margin:5px;'>";
 
                 html += "<div class='col-lg-12 px-0'>";
