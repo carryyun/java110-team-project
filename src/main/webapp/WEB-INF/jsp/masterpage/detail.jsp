@@ -68,11 +68,11 @@
 </div>
     <div class="container">
         <div class="row">
-			<div class="col-lg-12">
+			<div class="col-lg-12" id="headermain">
                 <jsp:include page="../headerMain.jsp"></jsp:include>
             </div>
             <!-- 카테고리 nav (스크립트로 임시 inclue) -->
-            <div class="col-lg-12">
+            <div class="col-lg-12" id="headernav">
                 <jsp:include page="../headerNav.jsp"></jsp:include>
             </div>
         
@@ -101,9 +101,11 @@
                                     <div id="carouselExampleIndicators" class="carousel slide" data-interval="false" data-ride="carousel">
                                       <ol class="carousel-indicators">
                                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                                        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                                      <c:forEach items="${clsfilelist}" var="cfIndi" varStatus="z">
+<%--                                       <c:if test="${z.index ne 0}"> --%>
+                                        <li data-target="#carouselExampleIndicators" data-slide-to="${z.index}"></li>
+<%--                                       </c:if> --%>
+                                      </c:forEach>
                                       </ol>
                                       <div class="carousel-inner">
                                         
@@ -271,7 +273,9 @@
             <!-- <div class="col-lg-12 col-md-12 text-center"> -->
         </div>
         <!-- <div class="row"> -->
-						<div class="col-lg-12 px-0" id="testt"> 
+            
+        
+						<div class="col-lg-12 px-0" id="testt"  style="margin-left:15px; max-width: 795px !important; min-width: 795px !important; width: 795px important;"> 
                             <ul class="under-navbar-nav col-lg-12 col-md-12" style="height:45px;">
                                 <li class="under-nav-item"><a class="nav-link"
                                     href="#class_detail">
@@ -301,7 +305,7 @@
             <!-- Links -->
             <div class="col-lg-12 col-md-12 mx-auto" id="detail">
             
-                <div class="detail_info">
+                <div class="detail_info" id="startTarget">
                     <hr class="Fhr" id="class_detail">
                     <h3>요약</h3>
                     <!-- <div class="row"> -->
@@ -331,12 +335,12 @@
 	                    <hr class="Fhr" id="location">
 	                    <h3>위치</h3>
 	                    <div class ="row" >
-	                    <div id="map" style="width:500px; height:400px; margin-left:10px; float:left;"></div>
-	                    <div class="dddd" style="float:right; width:200px; margin-top:60px;">
+	                    <div class="col-lg-8" id="map" style="width:100%; height:400px; margin-left:10px; float:left;"></div>
+	                    <div class="dddd col-lg-3" style="margin-top:60px;">
 	                    <div id="adr" class = "addr" style="height:50px;"><div><strong>기본 주소</strong></div>  ${detailclass.basAddr}</div>
 	                    <div id="adr" class = "addr"><div><strong>상세 주소</strong></div>  ${detailclass.detAddr}</div>
 	                    </div>
-	                    </div>
+	                    </div> 
 	                </div>
                 
                 <!-- <div class="row"> -->
@@ -521,36 +525,33 @@ geocoder.addressSearch('${detailclass.basAddr}', function(result, status) {
 </script>
     <script>
     
-        var testtTop;
-        var setId = "#testt";
-        $(document).ready(function() {
-
-            testtTop = $("#detail").offset().top;
-            console.log(testtTop);
-            console.log("toggle2");
-            $(setId).css("position", "absolute");
-            $(setId).css("top", (testtTop) + "px");
+    var testtTop;
+    var setId = "#testt";
+    $(document).ready(function() {
+        testtTop = 750;
+        $(setId).css("position", "absolute");
+        $(setId).css("top", (testtTop) + "px");
             
         });
 
-        function scroll_follow(id) {
-            $(window).scroll(function() //스크롤이 움직일때마다 이벤트 발생
-            {
-                var position = $(window).scrollTop()-testtTop + 58 - $("#headermain").offset().top; // 현재 스크롤바의 위치값을 반환합니다.
-                if (position > 0) {
-                    $(id).css("position", "fixed-top");
-                    $(id).css("top", position + "px");
-                    /* $(id).css("width", "100%"); */
+    function scroll_follow(id) {
+        $(window).scroll(function() //스크롤이 움직일때마다 이벤트 발생
+        {
+            var position = $(window).scrollTop()-testtTop + 750; // 현재 스크롤바의 위치값을 반환합니다.
+            if (position > 750) {
+                $(id).css("position", "fixed-top !important");
+                $(id).css("top", position + "px");
+                /* $(id).css("width", "100%"); */
 
-                } else {
-                    $(id).css("top", (-45) + "px");
-                    $(id).css("position", "absolute");
-                    /* $(id).css("width", "100%"); */
-                }
+            } else {
+                $(id).css("top", (750) + "px");
+                $(id).css("position", "absolute !important");
+                /* $(id).css("width", "100%"); */
+            }
 
-            });
-        }
-        scroll_follow(setId);
+        });
+    }
+    scroll_follow(setId);
         
     </script>
 </html>

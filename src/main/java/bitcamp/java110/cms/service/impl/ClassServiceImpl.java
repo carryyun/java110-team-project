@@ -32,11 +32,12 @@ public class ClassServiceImpl implements ClassService{
       classes.setDetAddr(null);
     }else if((classes.getCfile().equals(""))){
       classes.setCfile("");
-    }else if(classes.getCfile().length() > 0) {
+    }else if(classes.getCfile().length() > 0 & !( classes.getCfile().endsWith("jpg") | classes.getCfile().endsWith("png")  ) ) {
       classes.setCfile(classes.getCfile().substring(classes.getCfile().length()-11, classes.getCfile().length()));
     }
     classes.setMtno(Integer.parseInt(selmtag));
     classes.setMono(loginUserNo);
+    System.out.println(classes);
     classDao.classinsert(classes);
     if(classes.getType().equals("단기")) {
       String daylist[] = days.split(",");
