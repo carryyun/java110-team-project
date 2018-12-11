@@ -33,6 +33,8 @@
 <link href="/css/clean-blog.css" rel="stylesheet">
 <link href="/css/common.css" rel="stylesheet">
 
+<link href="/css/animateNew.css" rel="stylesheet">
+
 <!-- 이거임시추가 -->
 
 <!-- ===============필수포함=============== -->
@@ -542,7 +544,12 @@ $('#mapModal').on('shown.bs.modal', function (e) {
 		        		    var phot = data[i].mentee.phot;
 		        		    var mtname = data[i].middleTag.name;
 		        		    
-		        		    html+= '<div class="col-lg-4">'
+		        		    for(var j=0; j<6;j++){
+		                        $('div#animateTarget'+j).removeClass('animated fadeInUp');
+		                        $('div#animateTarget'+j).removeAttr('id')
+		                    }
+		        		    
+		        		    html+= '<div class="col-lg-4 animated fadeInUp" id="animateTarget'+i+'">'
 		    				    html+= '	<article class="card-wrapper">'
 		    				        html+= '      <div class="image-holder" onClick="openInNewTab(\'detail?no='+cno+'\')">'
 		    				    html+= '			<a href="detail?no='+cno+'" class="image-holder__-link"></a>'

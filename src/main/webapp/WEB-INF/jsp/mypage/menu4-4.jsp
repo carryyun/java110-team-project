@@ -11,13 +11,12 @@
 
                 <thead>
                     <tr>
-                       
-                        <th>No.</th>
-                        <th>질문유형</th>
-                        <th>상품이름</th>
-                        <th>제목</th>
-                        <th>문의일자</th>
-                        <th>처리상태</th>
+                        <th width="5%">No.</th>
+                        <th width="15%">질문유형</th>
+                        <th width="30%">상품이름</th>
+                        <th width="25%">제목</th>
+                        <th width="15%">문의일자</th>
+                        <th width="15%">처리상태</th>
                     </tr>
                 </thead>
 

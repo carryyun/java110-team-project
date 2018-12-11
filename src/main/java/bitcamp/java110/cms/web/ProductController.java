@@ -96,8 +96,9 @@ public class ProductController {
 
   @GetMapping("prdt")
   public void prdt(@RequestParam(defaultValue = "1") int pageNo,
-      @RequestParam(defaultValue = "12") int pageSize, Model model) {
-    List<Product> productList = productService.list();
+      @RequestParam(defaultValue = "6") int pageSize, Model model) {
+//    List<Product> productList = productService.list();
+    List<Product> productList = productService.listForScroll(pageNo, pageSize);
     List<Product> hotItemlists = productService.hotItemlist();
     List<ProductPopul> pp_list = productPopulService.list();
     List<ProductPopul> pp_product = new ArrayList<>();
@@ -124,6 +125,15 @@ public class ProductController {
     
     model.addAttribute("productList", productList);
   }
+  
+  @RequestMapping(value="prdt.do" ,method= {RequestMethod.POST})
+  public @ResponseBody List<Product> prdtdo(@RequestParam(defaultValue="2") int pageNo,
+      @RequestParam(defaultValue="6") int pageSize) {
+    List<Product> scrollPrdtList = null;
+    scrollPrdtList = productService.listForScroll(pageNo, pageSize);
+    return scrollPrdtList;
+  }
+  
 
   @GetMapping("prdtCate")
   public void prdt(int mtno, Model model) {
@@ -456,7 +466,7 @@ public class ProductController {
       @RequestParam(defaultValue = "5") int pageSize) {
     List<ProductQnA> productQnaList = productQnAService.listByPtno(pageNo,pageSize,ptno);
     
-    return productQnaList;
+    return productQnaList; 
   }
   
   

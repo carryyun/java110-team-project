@@ -144,6 +144,15 @@ ON
     mtag.btno = btag.btno
 </sql>
 
+    <select id="findAllForScroll" resultMap="productMap" parameterType="map">
+    <include refid="selectAll" />
+    where
+        p.stat='Y'
+    order by 
+        ptno DESC
+    limit #{rowNo},#{size}
+    </select>
+
     <select id="findAllByMtno" resultMap="productMap" parameterType="map">
     <include refid="selectAll" />
     where

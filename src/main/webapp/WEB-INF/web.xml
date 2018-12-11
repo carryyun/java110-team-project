@@ -49,7 +49,7 @@
         <load-on-startup>1</load-on-startup>
 
         <multipart-config>
-            <max-file-size>2000000</max-file-size>
+            <max-file-size>10000000</max-file-size>
         </multipart-config>
         
     </servlet>

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import bitcamp.java110.cms.domain.BigTag;
 import bitcamp.java110.cms.domain.ClassFile;
 import bitcamp.java110.cms.domain.ClassOrder;
 import bitcamp.java110.cms.domain.Classes;
@@ -249,9 +250,10 @@ public class MasterPageController {
     List<ClassFile> clsfilelist = classFileService.findByCno(no);
     List<Timetable> clstimelist = timetableService.findByCno(no);
 
+    List<BigTag> BTlist = bigTagService.list();
     
+    model.addAttribute("BTlist",BTlist);
     
-
     model.addAttribute("detailclass",detailclass);
     model.addAttribute("clsfilelist",clsfilelist);
     model.addAttribute("clstimelist",clstimelist);
