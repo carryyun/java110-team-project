@@ -72,11 +72,10 @@
             <div class="col-lg-9 text-center" style="margin-bottom: 50px">
             <div style="padding-left: 5px; padding-right: 6px; margin-left:-3px; margin-bottom:-15px;">
             <div class="col-lg-12 col-md-12 mt-5 text-left" style="padding-top:10px; width:1100px; background-color:white;">
-                
-                <hr class="FhrBotMargin">
             </div>
             </div>
                 <div class="row">
+                
                     <aside class="col-lg-12 col-md-12 mx-auto">
                     <div class="col-lg-12 px-1">
                         <article class="gallery-wrap">
@@ -171,18 +170,17 @@
                              <c:set var="declstit" value="${detailclass.titl}"/>
                                             <%
                                             	String declsti = (String)pageContext.getAttribute("declstit");
-	                                            if(declsti.length() > 8) {
-	                                            String clslongtitl = declsti.substring(0, 7);
+	                                            if(declsti.length() > 11) {
+	                                            String clslongtitl = declsti.substring(0, 11);
 	                                        %>
-	                                        	<td class="col-lg-3"><%=clslongtitl%>..</td>
+	                                        	<h4 class="title mb-3 text-left"><%=clslongtitl%>..
 	                                        <%      
 	                                            } else {
 	                                        %>
-	                                        	<td class="col-lg-3"><%=declsti%></td>
+	                                        	<h4 class="title mb-3 text-left"><%=declsti%>
 	                                        <%
 	                                            }
                                             %>
-                                <h4 class="title mb-3 text-left">${detailclass.titl}
                                 <c:choose>
                                 <c:when test="${likeResult == 1}">
 	                                <i style="color:#FFB53C" id='owl-i' class='fas fa-star' onclick='setLike(event,${detailclass.no},this)'></i>
@@ -309,7 +307,9 @@
                     <!-- <div class="row"> -->
                     <div>
                         <img style = "width:200px; height:200px; float:left;"src="${detailclass.mentee.phot}" alt="${detailclass.mentee.phot}">
-                        <br><br><br>
+                        <br>
+                        <div style="margin-left:50px; text-align:center;"><h4>${detailclass.titl}</h4></div>
+                        <br>
                         <div class = "shortinfo"><strong>금액</strong><div class="inf"><fmt:formatNumber value="${detailclass.pric}" groupingUsed="true"/>원</div></div>
                         <div class = "shortinfo"><strong>총 수업시간</strong><div class="inf">${detailclass.time}시간</div></div>
                         <div class = "shortinfo"><strong>모집인원</strong><div class="inf"><fmt:formatNumber value="${detailclass.capa}" groupingUsed="true"/>명</div></div>
