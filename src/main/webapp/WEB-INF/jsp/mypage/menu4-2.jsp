@@ -3,11 +3,13 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+
+
 <script>
 
 //  답변 처리상태
 $(document).ready(function() {
-    <c:forEach items="${cslist}" var="cc" varStatus="i">
+    <c:forEach items="${cqlist}" var="cc" varStatus="i">
   var answer = $('.answer'+${i.index}).text();
   if(!answer){
         $('.answerState'+${i.index}).text("답변대기");
@@ -17,6 +19,8 @@ $(document).ready(function() {
     } 
     </c:forEach>    
 });
+
+
 
 </script>
 
@@ -54,10 +58,10 @@ $(document).ready(function() {
    
                     <tr data-toggle="collapse" data-target="#demo2-${i.count}" class="accordion-toggle">
                         <td>${i.count}</td>
-                        <td>${c.classes.titl}</td>
+                        <td><a href="../class/detail?no=${c.cno}">${c.classes.titl}</a></td>
                         <td>${c.titl}</td>
                         <td>${c.rgdt}</td>
-                        <td id="answerState${i.index}"></td>
+                        <td class="answerState${i.index}"></td>
                         <%-- <a href="../class/detail?no=${c.classes.no}"><img src="${c.classFile.fname}" width="200px" height="150px"></a> --%>
 
                     </tr>
@@ -77,7 +81,7 @@ $(document).ready(function() {
 
                                         <tr>
                                             <td class="qcontents">답변내용</td>
-                                            <td id="answer${i.index}">${c.anser}</td>
+                                            <td class="answer${i.index}">${c.anser}</td>
                                         </tr>
 
                                     </tbody>

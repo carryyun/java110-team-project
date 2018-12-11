@@ -3,6 +3,26 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+
+<script>
+
+//  답변 처리상태
+$(document).ready(function() {
+    <c:forEach items="${pqlist2}" var="cc" varStatus="i">
+  var answer = $('.answer'+${i.index}).text();
+  if(!answer){
+        $('.answerState'+${i.index}).text("답변대기");
+    } 
+  else {
+        $('.answerState'+${i.index}).text("답변완료");
+    } 
+    </c:forEach>    
+});
+
+</script>
+
+
+
 <div class="col-lg-12">
     <div class="panel panel-default">
                 <h2 class="colorlib-heading" style="margin-top:0;">상품 답변내역</h2>
@@ -27,11 +47,11 @@
                     <tr data-toggle="collapse" data-target="#demo5-${i.count}" class="accordion-toggle">
                         <td>${i.count}</td>
                         <td>${p.type}</td>
-                        <td>${p.product.titl}</td>
+                        <td><a href="../product/detail?no=${p.ptno}">${p.product.titl}</a></td>
                         <td>${p.titl}</td>
                         <td>${p.mentee2.nick}</td>
                         <td>${p.rgdt}</td>
-                        <td>처리상태</td>
+                        <td class="answerState${i.index}"></td>
                     </tr>
                      
                      <tr>
@@ -48,7 +68,7 @@
                                     <tbody>
                                         <tr>
                                             <td class="qcontents">답변내용</td>
-                                            <td>${p.anser}</td>
+                                            <td class="answer${i.index}">${p.anser}</td>
                                         </tr>
                                     </tbody>
                                 </table>
