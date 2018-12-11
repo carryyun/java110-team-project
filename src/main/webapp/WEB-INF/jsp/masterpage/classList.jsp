@@ -3,6 +3,7 @@
     trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <html>
 
@@ -164,13 +165,13 @@
                                                 <th class="text-center">No</th>
                                                 <th class="text-center">카테고리</th>
                                                 <th class="text-center">클래스명</th>
-                                                <th class="text-center">멘토명(닉네임)</th>
-                                                <th class="text-center">가격</th>
+                                                <th class="text-center">멘토</th>
+                                                <th class="text-center">가격(원)</th>
                                                 <th class="text-center">등록일</th>
 
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="masterCla">
                                             <c:forEach
                                                 items="${findAllByList}"
                                                 var="pl" varStatus="i">
@@ -181,16 +182,18 @@
                                                     <td
                                                         class="text-center">${pl.middleTag.name}</td>
                                                     <!-- 카테고리  -->
+                                                    
+                                                    <c:set var="TextValue" value="${pl.titl }"/>
                                                     <td
                                                         class="text-center"><a
                                                         class="button"
-                                                        href="../class/detail?no=${pl.no }">${pl.titl}</a></td>
+                                                        href="../class/detail?no=${pl.no }">${fn:substring(TextValue,0,25) }</a></td>
                                                     <!-- 클래스명 -->
                                                     <td
-                                                        class="text-center">${pl.mentee.name}(${pl.mentee.nick})</td>
+                                                        class="text-center">${pl.mentee.nick}</td>
                                                     <!-- 멘토명 -->
                                                     <td
-                                                        class="text-center">￦<fmt:formatNumber value="${pl.pric}" groupingUsed="true"/></td>
+                                                        class="text-center"><fmt:formatNumber value="${pl.pric}" groupingUsed="true"/></td>
                                                     <!-- 가격 -->
                                                     <td
                                                         class="text-center bold">${pl.rgdt}</td>
@@ -216,17 +219,19 @@
                                                     aria-hidden="true">«</span>
                                                     <span
                                                     class="sr-only">Previous</span>
-                                            </a>
-                                            </li>
+                                            </a></li>
+                                            <c:set var="clacount" value="${countList}"/>
+                                            <% int claco = (int)pageContext.getAttribute("clacount");
+                                            int clad = claco/10;
+                                            int clapage = (int)Math.ceil(clad)+1;
+                                            
+                                            
+                                            for(int clao=1; clao<=clapage; clao++){%>
                                             <li class="page-item"><a
                                                 class="page-link"
-                                                href="#">1</a></li>
-                                            <li class="page-item"><a
-                                                class="page-link"
-                                                href="#">2</a></li>
-                                            <li class="page-item"><a
-                                                class="page-link"
-                                                href="#">3</a></li>
+                                                onclick="clapage(<%=clao%>)"><%=clao%></a></li>
+                                                <%} %>
+                                                
                                             <li class="page-item">
                                                 <a class="page-link"
                                                 href="#"
@@ -261,6 +266,59 @@
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <script>
+
+function addComma(num) {
+    var regexp = /\B(?=(\d{3})+(?!\d))/g;
+    return num.toString().replace(regexp, ',');
+  }
+
+function clapage(clao){
+    var masterCla = $("#masterCla");
+    
+    $.ajax({
+        type: "POST",
+        data:{
+            pageNo: clao
+        },
+        url: "claPage.do",
+        success: function(data){
+            var html = "";
+            for(var i in data){
+                var mtagname = data[i].middleTag.name;
+                var str = data[i].titl;
+                var titl = str.substring(0,25); 
+                var nick = data[i].mentee.nick;
+                var pric = data[i].pric;
+                var rgdt = data[i].rgdt;
+                
+                var newrgdt = new Date(rgdt);
+                
+                var dd = newrgdt.getDate();
+                var mm = newrgdt.getMonth();
+                var yy = newrgdt.getFullYear();
+                
+                if(dd < 10){
+                    dd = '0' + dd;
+                }
+                if(mm < 10){
+                    mm = '0' + mm;
+                }
+                
+                newrgdt = yy+'-'+mm+'-'+dd;
+                
+                html += '<tr>'
+                html += '<td class="text-center">'+((clao-1)*10+(parseInt(i)+1))+'</td>'
+                html += '<td class="text-center">'+mtagname+'</td>'
+                html += '<td class="text-center"><a class="button" href="../class/detail?no='+i+'">'+titl+'</a></td>'
+                html += '<td class="text-center">'+nick+'</td>'
+                html += '<td class="text-center">'+addComma(pric)+'</td>'
+                html += '<td class="text-center bold">'+newrgdt+'</td>'
+                html += '</tr>'
+            }
+            masterCla.html(html);
+        }
+    });
+}
 
 $(document).ready(function() {
     var activeSystemClass = $('.list-group-item.active');

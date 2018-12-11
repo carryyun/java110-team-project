@@ -11,7 +11,10 @@ public interface ClassService {
   List<Classes> listByLoc(int pageNo, int pageSize, String loc);
   List<Classes> listByWord(int pageNo, int pageSize, String loc);
   List<Classes> classList(int no);
-  List<Classes> findAllByList();
+  
+  List<Classes> findAllByList(int pageNo, int pageSize);
+  int countclall();
+  List<Classes> claPage(int pageNo, int pageSize);
   
   Classes findbyptno(int ptno);
   Classes findBycno(int no);

@@ -121,12 +121,6 @@ public class ClassServiceImpl implements ClassService{
   public List<Classes> listByStat(String stat) {
     return classDao.findByStat(stat);
   }
-
-  // 클래스 전체 목록 조회
-  @Override
-  public List<Classes> findAllByList() {
-    return classDao.findAllByList();
-  }
   
   // 마이페이지 - 클래스 관리 - 멘토의 클래스들
   @Override
@@ -195,5 +189,28 @@ public class ClassServiceImpl implements ClassService{
     
     
     return classDao.findAllByOrder(params);
+  }
+
+  @Override
+  public List<Classes> findAllByList(int pageNo, int pageSize) {
+    HashMap<String, Object> params = new HashMap<>();
+    params.put("pageNo", (pageNo -1 ) * pageSize);
+    params.put("pageSize", pageSize);
+    
+    return classDao.findAllByList(params);
+  }
+
+  @Override
+  public int countclall() {
+    return classDao.countclall();
+  }
+
+  @Override
+  public List<Classes> claPage(int pageNo, int pageSize) {
+    HashMap<String, Object> params = new HashMap<>();
+    params.put("pageNo", (pageNo -1 ) * pageSize);
+    params.put("pageSize", pageSize);
+    
+    return classDao.claPage(params);
   }
 }

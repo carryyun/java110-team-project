@@ -53,7 +53,7 @@
 			<!-- 헤더 배경색 적용 -->
 		</div>
 <div class="col-lg-12" style="z-index: 100">
-				 	 <jsp:include page="../headerMain.jsp"></jsp:include> 
+				 	 
  <div id="classadd">
   <div>
       <h1>클래스 등록</h1>
@@ -177,7 +177,7 @@
                <div id="pay-div">
                 <input type="text" class="view" readonly value="시간당 금액" >
                 <input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                name="pric" id="cpay" maxlength="6" placeholder="시간당 수업금액을 입력해주세요.">원
+                name="pric" id="cpay" maxlength="6" placeholder="시간당 수업금액을 입력해주세요.">
                </div> 
                <div id="allday-btn" style="display:none;">
                <input type="text" class="view" readonly value="수업날짜">
@@ -386,6 +386,7 @@ function emptychk(){
 		        button:"확인"
 		        }).then((value) => {
 		       		document.getElementById('uploadForm').submit();
+		       		window.close('classadd');
 		        });
 	}
 }

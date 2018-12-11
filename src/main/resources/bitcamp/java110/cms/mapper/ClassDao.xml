@@ -213,28 +213,70 @@
 	</select>
 
 	<select id="findAllByList" resultMap="classMap"> <!-- 이게 전체리스트출력하는거임 -->
-		select
-		cls.cno,
-		mtag.mtname,
-		cls.titl,
-		mete.phot,
-		mete.name,
-		mete.nick,
-		mete.phone,
-		cls.pric,
-		cls.rgdt
-		from
-		p_cls as cls
-		inner join p_mtag as mtag
-		inner join p_cert as cert
-		inner join p_mete as mete
-		on cls.mtno = mtag.mtno and
-		cls.cno = cert.cno and
-		cert.meno = mete.meno
-		where cls.stat = 'Y'
-		order by
-		cls.cno desc
+		select *
+        from (
+            select
+                @rownum:=@rownum+1 as rnum,
+                mtag.mtname,
+                cls.cno,
+                cls.titl,
+                cls.pric,
+                mete.name,
+                mete.nick,
+                cls.rgdt
+            from
+                p_cls cls,
+                p_mtag mtag,
+                p_mete mete
+                ,(select @rownum:=0)r
+            where 
+                cls.mtno = mtag.mtno
+            and cls.mono = mete.meno
+           order by
+                cls.cno desc
+            ) as a
+        where rnum limit #{pageNo},#{pageSize}
 	</select>
+    
+    <select id="countclall" resultType="int" parameterType="int">
+    select
+           COUNT(*)
+        
+      from
+                p_cls cls,
+                p_mtag mtag,
+                p_mete mete
+            where 
+                cls.mtno = mtag.mtno
+            and cls.mono = mete.meno
+    
+    </select>
+    
+    <select id="claPage" resultMap="classMap">
+        select *
+        from (
+            select
+                @rownum:=@rownum+1 as rnum,
+                mtag.mtname,
+                cls.cno,
+                cls.titl,
+                cls.pric,
+                mete.name,
+                mete.nick,
+                cls.rgdt
+            from
+                p_cls cls,
+                p_mtag mtag,
+                p_mete mete
+                ,(select @rownum:=0)r
+            where 
+                cls.mtno = mtag.mtno
+            and cls.mono = mete.meno
+           order by
+                cls.cno desc
+            ) as a
+        where rnum limit #{pageNo},#{pageSize}
+    </select>
 
 	<select id="findAll" resultMap="classMap" parameterType="map">
 		<include refid="select1"></include>
