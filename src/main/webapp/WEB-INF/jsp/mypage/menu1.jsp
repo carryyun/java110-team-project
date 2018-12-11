@@ -119,7 +119,7 @@ input[type="number"]::-webkit-inner-spin-button {
   text-transform: uppercase;
   font-weight: 700;
 }
-
+ 
 .certiUp .remove-image:hover {
   background: #c13b2a;
   color: #ffffff;
