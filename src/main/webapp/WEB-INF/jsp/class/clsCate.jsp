@@ -253,8 +253,24 @@ margin-bottom: 0.25rem;
 													<div class="image-holder"> 
 														<a href="#"  onclick="openInNewTab('detail?no=${cl.no}');" class="image-holder__link"></a>
 														<div class="image-liquid image-holder--original">
-															<a href="#" onclick="openInNewTab('detail?no=${cl.no}');"><img alt="${i.count}"
-																src="${cl.cfile}" style="width: 100%; height: 100%"></a>
+															
+															<a href="#" onclick="openInNewTab('detail?no=${cl.no}');">
+															    <c:set var="transFile" value="${cl.cfile}" />
+                                                                <%
+	                                                                String transFile = (String)pageContext.getAttribute("transFile");
+	                                                                if(transFile.endsWith("jpg") || transFile.endsWith("png")){
+                                                                %>
+															    <img alt="${i.count}" src="${cl.cfile}" style="width: 100%; height: 100%">
+															    <%
+	                                                                }else{
+	                                                                  
+	                                                            %>
+	                                                                <img alt="${i.count}" src="https://i.ytimg.com/vi/${cl.cfile}/mqdefault.jpg" style="width: 100%; height: 100%">
+	                                                            <%
+	                                                                }
+															    %>
+															</a>
+																
 															<img src="${cl.mentee.phot}" class="mentorimg"
 																alt="${cl.mentee.phot}">
 															<div

@@ -215,7 +215,6 @@ ul#RankingUl li:hover{
             <h4 style="font-size: 1rem; color:#a9a9a9; margin-top:9px; margin-left:-40px; float: left;">회원들의 후기를 들어보세요</h4>
         </div>
         <div class="col-lg-6 text-right">
-            <a class="btn btn-primary float-right mb-3" href="../product/prdt">작품 더보기 </a>
         </div>
         
     </div>

@@ -6,12 +6,131 @@
 .modal-header .close{
 	margin-top: -20px;
 }
+
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
 
+/* 프사업데이트 CSS  */
+
+.certiUp {
+
+
+}
+
+.certiUp .file-upload {
+  background-color: #ffffff;
+  width: 350px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.certiUp .file-upload-btn {
+  width: 100%;
+  margin: 0;
+  color: #fff;
+  background: #1FB264;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  border-bottom: 4px solid #15824B;
+  transition: all .2s ease;
+  outline: none;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.certiUp .file-upload-btn:hover {
+  background: #1AA059;
+  color: #ffffff;
+  transition: all .2s ease;
+  cursor: pointer;
+}
+
+.certiUp .file-upload-btn:active {
+  border: 0;
+  transition: all .2s ease;
+}
+
+.certiUp .file-upload-content {
+  display: none;
+  text-align: center;
+}
+
+.certiUp .file-upload-input {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.certiUp .image-upload-wrap {
+  margin-top: 20px;
+  border: 4px dashed #1FB264;
+  position: relative;
+}
+
+.certiUp .image-dropping,
+.certiUp .image-upload-wrap:hover {
+  background-color: #1FB264;
+  border: 4px dashed #ffffff;
+}
+
+.certiUp .image-title-wrap {
+  padding: 0 15px 15px 15px;
+  color: #222;
+}
+
+.certiUp .drag-text {
+  text-align: center;
+}
+
+.certiUp .drag-text h3 {
+  font-weight: 100;
+  text-transform: uppercase;
+  color: #15824B;
+  padding: 60px 0;
+}
+
+.certiUp .file-upload-image {
+  max-height: 200px;
+  max-width: 200px;
+  margin: auto;
+  padding: 20px;
+}
+
+.certiUp .remove-image {
+  width: 200px;
+  margin: 0;
+  color: #fff;
+  background: #cd4535;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  border-bottom: 4px solid #b02818;
+  transition: all .2s ease;
+  outline: none;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+ 
+.certiUp .remove-image:hover {
+  background: #c13b2a;
+  color: #ffffff;
+  transition: all .2s ease;
+  cursor: pointer;
+}
+
+.certiUp .remove-image:active {
+  border: 0;
+  transition: all .2s ease;
+}
 </style>
 
 <script type="text/javascript">
@@ -310,7 +429,34 @@ input[type="number"]::-webkit-inner-spin-button {
     }
     
 }
-
+ 
+    
+   /*  function updatePhoto(meno){
+        
+       var NewPhot = "/upload/img/"+$('.image-title').val();
+       console.log(NewPhot);
+        
+    $.ajax({
+        type: "POST",
+        data: {
+            "no" : meno,
+            "phot" : newPhot
+            },
+     url: "updatePhoto.do", 
+     success : function() {
+        
+         swal({
+               text : "프로필 사진 변경 완료",
+             button : "확인"
+             })
+         },error : function(error,status){
+             swal({
+                 text : "프로필사진 업로드 실패ㅜㅜ",
+                 button : "확인"
+                 })
+                 }
+         }); 
+    } */
 
 </script>
             <div class="row" >
@@ -322,7 +468,7 @@ input[type="number"]::-webkit-inner-spin-button {
                                 <h3>나의 프로필</h3>
                             </div>
                             <div class="profile-contents" style=" height: 150px;">
-                                <div class="author-img" style="background-image: url(${mentee.phot}); position: absolute;">
+                                <div class="author-img2" data-toggle="modal" data-target="#photoupdate" style="background-image: url(${mentee.phot}); position: absolute;">
                                 </div>
                                 <div class="cont1" >
                                 <B>닉네임</B>&nbsp;
@@ -487,7 +633,7 @@ input[type="number"]::-webkit-inner-spin-button {
                 
                  <!-- popup start  -->
                  
-                  <div class="popup">
+                  <div class="popup" style="top:120px;">
  
   <div class="header">
     <div class="title"><h3>멘토 신청</h3> </div>
@@ -614,6 +760,58 @@ input[type="number"]::-webkit-inner-spin-button {
 </div>
 
 <!-- popup end  -->
+
+
+ <!-- photoupdate start  -->
+          
+            <form method="post"  action="photoupload" enctype="multipart/form-data" >
+                   <input type="hidden" name="meno" value="${mentee.no}">
+      <div class="modal fade" id="photoupdate" tabindex="1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" >
+                                          <div class="modal-dialog">
+                                            <div class="modal-content" style="height:500px; width:500px; margin:0 auto;">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title ">프로필 사진 변경</h4>
+                                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <!-- content goes here -->
+                                                 
+<!--업데이트  -->
+  <div class="certiUp"> 
+<div class="file-upload">
+  <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">프로필 사진</button>
+
+  <div class="image-upload-wrap">
+    <input  class="file-upload-input" type='file' name="photoUpdate" onchange="readURL(this);" accept="image/*" />
+    <div class="drag-text">
+      <h3>프로필 사진은<br>한장만 등록 가능합니다 </h3>
+    </div>
+  </div>
+  <div class="file-upload-content">
+    <img class="file-upload-image" src="#" alt="your image" />
+    <div class="image-title-wrap">
+      <button type="button" onclick="removeUpload()" class="remove-image">  <span class="image-title">Uploaded Image</span> - 삭제 </button>
+    </div>
+  </div>
+</div>
+  </div>
+  
+<!--업데이트  -->
+  
+  
+                                                    <div>
+                                                      <button type="submit" class="btn btn-primary" id="2" onclick="updatePhoto(${mentee.no})">변경하기</button>
+                                                      <button type="button" class="btn btn-danger" id="1" style="float:right" data-dismiss="modal"  role="button" >취소</button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        
+</form>
+
+<!-- photo update end  -->
                 
                 
                 <div class="leave" >
@@ -673,6 +871,10 @@ input[type="number"]::-webkit-inner-spin-button {
                     }
                 }).open();
             }    
+            
+            
+            
+            // 멘토신청 
             
             $("#btn-cancle").click(function(){
                 $(".pop").removeClass("hide");
@@ -815,9 +1017,42 @@ function handleFileSelect2(evt2) {
 
   $('#files2').change(handleFileSelect2);
 
-             
 
+
+  // 프사 업데이트 js
   
+  function readURL(input) {
+  if (input.files && input.files[0]) {
+
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      $('.image-upload-wrap').hide();
+
+      $('.file-upload-image').attr('src', e.target.result);
+      $('.file-upload-content').show();
+
+      $('.image-title').html(input.files[0].name);
+    };
+
+    reader.readAsDataURL(input.files[0]);
+
+  } else {
+    removeUpload();
+  }
+}
+
+function removeUpload() {
+  $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+  $('.file-upload-content').hide();
+  $('.image-upload-wrap').show();
+}
+$('.image-upload-wrap').bind('dragover', function () {
+        $('.image-upload-wrap').addClass('image-dropping');
+    });
+    $('.image-upload-wrap').bind('dragleave', function () {
+        $('.image-upload-wrap').removeClass('image-dropping');
+});
  
 
 

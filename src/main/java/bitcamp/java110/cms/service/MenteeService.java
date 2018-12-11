@@ -48,5 +48,7 @@ public interface MenteeService {
   int updatePwd(Mentee mentee);
   int updatePhone(Mentee mentee);
   int updateAddr(Mentee mentee);
+  int updatePhoto(Mentee mentee);
+  
 
 }
