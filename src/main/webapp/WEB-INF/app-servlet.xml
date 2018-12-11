@@ -74,6 +74,9 @@
             <mvc:exclude-mapping path="/mypage/deleteuser.do"/>
             <mvc:exclude-mapping path="/mypage/deliveryinsert.do"/>
             <mvc:exclude-mapping path="/mypage/questionInsert.do"/>
+             <mvc:exclude-mapping path="/mypage/updatePhoto.do"/>
+            
+         
             
             
             

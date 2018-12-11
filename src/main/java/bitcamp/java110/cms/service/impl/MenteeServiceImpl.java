@@ -160,6 +160,11 @@ public class MenteeServiceImpl implements MenteeService {
     return menteeDao.updateAddr(mentee);
   }
   
+  //마이페이지 프사 변경
+  @Override
+  public int updatePhoto(Mentee mentee) {
+    return menteeDao.updatePhoto(mentee);
+  }
   
 
 }
