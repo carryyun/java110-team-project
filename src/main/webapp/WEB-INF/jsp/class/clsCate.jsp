@@ -257,7 +257,7 @@ margin-bottom: 0.25rem;
 
 								<div class="container">
 									<div class="clearfix">
-										<a class="btn btn-primary float-right mb-3"
+										<a class="btn btn-primary float-right mb-3" target="_blank"
 											onClick="showClassAdd('${sessionScope.loginUser.mtstat}')">클래스
 											개강 </a>
 									</div>
@@ -504,7 +504,7 @@ $('#mapModal').on('shown.bs.modal', function (e) {
 				button: "확인"
 			});
 		}else if('${sessionScope.loginUser.mtstat}' == 'Y'){
-			location.href='classadd';
+			window.open('classadd');
 		}else if('${sessionScope.loginUser.mtstat}' == 'I'){
 			swal({
 				title: "아직 멘토 심사 기간이 안끝났습니다.",
