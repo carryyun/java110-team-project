@@ -25,7 +25,7 @@
 						<td>${i.count}</td>
 						<td><a href="../class/detail?no=${c.no}">${c.titl}</a></td>
 						<td>${c.bigTag.name}-${c.bigTag.name}</td>
-						<td><button onclick="getMenteeList(${c.no})"  class="btn-primary"  style="width:100px;"> ${c.capa-c.timetable.capa}/ ${c.capa} 명</button></td>
+						<td><button onclick="getMenteeList(${c.timetable.no})"  class="btn-primary"  style="width:100px;"> ${c.counting} / ${c.timetable.capa} 명</button></td>
 					</tr>
 					        </c:forEach>     
  
@@ -66,14 +66,14 @@
   
 
 
-function getMenteeList(cno){
+function getMenteeList(ctno){
     var contents="";
     var cnt = 1;
     
 $.ajax({
     type : "POST",
     data : {
-        "cno" : cno
+        "no" : ctno
     },
     url : "getMenteeList.do",
     success : function(data) {
@@ -91,7 +91,7 @@ $.ajax({
        
      
         if (data[i].cert == null)  {
-            contents+= '<button class="btn-danger" name="btn-certi" value="'+i+'" onclick="certi(this.value,'+cno+','+data[i].mentee2.no+');"   style="width:70px;" ">미수료</button>';
+            contents+= '<button class="btn-danger" name="btn-certi" value="'+i+'" onclick="certi(this.value,'+data[i].no+','+data[i].mentee2.no+');"   style="width:70px;" ">미수료</button>';
         }else  if (data[i].cert != null) {
            if(data[i].cert.type == "수료증")
             contents+= '<button class="btn-primary"  style="width:70px;">수료</button>';    

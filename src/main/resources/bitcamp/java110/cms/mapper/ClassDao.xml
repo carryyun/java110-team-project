@@ -78,6 +78,8 @@
 		<result column="me2phone" property="mentee2.phone" />
 		<result column="me2no" property="mentee2.no" />
 		<result column="certtype" property="cert.type" />
+		<result column="ctctno" property="timetable.no" />
+		<result column="counting" property="counting" />
 	</resultMap>
 
 	<resultMap type="Classes" id="classStar">
@@ -374,7 +376,17 @@
 		btg.btname,
 		mtg.mtname,
 		c.capa,
-		ct.capa as ctcapa
+		ct.capa as ctcapa,
+		ct.ctno as ctctno,
+		(
+		    SELECT
+		          COUNT(co.ono)
+            FROM
+                    p_cls_order co
+            WHERE 
+                    co.ctno = ctctno
+        )  as counting
+		
 
 		FROM p_cls c
 		JOIN p_meto mo ON c.mono = mo.mono
@@ -412,10 +424,8 @@
 
 
 		where
-		c.cno=#{cno} AND c.stat = 'Y'
+		ct.ctno=#{ctno} AND c.stat = 'Y'
 
-		ORDER BY
-		ct.ctno asc
 
 
 	</select>
