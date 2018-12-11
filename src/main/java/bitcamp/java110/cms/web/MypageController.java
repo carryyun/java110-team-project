@@ -115,15 +115,12 @@ public class MypageController {
   
   @GetMapping("headerMainMy")
   public void headerMainMy(Model model,HttpSession session) {
-    
-    
   }
   
   @GetMapping("headerNavMy")
   public void headerNavMy(Model model,HttpSession session) {
-    
-    
   }
+  
   @GetMapping("menu1")
   public void menu1(Model model,HttpSession session) {
     Mentee imentee = (Mentee) session.getAttribute("loginUser");
@@ -465,10 +462,10 @@ public class MypageController {
   
   
   @RequestMapping(value = "getMenteeList.do", method = {RequestMethod.POST})
-  public @ResponseBody List<Classes> getMenteeList(int cno) {
+  public @ResponseBody List<Classes> getMenteeList(int no) {
     
     
-    return classService.manageByCno(cno);
+    return classService.manageByCno(no);
   }
   @RequestMapping(value = "deliveryinsert.do", method = {RequestMethod.POST})
   public @ResponseBody int deliveryInsert(String parcname,String parcno, int ono) {

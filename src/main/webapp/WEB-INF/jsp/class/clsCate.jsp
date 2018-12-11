@@ -5,6 +5,7 @@
 	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <html>
 
 <head>
@@ -257,9 +258,9 @@ margin-bottom: 0.25rem;
 
 								<div class="container">
 									<div class="clearfix">
-										<a class="btn btn-primary float-right mb-3"
-											onClick="showClassAdd('${sessionScope.loginUser.mtstat}')">클래스
-											개강 </a>
+										<a class="btn btn-primary float-right mb-3" style="color: white" 
+											onClick="showClassAdd('${sessionScope.loginUser.mtstat}')">클래스개강
+										</a>
 									</div>
 									<div class="row" id="clslist">
 										<c:forEach items="${clslist}" var="cl" varStatus="i">
@@ -301,7 +302,15 @@ margin-bottom: 0.25rem;
 														<div class="product-description__title">
 															<div class="row">
 																<div class="col-lg-12 mb-2">
-																	<a href="#" onclick="openInNewTab('detail?no=${cl.no}');">${cl.titl}</a>
+																<c:choose>
+					                                                <c:when test="${fn:length(cl.titl) >42}"> 
+					                                                   <a href="#" onclick="openInNewTab('detail?no=${cl.no}');">${fn:substring(cl.titl,0,42)}...</a>
+					                                                </c:when>
+					                                                <c:otherwise>
+					                                                   <a href="#" onclick="openInNewTab('detail?no=${cl.no}');">${cl.titl}</a>
+					                                                </c:otherwise>
+					                                            </c:choose>
+																	
 																</div>
 															</div>
 															<!-- 분류명 , 가격 -->
@@ -405,7 +414,6 @@ margin-bottom: 0.25rem;
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=74d4f74bdd85b5f1c1d2492eaf6b2a88&libraries=services"></script>
 <script>
 $('#mapModal').on('shown.bs.modal', function (e) {
-    console.log(123);
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	    mapOption = {
 	        center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -426,8 +434,6 @@ $('#mapModal').on('shown.bs.modal', function (e) {
          if (s === daum.maps.services.Status.OK) {
             var setCoord = new daum.maps.LatLng(r[0].y, r[0].x);
             // 결과값으로 받은 위치를 마커로 표시합니다
-            /* marker.setPosition(setCoord);
-            marker.setMap(map); */
             map.panTo(setCoord);
          }
     });
@@ -470,8 +476,6 @@ $('#mapModal').on('shown.bs.modal', function (e) {
 	            
 	            $('#SerchLocBtn').attr('onclick', '').unbind('click');
 	            $('#SerchLocBtn').click(function(){
-// 	                console.log(mouseEvent.latLng);
-// 	                console.log(addrSetter);
 	                location.href="clsLoc?locs="+addrSetter;
 	            });
 	        }   
@@ -572,7 +576,11 @@ $('#mapModal').on('shown.bs.modal', function (e) {
 		    				    html+= '			<div class="product-description__title">'
 		    				    html+= '				<div class="row">'
 		    				    html+= '					<div class="col-lg-12 mb-2">'
-		    				    html+= '						<a href="detail?no='+cno+'">'+titl+'</a>'
+		    				    if(titl.length<30){
+		    				        html+= '						<a href="detail?no='+cno+'">'+titl+'</a>'
+		    				    }else{
+		    				        html+= '                      <a href="detail?no='+cno+'">'+titl.substring(0,30)+'...</a>'
+		    				    }
 		    				    html+= '					</div>'
 		    				    html+= '				</div>'
 		    				    html+= '				<div class="row">'
@@ -585,6 +593,8 @@ $('#mapModal').on('shown.bs.modal', function (e) {
 		    					                                  }
 		    					                              }
 		    				    html+= '					</div>'
+		    				    pric = "" + pric;
+		                        pric = pric.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,')
 		    				    html+= '					<div class="col-lg-5 product-description__price">'+pric+'원</div>'
 		    				    html+= '				</div>'
 		    				    html+= '				<hr class="NoMarginHr">'
