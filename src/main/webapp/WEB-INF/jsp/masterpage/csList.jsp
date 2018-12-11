@@ -2,6 +2,7 @@
     pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -184,8 +185,9 @@
                                                 <tr id="rmv${rl.no}">
                                                     <td
                                                         class="text-center">${i.count}</td>
+                                                    <c:set var="TextValue" value="${rl.titl}"/>
                                                     <td
-                                                        class="text-center">${rl.titl}</td>
+                                                        class="text-center">${fn:substring(TextValue,0,10) }</td>
                                                     <td
                                                         class="text-center">${rl.cstype}</td>
                                                     <td
@@ -374,7 +376,8 @@ function cspage(cso){
             
             var html = "";
             for(var i in data){
-                var titl = data[i].titl;
+                var str = data[i].titl;
+                var titl = str.substring(0,25); 
                 var cstype = data[i].cstype;
                 var name = data[i].mete_name;
                 var nick = data[i].mete_nick;

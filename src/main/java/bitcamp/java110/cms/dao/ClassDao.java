@@ -14,7 +14,9 @@ public interface ClassDao {
   List<Classes> findAllByLoc(Map<String,Object> params);
   List<Classes> findAllByWord(Map<String,Object> params);
   
-  List<Classes> findAllByList(); // 클래스 전체 목록
+  List<Classes> findAllByList(Map<String,Object> params); // 클래스 전체 목록
+  int countclall();
+  List<Classes> claPage(Map<String,Object> params);
 
   List<Classes> classform(int no);
 

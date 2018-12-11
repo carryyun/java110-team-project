@@ -2,6 +2,7 @@
     pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <html>
 
@@ -167,7 +168,9 @@
                                     <tr>
                                         <td class="text-center">${i.count}</td> <!-- no -->
                                         <td class="text-center">${pl.smalltag.name}</td> <!-- 카테고리 -->
-                                        <td class="text-center"><a class="button" href="../product/detail?no=${pl.no }">${pl.titl}</a></td> <!-- 상품명-->
+                                        
+                                        <c:set var="TextValue" value="${pl.titl}"/>
+                                        <td class="text-center"><a class="button" href="../product/detail?no=${pl.no }">${fn:substring(TextValue,0,25) }</a></td> <!-- 상품명-->
                                         <td class="text-center">${pl.mentee.name}<br/>(${pl.mentee.nick})</td><!-- 판매자명 -->
                                         <td class="num text-center"><fmt:formatNumber value="${pl.pric}" groupingUsed="true"/>원</td> <!-- 가격 -->
                                         <c:set var="yn" value="${pl.stat }"/>
@@ -247,7 +250,8 @@ function prapage(prao){
             var html = "";
             for(var i in data){
                 var stagname = data[i].smalltag.name;
-                var titl = data[i].titl;
+                var str = data[i].titl;
+                var titl = str.substring(0,25); 
                 var name = data[i].mentee.name;
                 var nick = data[i].mentee.nick;
                 var pric = data[i].pric;
