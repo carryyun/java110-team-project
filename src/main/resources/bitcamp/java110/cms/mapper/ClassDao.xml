@@ -169,6 +169,7 @@
 		<include refid="selectAll"></include>
 		WHERE
 		ps.bas_addr REGEXP #{loc}
+        ORDER BY ps.rgdt DESC
 		limit #{rowNo},#{size}
 	</select>
 	<select id="findAllByWord" resultMap="classMap"
@@ -182,6 +183,7 @@
 		pe.nick Like #{word}
 		OR
 		pe.name Like #{word}
+        ORDER BY ps.rgdt DESC
 		limit #{rowNo},#{size}
 	</select>
 	<select id="findAllByBtno" resultMap="classMap"
@@ -191,6 +193,7 @@
 		ps.stat = 'Y'
 		AND
 		btag.btno=#{btno}
+        ORDER BY ps.rgdt DESC
 		limit #{rowNo},#{size}
 	</select>
 
@@ -317,7 +320,7 @@
 
 	<update id="classupdate" parameterType="Classes">
 		update p_cls
-		<set>
+		<set> 
 			<if test="titl != null">titl = #{titl},</if>
 			<if test="conts != null">conts = #{conts},</if>
 			<if test="pric > 0">pric = #{pric},</if>
@@ -356,6 +359,7 @@
 		po.mono = pe.meno AND
 		ps.mtno = pg.mtno
 		where ps.stat ='I'
+        order by ps.rgdt desc
 	</select>
 
 

@@ -136,25 +136,61 @@ ul#RankingUl li:hover{
                                     <c:when test="${i.count == 1 }">
                                         <li class="py-2 pl-2" onclick="location.href='../class/detail?no=${cr.no}'">
 	                                        <img style="width: 18px; height: 24px; margin-right: 9px" alt="/upload/img/Goldmedal.png" src="/upload/img/Goldmedal.png">
-	                                        <a href="../class/detail?no=${cr.no}">${cr.titl}</a>
+	                                        
+	                                        <c:choose>
+				                                <c:when test="${fn:length(cr.titl) >15}">
+	                                        <a href="../class/detail?no=${cr.no}">${fn:substring(cr.titl,0,15)}...</a>
+				                                </c:when>
+				                                <c:otherwise>
+				                                    <a href="../class/detail?no=${cr.no}">${cr.titl}</a>
+				                                </c:otherwise>
+				                            </c:choose>
+	                                        
                                         </li>
                                     </c:when>
                                     <c:when test="${i.count == 2 }">
                                         <li class="py-2 pl-2" onclick="location.href='../class/detail?no=${cr.no}'">
 	                                        <img style="width: 18px; height: 24px; margin-right: 9px" alt="/upload/img/Goldmedal.png" src="/upload/img/Silvermedal.png">
-	                                        <a href="../class/detail?no=${cr.no}">${cr.titl}</a>
+	                                        
+	                                        <c:choose>
+                                                <c:when test="${fn:length(cr.titl) >16}">
+                                                    <a href="../class/detail?no=${cr.no}">${fn:substring(cr.titl,0,16)}...</a>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <a href="../class/detail?no=${cr.no}">${cr.titl}</a>
+                                                </c:otherwise>
+                                            </c:choose>
+	                                        
                                         </li>
                                     </c:when>
                                     <c:when test="${i.count == 3 }">
                                         <li class="py-2 pl-2" onclick="location.href='../class/detail?no=${cr.no}'">
 	                                        <img style="width: 18px; height: 24px; margin-right: 9px" alt="/upload/img/Goldmedal.png" src="/upload/img/Bronzemedal.png">
-	                                        <a href="../class/detail?no=${cr.no}">${cr.titl}</a>
+	                                        
+	                                        <c:choose>
+                                                <c:when test="${fn:length(cr.titl) >16}">
+                                            <a href="../class/detail?no=${cr.no}">${fn:substring(cr.titl,0,16)}...</a>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <a href="../class/detail?no=${cr.no}">${cr.titl}</a>
+                                                </c:otherwise>
+                                            </c:choose>
+	                                        
                                         </li>
                                     </c:when>
                                     <c:otherwise>
                                         <li class="py-2 pl-2" onclick="location.href='../class/detail?no=${cr.no}'">
                                            <span style="width:24px ; display:inline-flex; text-align:center ; font-weight: 600; margin-left: 3px">${i.count}.</span>
-                                           <a href="../class/detail?no=${cr.no}">${cr.titl}</a>
+                                           
+                                           <c:choose>
+                                                <c:when test="${fn:length(cr.titl) >16}">
+                                            <a href="../class/detail?no=${cr.no}">${fn:substring(cr.titl,0,16)}...</a>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <a href="../class/detail?no=${cr.no}">${cr.titl}</a>
+                                                </c:otherwise>
+                                            </c:choose>
+                                            
                                         </li>
                                     </c:otherwise>
                                 </c:choose>

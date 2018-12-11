@@ -160,58 +160,58 @@ margin-bottom: 0.25rem;
 						<div class="box">
 							<div class="row">
 								<label> <input type="checkbox" name="loc" class="loc" value="가산"> <span
-									class="yes">가산디지털(5)</span>
+									class="yes">가산디지털</span>
 								</label> <label> <input type="checkbox" name="loc" class="loc" value="강남"> <span
-									class="yes">강남(16)</span>
+									class="yes">강남</span>
 								</label> <label> <input type="checkbox" name="loc" class="loc" value="건대"> <span
-									class="yes">건대(7)</span>
+									class="yes">건대</span>
 								</label> <label> <input type="checkbox" name="loc" class="loc" value="구로"> <span
-									class="yes">구로(6)</span>
+									class="yes">구로</span>
 								</label>
 							</div>
 
 							<div class="row">
 								<label> <input type="checkbox" name="loc" class="loc" value="노량진"> <span
-									class="yes">노량진(3)</span>
+									class="yes">노량진</span>
 								</label> <label> <input type="checkbox" name="loc" class="loc" value="동작"> <span
-									class="yes">동작(6)</span>
+									class="yes">동작</span>
 								</label> <label> <input type="checkbox" name="loc" class="loc" value="대구"> <span
-									class="yes">대구중앙(3)</span>
+									class="yes">대구중앙</span>
 								</label> <label> <input type="checkbox" name="loc" class="loc" value="마포"> <span
-									class="yes">마포(4)</span>
+									class="yes">마포</span>
 								</label>
 							</div>
 							<div class="row">
 								<label> <input type="checkbox" name="loc" class="loc" value="부평"> <span
-									class="yes">부평(11)</span>
+									class="yes">부평</span>
 								</label> <label> <input type="checkbox" name="loc" class="loc" value="부산대"> <span
-									class="yes">부산대(3)</span>
+									class="yes">부산대</span>
 								</label> <label> <input type="checkbox" name="loc" class="loc" value="서면"> <span
-									class="yes">부산서면(12)</span>
+									class="yes">부산서면</span>
 								</label> <label> <input type="checkbox" name="loc" class="loc" value="분당"> <span
-									class="yes">분당(5)</span>
+									class="yes">분당</span>
 								</label>
 							</div>
 							<div class="row">
 								<label> <input type="checkbox" name="loc" class="loc" value="신림"> <span
-									class="yes">신림(4)</span>
+									class="yes">신림</span>
 								</label> <label> <input type="checkbox" name="loc" class="loc" value="수원"> <span
-									class="yes">수원(11)</span>
+									class="yes">수원</span>
 								</label> <label> <input type="checkbox" name="loc" class="loc" value="송도"> <span
-									class="yes">송도(6)</span>
+									class="yes">송도</span>
 								</label> <label> <input type="checkbox" name="loc" class="loc" value="사당"> <span
-									class="yes">사당(12)</span>
+									class="yes">사당</span>
 								</label>
 							</div>
 							<div class="row">
 								<label> <input type="checkbox" name="loc" class="loc" value="영등포"> <span
-									class="yes">영등포(6)</span>
+									class="yes">영등포</span>
 								</label> <label> <input type="checkbox" name="loc" class="loc" value="일산"> <span
-									class="yes">일산(6)</span>
+									class="yes">일산</span>
 								</label> <label> <input type="checkbox" name="loc" class="loc" value="종로"> <span
-									class="yes">종로(6)</span>
+									class="yes">종로</span>
 								</label> <label> <input type="checkbox" name="loc" class="loc" value="혜화"> <span
-									class="yes">혜화(5)</span>
+									class="yes">혜화</span>
 								</label>
 							</div>
 						</div>
@@ -536,9 +536,16 @@ $('#mapModal').on('shown.bs.modal', function (e) {
 		    				    html+= ' 		<div class="image-holder" onClick="location.href="detail?no='+cno+'"">'
 		    				    html+= '			<a href="detail?no='+cno+'" class="image-holder__-link"></a>'
 		    				    html+= '			<div class="image-liquid image-holder--original">'
-		    				    html+= '				<a href="detail?no='+cno+'"><img alt="${i.count}" src="'+cfile+'"'
-		    				    html+= '					style="width: 100%; height: 100%"></a> <img src="'+phot+'"'
-		    				    html+= '					class="mentorimg" alt="'+phot+'">'
+		    				        html+= '<a href="#" onclick="openInNewTab(\'detail?no='+ cno +'  \');">'
+                                    var transFile = cfile;
+                                    if(transFile.endsWith("jpg") || transFile.endsWith("png")){
+                                        html+= '<img alt="'+ i +'" src="'+ cfile +'" style="width: 100%; height: 100%">'
+                                    }else{
+                                        html+= '    <img alt="'+ i +'" src="https://i.ytimg.com/vi/'+ cfile +'/mqdefault.jpg" style="width: 100%; height: 100%">'
+                                    }
+                                    html+= '</a>'
+                                    html+= '<img src="'+phot+'"'
+                                    html+= '                    class="mentorimg" alt="'+phot+'">'
 		    				    html+= '				<div '
 		    				    html+= '				style="padding: 0 5px; top: 75px; width: auto; height: auto; position: absolute; background-color: #f58500; color: white; border-bottom-right-radius: 10px">'+name+''
 		    				    html+= '				</div>'
