@@ -12,7 +12,7 @@ input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
-
+  
 /* 프사업데이트 CSS  */
 
 .certiUp {
