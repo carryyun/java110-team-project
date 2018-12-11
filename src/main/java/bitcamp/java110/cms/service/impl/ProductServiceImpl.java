@@ -137,4 +137,12 @@ public class ProductServiceImpl implements ProductService {
     return productDao.countpdall();
   }
 
+  @Override
+  public List<Product> listForScroll(int pageNo, int pageSize) {
+    HashMap<String, Object> params = new HashMap<>();
+    params.put("rowNo", (pageNo -1 ) * pageSize);
+    params.put("size", pageSize);
+    return productDao.findAllForScroll(params);
+  }
+
 }

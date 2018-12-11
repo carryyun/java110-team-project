@@ -475,10 +475,6 @@
 
         ) as certtype
         
-        
-       
-
-
         FROM p_cls c
         JOIN p_cls_ttab ct ON c.cno = ct.cno
         JOIN p_cls_order co ON ct.ctno = co.ctno

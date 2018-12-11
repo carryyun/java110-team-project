@@ -30,15 +30,14 @@ public class ClassServiceImpl implements ClassService{
     System.out.println(loginUserNo);
     if(classes.getDetAddr() == null) {
       classes.setDetAddr(null);
-    }
-    if((classes.getCfile().equals(""))){
+    }else if((classes.getCfile().equals(""))){
       classes.setCfile("");
-    }
-    if(classes.getCfile().length() > 0 & !( classes.getCfile().endsWith("jpg") | classes.getCfile().endsWith("png")  ) ) {
+    }else if(classes.getCfile().length() > 0 & !( classes.getCfile().endsWith("jpg") | classes.getCfile().endsWith("png")  ) ) {
       classes.setCfile(classes.getCfile().substring(classes.getCfile().length()-11, classes.getCfile().length()));
     }
     classes.setMtno(Integer.parseInt(selmtag));
     classes.setMono(loginUserNo);
+    System.out.println(classes);
     classDao.classinsert(classes);
     if(classes.getType().equals("단기")) {
       String daylist[] = days.split(",");

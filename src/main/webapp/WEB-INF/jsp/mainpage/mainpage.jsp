@@ -409,7 +409,7 @@ ul#RankingUl li:hover{
         margin:10,
         jsonPath : 'json/customData.json',
         jsonSuccess : customDataSuccessCls(dataCls),
-        
+        dots: false
       });
       
         
@@ -512,7 +512,7 @@ ul#RankingUl li:hover{
           margin:10,
           jsonPath : 'json/customData.json',
           jsonSuccess : customDataSuccessPrdt(dataPrdt),
-          
+          dots: false
         });
 
         function customDataSuccessPrdt(dataPrdt) {
