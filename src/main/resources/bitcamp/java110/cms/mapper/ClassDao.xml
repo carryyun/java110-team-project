@@ -5,451 +5,468 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bitcamp.java110.cms.dao.ClassDao">
 
-    <resultMap type="Classes" id="classMap">
-        <id 	column="cno" 		property="no"/>
-        <result column="titl"  		property="titl"/>
-        <result column="conts"    	property="conts"/>
-        <result column="pric"   	property="pric"/>
-        <result column="rgdt"   	property="rgdt"/>
-        <result column="time"   	property="time"/>
-        <result column="capa"  		property="capa"/>
-        <result column="cfile"  	property="cfile"/>
-        <result column="tinfo"    	property="tinfo"/>
-        <result column="cinfo"   	property="cinfo"/>
-        <result column="pstno"   	property="pstno"/>
-        <result column="bas_addr"   property="basAddr"/>
-        <result column="det_addr"   property="detAddr"/>
-        <result column="type" 		property="type"/>
-        <result column="edt"  		property="edt"/>
-        <result column="mono"  		property="mono"/>
-        <result column="mtno"  		property="mtno"/>
-        <result column="stat"       property="stat"/>
-        <result column="star"		property="star"/>
-        <result column="note"       property="note"/>
-        
-        <result column="meno"		property="mentee.no"/>
-        <result column="name"  		property="mentee.name"/>
-        <result column="nick"		property="mentee.nick"/>
-        <result column="phot"		property="mentee.phot"/>
-        <result column="phone"      property="mentee.phone"/>
-        
-        <result column="mtno"		property="middleTag.mtno"/>
-        <result column="mtname"		property="middleTag.name"/>
-        
-        <result column="fname"		property="classFile.fname"/>
-    </resultMap>
-    
-    <resultMap type="Classes" id="classMapOrigin">
-        <id     column="cno"        property="no"/>
-        <result column="titl"       property="titl"/>
-        <result column="conts"      property="conts"/>
-        <result column="pric"       property="pric"/>
-        <result column="rgdt"       property="rgdt"/>
-        <result column="time"       property="time"/>
-        <result column="capa"       property="capa"/>
-        <result column="cfile"      property="cfile"/>
-        <result column="tinfo"      property="tinfo"/>
-        <result column="cinfo"      property="cinfo"/>
-        <result column="pstno"      property="pstno"/>
-        <result column="bas_addr"   property="basAddr"/>
-        <result column="det_addr"   property="detAddr"/>
-        <result column="edt"        property="edt"/>
-        <result column="mono"       property="mono"/>
-        <result column="mtno"       property="mtno"/>
-        <result column="star"       property="star"/>
-        <result column="note"       property="note"/>
-        <result column="mtname"     property="middleTag.name"/>
-        <result column="btno"       property="bigTag.no"/>
-        <result column="btname"     property="bigTag.name"/>
-        <result column="nick"       property="mentee.nick"/>
-        <result column="name"       property="mentee.name"/>
-    </resultMap>
-    
-    <resultMap type="Classes" id="classMapMypage">
-        <id     column="cno"        property="no"/>
-        <result column="titl"       property="titl"/>
-        <result column="note"       property="note"/>
-        <result column="btname"     property="bigTag.name"/>
-        <result column="mtname"     property="middleTag.name"/>
-        <result column="capa"       property="capa"/>
-        <result column="ctcapa"     property="timetable.capa"/>
-        <result column="me2name"    property="mentee2.name"/>
-        <result column="me2nick"    property="mentee2.nick"/>
-        <result column="me2phone"   property="mentee2.phone"/>
-        <result column="me2no"      property="mentee2.no"/>
-        <result column="certtype"   property="cert.type"/>
-    </resultMap>
-    
-    <resultMap type="Classes" id="classStar">
-        <id     column="cno"        property="no"/>
-        <result column="star"   property="star"/>
-    </resultMap>
-    
-    <select id="findAllStar" resultMap="classStar">
-        select
-            cno,
-            star
-        from
-            p_cls
-        limit 0,500
-    </select>
-    
-    <sql id="select1">
-        select 
-            ps.cno,ps.titl,ps.pric,ps.bas_addr,pg.mtno,pe.meno
-        from
-            p_cls as ps inner join p_mete as pe 
-                on ps.mono = pe.meno
-            inner join p_mtag as pg 
-                on ps.mtno = pg.mtno
-    </sql>
-    <sql id="selectAll">
-        SELECT 
-            ps.cno,
-            ps.titl,
-            ps.pric,
-            pe.name,
-            pe.nick,
-            pe.phot,
-            ps.bas_addr,
-            pg.mtname,
-            ps.cfile,
-            ps.star,
-            btag.btno,
-            btag.btname
-        FROM
-            p_mtag as pg inner join p_cls as ps
-                on ps.mtno = pg.mtno
-            inner join p_meto as po 
-                on po.mono = ps.mono
-            inner join p_mete as pe
-                on po.mono = pe.meno
-            inner join p_btag as btag
-                on pg.btno = btag.btno
-    </sql>
-    
-    <select id="findAllByOrder" resultMap="classMap" parameterType="map">
-    SELECT
-            ps.cno,
-            ps.titl,
-            ps.pric,
-            pe.name,
-            pe.nick,
-            pe.phot,
-            ps.bas_addr,
-            pg.mtname,
-            ps.cfile,
-            ps.star,
-            btag.btno,
-            btag.btname
-    FROM
-          p_cls_order corder
-          join p_cls_ttab ttab
-            ON corder.ctno = ttab.ctno
-          join p_mtag as pg
-          inner join p_cls as ps
-            on ps.mtno = pg.mtno
-          inner join p_meto as po 
-            on po.mono = ps.mono
-          inner join p_mete as pe
-            on po.mono = pe.meno
-          inner join p_btag as btag
-            on pg.btno = btag.btno
-          
-          where ttab.cno = ps.cno
-      GROUP BY cno
-      ORDER BY COUNT(*) DESC
-         LIMIT #{rowNo},#{size}
-    
-    </select>
-    
-    <select id="findAllByLoc" resultMap="classMap" parameterType="map">
-        <include refid="selectAll"></include>
-        WHERE
-            ps.bas_addr REGEXP #{loc}
-        limit #{rowNo},#{size}
-    </select>
-    <select id="findAllByWord" resultMap="classMap" parameterType="map">
-        <include refid="selectAll"></include>
-        WHERE
-        	ps.stat = 'Y'
-        AND
-            ps.titl Like #{word}
-        OR
-            pe.nick Like #{word}
-        OR
-            pe.name Like #{word}
-        limit #{rowNo},#{size}
-    </select>
-	<select id="findAllByBtno" resultMap="classMap" parameterType="map">
-        <include refid="selectAll"></include>
-        WHERE
-        	ps.stat = 'Y'
-        AND
-            btag.btno=#{btno}
-            limit #{rowNo},#{size}
-    </select>
-    
-    <select id="findAllByMtno" resultMap="classMap" parameterType="map">
-        <include refid="selectAll"></include>
-        WHERE
-        	ps.stat = 'Y'
-        AND
-            pg.mtno=#{mtno}
-        ORDER by ps.cno asc
-    </select>
-	
-	<select id="findAllByList" resultMap="classMap"> <!-- 이게 전체리스트출력하는거임 -->
-        select 
-            cls.cno,
-            mtag.mtname,
-            cls.titl,
-            mete.phot,
-            mete.name,
-            mete.nick,
-            mete.phone,
-            cls.pric,
-            cls.rgdt
-        from
-            p_cls as cls 
-            inner join p_mtag as mtag
-            inner join p_cert as cert
-            inner join p_mete as mete
-            on cls.mtno = mtag.mtno and
-            cls.cno = cert.cno and
-            cert.meno = mete.meno
-        where cls.stat = 'Y'
-        order by 
-            cls.cno desc
-    </select>
- 
-    <select id="findAll" resultMap="classMap" parameterType="map">
-        <include refid="select1"></include>
-        where 
-        	ps.stat = 'Y'
-		order by
-			cno asc;
-    </select>
-    
-    <select id="findByptno" resultMap="classMap" parameterType="int">
-    	select
-			ps.cno,
-			ps.titl,
-			ps.pric,
-			pe.name,
-			ps.bas_addr,
-			pg.mtname,
-			ps.cfile,
-			ps.star
+	<resultMap type="Classes" id="classMap">
+		<id column="cno" property="no" />
+		<result column="titl" property="titl" />
+		<result column="conts" property="conts" />
+		<result column="pric" property="pric" />
+		<result column="rgdt" property="rgdt" />
+		<result column="time" property="time" />
+		<result column="capa" property="capa" />
+		<result column="cfile" property="cfile" />
+		<result column="tinfo" property="tinfo" />
+		<result column="cinfo" property="cinfo" />
+		<result column="pstno" property="pstno" />
+		<result column="bas_addr" property="basAddr" />
+		<result column="det_addr" property="detAddr" />
+		<result column="type" property="type" />
+		<result column="edt" property="edt" />
+		<result column="mono" property="mono" />
+		<result column="mtno" property="mtno" />
+		<result column="stat" property="stat" />
+		<result column="star" property="star" />
+		<result column="note" property="note" />
+
+		<result column="meno" property="mentee.no" />
+		<result column="name" property="mentee.name" />
+		<result column="nick" property="mentee.nick" />
+		<result column="phot" property="mentee.phot" />
+		<result column="phone" property="mentee.phone" />
+
+		<result column="mtno" property="middleTag.mtno" />
+		<result column="mtname" property="middleTag.name" />
+
+		<result column="fname" property="classFile.fname" />
+	</resultMap>
+
+	<resultMap type="Classes" id="classMapOrigin">
+		<id column="cno" property="no" />
+		<result column="titl" property="titl" />
+		<result column="conts" property="conts" />
+		<result column="pric" property="pric" />
+		<result column="rgdt" property="rgdt" />
+		<result column="time" property="time" />
+		<result column="capa" property="capa" />
+		<result column="cfile" property="cfile" />
+		<result column="tinfo" property="tinfo" />
+		<result column="cinfo" property="cinfo" />
+		<result column="pstno" property="pstno" />
+		<result column="bas_addr" property="basAddr" />
+		<result column="det_addr" property="detAddr" />
+		<result column="edt" property="edt" />
+		<result column="mono" property="mono" />
+		<result column="mtno" property="mtno" />
+		<result column="star" property="star" />
+		<result column="note" property="note" />
+		<result column="mtname" property="middleTag.name" />
+		<result column="btno" property="bigTag.no" />
+		<result column="btname" property="bigTag.name" />
+		<result column="nick" property="mentee.nick" />
+		<result column="name" property="mentee.name" />
+	</resultMap>
+
+	<resultMap type="Classes" id="classMapMypage">
+		<id column="cno" property="no" />
+		<result column="titl" property="titl" />
+		<result column="note" property="note" />
+		<result column="btname" property="bigTag.name" />
+		<result column="mtname" property="middleTag.name" />
+		<result column="capa" property="capa" />
+		<result column="ctcapa" property="timetable.capa" />
+		<result column="me2name" property="mentee2.name" />
+		<result column="me2nick" property="mentee2.nick" />
+		<result column="me2phone" property="mentee2.phone" />
+		<result column="me2no" property="mentee2.no" />
+		<result column="certtype" property="cert.type" />
+	</resultMap>
+
+	<resultMap type="Classes" id="classStar">
+		<id column="cno" property="no" />
+		<result column="star" property="star" />
+	</resultMap>
+
+	<select id="findAllStar" resultMap="classStar">
+		select
+		cno,
+		star
 		from
-			p_cert as pct inner join p_prdt as ppt
-				on ppt.ctno = pct.ctno
-			inner join p_cls as ps
-				on ps.cno = pct.cno
-			inner join p_mtag as pg 
-				on ps.mtno = pg.mtno
-			inner join p_meto as po 
-				on po.mono = ps.mono
-			inner join p_mete as pe
-				on po.mono = pe.meno
+		p_cls
+		limit 0,500
+	</select>
+
+	<sql id="select1">
+		select
+		ps.cno,ps.titl,ps.pric,ps.bas_addr,pg.mtno,pe.meno
+		from
+		p_cls as ps inner join p_mete as pe
+		on ps.mono = pe.meno
+		inner join p_mtag as pg
+		on ps.mtno = pg.mtno
+	</sql>
+	<sql id="selectAll">
+		SELECT
+		ps.cno,
+		ps.titl,
+		ps.pric,
+		pe.name,
+		pe.nick,
+		pe.phot,
+		ps.bas_addr,
+		pg.mtname,
+		ps.cfile,
+		ps.star,
+		btag.btno,
+		btag.btname
+		FROM
+		p_mtag as pg inner join p_cls as ps
+		on ps.mtno = pg.mtno
+		inner join p_meto as po
+		on po.mono = ps.mono
+		inner join p_mete as pe
+		on po.mono = pe.meno
+		inner join p_btag as btag
+		on pg.btno = btag.btno
+	</sql>
+
+	<select id="findAllByOrder" resultMap="classMap"
+		parameterType="map">
+		SELECT
+		ps.cno,
+		ps.titl,
+		ps.pric,
+		pe.name,
+		pe.nick,
+		pe.phot,
+		ps.bas_addr,
+		pg.mtname,
+		ps.cfile,
+		ps.star,
+		btag.btno,
+		btag.btname
+		FROM
+		p_cls_order corder
+		join p_cls_ttab ttab
+		ON corder.ctno = ttab.ctno
+		join p_mtag as pg
+		inner join p_cls as ps
+		on ps.mtno = pg.mtno
+		inner join p_meto as po
+		on po.mono = ps.mono
+		inner join p_mete as pe
+		on po.mono = pe.meno
+		inner join p_btag as btag
+		on pg.btno = btag.btno
+
+		where ttab.cno = ps.cno
+		GROUP BY cno
+		ORDER BY COUNT(*) DESC
+		LIMIT #{rowNo},#{size}
+
+	</select>
+
+	<select id="findAllByLoc" resultMap="classMap"
+		parameterType="map">
+		<include refid="selectAll"></include>
+		WHERE
+		ps.bas_addr REGEXP #{loc}
+		limit #{rowNo},#{size}
+	</select>
+	<select id="findAllByWord" resultMap="classMap"
+		parameterType="map">
+		<include refid="selectAll"></include>
+		WHERE
+		ps.stat = 'Y'
+		AND
+		ps.titl Like #{word}
+		OR
+		pe.nick Like #{word}
+		OR
+		pe.name Like #{word}
+		limit #{rowNo},#{size}
+	</select>
+	<select id="findAllByBtno" resultMap="classMap"
+		parameterType="map">
+		<include refid="selectAll"></include>
+		WHERE
+		ps.stat = 'Y'
+		AND
+		btag.btno=#{btno}
+		limit #{rowNo},#{size}
+	</select>
+
+	<select id="findAllByMtno" resultMap="classMap"
+		parameterType="map">
+		<include refid="selectAll"></include>
+		WHERE
+		ps.stat = 'Y'
+		AND
+		pg.mtno=#{mtno}
+		ORDER by ps.cno asc
+	</select>
+
+	<select id="findAllByList" resultMap="classMap"> <!-- 이게 전체리스트출력하는거임 -->
+		select
+		cls.cno,
+		mtag.mtname,
+		cls.titl,
+		mete.phot,
+		mete.name,
+		mete.nick,
+		mete.phone,
+		cls.pric,
+		cls.rgdt
+		from
+		p_cls as cls
+		inner join p_mtag as mtag
+		inner join p_cert as cert
+		inner join p_mete as mete
+		on cls.mtno = mtag.mtno and
+		cls.cno = cert.cno and
+		cert.meno = mete.meno
+		where cls.stat = 'Y'
+		order by
+		cls.cno desc
+	</select>
+
+	<select id="findAll" resultMap="classMap" parameterType="map">
+		<include refid="select1"></include>
+		where
+		ps.stat = 'Y'
+		order by
+		cno asc;
+	</select>
+
+	<select id="findByptno" resultMap="classMap" parameterType="int">
+		select
+		ps.cno,
+		ps.titl,
+		ps.pric,
+		pe.name,
+		ps.bas_addr,
+		pg.mtname,
+		ps.cfile,
+		ps.star
+		from
+		p_cert as pct inner join p_prdt as ppt
+		on ppt.ctno = pct.ctno
+		inner join p_cls as ps
+		on ps.cno = pct.cno
+		inner join p_mtag as pg
+		on ps.mtno = pg.mtno
+		inner join p_meto as po
+		on po.mono = ps.mono
+		inner join p_mete as pe
+		on po.mono = pe.meno
 		where ppt.ptno = #{ptno}
-    </select>
+	</select>
 
 	<select id="findByCno" resultMap="classMap" parameterType="int">
 		select
-			ps.cno,
-			pe.nick,
-			ps.titl,
-			ps.conts,
-			ps.pric,
-			ps.rgdt,
-			ps.cfile,
-			ps.time,
-			ps.capa,
-            ps.cfile,
-			ps.tinfo,
-			ps.cinfo,
-			ps.pstno,
-			ps.bas_addr,
-			ps.det_addr,
-			ps.edt,
-            ps.star,
-            ptg.mtname,
-            pe.phot,
-            pe.meno
+		ps.cno,
+		pe.nick,
+		ps.titl,
+		ps.conts,
+		ps.pric,
+		ps.rgdt,
+		ps.cfile,
+		ps.time,
+		ps.capa,
+		ps.cfile,
+		ps.tinfo,
+		ps.cinfo,
+		ps.pstno,
+		ps.bas_addr,
+		ps.det_addr,
+		ps.edt,
+		ps.star,
+		ptg.mtname,
+		pe.phot,
+		pe.meno
 		from
-			p_cls as ps inner join p_meto as po
-				on ps.mono = po.mono
-			inner join p_mete as pe
-				on po.mono = pe.meno
-            inner join p_mtag as ptg
-            	on ps.mtno = ptg.mtno
+		p_cls as ps inner join p_meto as po
+		on ps.mono = po.mono
+		inner join p_mete as pe
+		on po.mono = pe.meno
+		inner join p_mtag as ptg
+		on ps.mtno = ptg.mtno
 		where
-			cno =  #{no} AND (ps.stat = 'Y' OR ps.stat = 'I')
+		cno = #{no} AND (ps.stat = 'Y' OR ps.stat = 'I')
 	</select>
 
 	<select id="findBytag" resultMap="classMap" parameterType="int">
 		<include refid="select1"></include>
 		where pg.mtno = #{mtno} AND ps.stat = 'Y'
 	</select>
-	
-	<select id ="findByba" resultMap="classMap" parameterType="String">
+
+	<select id="findByba" resultMap="classMap"
+		parameterType="String">
 		<include refid="select1"></include>
 		where bas_addr = #{basAddr} AND ps.stat = 'Y'
 	</select>
-    
-    <insert id="classinsert" parameterType="Classes"
-    useGeneratedKeys="true" keyColumn="cno" keyProperty="no" >
-        insert
-        	into p_cls(titl,conts,pric,rgdt,time,capa,cfile
-        	,tinfo,cinfo,pstno,bas_addr,det_addr,edt,mono,mtno,type,stat)
-        values
-        	(#{titl},"안녕하세요",#{pric},now(),#{time},#{capa}
-        	,#{cfile},#{tinfo},#{cinfo},#{pstno},#{basAddr}
-        	,#{detAddr},#{edt},#{mono},#{mtno},#{type},'I')
-    </insert> 
-    
-    <update id="classupdate" parameterType="Classes" >
-    	update p_cls
-    		<set>
-    			<if test="titl != null">titl = #{titl},</if>
-    			<if test="conts != null">conts = #{conts},</if>
-    			<if test="pric > 0">pric = #{pric},</if>
-    			<if test="rgdt != null">rgdt = now(),</if>
-    			<if test="time != null">time = #{time},</if>
-    			<if test="capa > 0">capa = #{capa},</if>
-    			<if test="cfile != null">cfile = #{cfile},</if>
-    			<if test="tinfo != null">tinfo = #{tinfo},</if>
-    			<if test="cinfo != null">cinfo = #{cinfo},</if>
-    			<if test="pstno != null">pstno = #{pstno},</if>
-    			<if test="basAddr != null">bas_addr = #{basAddr},</if>
-    			<if test="detAddr != null">det_addr = #{detAddr},</if>
-    			<if test="edt != null">edt = now(),</if>
-    			<if test="mono > 0">mono = #{mono},</if>
-    			<if test="mtno > 0">mtno = #{mtno}</if>
-                <if test="star > 0">star = #{star}</if>
-    		</set>
-    	where 
-    		cno = #{no}
-    </update>
-    
-    <select id="findByStat" resultMap="classMapOrigin" parameterType="string">
-        select *
-        from p_cls cls inner join p_mete mete
-            on cls.mtno = mete.meno
-        inner join p_mtag mtag
-            on cls.mtno = mtag.mtno
-        where cls.stat=#{stat}
-        order by cno DESC;
-    </select>
-    
-    
-    
-    
-    <select id="manageByMono" resultMap="classMapMypage" parameterType="map">
-    
-       SELECT
-            c.cno,
-            c.titl,
-            btg.btname,
-            mtg.mtname,
-            c.capa,
-            ct.capa as ctcapa
 
-       FROM  p_cls c
-            JOIN p_meto mo ON c.mono = mo.mono
-            JOIN p_mete me ON mo.mono = me.meno
-            JOIN p_mtag mtg ON c.mtno = mtg.mtno
-            JOIN p_btag btg ON mtg.btno = btg.btno
-            JOIN p_cls_ttab ct ON c.cno = ct.cno
-            
-       where
-            mo.mono=#{mono} AND c.stat = 'Y'
-       
-    </select>
-    
-    
-     <select id="manageByCno" resultMap="classMapMypage" parameterType="map">
-    
-       SELECT DISTINCT
-            c.cno,
-            c.titl,
-            c.capa,
-            ct.capa as ctcapa,
-            me2.name as me2name,
-            me2.nick as me2nick,
-            me2.phone as me2phone,
-            me2.meno as me2no,
-            cert.type as certtype
-            
+	<insert id="classinsert" parameterType="Classes"
+		useGeneratedKeys="true" keyColumn="cno" keyProperty="no">
+		insert
+		into p_cls(titl,conts,pric,rgdt,time,capa,cfile
+		,tinfo,cinfo,pstno,bas_addr,det_addr,edt,mono,mtno,type,stat)
+		values
+		(#{titl},"안녕하세요",#{pric},now(),#{time},#{capa}
+		,#{cfile},#{tinfo},#{cinfo},#{pstno},#{basAddr}
+		,#{detAddr},#{edt},#{mono},#{mtno},#{type},'I')
+	</insert>
 
-       FROM  p_cls c
-            JOIN p_cls_ttab ct ON c.cno = ct.cno
-            JOIN p_cls_order co ON ct.cno = co.ctno
-            JOIN p_mete me2 ON co.meno = me2.meno
-            LEFT JOIN p_cert cert ON me2.meno = cert.meno
-            
-            
-       where
-            c.cno=#{cno} AND c.stat = 'Y'
-            
-      ORDER BY
-           ct.ctno asc
-          
-           
-    </select>
-    
-    
-    <update id="statupdate" parameterType="Classes">
-    update p_cls
-        <set>
-            <if test="note != null">note = #{note},</if>
-            <if test="stat != null">stat = #{stat}</if>
-        </set>
-       where 
-        cno = #{no}
-    </update>
-    
-    <update id="deleteclsstat" parameterType="Classes">
-    update p_cls
-        <set>
-            <if test="stat != null">stat = #{stat}</if>
-        </set>
-       where 
-        cno = #{no}
-    </update>
-    
-    <select id="serchByAll" resultMap="classMap" parameterType="map" >
-        SELECT 
-            ps.cno,
-            ps.titl,
-            ps.pric,
-            pe.name,
-            pe.nick,
-            pe.phot,
-            ps.bas_addr,
-            pg.mtname,
-            ps.cfile,
-            ps.star,
-            btag.btno,
-            btag.btname
-        FROM
-            p_mtag pg inner join p_cls as ps
-                on ps.mtno = pg.mtno
-            inner join p_meto as po 
-                on po.mono = ps.mono
-            inner join p_mete as pe
-                on po.mono = pe.meno
-            inner join p_btag as btag
-                on pg.btno = btag.btno
-                WHERE ps.titl LIKE "%{str}%"
-                or ps.tinfo Like "%{str}%"
-                or ps.cinfo Like "%{str}%"
-                or pe.name Like "%{str}%"
-                or pe.nick Like "%{str}%"
-    	where ps.stat = 'Y'
-    </select>
-    
+	<update id="classupdate" parameterType="Classes">
+		update p_cls
+		<set>
+			<if test="titl != null">titl = #{titl},</if>
+			<if test="conts != null">conts = #{conts},</if>
+			<if test="pric > 0">pric = #{pric},</if>
+			<if test="rgdt != null">rgdt = now(),</if>
+			<if test="time != null">time = #{time},</if>
+			<if test="capa > 0">capa = #{capa},</if>
+			<if test="cfile != null">cfile = #{cfile},</if>
+			<if test="tinfo != null">tinfo = #{tinfo},</if>
+			<if test="cinfo != null">cinfo = #{cinfo},</if>
+			<if test="pstno != null">pstno = #{pstno},</if>
+			<if test="basAddr != null">bas_addr = #{basAddr},</if>
+			<if test="detAddr != null">det_addr = #{detAddr},</if>
+			<if test="edt != null">edt = now(),</if>
+			<if test="mono > 0">mono = #{mono},</if>
+			<if test="mtno > 0">mtno = #{mtno}</if>
+			<if test="star > 0">star = #{star}</if>
+		</set>
+		where
+		cno = #{no}
+	</update>
+
+	<select id="findByStat" resultMap="classMapOrigin"
+		parameterType="string">
+		select
+		ps.titl,
+		pg.mtname,
+		pe.nick,
+		pe.name,
+		ps.rgdt,
+		ps.cno
+		from
+		p_cls as ps inner join p_meto as po
+		inner join p_mete pe
+		inner join p_mtag pg
+		on ps.mono = po.mono AND
+		po.mono = pe.meno AND
+		ps.mtno = pg.mtno
+		where ps.stat ='I'
+	</select>
+
+
+
+
+	<select id="manageByMono" resultMap="classMapMypage"
+		parameterType="map">
+
+		SELECT
+		c.cno,
+		c.titl,
+		btg.btname,
+		mtg.mtname,
+		c.capa,
+		ct.capa as ctcapa
+
+		FROM p_cls c
+		JOIN p_meto mo ON c.mono = mo.mono
+		JOIN p_mete me ON mo.mono = me.meno
+		JOIN p_mtag mtg ON c.mtno = mtg.mtno
+		JOIN p_btag btg ON mtg.btno = btg.btno
+		JOIN p_cls_ttab ct ON c.cno = ct.cno
+
+		where
+		mo.mono=#{mono} AND c.stat = 'Y'
+
+	</select>
+
+
+	<select id="manageByCno" resultMap="classMapMypage"
+		parameterType="map">
+
+		SELECT DISTINCT
+		c.cno,
+		c.titl,
+		c.capa,
+		ct.capa as ctcapa,
+		me2.name as me2name,
+		me2.nick as me2nick,
+		me2.phone as me2phone,
+		me2.meno as me2no,
+		cert.type as certtype
+
+
+		FROM p_cls c
+		JOIN p_cls_ttab ct ON c.cno = ct.cno
+		JOIN p_cls_order co ON ct.cno = co.ctno
+		JOIN p_mete me2 ON co.meno = me2.meno
+		LEFT JOIN p_cert cert ON me2.meno = cert.meno
+
+
+		where
+		c.cno=#{cno} AND c.stat = 'Y'
+
+		ORDER BY
+		ct.ctno asc
+
+
+	</select>
+
+
+	<update id="statupdate" parameterType="Classes">
+		update p_cls
+		<set>
+			<if test="note != null">note = #{note},</if>
+			<if test="stat != null">stat = #{stat}</if>
+		</set>
+		where
+		cno = #{no}
+	</update>
+
+	<update id="deleteclsstat" parameterType="Classes">
+		update p_cls
+		<set>
+			<if test="stat != null">stat = #{stat}</if>
+		</set>
+		where
+		cno = #{no}
+	</update>
+
+	<select id="serchByAll" resultMap="classMap" parameterType="map">
+		SELECT
+		ps.cno,
+		ps.titl,
+		ps.pric,
+		pe.name,
+		pe.nick,
+		pe.phot,
+		ps.bas_addr,
+		pg.mtname,
+		ps.cfile,
+		ps.star,
+		btag.btno,
+		btag.btname
+		FROM
+		p_mtag pg inner join p_cls as ps
+		on ps.mtno = pg.mtno
+		inner join p_meto as po
+		on po.mono = ps.mono
+		inner join p_mete as pe
+		on po.mono = pe.meno
+		inner join p_btag as btag
+		on pg.btno = btag.btno
+		WHERE ps.titl LIKE "%{str}%"
+		or ps.tinfo Like "%{str}%"
+		or ps.cinfo Like "%{str}%"
+		or pe.name Like "%{str}%"
+		or pe.nick Like "%{str}%"
+		where ps.stat = 'Y'
+	</select>
+
 </mapper>
 
 

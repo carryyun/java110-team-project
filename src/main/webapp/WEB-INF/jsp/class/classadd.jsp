@@ -145,7 +145,7 @@
                 <option value="34">엑셀</option>
                 <option value="35">파워포인트</option>
                 <option value="36">프레젠테이션</option>
-                <option value="37">브랜딩</option>
+                <option value="37">일러스트</option>
                 <option value="38">창업</option>
                 <option value="39">기획서</option>
                 <option value="40">재무회계</option>
