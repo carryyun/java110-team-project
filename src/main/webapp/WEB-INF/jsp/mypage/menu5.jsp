@@ -6,7 +6,7 @@
 
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
   
-  
+   
 <div class="col-lg-12" >
 	<div class="panel panel-default">
 		<div class="panel-body" > 
