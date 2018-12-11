@@ -14,12 +14,12 @@
             <table class="table table-condensed" style="border-collapse:collapse;">
                 <thead>
                     <tr>
-                        <th>No.</th>
-                        <th>클래스</th>
-                        <th>제목</th>
-                        <th>질문자</th>
-                        <th>문의일자</th>
-                        <th>처리상태</th>
+                        <th width="5%">No.</th>
+                        <th width="35%">클래스</th>
+                        <th width="25%">제목</th>
+                        <th width="10%">질문자</th>
+                        <th width="15%">문의일자</th>
+                        <th width="15%">처리상태</th>
                     </tr>
                 </thead>
 
