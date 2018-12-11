@@ -363,7 +363,7 @@ public class ProductController {
       profile.setPtno(result);
       productFileService.delete(profile);
     }
-    
+     
     for (MultipartFile file : files) {
       if (!file.getOriginalFilename().equals("")) {
         String filename = UUID.randomUUID().toString();
