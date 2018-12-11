@@ -15,6 +15,21 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
+<style>
+div.product-description__title > div > div{
+    height : 45px;
+}
+div.product-description__title > div > div > a{
+    word-break:break-all;
+    display:block;
+    clear:none;
+    min-width:290px;
+    max-width:290px;
+    width:290px;
+    white-space: normal; 
+}
+</style>
+
 <title>하루 - 클래스 검색</title>
 
 <!-- ===============필수포함=============== -->
@@ -529,14 +544,22 @@ $('#mapModal').on('shown.bs.modal', function (e) {
 		        		    var phot = data[i].mentee.phot;
 		        		    var mtname = data[i].middleTag.name;
 		        		    
+		        		    
 		        		    html+= '<div class="col-lg-4">'
 		    				    html+= '	<article class="card-wrapper">'
-		    				    html+= ' 		<div class="image-holder" onClick="location.href="detail?no='+cno+'"">'
+		    				    html+= ' 		<div class="image-holder" onClick="openInNewTab(\'detail?no='+cno+'\')">'
 		    				    html+= '			<a href="detail?no='+cno+'" class="image-holder__-link"></a>'
 		    				    html+= '			<div class="image-liquid image-holder--original">'
-		    				    html+= '				<a href="detail?no='+cno+'"><img alt="${i.count}" src="'+cfile+'"'
-		    				    html+= '					style="width: 100%; height: 100%"></a> <img src="'+phot+'"'
-		    				    html+= '					class="mentorimg" alt="'+phot+'">'
+		    				        html+= '<a href="#" onclick="openInNewTab(\'detail?no='+ cno +'  \');">'
+		                            var transFile = cfile;
+		                            if(transFile.endsWith("jpg") || transFile.endsWith("png")){
+		                                html+= '<img alt="'+ i +'" src="'+ cfile +'" style="width: 100%; height: 100%">'
+		                            }else{
+		                                html+= '    <img alt="'+ i +'" src="https://i.ytimg.com/vi/'+ cfile +'/mqdefault.jpg" style="width: 100%; height: 100%">'
+		                            }
+		                            html+= '</a>'
+		                            html+= '<img src="'+phot+'"'
+		                            html+= '                    class="mentorimg" alt="'+phot+'">'
 		    				    html+= '				<div '
 		    				    html+= '				style="padding: 0 5px; top: 75px; width: auto; height: auto; position: absolute; background-color: #f58500; color: white; border-bottom-right-radius: 10px">'+name+''
 		    				    html+= '				</div>'

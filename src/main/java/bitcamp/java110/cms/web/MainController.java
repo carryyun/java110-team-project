@@ -86,9 +86,9 @@ public class MainController {
       List<ClassLike> clike_popul = classLikeService.listByMeno(loginUser.getNo());
       System.out.println("실행");
       model.addAttribute("clike_popul", clike_popul);
-      for(ClassLike c : clike_popul) {
+/*      for(ClassLike c : clike_popul) {
         System.out.println(c.getCno());
-      }
+      }*/
     }
     
     
@@ -98,7 +98,7 @@ public class MainController {
     model.addAttribute("classRepList", classRepList);
     model.addAttribute("productRepList", productRepList);
     
-    List<Classes> classRanking = classService.listByOrder(1, 10, 10);
+    List<Classes> classRanking = classService.listByOrder(1, 7, 7);
     
     model.addAttribute("classRanking",classRanking);
     
