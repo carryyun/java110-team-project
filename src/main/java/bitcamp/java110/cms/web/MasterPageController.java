@@ -134,10 +134,23 @@ public class MasterPageController {
   }
   
   @GetMapping("prodOrderList")
-  public void prdt(Model model) {
-    List<ProductOrder> productOrderList = productOrderService.listByMaster(3, 5);
+  public void prdt(Model model,
+      @RequestParam(defaultValue="1") int pageNo, 
+      @RequestParam(defaultValue="10") int pageSize) {
+    List<ProductOrder> productOrderList = productOrderService.listByMaster(pageNo, pageSize);
     model.addAttribute("productOrderList", productOrderList);
+    
+    int countList = productOrderService.countpro();
+    model.addAttribute("countList",countList);
 
+  }
+  
+  @RequestMapping(value = "proPage.do", method= {RequestMethod.POST})
+  public @ResponseBody List<ProductOrder> proPage(@RequestParam(defaultValue="2") int pageNo, 
+      @RequestParam(defaultValue="10") int pageSize) {
+    List<ProductOrder> propa = productOrderService.proPage(pageNo, pageSize);
+    
+    return propa;
   }
 
   @GetMapping("classOrderList")

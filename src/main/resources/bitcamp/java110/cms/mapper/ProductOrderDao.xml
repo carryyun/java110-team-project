@@ -60,17 +60,27 @@
     
     <select id="findAllMaster" resultMap="productOrderMap">
     
-    <!--
-    select 
-            stag.stname,
+        select *
+        from (
+            select
+                @rownum:=@rownum+1 as rnum,
+                stag.stname,
             prdt.titl, 
-            mete.nick,
-            mete2.nick,
-            prdt.pric, 
-            paydt,
-            porder.ono
-        from
-            p_prdt_order as porder 
+            mete.nick nick,
+            mete.name name1,
+            mete2.nick nick2,
+            mete2.name name2,
+            mete2.phone,
+            porder.cnt,
+            prdt.pric,
+            porder.payopt,
+            porder.paydt,
+            porder.ono,
+            parc_name,
+            parc_no
+            
+            from
+                p_prdt_order as porder 
             inner join p_prdt as prdt 
             inner join p_stag as stag
             inner join p_mete as mete
@@ -82,41 +92,74 @@
              porder.meno = mete.meno and
              mete2.meno = cert.meno and
              prdt.ctno = cert.ctno
-        order by 
-            ono asc
+                ,(select @rownum:=0)r
+            
+           order by
+               ono asc
+            ) as a
+        where rnum limit #{pageNo},#{pageSize}
+    </select>
     
-      -->
-        select 
-	        stag.stname,
-	        prdt.titl, 
-	        mete.nick nick,
-            mete.name name1, <!-- 구매자-->
-	        mete2.nick nick2,
+    <select id="countpro" resultType="int" parameterType="int">
+    select
+           COUNT(*)
+        
+      from
+                p_prdt_order as porder 
+            inner join p_prdt as prdt 
+            inner join p_stag as stag
+            inner join p_mete as mete
+            inner join p_cert as cert
+            inner join p_mete as mete2
+        
+            on prdt.ptno = porder.ptno and
+             prdt.stno = stag.stno AND
+             porder.meno = mete.meno and
+             mete2.meno = cert.meno and
+             prdt.ctno = cert.ctno
+    
+    </select>
+    
+    <select id="proPage" resultMap="productOrderMap">
+    
+        select *
+        from (
+            select
+                @rownum:=@rownum+1 as rnum,
+                stag.stname,
+            prdt.titl, 
+            mete.nick nick,
+            mete.name name1,
+            mete2.nick nick2,
             mete2.name name2,
             mete2.phone,
             porder.cnt,
-	        prdt.pric,
+            prdt.pric,
             porder.payopt,
-	        porder.paydt,
-	        porder.ono,
+            porder.paydt,
+            porder.ono,
             parc_name,
             parc_no
             
-		from
-		    p_prdt_order as porder 
-		    inner join p_prdt as prdt 
-		    inner join p_stag as stag
-		    inner join p_mete as mete
-		    inner join p_cert as cert
-		    inner join p_mete as mete2
-		
-		    on prdt.ptno = porder.ptno and
-		     prdt.stno = stag.stno AND
-		     porder.meno = mete.meno and
-		     mete2.meno = cert.meno and
-		     prdt.ctno = cert.ctno
-        order by 
-            ono asc
+            from
+                p_prdt_order as porder 
+            inner join p_prdt as prdt 
+            inner join p_stag as stag
+            inner join p_mete as mete
+            inner join p_cert as cert
+            inner join p_mete as mete2
+        
+            on prdt.ptno = porder.ptno and
+             prdt.stno = stag.stno AND
+             porder.meno = mete.meno and
+             mete2.meno = cert.meno and
+             prdt.ctno = cert.ctno
+                ,(select @rownum:=0)r
+            
+           order by
+               ono asc
+            ) as a
+        where rnum limit #{pageNo},#{pageSize}
     </select>
 
     <select id="findByMeno" 

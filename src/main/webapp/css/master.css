@@ -75,12 +75,13 @@ h2{
     box-shadow: inset 1px -2px 35px -6px rgba(0,0,0,0.64);
 }
 .popupH {
+    
     margin: 70px auto;
     padding: 20px;
-    background-color: #f0dec8;
-    border-radius: 15px;
-    width: 80%;
-    height: auto;
+    background-color: white;
+    border-radius:25px;
+    width: 47%;
+    height: 400px;
     position: relative;
     transition: all 500ms ease-in-out;
     -webkit-box-shadow: inset 1px -2px 35px -6px rgba(0,0,0,0.64);
@@ -124,11 +125,19 @@ h2{
     color: #06D85F;
 }
 
-.popup .content, .popupH .content, .popupHH .content {
+.popup .content, .popupHH .content {
     max-height: auto; 
     overflow: auto;
     height: 550px;
     background: white;
+}
+
+.popupH .content{
+    max-height: auto; 
+    overflow: auto;
+    height: 330px;
+    background: white;
+    
 }
 
 @media screen and (max-width: 300px) {

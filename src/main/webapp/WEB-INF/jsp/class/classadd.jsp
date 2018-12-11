@@ -386,7 +386,6 @@ function emptychk(){
 		        button:"확인"
 		        }).then((value) => {
 		       		document.getElementById('uploadForm').submit();
-		       		/* window.close('classadd'); */
 		        });
 	}
 }

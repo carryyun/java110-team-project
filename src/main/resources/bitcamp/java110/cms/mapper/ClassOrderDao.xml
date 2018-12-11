@@ -43,10 +43,11 @@
     </resultMap>
     
     <select id="selpopularityclass" resultType="int">
-   		SELECT ctno
-	  	  FROM p_cls_order
-  	  GROUP BY ctno
-  	  ORDER BY COUNT(*) DESC
+	 	SELECT cno
+	  	  FROM p_cls_order p , p_cls_ttab pt
+         where p.ctno = pt.ctno
+  	  GROUP BY cno
+  	  ORDER BY COUNT(p.ctno) DESC
   		 LIMIT 6
     </select>
     
