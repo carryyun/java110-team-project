@@ -40,7 +40,7 @@
                             <button type="button" class="btn btn-primary" style="width:100px; margin:2px;">수정</button></a>
                            
                             
-                            <button type="button" class="btn btn-primary" onclick="updatestat()" style="width:100px; margin:2px;">삭제</button>
+                            <button type="button" class="btn btn-primary" name="${p.no}" onclick="updatestat(this.name)" style="width:100px; margin:2px;">삭제</button>
                             
                             <form action="javascript:void(0)" id="buyer${i.index}" method="post" >
                             <input name="ptno" id="ptno${i.index}" type="hidden" value="${p.no}"/>
@@ -88,7 +88,7 @@
     
    // 상품삭제
    
-   function updatestat(){
+   function updatestat(pno){
     swal({
         title: "삭제 하시겠습니까?",
         text: "삭제한 게시물은 복구할 수 없습니다.",
@@ -102,7 +102,7 @@
                 button : "확인",
             }).then((willDelete) => {
                 if(willDelete){
-                  location.href="../product/updatestat?no=${p.no}&stat=N";
+                  location.href="../product/updatestat?no="+pno+"&stat=N";
                 }
               })
         } else {
