@@ -29,6 +29,7 @@
 <link href="/css/list.css" rel="stylesheet">
 <link href="/css/clean-blog.css" rel="stylesheet">
 <link href="/css/common.css" rel="stylesheet">
+<link href="/css/animateNew.css" rel="stylesheet">
 
 <!-- ===============필수포함=============== -->
 <style>
@@ -48,9 +49,22 @@
 		color: black;
 		font-weight:bolder;
 	}
+	div.loading{
+	   background-image: url('/upload/img/loading2.gif');
+	   z-index: 500000;
+	   opacity: 0.6;
+	   background-repeat: no-repeat;
+	   background-size: 100%;
+	   position:fixed;
+	   z-index:15912591;
+	   width:100%;
+	   height:100%;
+	}
 </style>
 </head>
 <body>
+<div class="" id="loadingDiv">
+</div>
 	<div id="wrap" style="background-color: #fff">
 		<div class="col-lg-12 px-0"
             style="position: absolute; height: 147px; background-color: white">
@@ -144,7 +158,7 @@
 											onclick="checkSession('${sessionScope.loginUser.no}',event)">상품 등록
 										</a>
 									</div>
-									<div class="row">
+									<div class="row" id="prdtlist">
 
 										<c:forEach items="${productList}" var="pl" varStatus="i">
 
@@ -256,6 +270,7 @@
 				<jsp:include page="../footer.jsp"></jsp:include>
 			</div>
 		</footer>
+</div>
 	<!-- ===============필수포함=============== -->
 	<!-- Bootstrap core JavaScript -->
 	<script src="/vendor/jquery/jquery.min.js"></script>
@@ -270,7 +285,7 @@
 	<script>
         var owlPrdt = $("#owl-hotItem");
         $(document).ready(function() {
-
+            
             var data = {
                 "items": ${pp_list}
             };
@@ -282,6 +297,7 @@
                 margin: 10,
                 jsonPath: 'json/customData.json',
                 jsonSuccess: customDataSuccess(data),
+                dots: false
 
             });
 
@@ -357,7 +373,6 @@
               });
             return false;
 	    }else{
-            
 	        showCert(no,e);
 	    }
 	    
@@ -426,15 +441,7 @@
         frm.submit();  
         
         }
-/*     {
-        var ctno = $('input#ctno').val();
-        console.log(ctno);
-        // window.name = "부모창 이름"; 
-        window.name = "parentForm";
-        // window.open("open할 window", "자식창 이름", "팝업창 옵션");
-        openWin = window.open("prodRegister",
-                "childForm", "width=570, height=350, resizable = no, scrollbars = no");    
-    } */
+
     </script>
 <script>
 function serchProduct(){
@@ -447,6 +454,123 @@ function openInNewTab(url) {
     win.focus();
   }
 </script>
+
+<script>
+var prdtlist = $('div#prdtlist'); 
+var pageNo=parseInt(2);
+
+$(window).scroll(function() {
+    if($(window).scrollTop() == $(document).height() - window.innerHeight+17) {
+        console.log("$(window).scrollTop()=" + $(window).scrollTop());
+        console.log("else = " + ($(document).height() - window.innerHeight+17));
+        var html = "";
+        $.ajax({
+            type : "POST" , 
+            data : {
+                "pageNo" : pageNo
+            },
+            url : "prdt.do" ,
+            /* 
+                ajax 로딩처리
+                beforeSend : function(){
+                $('div#loadingDiv').addClass('loading');
+                setTimeout(function() {
+                 }, 2000);
+            },
+            complete:function(){
+                $('div#loadingDiv').removeClass('loading');
+            }, */
+            success : function(data) {
+                for(var j=0; j<6;j++){
+                    $('div#animateTarget'+j).removeClass('animated fadeInUp');
+                    $('div#animateTarget'+j).removeAttr('id')
+                }
+                html ="";
+                for (var i in data) {
+                    var ptno = data[i].no;
+                    var titl = data[i].titl; 
+                    var pric = data[i].pric;
+                    var basAddr = data[i].basAddr;
+                    var prdtphot = data[i].phot;
+                    var star = data[i].star;
+                    var name = data[i].mentee.name;
+                    var nick = data[i].mentee.nick;
+                    var phot = data[i].mentee.phot;
+                    
+                    
+                    html+= '<div class="col-lg-4 animated fadeInUp" id="animateTarget'+i+'">'
+                        html+= '    <article class="card-wrapper">'
+                        html+= '        <div class="image-holder" onClick="openInNewTab(\'detail?no='+ptno+'\')">'
+                        html+= '            <a href="detail?no='+ptno+'" class="image-holder__-link"></a>'
+                        html+= '            <div class="image-liquid image-holder--original">'
+                        html+= '<a href="#" onclick="openInNewTab(\'detail?no='+ ptno +'  \');">'
+                        html+= '    <img alt="'+ i +'" src="'+ prdtphot +'" style="width: 100%; height: 100%">'
+ 
+                        html+= '</a>'
+                        html+= '<img src="'+phot+'"'
+                        html+= '                    class="mentorimg" alt="'+phot+'">'
+                        html+= '                <div '
+                        html+= '                style="padding: 0 5px; top: 75px; width: auto; height: auto; position: absolute; background-color: #f58500; color: white; border-bottom-right-radius: 10px">'+name+''
+                        html+= '                </div>'
+                        html+= '                <div'
+                        html+= '                    style="padding: 0 5px; top: 100px; width: auto; height: auto; position: absolute; background-color: #333873; color: white; border-bottom-right-radius: 10px">'+nick+''
+                        html+= '                    멘토</div>'
+                        html+= '            </div>'
+                        html+= '        </div>'
+                        html+= '        <div class="product-description">'
+                        html+= '            <div class="product-description__title">'
+                        html+= '                <div class="row">'
+                        html+= '                    <div class="col-lg-12 mb-2">'
+                        if(titl.length<30){
+                            html+= '                        <a href="detail?no='+ptno+'">'+titl+'</a>'
+                        }else{
+                            html+= '                      <a href="detail?no='+ptno+'">'+titl.substring(0,30)+'...</a>'
+                        }
+                        html+= '                    </div>'
+                        html+= '                </div>'
+                        html+= '                <div class="row">'
+                        html+= '                    <div class="col-lg-7 product-description__category secondary-text">'
+                                                            for(var j=0; j<5; j++) {
+                                                            if (j<star) {
+                        html+= '                        <img alt="star-on-big" class="starimg" src="/upload/img/raty/star-on-big.png">'
+                                                          } else {
+                        html+= '                        <img alt="star-off-big" class="starimg" src="/upload/img/raty/star-off-big.png">'
+                                                          }
+                                                      }
+                        html+= '                    </div>'
+                        pric = "" + pric;
+                        pric = pric.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,')
+                        html+= '                    <div class="col-lg-5 product-description__price">'+pric+'원</div>'
+                        html+= '                </div>'
+                        html+= '                <hr class="NoMarginHr">'
+                        html+= '                <div class="sizes-wrapper">'
+                        html+= '                    <b>판매자 - '+name+'</b>'
+                        html+= '                </div>'
+                        html+= '                <div class="color-wrapper">'
+                        html+= '                    <b>기본 주소 - '+basAddr+'</b>'
+                        html+= '                </div>'
+                        html+= '            </div>'
+                        html+= '        </div>'
+                        html+= '    </article>'
+                        html+= '</div>'
+                }
+                var setDiv = document.querySelector("div#prdtlist");
+                setDiv.innerHTML+=html;
+                
+            },error : function(error,status){
+                swal({
+                    text : "안됨",
+                    button : "확인",
+                  })
+            }
+        }).done(function(json) {
+            pageNo++;
+        });
+    }
+});
+
+</script>
+
 </body>
 
 </html>

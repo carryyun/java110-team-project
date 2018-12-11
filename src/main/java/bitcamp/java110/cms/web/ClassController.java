@@ -95,11 +95,12 @@ public class ClassController {
       String removefiles, String days,String date,String edate,
       String selmtag, String stime, String etime,HttpSession session) throws Exception {
     List<String> filelist = new ArrayList<>();
-    System.out.println(removefiles);
+    /*System.out.println(removefiles);
     System.out.println(days);
-    System.out.println(c.getNo());
+    System.out.println(c.getNo());*/
+    System.out.println("cfile = " + c.getCfile());
     System.out.println((c.getCfile().equals("")));
-    System.out.println(c.getTitl());
+/*    System.out.println(c.getTitl());
     System.out.println(c.getPric());
     System.out.println(c.getTime());
     System.out.println(c.getCapa());
@@ -108,15 +109,20 @@ public class ClassController {
     System.out.println(c.getDetAddr());
     System.out.println(c.getType());
     System.out.println(stime);
-    System.out.println(etime);
+    System.out.println(etime);*/
     for(MultipartFile file : files) {
       if(file.getOriginalFilename().length() > 2 ) {
         if(file.getOriginalFilename().equals(removefiles)) {
           files.remove((Object)file.getOriginalFilename());
         }else {
-        String filename = UUID.randomUUID().toString();
-        file.transferTo(new File(sc.getRealPath("/upload/img/classImg/" + filename+ ".png")));
-        filelist.add("/upload/img/classImg/" + filename+ ".png");
+          String filename = UUID.randomUUID().toString();
+          file.transferTo(new File(sc.getRealPath("/upload/img/classImg/" + filename+ ".png")));
+          filelist.add("/upload/img/classImg/" + filename+ ".png");
+          if("".equals(c.getCfile())) {
+            System.out.println("/upload/img/classImg/" + filename+ ".png");
+            String setFileName = "/upload/img/classImg/" + filename+ ".png";
+            c.setCfile(setFileName);
+          }
         }
       } 
     }

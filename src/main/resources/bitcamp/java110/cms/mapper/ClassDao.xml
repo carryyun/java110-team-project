@@ -84,7 +84,7 @@
 		<result column="stime" property="timetable.stime" />
 		<result column="time" property="time" />
 	</resultMap>
-
+ 
 	<resultMap type="Classes" id="classStar">
 		<id column="cno" property="no" />
 		<result column="star" property="star" />
@@ -453,26 +453,38 @@
 		parameterType="map">
 
 		SELECT DISTINCT
-		c.cno,
-		c.titl,
-		c.capa,
-		ct.capa as ctcapa,
-		me2.name as me2name,
-		me2.nick as me2nick,
-		me2.phone as me2phone,
-		me2.meno as me2no,
-		cert.type as certtype
+        c.cno,
+        c.titl,
+        c.capa,
+        ct.capa as ctcapa,
+        me2.name as me2name,
+        me2.nick as me2nick,
+        me2.phone as me2phone,
+        me2.meno as me2no,
+        (
+            SELECT DISTINCT
+                certx.type
+            FROM p_cls cx
+                JOIN p_cls_ttab ctx ON cx.cno = ctx.cno
+                JOIN p_cls_order cox ON ctx.ctno = cox.ctno
+                JOIN p_mete me2x ON cox.meno = me2x.meno
+                LEFT JOIN p_cert certx ON me2x.meno = certx.meno
+        
+            where
+                ctx.ctno=#{ctno} AND cx.stat = 'Y' and certx.cno = cx.cno
+
+        ) as certtype
+        
+        FROM p_cls c
+        JOIN p_cls_ttab ct ON c.cno = ct.cno
+        JOIN p_cls_order co ON ct.ctno = co.ctno
+        JOIN p_mete me2 ON co.meno = me2.meno
+        LEFT JOIN p_cert cert ON me2.meno = cert.meno
+       
 
 
-		FROM p_cls c
-		JOIN p_cls_ttab ct ON c.cno = ct.cno
-		JOIN p_cls_order co ON ct.cno = co.ctno
-		JOIN p_mete me2 ON co.meno = me2.meno
-		LEFT JOIN p_cert cert ON me2.meno = cert.meno
-
-
-		where
-		ct.ctno=#{ctno} AND c.stat = 'Y'
+        where
+        ct.ctno=#{ctno} AND c.stat = 'Y' 
 
 
 

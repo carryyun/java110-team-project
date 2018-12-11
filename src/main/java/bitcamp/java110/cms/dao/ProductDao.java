@@ -9,6 +9,7 @@ public interface ProductDao {
   // 전체조회
   List<Product> findAll_list(); 
   List<Product> findAllStar();
+  List<Product> findAllForScroll(Map<String, Object> params); 
   // 상품전체조회(전체 상품 목록 페이지에 사용함)
   
   List<Product> findAllByList(Map<String, Object> params);

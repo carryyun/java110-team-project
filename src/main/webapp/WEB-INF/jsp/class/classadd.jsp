@@ -385,7 +385,7 @@ function emptychk(){
 		        timer:3000,
 		        button:"확인"
 		        }).then((value) => {
-		       		$('#uploadForm').submit();
+		       		document.getElementById('uploadForm').submit();
 		        });
 	}
 }
