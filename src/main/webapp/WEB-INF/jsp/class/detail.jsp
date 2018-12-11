@@ -494,12 +494,11 @@
                         %>
                             <%-- <li class="page-item"><a class="page-link" 
                             onClick="prevrep(${countrep})">prev</a></li> --%>
-                                
                                 <%
                                     for(int pno = 1; pno<=reppage; pno++){
                                 %>
                                     <li class="page-item"><a class="page-link" 
-                                    onClick="reppage(${sessionScope.loginUser.no},<%=pno%>)"><%=pno%></a></li>
+                                    onClick="reppage(<%=pno%>)"><%=pno%></a></li>
                                 <%
                                     }
                                 %>
@@ -1086,6 +1085,13 @@ function repins(no) { /* 후기(댓글) 추가버튼 */
 	
 	var countorder = 0;
 	
+	if("${sessionScope.loginUser}" == ""){
+        swal({
+            text : "로그인 후 이용가능합니다..",
+            button : "확인",
+          })
+    }
+	
 	$.ajax({
 	    type : "POST" , 
 	    data : {
@@ -1220,10 +1226,9 @@ function repins(no) { /* 후기(댓글) 추가버튼 */
 	});
 }
 
-function reppage(sno,pno) {
+function reppage(pno) {
     var cno = ${detailclass.no};
     var replist = $('div#replist');
-    
     $.ajax({
         type : "POST",
         data : {
@@ -1249,9 +1254,9 @@ function reppage(sno,pno) {
 	   		 html +='     <div id="rcont'+i+'" class="col-lg-10 media-body">'+conts+'</div>'
 	   		 html +='     <textarea class="repupda col-lg-9 media-body" id="repup'+i+'" rows="5" name="repup"'
 	   		 html +='                style =" margin-left:10px; width : 500px; display: none; resize:none;"></textarea>'
-		 					if(sno == meno){
+		 					if("${sessionScope.loginUser.no}" == meno){
 		     html +='             <a href="javascript:void(0)" class="edbtn btn" id="edbtn'+i+'"' 
-		     html +='     onClick="updarep('+sno+' , '+rno+' , '+meno+' ,'+i+')" style="padding-right: 6px; padding-left: 6px; padding-top: 3px; padding-bottom: 3px; margin-left:3px;"><i class="far fa-edit"></i></a>'
+		     html +='     onClick="updarep(${sessionScope.loginUser.no} , '+rno+' , '+meno+' ,'+i+')" style="padding-right: 6px; padding-left: 6px; padding-top: 3px; padding-bottom: 3px; margin-left:3px;"><i class="far fa-edit"></i></a>'
 		        		 	} else {
 		        		 	}
 	   		 html +='     <a href="javascript:void(0)" class="updabtn btn" id="updabtn'+i+'" data-toggle="modal"' 
@@ -1275,7 +1280,7 @@ function reppage(sno,pno) {
 	   		 html +='                 </div>'
 	   		 html +='               </div>'
 	   		 html +='             </div>'
-							if(sno == meno){
+							if("${sessionScope.loginUser.no}" == meno){
 		     html +='      <a href="javascript:void(0)" data-toggle="modal" data-target="#deleteModal_'+rno+'"'
 		     html +='      class="delebtn btn" id="delebtn'+i+'" style="padding-right: 6px; padding-left: 6px; padding-top: 3px; padding-bottom: 3px;"><i class="fas fa-trash-alt"></i></a>'
 		     				}else {
