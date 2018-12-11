@@ -80,6 +80,9 @@
 		<result column="certtype" property="cert.type" />
 		<result column="ctctno" property="timetable.no" />
 		<result column="counting" property="counting" />
+		<result column="ctdate" property="timetable.date" />
+		<result column="stime" property="timetable.stime" />
+		<result column="time" property="time" />
 	</resultMap>
 
 	<resultMap type="Classes" id="classStar">
@@ -378,6 +381,9 @@
 		c.capa,
 		ct.capa as ctcapa,
 		ct.ctno as ctctno,
+		ct.stime as stime,
+		ct.date as ctdate,
+		c.time,
 		(
 		    SELECT
 		          COUNT(co.ono)
