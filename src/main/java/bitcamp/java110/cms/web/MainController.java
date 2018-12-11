@@ -98,7 +98,7 @@ public class MainController {
     model.addAttribute("classRepList", classRepList);
     model.addAttribute("productRepList", productRepList);
     
-    List<Classes> classRanking = classService.listByOrder(1, 10, 10);
+    List<Classes> classRanking = classService.listByOrder(1, 7, 7);
     
     model.addAttribute("classRanking",classRanking);
     
