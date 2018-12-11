@@ -19,6 +19,7 @@
 
 .colorlib-heading {
     font-family: 굴림;
+    
 }
 
 
@@ -428,7 +429,7 @@ body.offcanvas {
 
 .colorlib-heading {
   font-size: 22px;
-/*  margin-bottom: 4em;*/
+margin-top: 80px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 5px;

@@ -189,7 +189,7 @@
 
                                                 </tr>
                                             </thead>
-                                        <tbody>
+                                        <tbody id = "clsorderlist">
                             <c:forEach
                                                     items="${classOrderList}"
                                                     var="pl"
@@ -243,15 +243,25 @@
                                                     <span
                                                     class="sr-only">Previous</span>
                                             </a></li>
-                                            <li class="page-item"><a
-                                                class="page-link"
-                                                href="#">1</a></li>
-                                            <li class="page-item"><a
-                                                class="page-link"
-                                                href="#">2</a></li>
-                                            <li class="page-item"><a
-                                                class="page-link"
-                                                href="#">3</a></li>
+                                            <c:set var="cto" value="${countorder}"/>
+                                            <%
+                                            	int cor = (int)pageContext.getAttribute("cto");
+                                            	int p=cor/10+1;
+                                            	int c = (int)Math.ceil(p);
+                                            	
+                                            	System.out.println(cor);
+                                            	System.out.println(p);
+                                            	System.out.println(c);
+                                            	
+                                            	for(int ono=1; ono<=c; ono++){
+                                            	System.out.println(ono);
+                                            %>
+                                            	<li class="page-item"><a
+                                                class="page-link" onClick="orpage(<%=ono%>)"><%=ono%></a></li>
+                                            <%	  
+                                            	}
+                                            %>
+                                            
                                             <li class="page-item"><a
                                                 class="page-link"
                                                 href="#"
@@ -479,6 +489,64 @@ function checkItem(){
         stat(arr[i],'N');
     }
     
+}
+
+function orpage(ono) {
+    
+    var clsorderlist = $('#clsorderlist');
+    
+    $.ajax({
+        type : "POST",
+        data : {
+            "pageNo" : ono
+        },
+        url : "classOrderpage.do",
+        success : function(data) {
+	        var html = "";
+	        
+	        for (var i in data) {
+	        	
+	            var mtname = data[i].mtname;
+	            var titl = data[i].cls_titl;
+	            var nick = data[i].mete_nick;
+	            var nick2 = data[i].mete2_nick;
+	            var pric = data[i].cls_pric;
+	            var paydt = data[i].paydt;
+	            
+	            paydt = new Date();
+        		
+        		var dd= paydt.getDate();
+        		var mm= paydt.getMonth();
+        		var yy= paydt.getFullYear();
+        		
+        		if( dd < 10){
+        		    dd = '0' + dd;
+        		}
+        		if( mm < 10){
+        		    mm='0' +mm;
+        		}
+        		
+        		paydt = yy+'-'+mm+'-'+dd;
+        		
+	            html+= '        <tr>'
+	            html+= '        <td class="text-center">'+((ono-1)*10+(parseInt(i)+1))+'</td>'
+	            html+= '        <td class="text-center">'+mtname+'</td>'
+	            html+= '        <td class="text-center">'+titl+'</td>'
+	            html+= '        <td class="text-center">'+nick+'</td>'
+	            html+= '        <td class="text-center">'+nick2+'</td>'
+	            html+= '        <td class="text-center">'+pric+'원</td>'
+	            html+= '        <td class="text-center bold">'+paydt+'</td>'
+	            html+= '        <td class="text-center"><a class="btn btn-light" href="#popup'+i+'" style="color:black;">상세 보기</a></td>'
+	            html+= '    	</tr>'
+	        }
+	        clsorderlist.html(html);
+        },error : function(error,status){
+            swal({
+                text : "안됨",
+                button : "확인",
+              })
+        }
+    });
 }
 </script>
 

@@ -30,8 +30,8 @@ public class ClassOrderServiceImpl implements ClassOrderService{
   @Override
   public List<ClassOrder> listByMaster(int pageNo, int pageSize) {
     HashMap<String, Object> params = new HashMap<>();
-    params.put("rowNo", (pageNo - 1) * pageSize);
-    params.put("size", pageSize);
+    params.put("pageNo", (pageNo - 1) * pageSize);
+    params.put("pageSize", pageSize);
 
     return classorderDao.findAllMaster(params);
   }
@@ -60,5 +60,12 @@ public class ClassOrderServiceImpl implements ClassOrderService{
   public List<ClassOrder> findBycnoFormeno(int no) {
     
     return classorderDao.findBycnoFormeno(no);
+  }
+
+
+  @Override
+  public int countorderlist() {
+    
+    return classorderDao.countorderlist();
   }
 }
