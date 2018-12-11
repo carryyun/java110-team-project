@@ -143,6 +143,7 @@ ON
     stag.mtno = mtag.mtno AND
     mtag.btno = btag.btno
 </sql>
+
     <select id="findAllByMtno" resultMap="productMap" parameterType="map">
     <include refid="selectAll" />
     where
@@ -349,7 +350,7 @@ where
             p_prdt p
             JOIN p_mete me ON p.meno = me.meno
         WHERE
-            me.meno = #{meno}
+            me.meno = #{meno} and p.stat='Y'
             
     </select>
 
