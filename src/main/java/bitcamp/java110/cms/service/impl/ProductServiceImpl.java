@@ -86,11 +86,6 @@ public class ProductServiceImpl implements ProductService {
     return productDao.updatestat(product);
   }
 
-  @Override
-  public List<Product> findAllByList() {
-    
-    return productDao.findAllByList();
-  }
 
   @Override
   public List<Product> listByMtno(int pageNo, int pageSize, int mtno) {
@@ -119,6 +114,27 @@ public class ProductServiceImpl implements ProductService {
     params.put("size", pageSize);
     params.put("titl", "%"+titl+"%");
     return productDao.serchByTitl(params);
+  }
+
+  @Override
+  public List<Product> findAllByList(int pageNo, int pageSize) {
+    HashMap<String, Object> params = new HashMap<>();
+    params.put("pageNo", (pageNo -1 ) * pageSize);
+    params.put("pageSize", pageSize);
+    return productDao.findAllByList(params);
+  }
+
+  @Override
+  public List<Product> pdalist(int pageNo, int pageSize) {
+    HashMap<String, Object> params = new HashMap<>();
+    params.put("pageNo", (pageNo -1 ) * pageSize);
+    params.put("pageSize", pageSize);
+    return productDao.pdalist(params);
+  }
+
+  @Override
+  public int countpdall() {
+    return productDao.countpdall();
   }
 
 }

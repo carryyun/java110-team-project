@@ -88,7 +88,7 @@
                 <option value="5">프로그래밍</option>
                 <option value="6">외국어</option>
                 <option value="7">실무역량</option>
-                <option value="8">운동</option>
+                <option value="8">라이프</option>
                 <option value="9">기타</option>
                 </select>
                 <input type="text" class="view" readonly value="중분류 선택">
@@ -152,13 +152,13 @@
                 </select>
                  <select id="MiddletagSel8" style="width:25%; height:26px; display:none;">
                 <option hidden selected></option>
-                <option value="41">파워워킹</option>
-                <option value="42">수영</option>
-                <option value="43">자전거</option>
-                <option value="44">에어로빅</option>
-                <option value="45">등산</option>
-                <option value="46">다이어트</option>
-                <option value="47">고강도운동</option>
+                <option value="41">마술</option>
+                <option value="42">핸드메이드</option>
+                <option value="43">캘리그래피</option>
+                <option value="44">술</option>
+                <option value="45">여행</option>
+                <option value="46">사주타로</option>
+                <option value="47">반려견</option>
                 </select>
                  <select id="MiddletagSel9" style="width:25%; height:26px; display:none;">
                 <option hidden selected></option>

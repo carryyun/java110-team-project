@@ -37,8 +37,18 @@ public class Classes {
   private ClassOrder classOrder;
   private Cert cert;
   private Report report;
+  
+  private int counting; // 마이페이지 카파를 위한 카운팅
 
   
+  
+  
+  public int getCounting() {
+    return counting;
+  }
+  public void setCounting(int counting) {
+    this.counting = counting;
+  }
   public String getNote() {
     return note;
   }

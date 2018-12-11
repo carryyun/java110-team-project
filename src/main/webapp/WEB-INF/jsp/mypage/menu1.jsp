@@ -623,7 +623,7 @@ input[type="number"]::-webkit-inner-spin-button {
                             </div>
                             </div>
                            
-                             <div class="toggle toggle--knob" style="position:absolute; right:30px; top:0; ">
+                             <div class="toggle toggle--knob" style="position:absolute; right:45px; top:0; ">
                                 <input type="checkbox" id="toggle--knob4" class="toggle--checkbox" onClick="cbox4(this,${mentee.no});">
                                 <label class="toggle--btn" for="toggle--knob4" style="background:#A64DB6"><span class="toggle--feature" data-label-on=""  data-label-off="" ></span></label>
                          </div>
