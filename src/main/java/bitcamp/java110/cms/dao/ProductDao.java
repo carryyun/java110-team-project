@@ -10,7 +10,10 @@ public interface ProductDao {
   List<Product> findAll_list(); 
   List<Product> findAllStar();
   // 상품전체조회(전체 상품 목록 페이지에 사용함)
-  List<Product> findAllByList();
+  
+  List<Product> findAllByList(Map<String, Object> params);
+  int countpdall();
+  List<Product> pdalist(Map<String, Object> params);
   
   // 인기순위
   List<Product> hotItemlist();

@@ -155,22 +155,29 @@
                                     <th class="text-center">No</th>
                                     <th class="text-center">카테고리</th>
                                     <th class="text-center">상품명</th>
-                                    <th class="text-center">판매자명(닉네임)</th>
+                                    <th class="text-center">판매자명<br/>(닉네임)</th>
                                     <th class="text-center">가격</th>
-                                    <th class="text-center">재고</th>
+                                    <th class="text-center">공개여부</th>
                                     <th class="text-center">등록일</th>
 
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="masterPra">
                                 <c:forEach items="${findAllByList}" var="pl" varStatus="i">
                                     <tr>
                                         <td class="text-center">${i.count}</td> <!-- no -->
                                         <td class="text-center">${pl.smalltag.name}</td> <!-- 카테고리 -->
                                         <td class="text-center"><a class="button" href="../product/detail?no=${pl.no }">${pl.titl}</a></td> <!-- 상품명-->
-                                        <td class="text-center">${pl.mentee.name}(${pl.mentee.nick})</td><!-- 판매자명 -->
-                                        <td class="num text-center">￦<fmt:formatNumber value="${pl.pric}" groupingUsed="true"/></td> <!-- 가격 -->
-                                        <td class="text-center bold">${pl.stock}</td> <!-- 재고 -->
+                                        <td class="text-center">${pl.mentee.name}<br/>(${pl.mentee.nick})</td><!-- 판매자명 -->
+                                        <td class="num text-center"><fmt:formatNumber value="${pl.pric}" groupingUsed="true"/>원</td> <!-- 가격 -->
+                                        <c:set var="yn" value="${pl.stat }"/>
+                                        <% String blind = (String)pageContext.getAttribute("yn");
+                                        if(blind.equals("Y")){%>
+                                        <td class="text-center bold">공개 </td>
+                                        
+                                        <%}else{ %>
+                                        <td class="text-center bold">비공개</td> 
+                                        <%} %>
                                         <td class="text-center bold">${pl.rgdt}</td> <!-- 등록일 -->
                                     </tr>
                                 </c:forEach>
@@ -186,9 +193,15 @@
                                         aria-label="Previous"> <span aria-hidden="true">«</span> <span
                                             class="sr-only">Previous</span>
                                     </a></li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <c:set var="pracount" value="${pdacountList}"/>
+                                    <% int praco = (int)pageContext.getAttribute("pracount");
+                                    int prad = praco/10;
+                                    int prapage = (int)Math.ceil(prad)+1;
+                                  
+                                    for(int prao=1; prao<=prapage; prao++){
+                                    %>
+                                    <li class="page-item"><a class="page-link" onclick="prapage(<%=prao%>)"><%=prao%></a></li>
+                                    <%} %>
                                     <li class="page-item"><a class="page-link" href="#"
                                         aria-label="Next"> <span aria-hidden="true">»</span> <span
                                             class="sr-only">Next</span>
@@ -217,74 +230,131 @@
 
 <script>
 
+function addComma(num) {
+    var regexp = /\B(?=(\d{3})+(?!\d))/g;
+    return num.toString().replace(regexp, ',');
+  }
 
+function prapage(prao){
+    var masterPra = $("#masterPra");
+    $.ajax({
+        type: "POST",
+        data:{
+            pageNo: prao
+        },
+        url: "pdaPage.do",
+        success: function(data){
+            var html = "";
+            for(var i in data){
+                var stagname = data[i].smalltag.name;
+                var titl = data[i].titl;
+                var name = data[i].mentee.name;
+                var nick = data[i].mentee.nick;
+                var pric = data[i].pric;
+                var stat = data[i].stat;
+                var rgdt = data[i].rgdt;
+                
+                var newrgdt = new Date(rgdt);
+                
+                var dd = newrgdt.getDate();
+                var mm = newrgdt.getMonth();
+                var yy = newrgdt.getFullYear();
+                
+                if(dd < 10){
+                    dd = '0' + dd;
+                }
+                if(mm < 10){
+                    mm = '0' + mm;
+                }
+                
+                newrgdt = yy+'-'+mm+'-'+dd;
+                
+                html += '<tr>'
+                html += '<td class="text-center">'+((prao-1)*10+(parseInt(i)+1))+'</td>'
+                html += '<td class="text-center">'+stagname+'</td>'                                     
+                html += '<td class="text-center"><a class="button" href="../product/detail?no='+i+'">'+titl+'</a></td>'
+                html += '<td class="text-center">'+name+'<br/>('+nick+')</td>'
+                html += '<td class="num text-center">'+addComma(pric)+'원</td>'
+                
+                if(stat == "Y"){
+                html += '<td class="text-center bold">공개 </td>'
+                                                        
+                }else{ 
+                html += '<td class="text-center bold">비공개</td>'
+                
+                } 
+                
+                html += '<td class="text-center bold">'+newrgdt+'</td>'
+                html += '</tr>'
+                
+                
+                
+            }
+            masterPra.html(html);
+        }
+    });
+    
+}
 
-  
+    $(document).ready(function() {
+       var activeSystemClass = $('.list-group-item.active');
 
-   
-    $(document)
-            .ready(
-                    function() {
-                        var activeSystemClass = $('.list-group-item.active');
+            //something is entered in search form
+            $('#system-search').keyup(function() {
+                var that = this;
+                // affect all table rows on in systems table
+                var tableBody = $('.table-list-search tbody');
+                var tableRowsClass = $('.table-list-search tbody tr');
+                $('.search-sf').remove();
+                tableRowsClass
+                        .each(function(i, val) {
 
-                        //something is entered in search form
-                        $('#system-search')
-                                .keyup(
-                                        function() {
-                                            var that = this;
-                                            // affect all table rows on in systems table
-                                            var tableBody = $('.table-list-search tbody');
-                                            var tableRowsClass = $('.table-list-search tbody tr');
-                                            $('.search-sf').remove();
-                                            tableRowsClass
-                                                    .each(function(i, val) {
+                            //Lower text for case insensitive
+                            var rowText = $(val)
+                                    .text()
+                                    .toLowerCase();
+                            var inputText = $(that)
+                                    .val()
+                                    .toLowerCase();
+                            if (inputText != '') {
+                                $(
+                                        '.search-query-sf')
+                                        .remove();
+                                tableBody
+                                        .prepend('<tr class="search-query-sf"><td colspan="6"><strong>Searching for: "'
+                                                + $(
+                                                        that)
+                                                        .val()
+                                                + '"</strong></td></tr>');
+                            } else {
+                                $(
+                                        '.search-query-sf')
+                                        .remove();
+                            }
 
-                                                        //Lower text for case insensitive
-                                                        var rowText = $(val)
-                                                                .text()
-                                                                .toLowerCase();
-                                                        var inputText = $(that)
-                                                                .val()
-                                                                .toLowerCase();
-                                                        if (inputText != '') {
-                                                            $(
-                                                                    '.search-query-sf')
-                                                                    .remove();
-                                                            tableBody
-                                                                    .prepend('<tr class="search-query-sf"><td colspan="6"><strong>Searching for: "'
-                                                                            + $(
-                                                                                    that)
-                                                                                    .val()
-                                                                            + '"</strong></td></tr>');
-                                                        } else {
-                                                            $(
-                                                                    '.search-query-sf')
-                                                                    .remove();
-                                                        }
+                            if (rowText
+                                    .indexOf(inputText) == -1) {
+                                //hide rows
+                                tableRowsClass
+                                        .eq(i)
+                                        .hide();
 
-                                                        if (rowText
-                                                                .indexOf(inputText) == -1) {
-                                                            //hide rows
-                                                            tableRowsClass
-                                                                    .eq(i)
-                                                                    .hide();
-
-                                                        } else {
-                                                            $('.search-sf')
-                                                                    .remove();
-                                                            tableRowsClass
-                                                                    .eq(i)
-                                                                    .show();
-                                                        }
-                                                    });
-                                            //all tr elements are hidden
-                                            if (tableRowsClass
-                                                    .children(':visible').length == 0) {
-                                                tableBody
-                                                        .append('<tr class="search-sf"><td class="text-muted" colspan="6">No entries found.</td></tr>');
-                                            }
-                                        });
-                    });
+                            } else {
+                                $('.search-sf')
+                                        .remove();
+                                tableRowsClass
+                                        .eq(i)
+                                        .show();
+                            }
+                        });
+                                //all tr elements are hidden
+                                if (tableRowsClass
+                                        .children(':visible').length == 0) {
+                                    tableBody
+                                            .append('<tr class="search-sf"><td class="text-muted" colspan="6">No entries found.</td></tr>');
+                                }
+                            });
+        });
 </script>
 
 <script>
