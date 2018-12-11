@@ -26,7 +26,7 @@ div.product-description__title > div > div > a{
     min-width:290px;
     max-width:290px;
     width:290px;
-    white-space: normal;
+    white-space: normal; 
 }
 </style>
 
