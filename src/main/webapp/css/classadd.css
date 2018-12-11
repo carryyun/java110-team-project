@@ -43,19 +43,19 @@ div.ui-timepicker-container.ui-timepicker-no-scrollbar.ui-timepicker-standard{
 .fc-day-top.fc-sun{ color:#FF0000; }     /* 일요일 */
 
 div h1{
-    border-top: 2px solid black;
+    font-weight:bolder;
     color: black;
     font-size: -webkit-xxx-large;
     padding-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 div #ctitl{
-    border: 2px solid black;
     font-size: 20px;
+    border-radius: 7px;
     margin-redius: 15px;
     margin-bottom: 20px;
     height: 60px;
-    width: 1100px;
+    width: 100%;
 }
 .view,#posi{
 	border: 1px solid #FFB53C;
@@ -71,19 +71,19 @@ div #ctitl{
 	margin-right:3px;
 }
 #cpay,#cttime,#rnumber{
-	width:351px;
+	width:365px;
 }
 #cpay,#cttime,#rnumber,#ctime,#ctime2,#cdate,#cdate2{
 	text-align: center;
 }
 #sample6_address2,#sample6_address,#imgInput{
-	width:459px;
+	width:474px;
 }
 #ctime,#cdate{
-	width:167px;
+	width:174px;
 }
 #ctime2,#cdate2{
-	width:168px;
+	width:174px;
 }
 
 #example td{
