@@ -101,8 +101,6 @@
 			<mvc:mapping path="/product/prodUpdate"/>
 			<mvc:mapping path="/mypage/*"/>
 			<mvc:mapping path="/masterpage/*"/>
-			<mvc:mapping path="/mentee/resultemail"/>
-			<mvc:mapping path="/mentee/resultpwd"/>
 			<mvc:mapping path="/class/like"/>
 			<mvc:mapping path="/class/basket"/>
 			<mvc:mapping path="/payment/*"/>

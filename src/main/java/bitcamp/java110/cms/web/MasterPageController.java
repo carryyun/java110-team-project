@@ -53,7 +53,6 @@ public class MasterPageController {
   ReportService reportService;
   NoticeService noticeService;
   CsService csService;
-  
   ClassFileService classFileService;
   TimetableService timetableService;
   
@@ -95,10 +94,24 @@ public class MasterPageController {
 
 
   @GetMapping("prdtList")
-  public void prdtList(Model model){
-    List<Product> findAllByList = productService.findAllByList();
+  public void prdtList(Model model,
+      @RequestParam(defaultValue="1") int pageNo, 
+      @RequestParam(defaultValue="10") int pageSize){
+    List<Product> findAllByList = productService.findAllByList(pageNo, pageSize);
     model.addAttribute("findAllByList",findAllByList);
     
+    int pdacountList = productService.countpdall();
+    model.addAttribute("pdacountList",pdacountList);
+    
+  }
+  
+  @RequestMapping(value = "pdaPage.do", method= {RequestMethod.POST})
+  public @ResponseBody List<Product> pdalist(@RequestParam(defaultValue="2") int pageNo, 
+      @RequestParam(defaultValue="10") int pageSize) {
+    System.out.println("pdaPage.do");
+    List<Product> pdapa = productService.pdalist(pageNo, pageSize);
+    
+    return pdapa;
   }
   
   @GetMapping("classList")
@@ -323,9 +336,10 @@ public class MasterPageController {
   public void dashBoard(Model model) {
       List<Classes> ClassesFindAll = classService.findAllByList();
       model.addAttribute("ClassesFindAll",ClassesFindAll);
+//      
+//      List<Product> findAllByList = productService.findAllByList(3,3);
+//      model.addAttribute("findAllByList",findAllByList);
       
-      List<Product> ProductFindAll = productService.findAllByList();
-      model.addAttribute("ProductFindAll", ProductFindAll);
       
       List<Mentor> MentorFindAll = mentorService.listByMetoStat();
       for(Mentor m : MentorFindAll) {
