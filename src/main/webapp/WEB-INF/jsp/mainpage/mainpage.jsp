@@ -134,7 +134,7 @@ ul#RankingUl li:hover{
                                 <c:forEach items="${classRanking}" var="cr" varStatus="i">
                                 <c:choose>
                                     <c:when test="${i.count == 1 }">
-                                        <li class="py-2 pl-2"  >
+                                        <li class="py-2 pl-2">
 	                                        <img style="width: 18px; height: 24px; margin-right: 9px" alt="/upload/img/Goldmedal.png" src="/upload/img/Goldmedal.png">
 	                                        
 	                                        <c:choose>
@@ -260,7 +260,7 @@ ul#RankingUl li:hover{
                    <!-- 실시간 클래스 후기 -->
                    
                    <c:forEach items="${classRepList}" var="cr">
-                   <div class="col-lg-10 mx-auto px-2 py-2 mb-3" style="background-color: #f0f0f0">
+                   <div class="col-lg-10 mx-auto px-2 py-2 mb-3" style="background-color: #f0f0f0" onclick ="location.href='../class/detail?no=${cr.cno}'">
                         <div class="col-lg-3 p-0" style="float: left">
                             <c:set var="transFile" value="${cr.classes.cfile}" />
                             <%
@@ -309,7 +309,7 @@ ul#RankingUl li:hover{
                    <!-- 실시간 상품 후기 -->
                    
                    <c:forEach items="${productRepList}" var="pr">
-                   <div class="col-lg-10 mx-auto px-2 py-2 mb-3" style="background-color: #f0f0f0">
+                   <div class="col-lg-10 mx-auto px-2 py-2 mb-3" style="background-color: #f0f0f0" onclick ="location.href='../product/detail?no=${pr.ptno}'">
                         <div class="col-lg-3 p-0" style="float: left">
                             <img style="width: 110px; height: 110px; margin-top: 12px;" alt="${pr.prdtphot}" src="${pr.prdtphot}">
                         </div>

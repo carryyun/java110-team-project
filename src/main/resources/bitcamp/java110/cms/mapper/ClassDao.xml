@@ -212,7 +212,7 @@
 		ps.stat = 'Y'
 		AND
 		pg.mtno=#{mtno}
-		ORDER by ps.cno asc
+		ORDER BY ps.rgdt DESC
 	</select>
 
 	<select id="findAllByList" resultMap="classMap"> <!-- 이게 전체리스트출력하는거임 -->
