@@ -152,11 +152,20 @@ public class ClassServiceImpl implements ClassService{
   }
 
   @Override
-  public List<Classes> listByLoc(int pageNo, int pageSize,String loc) {
+  public List<Classes> listByLoc(int pageNo, int pageSize,String loc, int no) {
     HashMap<String, Object> params = new HashMap<>();
     params.put("rowNo", (pageNo - 1) * pageSize);
     params.put("size", pageSize);
     params.put("loc", loc);
+    
+    if(no == 9999 || no == 1) {
+      params.put("no", "%");
+      System.out.println("%");
+    }else{
+      params.put("no", no);
+      System.out.println(no);
+    }
+    
     
     return classDao.findAllByLoc(params);
   }

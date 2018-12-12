@@ -5,6 +5,7 @@
 	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <html>
 
 <head>
@@ -129,7 +130,6 @@ margin-bottom: 0.25rem;
 				<div class="col-lg-12">
 					<jsp:include page="../headerNav.jsp"></jsp:include>
 				</div>
-
 				<!-- Main Content -->
 				<div class="container col-lg-12 my-3" style="background-color: #white">
 					<div class="row">
@@ -294,7 +294,14 @@ margin-bottom: 0.25rem;
 														<div class="product-description__title">
 															<div class="row">
 																<div class="col-lg-12 mb-2">
-																	<a href="#" onclick="openInNewTab('detail?no=${cl.no}');">${cl.titl}</a>
+																	<c:choose>
+                                                                    <c:when test="${fn:length(cl.titl) >42}"> 
+                                                                       <a href="#" onclick="openInNewTab('detail?no=${cl.no}');">${fn:substring(cl.titl,0,42)}...</a>
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                       <a href="#" onclick="openInNewTab('detail?no=${cl.no}');">${cl.titl}</a>
+                                                                    </c:otherwise>
+                                                                </c:choose>
 																</div>
 															</div>
 															<!-- 분류명 , 가격 -->
@@ -464,7 +471,7 @@ $('#mapModal').on('shown.bs.modal', function (e) {
                 
                 $('#SerchLocBtn').attr('onclick', '').unbind('click');
                 $('#SerchLocBtn').click(function(){
-                    location.href="clsLoc?locs="+addrSetter;
+                    location.href="clsLoc?no=${bigTag.no}&locs="+addrSetter;
                 });
             }   
         });
@@ -510,13 +517,16 @@ $('#mapModal').on('shown.bs.modal', function (e) {
     var pageNo=parseInt(2);
     var btno = $('input#getbtno').val();
     $(document).ready(function(){
-        var splitCode = '${locs}'.split(",");
-        if(splitCode.length > 1){
-	        for (var idx in splitCode) {
-	
-	            $("input[name=loc][value=" + splitCode[idx] + "]").attr("checked", true);
-	
-	        }
+        if('${locs}'.match(/,/)){
+            var splitCode = '${locs}'.split(",");
+            if(splitCode.length > 1){
+                
+                for (var idx in splitCode) {
+                    $("input[name=loc][value=" + splitCode[idx] + "]").attr("checked", true);
+                }
+            }
+        }else if( !('${locs}'.match(/,/)) & !('${locs}'.match(/ /)) ){
+            $("input[name=loc][value=${locs}]").attr("checked", true);
         }
     });
 		$(window).scroll(function() {
@@ -527,7 +537,8 @@ $('#mapModal').on('shown.bs.modal', function (e) {
 		            type : "POST" , 
 		            data : {
 		                "pageNo" : pageNo,
-		                "locs" : '${locs}'
+		                "locs" : '${locs}',
+	                    "no" : btno
 		            },
 		            url : "clsLoc.do" ,
 		            success : function(data) {
@@ -577,6 +588,7 @@ $('#mapModal').on('shown.bs.modal', function (e) {
 		    				    html+= '			<div class="product-description__title">'
 		    				    html+= '				<div class="row">'
 		    				    html+= '					<div class="col-lg-12 mb-2">'
+		    				    if(titl.length>42) titl=titl.substring(0,42) + "...";
 		    				    html+= '						<a href="detail?no='+cno+'">'+titl+'</a>'
 		    				    html+= '					</div>'
 		    				    html+= '				</div>'
@@ -632,7 +644,11 @@ function getLocation(){
     var repleLoc = decodeURIComponent(getCheck).replace(/\+/g, '%20');
     repleLoc= replaceAll(repleLoc, "loc=", "");
     repleLoc= replaceAll(repleLoc, "&", ",");
-    location.href="clsLoc?locs="+repleLoc;
+    if(${bigTag ne null}){
+        location.href="clsLoc?no=${bigTag.no}&locs="+repleLoc;
+    }else{
+        location.href="clsLoc?locs="+repleLoc;
+    }
 }
 function replaceAll(str, searchStr, replaceStr) {
     return str.split(searchStr).join(replaceStr);

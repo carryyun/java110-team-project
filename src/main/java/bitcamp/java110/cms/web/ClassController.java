@@ -260,7 +260,8 @@ public class ClassController {
   }
   
   @GetMapping("clsLoc")
-  public void clsLoc(Model model, String locs, @RequestParam(defaultValue="1") int pageNo,@RequestParam(defaultValue="6") int pageSize) {
+  public void clsLoc(Model model, String locs, @RequestParam(defaultValue="9999") int no,
+      @RequestParam(defaultValue="1") int pageNo,@RequestParam(defaultValue="6") int pageSize) {
     
     List<Classes> clslist = null;
     if(locs.contains(" ")) {
@@ -268,16 +269,14 @@ public class ClassController {
       int pos = locs.indexOf(" ");
       pos = locs.indexOf(" ",pos+1);
       String replelocs = locs.substring(0,pos);
-      clslist=classService.listByLoc(pageNo,pageSize,replelocs);
+      clslist=classService.listByLoc(pageNo,pageSize,replelocs,no);
     }else {
       String replelocs = locs.replaceAll(",","|");
-      clslist=classService.listByLoc(pageNo,pageSize,replelocs);
+      clslist=classService.listByLoc(pageNo,pageSize,replelocs,no);
     }
 
     
-    BigTag bigtag = null;
-    
-    bigtag = bigTagService.get(1);
+    BigTag bigtag = bigTagService.get(no);
     
     model.addAttribute("locs", locs);
     model.addAttribute("clslist", clslist);
@@ -285,10 +284,20 @@ public class ClassController {
   } 
   
   @RequestMapping(value="clsLoc.do" ,method= {RequestMethod.POST})
-  public @ResponseBody List<Classes> clsLocdo(Model model, String locs,
+  public @ResponseBody List<Classes> clsLocdo(Model model, String locs, @RequestParam(defaultValue="9999") int no,
       @RequestParam(defaultValue="2") int pageNo, @RequestParam(defaultValue="6") int pageSize) {
-    locs = locs.replaceAll(",","|");
-    List<Classes> clslist=classService.listByLoc(pageNo,pageSize,locs);
+    
+    List<Classes> clslist = null;
+    if(locs.contains(" ")) {
+      // 주소중 2번째 스페이스까지의 주소만 뽑기위해
+      int pos = locs.indexOf(" ");
+      pos = locs.indexOf(" ",pos+1);
+      String replelocs = locs.substring(0,pos);
+      clslist=classService.listByLoc(pageNo,pageSize,replelocs,no);
+    }else {
+      String replelocs = locs.replaceAll(",","|");
+      clslist=classService.listByLoc(pageNo,pageSize,replelocs,no);
+    }
     
     return clslist;
   }

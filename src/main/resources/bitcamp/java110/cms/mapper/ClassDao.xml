@@ -162,7 +162,8 @@
 		inner join p_btag as btag
 		on pg.btno = btag.btno
 
-		where ttab.cno = ps.cno
+		where ttab.cno = ps.cno AND
+        ps.stat = "Y"
 		GROUP BY cno
 		ORDER BY COUNT(*) DESC
 		LIMIT #{rowNo},#{size}
@@ -173,7 +174,9 @@
 		parameterType="map">
 		<include refid="selectAll"></include>
 		WHERE
-		ps.bas_addr REGEXP #{loc}
+		ps.bas_addr REGEXP #{loc} AND
+        btag.btno Like #{no} AND
+        ps.stat = "Y"
         ORDER BY ps.rgdt DESC
 		limit #{rowNo},#{size}
 	</select>

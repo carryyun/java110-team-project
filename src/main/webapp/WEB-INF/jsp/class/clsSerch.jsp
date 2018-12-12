@@ -130,7 +130,8 @@ div.box label {
 					<div class="row">
 						<div class="col-lg-2 pl-4 border-right border-secondary">
 							<div class="col">
-								<h2 style="font-size: 1.5rem; font-weight: 700;">${bigTag.name}</h2>
+								<h2 style="font-size: 1.5rem; font-weight: 700;">검색결과</h2>
+								<h2 style="font-size: 1.25rem; font-weight: 300;">: ${word}</h2>
 								<input type="hidden" id="getbtno" value="${bigTag.no}">
 								<ul>
 									<c:forEach items="${MTlist}" varStatus="j">
@@ -457,7 +458,7 @@ $('#mapModal').on('shown.bs.modal', function (e) {
                 $('#SerchLocBtn').click(function(){
 //                  console.log(mouseEvent.latLng);
 //                  console.log(addrSetter);
-                    location.href="clsLoc?locs="+addrSetter;
+                    location.href="clsLoc?no=${bigTag.no}&locs="+addrSetter;
                 });
             }   
         });
@@ -620,7 +621,6 @@ function getLocation(){
     var repleLoc = decodeURIComponent(getCheck).replace(/\+/g, '%20');
     repleLoc= replaceAll(repleLoc, "loc=", "");
     repleLoc= replaceAll(repleLoc, "&", ",");
-    console.log(repleLoc);
     location.href="clsLoc?locs="+repleLoc;
 }
 function replaceAll(str, searchStr, replaceStr) {

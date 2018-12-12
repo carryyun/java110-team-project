@@ -478,7 +478,7 @@ $('#mapModal').on('shown.bs.modal', function (e) {
 	            
 	            $('#SerchLocBtn').attr('onclick', '').unbind('click');
 	            $('#SerchLocBtn').click(function(){
-	                location.href="clsLoc?locs="+addrSetter;
+	                location.href="clsLoc?no=${bigTag.no}&locs="+addrSetter;
 	            });
 	        }   
 	    });
@@ -643,8 +643,11 @@ function getLocation(){
     var repleLoc = decodeURIComponent(getCheck).replace(/\+/g, '%20');
     repleLoc= replaceAll(repleLoc, "loc=", "");
     repleLoc= replaceAll(repleLoc, "&", ",");
-    console.log(repleLoc);
-    location.href="clsLoc?locs="+repleLoc;
+    if(${bigTag ne null}){
+        location.href="clsLoc?no=${bigTag.no}&locs="+repleLoc;
+    }else{
+	    location.href="clsLoc?locs="+repleLoc;
+    }
 }
 function replaceAll(str, searchStr, replaceStr) {
     return str.split(searchStr).join(replaceStr);
