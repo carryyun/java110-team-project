@@ -448,12 +448,13 @@ public class MypageController {
   }
   
   @GetMapping("menu5")
-  public void menu5(Model model,HttpSession session) { 
+  public void menu5(Model model,HttpSession session, 
+      @RequestParam(defaultValue="1") int pageNo, @RequestParam(defaultValue="10") int pageSize) { 
     
     Mentee imentee = (Mentee) session.getAttribute("loginUser");
     int reMeno = imentee.getNo();
     
-    List<Classes> cmanage = classService.manageByMono(reMeno);
+    List<Classes> cmanage = classService.manageByMono(reMeno,pageNo,pageSize);
     model.addAttribute("cmanage",cmanage);
     
     

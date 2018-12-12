@@ -4,6 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
 	trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <html>
 
 <head>
@@ -35,10 +36,10 @@
 
 <!-- ===============필수포함=============== -->
 <style>
-div.product-description__title > div > div{
+div.product-description__title > div > div#titlDiv{
     height : 45px;
 }
-div.product-description__title > div > div > a{
+div.product-description__title > div > div#titlDiv > a{
     word-break:break-all;
     display:block;
     clear:none;
@@ -283,7 +284,7 @@ div.box label {
 														<!-- 제목 -->
 														<div class="product-description__title">
 															<div class="row">
-																<div class="col-lg-12 mb-2">
+																<div class="col-lg-12 mb-2" id="titlDiv">
 																	<a href="#" onclick="openInNewTab('detail?no=${cl.no}');">${cl.titl}</a>
 																</div>
 															</div>
@@ -310,7 +311,7 @@ div.box label {
 															<hr class="NoMarginHr">
 															<!-- 멘토 이름 -->
 															<div class="sizes-wrapper">
-																<b>판매자 - ${cl.mentee.name}</b>
+																<b>지역 - ${fn:substring(cl.basAddr,0,6)}</b>
 															</div>
 															<!-- 주소 -->
 															<div class="color-wrapper">
@@ -565,7 +566,8 @@ $('#mapModal').on('shown.bs.modal', function (e) {
 		    				    html+= '		<div class="product-description">'
 		    				    html+= '			<div class="product-description__title">'
 		    				    html+= '				<div class="row">'
-		    				    html+= '					<div class="col-lg-12 mb-2">'
+		    				    html+= '					<div class="col-lg-12 mb-2" id="titlDiv">'
+	    				        if(titl.length>42) titl=titl.substring(0,42) + "...";
 		    				    html+= '						<a href="detail?no='+cno+'">'+titl+'</a>'
 		    				    html+= '					</div>'
 		    				    html+= '				</div>'
@@ -579,16 +581,13 @@ $('#mapModal').on('shown.bs.modal', function (e) {
 		    					                                  }
 		    					                              }
 		    				    html+= '					</div>'
-	                            pric = "" + pric;
+	                            pric = "" + pric; 
                                 pric = pric.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,')
 		    				    html+= '					<div class="col-lg-5 product-description__price">'+pric+'원</div>'
 		    				    html+= '				</div>'
 		    				    html+= '				<hr class="NoMarginHr">'
-		    				    html+= '				<div class="sizes-wrapper">'
-		    				    html+= '					<b>판매자 - '+name+'</b>'
-		    				    html+= '				</div>'
-		    				    html+= '				<div class="color-wrapper">'
-		    				    html+= '					<b>기본 주소 - '+basAddr+'</b>'
+		    				        html+= '              <div class="color-wrapper">'
+	    				        html+= '                  <b>지역 - '+basAddr.substring(0,6)+'</b>'
 		    				    html+= '				</div>'
 		    				    html+= '			</div>'
 		    				    html+= '		</div>'

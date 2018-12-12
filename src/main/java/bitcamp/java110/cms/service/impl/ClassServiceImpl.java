@@ -118,8 +118,14 @@ public class ClassServiceImpl implements ClassService{
   
   // 마이페이지 - 클래스 관리 - 멘토의 클래스들
   @Override
-  public List<Classes> manageByMono(int mono) {
-    return classDao.manageByMono(mono);
+  public List<Classes> manageByMono(int mono , int pageNo , int pageSize) {
+    
+    HashMap<String, Object> params = new HashMap<>();
+    params.put("rowNo", (pageNo - 1) * pageSize);
+    params.put("size", pageSize);
+    params.put("no",mono);
+    
+    return classDao.manageByMono(params);
   }
   
   // 마에피이지 - 클래스관리 - 클래스의 멘티들

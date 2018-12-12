@@ -212,7 +212,7 @@
 		ps.stat = 'Y'
 		AND
 		pg.mtno=#{mtno}
-		ORDER by ps.cno asc
+		ORDER BY ps.rgdt DESC
 	</select>
 
 	<select id="findAllByList" resultMap="classMap"> <!-- 이게 전체리스트출력하는거임 -->
@@ -469,7 +469,10 @@
 	<select id="manageByMono" resultMap="classMapMypage"
 		parameterType="map">
 
-		SELECT
+		select *
+        from (
+            select
+                @rownum:=@rownum+1 as rnum,
 		c.cno,
 		c.titl,
 		btg.btname,
@@ -496,9 +499,11 @@
 		JOIN p_mtag mtg ON c.mtno = mtg.mtno
 		JOIN p_btag btg ON mtg.btno = btg.btno
 		JOIN p_cls_ttab ct ON c.cno = ct.cno
-
+			,(select @rownum:=0)r
 		where
-		mo.mono=#{mono} AND c.stat = 'Y'
+		mo.mono=#{no} AND c.stat = 'Y'
+       ) as a
+        where rnum  limit #{rowNo},#{size};
 
 	</select>
 

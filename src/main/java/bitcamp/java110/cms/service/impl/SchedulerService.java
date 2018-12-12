@@ -84,7 +84,7 @@ public class SchedulerService {
           productDao.update(product);
         }
       }else {
-        product.setStar(1);
+        product.setStar(0);
         productDao.update(product);
       }
     }

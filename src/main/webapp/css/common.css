@@ -30,7 +30,11 @@ hr.SmallMarginHr{
 hr.MiddleMarginHr{
     margin: 10px !important;
 }
-
+hr.NoMarginHr{
+    margin-top: 0.75rem !important;
+    margin-bottom: 0.75rem !important;
+ 
+}
 hr.Fhr{
     border: 0; 
     height: 2px;
