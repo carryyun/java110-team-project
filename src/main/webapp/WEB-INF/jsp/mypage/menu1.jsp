@@ -184,30 +184,42 @@ input[type="number"]::-webkit-inner-spin-button {
             text1.readOnly = true;
             text1.style.border = "none"; 
             
-            
              var newnick = $('#text1').val();
-          
-                $.ajax({
-                    type: "POST",
-                    data: {
-                        "no" : meno,
-                        "nick" : newnick
-                        },
-                 url: "updateProfile.do", 
-                 success : function() {
-                    
-                     swal({
-                           text : "변경 완료",
-                         button : "확인"
-                         })
-                     },error : function(error,status){
-                         swal({
-                             text : "이미 존재하는 닉네임 입니다!",
-                             button : "확인"
-                             })
-                             }
-                     }); 
- 
+             var readyname =  $('#text1').attr('name');
+             
+             if(newnick == readyname ){
+                 
+                 swal({
+                     text : "이미 존재하는 닉네임 입니다!",
+                     button : "확인",
+                     icon : "error"
+                     });
+             }else{
+                 
+                 $.ajax({
+                     type: "POST",
+                     data: {
+                         "no" : meno,
+                         "nick" : newnick
+                         },
+                  url: "updateProfile.do", 
+                  success : function() {
+                     
+                      swal({
+                            text : "변경 완료",
+                          button : "확인"
+                          })
+                      },error : function(error,status){
+                          swal({
+                              text : "이미 존재하는 닉네임 입니다!",
+                              button : "확인",
+                              icon : "error"
+                              })
+                              }
+                      }); 
+                 
+             }
+             
             } 
     } 
     
@@ -246,7 +258,8 @@ input[type="number"]::-webkit-inner-spin-button {
 	        if(newpwd.length < 8){
 	        	swal({
 	                text : "비밀번호는 최소 8자 이상입니다.",
-	              button : "확인"
+	              button : "확인",
+	              icon : "error"
 	              }).then(function(){
 	            	  $('#sectext31').val('');
 	            		 $('#text2').val('');
@@ -255,7 +268,8 @@ input[type="number"]::-webkit-inner-spin-button {
 	        }else if($('#text31 option:selected').val() == ''){
 	        	swal({
 	                text : "은행을 선택해주세요.",
-	              button : "확인"
+	              button : "확인",
+	              icon : "error"
 	              }).then(function(){
 	            	  $('#sectext31').val('');
 	            		 $('#text2').val('');
@@ -283,7 +297,8 @@ input[type="number"]::-webkit-inner-spin-button {
 		         success : function() {
 		             swal({
 		                   text : "변경 완료",
-		                 button : "확인"
+		                 button : "확인",
+		                 icon : "error"
 		                 }).then(function(){
 		            		 $('#text2').val('');
                          })
@@ -368,7 +383,8 @@ input[type="number"]::-webkit-inner-spin-button {
              },error : function(error,status){
                  swal({
                      text : "핸드폰 번호 형식에 맞춰서 작성해주세요",
-                     button : "확인"
+                     button : "확인",
+                     icon : "error"
                      })
                      }
              }); 
@@ -407,6 +423,20 @@ input[type="number"]::-webkit-inner-spin-button {
         var newbas= $('#sample6_address').val();
         var newdet= $('#sample6_address2').val();
         
+        if(newpstno == ""){
+            
+            swal({
+                text : "우편번호를 입력 해주세요",
+              button : "확인",
+              icon : "error"
+              });
+            
+            $('#findpstno').css('display','none');
+          }
+            
+            
+        else{
+        
         $.ajax({
             type: "POST",
             data: {
@@ -431,10 +461,82 @@ input[type="number"]::-webkit-inner-spin-button {
         $('#findpstno').css('display','none');
     }
     
+        
+    }
 }
  
     
-   /*  function updatePhoto(meno){
+    
+    // 멘토신청 체크
+function mentorcheck() {
+
+        
+        var check1 = $('#soflow').val();
+        
+  if(mentorSubmit.btno.value == 0) {
+
+      swal({
+          text : "분야를 선택 해주세요",
+        button : "확인",
+        icon : "warning"
+        });
+
+    mentorSubmit.btno.focus();
+
+    return false;
+
+  }
+
+  else if(mentorSubmit.carrin.value == "0") {
+
+      swal({
+          text : "경력을 선택 해주세요",
+        button : "확인",
+        icon : "warning"
+        });
+
+    mentorSubmit.carrin.focus();
+    
+    return false;
+
+  }
+  
+  else if(mentorSubmit.fileUpload1.value == "0") {
+
+      swal({
+          text : "작품 이미지를 업로드 해주세요",
+        button : "확인",
+        icon : "warning"
+        });
+
+    mentorSubmit.fileUpload1.focus();
+    
+    return false;
+
+  }
+  
+  
+  else if(mentorSubmit.fileUpload2.value == "0") {
+
+      swal({
+          text : "자격증 이미지를 업로드 해주세요",
+        button : "확인",
+        icon : "warning"
+        });
+
+    mentorSubmit.fileUpload2.focus();
+    
+    return false;
+
+  }
+
+  
+  
+  else return true;
+
+}
+    
+   /* function updatePhoto(meno){
         
        var NewPhot = "/upload/img/"+$('.image-title').val();
        console.log(NewPhot);
@@ -459,7 +561,7 @@ input[type="number"]::-webkit-inner-spin-button {
                  })
                  }
          }); 
-    } */
+    }  */
 
 </script>
             <div class="row" >
@@ -475,7 +577,7 @@ input[type="number"]::-webkit-inner-spin-button {
                                 </div>
                                 <div class="cont1" >
                                 <B>닉네임</B>&nbsp;
-                                <input id="text1" type="text" name="닉네임" value="&nbsp;${mentee.nick}" readonly style="width:140px; border:none; ">
+                                <input id="text1" type="text" name="웨어멘티닉의 멘티번호가있으면!" maxlength="10" value="${mentee.nick}" readonly style="width:140px; border:none; ">
                                 </div>
                                 <div id="wrapper" name="${mentee.mtstat}" class="pop" style=" position: relative; right: -50px; bottom: -60px">
                                 <button class="fancy" >멘토신청</button>
@@ -644,7 +746,7 @@ input[type="number"]::-webkit-inner-spin-button {
   </div>
   
    <div class="content"> 
-  <form method="post"  action="imgupload" enctype="multipart/form-data" >
+  <form method="post"  name="mentorSubmit" action="imgupload" enctype="multipart/form-data"  onsubmit="return mentorcheck()">
     <input type="hidden" name="no" value="${mentee.no}">
     
     <input type="hidden" name="mtstat" value="${mentee.mtstat}">
@@ -663,7 +765,7 @@ input[type="number"]::-webkit-inner-spin-button {
     <div class="nope" >
     
 <select name="btno" id="soflow" >
-  <option>분야 선택</option>
+  <option value="0">분야 선택</option>
    <c:forEach items="${btag}" var="b" varStatus="i">
    <option value="${b.no}">${b.name}</option>
   
@@ -673,7 +775,7 @@ input[type="number"]::-webkit-inner-spin-button {
 </select>
 
 <select name="carrin"  id="soflow2">
-  <option>경력 선택</option>
+  <option value="0">경력 선택</option>
      <%
                   String Result = "";
                   
@@ -801,7 +903,7 @@ input[type="number"]::-webkit-inner-spin-button {
   
   
                                                     <div>
-                                                      <button type="submit" class="btn btn-primary" id="2" onclick="updatePhoto(${mentee.no})">변경하기</button>
+                                                      <button type="submit" class="btn btn-primary" id="2" <%-- onclick="updatePhoto(${mentee.no}) --%>">변경하기</button>
                                                       <button type="button" class="btn btn-danger" id="1" style="float:right" data-dismiss="modal"  role="button" >취소</button>
                                                     </div>
 

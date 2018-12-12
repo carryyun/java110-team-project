@@ -32,7 +32,7 @@
                         
                         <c:when test="${fn:contains(sessionScope.loginUser.stat,'M')}">
                         <div class="dropdown" id="dropdown">
-                            <img src="${sessionScope.loginUser.phot}" alt="userIMG" 
+                            <img src="${mentee.phot}" alt="userIMG" 
                                     style="margin:0 30px; width: 56px; height: 56px; border-radius: 28px; border: 3px solid #FFB53C"><br>
                             <div class="dropdown-content text-left" id="dropdown-content">
                             <hr class="Hhr"/> 

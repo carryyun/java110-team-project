@@ -127,6 +127,14 @@ public class MypageController {
   
   @GetMapping("headerMainMy")
   public void headerMainMy(Model model,HttpSession session) {
+    
+    Mentee imentee = (Mentee) session.getAttribute("loginUser");
+    int reMeno = imentee.getNo();
+   
+    Mentee mentee = menteeService.get(reMeno);
+    model.addAttribute("mentee", mentee);
+    
+    
   }
   
   @GetMapping("headerNavMy")
