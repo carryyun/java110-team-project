@@ -563,7 +563,7 @@ function mentorcheck() {
                                 </div>
                                 <div class="cont1" >
                                 <B>닉네임</B>&nbsp;
-                                <input id="text1" type="text" name="" maxlength="10" value="${mentee.nick}" readonly style="width:140px; border:none; ">
+                                <input id="text1" type="text"  maxlength="10" value="${mentee.nick}" readonly style="width:140px; border:none; ">
                                 </div>
                                 <div id="wrapper" name="${mentee.mtstat}" class="pop" style=" position: relative; right: -50px; bottom: -60px">
                                 <button class="fancy" >멘토신청</button>

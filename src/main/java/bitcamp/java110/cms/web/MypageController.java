@@ -120,7 +120,14 @@ public class MypageController {
     Mentee mentee = menteeService.get(reMeno);
     model.addAttribute("mentee", mentee);
     
-    Mentee mentor = mentorService.get(reMeno);
+    if(mentee.getPhot() == null) {
+      mentee.setPhot("/upload/images/images.png");
+      model.addAttribute("mentee", mentee);
+    }else {
+      model.addAttribute("mentee", mentee);
+    }
+    
+    Mentor mentor = mentorService.get(reMeno);
     model.addAttribute("mentor", mentor);
     
   }
@@ -133,6 +140,13 @@ public class MypageController {
    
     Mentee mentee = menteeService.get(reMeno);
     model.addAttribute("mentee", mentee);
+    
+    if(mentee.getPhot() == null) {
+      mentee.setPhot("/upload/images/images.png");
+      model.addAttribute("mentee", mentee);
+    }else {
+      model.addAttribute("mentee", mentee);
+    }
     
     
   }
