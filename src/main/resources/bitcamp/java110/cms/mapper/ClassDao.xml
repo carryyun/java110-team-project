@@ -392,7 +392,7 @@
 		cno = #{no}
 	</update>
 
-	<select id="findByStat" resultMap="classMapOrigin">
+	<select id="findByStat" resultMap="classMapOrigin" parameterType="map">
 		select *
         from (
             select

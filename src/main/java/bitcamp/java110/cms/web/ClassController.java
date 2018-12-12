@@ -100,7 +100,7 @@ public class ClassController {
     System.out.println(c.getNo());*/
     System.out.println("cfile = " + c.getCfile());
     System.out.println((c.getCfile().equals("")));
-/*    System.out.println(c.getTitl());
+    /*    System.out.println(c.getTitl());
     System.out.println(c.getPric());
     System.out.println(c.getTime());
     System.out.println(c.getCapa());
@@ -203,7 +203,7 @@ public class ClassController {
     List<Classes> clslist = classService.list();
     model.addAttribute("clslist", clslist);
   }
-*/
+   */
   @RequestMapping("clsCate")
   public void clsCate(Model model, int no, String type) {
     BigTag bigtag = null;
@@ -258,11 +258,11 @@ public class ClassController {
     }
     return scrollClsList;
   }
-  
+
   @GetMapping("clsLoc")
   public void clsLoc(Model model, String locs, @RequestParam(defaultValue="9999") int no,
       @RequestParam(defaultValue="1") int pageNo,@RequestParam(defaultValue="6") int pageSize) {
-    
+
     List<Classes> clslist = null;
     if(locs.contains(" ")) {
       // 주소중 2번째 스페이스까지의 주소만 뽑기위해
@@ -275,18 +275,18 @@ public class ClassController {
       clslist=classService.listByLoc(pageNo,pageSize,replelocs,no);
     }
 
-    
+
     BigTag bigtag = bigTagService.get(no);
-    
+
     model.addAttribute("locs", locs);
     model.addAttribute("clslist", clslist);
     model.addAttribute("bigTag", bigtag);
   } 
-  
+
   @RequestMapping(value="clsLoc.do" ,method= {RequestMethod.POST})
   public @ResponseBody List<Classes> clsLocdo(Model model, String locs, @RequestParam(defaultValue="9999") int no,
       @RequestParam(defaultValue="2") int pageNo, @RequestParam(defaultValue="6") int pageSize) {
-    
+
     List<Classes> clslist = null;
     if(locs.contains(" ")) {
       // 주소중 2번째 스페이스까지의 주소만 뽑기위해
@@ -298,35 +298,35 @@ public class ClassController {
       String replelocs = locs.replaceAll(",","|");
       clslist=classService.listByLoc(pageNo,pageSize,replelocs,no);
     }
-    
+
     return clslist;
   }
-  
-  
+
+
   @GetMapping("clsSerch")
   public void clsSerch(Model model, String word, @RequestParam(defaultValue="1") int pageNo,@RequestParam(defaultValue="6") int pageSize) {
     String Nword = "%"+ word +"%";
     List<Classes> clslist=classService.listByWord(pageNo,pageSize,Nword);
 
     BigTag bigtag = null;
-    
+
     bigtag = bigTagService.get(1);
-    
+
     model.addAttribute("word", word);
     model.addAttribute("clslist", clslist);
     model.addAttribute("bigTag", bigtag);
   } 
-  
+
   @RequestMapping(value="clsSerch.do" ,method= {RequestMethod.POST})
   public @ResponseBody List<Classes> clsSerchdo(Model model, String word,
       @RequestParam(defaultValue="2") int pageNo, @RequestParam(defaultValue="6") int pageSize) {
     String Nword = "%"+ word +"%";
     List<Classes> clslist=classService.listByWord(pageNo,pageSize,Nword);
-    
+
     return clslist;
   }
-  
-  
+
+
 
   @RequestMapping("detail")
   public void findByCno(@RequestParam(defaultValue="1") int reppageNo, @RequestParam(defaultValue="5") int reppageSize, 
@@ -343,12 +343,12 @@ public class ClassController {
     /*double countstar = classrepService.countstar(no);
     System.out.println(countstar);*/
     /*List<ClassOrder> clsorderlist = classOrderService.findBycnoFormeno(no);*/
-    
+
     /*Paging paging = new Paging();
     paging.setPageNo(reppageNo);
     paging.setPageSize(reppageSize);
     paging.setTotalCount(countrep);*/
-    
+
     Mentee loginUser = (Mentee) session.getAttribute("loginUser");
     int likeResult = 0;
     if(loginUser != null) {
@@ -359,7 +359,7 @@ public class ClassController {
         }
       }
     }
-    
+
     model.addAttribute("clsreqlist",clsreqlist);
     model.addAttribute("detailclass",detailclass);
     model.addAttribute("clsqnalist",clsqnalist);
@@ -380,7 +380,7 @@ public class ClassController {
 
     return replist;
   }
-  
+
   @RequestMapping(value = "qnapage.do", method = {RequestMethod.POST})
   public @ResponseBody List<ClassQna> qnapage(int no ,
       @RequestParam(defaultValue="2") int qnapageNo, @RequestParam(defaultValue="5") int qnapageSize) {
@@ -389,30 +389,30 @@ public class ClassController {
 
     return qnalist;
   }
-  
+
   @RequestMapping(value = "updateclsstat.do", method = {RequestMethod.POST})
   public @ResponseBody String updateclsstat(int no , String stat) {
-    
+
     Classes classes = new Classes();
-    
+
     classes.setNo(no);
     classes.setStat(stat);
-    
+
     classService.deleteclsstat(classes);
 
     return "redirect:clscate";
   }
-  
+
   @RequestMapping(value = "countorder.do", method = {RequestMethod.POST})
   public @ResponseBody int ordercountlist(int no,HttpSession session) {
-    
+
     Mentee mentee = (Mentee) session.getAttribute("loginUser");
-    
+
     int clsorderlist = classOrderService.listByCno(no , mentee.getNo());
-    
+
     return clsorderlist;
   }
-  
+
   @RequestMapping("findByptno")
   public void findByptno(Model model,int no) {
     Classes prdtcls = classService.findbyptno(no);
@@ -548,7 +548,7 @@ public class ClassController {
 
     List<ClassLike> clist = classlikeService.classlikelist(5);
 
-    return null;
+    return clist;
   }
 
   @RequestMapping("likeinsert")
@@ -655,10 +655,14 @@ public class ClassController {
 
   @RequestMapping(value = "addClsOrder.do", method = {RequestMethod.POST})
   public @ResponseBody String addClsOrderdo(String[] arr) {
+    for(String text : arr) {
+      System.out.println(text);
+    }
     for(String s : arr) {
       String[] str = s.split("&");
       System.out.println(str.length);
-      if(str.length == 4) {
+      if(str.length == 5) {
+        System.out.println(str[0] + "," + str[1] + "," + str[2] + "," + str[3]);
         int baktNo = Integer.parseInt(str[0]);  //      str[0] = BasketNo
         int ttabNo = Integer.parseInt(str[1]);      //      str[1] = TtabNo
         int meno = Integer.parseInt(str[2]);      //      str[2] = Meno
@@ -681,9 +685,8 @@ public class ClassController {
         order.setPayopt(payOpt);
 
         classOrderService.orderadd(order);
-        return "complete";
       }else {
-        //int baktNo = Integer.parseInt(str[0]);  //      str[0] = BasketNo
+        /*//int baktNo = Integer.parseInt(str[0]);  //      str[0] = BasketNo
         int ttabNo = Integer.parseInt(str[1]);      //      str[1] = TtabNo
         int meno = Integer.parseInt(str[2]);      //      str[2] = Meno
         int time = Integer.parseInt(str[3]);      //      str[3] = Time
@@ -702,12 +705,12 @@ public class ClassController {
         order.setTot_pric(classes.getPric()*time);
         order.setPayopt(payOpt);
 
-        classOrderService.orderadd(order);
+        classOrderService.orderadd(order);*/
         return "complete";
       }
     }
     return "complete";
   }
-  
-  
+
+
 }

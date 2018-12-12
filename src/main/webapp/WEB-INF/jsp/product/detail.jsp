@@ -125,8 +125,8 @@ $("img.lazy").lazyload({
  var stmnGAP1 = 0; // 위쪽 여백 
  var stmnGAP2 = 52; // 스크롤시 브라우저 위쪽과 떨어지는 거리 
  var stmnBASE = 52; // 스크롤 시작위치 
- var stmnActivateSpeed = 30; //스크롤을 인식하는 딜레이 (숫자가 클수록 느리게 인식)
- var stmnScrollSpeed = 10; //스크롤 속도 (클수록 느림)
+ var stmnActivateSpeed = 1; //스크롤을 인식하는 딜레이 (숫자가 클수록 느리게 인식)
+ var stmnScrollSpeed = 1; //스크롤 속도 (클수록 느림)
  var stmnTimer; 
  
  function RefreshStaticMenu() { 

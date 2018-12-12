@@ -36,7 +36,11 @@
 <!-- MAIN JS -->
 <script src="/js/masterpagejs/main.js"></script>
 <script src="/js/masterpagejs/bootstrap.min.js"></script>
-
+<style type="text/css">
+a.nav-link{
+    transition:none;
+}
+</style>
 <style>
 #colorlib-aside {
     overflow: hidden;
@@ -58,7 +62,14 @@
 </head>
 
 <body>
-
+        <div class="col-lg-12 px-0"
+            style="position: absolute; height: 102px; background-color: white">
+            <!-- 헤더 배경색 적용 -->
+        </div>
+        <div class="col-lg-12 px-0" 
+            style="position: absolute; top:102px; height: 39px; background-color: #f3f3f3">
+            <!-- 헤더 배경색 적용 -->
+        </div>
 <div class="container">
         <div class="row">
             <div class="col-lg-12">

@@ -114,7 +114,7 @@ ul#RankingUl li:hover{
 		                                </div>
 	                                </div>
 						        </div>
-						        <div class="col-lg-12 text-left">
+						        <div class="col-lg-12 text-left mt-3">
                                 <div id="owl-hotCls" class="owl-carousel col-lg-10 mt-2" style="margin:0 auto">
 
                                     </div>
@@ -138,8 +138,8 @@ ul#RankingUl li:hover{
 	                                        <img style="width: 18px; height: 24px; margin-right: 9px" alt="/upload/img/Goldmedal.png" src="/upload/img/Goldmedal.png">
 	                                        
 	                                        <c:choose>
-				                                <c:when test="${fn:length(cr.titl) >15}">
-	                                        <a href="../class/detail?no=${cr.no}" target="_blank">${fn:substring(cr.titl,0,15)}...</a>
+				                                <c:when test="${fn:length(cr.titl) >14}">
+	                                        <a href="../class/detail?no=${cr.no}" target="_blank">${fn:substring(cr.titl,0,14)}...</a>
 				                                </c:when>
 				                                <c:otherwise>
 				                                    <a href="../class/detail?no=${cr.no} " target="_blank">${cr.titl}</a>
@@ -475,8 +475,8 @@ ul#RankingUl li:hover{
            
            content += "<img id='owl-img' src=\"" +cfile+ "\" alt=\"" +titl+ "\">"
            
-           if(titl.length>21){
-               content += "<div class='col-lg-8' id='owl-col2'>" + titl.substring(0,21) + "...</div>"
+           if(titl.length>19){
+               content += "<div class='col-lg-8' id='owl-col2'>" + titl.substring(0,19) + "...</div>"
            }else{
                content += "<div class='col-lg-8' id='owl-col2'>" + titl + "</div>" 
            }

@@ -79,10 +79,24 @@
                                     <td class="col-6">
                                         <div class="media">
                                         <input type="hidden" id="titl${i.index}" value="${r.classes.titl}">
-                                            <a class="thumbnail pull-left" href="../class/detail?no=${r.classes.no}"> <img class="media-object" src="${r.classes.cfile}" style="width: 100px; height: 100px;"> </a>
+                                            <a class="thumbnail pull-left" href="../class/detail?no=${r.classes.no}">
+                                                <c:set var="classFile" value="${r.classes.cfile}" />
+                                                <%
+                                                String classFile = (String) pageContext.getAttribute("classFile");
+                                                if(classFile.endsWith("jpg") || classFile.endsWith("png")){
+                                                %>
+                                                <img class="media-object" src="${r.classes.cfile}" style="width: 100px; height: 100px;">
+                                                <%
+                                                }else{
+                                                %>
+                                                <img class="media-object" src="https://i.ytimg.com/vi/${r.classes.cfile}/mqdefault.jpg" style="width: 100px; height: 100px;">
+                                                <%
+                                                }
+                                                %>
+                                            </a>
                                             <div class="media-body">
-                                                <h4 class="media-heading"><a href="../class/detail?no=${r.classes.no}">${r.classes.titl}</a></h4>
-                                                <h5 class="media-heading"> 멘토 : ${r.mentorNick}</h5>
+                                                <h5 class="media-heading"><a href="../class/detail?no=${r.classes.no}">${r.classes.titl}</a></h5>
+                                                <h6 class="media-heading"> 멘토 : ${r.mentorNick}</h6>
                                                 <span></span><span class="text-warning"><strong>당일 취소 불가</strong></span>
                                                  <input type="hidden" id="cnt${i.index}" value="{r.classes.time}">
                                             </div>
@@ -145,7 +159,7 @@
         var time = ${b.classes.time};
         arr.push("${b.no}&${b.ctno}&${sessionScope.loginUser.no}&"+time+"&"+payopt);
         </c:forEach>
-        
+        console.log(arr);
         $.ajaxSettings.traditional = true;
         $.ajax({
             type : "POST",

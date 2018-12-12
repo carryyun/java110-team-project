@@ -1770,7 +1770,7 @@ function updabtn(sessionno,rno , teno) { /* 회원 인식해서 댓글 수정해
  var stmnGAP1 = 0; // 위쪽 여백 
  var stmnGAP2 = 50; // 스크롤시 브라우저 위쪽과 떨어지는 거리 
  var stmnBASE = 0; // 스크롤 시작위치 
- var stmnActivateSpeed = 35; //스크롤을 인식하는 딜레이 (숫자가 클수록 느리게 인식)
+ var stmnActivateSpeed = 1; //스크롤을 인식하는 딜레이 (숫자가 클수록 느리게 인식)
  var stmnScrollSpeed = 1; //스크롤 속도 (클수록 느림)
  var stmnTimer; 
  var stmnsub = 230; // stmtEndPoint 맞춰줄 때 쓴다.
