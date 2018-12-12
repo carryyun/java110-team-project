@@ -6,7 +6,7 @@
 <style>
 .modal-header .close{
 	margin-top: -20px;
-}
+} 
 
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
