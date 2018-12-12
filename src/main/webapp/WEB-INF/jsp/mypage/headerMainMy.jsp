@@ -39,7 +39,7 @@
                             <a href="../auth/logout"><span><i class="fas fa-sign-out-alt"></i></span><span class="ml-3">로그아웃</span></a>
                             </div>
                         </div>
-                        </c:when>
+                        </c:when> 
                         
                         <c:otherwise>
                             <div class="dropdown" id="dropdown">
