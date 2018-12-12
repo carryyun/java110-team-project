@@ -172,29 +172,14 @@ input[type="number"]::-webkit-inner-spin-button {
   function cbox1(chkbox,meno)
     {
          
-       if ( chkbox.checked == true )
-            {
+       if ( chkbox.checked == true ){
             text1.readOnly = false;
             text1.style.border = "solid";
             text1.style.borderColor = "#3097F0";
-            }
+        }
         
-        else
-            {   
-            text1.readOnly = true;
-            text1.style.border = "none"; 
-            
+       else {   
              var newnick = $('#text1').val();
-             var readyname =  $('#text1').attr('name');
-             
-             if(newnick == readyname ){
-                 
-                 swal({
-                     text : "이미 존재하는 닉네임 입니다!",
-                     button : "확인",
-                     icon : "error"
-                     });
-             }else{
                  
                  $.ajax({
                      type: "POST",
@@ -208,18 +193,26 @@ input[type="number"]::-webkit-inner-spin-button {
                       swal({
                             text : "변경 완료",
                           button : "확인"
-                          })
+                          }),
+                          
+                      text1.readOnly = true;
+                      text1.style.border = "none"; 
+                      
+                      
                       },error : function(error,status){
                           swal({
                               text : "이미 존재하는 닉네임 입니다!",
                               button : "확인",
                               icon : "error"
-                              })
+                              }),
+                              
+                              chkbox.checked = true;
+                             
                               }
-                      }); 
+                      })
+                      
                  
-             }
-             
+                      
             } 
     } 
     
@@ -570,7 +563,7 @@ function mentorcheck() {
                                 </div>
                                 <div class="cont1" >
                                 <B>닉네임</B>&nbsp;
-                                <input id="text1" type="text" name="웨어멘티닉의 멘티번호가있으면!" maxlength="10" value="${mentee.nick}" readonly style="width:140px; border:none; ">
+                                <input id="text1" type="text" name="" maxlength="10" value="${mentee.nick}" readonly style="width:140px; border:none; ">
                                 </div>
                                 <div id="wrapper" name="${mentee.mtstat}" class="pop" style=" position: relative; right: -50px; bottom: -60px">
                                 <button class="fancy" >멘토신청</button>
