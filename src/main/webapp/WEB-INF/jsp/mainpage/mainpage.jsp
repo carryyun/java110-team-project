@@ -59,21 +59,21 @@ ul#RankingUl li:hover{
                 <div class="carousel-inner" role="listbox">
                     <div class="carousel-item">
                         <div class="view">
-                            <img class="w-100" src="/upload/img/banner_1.png" alt="First slide">
+                            <img class="w-100" src="/upload/img/banner_1.png" alt="banner1">
                             <div class="mask rgba-black-light"></div>
                         </div>
                     </div>
                     <div class="carousel-item active">
                         <!--Mask color-->
                         <div class="view">
-                            <img class="w-100 " src="/upload/img/banner_2.png" alt="Second slide">
+                            <img class="w-100" src="/upload/img/banner_2.png" alt="banner2">
                             <div class="mask rgba-black-strong"></div>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <!--Mask color-->
                         <div class="view">
-                            <img class="w-100" src="/upload/img/banner_3.png" alt="Third slide">
+                            <img class="w-100" src="/upload/img/banner_3.png" alt="banner3">
                             <div class="mask rgba-black-slight"></div>
                         </div>
                     </div>
@@ -134,7 +134,7 @@ ul#RankingUl li:hover{
                                 <c:forEach items="${classRanking}" var="cr" varStatus="i">
                                 <c:choose>
                                     <c:when test="${i.count == 1 }">
-                                        <li class="py-2 pl-2"  >
+                                        <li class="py-2 pl-2">
 	                                        <img style="width: 18px; height: 24px; margin-right: 9px" alt="/upload/img/Goldmedal.png" src="/upload/img/Goldmedal.png">
 	                                        
 	                                        <c:choose>
@@ -260,7 +260,7 @@ ul#RankingUl li:hover{
                    <!-- 실시간 클래스 후기 -->
                    
                    <c:forEach items="${classRepList}" var="cr">
-                   <div class="col-lg-10 mx-auto px-2 py-2 mb-3" style="background-color: #f0f0f0">
+                   <div class="col-lg-10 mx-auto px-2 py-2 mb-3" style="background-color: #f0f0f0" onclick ="location.href='../class/detail?no=${cr.cno}'">
                         <div class="col-lg-3 p-0" style="float: left">
                             <c:set var="transFile" value="${cr.classes.cfile}" />
                             <%
@@ -309,9 +309,9 @@ ul#RankingUl li:hover{
                    <!-- 실시간 상품 후기 -->
                    
                    <c:forEach items="${productRepList}" var="pr">
-                   <div class="col-lg-10 mx-auto px-2 py-2 mb-3" style="background-color: #f0f0f0">
+                   <div class="col-lg-10 mx-auto px-2 py-2 mb-3" style="background-color: #f0f0f0" onclick ="location.href='../product/detail?no=${pr.ptno}'">
                         <div class="col-lg-3 p-0" style="float: left">
-                            <img style="width: 110px; height: 110px; margin-top: 12px;" alt="${pr.prdtphot}" src="${pr.prdtphot}">
+                            <img style="width: 110px; height: 110px; margin-top: 12px;" alt="${pr.prdtphot}" src="${pr.prdtphot}"> 
                         </div>
                         <div class="col-lg-9 px-2 py-0" style="height:131px; float: left">
                             <div id="Titl" style="height: 44px;font-size: 15px; font-weight: 600">

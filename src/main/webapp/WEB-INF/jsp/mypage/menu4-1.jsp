@@ -120,8 +120,7 @@ $(document).ready(function() {
     </li>
   </ul>
 </nav>
-
- <div class="modal fade" id="questioninfo" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+ 									<div class="modal fade" id="questioninfo" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                           <div class="modal-dialog">
                                             <div class="modal-content" style="height:700px;">
                                                 <div class="modal-header">

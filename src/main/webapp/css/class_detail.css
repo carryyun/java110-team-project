@@ -220,7 +220,7 @@ table{
 */
 dd,dl{
 	font-size : 18px;
-	font-weight : bold;
+	font-weight : 300;
 }
 .table tr {
     cursor: pointer;
@@ -238,9 +238,10 @@ dd,dl{
 .addr{
 	text-align : center;
 	vertical-align: middle; 
-	margin-left: 70px;
-	margin-top : 60px;
-	float : right;
+/* 	margin-left: 70px; */
+/* 	margin-top : 60px; */
+/* 	float : right; */
+    margin: 20px auto;
 }
 .modal {
         text-align: center;

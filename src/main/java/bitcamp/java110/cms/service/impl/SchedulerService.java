@@ -55,7 +55,7 @@ public class SchedulerService {
           classDao.classupdate(classes);
         }
       }else {
-        classes.setStar(1);
+        classes.setStar(0);
         classDao.classupdate(classes);
       }
     }
@@ -84,7 +84,7 @@ public class SchedulerService {
           productDao.update(product);
         }
       }else {
-        product.setStar(1);
+        product.setStar(0);
         productDao.update(product);
       }
     }
@@ -102,7 +102,7 @@ public class SchedulerService {
     for(int no : popularityClasslist) {
       classPopulDao.insert(no); 
     }
-  }    
+  }
   
   // 추천작품 1시간마다 리쉣
   @Scheduled(fixedRate=6000000)

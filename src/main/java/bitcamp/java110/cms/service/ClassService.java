@@ -8,7 +8,7 @@ public interface ClassService {
   List<Classes> listByBtno(int pageNo, int pageSize, int btno);
   List<Classes> listByMtno(int pageNo, int pageSize, int mtno);
   List<Classes> listByOrder(int pageNo, int pageSize,int max);
-  List<Classes> listByLoc(int pageNo, int pageSize, String loc);
+  List<Classes> listByLoc(int pageNo, int pageSize, String loc, int no);
   List<Classes> listByWord(int pageNo, int pageSize, String loc);
   List<Classes> classList(int no);
   
@@ -29,7 +29,7 @@ public interface ClassService {
   int countclsreq();
   
   //마이페이지 - 클래스 관리 - 멘토의 클래스들
-  List<Classes> manageByMono(int mono);
+  List<Classes> manageByMono(int mono , int pageNo , int pageSize);
   
   //마이페이지 - 클래스 관리 - 멘토 클래스의 멘티들
   List<Classes> manageByCno(int cno);

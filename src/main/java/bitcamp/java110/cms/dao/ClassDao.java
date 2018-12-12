@@ -1,5 +1,6 @@
 package bitcamp.java110.cms.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import bitcamp.java110.cms.domain.Classes;
@@ -40,7 +41,7 @@ public interface ClassDao {
   int countclsreq();
   
   // 마이페이지 - 클래스 관리 - 멘토 클래스
-  List<Classes> manageByMono(int mono);
+  List<Classes> manageByMono(Map<String, Object> params);
   
   // 마이페이지 - 클래스관리 - 멘토 클래스의 멘티들
   List<Classes> manageByCno(int cno);

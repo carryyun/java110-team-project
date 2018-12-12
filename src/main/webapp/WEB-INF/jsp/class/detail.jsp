@@ -12,7 +12,11 @@
     content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-
+<style type="text/css">
+.accordion-toggle.row:hover{
+    background-color: rgb(222,226,230);
+}
+</style>
 <title>하루 - 클래스 상세보기</title>
 
 <!-- Bootstrap core CSS -->
@@ -175,11 +179,11 @@
 	                                            if(declsti.length() > 11) {
 	                                            String clslongtitl = declsti.substring(0, 11);
 	                                        %>
-	                                        	<h4 class="title mb-3 text-left"><%=clslongtitl%>..
+	                                        	<h5 class="title mb-3 text-left"><%=clslongtitl%>..
 	                                        <%      
 	                                            } else {
 	                                        %>
-	                                        	<h4 class="title mb-3 text-left"><%=declsti%>
+	                                        	<h5 class="title mb-3 text-left"><%=declsti%>
 	                                        <%
 	                                            }
                                             %>
@@ -191,12 +195,23 @@
                                     <i style="color:#FFB53C" id='owl-i' class='far fa-star' onclick='setLike(event,${detailclass.no},this)'></i>
                                 </c:otherwise>
                                 </c:choose>
-                                </h4>
-                                <dl class="param param-feature text-left">
-                                    <dd style="font-size: 1rem;">${detailclass.middleTag.name}</dd>
+                                </h5>
+                                <dl class="param param-feature text-left" style="font-size: 1rem;">
+                                    ${detailclass.middleTag.name}
                                 </dl>
                                 <dl class="param param-feature text-left">
-                                    <fmt:formatNumber value="${detailclass.pric}" groupingUsed="true"/>원
+                                <c:set var="clspri" value="${detailclass.pric}"/>
+                                <c:set var="clstim" value="${detailclass.time}"/>
+                                <%
+                                	int clspr = (int)pageContext.getAttribute("clspri");
+                                	String clsti = (String)pageContext.getAttribute("clstim");
+                                	
+                                	int aaa= Integer.parseInt(clsti);
+                                	
+                                	int totalpric = (clspr*aaa);
+                                	System.out.println(totalpric);
+                                %>
+                                    <fmt:formatNumber value="<%=totalpric%>" groupingUsed="true"/>원
                                 </dl>
 
                                 <dl class="param param-feature text-left">
@@ -312,7 +327,7 @@
                         <br>
                         <div style="margin-left:50px; text-align:center;"><h4>${detailclass.titl}</h4></div>
                         <br>
-                        <div class = "shortinfo"><strong>금액</strong><div class="inf"><fmt:formatNumber value="${detailclass.pric}" groupingUsed="true"/>원</div></div>
+                        <div class = "shortinfo"><strong>시간당 금액</strong><div class="inf"><fmt:formatNumber value="${detailclass.pric}" groupingUsed="true"/>원</div></div>
                         <div class = "shortinfo"><strong>총 수업시간</strong><div class="inf">${detailclass.time}시간</div></div>
                         <div class = "shortinfo"><strong>모집인원</strong><div class="inf"><fmt:formatNumber value="${detailclass.capa}" groupingUsed="true"/>명</div></div>
                     </div>
@@ -332,16 +347,16 @@
                     <hr class="Fhr" id="class-info">
                     ${detailclass.cinfo}
                 </div>
-                    <div class="detail_info" style="padding-left: 40px; padding-right:40px;">
-                        <h3 style="font-weight:900;">위치</h3>
-                        <hr class="Fhr" id="location" style="margin-bottom: 7px;">
-                        <div class ="row" >
-                        <div id="map" style="width:500px; height:400px; margin-left:10px; float:left;"></div>
-                        <div class="dddd" style="float:right; width:160px; margin-top:60px;">
-                        <div id="adr" class = "addr" style="margin-right:10px;"><div><strong>기본 주소</strong></div>  ${detailclass.basAddr}</div>
+                    <div class="detail_info" style="padding-left: 37px">
+                        <h3>위치</h3>
+                        <hr class="FhrBotMargin" id="location"> 
+                        <div class ="row " style="padding-left: 6px">
+                        <div class="col-lg-8" id="map" style="width:100%; height:400px; margin-left:10px; float:left;"></div>
+                        <div class="dddd col-lg-3 mx-auto" style="margin-top:60px;">
+                        <div id="adr" class = "addr"><div><strong>기본 주소</strong></div>  ${detailclass.basAddr}</div>
                         <div id="adr" class = "addr"><div><strong>상세 주소</strong></div>  ${detailclass.detAddr}</div>
                         </div>
-                        </div>
+                        </div> 
                     </div>
                 
                 <!-- <div class="detail_info"> -->  
@@ -548,7 +563,7 @@
                                     <c:set var="qnasi" value="${countqna}" />
                                         <tr data-toggle="collapse" 
                                         data-target="#demo1-${i.count}" class="accordion-toggle row"
-                                         onMouseOver=bgColor="#F2F2F2" onMouseOut=bgColor="">
+                                         >
                                             <td class="col-lg-1" scope="row" id="qna_th">${i.count}</td>
                                             <td class="col-lg-2">${cq.type}</td>
                                             <c:set var="yn" value="${cq.anser}"/>
@@ -890,7 +905,7 @@ function addqna(no) {
 	    	        		
 	    	        		html +=' <c:set var="qnasi" value="${countqna}" />'
 	    	        		html +='    <tr data-toggle="collapse" '
-	    	        		html +='    data-target="#demo1-'+i+'" class="accordion-toggle row" onMouseOver=bgColor="#F2F2F2" onMouseOut=bgColor="">'
+	    	        		html +='    data-target="#demo1-'+i+'" class="accordion-toggle row">'
 	    	        		html +='        <td class="col-lg-1" scope="row" id="qna_th">'+(parseInt(i)+1)+'</td>'
 	    	        		html +='        <td class="col-lg-2">'+qnatype+'</td>'
 	    	        				         	if(qnaanser == null){
@@ -1020,7 +1035,7 @@ function answerins(no,clsno,qno) {
 	        		
 	        		html +=' <c:set var="qnasi" value="${countqna}" />'
 	        		html +='    <tr data-toggle="collapse" '
-	        		html +='    data-target="#demo1-'+i+'" class="accordion-toggle row" onMouseOver=bgColor="#F2F2F2" onMouseOut=bgColor="">'
+	        		html +='    data-target="#demo1-'+i+'" class="accordion-toggle row" >'
 	        		html +='        <td class="col-lg-1" scope="row" id="qna_th">'+i+'</td>'
 	        		html +='        <td class="col-lg-2">'+qnatype+'</td>'
 	        				         	if(qnaanser == null){
@@ -1381,7 +1396,7 @@ function qnapage(qno) {
         		
         		html +=' <c:set var="qnasi" value="${countqna}" />'
         		html +='    <tr data-toggle="collapse" '
-        		html +='    data-target="#demo1-'+i+'" class="accordion-toggle row" onMouseOver=bgColor="#F2F2F2" onMouseOut=bgColor="">'
+        		html +='    data-target="#demo1-'+i+'" class="accordion-toggle row">'
         		html +='        <td class="col-lg-1" scope="row" id="qna_th">'+((qno-1)*5+(parseInt(i)+1))+'</td>'
         		html +='        <td class="col-lg-2">'+qnatype+'</td>'
         				         	if(qnaanser == null){
@@ -1392,7 +1407,7 @@ function qnapage(qno) {
                 		if(qnatitl.length > 8) {
 	                    var longtitl = qnatitl.substring(0, 7);
 	            html +=' <td class="col-lg-3">'+longtitl+'..</td>'
-	                    } else {
+	                    } else { 
 	            html +=' <td class="col-lg-3">'+qnatitl+'</td>'
 	                    }
         		html +='        <td class="col-lg-2">'+qnanick+'</td>'
