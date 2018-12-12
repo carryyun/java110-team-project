@@ -80,100 +80,31 @@
                 <div style="position:absolute; width: 500px; float:right; top: 0;">
                 <div id="tagselcetdiv">
   				<input type="text" class="view" readonly value="대분류 선택">
-                <select id="bigtagSel" style="width:25%; height:26px;">
-                <option hidden selected></option>
-                <option value="2">음악</option>
-                <option value="3">뷰티</option>
-                <option value="4">댄스</option>
-                <option value="5">프로그래밍</option>
-                <option value="6">외국어</option>
-                <option value="7">실무역량</option>
-                <option value="8">라이프</option>
-                <option value="9">기타</option>
+	                <select id="bigtagSel" style="width:25%; height:26px;">
+		                <option hidden selected></option>
+	    	      	 	 <c:forEach  items="${BTlist}" var="bt" varStatus="c">
+			                <c:if test="${bt.no ne 1}">
+			                <option value='${bt.no}'>${bt.name}</option>
+		    	            </c:if>
+	            		</c:forEach>
                 </select>
-                <input type="text" class="view" readonly value="중분류 선택">
-                <select id="MiddletagSel2" style="width:25%; height:26px; display:none;">
-                <option hidden selected></option>
-                <option value="1">보컬</option>
-                <option value="2">미디작곡</option>
-                <option value="3">기타연주</option>
-                <option value="4">국악</option>
-                <option value="5">디제잉</option>
-                <option value="6">드럼</option>
-                <option value="7">랩</option>
-                </select>
-                 <select id="MiddletagSel3" style="width:25%; height:26px; display:none;">
-                <option hidden selected></option>
-                <option value="8">메이크업</option>
-                <option value="9">퍼스널컬러</option>
-                <option value="10">헤어</option>
-                <option value="11">패션</option>
-                <option value="12">네일</option> 
-                </select>
-                 <select id="MiddletagSel4" style="width:25%; height:26px; display:none;">
-                <option hidden selected></option>
-                <option value="13">삼바</option>
-                <option value="14">룸바</option>
-                <option value="15">차차차</option>
-                <option value="16">자이브</option>
-                <option value="17">파소도블레</option>
-                <option value="18" >왈츠</option>
-                <option value="19">퀵스텝</option>
-                </select>
-                 <select id="MiddletagSel5" style="width:25%; height:26px; display:none;">
-                <option hidden selected></option>
-                <option value="20">Web개발</option>
-                <option value="21">App개발</option>
-                <option value="22">파이썬</option>
-                <option value="23">자바</option>
-                <option value="24">아두이노</option>
-                <option value="25">DataBase</option>
-                <option value="26">워드프레스</option>
-                </select>
-                 <select id="MiddletagSel6" style="width:25%; height:26px; display:none;">
-                <option hidden selected></option>
-                <option value="27">영어회화</option>
-                <option value="28">중국어</option>
-                <option value="29">토익/토플</option>
-                <option value="30">일본어</option>
-                <option value="31">프랑스어</option>
-                <option value="32">스페인어</option>
-                <option value="33">영작문</option>
-                </select>
-                 <select id="MiddletagSel7" style="width:25%; height:26px; display:none;">
-                <option hidden selected></option>
-                <option value="34">엑셀</option>
-                <option value="35">파워포인트</option>
-                <option value="36">프레젠테이션</option>
-                <option value="37">일러스트</option>
-                <option value="38">창업</option>
-                <option value="39">기획서</option>
-                <option value="40">재무회계</option>
-                </select>
-                 <select id="MiddletagSel8" style="width:25%; height:26px; display:none;">
-                <option hidden selected></option>
-                <option value="41">마술</option>
-                <option value="42">핸드메이드</option>
-                <option value="43">캘리그래피</option>
-                <option value="44">술</option>
-                <option value="45">여행</option>
-                <option value="46">사주타로</option>
-                <option value="47">반려견</option>
-                </select>
-                 <select id="MiddletagSel9" style="width:25%; height:26px; display:none;">
-                <option hidden selected></option>
-                <option value="48">플라워</option>
-                <option value="49">커피</option>
-                <option value="50">요리</option>
-                <option value="51">사진</option>
-                <option value="52">독서</option>
-                <option value="53">십자수수예</option>
-                <option value="54">기타</option> 
-                </select>
+              	  <input type="text" class="view" readonly value="중분류 선택">	
+	                <c:forEach  items="${BTlist}" var="bt" varStatus="c">
+				                <c:if test="${bt.no ne 1}">
+					                <select id="MiddletagSel${bt.no}" style="width:25%; height:26px; display:none;">
+					                	<c:forEach  items="${MTlist}" varStatus="j">
+							                <c:if test="${bt.no eq MTlist[j.index].bigTag.no}">
+						        	  			<option hidden selected></option>
+						          				<option value="${MTlist[j.index].no}">${MTlist[j.index].name}</option>
+						    	            </c:if>
+							            </c:forEach>
+				    	            </select>
+			    	            </c:if>
+	            	</c:forEach>
                  <select id="MiddletagSelBase" style="width:25%; height:26px;">
                 <option hidden selected></option>
-                </select>
-  				</div>
+                </select> 
+   				</div>
                <div id="pay-div">
                 <input type="text" class="view" readonly value="시간당 금액" >
                 <input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
