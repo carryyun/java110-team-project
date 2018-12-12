@@ -260,10 +260,21 @@ public class MasterPageController {
   }
 
   @GetMapping("classreqlist")
-  public void classlist(Model model) {
-    List<Classes> ClassRequestList = classService.listByStat("I");
-
+  public void classlist(Model model,
+      @RequestParam(defaultValue="1") int pageNo, 
+      @RequestParam(defaultValue="10") int pageSize) {
+    List<Classes> ClassRequestList = classService.findByStat(pageNo, pageSize);
     model.addAttribute("ClassRequestList", ClassRequestList);
+    
+    int countList = classService.countclsreq();
+    model.addAttribute("countList",countList);
+  }
+  
+  @RequestMapping(value = "clsreqPage.do", method= {RequestMethod.POST})
+  public @ResponseBody List<Classes> reqPage(@RequestParam(defaultValue="2") int pageNo, 
+      @RequestParam(defaultValue="10") int pageSize) {
+    List<Classes> clrpa = classService.reqPage(pageNo, pageSize);
+    return clrpa;
   }
 
   /*

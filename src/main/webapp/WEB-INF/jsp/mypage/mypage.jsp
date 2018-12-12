@@ -112,6 +112,17 @@
                 text-align:center
          }
          
+         
+         
+         
+         /* a tag 속성  */
+
+
+         a:link { color: #6E6E6E; }
+         a:visited { color: #6E6E6E; }
+         a:hover { color: #00BFFF; }
+         
+         
      </style>
       
      

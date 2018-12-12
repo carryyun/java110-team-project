@@ -64,7 +64,8 @@
             pq.titl,
             pq.rgdt,
             pq.conts,
-            pq.anser
+            pq.anser,
+            pq.ptno
         FROM 
             p_prdt_qna pq JOIN p_prdt p ON pq.ptno = p.ptno
             JOIN p_mete m ON pq.meno = m.meno
@@ -88,8 +89,8 @@
             pq.rgdt,
             pq.rgdt2,
             pq.conts,
-            pq.anser
-           
+            pq.anser,
+            pq.ptno
         FROM 
             p_prdt_qna pq 
             JOIN p_prdt p ON pq.ptno= p.ptno

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <html>
 
@@ -164,23 +165,22 @@
                                                 <th class="text-center">상태</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="Masterclsreq">
                             <c:forEach items="${ClassRequestList}" var="cl" varStatus="i">
                                 <tr id="rmv${cl.no}">
                                     <td></td>
                                     <td class="text-center">${i.count}</td>
                                     <td class="text-center">${cl.mentee.name}(${cl.mentee.nick })</td><%-- ${cl.nick}(${cl.name}) --%>
-                                    <td class="text-center"><a class="button" href="../masterpage/detail?no=${cl.no }">${cl.titl}</a></td>
+                                    <c:set var="TextValue" value="${cl.titl}"/>
+                                    <td class="text-center"><a class="button" href="../masterpage/detail?no=${cl.no }">${fn:substring(TextValue,0,10) }</a></td>
                                     <td class="text-center">${cl.middleTag.name}</td>
                                     <td class="text-center">${cl.rgdt}</td>
-                                    <td class="text-center">
-                                    <c:choose>
-                                      <c:when test="${cl.stat eq 'I'}">미처리</c:when>
-                                      <c:when test="${cl.stat eq 'Y'}">승인</c:when>
-                                      <c:when test="${cl.stat eq 'N'}">반려</c:when>
-                                      <c:otherwise>관리자문의</c:otherwise>
-                                    </c:choose>
-                                    </td>
+                                    <c:set var="stat" value="${cl.stat }"/>
+                                    <% String st = (String)pageContext.getAttribute("stat"); 
+                                      if(st.equals("I")){%>
+                                     <td class="text-center">미처리 </td>
+                                     <%} %>
+                                    
                                 </tr>
                             </c:forEach>
                             </tbody>
@@ -195,9 +195,18 @@
                                             <span class="sr-only">Previous</span>
                                         </a>
                                     </li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <c:set var="clreqcount" value="${countList }"/>
+                                    <% int reqco = (int)pageContext.getAttribute("clreqcount");
+                                    int reqd = reqco/10;
+                                    int reqpage = (int)Math.ceil(reqd)+1;
+                                    
+                                    for(int reo=1; reo<=reqpage; reo++){
+                                    %>
+                 
+                                    <li class="page-item"><a class="page-link" onclick="reqpage(<%=reo%>)"><%=reo%></a></li>
+                                    
+                                    <%} %>
+                                    
                                     <li class="page-item">
                                         <a class="page-link" href="#" aria-label="Next">
                                             <span aria-hidden="true">»</span>
@@ -229,6 +238,65 @@
 <script src="/vendor/jquery/jquery.min.js"></script>
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script>
+function reqpage(reo){
+    var Masterclsreq = $("#Masterclsreq");
+    
+    $.ajax({
+        type: "POST",
+        data:{
+            pageNo: reo
+        },
+        url: "clsreqPage.do",
+        success: function(data){
+            var html = "";
+            for(var i in data){
+                var no = data[i].no;
+                var name = data[i].mentee.name;
+                var nick = data[i].mentee.nick;
+                var str = data[i].titl;
+                var titl = str.substring(0,10);
+                var mtname = data[i].middleTag.name;
+                var rgdt = data[i].rgdt;
+                var stat = data[i].stat;
+                
+                newrgdt = new Date(rgdt);
+                
+                var dd= newrgdt.getDate();
+                var mm= newrgdt.getMonth();
+                var yy= newrgdt.getFullYear();
+                
+                if( dd < 10){
+                    dd = '0' + dd;
+                }
+                if( mm < 10){
+                    mm='0' +mm;
+                }
+                
+                newrgdt = yy+'-'+mm+'-'+dd;
+                
+                html += '<tr id="rmv'+no+'">'
+                html += '<td></td>'
+                html += '<td class="text-center">'+((reo-1)*10+(parseInt(i)+1))+'</td>'
+                html += '<td class="text-center">'+name+'('+nick+')</td>'
+                html += '<td class="text-center"><a class="button" href="../masterpage/detail?no='+no+'">'+titl+'</a></td>'
+                html += '<td class="text-center">'+mtagname+'</td>'
+                html += '<td class="text-center">'+newrgdt+'</td>'
+
+                if(stat == ("I")){
+                    
+                html += '<td class="text-center">미처리 </td>'
+                
+                }
+                                                    
+                html += '</tr>'
+            }
+            var setDiv = document.querySelector("#Masterclsreq");
+            setDiv.innerHTML=html;
+        }
+        
+    });
+}
+function 
 $(document).ready(function() {
     var activeSystemClass = $('.list-group-item.active');
     //something is entered in search form
