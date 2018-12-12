@@ -467,12 +467,31 @@ input[type="number"]::-webkit-inner-spin-button {
  
     
     
+    
+function ppcheck() {
+        
+  if(!ppSubmit.photoUpdate.value) {
+
+      swal({
+          text : "프로필 사진을 선택해 주세요",
+        button : "확인",
+        icon : "warning"
+        });
+
+    ppSubmit.photoUpdate.focus();
+
+    return false;
+
+  }
+  
+  else return true;
+
+}
+    
+    
     // 멘토신청 체크
 function mentorcheck() {
 
-        
-        var check1 = $('#soflow').val();
-        
   if(mentorSubmit.btno.value == 0) {
 
       swal({
@@ -487,24 +506,24 @@ function mentorcheck() {
 
   }
 
-  else if(mentorSubmit.carrin.value == "0") {
+  else if(mentorSubmit.carrin.value == 0) {
 
       swal({
-          text : "경력을 선택 해주세요",
+          text : "경력을 선택 해주세요 ",
         button : "확인",
         icon : "warning"
         });
 
     mentorSubmit.carrin.focus();
-    
+    console.log(mentorSubmit.fileUpload1.value);
     return false;
 
   }
   
-  else if(mentorSubmit.fileUpload1.value == "0") {
+ else if(!mentorSubmit.fileUpload1.value) {
 
       swal({
-          text : "작품 이미지를 업로드 해주세요",
+          text : "작품 이미지를 선택 해주세요",
         button : "확인",
         icon : "warning"
         });
@@ -516,10 +535,10 @@ function mentorcheck() {
   }
   
   
-  else if(mentorSubmit.fileUpload2.value == "0") {
+  else if(!mentorSubmit.fileUpload2.value) {
 
       swal({
-          text : "자격증 이미지를 업로드 해주세요",
+          text : "자격증 이미지를 선택 해주세요",
         button : "확인",
         icon : "warning"
         });
@@ -528,7 +547,7 @@ function mentorcheck() {
     
     return false;
 
-  }
+  } 
 
   
   
@@ -867,7 +886,7 @@ function mentorcheck() {
 
  <!-- photoupdate start  -->
           
-            <form method="post"  action="photoupload" enctype="multipart/form-data" >
+            <form method="post" name="ppSubmit" action="photoupload" enctype="multipart/form-data" onsubmit="return ppcheck()" >
                    <input type="hidden" name="meno" value="${mentee.no}">
       <div class="modal fade" id="photoupdate" tabindex="1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" >
                                           <div class="modal-dialog">
