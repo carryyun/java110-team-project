@@ -21,6 +21,8 @@ import bitcamp.java110.cms.domain.Classes;
 import bitcamp.java110.cms.domain.Cs;
 import bitcamp.java110.cms.domain.Mentee;
 import bitcamp.java110.cms.domain.Mentor;
+import bitcamp.java110.cms.domain.MentorFile;
+import bitcamp.java110.cms.domain.MentorLicense;
 import bitcamp.java110.cms.domain.MentorTag;
 import bitcamp.java110.cms.domain.Product;
 import bitcamp.java110.cms.domain.ProductOrder;
@@ -33,6 +35,8 @@ import bitcamp.java110.cms.service.ClassService;
 import bitcamp.java110.cms.service.CsService;
 import bitcamp.java110.cms.service.MenteeService;
 import bitcamp.java110.cms.service.MentoTagService;
+import bitcamp.java110.cms.service.MentorFileService;
+import bitcamp.java110.cms.service.MentorLicenseService;
 import bitcamp.java110.cms.service.MentorService;
 import bitcamp.java110.cms.service.ProductOrderService;
 import bitcamp.java110.cms.service.ProductQnAService;
@@ -54,7 +58,10 @@ public class MypageController {
   CertService certService;
   BigTagService bigTagService;
   MentoTagService mentoTagService;
+  MentorFileService mentorFileService;
+  MentorLicenseService mentorLicenseService;
   ServletContext sc;
+  
   
 
   public MypageController(
@@ -70,6 +77,8 @@ public class MypageController {
       CertService certService,
       BigTagService bigTagService,
       MentoTagService mentoTagService,
+      MentorFileService mentorFileService,
+      MentorLicenseService mentorLicenseService,
     ServletContext sc) {
    this.menteeService = menteeService;
    this.mentorService = mentorService;
@@ -83,6 +92,8 @@ public class MypageController {
    this.certService = certService;
    this.bigTagService = bigTagService;
    this.mentoTagService = mentoTagService;
+   this.mentorFileService=mentorFileService;
+   this.mentorLicenseService=mentorLicenseService;
    this.sc = sc ;
    
    
@@ -105,7 +116,7 @@ public class MypageController {
     Mentee imentee = (Mentee) session.getAttribute("loginUser");
     int reMeno = imentee.getNo();
     
-    Mentee mentee = mentorService.get(reMeno);
+    Mentee mentee = menteeService.get(reMeno);
     model.addAttribute("mentee", mentee);
     
     Mentee mentor = mentorService.get(reMeno);
@@ -176,7 +187,7 @@ public class MypageController {
       @RequestParam("no") int noin,
       @RequestParam("carrin") String carrin, 
       @RequestParam("btno") int btnoin,
-      MentorTag mentorTag, Mentee mentee) throws Exception {
+      MentorTag mentorTag, Mentee mentee,MentorFile mentorFile,MentorLicense mentorLicense) throws Exception {
      System.out.println(noin);
      System.out.println(carrin);
      System.out.println(btnoin);
@@ -254,26 +265,41 @@ public class MypageController {
     }
 
 
-    
+    String filename = "";
         
     for(MultipartFile file : files) {
       
-      String filename = "";
+      filename = "";
       
       if(file.getOriginalFilename().length() > 2 ) {
         filename = UUID.randomUUID().toString();
         file.transferTo(new File(sc.getRealPath("/upload/img/meto_file/" + filename+".png")));
+        
+        String phot ="/upload/img/meto_file/"+ filename+".png";
+        
+        mentorFile.setNo(noin);
+        mentorFile.setMfname(phot);
+        mentorFileService.add(mentorFile);
+        
       } 
     }
     
+    
     for(MultipartFile file : files2) {
       
-      String filename = "";
+    filename = "";
       
       if(file.getOriginalFilename().length() > 2 ) {
 
         filename = UUID.randomUUID().toString();
         file.transferTo(new File(sc.getRealPath("/upload/img/meto_licn/" + filename+".png")));
+        
+        String phot ="/upload/img/meto_file/"+ filename+".png";
+        
+        mentorLicense.setNo(noin);
+        mentorLicense.setPhot(phot);
+        mentorLicenseService.add(mentorLicense);
+        
       } 
     }
     
