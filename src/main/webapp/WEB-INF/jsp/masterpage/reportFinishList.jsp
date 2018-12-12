@@ -284,7 +284,7 @@
                                                                     varStatus="j">
                                                                     <tr>
                                                                         <td>${j.count}</td>
-                                                                        <td>${fl.mentee2Nick}</td>
+                                                                        <td>${fl.menteeNick}</td>
                                                                         <td>${fl.type}</td>
                                                                         <td>${fl.type_detail}</td>
                                                                         <td>${fl.titl}</td>

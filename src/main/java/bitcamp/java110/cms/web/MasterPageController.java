@@ -220,8 +220,10 @@ public class MasterPageController {
   }
 
   @GetMapping("mentorreqlist")
-  public void mentorlist(Model model) {
-    List<Mentor> MentorRequestList = mentorService.listByMetoStat();
+  public void mentorlist(Model model,
+      @RequestParam(defaultValue="1") int pageNo, 
+      @RequestParam(defaultValue="10") int pageSize) {
+    List<Mentor> MentorRequestList = mentorService.listByMetoStat(pageNo,pageSize);
     for (Mentor m : MentorRequestList) {
       m.setMentorFile(mentorFileService.get(m.getNo()));
       m.setMentorLicense(mentorlicenseService.get(m.getNo()));
@@ -305,18 +307,25 @@ public class MasterPageController {
   
   
   @GetMapping("reportFinishList")
-  public void reportFinishList(Model model) {
-    List<Report> ReportList = reportService.finishlist(3, 3);
+  public void reportFinishList(Model model,
+      @RequestParam(defaultValue="1") int pageNo, 
+      @RequestParam(defaultValue="10") int pageSize) {
+    List<Report> ReportList = reportService.finishlist(pageNo, pageSize);
     for(Report r: ReportList) {
       r.setCnt(reportService.getMeno2Cnt(r.getMeno2()));
-      r.setFinishlist(reportService.listByMeno2(3, 3, r.getMeno2()));
+      r.setFinishlist(reportService.listByMeno2(pageNo, pageSize, r.getMeno2()));
+      System.out.println(r.getMenteeNick());
+      System.out.println(r.getMentee2Nick());
+      System.out.println("============");
     }
     model.addAttribute("ReportList",ReportList);
   }
   
   @GetMapping("reportList")
-  public void reportList(Model model) {
-    List<Report> ReportList = reportService.listByStat(10, 3);
+  public void reportList(Model model,
+      @RequestParam(defaultValue="1") int pageNo, 
+      @RequestParam(defaultValue="10") int pageSize) {
+    List<Report> ReportList = reportService.listByStat(pageNo, pageSize);
     for(Report r: ReportList) {
       r.setCnt(reportService.getMeno2Cnt(r.getMeno2()));
     }
@@ -371,7 +380,9 @@ public class MasterPageController {
   }
   
   @GetMapping("dashBoard")
-  public void dashBoard(Model model) {
+  public void dashBoard(Model model,@RequestParam(defaultValue="1") int pageNo, 
+      @RequestParam(defaultValue="10") int pageSize
+      ) {
 //      List<Classes> ClassesFindAll = classService.findAllByList();
 //      model.addAttribute("ClassesFindAll",ClassesFindAll);
 //      
@@ -379,7 +390,7 @@ public class MasterPageController {
 //      model.addAttribute("findAllByList",findAllByList);
       
       
-      List<Mentor> MentorFindAll = mentorService.listByMetoStat();
+      List<Mentor> MentorFindAll = mentorService.listByMetoStat(pageNo,pageSize);
       for(Mentor m : MentorFindAll) {
         m.setMentorTag(bigTagService.listByMono(m.getNo()));
         
