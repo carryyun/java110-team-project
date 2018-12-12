@@ -164,7 +164,7 @@ div.row.imgDiv {
 				</div>
 
 				<div class="col-lg-12">
-					<input type="file" id="files" name="files" multiple accept="image/*" />
+					<input type="file" id="files" name="files" onChange="fileCheck(this.form.files)" multiple accept="image/*" />
 					<div id="selectedFiles"></div>
 				</div>
 				<!-- 등록 취소버튼 -->
@@ -203,6 +203,7 @@ div.row.imgDiv {
         $('div.arrow').remove();
         $('div.note-popover.popover.in.note-table-popover.bottom').remove();
         $('a.navbar-brand').css("margin-top", "-45px"); */
+        $(".note-image-input.note-form-control.note-input").remove();
         $('#mainNav').css("padding", "0");
         $('#mainNav').css("border", "0");
         $('#mainNav').css("margin-top", "21");
@@ -223,6 +224,82 @@ div.row.imgDiv {
 
 <!-- multiple file input -->
 <script>
+function fileCheck(file)
+{	
+	console.log(file);
+	console.log("asd");
+        // 사이즈체크
+        var maxSize  = 10000000;    //10MB
+        var fileSize = 0;
+       // console.log(file[0].size);
+       // console.log(file[1].size);
+        console.log(file);
+       // console.log(file[0].value.size);
+       // console.log(file[1].value.size);
+       console.log($("#files")[0].files.length);
+        
+        
+
+	// 브라우저 확인
+	var browser=navigator.appName;
+	
+	// 익스플로러일 경우
+	if (browser=="Microsoft Internet Explorer")
+	{
+		var oas = new ActiveXObject("Scripting.FileSystemObject");
+		fileSize = oas.getFile( file.value ).size;
+		
+	}
+	// 익스플로러가 아닐경우
+	else
+	{
+		console.log("익스플로러x 실행");
+		console.log($("#files")[0].files.length);
+		
+		for(var x=0; x<$("#files")[0].files.length; x++){
+			if($("#files")[0].files[x].size > 2000000 ){
+				swal({
+					text:"첨부파일 한장당 사이즈는 2MB 이내로 등록 가능합니다. ",
+					button:"확인"
+					});
+				console.log("2MB 넘는 파일 이름 : " + file.files[x].name);
+				console.log("2MB 넘는 파일 사이즈 : " +file.files[x].size);
+				console.log(x);
+//				removeImg(x);
+				console.log(file.files[x]);
+				file.files[x].remove;
+				console.log(file.files[x]);
+				//$('#files').html();
+				$("#files").val("");
+				//$("div#imgDiv" + x).remove();
+			}else{
+				fileSize += file.files[x].size;
+				console.log(file.files[x].size);
+			}
+		//console.log($("#files").size); 
+		//console.log("asdzxc"); 
+		} 
+			console.log("전체 파일 사이즈 : " + fileSize);
+		
+		console.log("???");
+	}
+	
+	console.log("asdasdasd");
+	//console.log(fileSize);
+
+
+        if(fileSize > maxSize)
+        {
+        	swal({
+				text:"첨부파일 전체 사이즈는 10MB 이내로 등록 가능합니다. ",
+				button:"확인"
+				});
+            //alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다.    ");
+        	$('#myForm input[type="file"]').val('');
+        }
+
+}
+
     var selDiv = "";
 
     document.addEventListener("DOMContentLoaded", init, false);
@@ -234,7 +311,8 @@ div.row.imgDiv {
     }
 
     function handleFileSelect(e) {
-
+		
+    	var sumsize = 0;
         if (!e.target.files || !window.FileReader)
             return;
 
@@ -259,6 +337,12 @@ div.row.imgDiv {
                 f = filesArr[j];
                 /* console.log(f);
                 console.log(e); */
+                sumsize += e.loaded ;
+                console.log(sumsize);
+                if(e.loaded > 2000000){
+                }else if(sumsize > 10000000){
+                	$('#imgBind div').remove();
+                }else{
                 html += "<div class='row imgDiv' id='imgDiv"+j + "' style='float:left; margin:5px;'>";
 
                 html += "<div class='col-lg-12 px-0'>";
@@ -268,6 +352,7 @@ div.row.imgDiv {
 
                 selDiv.innerHTML = html;
                 j++;
+                }
             }
             reader.readAsDataURL(f);
         }
