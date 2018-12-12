@@ -225,22 +225,11 @@
 
 										</c:forEach>
 									</div>
-								<!-- </div> -->
-
 							</div>
-
 						</div>
-						<hr>
-
 					</div>
 				</div>
-
-				<hr>
-
-				<!-- Footer -->
-
 			</div>
-			
 		</div>
 
 		

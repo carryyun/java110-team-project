@@ -17,10 +17,10 @@
 <meta name="author" content="">
 
 <style>
-div.product-description__title > div > div{
+div.product-description__title > div > div#titlDiv{
     height : 45px;
 }
-div.product-description__title > div > div > a{
+div.product-description__title > div > div#titlDiv > a{
     word-break:break-all;
     display:block;
     clear:none;
@@ -303,7 +303,7 @@ margin-bottom: 0.25rem;
 														<!-- 제목 -->
 														<div class="product-description__title">
 															<div class="row">
-																<div class="col-lg-12 mb-2">
+																<div class="col-lg-12 mb-2" id="titlDiv">
 																<c:choose>
 					                                                <c:when test="${fn:length(cl.titl) >42}"> 
 					                                                   <a href="#" onclick="openInNewTab('detail?no=${cl.no}');">${fn:substring(cl.titl,0,42)}...</a>
@@ -341,7 +341,7 @@ margin-bottom: 0.25rem;
 															<hr class="NoMarginHr">
 															<!-- 멘토 이름 -->
 															<div class="sizes-wrapper">
-																<b>판매자 - ${cl.mentee.name}</b>
+																<b>지역 - ${fn:substring(cl.basAddr,0,6)}</b>
 															</div>
 															<!-- 주소 -->
 															<div class="color-wrapper">
@@ -478,7 +478,7 @@ $('#mapModal').on('shown.bs.modal', function (e) {
 	            
 	            $('#SerchLocBtn').attr('onclick', '').unbind('click');
 	            $('#SerchLocBtn').click(function(){
-	                location.href="clsLoc?locs="+addrSetter;
+	                location.href="clsLoc?no=${bigTag.no}&locs="+addrSetter;
 	            });
 	        }   
 	    });
@@ -539,6 +539,12 @@ $('#mapModal').on('shown.bs.modal', function (e) {
 		            url : "clsCate.do" ,
 		            success : function(data) {
 		                html ="";
+		                
+		                for(var j=0; j<6;j++){
+                            $('div#animateTarget'+j).removeClass('animated fadeInUp');
+                            $('div#animateTarget'+j).removeAttr('id')
+                        }
+		                
 		                for (var i in data) {
 		        			var cno = data[i].no;
 		        		    var titl = data[i].titl;
@@ -550,11 +556,6 @@ $('#mapModal').on('shown.bs.modal', function (e) {
 		        		    var nick = data[i].mentee.nick;
 		        		    var phot = data[i].mentee.phot;
 		        		    var mtname = data[i].middleTag.name;
-		        		    
-		        		    for(var j=0; j<6;j++){
-		                        $('div#animateTarget'+j).removeClass('animated fadeInUp');
-		                        $('div#animateTarget'+j).removeAttr('id')
-		                    }
 		        		    
 		        		    html+= '<div class="col-lg-4 animated fadeInUp" id="animateTarget'+i+'">'
 		    				    html+= '	<article class="card-wrapper">'
@@ -582,11 +583,11 @@ $('#mapModal').on('shown.bs.modal', function (e) {
 		    				    html+= '		<div class="product-description">'
 		    				    html+= '			<div class="product-description__title">'
 		    				    html+= '				<div class="row">'
-		    				    html+= '					<div class="col-lg-12 mb-2">'
-		    				    if(titl.length<30){
+		    				    html+= '					<div class="col-lg-12 mb-2" id="titlDiv">'
+		    				    if(titl.length<42){
 		    				        html+= '						<a href="detail?no='+cno+'">'+titl+'</a>'
 		    				    }else{
-		    				        html+= '                      <a href="detail?no='+cno+'">'+titl.substring(0,30)+'...</a>'
+		    				        html+= '                      <a href="detail?no='+cno+'">'+titl.substring(0,42)+'...</a>'
 		    				    }
 		    				    html+= '					</div>'
 		    				    html+= '				</div>'
@@ -605,11 +606,8 @@ $('#mapModal').on('shown.bs.modal', function (e) {
 		    				    html+= '					<div class="col-lg-5 product-description__price">'+pric+'원</div>'
 		    				    html+= '				</div>'
 		    				    html+= '				<hr class="NoMarginHr">'
-		    				    html+= '				<div class="sizes-wrapper">'
-		    				    html+= '					<b>판매자 - '+name+'</b>'
-		    				    html+= '				</div>'
 		    				    html+= '				<div class="color-wrapper">'
-		    				    html+= '					<b>기본 주소 - '+basAddr+'</b>'
+		    				    html+= '					<b>지역 - '+basAddr.substring(0,6)+'</b>'
 		    				    html+= '				</div>'
 		    				    html+= '			</div>'
 		    				    html+= '		</div>'
@@ -642,8 +640,11 @@ function getLocation(){
     var repleLoc = decodeURIComponent(getCheck).replace(/\+/g, '%20');
     repleLoc= replaceAll(repleLoc, "loc=", "");
     repleLoc= replaceAll(repleLoc, "&", ",");
-    console.log(repleLoc);
-    location.href="clsLoc?locs="+repleLoc;
+    if(${bigTag ne null}){
+        location.href="clsLoc?no=${bigTag.no}&locs="+repleLoc;
+    }else{
+	    location.href="clsLoc?locs="+repleLoc;
+    }
 }
 function replaceAll(str, searchStr, replaceStr) {
     return str.split(searchStr).join(replaceStr);

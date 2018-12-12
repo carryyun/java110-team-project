@@ -416,7 +416,7 @@ where
             useGeneratedKeys="true" keyColumn="ptno" keyProperty="no">
             
         insert into p_prdt(titl,conts,pric,rgdt,stock,phot,meno,ctno,stno,deli,star,stat)
-        values(#{titl},#{conts},#{pric},now(),#{stock},#{phot},#{meno},#{ctno},#{stno},#{deli},#{star},'Y')
+        values(#{titl},#{conts},#{pric},now(),#{stock},#{phot},#{meno},#{ctno},#{stno},#{deli},0,'Y')
     </insert> 
     
     <update id="update" parameterType="product">
@@ -431,7 +431,7 @@ where
         <if test="phot!=null">phot= #{phot},</if>
         <if test="ctno>0">ctno= #{ctno},</if>
         <if test="stno>0">stno= #{stno},</if>
-        <if test="star>0">star= #{star},</if>
+        <if test="star>-1">star= #{star},</if>
     </set>
         where
             ptno=#{no}
