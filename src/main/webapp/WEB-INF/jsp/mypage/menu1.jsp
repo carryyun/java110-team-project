@@ -172,29 +172,14 @@ input[type="number"]::-webkit-inner-spin-button {
   function cbox1(chkbox,meno)
     {
          
-       if ( chkbox.checked == true )
-            {
+       if ( chkbox.checked == true ){
             text1.readOnly = false;
             text1.style.border = "solid";
             text1.style.borderColor = "#3097F0";
-            }
+        }
         
-        else
-            {   
-            text1.readOnly = true;
-            text1.style.border = "none"; 
-            
+       else {   
              var newnick = $('#text1').val();
-             var readyname =  $('#text1').attr('name');
-             
-             if(newnick == readyname ){
-                 
-                 swal({
-                     text : "이미 존재하는 닉네임 입니다!",
-                     button : "확인",
-                     icon : "error"
-                     });
-             }else{
                  
                  $.ajax({
                      type: "POST",
@@ -208,18 +193,26 @@ input[type="number"]::-webkit-inner-spin-button {
                       swal({
                             text : "변경 완료",
                           button : "확인"
-                          })
+                          }),
+                          
+                      text1.readOnly = true;
+                      text1.style.border = "none"; 
+                      
+                      
                       },error : function(error,status){
                           swal({
                               text : "이미 존재하는 닉네임 입니다!",
                               button : "확인",
                               icon : "error"
-                              })
+                              }),
+                              
+                              chkbox.checked = true;
+                             
                               }
-                      }); 
+                      })
+                      
                  
-             }
-             
+                      
             } 
     } 
     
@@ -467,12 +460,31 @@ input[type="number"]::-webkit-inner-spin-button {
  
     
     
+    
+function ppcheck() {
+        
+  if(!ppSubmit.photoUpdate.value) {
+
+      swal({
+          text : "프로필 사진을 선택해 주세요",
+        button : "확인",
+        icon : "warning"
+        });
+
+    ppSubmit.photoUpdate.focus();
+
+    return false;
+
+  }
+  
+  else return true;
+
+}
+    
+    
     // 멘토신청 체크
 function mentorcheck() {
 
-        
-        var check1 = $('#soflow').val();
-        
   if(mentorSubmit.btno.value == 0) {
 
       swal({
@@ -487,24 +499,24 @@ function mentorcheck() {
 
   }
 
-  else if(mentorSubmit.carrin.value == "0") {
+  else if(mentorSubmit.carrin.value == 0) {
 
       swal({
-          text : "경력을 선택 해주세요",
+          text : "경력을 선택 해주세요 ",
         button : "확인",
         icon : "warning"
         });
 
     mentorSubmit.carrin.focus();
-    
+    console.log(mentorSubmit.fileUpload1.value);
     return false;
 
   }
   
-  else if(mentorSubmit.fileUpload1.value == "0") {
+ else if(!mentorSubmit.fileUpload1.value) {
 
       swal({
-          text : "작품 이미지를 업로드 해주세요",
+          text : "작품 이미지를 선택 해주세요",
         button : "확인",
         icon : "warning"
         });
@@ -516,10 +528,10 @@ function mentorcheck() {
   }
   
   
-  else if(mentorSubmit.fileUpload2.value == "0") {
+  else if(!mentorSubmit.fileUpload2.value) {
 
       swal({
-          text : "자격증 이미지를 업로드 해주세요",
+          text : "자격증 이미지를 선택 해주세요",
         button : "확인",
         icon : "warning"
         });
@@ -528,7 +540,7 @@ function mentorcheck() {
     
     return false;
 
-  }
+  } 
 
   
   
@@ -536,32 +548,6 @@ function mentorcheck() {
 
 }
     
-   /* function updatePhoto(meno){
-        
-       var NewPhot = "/upload/img/"+$('.image-title').val();
-       console.log(NewPhot);
-        
-    $.ajax({
-        type: "POST",
-        data: {
-            "no" : meno,
-            "phot" : newPhot
-            },
-     url: "updatePhoto.do", 
-     success : function() {
-        
-         swal({
-               text : "프로필 사진 변경 완료",
-             button : "확인"
-             })
-         },error : function(error,status){
-             swal({
-                 text : "프로필사진 업로드 실패ㅜㅜ",
-                 button : "확인"
-                 })
-                 }
-         }); 
-    }  */
 
 </script>
             <div class="row" >
@@ -577,7 +563,7 @@ function mentorcheck() {
                                 </div>
                                 <div class="cont1" >
                                 <B>닉네임</B>&nbsp;
-                                <input id="text1" type="text" name="웨어멘티닉의 멘티번호가있으면!" maxlength="10" value="${mentee.nick}" readonly style="width:140px; border:none; ">
+                                <input id="text1" type="text"  maxlength="10" value="${mentee.nick}" readonly style="width:140px; border:none; ">
                                 </div>
                                 <div id="wrapper" name="${mentee.mtstat}" class="pop" style=" position: relative; right: -50px; bottom: -60px">
                                 <button class="fancy" >멘토신청</button>
@@ -867,7 +853,7 @@ function mentorcheck() {
 
  <!-- photoupdate start  -->
           
-            <form method="post"  action="photoupload" enctype="multipart/form-data" >
+            <form method="post" name="ppSubmit" action="photoupload" enctype="multipart/form-data" onsubmit="return ppcheck()" >
                    <input type="hidden" name="meno" value="${mentee.no}">
       <div class="modal fade" id="photoupdate" tabindex="1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" >
                                           <div class="modal-dialog">
@@ -903,7 +889,7 @@ function mentorcheck() {
   
   
                                                     <div>
-                                                      <button type="submit" class="btn btn-primary" id="2" <%-- onclick="updatePhoto(${mentee.no}) --%>">변경하기</button>
+                                                      <button type="submit" class="btn btn-primary" id="2">변경하기</button>
                                                       <button type="button" class="btn btn-danger" id="1" style="float:right" data-dismiss="modal"  role="button" >취소</button>
                                                     </div>
 
