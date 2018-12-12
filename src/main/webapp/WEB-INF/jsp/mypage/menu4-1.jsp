@@ -18,7 +18,7 @@ $(document).ready(function() {
     </c:forEach>    
 });
 
-</script>
+</script> 
 
 
 <div class="col-lg-12">
