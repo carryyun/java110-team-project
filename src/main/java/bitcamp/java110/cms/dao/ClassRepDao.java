@@ -15,4 +15,5 @@ public interface ClassRepDao {
   int countByCno(int no);
   
   ClassRep get(int no);
+  /*double countstar(int no);*/
 }

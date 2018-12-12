@@ -14,4 +14,6 @@ public interface ClassRepService {
   List<ClassRep> listbyRgdt();
   
   ClassRep get(int no);
+  
+  /*double countstar(int no);*/
 }

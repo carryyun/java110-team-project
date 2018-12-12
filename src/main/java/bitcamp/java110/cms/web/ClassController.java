@@ -331,7 +331,8 @@ public class ClassController {
     List<Timetable> clstimelist = timetableService.findByCno(no);
     int countrep = classrepService.countbycno(no);
     int countqna = classqnaService.countbycno(no);
-    
+    /*double countstar = classrepService.countstar(no);
+    System.out.println(countstar);*/
     /*List<ClassOrder> clsorderlist = classOrderService.findBycnoFormeno(no);*/
     
     /*Paging paging = new Paging();
@@ -358,6 +359,7 @@ public class ClassController {
     model.addAttribute("countrep",countrep);
     model.addAttribute("countqna",countqna);
     model.addAttribute("likeResult",likeResult);
+    //model.addAttribute("countstar", countstar);
     /*model.addAttribute("clsorderlist", clsorderlist);*/
   }
 
@@ -537,11 +539,6 @@ public class ClassController {
 
     List<ClassLike> clist = classlikeService.classlikelist(5);
 
-    for(ClassLike c : clist) {
-      System.out.println(c.getNo());
-      System.out.println(c.getMeno());
-      System.out.println(c.getCno());
-    }
     return null;
   }
 
