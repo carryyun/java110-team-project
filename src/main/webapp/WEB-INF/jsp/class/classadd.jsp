@@ -211,7 +211,7 @@
                  <div id="filetable">
                        <div>
                        <input type="file" id="files" name="files" multiple
-						accept="image/*"><br />
+						accept="image/*" onChange="fileCheck(this.form.files)"><br />
 	
 						<div id="selectedFiles" ></div>
                 	 </div>
@@ -244,6 +244,10 @@
 	    { 
 	    	$("#type").val($("input[name=typeChk]:checked").val());
 	    });
+		/*$(".note-image-input.note-form-control.note-input").remove;
+	    console.log("되니?");*/
+	    
+	    
 	     /* $('#mainNav .navbar-brand').css('margin-bottom', '50');
 	     $('.navbar-brand').css('margin-bottom', '50');
 	     $('#mainNav').css("padding", "0");
@@ -544,7 +548,7 @@ function init() {
 }
 
 function handleFileSelect(e) {
-
+	var sumsize = 0;
     if (!e.target.files || !window.FileReader)
         return;
 
@@ -564,20 +568,30 @@ function handleFileSelect(e) {
         var j = 0;
         var reader = new FileReader();
         reader.onload = function(e) {
-            console.log("filesArr[i]="+filesArr[i] +  " ," + i);
-            console.log("filesArr[j]="+filesArr[j] +  " ," + j);
+            //console.log("filesArr[i]="+filesArr[i] +  " ," + i);
+            //console.log("filesArr[j]="+filesArr[j] +  " ," + j);
+            //console.log(e.result)
             f = filesArr[j];
             /* console.log(f);
             console.log(e); */
+            console.log(e);
+            sumsize += e.loaded ;
+            console.log(sumsize);
+            if(e.loaded > 2000000){
+            }else if(sumsize > 10000000){
+            	$('#imgBind div').remove();
+            }else{
+            //else if()
             html += "<div class='row imgDiv' id='imgDiv"+j + "' style='float:left; margin:5px;'>";
 
             html += "<div class='col-lg-12 px-0'>";
-            html += '<img class="fileImg" src=\"' + e.target.result + '\" onclick="removeImg(' + j + ', )">';
+            html += '<img class="fileImg" src=\"' + e.target.result + '\" onclick="removeImg(' + j + ' )">';
             html += "</div>";
             html += "</div>";
 
             selDiv.innerHTML = html;
             j++;
+            }
         }
         reader.readAsDataURL(f);
     }
@@ -585,7 +599,13 @@ function handleFileSelect(e) {
 
 }
 
-var removefiles = $('#removefiles');
+function removeImg(no) {
+    event.preventDefault(); /* 스크립트 기본동작 중지 */
+    console.log(no);
+    $("div#imgDiv" + no).remove();
+}
+
+/* var removefiles = $('#removefiles');
 $(document.body).on('click', '.remove-file-btn', function (event) {
     //event.preventDefault(); 
     var no = $(event.target).attr('data-fileno');
@@ -598,7 +618,7 @@ $(document.body).on('click', '.remove-file-btn', function (event) {
     }
     files += filename;
     removefiles.val(files)
-});
+}); */
 
    $( "#ctime" ).timepicker({
 	   interval: 60,
@@ -791,6 +811,8 @@ function readURL(input) {
 
   $(document).ready(function() {
      $('#classcowdog').summernote();
+     $(".note-image-input.note-form-control.note-input").remove();
+	    console.log("되니?");
       $('div.note-popover.popover.in.note-link-popover.bottom').remove();
      $('div.note-popover.popover.in.note-image-popover.bottom').remove();
      $('div.popover-content.note-children-container').remove();
@@ -801,6 +823,8 @@ function readURL(input) {
 
  $(document).ready(function() {
      $('#classtteok').summernote();
+     $(".note-image-input.note-form-control.note-input").remove();
+	    console.log("되니?");
       $('div.note-popover.popover.in.note-link-popover.bottom').remove();
      $('div.note-popover.popover.in.note-image-popover.bottom').remove();
      $('div.popover-content.note-children-container').remove();
@@ -855,6 +879,79 @@ $(document).ready(function(){
       
     }); 
   });
+function fileCheck(file)
+{
+	console.log("asd");
+        // 사이즈체크
+        var maxSize  = 10000000;    //10MB
+        var fileSize = 0;
+       // console.log(file[0].size);
+       // console.log(file[1].size);
+        console.log(file);
+       // console.log(file[0].value.size);
+       // console.log(file[1].value.size);
+       console.log($("#files")[0].files.length);
+        
+        
+
+	// 브라우저 확인
+	var browser=navigator.appName;
+	
+	// 익스플로러일 경우
+	if (browser=="Microsoft Internet Explorer")
+	{
+		var oas = new ActiveXObject("Scripting.FileSystemObject");
+		fileSize = oas.getFile( file.value ).size;
+		
+	}
+	// 익스플로러가 아닐경우
+	else
+	{
+		console.log("익스플로러x 실행");
+		for(var x=0; x<$("#files")[0].files.length; x++){
+			if(file.files[x].size > 2000000 ){
+				swal({
+					text:"첨부파일 한장당 사이즈는 2MB 이내로 등록 가능합니다. ",
+					button:"확인"
+					});
+				console.log("2MB 넘는 파일 이름 : " + file.files[x].name);
+				console.log("2MB 넘는 파일 사이즈 : " +file.files[x].size);
+				console.log(x);
+//				removeImg(x);
+				console.log(file.files[x]);
+				file.files[x].remove;
+				console.log(file.files[x]);
+				//$('#files').html();
+				$("#files").val("");
+				//$("div#imgDiv" + x).remove();
+			}else{
+				fileSize += file.files[x].size;
+				console.log(file.files[x].size);
+			}
+		//console.log($("#files").size); 
+		//console.log("asdzxc"); 
+		} 
+			console.log("전체 파일 사이즈 : " + fileSize);
+		
+		console.log("???");
+	}
+	
+	console.log("asdasdasd");
+	//console.log(fileSize);
+
+
+        if(fileSize > maxSize)
+        {
+        	swal({
+				text:"첨부파일 전체 사이즈는 10MB 이내로 등록 가능합니다. ",
+				button:"확인"
+				});
+            //alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다.    ");
+        	$('#uploadForm input[type="file"]').val('');
+        }
+
+}
+  
 </script>
 </body>
 </html>
