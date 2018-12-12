@@ -84,8 +84,8 @@
             
             on rept.meno = mete.meno and
                rept.meno2 = mete2.meno and
-               rept.stat = 'I';
-            
+               rept.stat = 'I'
+        limit #{rowNo},#{size}
         
     </select>
 	
@@ -114,6 +114,8 @@
             (r.stat='Y' OR r.stat='N')
         GROUP BY r.meno2
         
+        limit #{rowNo} , #{size}
+        
 	</select>
 
 	<select id="findByNo" resultMap="reportMap"
@@ -130,7 +132,7 @@
         from
             p_rept
         where
-            meno2=#{value}
+            meno2=#{value} and stat ='Y'
 	</select>
 
 	<select id="findByMeno" resultMap="reportMap"
@@ -142,6 +144,7 @@
     
     <select id="findByMeno2" resultMap="reportMap" parameterType="map">
         SELECT
+            mete.nick as metenick,
             mete2.nick as mete2nick,
             rept.rtno,
             rept.type,
@@ -152,10 +155,12 @@
             rept.rtdt
         FROM
             p_rept rept
-            join p_mete mete2
+            join p_mete mete2 
+            join p_mete mete
         WHERE
             rept.meno2 = mete2.meno and
-            meno2=#{meno2}
+            rept.meno = mete.meno and
+            meno2=#{meno2} and rept.stat ='Y'
     </select>
 
 	<insert id="insert" parameterType="report"

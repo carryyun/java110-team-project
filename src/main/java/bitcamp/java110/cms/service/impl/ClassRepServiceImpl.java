@@ -65,4 +65,10 @@ public class ClassRepServiceImpl implements ClassRepService{
     return classRepDao.findAllByRgdt();
   }
 
+  /*@Override
+  public double countstar(int no) {
+    
+    return classRepDao.countstar(no);
+  }*/
+
 }

@@ -118,6 +118,14 @@
 		        order by psp.rno asc
     </select>
     
+    <!-- <select id="countstar" resultType="double" parameterType="int">
+		    SELECT 
+				sum(star)/count(star)
+			FROM 
+				p_cls_rep
+			where cno = #{no}
+    </select> -->
+    
     <insert id="repinsert" parameterType="ClassRep"
     	useGeneratedKeys="true" keyColumn="rno" keyProperty="no">
     	insert 

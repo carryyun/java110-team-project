@@ -115,11 +115,6 @@ public class ClassServiceImpl implements ClassService{
     
     return classDao.findByptno(ptno);
   }
-
-  @Override
-  public List<Classes> listByStat(String stat) {
-    return classDao.findByStat(stat);
-  }
   
   // 마이페이지 - 클래스 관리 - 멘토의 클래스들
   @Override
@@ -221,4 +216,28 @@ public class ClassServiceImpl implements ClassService{
     
     return classDao.claPage(params);
   }
+
+  @Override
+  public List<Classes> findByStat(int pageNo, int pageSize) {
+    HashMap<String, Object> params = new HashMap<>();
+    params.put("pageNo", (pageNo -1 ) * pageSize);
+    params.put("pageSize", pageSize);
+    
+    return classDao.findByStat(params);
+  }
+
+  @Override
+  public List<Classes> reqPage(int pageNo, int pageSize) {
+    HashMap<String, Object> params = new HashMap<>();
+    params.put("pageNo", (pageNo -1 ) * pageSize);
+    params.put("pageSize", pageSize);
+    
+    return classDao.reqPage(params);
+  }
+
+  @Override
+  public int countclsreq() {
+    return classDao.countclsreq();
+  }
+  
 }

@@ -24,7 +24,9 @@ public interface ClassService {
   int classupdate(Classes classes);
   
   // 클래스 신청목록
-  List<Classes> listByStat(String stat);
+  List<Classes> findByStat(int pageNo, int pageSize);
+  List<Classes> reqPage(int pageNo, int pageSize);
+  int countclsreq();
   
   //마이페이지 - 클래스 관리 - 멘토의 클래스들
   List<Classes> manageByMono(int mono);

@@ -1,5 +1,5 @@
 package bitcamp.java110.cms.domain;
-
+ 
 // 대분류
 public class BigTag {
   private int no;

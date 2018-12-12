@@ -25,5 +25,5 @@ public interface MentorDao {
   List<Mentor> findAllByPhone(Map<String, Object> params); // 핸드폰
   
   //멘토신청목록
-  List<Mentor> findMentorRequest();
+  List<Mentor> findMentorRequest(Map<String, Object> params);
 }
