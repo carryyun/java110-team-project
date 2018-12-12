@@ -383,12 +383,13 @@ function cspage(cso){
                 var nick = data[i].mete_nick;
                 var rgdt = data[i].rgdt;
                 var anser = data[i].anser;
+                var no = data[i].no;
                 
-                rgdt = new Date();
+                var newrgdt = new Date(rgdt);
                 
-                var dd= rgdt.getDate();
-                var mm= rgdt.getMonth();
-                var yy= rgdt.getFullYear();
+                var dd= newrgdt.getDate();
+                var mm= newrgdt.getMonth();
+                var yy= newrgdt.getFullYear();
                 
                 if( dd < 10){
                     dd = '0' + dd;
@@ -397,14 +398,14 @@ function cspage(cso){
                     mm='0' +mm;
                 }
                 
-                rgdt = yy+'-'+mm+'-'+dd;
+                newrgdt = yy+'-'+mm+'-'+dd;
                
-                html += '<tr id="rmv${rl.no}">'
+                html += '<tr id="rmv'+no+'">'
                 html += '<td class="text-center">'+(parseInt(i)+1)+'</td>'
                 html += '<td class="text-center">'+titl+'</td>'
                 html += '<td class="text-center">'+cstype+'</td>'
                 html += '<td class="text-center">'+name+'('+nick+')</td>'
-                html += '<td class="text-center">'+rgdt+'</td>'
+                html += '<td class="text-center">'+newrgdt+'</td>'
                          if(anser == null){
                    
                     html += '<td class="text-center">미완료</td>'
