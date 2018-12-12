@@ -11,6 +11,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import bitcamp.java110.cms.dao.MenteeDao;
 import bitcamp.java110.cms.domain.Mentee;
@@ -47,15 +48,28 @@ public class MenteeServiceImpl implements MenteeService {
       protected PasswordAuthentication getPasswordAuthentication() { 
         return new PasswordAuthentication(user,password);}});
     try { MimeMessage message = new MimeMessage(session); 
+    MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
     message.setFrom(new InternetAddress(user)); 
     message.addRecipient(Message.RecipientType.TO, 
         new InternetAddress(m.getEmail())); 
+    String msg = 
+        "    <img src=\"https://d2ur7st6jjikze.cloudfront.net/themes/413_mobile_medium_1531300354.jpg?1531300354\" alt=\"logo\"/>\r\n" + 
+            "    <div style=\"width: 540px; height: 150px; padding: 30px;\">\r\n" + 
+            //"    <img src=\"127.0.0.1:8888/resources/img/logo.png\" alt=\"logo\"/>\r\n" + 
+            "    <h1 style>Haru 임시 비밀번호입니다</h1>\r\n" + 
+            "    <p>\r\n" + 
+            "    안녕하세요. " + m.getName() + " 회원님!<br>\r\n" + 
+            "    아래의 버튼을 눌러주세요.\r\n" + 
+            "    </p>\r\n" + 
+            "    <h2><a href='http://localhost:8888/app/auth/form/" 
+            +   "<a 임시비밀번호 : " + m.getPwd() +"  로 로그인부탁드립니다. />  </a> </h2>"
+            +   "</div>\r\n";
+    messageHelper.setText(msg);
     // 메일 제목 
-    message.setSubject("Haru 임시 비밀번호입니다.");
-    message.setText("임시비밀번호 : " + m.getPwd() + " 로 로그인부탁드립니다."); 
     
     // 메일 내용 
     // send the message 
+    message.setContent(msg, "text/html; charset=utf-8");
     Transport.send(message); 
     System.out.println("Success Message Send"); 
     }catch (MessagingException e) { e.printStackTrace(); } 
