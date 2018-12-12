@@ -176,14 +176,16 @@ public class MypageController {
       @RequestParam("no") int noin,
       @RequestParam("carrin") String carrin, 
       @RequestParam("btno") int btnoin,
-      Mentor mentor, MentorTag mentorTag,
-      Mentee mentee) throws Exception {
-    
+      MentorTag mentorTag, Mentee mentee) throws Exception {
+     System.out.println(noin);
+     System.out.println(carrin);
+     System.out.println(btnoin);
       // string 에서 int값만 뽑아서  을 int type으로 변환
     
     
     String str1 = carrin;
     String str3 = new String();
+
 
 
     for(int i = 0 ; i < str1.length(); i ++)
@@ -199,14 +201,12 @@ public class MypageController {
    
     // 멘토 신청 처음
     
-     mentor = mentorService.get(noin);
-     int nono = mentor.getCarr();
-     System.out.println(nono);
      
-    if ( nono == 0) {
+    if ( mentorService.get(noin) == null) {
       char mtstat = 'I';
       mentee.setMtstat(mtstat);
-      
+  
+      Mentor mentor = new Mentor();
       mentor.setNo(noin);
       mentor.setCarr(newCarr);
       
@@ -227,6 +227,7 @@ public class MypageController {
       char mtstat = 'I';
       mentee.setMtstat(mtstat);
 
+      Mentor mentor = new Mentor();
       mentor.setNo(noin);
       mentor.setCarr(newCarr);
 
@@ -235,7 +236,7 @@ public class MypageController {
 
       mentorService.update(mentor);  // 경력은 업데이트
       
-      List <MentorTag> mo = mentoTagService.listByMono(1, 10, noin);
+      List<MentorTag> mo = mentoTagService.listByMono(1, 10, noin);
       List<Integer> setMtaglist = new ArrayList<>();
       
       for(MentorTag  m: mo) {
@@ -270,7 +271,8 @@ public class MypageController {
       String filename = "";
       
       if(file.getOriginalFilename().length() > 2 ) {
-         filename = UUID.randomUUID().toString();
+
+        filename = UUID.randomUUID().toString();
         file.transferTo(new File(sc.getRealPath("/upload/img/meto_licn/" + filename+".png")));
       } 
     }
