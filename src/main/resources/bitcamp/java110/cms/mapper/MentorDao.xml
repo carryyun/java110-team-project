@@ -111,6 +111,7 @@
             mtstat='I'
         order by 
             meto.mono asc
+        limit #{pageNo},#{pageSize}
     </select>
     
     

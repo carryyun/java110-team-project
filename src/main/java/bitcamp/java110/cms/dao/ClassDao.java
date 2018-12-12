@@ -35,7 +35,9 @@ public interface ClassDao {
   Classes findByCno(int no);
 
   // 클래스 신청목록
-  List<Classes> findByStat(String stat);
+  List<Classes> findByStat(Map<String,Object> params);
+  List<Classes> reqPage(Map<String,Object> params);
+  int countclsreq();
   
   // 마이페이지 - 클래스 관리 - 멘토 클래스
   List<Classes> manageByMono(int mono);

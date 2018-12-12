@@ -389,25 +389,76 @@
 		cno = #{no}
 	</update>
 
-	<select id="findByStat" resultMap="classMapOrigin"
-		parameterType="string">
-		select
-		ps.titl,
-		pg.mtname,
-		pe.nick,
-		pe.name,
-		ps.rgdt,
-		ps.cno
-		from
-		p_cls as ps inner join p_meto as po
-		inner join p_mete pe
-		inner join p_mtag pg
-		on ps.mono = po.mono AND
-		po.mono = pe.meno AND
-		ps.mtno = pg.mtno
-		where ps.stat ='I'
-        order by ps.rgdt desc
+	<select id="findByStat" resultMap="classMapOrigin">
+		select *
+        from (
+            select
+                @rownum:=@rownum+1 as rnum,
+                cls.cno,
+            cls.titl,
+            cls.conts,
+            cls.rgdt,
+            mete.name,
+            mete.nick,
+            mtag.mtname,
+            cls.stat
+            from
+                p_cls cls,
+            p_mete mete,
+            p_mtag mtag
+                ,(select @rownum:=0)r
+            where
+            cls.mtno = mtag.mtno
+        and cls.mono = mete.meno
+        and cls.stat ='I'
+           order by
+                cls.cno desc
+            ) as a
+        where rnum limit #{pageNo},#{pageSize}
 	</select>
+    
+    <select id="reqPage" resultMap="classMapOrigin">
+        select *
+        from (
+            select
+                @rownum:=@rownum+1 as rnum,
+                cls.cno,
+            cls.titl,
+            cls.conts,
+            cls.rgdt,
+            mete.name,
+            mete.nick,
+            mtag.mtname,
+            cls.stat
+            from
+                p_cls cls,
+            p_mete mete,
+            p_mtag mtag
+                ,(select @rownum:=0)r
+            where
+            cls.mtno = mtag.mtno
+        and cls.mono = mete.meno
+        and cls.stat ='I'
+           order by
+                cls.cno desc
+            ) as a
+        where rnum limit #{pageNo},#{pageSize}
+    </select>
+    
+    <select id="countclsreq" resultType="int" parameterType="int">
+    select
+           COUNT(*)
+        
+      from
+                p_cls cls,
+                p_mete mete,
+                p_mtag mtag
+     where
+            cls.mtno = mtag.mtno
+        and cls.mono = mete.meno
+        and cls.stat ='I'
+    
+    </select>
 
 
 
@@ -474,6 +525,27 @@
                 ctx.ctno=#{ctno} AND cx.stat = 'Y' and certx.cno = cx.cno
 
         ) as certtype
+       
+        
+       
+            
+
+       FROM  p_cls c
+            
+                JOIN p_cls_ttab ct ON c.cno = ct.cno
+                JOIN p_cls_order co ON ct.ctno = co.ctno
+                JOIN p_mete me2 ON co.meno = me2.meno
+                LEFT JOIN p_cert cert ON me2.meno = cert.meno
+            
+            
+       where
+            ct.ctno=#{ctno} AND c.stat = 'Y'
+            
+            
+      ORDER BY
+           ct.ctno asc
+        
+        
 
 
 
