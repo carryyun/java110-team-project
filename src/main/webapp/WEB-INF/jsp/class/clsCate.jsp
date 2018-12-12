@@ -584,10 +584,10 @@ $('#mapModal').on('shown.bs.modal', function (e) {
 		    				    html+= '			<div class="product-description__title">'
 		    				    html+= '				<div class="row">'
 		    				    html+= '					<div class="col-lg-12 mb-2" id="titlDiv">'
-		    				    if(titl.length<30){
+		    				    if(titl.length<42){
 		    				        html+= '						<a href="detail?no='+cno+'">'+titl+'</a>'
 		    				    }else{
-		    				        html+= '                      <a href="detail?no='+cno+'">'+titl.substring(0,30)+'...</a>'
+		    				        html+= '                      <a href="detail?no='+cno+'">'+titl.substring(0,42)+'...</a>'
 		    				    }
 		    				    html+= '					</div>'
 		    				    html+= '				</div>'

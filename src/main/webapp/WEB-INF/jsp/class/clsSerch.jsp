@@ -581,7 +581,7 @@ $('#mapModal').on('shown.bs.modal', function (e) {
 		    					                                  }
 		    					                              }
 		    				    html+= '					</div>'
-	                            pric = "" + pric;
+	                            pric = "" + pric; 
                                 pric = pric.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,')
 		    				    html+= '					<div class="col-lg-5 product-description__price">'+pric+'원</div>'
 		    				    html+= '				</div>'
