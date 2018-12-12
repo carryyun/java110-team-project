@@ -253,20 +253,29 @@ public class MypageController {
     }
 
 
+    
         
     for(MultipartFile file : files) {
+      
+      String filename = "";
+      
       if(file.getOriginalFilename().length() > 2 ) {
-        String filename = UUID.randomUUID().toString();
+        filename = UUID.randomUUID().toString();
         file.transferTo(new File(sc.getRealPath("/upload/img/meto_file/" + filename+".png")));
       } 
     }
     
     for(MultipartFile file : files2) {
+      
+      String filename = "";
+      
       if(file.getOriginalFilename().length() > 2 ) {
-        String filename = UUID.randomUUID().toString();
+         filename = UUID.randomUUID().toString();
         file.transferTo(new File(sc.getRealPath("/upload/img/meto_licn/" + filename+".png")));
       } 
     }
+    
+    
     return "redirect:mypage";
   }
 
