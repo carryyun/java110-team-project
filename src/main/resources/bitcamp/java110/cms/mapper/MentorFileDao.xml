@@ -35,7 +35,7 @@
         useGeneratedKeys="true" keyColumn="mfno" keyProperty="no">
         insert into
             p_meto_file(mfname, mono)
-        values(#{mfname}, 2);
+        values(#{mfname},#{mono});
     </insert>
 
     <delete id="delete" parameterType="int">

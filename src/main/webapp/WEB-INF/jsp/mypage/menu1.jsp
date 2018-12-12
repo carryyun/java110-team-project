@@ -1,3 +1,4 @@
+<%@page import="bitcamp.java110.cms.domain.Mentee"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
@@ -5,7 +6,7 @@
 <style>
 .modal-header .close{
 	margin-top: -20px;
-}
+} 
 
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
@@ -642,7 +643,7 @@ input[type="number"]::-webkit-inner-spin-button {
   
    <div class="content"> 
   <form method="post"  action="imgupload" enctype="multipart/form-data" >
-    <input type="hidden" name="no" value="${sessionScope.loginUser.no}">
+    <input type="hidden" name="no" value="${mentee.no}">
     
     <input type="hidden" name="mtstat" value="${mentee.mtstat}">
     

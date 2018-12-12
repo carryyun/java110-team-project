@@ -118,6 +118,7 @@
             bkno,
             rgdt,
             stat,
+            mtstat,
             note
         from
             p_mete
