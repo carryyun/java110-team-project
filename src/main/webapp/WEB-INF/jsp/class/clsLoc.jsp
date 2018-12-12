@@ -591,7 +591,7 @@ $('#mapModal').on('shown.bs.modal', function (e) {
 		    				    if(titl.length>42) titl=titl.substring(0,42) + "...";
 		    				    html+= '						<a href="detail?no='+cno+'">'+titl+'</a>'
 		    				    html+= '					</div>'
-		    				    html+= '				</div>'
+		    				    html+= '				</div>' 
 		    				    html+= '				<div class="row">'
 		    				    html+= '					<div class="col-lg-7 product-description__category secondary-text">'
 		    				        								for(var j=0; j<5; j++) {
