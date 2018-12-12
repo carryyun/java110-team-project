@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import bitcamp.java110.cms.domain.BigTag;
 import bitcamp.java110.cms.domain.Cert;
 import bitcamp.java110.cms.domain.ClassOrder;
 import bitcamp.java110.cms.domain.ClassQna;
@@ -148,6 +149,11 @@ public class MypageController {
     
     Mentor mentor = mentorService.get(reMeno);
       model.addAttribute("mentor", mentor);
+      
+      List<BigTag> btag = bigTagService.list();
+      model.addAttribute("btag", btag);
+      
+      
   }
    
   @RequestMapping(value = "photoupload", method=RequestMethod.POST)
@@ -277,7 +283,7 @@ public class MypageController {
         
         String phot ="/upload/img/meto_file/"+ filename+".png";
         
-        mentorFile.setNo(noin);
+        mentorFile.setMono(noin);
         mentorFile.setMfname(phot);
         mentorFileService.add(mentorFile);
         
@@ -294,10 +300,11 @@ public class MypageController {
         filename = UUID.randomUUID().toString();
         file.transferTo(new File(sc.getRealPath("/upload/img/meto_licn/" + filename+".png")));
         
-        String phot ="/upload/img/meto_file/"+ filename+".png";
+        String phot ="/upload/img/meto_licn/"+ filename+".png";
         
-        mentorLicense.setNo(noin);
+        mentorLicense.setMono(noin);
         mentorLicense.setPhot(phot);
+        mentorLicense.setLname("자격증");
         mentorLicenseService.add(mentorLicense);
         
       } 

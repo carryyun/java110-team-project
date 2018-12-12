@@ -31,7 +31,7 @@
     
     <insert id="insert" parameterType="MentorLicense" useGeneratedKeys="true" keyColumn="lno" keyProperty="no">
             insert into p_meto_licn(lname, phot, mono) 
-            values(#{lname}, #{phot}, 3)
+            values(#{lname}, #{phot}, #{mono})
             <!-- mono에 임의로 값을 3로 넣었기 때문에 나중에 변경해 주어야 함  -->
     </insert>
     

@@ -1,7 +1,9 @@
 <%@page import="bitcamp.java110.cms.domain.Mentee"%>
+<%@ page import="bitcamp.java110.cms.domain.BigTag"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <style>
 .modal-header .close{
@@ -662,12 +664,10 @@ input[type="number"]::-webkit-inner-spin-button {
     
 <select name="btno" id="soflow" >
   <option>분야 선택</option>
-   <option>1</option>
-   <option>2</option>
-   <option>3</option>
-   <option>4</option>
-   <option>5</option>
-   
+   <c:forEach items="${btag}" var="b" varStatus="i">
+   <option value="${b.no}">${b.name}</option>
+  
+   </c:forEach>
 
 
 </select>
@@ -888,7 +888,7 @@ input[type="number"]::-webkit-inner-spin-button {
                     
                     var judge = $('#wrapper').attr('name')
                     
-                    if(/* judge == 'Y' || */ judge == 'I'){
+                    if( judge == 'Y' ||  judge == 'I'){
                         
                         swal({
                             title: "멘토신청은 한번만 가능합니다!",
