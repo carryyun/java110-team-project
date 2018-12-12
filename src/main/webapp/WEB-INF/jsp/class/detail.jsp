@@ -196,7 +196,18 @@
                                     <dd style="font-size: 1rem;">${detailclass.middleTag.name}</dd>
                                 </dl>
                                 <dl class="param param-feature text-left">
-                                    <fmt:formatNumber value="${detailclass.pric}" groupingUsed="true"/>원
+                                <c:set var="clspri" value="${detailclass.pric}"/>
+                                <c:set var="clstim" value="${detailclass.time}"/>
+                                <%
+                                	int clspr = (int)pageContext.getAttribute("clspri");
+                                	String clsti = (String)pageContext.getAttribute("clstim");
+                                	
+                                	int aaa= Integer.parseInt(clsti);
+                                	
+                                	int totalpric = (clspr*aaa);
+                                	System.out.println(totalpric);
+                                %>
+                                    <fmt:formatNumber value="<%=totalpric%>" groupingUsed="true"/>원
                                 </dl>
 
                                 <dl class="param param-feature text-left">
@@ -312,7 +323,7 @@
                         <br>
                         <div style="margin-left:50px; text-align:center;"><h4>${detailclass.titl}</h4></div>
                         <br>
-                        <div class = "shortinfo"><strong>금액</strong><div class="inf"><fmt:formatNumber value="${detailclass.pric}" groupingUsed="true"/>원</div></div>
+                        <div class = "shortinfo"><strong>시간당 금액</strong><div class="inf"><fmt:formatNumber value="${detailclass.pric}" groupingUsed="true"/>원</div></div>
                         <div class = "shortinfo"><strong>총 수업시간</strong><div class="inf">${detailclass.time}시간</div></div>
                         <div class = "shortinfo"><strong>모집인원</strong><div class="inf"><fmt:formatNumber value="${detailclass.capa}" groupingUsed="true"/>명</div></div>
                     </div>
