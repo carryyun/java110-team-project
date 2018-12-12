@@ -555,32 +555,6 @@ function mentorcheck() {
 
 }
     
-   /* function updatePhoto(meno){
-        
-       var NewPhot = "/upload/img/"+$('.image-title').val();
-       console.log(NewPhot);
-        
-    $.ajax({
-        type: "POST",
-        data: {
-            "no" : meno,
-            "phot" : newPhot
-            },
-     url: "updatePhoto.do", 
-     success : function() {
-        
-         swal({
-               text : "프로필 사진 변경 완료",
-             button : "확인"
-             })
-         },error : function(error,status){
-             swal({
-                 text : "프로필사진 업로드 실패ㅜㅜ",
-                 button : "확인"
-                 })
-                 }
-         }); 
-    }  */
 
 </script>
             <div class="row" >
@@ -922,7 +896,7 @@ function mentorcheck() {
   
   
                                                     <div>
-                                                      <button type="submit" class="btn btn-primary" id="2" <%-- onclick="updatePhoto(${mentee.no}) --%>">변경하기</button>
+                                                      <button type="submit" class="btn btn-primary" id="2">변경하기</button>
                                                       <button type="button" class="btn btn-danger" id="1" style="float:right" data-dismiss="modal"  role="button" >취소</button>
                                                     </div>
 

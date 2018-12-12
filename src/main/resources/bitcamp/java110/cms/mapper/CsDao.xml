@@ -108,7 +108,7 @@
         from
             p_cs join p_mete m on p_cs.meno = m.meno
        where
-            m.meno=5
+            m.meno=#{meno}
        order by
             csno desc
        
