@@ -15,7 +15,7 @@ public interface ProductOrderService {
   ProductOrder get(int no);
 
   // 주문자 번호로 조회
-  List<ProductOrder> listByMeno(int pageNo, int pageSize, int meno);
+  List<ProductOrder> listByMeno(int meno,int pageNo, int pageSize);
 
   // 공예품 번호로 조회
   List<ProductOrder> listByPtno(int pageNo, int pageSize, int ptno);

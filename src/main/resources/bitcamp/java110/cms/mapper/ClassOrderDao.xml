@@ -53,48 +53,44 @@
     
    
      <select id="findByMeno" resultMap="classOrderMap" parameterType="Map">
-       
-      SELECT
-            co.ono,
-            co.meno,
-            co.time,
-            co.tot_pric,
-            co.payopt,
-            co.paydt,
-            co.ctno,
-            c.cno as ccno,
-            c.titl as ctitl,
-            me2.nick as mentornick,
-            ct.date,
-            ct.stime,
-            c.time as ctime,
-            ce.ctno as cectno,
-            ce.type as cetype,
-            ce.cnt as cecnt,
-            ce.edt as ceedt,
-            ce.ctdt as cectdt,
-            cf.fname,
-            mtag.mtname as mtnm,
-            btag.btname as btnm
-            
-            
-         FROM
-            p_cls_order co JOIN p_mete me on co.meno = me.meno
-            JOIN p_cls_ttab ct ON co.ctno = ct.ctno
-            JOIN p_cls c ON ct.cno = c.cno
-            JOIN p_meto mo ON c.mono =mo.mono
-            JOIN p_mete me2 ON mo.mono = me2.meno
-            LEFT JOIN p_cert ce on me.meno= ce.meno
-            Join p_cls_file cf on c.cno=cf.cno 
-            LEFT JOIN p_mtag mtag ON c.mtno = mtag.mtno
-            JOIN p_btag btag ON mtag.btno = btag.btno 
-        
-        where
-            me.meno=#{meno} 
-        ORDER BY
-           cf.cfno desc
-          <!--   cf.cfno asc  첫사진을불러옴 근데얘는 영상임 ㅜㅜ-->
-            limit 1
+			select 
+				pco.ono,
+				pco.meno,
+				pco.time,
+				pco.tot_pric,
+				pco.payopt,
+				pco.ctno,
+				pc.cno as ccno,
+				pc.titl as ctitl,
+				pm2.nick as mentornick,
+				pct.date,
+				pct.stime,
+				pc.time as ctime,
+				pcf.fname,
+				pmg.mtname as mtnm
+			from
+				p_mete as pm inner join p_cls_order as pco
+				inner join p_cls_ttab as pct
+				inner join p_cls as pc
+				inner join p_mtag as pmg
+				inner join p_cls_file as pcf
+				inner join p_meto as po
+				inner join p_mete as pm2
+				
+				on pm.meno = pco.meno and
+				pco.ctno = pct.ctno and
+				pct.cno = pc.cno and
+				pc.cno = pcf.cno and
+				pc.mtno = pmg.mtno and
+				pc.mono = po.mono and
+				po.mono = pm2.meno
+			where
+				pm.meno = #{meno}
+			group by
+				pc.cno
+			order by
+				pcf.cfno desc
+			limit #{rowNo},#{size};
     </select>
     
     

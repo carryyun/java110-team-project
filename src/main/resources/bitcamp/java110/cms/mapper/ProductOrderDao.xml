@@ -164,26 +164,40 @@
 
     <select id="findByMeno" 
             resultMap="productOrderMap" parameterType="map">
-       SELECT
-            po.paydt,
-            po.payopt,
-            po.tot_pric,
-            po.parc_name,
-            po.parc_no,
-            po.tot_pric,
-            po.cnt,
-            po.ptno,
-            p.titl as ptitl,
-            p.ptno as pptno,
-            me2.nick as sellernick,
-            p.phot as pphot
-         FROM
-            p_prdt_order po
-            JOIN p_mete me on po.meno = me.meno
-            JOIN p_prdt p ON po.ptno = p.ptno
-            JOIN p_mete me2 ON p.meno = me2.meno 
-        where
-            me.meno=#{meno}
+        select
+			ppo.paydt,
+	        ppo.payopt,
+	        ppo.tot_pric,
+	        ppo.parc_name,
+	        ppo.parc_no,
+	        ppo.tot_pric,
+	        ppo.cnt,
+	        ppo.ptno,
+	        ppt.titl as ptitl,
+	        ppt.ptno as pptno,
+	        pe2.nick as sellernick,
+	        ppt.phot as pphot
+		from
+			p_mete as pe inner join p_cls_order as pco
+			inner join p_cls_ttab as pcb 
+			inner join p_cls as pc
+			inner join p_cert as pct
+			inner join p_prdt as ppt
+			inner join p_prdt_order as ppo
+			inner join p_mete as pe2
+		
+			on pe.meno = pco.meno and
+			pco.ctno = pcb.ctno and
+			pcb.cno = pc.cno and
+			pc.cno = pct.cno and
+			pct.ctno = ppt.ctno and
+			ppt.ptno = ppo.ptno and
+			ppo.meno = pe2.meno
+		where
+			pe2.meno =#{meno}
+		group BY
+			ppt.ptno
+        limit #{rowNo},#{size}
     </select>
     
     <update id="delInsert" parameterType="productOrder" >

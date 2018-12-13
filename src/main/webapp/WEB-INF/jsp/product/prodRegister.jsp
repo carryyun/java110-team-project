@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <html>
 <head>
@@ -13,48 +14,55 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script> -->
 
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+<link
+	href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
+	rel="stylesheet">
+<script
+	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script
+	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
+<link
+	href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css"
+	rel="stylesheet">
+<script
+	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
 <link href="/css/common.css" rel="stylesheet">
 
 
 <style>
 html {
- font-size: 16px;
+	font-size: 16px;
 }
 
 div.note-editable {
- height: 300px;
+	height: 300px;
 }
 
 div#imgBind {
- /* border: 1px solid silver; */
- padding-top: 15px;
- height: 130px;
-/*  overflow: visible; */
- display: block;
+	/* border: 1px solid silver; */
+	padding-top: 15px;
+	height: 130px;
+	/*  overflow: visible; */
+	display: block;
 }
 
 div.row.imgDiv {
- margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 #files {
- color: white;
+	color: white;
 }
 
 .fileImg {
- width: 100px;
- height: 100px;
+	width: 100px;
+	height: 100px;
 }
 
 .detailInfo {
- margin-bottom: 10px;
- width: 90px;
+	margin-bottom: 10px;
+	width: 90px;
 }
 </style>
 
@@ -75,8 +83,10 @@ div.row.imgDiv {
 					<div class="row">
 						<!-- 상품명 -->
 
-						<div class="col-lg-12" style="margin-top: 10px"> 
-                        <h3 style="font-weight: 700">상품 등록</h3><hr color="#FFB53C" style="height:4px;margin-top:10px;margin-bottom:15px"/>
+						<div class="col-lg-12" style="margin-top: 10px">
+							<h3 style="font-weight: 700">상품 등록</h3>
+							<hr color="#FFB53C"
+								style="height: 4px; margin-top: 10px; margin-bottom: 15px" />
 							<div
 								style="color: white; background-color: #FFB53C; border: 1px solid #FFB53C; padding: 5px; display: inline; border-radius: 3px;">상품명</div>
 							<p>
@@ -96,7 +106,8 @@ div.row.imgDiv {
 					<div
 						style="color: white; background-color: #FFB53C; padding: 5px; display: inline; border-radius: 3px;">상세보기</div>
 
-					<div class="col-lg-12" style="border: 1px solid #a9a9a9; margin-top: 5px;">
+					<div class="col-lg-12"
+						style="border: 1px solid #a9a9a9; margin-top: 5px;">
 						<div class="row">
 
 							<!-- summernote -->
@@ -164,31 +175,38 @@ div.row.imgDiv {
 				</div>
 
 				<div class="col-lg-12">
-					<input type="file" id="files" name="files" onChange="fileCheck(this.form.files)" multiple accept="image/*" />
+					<input type="file" id="files" name="files"
+						onChange="fileCheck(this.form.files)" multiple accept="image/*" />
 					<div id="selectedFiles"></div>
 				</div>
 				<!-- 등록 취소버튼 -->
 				<div class="col-lg-12 text-right">
-					<button type="button" id="submitBtn" class="btn btn-primary" style="background-color: #FFB53C; border: 1px solid #FFB53C">등록</button>
+					<button type="button" id="submitBtn" class="btn btn-primary"
+						onclick="alert()"
+						style="background-color: #FFB53C; border: 1px solid #FFB53C">등록</button>
 					<input type="button" class="btn" onclick="closepage()" value="취소">
 				</div>
 			</form>
 		</div>
 	</div>
-	
+
 </body>
 
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"
 	integrity="sha384-r6jjWwxAypHaESwS5an5J9dkfzwQuKVNV9FZM9B6fnt8PFuY0cVwLhV7BltCZhLy"
 	crossorigin="anonymous"></script>
 <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
-<script src="https://blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
+<script
+	src="https://blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
 <!-- The Canvas to Blob plugin is included for image resizing functionality -->
-<script src="https://blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
+<script
+	src="https://blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
 <!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
 <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
 <!-- blueimp Gallery script -->
-<script src="https://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
+<script
+	src="https://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
 <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
@@ -207,14 +225,14 @@ div.row.imgDiv {
         $('#mainNav').css("padding", "0");
         $('#mainNav').css("border", "0");
         $('#mainNav').css("margin-top", "21");
-        
-        $("button#submitBtn").click(function(){
+
+        $("button#submitBtn").click(function() {
             document.getElementById('myForm').submit();
         });
-        $('#myForm').submit(function(){
+        $('#myForm').submit(function() {
             closepage();
         })
-        
+
         /* document.getElementById('submitBtn').click = function(){
             
             
@@ -224,81 +242,74 @@ div.row.imgDiv {
 
 <!-- multiple file input -->
 <script>
-function fileCheck(file)
-{	
-	console.log(file);
-	console.log("asd");
-        // 사이즈체크
-        var maxSize  = 10000000;    //10MB
-        var fileSize = 0;
-       // console.log(file[0].size);
-       // console.log(file[1].size);
+    function fileCheck(file) {
         console.log(file);
-       // console.log(file[0].value.size);
-       // console.log(file[1].value.size);
-       console.log($("#files")[0].files.length);
-        
-        
+        console.log("asd");
+        // 사이즈체크
+        var maxSize = 10000000; //10MB
+        var fileSize = 0;
+        // console.log(file[0].size);
+        // console.log(file[1].size);
+        console.log(file);
+        // console.log(file[0].value.size);
+        // console.log(file[1].value.size);
+        console.log($("#files")[0].files.length);
 
-	// 브라우저 확인
-	var browser=navigator.appName;
-	
-	// 익스플로러일 경우
-	if (browser=="Microsoft Internet Explorer")
-	{
-		var oas = new ActiveXObject("Scripting.FileSystemObject");
-		fileSize = oas.getFile( file.value ).size;
-		
-	}
-	// 익스플로러가 아닐경우
-	else
-	{
-		console.log("익스플로러x 실행");
-		console.log($("#files")[0].files.length);
-		
-		for(var x=0; x<$("#files")[0].files.length; x++){
-			if($("#files")[0].files[x].size > 2000000 ){
-				swal({
-					text:"첨부파일 한장당 사이즈는 2MB 이내로 등록 가능합니다. ",
-					button:"확인"
-					});
-				console.log("2MB 넘는 파일 이름 : " + file.files[x].name);
-				console.log("2MB 넘는 파일 사이즈 : " +file.files[x].size);
-				console.log(x);
-//				removeImg(x);
-				console.log(file.files[x]);
-				file.files[x].remove;
-				console.log(file.files[x]);
-				//$('#files').html();
-				$("#files").val("");
-				//$("div#imgDiv" + x).remove();
-			}else{
-				fileSize += file.files[x].size;
-				console.log(file.files[x].size);
-			}
-		//console.log($("#files").size); 
-		//console.log("asdzxc"); 
-		} 
-			console.log("전체 파일 사이즈 : " + fileSize);
-		
-		console.log("???");
-	}
-	
-	console.log("asdasdasd");
-	//console.log(fileSize);
+        // 브라우저 확인
+        var browser = navigator.appName;
 
+        // 익스플로러일 경우
+        if (browser == "Microsoft Internet Explorer") {
+            var oas = new ActiveXObject("Scripting.FileSystemObject");
+            fileSize = oas.getFile(file.value).size;
 
-        if(fileSize > maxSize)
-        {
-        	swal({
-				text:"첨부파일 전체 사이즈는 10MB 이내로 등록 가능합니다. ",
-				button:"확인"
-				});
-            //alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다.    ");
-        	$('#myForm input[type="file"]').val('');
+        }
+        // 익스플로러가 아닐경우
+        else {
+            console.log("익스플로러x 실행");
+            console.log($("#files")[0].files.length);
+
+            for (var x = 0; x < $("#files")[0].files.length; x++) {
+                if ($("#files")[0].files[x].size > 2000000) {
+                    swal({
+                        text : "첨부파일 한장당 사이즈는 2MB 이내로 등록 가능합니다. ",
+                        button : "확인"
+                    });
+                    console.log("2MB 넘는 파일 이름 : " + file.files[x].name);
+                    console.log("2MB 넘는 파일 사이즈 : " + file.files[x].size);
+                    console.log(x);
+                    //				removeImg(x);
+                    console.log(file.files[x]);
+                    file.files[x].remove;
+                    console.log(file.files[x]);
+                    //$('#files').html();
+                    $("#files").val("");
+                    //$("div#imgDiv" + x).remove();
+                } else {
+                    fileSize += file.files[x].size;
+                    console.log(file.files[x].size);
+                }
+                //console.log($("#files").size); 
+                //console.log("asdzxc"); 
+            }
+            console.log("전체 파일 사이즈 : " + fileSize);
+
+            console.log("???");
         }
 
-}
+        console.log("asdasdasd");
+        //console.log(fileSize);
+
+        if (fileSize > maxSize) {
+            swal({
+                text : "첨부파일 전체 사이즈는 10MB 이내로 등록 가능합니다. ",
+                button : "확인"
+            });
+            //alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다.    ");
+            $('#myForm input[type="file"]').val('');
+        }
+
+    }
 
     var selDiv = "";
 
@@ -311,8 +322,8 @@ function fileCheck(file)
     }
 
     function handleFileSelect(e) {
-		
-    	var sumsize = 0;
+
+        var sumsize = 0;
         if (!e.target.files || !window.FileReader)
             return;
 
@@ -320,11 +331,11 @@ function fileCheck(file)
 
         var files = e.target.files;
         var filesArr = Array.prototype.slice.call(files);
-        
+
         var html = "";
         html += "<div class='col-lg-12' id='imgBind'>";
         for (var i = 0; i < filesArr.length; i++) {
-            
+
             var f = files[i];
             if (!f.type.match("image.*")) {
                 return;
@@ -332,26 +343,27 @@ function fileCheck(file)
             var j = 0;
             var reader = new FileReader();
             reader.onload = function(e) {
-                console.log("filesArr[i]="+filesArr[i] +  " ," + i);
-                console.log("filesArr[j]="+filesArr[j] +  " ," + j);
+                console.log("filesArr[i]=" + filesArr[i] + " ," + i);
+                console.log("filesArr[j]=" + filesArr[j] + " ," + j);
                 f = filesArr[j];
                 /* console.log(f);
                 console.log(e); */
-                sumsize += e.loaded ;
+                sumsize += e.loaded;
                 console.log(sumsize);
-                if(e.loaded > 2000000){
-                }else if(sumsize > 10000000){
-                	$('#imgBind div').remove();
-                }else{
-                html += "<div class='row imgDiv' id='imgDiv"+j + "' style='float:left; margin:5px;'>";
+                if (e.loaded > 2000000) {
+                } else if (sumsize > 10000000) {
+                    $('#imgBind div').remove();
+                } else {
+                    html += "<div class='row imgDiv' id='imgDiv"+j + "' style='float:left; margin:5px;'>";
 
-                html += "<div class='col-lg-12 px-0'>";
-                html += '<img class="fileImg" src=\"' + e.target.result + '\" onclick="removeImg(' + j + ', )">';
-                html += "</div>";
-                html += "</div>";
+                    html += "<div class='col-lg-12 px-0'>";
+                    html += '<img class="fileImg" src=\"' + e.target.result
+                            + '\" onclick="removeImg(' + j + ', )">';
+                    html += "</div>";
+                    html += "</div>";
 
-                selDiv.innerHTML = html;
-                j++;
+                    selDiv.innerHTML = html;
+                    j++;
                 }
             }
             reader.readAsDataURL(f);
@@ -366,10 +378,9 @@ function fileCheck(file)
     }
 </script>
 <script>
-function closepage(){
-    self.close();   //자기자신창을 닫습니다.
-}
-
+    function closepage() {
+        self.close(); //자기자신창을 닫습니다.
+    }
 </script>
 
 
@@ -393,5 +404,22 @@ function closepage(){
     }).on('input', function() {
         toggle(this);
     });
+</script>
+
+<script>
+    function alert() {
+
+        if(데이터가 들어가면){
+           swal({
+               text:"등록되었습니다.",
+               button:"확인"
+           }) 
+        }else{
+            swal({
+                text:"등록이 실패하였습니다.(특수문자 사용 불가)"
+                button:"확인"
+            })
+        }
+    }
 </script>
 </html>

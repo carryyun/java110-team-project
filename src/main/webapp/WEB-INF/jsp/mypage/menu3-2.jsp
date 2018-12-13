@@ -15,10 +15,10 @@
                     <tr id="th-pay">
 
                         <th width="5%">No.</th>
-                        <th width="15%">결제일자<br>(주문번호)</th>
+                        <th width="15%">사진</th>
                         <th width="30%">상품명</th>
-                        <th width="10%">판매자</th>
-                        <th width="25%">결제금액(수량)<br>(결제방법)      </th>
+                        <th width="15%">판매자</th>
+                        <th width="20%">결제금액(수량)<br>(결제방법)      </th>
                         <th width="15%">상태</th>
 
 
@@ -31,13 +31,11 @@
 
                         <tr id="tb-pay">
                             <td>${i.count}</td>
-                            <td>${p.paydt}<br> (<fmt:formatDate value="${p.paydt}"
-                                    pattern="yyyyMMdd" />${p.no})</td>
-                            <td>${p.product.titl}
-                            <a href="../product/detail?no=${p.no}"><img src="${p.product.phot}" width="200px" height="150px"/></a>
-                            </td>
+                            <td><a href="../product/detail?no=${p.no}"><img src="${p.product.phot}" width="150px" height="100px"/></a></td>
+                            <td><a href="../product/detail?no=${p.no}">${p.product.titl}</a></td>
                             <td>${p.sellernick}</td>
-                            <td>${p.tot_pric}(${p.cnt})개<br>${p.payopt}</td>
+                            <td>${p.tot_pric}(${p.cnt})개<br>${p.payopt}<br>${p.paydt}<br> (<fmt:formatDate value="${p.paydt}"
+                                    pattern="yyyyMMdd" />${p.no})</td>
                             <td>
                             <span id="productState" name="${p.parc_no}"></span>
                                 <button type="button" class="btn btn-primary"
