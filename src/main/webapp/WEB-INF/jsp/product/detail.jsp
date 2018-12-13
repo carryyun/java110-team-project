@@ -456,7 +456,7 @@ function addOrder(payopt){
             success : function(result) {
                 if(result == "complete"){
                     swal({
-                        title: "결제완료",
+                        title: "결제완료", 
                         text: "주문내역 페이지로 이동하시겠습니까?",
                         icon: "success",
                         buttons: true,
