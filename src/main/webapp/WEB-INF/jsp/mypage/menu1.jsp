@@ -838,7 +838,7 @@ function mentorcheck() {
         Haru
       </div>
     </div>
-    <output id="list"></output><input id="files"  name="fileUpload1" type="file" accept="image/*" multiple/>
+    <output id="list"></output><input id="files" name="fileUpload1" type="file" accept="image/*" multiple/>
   </div>
   
   <!-- upload file1 code-->
@@ -949,20 +949,172 @@ function mentorcheck() {
                                                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <!-- content goes here -->
-                                                      <input type="password" id="withdrawalpwd"/>
-                                                      <button type="button" class="btn btn-default" data-dismiss="modal" onClick="submitbtn()">탈퇴하기</button>
-                                                      <button type="button" class="btn btn-default" data-dismiss="modal"  role="button">취소</button>
+                                                	  <input type="text" value="비밀번호 확인" readonly style="width:20%; border:1px solid #FFB53C;
+                                                	   background-color: #FFB53C; color: aliceblue; border-radius:3px; text-align:center; font-weight:bold; margin-bottom:3px; "/><br>
+                                                      <input type="password" id="withdrawalpwd" placeholder="비밀번호를 입력해주세요." style="width:70%; margin-top:3px;"/>
                                                 </div>
+                                                <div>
+                                                      <button type="button" class="btn btn-default" data-dismiss="modal" style="margin-left:15px; margin-bottom:10px;" onClick="submitbtn()">탈퇴하기</button>
+                                                      <button type="button" class="btn btn-default" style="float:right; margin-right:15px; margin-bottom:10px;" data-dismiss="modal"  role="button">취소</button>
+                                            	</div>
                                             </div>
                                           </div>
                                         </div>
 
-            </div>
+
             
             
             
             <script>
+       /*  function fileCheck2(file)
+            {
+            	console.log("asd");
+                    // 사이즈체크
+                    var maxSize  = 10000000;    //10MB
+                    var fileSize = 0;
+                   // console.log(file[0].size);
+                   // console.log(file[1].size);
+                    console.log(file);
+                   // console.log(file[0].value.size);
+                   // console.log(file[1].value.size);
+                   console.log($("#files2")[0].files.length);
+                    
+                    
+
+            	// 브라우저 확인
+            	var browser=navigator.appName;
+            	
+            	// 익스플로러일 경우
+            	if (browser=="Microsoft Internet Explorer")
+            	{
+            		var oas = new ActiveXObject("Scripting.FileSystemObject");
+            		fileSize = oas.getFile( file.value ).size;
+            		
+            	}
+            	// 익스플로러가 아닐경우
+            	else
+            	{
+            		console.log($("#files2")[0].files.length);
+            		console.log("익스플로러x 실행");
+            		for(var x=0; x<$("#files2")[0].files.length; x++){
+            			if($("#files2")[0].files[x].size > 2000000 ){
+            				swal({
+            					text:"첨부파일 한장당 사이즈는 2MB 이내로 등록 가능합니다. ",
+            					button:"확인"
+            					});
+            				console.log("2MB 넘는 파일 이름 : " + file.files[x].name);
+            				console.log("2MB 넘는 파일 사이즈 : " +file.files[x].size);
+            				console.log(x);
+//            				removeImg(x);
+            				console.log(file.files[x]);
+            				file2.files[x].remove;
+            				console.log(file.files[x]);
+            				//$('#files').html();
+            				$("#files2").val("");
+            				//$("div#imgDiv" + x).remove();
+            			}else{
+            				fileSize += file.files[x].size;
+            				console.log(file.files[x].size);
+            			}
+            		//console.log($("#files").size); 
+            		//console.log("asdzxc"); 
+            		} 
+            			console.log("전체 파일 사이즈 : " + fileSize);
+            		
+            		console.log("???");
+            	}
+            	
+            	console.log("asdasdasd");
+            	//console.log(fileSize);
+
+
+                    if(fileSize > maxSize)
+                    {
+                    	swal({
+            				text:"첨부파일 전체 사이즈는 10MB 이내로 등록 가능합니다. ",
+            				button:"확인"
+            				});
+                        //alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다.    ");
+                    	$('#files2').val('');
+                    }
+
+            }
+        
+        
+        function fileCheck(file)
+        {
+        	console.log("asd");
+                // 사이즈체크
+                var maxSize  = 10000000;    //10MB
+                var fileSize = 0;
+               // console.log(file[0].size);
+               // console.log(file[1].size);
+                console.log(file);
+               // console.log(file[0].value.size);
+               // console.log(file[1].value.size);
+               console.log($("#files")[0].files.length);
+                
+                
+
+        	// 브라우저 확인
+        	var browser=navigator.appName;
+        	
+        	// 익스플로러일 경우
+        	if (browser=="Microsoft Internet Explorer")
+        	{
+        		var oas = new ActiveXObject("Scripting.FileSystemObject");
+        		fileSize = oas.getFile( file.value ).size;
+        		
+        	}
+        	// 익스플로러가 아닐경우
+        	else
+        	{
+        		console.log("익스플로러x 실행");
+        		for(var x=0; x<$("#files")[0].files.length; x++){
+        			if(file.files[x].size > 2000000 ){
+        				swal({
+        					text:"첨부파일 한장당 사이즈는 2MB 이내로 등록 가능합니다. ",
+        					button:"확인"
+        					});
+        				console.log("2MB 넘는 파일 이름 : " + file.files[x].name);
+        				console.log("2MB 넘는 파일 사이즈 : " +file.files[x].size);
+        				console.log(x);
+//        				removeImg(x);
+        				console.log(file.files[x]);
+        				file.files[x].remove;
+        				console.log(file.files[x]);
+        				//$('#files').html();
+        				$("#files").val("");
+        				//$("div#imgDiv" + x).remove();
+        			}else{
+        				fileSize += file.files[x].size;
+        				console.log(file.files[x].size);
+        			}
+        		//console.log($("#files").size); 
+        		//console.log("asdzxc"); 
+        		} 
+        			console.log("전체 파일 사이즈 : " + fileSize);
+        		
+        		console.log("???");
+        	}
+        	
+        	console.log("asdasdasd");
+        	//console.log(fileSize);
+
+
+                if(fileSize > maxSize)
+                {
+                	swal({
+        				text:"첨부파일 전체 사이즈는 10MB 이내로 등록 가능합니다. ",
+        				button:"확인"
+        				});
+                    //alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다.    ");
+                	$('#files').val('');
+                }
+
+        } */
+        
+            
             
             function sample6_execDaumPostcode() {
                 new daum.Postcode({
@@ -1018,8 +1170,6 @@ function mentorcheck() {
                             buttons: true,
                             dangerMode: true,
                             })
-                          
-                           
                      } 
                     
                     else{
