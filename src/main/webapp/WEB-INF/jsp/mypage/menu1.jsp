@@ -172,42 +172,47 @@ input[type="number"]::-webkit-inner-spin-button {
   function cbox1(chkbox,meno)
     {
          
-       if ( chkbox.checked == true )
-            {
+       if ( chkbox.checked == true ){
             text1.readOnly = false;
             text1.style.border = "solid";
             text1.style.borderColor = "#3097F0";
-            }
+        }
         
-        else
-            {   
-            text1.readOnly = true;
-            text1.style.border = "none"; 
-            
-            
+       else {   
              var newnick = $('#text1').val();
-          
-                $.ajax({
-                    type: "POST",
-                    data: {
-                        "no" : meno,
-                        "nick" : newnick
-                        },
-                 url: "updateProfile.do", 
-                 success : function() {
-                    
-                     swal({
-                           text : "변경 완료",
-                         button : "확인"
-                         })
-                     },error : function(error,status){
-                         swal({
-                             text : "이미 존재하는 닉네임 입니다!",
-                             button : "확인"
-                             })
-                             }
-                     }); 
- 
+                 
+                 $.ajax({
+                     type: "POST",
+                     data: {
+                         "no" : meno,
+                         "nick" : newnick
+                         },
+                  url: "updateProfile.do", 
+                  success : function() {
+                     
+                      swal({
+                            text : "변경 완료",
+                          button : "확인"
+                          }),
+                          
+                      text1.readOnly = true;
+                      text1.style.border = "none"; 
+                      
+                      
+                      },error : function(error,status){
+                          swal({
+                              text : "이미 존재하는 닉네임 입니다!",
+                              button : "확인",
+                              icon : "error"
+                              }),
+                              
+                              chkbox.checked = true;
+                             
+                              }
+                      })
+                      
+                 
+                      
             } 
     } 
     
@@ -246,7 +251,8 @@ input[type="number"]::-webkit-inner-spin-button {
 	        if(newpwd.length < 8){
 	        	swal({
 	                text : "비밀번호는 최소 8자 이상입니다.",
-	              button : "확인"
+	              button : "확인",
+	              icon : "error"
 	              }).then(function(){
 	            	  $('#sectext31').val('');
 	            		 $('#text2').val('');
@@ -255,7 +261,8 @@ input[type="number"]::-webkit-inner-spin-button {
 	        }else if($('#text31 option:selected').val() == ''){
 	        	swal({
 	                text : "은행을 선택해주세요.",
-	              button : "확인"
+	              button : "확인",
+	              icon : "error"
 	              }).then(function(){
 	            	  $('#sectext31').val('');
 	            		 $('#text2').val('');
@@ -283,7 +290,8 @@ input[type="number"]::-webkit-inner-spin-button {
 		         success : function() {
 		             swal({
 		                   text : "변경 완료",
-		                 button : "확인"
+		                 button : "확인",
+		                 icon : "error"
 		                 }).then(function(){
 		            		 $('#text2').val('');
                          })
@@ -368,7 +376,8 @@ input[type="number"]::-webkit-inner-spin-button {
              },error : function(error,status){
                  swal({
                      text : "핸드폰 번호 형식에 맞춰서 작성해주세요",
-                     button : "확인"
+                     button : "확인",
+                     icon : "error"
                      })
                      }
              }); 
@@ -407,6 +416,20 @@ input[type="number"]::-webkit-inner-spin-button {
         var newbas= $('#sample6_address').val();
         var newdet= $('#sample6_address2').val();
         
+        if(newpstno == ""){
+            
+            swal({
+                text : "우편번호를 입력 해주세요",
+              button : "확인",
+              icon : "error"
+              });
+            
+            $('#findpstno').css('display','none');
+          }
+            
+            
+        else{
+        
         $.ajax({
             type: "POST",
             data: {
@@ -431,35 +454,100 @@ input[type="number"]::-webkit-inner-spin-button {
         $('#findpstno').css('display','none');
     }
     
+        
+    }
 }
  
     
-   /*  function updatePhoto(meno){
+    
+    
+function ppcheck() {
         
-       var NewPhot = "/upload/img/"+$('.image-title').val();
-       console.log(NewPhot);
-        
-    $.ajax({
-        type: "POST",
-        data: {
-            "no" : meno,
-            "phot" : newPhot
-            },
-     url: "updatePhoto.do", 
-     success : function() {
-        
-         swal({
-               text : "프로필 사진 변경 완료",
-             button : "확인"
-             })
-         },error : function(error,status){
-             swal({
-                 text : "프로필사진 업로드 실패ㅜㅜ",
-                 button : "확인"
-                 })
-                 }
-         }); 
-    } */
+  if(!ppSubmit.photoUpdate.value) {
+
+      swal({
+          text : "프로필 사진을 선택해 주세요",
+        button : "확인",
+        icon : "warning"
+        });
+
+    ppSubmit.photoUpdate.focus();
+
+    return false;
+
+  }
+  
+  else return true;
+
+}
+    
+    
+    // 멘토신청 체크
+function mentorcheck() {
+
+  if(mentorSubmit.btno.value == 0) {
+
+      swal({
+          text : "분야를 선택 해주세요",
+        button : "확인",
+        icon : "warning"
+        });
+
+    mentorSubmit.btno.focus();
+
+    return false;
+
+  }
+
+  else if(mentorSubmit.carrin.value == 0) {
+
+      swal({
+          text : "경력을 선택 해주세요 ",
+        button : "확인",
+        icon : "warning"
+        });
+
+    mentorSubmit.carrin.focus();
+    console.log(mentorSubmit.fileUpload1.value);
+    return false;
+
+  }
+  
+ else if(!mentorSubmit.fileUpload1.value) {
+
+      swal({
+          text : "작품 이미지를 선택 해주세요",
+        button : "확인",
+        icon : "warning"
+        });
+
+    mentorSubmit.fileUpload1.focus();
+    
+    return false;
+
+  }
+  
+  
+  else if(!mentorSubmit.fileUpload2.value) {
+
+      swal({
+          text : "자격증 이미지를 선택 해주세요",
+        button : "확인",
+        icon : "warning"
+        });
+
+    mentorSubmit.fileUpload2.focus();
+    
+    return false;
+
+  } 
+
+  
+  
+  else return true;
+
+}
+    
 
 </script>
             <div class="row" >
@@ -475,7 +563,7 @@ input[type="number"]::-webkit-inner-spin-button {
                                 </div>
                                 <div class="cont1" >
                                 <B>닉네임</B>&nbsp;
-                                <input id="text1" type="text" name="닉네임" value="&nbsp;${mentee.nick}" readonly style="width:140px; border:none; ">
+                                <input id="text1" type="text"  maxlength="10" value="${mentee.nick}" readonly style="width:140px; border:none; ">
                                 </div>
                                 <div id="wrapper" name="${mentee.mtstat}" class="pop" style=" position: relative; right: -50px; bottom: -60px">
                                 <button class="fancy" >멘토신청</button>
@@ -644,7 +732,7 @@ input[type="number"]::-webkit-inner-spin-button {
   </div>
   
    <div class="content"> 
-  <form method="post"  action="imgupload" enctype="multipart/form-data" >
+  <form method="post"  name="mentorSubmit" action="imgupload" enctype="multipart/form-data"  onsubmit="return mentorcheck()">
     <input type="hidden" name="no" value="${mentee.no}">
     
     <input type="hidden" name="mtstat" value="${mentee.mtstat}">
@@ -663,7 +751,7 @@ input[type="number"]::-webkit-inner-spin-button {
     <div class="nope" >
     
 <select name="btno" id="soflow" >
-  <option>분야 선택</option>
+  <option value="0">분야 선택</option>
    <c:forEach items="${btag}" var="b" varStatus="i">
    <option value="${b.no}">${b.name}</option>
   
@@ -673,7 +761,7 @@ input[type="number"]::-webkit-inner-spin-button {
 </select>
 
 <select name="carrin"  id="soflow2">
-  <option>경력 선택</option>
+  <option value="0">경력 선택</option>
      <%
                   String Result = "";
                   
@@ -717,7 +805,7 @@ input[type="number"]::-webkit-inner-spin-button {
         Haru
       </div>
     </div>
-    <output id="list"></output><input id="files"  name="fileUpload1" type="file" accept="image/*" multiple/>
+    <output id="list"></output><input id="files" name="fileUpload1" type="file" accept="image/*" multiple/>
   </div>
   
   <!-- upload file1 code-->
@@ -765,7 +853,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
  <!-- photoupdate start  -->
           
-            <form method="post"  action="photoupload" enctype="multipart/form-data" >
+            <form method="post" name="ppSubmit" action="photoupload" enctype="multipart/form-data" onsubmit="return ppcheck()" >
                    <input type="hidden" name="meno" value="${mentee.no}">
       <div class="modal fade" id="photoupdate" tabindex="1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" >
                                           <div class="modal-dialog">
@@ -801,7 +889,7 @@ input[type="number"]::-webkit-inner-spin-button {
   
   
                                                     <div>
-                                                      <button type="submit" class="btn btn-primary" id="2" onclick="updatePhoto(${mentee.no})">변경하기</button>
+                                                      <button type="submit" class="btn btn-primary" id="2">변경하기</button>
                                                       <button type="button" class="btn btn-danger" id="1" style="float:right" data-dismiss="modal"  role="button" >취소</button>
                                                     </div>
 
@@ -828,20 +916,172 @@ input[type="number"]::-webkit-inner-spin-button {
                                                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <!-- content goes here -->
-                                                      <input type="password" id="withdrawalpwd"/>
-                                                      <button type="button" class="btn btn-default" data-dismiss="modal" onClick="submitbtn()">탈퇴하기</button>
-                                                      <button type="button" class="btn btn-default" data-dismiss="modal"  role="button">취소</button>
+                                                	  <input type="text" value="비밀번호 확인" readonly style="width:20%; border:1px solid #FFB53C;
+                                                	   background-color: #FFB53C; color: aliceblue; border-radius:3px; text-align:center; font-weight:bold; margin-bottom:3px; "/><br>
+                                                      <input type="password" id="withdrawalpwd" placeholder="비밀번호를 입력해주세요." style="width:70%; margin-top:3px;"/>
                                                 </div>
+                                                <div>
+                                                      <button type="button" class="btn btn-default" data-dismiss="modal" style="margin-left:15px; margin-bottom:10px;" onClick="submitbtn()">탈퇴하기</button>
+                                                      <button type="button" class="btn btn-default" style="float:right; margin-right:15px; margin-bottom:10px;" data-dismiss="modal"  role="button">취소</button>
+                                            	</div>
                                             </div>
                                           </div>
                                         </div>
 
-            </div>
+
             
             
             
             <script>
+       /*  function fileCheck2(file)
+            {
+            	console.log("asd");
+                    // 사이즈체크
+                    var maxSize  = 10000000;    //10MB
+                    var fileSize = 0;
+                   // console.log(file[0].size);
+                   // console.log(file[1].size);
+                    console.log(file);
+                   // console.log(file[0].value.size);
+                   // console.log(file[1].value.size);
+                   console.log($("#files2")[0].files.length);
+                    
+                    
+
+            	// 브라우저 확인
+            	var browser=navigator.appName;
+            	
+            	// 익스플로러일 경우
+            	if (browser=="Microsoft Internet Explorer")
+            	{
+            		var oas = new ActiveXObject("Scripting.FileSystemObject");
+            		fileSize = oas.getFile( file.value ).size;
+            		
+            	}
+            	// 익스플로러가 아닐경우
+            	else
+            	{
+            		console.log($("#files2")[0].files.length);
+            		console.log("익스플로러x 실행");
+            		for(var x=0; x<$("#files2")[0].files.length; x++){
+            			if($("#files2")[0].files[x].size > 2000000 ){
+            				swal({
+            					text:"첨부파일 한장당 사이즈는 2MB 이내로 등록 가능합니다. ",
+            					button:"확인"
+            					});
+            				console.log("2MB 넘는 파일 이름 : " + file.files[x].name);
+            				console.log("2MB 넘는 파일 사이즈 : " +file.files[x].size);
+            				console.log(x);
+//            				removeImg(x);
+            				console.log(file.files[x]);
+            				file2.files[x].remove;
+            				console.log(file.files[x]);
+            				//$('#files').html();
+            				$("#files2").val("");
+            				//$("div#imgDiv" + x).remove();
+            			}else{
+            				fileSize += file.files[x].size;
+            				console.log(file.files[x].size);
+            			}
+            		//console.log($("#files").size); 
+            		//console.log("asdzxc"); 
+            		} 
+            			console.log("전체 파일 사이즈 : " + fileSize);
+            		
+            		console.log("???");
+            	}
+            	
+            	console.log("asdasdasd");
+            	//console.log(fileSize);
+
+
+                    if(fileSize > maxSize)
+                    {
+                    	swal({
+            				text:"첨부파일 전체 사이즈는 10MB 이내로 등록 가능합니다. ",
+            				button:"확인"
+            				});
+                        //alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다.    ");
+                    	$('#files2').val('');
+                    }
+
+            }
+        
+        
+        function fileCheck(file)
+        {
+        	console.log("asd");
+                // 사이즈체크
+                var maxSize  = 10000000;    //10MB
+                var fileSize = 0;
+               // console.log(file[0].size);
+               // console.log(file[1].size);
+                console.log(file);
+               // console.log(file[0].value.size);
+               // console.log(file[1].value.size);
+               console.log($("#files")[0].files.length);
+                
+                
+
+        	// 브라우저 확인
+        	var browser=navigator.appName;
+        	
+        	// 익스플로러일 경우
+        	if (browser=="Microsoft Internet Explorer")
+        	{
+        		var oas = new ActiveXObject("Scripting.FileSystemObject");
+        		fileSize = oas.getFile( file.value ).size;
+        		
+        	}
+        	// 익스플로러가 아닐경우
+        	else
+        	{
+        		console.log("익스플로러x 실행");
+        		for(var x=0; x<$("#files")[0].files.length; x++){
+        			if(file.files[x].size > 2000000 ){
+        				swal({
+        					text:"첨부파일 한장당 사이즈는 2MB 이내로 등록 가능합니다. ",
+        					button:"확인"
+        					});
+        				console.log("2MB 넘는 파일 이름 : " + file.files[x].name);
+        				console.log("2MB 넘는 파일 사이즈 : " +file.files[x].size);
+        				console.log(x);
+//        				removeImg(x);
+        				console.log(file.files[x]);
+        				file.files[x].remove;
+        				console.log(file.files[x]);
+        				//$('#files').html();
+        				$("#files").val("");
+        				//$("div#imgDiv" + x).remove();
+        			}else{
+        				fileSize += file.files[x].size;
+        				console.log(file.files[x].size);
+        			}
+        		//console.log($("#files").size); 
+        		//console.log("asdzxc"); 
+        		} 
+        			console.log("전체 파일 사이즈 : " + fileSize);
+        		
+        		console.log("???");
+        	}
+        	
+        	console.log("asdasdasd");
+        	//console.log(fileSize);
+
+
+                if(fileSize > maxSize)
+                {
+                	swal({
+        				text:"첨부파일 전체 사이즈는 10MB 이내로 등록 가능합니다. ",
+        				button:"확인"
+        				});
+                    //alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다.    ");
+                	$('#files').val('');
+                }
+
+        } */
+        
+            
             
             function sample6_execDaumPostcode() {
                 new daum.Postcode({
@@ -897,8 +1137,6 @@ input[type="number"]::-webkit-inner-spin-button {
                             buttons: true,
                             dangerMode: true,
                             })
-                          
-                           
                      } 
                     
                     else{

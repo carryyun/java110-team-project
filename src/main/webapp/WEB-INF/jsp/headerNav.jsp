@@ -21,9 +21,9 @@
     <!-- Category Navigation -->
     <!-- <hr class="Fhr"> -->
     
-    <nav class="navbar navbar-expand-lg">
+<!--     <nav class="navbar navbar-expand-lg"> -->
     
-        <div class="navbar-nav" id="categoryNav">
+        <div class="navbar-nav" id="categoryNav" style="padding-top: 2px; padding-bottom: 1px">
           <ul class="navbar-nav" id="mainUl" style="float: left;">
             <c:forEach  items="${BTlist}" var="bt" varStatus="i">
               <li class="nav-item" style="margin:0 auto;display: inline-block;">
@@ -35,7 +35,7 @@
               </li>
           </ul>
         </div>
-    </nav>
+<!--     </nav> -->
     
     <!-- <hr class="Fhr"> -->
     

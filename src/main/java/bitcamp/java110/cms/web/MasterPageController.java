@@ -92,7 +92,30 @@ public class MasterPageController {
    this.classFileService = classFileService;
    this.timetableService = timetableService;
   }
-
+  
+  @GetMapping("dashBoard")
+  public void dashBoard(Model model,@RequestParam(defaultValue="1") int pageNo, 
+      @RequestParam(defaultValue="10") int pageSize) {
+      List<Classes> ClassesFindAll = classService.findByStat(1, 3);
+      model.addAttribute("ClassesFindAll",ClassesFindAll);
+//      
+//      List<Product> findAllByList = productService.findAllByList(3,3);
+//      model.addAttribute("findAllByList",findAllByList);
+      
+      
+      List<Mentor> MentorFindAll = mentorService.listByMetoStat(pageNo,pageSize);
+      for(Mentor m : MentorFindAll) {
+        m.setMentorTag(bigTagService.listByMono(m.getNo()));
+        
+      }
+      model.addAttribute("MentorFindAll",MentorFindAll);
+      
+      List<Report> ReportFindAll = reportService.list(3, 3);
+      model.addAttribute("ReportFindAll",ReportFindAll);
+      
+    
+  }// dashBoard end
+  
 
   @GetMapping("prdtList")
   public void prdtList(Model model,
@@ -379,29 +402,7 @@ public class MasterPageController {
     
   }
   
-  @GetMapping("dashBoard")
-  public void dashBoard(Model model,@RequestParam(defaultValue="1") int pageNo, 
-      @RequestParam(defaultValue="10") int pageSize
-      ) {
-//      List<Classes> ClassesFindAll = classService.findAllByList();
-//      model.addAttribute("ClassesFindAll",ClassesFindAll);
-//      
-//      List<Product> findAllByList = productService.findAllByList(3,3);
-//      model.addAttribute("findAllByList",findAllByList);
-      
-      
-      List<Mentor> MentorFindAll = mentorService.listByMetoStat(pageNo,pageSize);
-      for(Mentor m : MentorFindAll) {
-        m.setMentorTag(bigTagService.listByMono(m.getNo()));
-        
-      }
-      model.addAttribute("MentorFindAll",MentorFindAll);
-      
-      List<Report> ReportFindAll = reportService.list(3, 3);
-      model.addAttribute("ReportFindAll",ReportFindAll);
-      
-    
-  }// dashBoard end
+
   
   
   

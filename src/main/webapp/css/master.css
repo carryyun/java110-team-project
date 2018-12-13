@@ -54,11 +54,12 @@ h2{
 }
 .content{
  padding: 15px;
- border-radius:25px;
+ border-radius:10px;
  background-color:#fff9e8;
- -webkit-box-shadow: inset 1px -2px 35px -6px rgba(0,0,0,0.64);
-    -moz-box-shadow: inset 1px -2px 35px -6px rgba(0,0,0,0.64);
-    box-shadow: inset 1px -2px 35px -6px rgba(0,0,0,0.64);
+ -webkit-box-shadow: inset 1px -2px 20px -6px rgba(0,0,0,0.64);
+    -moz-box-shadow: inset 1px -2px 20px -6px rgba(0,0,0,0.64);
+    box-shadow: inset 1px -2px 20px -6px rgba(0,0,0,0.64);
+/*     height: auto; */
 }
 .popup {
     margin: 70px auto;
@@ -127,7 +128,8 @@ h2{
 
 .popup .content, .popupHH .content {
     max-height: auto; 
-    overflow: auto;
+    overflow: auto; 
+/*     height:auto; */
     height: 550px;
     background: white;
 }

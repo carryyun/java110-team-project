@@ -42,7 +42,7 @@ import bitcamp.java110.cms.service.MentorService;
 import bitcamp.java110.cms.service.ProductOrderService;
 import bitcamp.java110.cms.service.ProductQnAService;
 import bitcamp.java110.cms.service.ProductService;
-
+ 
 @Controller
 @RequestMapping("/mypage")
 public class MypageController {
@@ -120,13 +120,35 @@ public class MypageController {
     Mentee mentee = menteeService.get(reMeno);
     model.addAttribute("mentee", mentee);
     
-    Mentee mentor = mentorService.get(reMeno);
+    if(mentee.getPhot() == null) {
+      mentee.setPhot("/upload/images/images.png");
+      model.addAttribute("mentee", mentee);
+    }else {
+      model.addAttribute("mentee", mentee);
+    }
+    
+    Mentor mentor = mentorService.get(reMeno);
     model.addAttribute("mentor", mentor);
     
   }
   
   @GetMapping("headerMainMy")
   public void headerMainMy(Model model,HttpSession session) {
+    
+    Mentee imentee = (Mentee) session.getAttribute("loginUser");
+    int reMeno = imentee.getNo();
+   
+    Mentee mentee = menteeService.get(reMeno);
+    model.addAttribute("mentee", mentee);
+    
+    if(mentee.getPhot() == null) {
+      mentee.setPhot("/upload/images/images.png");
+      model.addAttribute("mentee", mentee);
+    }else {
+      model.addAttribute("mentee", mentee);
+    }
+    
+    
   }
   
   @GetMapping("headerNavMy")

@@ -32,19 +32,19 @@
                         
                         <c:when test="${fn:contains(sessionScope.loginUser.stat,'M')}">
                         <div class="dropdown" id="dropdown">
-                            <img src="${sessionScope.loginUser.phot}" alt="userIMG" 
+                            <img src="${mentee.phot}" alt="userIMG" 
                                     style="margin:0 30px; width: 56px; height: 56px; border-radius: 28px; border: 3px solid #FFB53C"><br>
                             <div class="dropdown-content text-left" id="dropdown-content">
                             <hr class="Hhr"/> 
                             <a href="../auth/logout"><span><i class="fas fa-sign-out-alt"></i></span><span class="ml-3">로그아웃</span></a>
                             </div>
                         </div>
-                        </c:when>
+                        </c:when> 
                         
                         <c:otherwise>
                             <div class="dropdown" id="dropdown">
                             <!-- onload="mover()" -->
-                                <img src="${sessionScope.loginUser.phot}" alt="userIMG" 
+                                <img src="${mentee.phot}" alt="userIMG" 
                                     style="margin: 0 30px; width: 56px; height: 56px; border-radius: 28px; border: 3px solid #FFB53C"><br>
                                 <div class="dropdown-content text-left" id="dropdown-content">
                                     <a href="../mypage/mypage"><span><i class="fas fa-user"></i></span><span class="ml-3">마이페이지</span></a>
