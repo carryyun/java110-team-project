@@ -28,7 +28,7 @@ input[type="number"]::-webkit-inner-spin-button {
 	            </c:when>
 				<c:otherwise>
 				    <h2 class="col-lg-10 mr-5">상품 상세보기</h2>
-				    <a href="javaScript:void(0)" onclick="report()" class="btn btn-lg btn-primary col-lg-1 mr-1 py-1" style="color:white; height: 38px;">신고</a>
+				    <a href="javaScript:void(0)" onclick="report()" class="btn btn-lg btn-danger py-1" style="color:white; height: 38px;">신고</a>
 				</c:otherwise>
 				</c:choose>
 				
@@ -146,14 +146,14 @@ input[type="number"]::-webkit-inner-spin-button {
 								        <div class="col-lg-8 px-0">
 		                                        <div class="col-lg-5 text-right pl-0" style="float: left;margin-top: 10px">총 결제금액</div>
 	                                            <div class="col-lg-7 text-left px-0" style="float: left;font-weight: 600; font-size: 1.5rem" id="num"><fmt:formatNumber value="${product.pric + product.deli}" groupingUsed="true"/>원</div>
-	                                            <input type="hidden" id="totalPric" value="<fmt:formatNumber value="${product.pric + product.deli}" groupingUsed="true"/>">
+	                                            <input type="hidden" id="totalPric" value="${product.pric + product.deli}">
                                         </div>
 								    </div>
 								</div>
 							</div>
  
 							<hr class="FhrMargin">
-							<a href="javaScript:void(0)" onclick="npay()" class="btn btn-lg btn-primary">
+							<a href="javaScript:void(0)" onclick="orderProduct()" class="btn btn-lg btn-primary">
 								구매하기 </a> 
 							<button class="btn btn-lg btn-outline-primary"
                                         onClick="prodBaskt(${sessionScope.loginUser.no})"> 장바구니</button>

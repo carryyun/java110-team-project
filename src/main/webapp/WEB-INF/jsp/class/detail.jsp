@@ -330,6 +330,7 @@
                 		style="float : right; color:white; height: 38px; text-align:center;">삭제</a>
                 	</c:when>
                 	<c:otherwise>
+                	   <a href="javaScript:void(0)" onclick="report()" class="btn btn-lg btn-danger py-1" style="float: right; text-align: center;color:white; height: 38px;">신고</a>
                 	</c:otherwise>
                 </c:choose></h3>
                     <hr class="FhrBotMargin" id="class_detail">
@@ -2045,6 +2046,17 @@ function setLike(evt,cno,obj){
             button : "확인",
           })
     }
+}
+
+function report(){
+    var openWin;
+    var Curpath = $(location).attr('href');
+    Curpath = Curpath.replace("http://localhost:8888/app/", '');
+    console.log(Curpath);
+    var url    = "../masterpage/report?url="+Curpath;
+    var title  = "하루 - 신고하기";
+    var status = "toolbar=no,directories=no,scrollbars=no,resizable=no,status=no,menubar=no,width=635, height=465, top=-1000,left=100"; 
+    openWin = window.open(url, title,status); 
 }
 </script>
 </html>

@@ -58,8 +58,8 @@ table.fixed-table td.tableBtn{
 <tr>
 <td class="noBorder text-left" colspan="2">
     <div class="row">
-	    <h3 class="col-lg-2"><strong>신고</strong></h3> 
-	    <h6 class="col-lg-10 px-4" style="margin-top:17px; font-size: 13px; color: #c9c9c9" >불량게시물 · 불량회원을 신고해주세요</h6>
+	    <div class="col-2" style="font-size: 1.75rem"><strong>신고</strong></div> 
+	    <div class="col-8 pl-4" style="margin-top:17px; font-size: 13px; color: #c9c9c9">불량게시물 · 불량회원을 신고해주세요</div>
     </div>
     <hr class="my-2" color="red" style="height:3px; border-bottom-right-radius :25%;border-top-right-radius :25%;"/>
 </td>
@@ -133,7 +133,7 @@ table.fixed-table td.tableBtn{
     pageContext.setAttribute("url", url);
     %>
     <td style="padding-left: 20px" class="noBorderBot">
-    <input type="text" value="${urls}" onclick="test()" name="url" id="url" class="customWidth"><br>
+    <input type="text" value="${url}"name="url" disabled="disabled" id="url" class="customWidth"><br>
     </td>
 </tr>
 <tr>
@@ -149,17 +149,17 @@ table.fixed-table td.tableBtn{
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-function test(){
-    console.log('${url}'');
-}
 
 function report(){
     var openWin;
-    console.log(request.getContextPath());
-    var url    = "../masterpage/report?url=";
+    var Curpath = $(location).attr('href');
+    Curpath = Curpath.replace("http://localhost:8888/app/", '');
+    console.log(Curpath);
+    var url    = "../masterpage/report?url="+Curpath;
     var title  = "하루 - 신고하기";
-    var status = "toolbar=no,directories=no,scrollbars=no,resizable=no,status=no,menubar=no,width=635, height=490, top=-1000,left=100"; 
+    var status = "toolbar=no,directories=no,scrollbars=no,resizable=no,status=no,menubar=no,width=635, height=465, top=-1000,left=100"; 
     openWin = window.open(url, title,status); 
+}
         //window.open(url,title,status); window.open 함수에 url을 앞에와 같이
         //인수로  넣어도 동작에는 지장이 없으나 form.action에서 적용하므로 생략
         //가능합니다.
@@ -167,7 +167,6 @@ function report(){
     frm.action = url;         //form.action 이 부분이 빠지면 action값을 찾지 못해서 제대로 된 팝업이 뜨질 않습니다. 
     frm.method = "GET";
     frm.submit();   */
-}
 
 function addRept(){
     var type = $('input:radio:checked.type').val();
@@ -201,7 +200,7 @@ function addRept(){
                     if(willDelete){
                         window.close();
                     }
-                  })
+                  });
                 
             }
             

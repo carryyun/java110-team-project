@@ -475,8 +475,8 @@ ul#RankingUl li:hover{
            
            content += "<img id='owl-img' src=\"" +cfile+ "\" alt=\"" +titl+ "\">"
            
-           if(titl.length>19){
-               content += "<div class='col-lg-8' id='owl-col2'>" + titl.substring(0,19) + "...</div>"
+           if(titl.length>22){
+               content += "<div class='col-lg-8 pr-0' id='owl-col2'>" + titl.substring(0,22) + "...</div>"
            }else{
                content += "<div class='col-lg-8' id='owl-col2'>" + titl + "</div>" 
            }

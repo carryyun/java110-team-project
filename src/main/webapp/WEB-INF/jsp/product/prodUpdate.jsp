@@ -65,7 +65,7 @@ div.row.imgDiv {
 				<input type="hidden" name="meno" value="${sessionScope.loginUser.no}">
                 <input type="hidden" id="deleteFile" name="deleteFile" value="">
                 <input type="hidden" id="ptno" name="no" value="${product.no}">
-                <input type="hidden" id="conts" name="conts" value="${product.conts}">
+                <input type="hidden" id="conts" name="conts" value='${product.conts}'>
 
 				<div class="col-lg-12">
 					<div class="row">
@@ -112,7 +112,6 @@ div.row.imgDiv {
 										<div class="col-lg-12">가격</div>
 										<div class="col-lg-12">
 											<input type="text" class="detailInfo" name="pric" value="${product.pric}"/>
-<%-- 											<input type="text" class="detailInfo" name="pric" value="<fmt:formatNumber value="${product.pric}" groupingUsed="true"/>"/> --%>
 										</div>
 									</div>
 								</div>
@@ -121,7 +120,6 @@ div.row.imgDiv {
 										<div class="col-lg-12">택배비</div>
 										<div class="col-lg-12">
 											<input type="text" class="inputid detailInfo" name="deli" value="${product.deli}"/>
-<%-- 											<input type="text" class="inputid detailInfo" name="deli" value="<fmt:formatNumber value="${product.deli}" groupingUsed="true"/>"/> --%>
 
 										</div>
 									</div>
@@ -199,9 +197,38 @@ div.row.imgDiv {
         $('#mainNav').css("border", "0");
         $('#mainNav').css("margin-top", "21");
         $('div.note-editable').html('${product.conts}');
+        
         $("button#submitBtn").click(function(){
-            document.getElementById('myForm').submit();
-            return false; 
+            var frm = document.getElementById('myForm');
+            frm.method = 'POST';
+            frm.enctype = 'multipart/form-data';
+          
+            var fileData = new FormData(frm);
+          
+            // ajax
+            $.ajax({
+                url:'updateProduct.do',
+                type:'POST',
+                data:fileData,
+                async:false,
+                cache:false,
+                contentType:false,
+                processData:false,
+                success : function() {
+                    swal({
+                        text : "상품이 수정되었습니다.",
+                        icon : "success",
+                        button : "확인",
+                    }).then((willDelete) => {
+                        if(willDelete){
+                            window.close();
+                        }
+                      });
+                    
+                }
+
+            });
+            
         });
         
         $('div.note-editable').blur(function(){
@@ -248,7 +275,7 @@ div.row.imgDiv {
                 console.log("filesArr[j]="+filesArr[j] +  " ," + j);
                 f = filesArr[j];
                 html += "<div class='row imgDiv' id='imgDiv"+j + "' style='float:left; margin:5px;'>";
-
+                
                 html += "<div class='col-lg-12 px-0'>";
                 html += '<img class="fileImg" src=\"' + e.target.result + '\" onclick="removeImg(' + j + ', )">';
                 html += "</div>";
