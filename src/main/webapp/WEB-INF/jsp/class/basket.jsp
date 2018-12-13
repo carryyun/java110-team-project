@@ -101,10 +101,10 @@
                                                  <input type="hidden" id="cnt${i.index}" value="{r.classes.time}">
                                             </div>
                                         </div>
-                                    </td>
+                                    </td> 
                                     <td class="product-quantity col-2 text-center"><strong>${r.timetable.date }</strong></td>
-                                    <td class="product-price col-1 text-center"><strong>${r.timetable.stime }</strong></td>
-                                    <td class="product-line-price col-2 text-center"> <fmt:formatNumber value="${r.classes.pric }" groupingUsed="true"/></td>
+                                    <td class="product-price col-1 text-center"><strong>${r.timetable.stime }</strong><br/><span style="font-size: 14px">${r.classes.time}시간 과정</span></td>
+                                    <td class="product-line-price col-2 text-center"> <fmt:formatNumber value="${r.classes.pric * r.classes.time }" groupingUsed="true"/></td>
                                     <td class="product-removal col-1" id="del-button">
                                         <button type="button" class="btn btn-danger" value=${r.no } >삭제
                                         </button>
