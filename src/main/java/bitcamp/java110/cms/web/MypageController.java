@@ -456,6 +456,22 @@ public class MypageController {
     model.addAttribute("cqlist2", cqlist2 );
     
   }
+  /* menu4-3 */
+  @RequestMapping(value = "clsansupdate.do", method = {RequestMethod.POST})
+  public @ResponseBody List<ClassQna> clsansupdate(int no , String anser,HttpSession session,
+      @RequestParam(defaultValue="1") int pageNo, @RequestParam(defaultValue="10") int pageSize) {
+    
+    ClassQna classqna = classQnaService.get(no);
+    classqna.setAnser(anser);
+    
+    classQnaService.ansupdate(classqna);
+    
+    Mentee mentee = (Mentee) session.getAttribute("loginUser");
+    
+    List<ClassQna> clsqnalist = classQnaService.classqnalist2(mentee.getNo(), pageNo, pageSize);
+    
+    return clsqnalist;
+  }
   
   @GetMapping("menu4-4")
   public void menu4_4(Model model,HttpSession session,
