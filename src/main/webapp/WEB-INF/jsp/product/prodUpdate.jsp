@@ -196,15 +196,12 @@ div.row.imgDiv {
         $('#mainNav').css("padding", "0");
         $('#mainNav').css("border", "0");
         $('#mainNav').css("margin-top", "21");
-        //console.log('${product.conts}');
         $('#conts').val('${product.conts}');
         $('div.note-editable').html('${product.conts}');
-        //console.log($('div.note-editable').html());
         
         $("button#submitBtn").click(function(){
 			
         	var frm = document.getElementById('myForm');
-        	//console.log(frm);
             frm.method = 'POST';
             frm.enctype = 'multipart/form-data';
           

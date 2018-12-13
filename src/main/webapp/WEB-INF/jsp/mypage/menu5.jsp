@@ -28,7 +28,7 @@
 						<td><a href="../class/detail?no=${c.no}">${c.titl}</a></td>
 						<td>${c.timetable.date}<br>
 						<fmt:formatDate value="${c.timetable.stime}" pattern="a hh:mm" /> ( ${c.time} 시간 )</td>
-						<td>${c.bigTag.name}-${c.bigTag.name}</td>
+						<td>${c.bigTag.name}-${c.middleTag.name}</td>
 						<td><button onclick="getMenteeList(${c.timetable.no})"  class="btn-primary"  style="width:100px;"> ${c.counting} / ${c.timetable.capa} 명</button></td>
 					</tr>
 					        </c:forEach>     

@@ -20,7 +20,7 @@
         <result column="ptitl"    property="product.titl"/>
         <result column="me2nick"  property="mentee2.nick"/>
         <result column="me2name"  property="mentee2.name"/>
-         
+        
     </resultMap>
     
     <select id="findAll" resultMap="productQnAMap">
@@ -90,7 +90,8 @@
             pq.rgdt2,
             pq.conts,
             pq.anser,
-            pq.ptno
+            pq.ptno,
+            pq.qno
         FROM 
             p_prdt_qna pq 
             JOIN p_prdt p ON pq.ptno= p.ptno

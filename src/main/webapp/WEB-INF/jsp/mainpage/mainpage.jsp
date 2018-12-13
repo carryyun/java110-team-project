@@ -107,10 +107,10 @@ ul#RankingUl li:hover{
 	                            <div class="col-lg-12 text-left">
 	                                <div class="row">
 			                            <div class="col-lg-3 text-left">
-								           <h3 style="font-size: 1.5rem; font-weight: 700; float: left;">추천 클래스</h3>
+								           <h3 style="font-size: 1.5rem; font-weight: 700; margin-left:27px; float: left;">추천 클래스</h3>
 								        </div>
 					                    <div class="col-lg-9 text-left">
-		                                   <h4 style="font-size: 1rem; color:#a9a9a9; margin-left:-64px ;margin-top:9px; float: left;">오늘의 추천 클래스를 수강해보세요</h4>
+		                                   <h4 style="font-size: 1rem; color:#a9a9a9; margin-left:-60px ;margin-top:9px; float: left;">오늘의 추천 클래스를 수강해보세요</h4>
 		                                </div>
 	                                </div>
 						        </div>
@@ -213,10 +213,10 @@ ul#RankingUl li:hover{
         <hr class="Fhr" />
         <div class="row  my-3">
             <div class="col-lg-2 text-left">
-            <h3 style="font-size: 1.5rem; font-weight: 700; float: left;">추천작품</h3>
+            <h3 style="font-size: 1.5rem; font-weight: 700; margin-left:27px; float: left;">추천작품</h3>
         </div>
         <div class="col-lg-4 text-left">
-            <h4 style="font-size: 1rem; color:#a9a9a9; margin-top:9px; margin-left:-40px; float: left;">오늘의 추천작품을 만나보세요</h4>
+            <h4 style="font-size: 1rem; color:#a9a9a9; margin-top:9px; margin-left:-60px; float: left;">오늘의 추천 작품을 만나보세요</h4>
         </div>
         <div class="col-lg-6 text-right">
             <a class="btn btn-primary float-right mb-3" href="../product/prdt">작품 더보기 </a>
@@ -245,7 +245,7 @@ ul#RankingUl li:hover{
     <hr class="Fhr">
     <div class="row  my-3">
         <div class="col-lg-2 text-left">
-            <h3 style="font-size: 1.5rem; font-weight: 700; float: left;">실시간 후기</h3>
+            <h3 style="font-size: 1.5rem; font-weight: 700; margin-left:27px; float: left;">실시간 후기</h3>
         </div>
         <div class="col-lg-4 text-left">
             <h4 style="font-size: 1rem; color:#a9a9a9; margin-top:9px; margin-left:-40px; float: left;">회원들의 후기를 들어보세요</h4>

@@ -402,11 +402,8 @@ public class MypageController {
     
     Mentee imentee = (Mentee) session.getAttribute("loginUser");
     int reMeno = imentee.getNo();
-    
+    System.out.println(reMeno);
     List<ClassOrder> colist = classOrderService.listByMeno(reMeno , pageNo,pageSize);
-//    for(ClassOrder c : colist) {
-//      System.out.println("titl"+c.getClasses().getTitl());
-//    }
     
     model.addAttribute("colist", colist );
  }
@@ -480,10 +477,25 @@ public class MypageController {
     List<ProductQnA> pqlist2 = productQnAService.listByMeno2(reMeno,pageNo,pageSize);
     model.addAttribute("pqlist2", pqlist2 );
   }
+  /* menu4-5 */
+  @RequestMapping(value = "ansupdate.do", method = {RequestMethod.POST})
+  public @ResponseBody List<ProductQnA> ansupdate(int no , String anser,HttpSession session) {
+    
+    ProductQnA productqna = productQnAService.get(no);
+    productqna.setAnser(anser);
+    
+    productQnAService.updateAnser(productqna);
+    
+    Mentee mentee = (Mentee) session.getAttribute("loginUser");
+    
+    List<ProductQnA> qnalist = productQnAService.listByMeno2(mentee.getNo(), 1, 10);
+    
+    return qnalist;
+  }
   
   @GetMapping("menu5")
   public void menu5(Model model,HttpSession session, 
-      @RequestParam(defaultValue="1") int pageNo, @RequestParam(defaultValue="10") int pageSize) { 
+      @RequestParam(defaultValue="1") int pageNo, @RequestParam(defaultValue="5") int pageSize) { 
     
     Mentee imentee = (Mentee) session.getAttribute("loginUser");
     int reMeno = imentee.getNo();
