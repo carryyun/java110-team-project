@@ -384,34 +384,42 @@ public class MypageController {
   
   
   @GetMapping("menu2")
-  public void menu2(Model model,HttpSession session) {
+  public void menu2(Model model,HttpSession session,
+      @RequestParam(defaultValue="1") int pageNo, @RequestParam(defaultValue="10") int pageSize) {
 
     Mentee imentee = (Mentee) session.getAttribute("loginUser");
     int reMeno = imentee.getNo();
     
-    List<ClassOrder> colist = classOrderService.listByMeno(4,10,reMeno);
+    List<ClassOrder> colist = classOrderService.listByMeno(pageNo,pageSize,reMeno);
     model.addAttribute("colist", colist );
     
   }
   
   
   @GetMapping("menu3-1")
-  public void menu3_1(Model model,HttpSession session) {
+  public void menu3_1(Model model,HttpSession session,
+      @RequestParam(defaultValue="1") int pageNo, @RequestParam(defaultValue="10") int pageSize) {
     
     Mentee imentee = (Mentee) session.getAttribute("loginUser");
     int reMeno = imentee.getNo();
     
-    List<ClassOrder> colist = classOrderService.listByMeno(4,10,reMeno);
+    List<ClassOrder> colist = classOrderService.listByMeno(reMeno , pageNo,pageSize);
+    
+    for(ClassOrder c : colist) {
+      System.out.println("titl"+c.getClasses().getTitl());
+    }
+    
     model.addAttribute("colist", colist );
  }
   
   @GetMapping("menu3-2")
-  public void menu3_2(Model model,HttpSession session) {
+  public void menu3_2(Model model,HttpSession session,
+      @RequestParam(defaultValue="1") int pageNo, @RequestParam(defaultValue="10") int pageSize) {
     
     Mentee imentee = (Mentee) session.getAttribute("loginUser");
     int reMeno = imentee.getNo();
     
-    List<ProductOrder> polist = productOrderSerivce.listByMeno(4,10,reMeno);
+    List<ProductOrder> polist = productOrderSerivce.listByMeno(reMeno,pageNo,pageSize);
     model.addAttribute("polist", polist );
     
   }

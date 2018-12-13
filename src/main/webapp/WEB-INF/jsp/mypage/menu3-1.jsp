@@ -16,7 +16,7 @@
                     <tr id="th-pay" >
                        
                          <th width="5%">No.</th>
-                         <th width="15%">결제일자<br>(주문번호)</th>
+                         <th width="15%">사진</th>
                          <th width="30%">클래스</th>
                          <th width="10%">멘토</th>
                          <th width="25%">결제금액<br>(결제방법)</th>
@@ -31,9 +31,8 @@
 
                     <tr id="tb-pay">
                         <td>${i.count}</td>
-                        <td>${c.paydt}<br>
-                        (<fmt:formatDate value="${c.paydt}" pattern="yyyyMMdd"/>${c.no})</td>
-                        <td>${c.classes.titl}<a href="../class/detail?no=${c.classes.no}"><img src="${c.classFile.fname}" width="200px" height="150px"></a></td>
+                        <td><img src="${c.classFile.fname}" width="150px" height="100px"></td>
+                        <td><a href="../class/detail?no=${c.classes.no}">${c.classes.titl}</a></td>
                         <td>${c.mentornick}</td>
                         <td>${c.tot_pric}<br>${c.payopt}</td>
                         <td>결제완료</td>

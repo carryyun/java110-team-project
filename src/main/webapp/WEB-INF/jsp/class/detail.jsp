@@ -127,7 +127,6 @@
                                                 </div>
                                             <%    
                                                 }else {
-                                                 System.out.println(fna);
                                             %>
                                                 <div class="carousel-item">
                                                   <iframe width="100%" height="445" style="margin-left:-10px;" src="https://www.youtube.com/embed/<%=fna%>" 
@@ -244,11 +243,24 @@
                                     <!-- col.// -->
 
                                 <dl class="param param-feature">
-                                     <select name="time" id="time">
+                                     <select name="time" id="time" style="">
                                          <c:forEach items="${clstimelist}" var="t">
-                                             <option value="${t.no}" >날짜 : ${t.date} , 시간 : ${t.stime}</option>
+                                         	<c:if test="${t.edate eq t.date}}">
+                                             	<option value="${t.no}" >날짜 : ${t.date} , 시간 : ${t.stime}</option>
+                                             </c:if>
+                                             <c:if test="${t.edate ne t.date}">
+                                             	<option value="${t.no}">${t.date}~${t.edate}시간:${t.stime}</option>
+                                             	<%-- <option value="${t.no}" >수업시간 : ${t.stime}</option> --%>
+                                             </c:if>
                                          </c:forEach>
                                      </select>
+                                     <%-- <c:forEach items="${clstimelist}" var="t">
+                                     			<c:if test="${t.edate ne t.date}">
+                                             	<option value="${t.no}" >수업기간:${t.date}~${t.edate}</option>
+                                             	<option value="${t.no}" >수업시간 : ${t.stime}</option>
+                                             	<div>수업기간:${t.date}~${t.edate}수업시간 : ${t.stime}</div>
+                                             </c:if>
+                                             </c:forEach> --%>
                                 </dl>
                                 
                                 <hr>
@@ -1770,7 +1782,7 @@ function updabtn(sessionno,rno , teno) { /* 회원 인식해서 댓글 수정해
  var stmnGAP1 = 0; // 위쪽 여백 
  var stmnGAP2 = 50; // 스크롤시 브라우저 위쪽과 떨어지는 거리 
  var stmnBASE = 0; // 스크롤 시작위치 
- var stmnActivateSpeed = 35; //스크롤을 인식하는 딜레이 (숫자가 클수록 느리게 인식)
+ var stmnActivateSpeed = 1; //스크롤을 인식하는 딜레이 (숫자가 클수록 느리게 인식)
  var stmnScrollSpeed = 1; //스크롤 속도 (클수록 느림)
  var stmnTimer; 
  var stmnsub = 230; // stmtEndPoint 맞춰줄 때 쓴다.

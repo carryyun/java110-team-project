@@ -38,7 +38,11 @@
 <link href="/css/class_detail.css" rel="stylesheet">
 
 	<!-- 아래와 같이 주석처리한 이유는 bootstrap이 두번 선언된 경우에 동작이 두번할수도 있음 -->
-
+<style type="text/css">
+a.nav-link{
+    transition:none;
+}
+</style>
 <style type="text/css">
 #STATICMENU { 
     margin: 0px;
@@ -64,6 +68,10 @@
 </head>
 <body style="background-color: #F2F4F7" onload="InitializeStaticMenu()">
 <div class="col" style="position: absolute; height: 105px; background-color: white">
+    <!-- 헤더 배경색 적용 -->
+</div>
+<div class="col-lg-12 px-0" 
+    style="position: absolute; top:105px; height: 42px; background-color: white">
     <!-- 헤더 배경색 적용 -->
 </div>
     <div class="container">

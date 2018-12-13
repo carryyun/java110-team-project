@@ -35,6 +35,9 @@
 <link href="/css/common.css" rel="stylesheet">
 
 <style>
+a.nav-link{
+    transition:none;
+}
 #colorlib-aside {
     overflow: hidden;
     position: absolute;
@@ -57,7 +60,14 @@
 </head>
 
 <body>
-
+<div class="col-lg-12 px-0"
+    style="position: absolute; height: 102px; background-color: white">
+    <!-- 헤더 배경색 적용 -->
+</div>
+<div class="col-lg-12 px-0" 
+    style="position: absolute; top:102px; height: 39px; background-color: #f3f3f3">
+    <!-- 헤더 배경색 적용 -->
+</div>
 <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -196,7 +206,7 @@
                                                     <td
                                                         class="text-center">
                                                             <a 
-                                                                class="btn btn-light"
+                                                                class="btn btn-light" style="font-size:14px;padding: 4px 10px !important"
                                                                 href="#popup${i.index}" style="color:black;">상세
                                                                 보기</a></td>
                                                 </tr>
@@ -251,7 +261,7 @@
                                         <div class="popupHH">
                                             <h2>신고 상세 목록</h2>
                                             <a class="close" href="#">×</a>
-                                            <div class="content">
+                                            <div class="content" style="height:auto">
                                                 <br />
                                                 <div class="container" style="width:100%;">
                                                     <div class="row">

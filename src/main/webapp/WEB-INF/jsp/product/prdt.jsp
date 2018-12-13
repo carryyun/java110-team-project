@@ -32,13 +32,30 @@
 <link href="/css/animateNew.css" rel="stylesheet">
 
 <!-- ===============필수포함=============== -->
+<style type="text/css">
+ul#RankingUl{
+    margin-bottom: 0;
+}
+ul#RankingUl li:nth-child(odd){
+    background-color: #ffffff;
+}
+ul#RankingUl li:nth-child(even){
+    background-color: #f9f9f9; 
+}
+ul#RankingUl li:hover{
+    background-color: #FFB53C;
+}
+</style>
 <style>
 	.area_hotkeyword.PM_CL_realtimeKeyword_base{
-		margin-top:20px;
+	    font-size: 14px;
+		margin-top:10px;
 	}
 	.area_hotkeyword.PM_CL_realtimeKeyword_base li{
-		padding-left:3px;
-		margin-top:10px;
+		padding: 0.5rem;
+		padding-right: 0;
+
+/* 		margin-top:10px; */
 	}
 	.area_hotkeyword.PM_CL_realtimeKeyword_base li:hover{ background-color: #FFB53C}
 	.area_hotkeyword.PM_CL_realtimeKeyword_base .ah_k{
@@ -119,11 +136,26 @@
 							<div class="ah_roll PM_CL_realtimeKeyword_rolling_base" aria-hidden="false">
 							<h3 class="blind" style="font-size: 1.5rem; font-weight: 700;">인기 주문 목록</h3>
 							<div class="ah_roll_area PM_CL_realtimeKeyword_rolling"> 
-							<ul class="ah_l">
+							<ul class="ah_l" id="RankingUl">
 							<c:forEach items="${hotItemlist}" var="h" varStatus="o">
 							<li class="ah_item">
 							<a href="detail?no=${h.no}" target="_blank" class="ah_a" data-clk="lve.keyword" >
-							<span class="ah_r">${o.count}</span>
+							<c:choose>
+                                    <c:when test="${o.count == 1 }">
+                                        <img style="width: 18px; height: 24px; margin-right: 9px" alt="/upload/img/Goldmedal.png" src="/upload/img/Goldmedal.png">
+                                    </c:when>
+                                    <c:when test="${o.count == 2 }">
+                                        <img style="width: 18px; height: 24px; margin-right: 9px" alt="/upload/img/Silvermedal.png" src="/upload/img/Silvermedal.png">
+                                    </c:when>
+                                    <c:when test="${o.count == 3 }">
+                                        <img style="width: 18px; height: 24px; margin-right: 9px" alt="/upload/img/Bronzemedal.png" src="/upload/img/Bronzemedal.png">
+                                    </c:when>
+                                    
+                                    <c:otherwise> 
+                                        <span class="ah_r" style="margin-left: 5px;margin-right: 15px;">${o.count}</span>
+                                    </c:otherwise>
+                            </c:choose>
+                            
 							<c:choose>
 								<c:when test="${fn:length(h.titl) > 17}">
 					              <span class="ah_k">${fn:substring(h.titl,0,17)}...</span>
@@ -151,9 +183,9 @@
 							<a href="post.html"></a>
 							<div class="row">
 
-<!-- 								<div class="container"> -->
-									<div class="col-lg-12 px-0">
-										<a class="btn btn-primary float-right mb-3" id="certBtn"
+								<div class="container">
+									<div class="col-lg-12 px-0 text-right">
+										<a class="btn btn-primary mb-3" id="certBtn"
 											data-toggle="modal" href="#"
 											onclick="checkSession('${sessionScope.loginUser.no}',event)">상품 등록
 										</a>
@@ -254,12 +286,14 @@
 		</select> -->
 		
 	</div>
+</div>
 		<footer>
 			<div class="col px-0">
 				<jsp:include page="../footer.jsp"></jsp:include>
 			</div>
 		</footer>
 </div>
+
 	<!-- ===============필수포함=============== -->
 	<!-- Bootstrap core JavaScript -->
 	<script src="/vendor/jquery/jquery.min.js"></script>
