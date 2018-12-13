@@ -1949,7 +1949,7 @@ function addOrder(payopt){
                 button : "확인",
               })
         }else{
-            var saveTitl = "${detailclass.titl}";
+            var saveTitl = '${detailclass.titl}';
             var saveTotal = parseInt(${detailclass.pric}) * parseInt(${detailclass.time});
             var IMP = window.IMP; // 생략해도 괜찮습니다.
             IMP.init("imp40971131"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
