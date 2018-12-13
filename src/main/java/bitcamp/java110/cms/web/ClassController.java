@@ -182,7 +182,7 @@ public class ClassController {
     List<Classes> clist = classService.classList(5);
 
     for(Classes c : clist) {
-
+ 
       System.out.println(c.getNo());
       System.out.println(c.getTitl());
       System.out.println(c.getMtno());

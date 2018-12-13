@@ -363,31 +363,49 @@ public class ProductController {
   @PostMapping(value = "updateProduct.do")
   public String updateProductdo(Product product,List<MultipartFile> files, String deleteFile, HttpSession session)
       throws Exception {
-    productService.update(product);
-    int result = product.getNo();
-
-    String[] str = deleteFile.split("&");
-    for(String s:str) {
-      ProductFile profile = new ProductFile();
-      profile.setPfname(s);
-      profile.setPtno(result);
-      productFileService.delete(profile);
+    int check=0;
+    List<ProductFile> filelist = productFileService.listByPtno(product.getNo());
+    
+    for(ProductFile pf : filelist) {
+      if( ( pf.getPfname().equals( product.getPhot()) )  ) {
+        check=1;
+      }
     }
-
+    if( check == 0 ) {
+      product.setPhot("del");
+    }
+    
+    if(deleteFile.length()>1) {
+      String[] str = deleteFile.split("&");
+      for(String s:str) {
+        ProductFile profile = new ProductFile();
+        profile.setPfname(s);
+        profile.setPtno(product.getNo());
+        productFileService.delete(profile);
+      }
+    }
     for (MultipartFile file : files) {
       if (!file.getOriginalFilename().equals("")) {
         String filename = UUID.randomUUID().toString();
         file.transferTo(new File(sc.getRealPath("/upload/img/prdtImg/" + filename + ".png")));
         String fname = "/upload/img/prdtImg/" + filename + ".png";
+        
         ProductFile productFile = new ProductFile();
         productFile.setPfname(fname);
-        productFile.setPtno(result);
+        productFile.setPtno(product.getNo());
 
         productFileService.add(productFile);
+        
       }
+      
+      
     }
-
-    return "redirect:detail?no=" + result;
+    if(product.getPhot().equals("del")) {
+      List<ProductFile> Afterfilelist = productFileService.listByPtno(product.getNo());
+      product.setPhot(Afterfilelist.get(0).getPfname());
+    }
+    productService.update(product);
+    return "redirect:detail?no=" + product.getNo();
   }
   @GetMapping("updatestat")
   public String updatestat(int no, String stat) {

@@ -404,10 +404,9 @@ public class MypageController {
     int reMeno = imentee.getNo();
     
     List<ClassOrder> colist = classOrderService.listByMeno(reMeno , pageNo,pageSize);
-    
-    for(ClassOrder c : colist) {
-      System.out.println("titl"+c.getClasses().getTitl());
-    }
+//    for(ClassOrder c : colist) {
+//      System.out.println("titl"+c.getClasses().getTitl());
+//    }
     
     model.addAttribute("colist", colist );
  }
