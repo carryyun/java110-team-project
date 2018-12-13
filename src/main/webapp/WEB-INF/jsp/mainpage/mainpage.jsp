@@ -360,6 +360,7 @@ ul#RankingUl li:hover{
     <script src="/js/owl.carousel.js"></script>
     <script>
     $(document).ready(function(){
+    		console.log('${sessionScope.loginUser.phot}');
         $('#menusubs').remove();
     });
     function setLike(evt,cno,obj){

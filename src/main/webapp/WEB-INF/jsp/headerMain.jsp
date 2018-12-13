@@ -15,8 +15,8 @@
 	crossorigin="anonymous">
 <link href="/css/mainheader.css" rel="stylesheet">
 
-<!-- <script>
-function mover(){
+ <!-- <script>
+/* function mover(){
     var getwid = $('#dropdown').css('width');
     if(getwid != undefined){
         var getcontentwid = $('#dropdown-content').css('width');
@@ -25,9 +25,10 @@ function mover(){
         var resultwid = parsecontentwid-parsewid;
         $('#dropdown-content').css('left',-(resultwid/2) + 'px');
     } 
-}
+} */
 
-</script> -->
+
+</script>  -->
 </head>
 <nav class="navbar navbar-expand-lg mx-auto fixed-top mb-2" id="mainNav">
 	<a class="navbar-brand" href="/app/mainpage/mainpage">하루</a>
