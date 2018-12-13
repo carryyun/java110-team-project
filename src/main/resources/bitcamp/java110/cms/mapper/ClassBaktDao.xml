@@ -97,7 +97,7 @@
   
   <select id="sumAllByMeno" resultMap="classBaktMap" parameterType="int">
        SELECT 
-            sum(cls.pric) as sum
+            sum(cls.pric * cls.time) as sum
             
        FROM p_cls_bakt bakt 
             join p_mete mete

@@ -172,7 +172,7 @@
 	        data : {
 	            "arr" : arr,
 	        },
-	        url : "addOrder.do",
+	        url : "addProdOrder.do",
 	        success : function(result) {
 	            if(result == "complete"){
 	                swal({

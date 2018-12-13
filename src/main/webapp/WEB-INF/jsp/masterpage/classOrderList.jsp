@@ -35,7 +35,11 @@
 <script src="/js/masterpagejs/main.js"></script>
 <script src="/js/masterpagejs/bootstrap.min.js"></script>
 <link href="/css/common.css" rel="stylesheet">
-
+<style type="text/css">
+a.nav-link{
+    transition:none;
+}
+</style>
 <style>
 #colorlib-aside {
     overflow: hidden;
@@ -59,7 +63,14 @@
 </head>
 
 <body>
-
+        <div class="col-lg-12 px-0"
+            style="position: absolute; height: 102px; background-color: white">
+            <!-- 헤더 배경색 적용 -->
+        </div>
+        <div class="col-lg-12 px-0" 
+            style="position: absolute; top:102px; height: 39px; background-color: #f3f3f3">
+            <!-- 헤더 배경색 적용 -->
+        </div>
 <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -95,37 +106,37 @@
                     <div id="navbar" class="collapse">
                         <ul>
                             <li><a
-                                onclick="location.href='dashBoard'"
+                                onclick="location.href='dashBoard'" style="cursor: pointer;"
                                 data-nav-section="1">메인 화면 </a></li>
                                 <li><a
-                                onclick="location.href='csList'"
+                                onclick="location.href='csList'" style="cursor: pointer;"
                                 data-nav-section="10">문의 목록 </a></li>
                             <li><a
-                                onclick="location.href='mentorreqlist'"
+                                onclick="location.href='mentorreqlist'" style="cursor: pointer;"
                                 data-nav-section="2">멘토 등록</a></li>
                             <li><a
-                                onclick="location.href='classreqlist'"
+                                onclick="location.href='classreqlist'" style="cursor: pointer;"
                                 data-nav-section="3">클래스 등록</a></li>
                             <li><a
-                                onclick="location.href='reportList'"
+                                onclick="location.href='reportList'" style="cursor: pointer;"
                                 data-nav-section="4">신고 접수 목록</a></li>
                             <li><a
-                                onclick="location.href='reportFinishList'"
+                                onclick="location.href='reportFinishList'" style="cursor: pointer;"
                                 data-nav-section="5">신고 완료 목록</a></li>
                             <li><a
-                                onclick="location.href='prdtList'"
+                                onclick="location.href='prdtList'" style="cursor: pointer;"
                                 data-nav-section="6">전체 상품 목록</a></li>
                             <li><a
-                                onclick="location.href='classList'"
+                                onclick="location.href='classList'" style="cursor: pointer;"
                                 data-nav-section="7">전체 클래스 목록 </a></li>
                             <li><a
-                                onclick="location.href='prodOrderList'"
+                                onclick="location.href='prodOrderList'" style="cursor: pointer;"
                                 data-nav-section="8"
                                 >상품
                                     주문 내역</a></li>
                             <li><a
                                 onclick="location.href='classOrderList'"
-                                data-nav-section="9" style="color: #2c98f0; font-weight: bold;"> 클래스 신청 내역 </a></li>
+                                data-nav-section="9" style="cursor: pointer;color: #2c98f0; font-weight: bold;"> 클래스 신청 내역 </a></li>
 
                         </ul>
                     </div>
