@@ -49,6 +49,10 @@ $(document).ready(function() {
                         <td>${c.titl}</td>
                         <td>${c.mentee2.nick}</td>
                         <td>${c.rgdt}</td>
+                        <c:set var="canse" value="${c.anser}"/>
+                        <%
+                        
+                        %>
                         <td class="answerState${i.index}"></td>
                     </tr>
                      
