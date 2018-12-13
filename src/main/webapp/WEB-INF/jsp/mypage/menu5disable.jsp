@@ -7,12 +7,40 @@
   
   
 <div class="col-lg-12" >
-	넌 아직 멘토가 아니라규
-	<img src="/upload/img/disable2-1.png" width="800px">
-    <img src="/upload/img/disable2-2.png" width="800px">
+	
+	
+        <a href="#" data-nav-section="about"><img class="copypop" src="/img/mentor1.png" width="800px" style="margin-top:30px"></a>
+        <img src="/img/mentor2.png" width="800px" style="margin-bottom:10px">
+        <img src="/img/mentor3.png" width="800px">
+     
+     
+
 </div> 
 
+<script>
+  // copypop -> pop 으로 연결
+     
+     $("#btn-cancle").click(function(){
+         $(".copypop").removeClass("hide");
+         return $(".popup").removeClass("show");
+       });
+     
+     
+     (function() {
+         $(".copypop").click(function(){
+                 
+                 return $(".popup").addClass("show");
+           
+         });
 
+         $(".icon i").click(function(){
+           $(".copypop").removeClass("hide");
+           return $(".popup").removeClass("show");
+         });
+
+       }).call(this);
+         
+</script>
   
 
 

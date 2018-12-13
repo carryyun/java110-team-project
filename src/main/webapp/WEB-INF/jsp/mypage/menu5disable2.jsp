@@ -7,9 +7,8 @@
   
   
 <div class="col-lg-12" >
-	멘토심사중임 ㅋ
-	<img src="/upload/img/disable2-1.png" width="800px">
-	<img src="/upload/img/disable2-2.png" width="800px">
+
+	   <img src="/img/mentorsmile.png" width="800px" style="margin-top:30px">
 </div> 
 
 
