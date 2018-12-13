@@ -42,6 +42,7 @@ public class MenteeController {
     }
   @RequestMapping(value = "fbsignup", method=RequestMethod.GET)
   public void fbsignup(Mentee mentee) {
+    
   }
   
 //  @RequestMapping(value = "searchuser", method=RequestMethod.GET)
@@ -88,7 +89,11 @@ public class MenteeController {
   public String fbsignup(Mentee mentee ,HttpSession session) {
     mentee.setEmail(session.getAttribute("email").toString());
     mentee.setName(session.getAttribute("name").toString());
+    
     menteeService.fbadd(mentee);
+    if(mentee.getPhot() == null) {
+      mentee.setPhot("/upload/images/images.png");
+    }
     session.setAttribute("loginUser", mentee);
     return  "redirect:../mainpage/mainpage";
   }

@@ -402,11 +402,8 @@ public class MypageController {
     
     Mentee imentee = (Mentee) session.getAttribute("loginUser");
     int reMeno = imentee.getNo();
-    
+    System.out.println(reMeno);
     List<ClassOrder> colist = classOrderService.listByMeno(reMeno , pageNo,pageSize);
-//    for(ClassOrder c : colist) {
-//      System.out.println("titl"+c.getClasses().getTitl());
-//    }
     
     model.addAttribute("colist", colist );
  }
@@ -459,6 +456,22 @@ public class MypageController {
     model.addAttribute("cqlist2", cqlist2 );
     
   }
+  /* menu4-3 */
+  @RequestMapping(value = "clsansupdate.do", method = {RequestMethod.POST})
+  public @ResponseBody List<ClassQna> clsansupdate(int no , String anser,HttpSession session,
+      @RequestParam(defaultValue="1") int pageNo, @RequestParam(defaultValue="10") int pageSize) {
+    
+    ClassQna classqna = classQnaService.get(no);
+    classqna.setAnser(anser);
+    
+    classQnaService.ansupdate(classqna);
+    
+    Mentee mentee = (Mentee) session.getAttribute("loginUser");
+    
+    List<ClassQna> clsqnalist = classQnaService.classqnalist2(mentee.getNo(), pageNo, pageSize);
+    
+    return clsqnalist;
+  }
   
   @GetMapping("menu4-4")
   public void menu4_4(Model model,HttpSession session,
@@ -480,10 +493,25 @@ public class MypageController {
     List<ProductQnA> pqlist2 = productQnAService.listByMeno2(reMeno,pageNo,pageSize);
     model.addAttribute("pqlist2", pqlist2 );
   }
+  /* menu4-5 */
+  @RequestMapping(value = "ansupdate.do", method = {RequestMethod.POST})
+  public @ResponseBody List<ProductQnA> ansupdate(int no , String anser,HttpSession session) {
+    
+    ProductQnA productqna = productQnAService.get(no);
+    productqna.setAnser(anser);
+    
+    productQnAService.updateAnser(productqna);
+    
+    Mentee mentee = (Mentee) session.getAttribute("loginUser");
+    
+    List<ProductQnA> qnalist = productQnAService.listByMeno2(mentee.getNo(), 1, 10);
+    
+    return qnalist;
+  }
   
   @GetMapping("menu5")
   public void menu5(Model model,HttpSession session, 
-      @RequestParam(defaultValue="1") int pageNo, @RequestParam(defaultValue="10") int pageSize) { 
+      @RequestParam(defaultValue="1") int pageNo, @RequestParam(defaultValue="5") int pageSize) { 
     
     Mentee imentee = (Mentee) session.getAttribute("loginUser");
     int reMeno = imentee.getNo();

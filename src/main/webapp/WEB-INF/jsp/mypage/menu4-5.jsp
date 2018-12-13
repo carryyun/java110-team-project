@@ -7,7 +7,7 @@
 <script>
 
 //  답변 처리상태
-$(document).ready(function() {
+/* $(document).ready(function() {
     <c:forEach items="${pqlist2}" var="cc" varStatus="i">
   var answer = $('.answer'+${i.index}).text();
   if(!answer){
@@ -17,10 +17,11 @@ $(document).ready(function() {
         $('.answerState'+${i.index}).text("답변완료");
     } 
     </c:forEach>    
-});
+}); */
 
 </script>
 <script>
+/* 등록 버튼 */
 function ansbtn(ind) {
     
     if($("#prod"+ind).css("display") == "none"){
@@ -32,14 +33,274 @@ function ansbtn(ind) {
     }
 }
 
-function ansregi(ind) {
+/* 상품  답변 등록 */
+function ansregi(ind , qno) {
 	var conts = $('#prod'+ind).val();
 	
-	console.log(conts);
+	var myqnalist = $("#myqnalist");
+	
+	if(conts == ""){
+	    swal({
+            text : "내용이 비어있으면 등록이 안됩니다.",
+            button : "확인",
+        })
+	} else {
+	$.ajax({
+	    type : "POST" ,
+	    data : ({
+	        no : qno ,
+	        anser : conts
+	    }),
+	       url : "ansupdate.do" , 
+	       success : function(data){
+	           swal({
+	               text : "답변이 등록되었습니다.",
+	               button : "확인",
+	           })
+	           var html ="";
+	           for(var i in data) {
+	               var titl = data[i].titl;
+	               var prtitl = data[i].product.titl;
+	               var type = data[i].type;
+	               var conts = data[i].conts;
+	               var anser = data[i].anser;
+	               var rgdt = data[i].rgdt;
+	               var nick = data[i].mentee2.nick;
+	               var no = data[i].no;
+	               
+	               rgdt = new Date();
+	               
+	                var dd= rgdt.getDate();
+	        		var mm= rgdt.getMonth();
+	        		var yy= rgdt.getFullYear();
+	        		
+	        		if( dd < 10){
+	        		    dd = '0' + dd;
+	        		}
+	        		if( mm < 10){
+	        		    mm='0' +mm;
+	        		}
+	        		
+	        		rgdt = yy+'-'+mm+'-'+dd;
+	        		
+	html +='    <tr data-toggle="collapse" data-target="#demo5-'+i+'" class="accordion-toggle">'
+	html +='    <td>'+(parseInt(i))+'</td>'
+	html +='    <td>'+type+'</td>'
+	html +='    <td><a href="../product/detail?no=${p.ptno}">'+prtitl+'</a></td>'
+	html +='    <td>'+titl+'</td>'
+	html +='    <td>'+nick+'</td>'
+	html +='    <td>'+rgdt+'</td>'
+    				if(anser == null){
+    html +='	        	 <td>답변대기</td>'
+    		        }else{
+    html +='	        	<td>답변완료</td>'
+    		        }
+	html +='	   </tr>'
+	html +='  <tr>'
+	html +='               <td colspan="6" class="hiddenRow" style="padding: 0;">'
+	html +='                   <div class="accordian-body collapse" id="demo5-'+i+'">'
+	html +='                       <table class="table table-striped">'
+	html +='                           <thead><tr><td class="qcontents">문의내용</td><td>'+conts+'</td></tr></thead>'
+	html +='                           <tbody>'
+	html +='                               <tr>'
+	html +='                                   <td class="qcontents">답변내용</td>'
+                                       if(anser == null){
+	html +='                                   	<td><label onClick="ansbtn('+(parseInt(i)+1)+')" class="allbtn"'
+	html +='                                            id="allbtn'+(parseInt(i)+1)+'">답변을 작성하시려면 클릭해주세요!</label>'
+	html +='                                            <textarea class="prodans" id="prod'+(parseInt(i)+1)+'" rows="5" name="clsanser"'
+	html +='                                                           style ="width : 500px; display: none;"></textarea></td>'
+                                       } else{
+	html +='                                   		<td class="answer'+(parseInt(i)+1)+'" id="anser'+(parseInt(i)+1)+'">'+anser+'</td>'
+                                       }
+	html +='                                   <td><textarea class="prodans" id="proup'+(parseInt(i)+1)+'" rows="5" name="clsanser" style ="width : 500px; display: none;"></textarea></td>'
+	html +='                               </tr>'
+	html +='                           </tbody>'
+	html +='                       </table>'
+		                                if(anser == null){
+	html +='                                   	<div style="width:150px; margin-left:auto; margin-right:0;">'
+	html +='											<button type="button" class="btn btn-primary" onClick="ansregi('+(parseInt(i)+1)+','+no+')">등록</button>'
+                                       } else{
+	html +='                                   		 <div style="width:150px; margin-left:auto; margin-right:0; ">'
+	html +='                                   		 <button type="button" id="ansmodibt'+(parseInt(i)+1)+'" class="btn btn-primary" onClick="ansmodibtn('+(parseInt(i)+1)+')">수정</button>'
+	html +='											<button type="button" id="ansmod'+(parseInt(i)+1)+'" class="btn btn-primary" style="display:none;" onClick="ansmodi('+(parseInt(i)+1)+','+no+')">완료</button>'
+                                       }
+	html +='									<button type="button" class="btn btn-secondary" id="anscan'+(parseInt(i)+1)+'" onClick="anscansle('+(parseInt(i)+1)+')">취소</button>' 
+	html +='									<button type="button" class="btn btn-secondary" style="display:none;" id="ansmodican${i.index}" onClick="ansmodicansle('+(parseInt(i)+1)+')">취소</button></div>'
+	html +='                    </div>'
+	html +='                </td>'
+	html +='           </tr>'
+	           }
+	           
+	           myqnalist.html(html);
+	           
+	       },error : function(error,status){
+	              swal({
+	                  text : "이미 삭제된 Q&A이거나 오류가 발생하였습니다.",
+	                  button : "확인",
+	                })
+	          }
+		});
+	}
 }
 
-function ansmodi(ind) {
+/* 상품  수정 버튼 */
+function ansmodibtn(ind) {
+    if($("#ansmod"+ind).css("display") == "none"){
+        $("#ansmod"+ind).show();
+        $("#ansmodibt"+ind).hide();
+        
+    }else{
+        $("#ansmod"+ind).hide();
+        $("#ansmodibt"+ind).show();
+        
+    }
     
+    if($("#ansmodican"+ind).css("display") == "none"){
+        $("#ansmodican"+ind).show();
+        $("#anscan"+ind).hide();
+    }else{
+        $("#ansmodican"+ind).hide();
+        $("#anscan"+ind).show();
+    }
+    //if($("#prod"+ind).css("display") == "none"){
+	    $("#proup"+ind).val($("#anser"+ind).text()).show();
+	    $("#anser"+ind).hide();
+    /* }else{
+        $("#prod"+ind).val("").hide();
+        $("#anser"+ind).show();
+    } */
+}
+
+/* 답변 수정 동작 버튼 */
+function ansmodi(ind,qno) {
+    $("#prod"+ind).show();
+    var conts = $("#proup"+ind).val();
+    var myqnalist = $("#myqnalist");
+    
+    console.log(qno);
+    console.log(conts);
+    
+    if(conts == ""){
+	    swal({
+            text : "내용이 비어있으면 등록이 안됩니다.",
+            button : "확인",
+        })
+	} else {
+	$.ajax({
+	    type : "POST" ,
+	    data : ({
+	        no : qno ,
+	        anser : conts
+	    }),
+	       url : "ansupdate.do" , 
+	       success : function(data){
+	           $("#prod"+ind).hide();
+	           $(".answer"+ind).show();
+	           $("#proup"+ind).hide();
+	           swal({
+	               text : "수정이 등록되었습니다.",
+	               button : "확인",
+	           })
+	           
+	           var html ="";
+	           for(var i in data) {
+	               var titl = data[i].titl;
+	               var prtitl = data[i].product.titl;
+	               var type = data[i].type;
+	               var conts = data[i].conts;
+	               var anser = data[i].anser;
+	               var rgdt = data[i].rgdt;
+	               var nick = data[i].mentee2.nick;
+	               var no = data[i].no;
+	               
+	               rgdt = new Date();
+	               
+	                var dd= rgdt.getDate();
+	        		var mm= rgdt.getMonth();
+	        		var yy= rgdt.getFullYear();
+	        		
+	        		if( dd < 10){
+	        		    dd = '0' + dd;
+	        		}
+	        		if( mm < 10){
+	        		    mm='0' +mm;
+	        		}
+	        		
+	        		rgdt = yy+'-'+mm+'-'+dd;
+	        		
+	html +='    <tr data-toggle="collapse" data-target="#demo5-'+i+'" class="accordion-toggle">'
+	html +='    <td>'+(parseInt(i))+'</td>'
+	html +='    <td>'+type+'</td>'
+	html +='    <td><a href="../product/detail?no=${p.ptno}">'+prtitl+'</a></td>'
+	html +='    <td>'+titl+'</td>'
+	html +='    <td>'+nick+'</td>'
+	html +='    <td>'+rgdt+'</td>'
+		        if(anser == null){
+	html +='	        	 <td>답변대기</td>'
+		        }else{
+	html +='	        	<td>답변완료</td>'
+		        }
+	html +='	   </tr>'
+	html +='  <tr>'
+	html +='               <td colspan="6" class="hiddenRow" style="padding: 0;">'
+	html +='                   <div class="accordian-body collapse" id="demo5-'+i+'">'
+	html +='                       <table class="table table-striped">'
+	html +='                           <thead><tr><td class="qcontents">문의내용</td><td>'+conts+'</td></tr></thead>'
+	html +='                           <tbody>'
+	html +='                               <tr>'
+	html +='                                   <td class="qcontents">답변내용</td>'
+                                       if(anser == null){
+	html +='                                   	<td><label onClick="ansbtn('+(parseInt(i)+1)+')" class="allbtn"'
+	html +='                                            id="allbtn'+(parseInt(i)+1)+'">답변을 작성하시려면 클릭해주세요!</label>'
+	html +='                                            <textarea class="prodans" id="prod'+(parseInt(i)+1)+'" rows="5" name="clsanser"'
+	html +='                                                           style ="width : 500px; display: none;"></textarea></td>'
+                                       } else{
+	html +='                                   		<td class="answer'+(parseInt(i)+1)+'" id="anser'+(parseInt(i)+1)+'">'+anser+'</td>'
+                                       }
+	html +='                                   <td><textarea class="prodans" id="proup'+(parseInt(i)+1)+'" rows="5" name="clsanser" style ="width : 500px; display: none;"></textarea></td>'
+	html +='                               </tr>'
+	html +='                           </tbody>'
+	html +='                       </table>'
+		                                if(anser == null){
+	html +='                                   	<div style="width:150px; margin-left:auto; margin-right:0;">'
+	html +='											<button type="button" class="btn btn-primary" onClick="ansregi('+(parseInt(i)+1)+','+no+')">등록</button>'
+                                       } else{
+	html +='                                   		 <div style="width:150px; margin-left:auto; margin-right:0; ">'
+	html +='                                   		 <button type="button" id="ansmodibt'+(parseInt(i)+1)+'" class="btn btn-primary" onClick="ansmodibtn('+(parseInt(i)+1)+')">수정</button>'
+	html +='											<button type="button" id="ansmod'+(parseInt(i)+1)+'" class="btn btn-primary" style="display:none;" onClick="ansmodi('+(parseInt(i)+1)+','+no+')">완료</button>'
+                                       }
+	html +='									<button type="button" class="btn btn-secondary" id="anscan'+(parseInt(i)+1)+'" onClick="anscansle('+(parseInt(i)+1)+')">취소</button>' 
+	html +='									<button type="button" class="btn btn-secondary" style="display:none;" id="ansmodican${i.index}" onClick="ansmodicansle('+(parseInt(i)+1)+')">취소</button></div>'
+	html +='                    </div>'
+	html +='                </td>'
+	html +='           </tr>'
+	           }
+	           
+	           myqnalist.html(html);
+	       },error : function(error,status){
+	              swal({
+	                  text : "이미 삭제된 Q&A이거나 오류가 발생하였습니다.",
+	                  button : "확인",
+	                })
+	          }
+		});
+	$("#prod"+ind).val("");
+	}
+}
+
+function anscansle(indexno) {
+    $("#prod"+indexno).val("");
+    $("#prod"+indexno).hide();
+    $("#allbtn"+indexno).show();
+}
+
+function ansmodicansle(indexno) {
+    $("#anscan"+indexno).show();
+    $("#ansmodican"+indexno).hide();
+    $("#ansmod"+indexno).hide();
+    $("#ansmodibt"+indexno).show();
+    $("#proup"+indexno).hide();
+    $("#anser"+indexno).show();
 }
 </script>
 
@@ -62,7 +323,7 @@ function ansmodi(ind) {
                     </tr>
                 </thead>
 
-                <tbody>
+                <tbody id="myqnalist">
 <c:forEach items="${pqlist2}" var="p" varStatus="i">
 
                     <tr data-toggle="collapse" data-target="#demo5-${i.count}" class="accordion-toggle">
@@ -72,7 +333,21 @@ function ansmodi(ind) {
                         <td>${p.titl}</td>
                         <td>${p.mentee2.nick}</td>
                         <td>${p.rgdt}</td>
-                        <td class="answerState${i.index}"></td>
+                        <c:set var="pans" value="${p.anser}" />
+                        <%
+                        String panse = (String)pageContext.getAttribute("pans");
+                        
+                        if(panse == null){
+                        %>
+                        	 <td>답변대기</td>
+                        <%
+                        }else{
+                        %>
+                        	<td>답변완료</td>
+                        <%  
+                        }
+                        %>
+                        
                     </tr>
                      
                      <tr>
@@ -102,10 +377,12 @@ function ansmodi(ind) {
                                             <%  
                                             } else{
                                             %>
-                                            		<td class="answer${i.index}">${p.anser}</td>
+                                            		<td class="answer${i.index}" id="anser${i.index}">${p.anser}</td>
                                             <%
                                             }
                                             %>
+                                            <td><textarea class="prodans" id="proup${i.index}" rows="5" name="clsanser"
+                                                                    style ="width : 500px; display: none;"></textarea></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -113,18 +390,21 @@ function ansmodi(ind) {
 			                                if(anse == null){
                                             %>
                                             	<div style="width:150px; margin-left:auto; margin-right:0;">
- 													<button type="button" class="btn btn-primary" onClick="ansregi(${i.index})">등록</button>
+ 													<button type="button" class="btn btn-primary" onClick="ansregi(${i.index},${p.no})">등록</button>
                                             <%  
                                             } else{
-                                            %>
-                                            		 <div style="width:150px; margin-left:auto; margin-right:0;">
- 													<button type="button" class="btn btn-primary" onClick="ansmodi(${i.index})">수정</button>
+                                            %>		
+                                            		 <div style="width:150px; margin-left:auto; margin-right:0; ">
+                                            		 <button type="button" id="ansmodibt${i.index}" class="btn btn-primary" onClick="ansmodibtn(${i.index})">수정</button>
+ 													<button type="button" id="ansmod${i.index}" class="btn btn-primary" style="display:none; float:left;" onClick="ansmodi(${i.index},${p.no})">완료</button>
                                             <%
                                             }
                                             %>
 
  <!-- 이미 답변한 게시물은 '답변수정' 으로 출력  -->
- <button type="button" class="btn btn-secondary">취소</button> </div>
+ <button type="button" class="btn btn-secondary" id="anscan${i.index}" onClick="anscansle(${i.index})">취소</button> 
+  <button type="button" class="btn btn-secondary" style="display:none;" id="ansmodican${i.index}" onClick="ansmodicansle(${i.index})">취소</button></div>
+ 
                             </div>
                         </td>
                     </tr>
