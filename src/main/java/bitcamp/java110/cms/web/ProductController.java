@@ -363,6 +363,7 @@ public class ProductController {
   @PostMapping(value = "updateProduct.do")
   public String updateProductdo(Product product,List<MultipartFile> files, String deleteFile, HttpSession session)
       throws Exception {
+    System.out.println(product.getConts());
     productService.update(product);
     int result = product.getNo();
 

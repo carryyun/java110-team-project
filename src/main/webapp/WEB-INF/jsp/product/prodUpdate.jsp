@@ -65,7 +65,7 @@ div.row.imgDiv {
 				<input type="hidden" name="meno" value="${sessionScope.loginUser.no}">
                 <input type="hidden" id="deleteFile" name="deleteFile" value="">
                 <input type="hidden" id="ptno" name="no" value="${product.no}">
-                <input type="hidden" id="conts" name="conts" value='${product.conts}'>
+                <input type="hidden" id="secconts" name="secconts" value='${product.conts}'>
 
 				<div class="col-lg-12">
 					<div class="row">
@@ -156,7 +156,7 @@ div.row.imgDiv {
 					<br>
 					<div
 						style="color: white; background-color: gray; padding: 5px; display: inline; border-radius: 3px;">상품소개</div>
-					<textarea id="summernote" name="conts" style="position: auto"></textarea>
+					<textarea id="summernote" name="conts" id="conts" style="position: auto"></textarea>
 				</div>
 
 				<div class="col-lg-12">
@@ -196,10 +196,15 @@ div.row.imgDiv {
         $('#mainNav').css("padding", "0");
         $('#mainNav').css("border", "0");
         $('#mainNav').css("margin-top", "21");
+        //console.log('${product.conts}');
+        $('#conts').val('${product.conts}');
         $('div.note-editable').html('${product.conts}');
+        //console.log($('div.note-editable').html());
         
         $("button#submitBtn").click(function(){
-            var frm = document.getElementById('myForm');
+			
+        	var frm = document.getElementById('myForm');
+        	//console.log(frm);
             frm.method = 'POST';
             frm.enctype = 'multipart/form-data';
           
@@ -231,7 +236,7 @@ div.row.imgDiv {
             
         });
         
-        $('div.note-editable').blur(function(){
+        $('div .note-editable').blur(function(){
             $('input#conts').val($('div.note-editable').html());
         });
         loadImg();
