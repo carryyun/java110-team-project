@@ -449,7 +449,7 @@ function addOrder(payopt){
         $.ajaxSettings.traditional = true;
         $.ajax({
             type : "POST",
-            data : {
+            data : { 
                 "arr" : arr,
             },
             url : "addProdOrder.do",
