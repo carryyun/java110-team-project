@@ -73,11 +73,10 @@ div.row.imgDiv {
 
 	<div class="container">
 		<div class="row">
-
-			<form id="myForm" action="addProduct.do" method="post"
-				enctype="multipart/form-data">
-				<input type="hidden" name="ctno" value="${ctno}"> <input
-					type="hidden" name="meno" value="${sessionScope.loginUser.no}">
+			
+			<form id="myForm" action="addProduct.do" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="ctno" value='${ctno}'> <input type="hidden" name="meno"
+					value="${sessionScope.loginUser.no}">
 
 
 				<div class="col-lg-12">

@@ -9,8 +9,8 @@ public interface ClassQnaService {
   int qnaupdate(ClassQna classqna);
   int ansupdate(ClassQna classqna);
   
-  List<ClassQna> classqnalist(int pageNo,int pageSize,int no);
-  List<ClassQna> classqnalist2(int pageNo,int pageSize,int no);
+  List<ClassQna> classqnalist(int no,int pageNo,int pageSize);
+  List<ClassQna> classqnalist2(int no,int pageNo,int pageSize);
   List<ClassQna> listbycno(int no , int pageNo,int pageSize );
   int countbycno(int no);
   

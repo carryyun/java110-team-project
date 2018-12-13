@@ -111,7 +111,7 @@
             m.meno=#{meno}
        order by
             csno desc
-       
+       limit #{rowNo} , #{size}
     </select>
     
     <select id="findByNo" resultMap="csMap" parameterType="int">

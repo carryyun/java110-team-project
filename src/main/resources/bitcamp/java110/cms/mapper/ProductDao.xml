@@ -360,7 +360,7 @@ where
             JOIN p_mete me ON p.meno = me.meno
         WHERE
             me.meno = #{meno} and p.stat='Y'
-            
+        limit #{rowNo},#{size}
     </select>
 
      <select id="findBySeller2" 

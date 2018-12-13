@@ -30,7 +30,7 @@
  <c:forEach items="${pmanage}" var="p" varStatus="i">
                             <tr id="tb-pay">
                             <td>${i.count}</td>
-                            <td><a href="../product/detail?no=${p.no}"><img src="${p.phot}" width="200px" height="150px"/></a></td>
+                            <td><a href="../product/detail?no=${p.no}"><img src="${p.phot}" width="150px" height="100px"/></a></td>
                             <td>${p.titl}<br></td>
                             <td>${p.pric}</td>
                             
@@ -60,12 +60,30 @@
                 <tbody>
                 </tbody>
             </table>
-
         </div>
 
     </div>
 
 </div>
+<nav aria-label="Page navigation"  class="pn-center" style="margin-top:20px;" >
+  <ul class="pagination" style="margin-top:0;" >
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+  </ul>
+</nav>
 
 <script>
 

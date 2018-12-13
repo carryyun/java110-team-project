@@ -52,7 +52,7 @@ public class ProductServiceImpl implements ProductService {
   
   // 마이페이지에서 판매자번호로조회
   @Override
-  public List<Product> listBySeller(int pageNo, int pageSize, int meno) {
+  public List<Product> listBySeller(int meno,int pageNo, int pageSize) {
     HashMap<String, Object> params = new HashMap<>();
     params.put("rowNo", (pageNo - 1) * pageSize);
     params.put("size", pageSize);
