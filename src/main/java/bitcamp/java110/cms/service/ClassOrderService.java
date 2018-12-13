@@ -5,7 +5,7 @@ import bitcamp.java110.cms.domain.ClassOrder;
 
 public interface ClassOrderService {
 
-  List<ClassOrder> listByMeno(int pageNo, int pageSize, int meno);
+  List<ClassOrder> listByMeno(int meno , int pageNo, int pageSize);
 
   void orderadd(ClassOrder classorder);
 

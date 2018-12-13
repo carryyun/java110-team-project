@@ -20,7 +20,8 @@
     		cno,
     		date,
     		stime,
-    		capa
+    		capa,
+    		edate
     	from
     		p_cls_ttab
     </sql>

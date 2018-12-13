@@ -14,11 +14,11 @@
                     <tr id="th-pay">
                        
                          <th width="5%">No.</th>
+                         <th width="10%">사진</th>
                          <th width="30%">클래스</th>
                          <th width="15%">멘토</th>
                          <th width="15%">시작일</th>
                          <th width="15%">수업시간</th>
-                         <th width="10%">가격</th>
                          <th width="10%">수료상태</th>
  
                          
@@ -31,12 +31,12 @@
 
                     <tr id="tb-pay" >
                                               
-                        <td>${i.count}</td>
-                        <td>${c.classes.titl}<a href="../class/detail?no=${c.classes.no}"><img src="${c.classFile.fname}" width="200px" height="150px"></a></td>
+                       <td>${i.count}</td>
+                        <td><a href="../class/detail?no=${c.classes.no}"><img src="${c.classFile.fname}" width="100px" height="70px"></a></td>
+                        <td><a href="../class/detail?no=${c.classes.no}">${c.classes.titl}</a></td>
                         <td>${c.mentornick}</td>
                         <td>${c.timetable.date}</td>
-                         <td>${c.timetable.stime}<br>(${c.classes.time}시간)</td>
-                        <td>${c.tot_pric}</td>
+                         <td>${c.timetable.stime}<br>(${c.classes.time}시간)<br>${c.tot_pric}</td>
                         <td>
                             
                         <c:choose>
