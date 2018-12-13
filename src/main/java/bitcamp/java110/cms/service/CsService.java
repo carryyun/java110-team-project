@@ -5,7 +5,7 @@ import bitcamp.java110.cms.domain.Cs;
 
 public interface CsService {
   int add(Cs cs);
-  List<Cs> list(int pageNo, int pageSize,int meno);
+  List<Cs> list(int meno,int pageNo, int pageSize);
   Cs get(int no);
   void delete(int no);
   int update(Cs cs);

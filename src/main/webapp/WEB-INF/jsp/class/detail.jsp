@@ -245,13 +245,14 @@
                                 <dl class="param param-feature">
                                      <select name="time" id="time" style="">
                                          <c:forEach items="${clstimelist}" var="t">
-                                         	<c:if test="${t.edate eq t.date}}">
-                                             	<option value="${t.no}" >날짜 : ${t.date} , 시간 : ${t.stime}</option>
-                                             </c:if>
-                                             <c:if test="${t.edate ne t.date}">
-                                             	<option value="${t.no}">${t.date}~${t.edate}시간:${t.stime}</option>
-                                             	<%-- <option value="${t.no}" >수업시간 : ${t.stime}</option> --%>
-                                             </c:if>
+	                                         <c:choose>
+	                                         	<c:when test="${t.edate eq t.date}}">
+	                                         		<option value="${t.no}" >날짜 : ${t.date} , 시간 : ${t.stime}</option>
+	                                         	</c:when>
+	                                         	<c:otherwise>
+	                                         		<option value="${t.no}">${t.date}~${t.edate}시간:${t.stime}</option>
+	                                         	</c:otherwise>
+	                                         </c:choose>
                                          </c:forEach>
                                      </select>
                                      <%-- <c:forEach items="${clstimelist}" var="t">

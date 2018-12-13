@@ -73,7 +73,7 @@
             m.meno = #{meno}
         order by
             qno desc
-        
+        limit #{rowNo},#{size}
     </select>
     
     <select id="findAllByMeno2" 
@@ -100,7 +100,7 @@
             me.meno = #{meno}
         order by
             qno desc
-        
+        limit #{rowNo},#{size}
     </select>
     
     
