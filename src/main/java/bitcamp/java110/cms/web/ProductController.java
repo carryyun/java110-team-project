@@ -63,10 +63,10 @@ public class ProductController {
 
   ServletContext sc;
   ClassLikeService classlikeService;
-  
+
   ProductOrderService productOrderService;
   ClassBaktService classBaktService;
-  
+
   public ProductController(ProductService productService, BigTagService bigTagService,
       MiddleTagService middleTagService, ProductPopulService productPopulService,
       ProductRepService productRepSerivce, ClassService classService,
@@ -91,13 +91,13 @@ public class ProductController {
     this.classlikeService =classlikeService;
     this.productOrderService = productOrderService;
   }
-  
-  
+
+
 
   @GetMapping("prdt")
   public void prdt(@RequestParam(defaultValue = "1") int pageNo,
       @RequestParam(defaultValue = "6") int pageSize, Model model) {
-//    List<Product> productList = productService.list();
+    //    List<Product> productList = productService.list();
     List<Product> productList = productService.listForScroll(pageNo, pageSize);
     List<Product> hotItemlists = productService.hotItemlist();
     List<ProductPopul> pp_list = productPopulService.list();
@@ -107,7 +107,7 @@ public class ProductController {
       hotItemlist.add(hotItemlists.get(x));
     }
     model.addAttribute("hotItemlist", hotItemlist);
-    
+
     for (ProductPopul p : pp_list) {
 
       pp_product.add(p);
@@ -122,10 +122,10 @@ public class ProductController {
     } catch (JsonProcessingException e) {
       System.out.println(e.getMessage());
     }
-    
+
     model.addAttribute("productList", productList);
   }
-  
+
   @RequestMapping(value="prdt.do" ,method= {RequestMethod.POST})
   public @ResponseBody List<Product> prdtdo(@RequestParam(defaultValue="2") int pageNo,
       @RequestParam(defaultValue="6") int pageSize) {
@@ -133,7 +133,7 @@ public class ProductController {
     scrollPrdtList = productService.listForScroll(pageNo, pageSize);
     return scrollPrdtList;
   }
-  
+
 
   @GetMapping("prdtCate")
   public void prdt(int mtno, Model model) {
@@ -157,7 +157,7 @@ public class ProductController {
     } catch (JsonProcessingException e) {
       System.out.println(e.getMessage());
     }
-    
+
 
     model.addAttribute("productList", productList);
   }
@@ -166,26 +166,26 @@ public class ProductController {
   public void detail(Model model, int no,
       @RequestParam(defaultValue = "1") int pageNo,
       @RequestParam(defaultValue = "5") int pageSize) {
-    
+
     Product product = productService.get(no);
     Classes detailclass = classService.findBycno(product.getClasses().getNo());
     product.setProductFile(productFileService.listByPtno(no));
-    
+
     List<ProductRep> replyList = productRepSerivce.listByPtno(pageNo,pageSize,no);
     Classes prdtcls = classService.findbyptno(no);
     List<ProductQnA> prodQnaList = productQnAService.listByPtno(pageNo, pageSize, no);
-    
+
     List<ProductQnA> countQna = productQnAService.listByPtno(1, 200, no);
     int countqna = countQna.size()/5;
     if(countQna.size()%5 >0) countqna++;
     model.addAttribute("countqna", countqna);
-    
+
     List<ProductRep> forRepSize = productRepSerivce.listByPtno(1,200,no);
     int repPageSize = forRepSize.size()/5;
     if(forRepSize.size()%5 > 0) repPageSize++;
     model.addAttribute("repCnt", forRepSize.size());
     model.addAttribute("repPageSize", repPageSize);
-    
+
     model.addAttribute("product", product);
     model.addAttribute("replyList", replyList);
     model.addAttribute("prdtcls", prdtcls);
@@ -204,7 +204,7 @@ public class ProductController {
     List<Cert> certList = certService.listByMeno(5, 5, no);
     return certList;
   }
-  
+
   @GetMapping("prodRegister")
   public void prodRegister() {
   }
@@ -220,21 +220,22 @@ public class ProductController {
     model.addAttribute("stagList", stagList);
     model.addAttribute("ctno", ctno);
   }
-  
+
   @GetMapping("prodUpdate")
   public void prodUpdate(Model model, HttpSession session, int no) {
     Product product = productService.get(no);
     List<ProductFile> productFiles = productFileService.listByPtno(product.getNo());
+    System.out.println(product.getNo());
     int FileLength = productFiles.size();
-    List<SmallTag> stagList = smallTagService.listMtno(10, 5, product.getStno());
-    
+    List<SmallTag> stagList = smallTagService.listMtno(1, 10, product.getStno());
+
     model.addAttribute("FileLength", FileLength);
     model.addAttribute("stagList", stagList);
     model.addAttribute("productFiles", productFiles);
     model.addAttribute("product", product);
   }
 
-//상품평 등록
+  //상품평 등록
   @RequestMapping(value = "addrep.do", method = {RequestMethod.GET, RequestMethod.POST})
   public @ResponseBody List<ProductRep> addrep(
       @RequestParam(defaultValue = "1") int pageNo,
@@ -243,8 +244,8 @@ public class ProductController {
     List<ProductRep> productRepList = productRepSerivce.listByPtno(pageNo,pageSize,productRep.getPtno());
     return productRepList;
   }
-  
-//상품평 삭제
+
+  //상품평 삭제
   @RequestMapping(value = "removerep.do", method = {RequestMethod.GET, RequestMethod.POST})
   public @ResponseBody List<ProductRep> removerep(int ptno,
       @RequestParam(defaultValue = "1") int pageNo,
@@ -253,14 +254,14 @@ public class ProductController {
     List<ProductRep> productRepList = productRepSerivce.listByPtno(pageNo,pageSize,ptno);
     return productRepList;
   }
-//상품평 수정
+  //상품평 수정
   @RequestMapping(value = "updaterep.do", method = {RequestMethod.GET, RequestMethod.POST})
   public @ResponseBody List<ProductRep> updaterep(int ptno,
       @RequestParam(defaultValue = "1") int pageNo,
       @RequestParam(defaultValue = "5") int pageSize, ProductRep productrep) {
-      productRepSerivce.update(productrep);
-      List<ProductRep> productRepList = productRepSerivce.listByPtno(pageNo,pageSize,ptno);
-      return productRepList;
+    productRepSerivce.update(productrep);
+    List<ProductRep> productRepList = productRepSerivce.listByPtno(pageNo,pageSize,ptno);
+    return productRepList;
   }
 
   @RequestMapping(value = "addqna.do", method = {RequestMethod.GET, RequestMethod.POST})
@@ -282,7 +283,7 @@ public class ProductController {
 
     model.addAttribute("total", total);
     model.addAttribute("basketList", basketList);
-    
+
     List<ProductBakt> sumList = productBaktService.sumByMeno(mentee.getNo());
     model.addAttribute("sumList", sumList);
   }
@@ -302,11 +303,11 @@ public class ProductController {
     model.addAttribute("paymentList", paymentList);
 
   }
-  
+
   // 팝업용 창닫기 jsp
   @GetMapping("addProductAfter")
   public void addProductAfter() {
-    
+
   }
 
   // 2018.11.29 -> ?.?
@@ -324,7 +325,7 @@ public class ProductController {
         /*BufferedImage img = ImageIO.read(new File(sc.getRealPath("/upload/img/prdtImg/" + filename + ".png")));
         int type = img.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : img.getType();
         BufferedImage resizeImage = resizeImageWithHint(img, type);
-        
+
         ImageIO.write(resizeImage,"png", new File("/upload/img/prdtImg/" + filename + ".png"));*/
 
         String fname = "/upload/img/prdtImg/" + filename + ".png";
@@ -340,54 +341,71 @@ public class ProductController {
         index++;
       }
     }
-    
+
     return "redirect:addProductAfter";
   }
-/*  private static BufferedImage resizeImageWithHint(BufferedImage originalImage, int type) {
-    
+  /*  private static BufferedImage resizeImageWithHint(BufferedImage originalImage, int type) {
+
     BufferedImage resizedImage = new BufferedImage(400, 300, type);
     Graphics2D g = resizedImage.createGraphics();
     g.drawImage(originalImage, 0, 0, 400, 300, null);
     g.dispose();
     g.setComposite(AlphaComposite.Src);
- 
+
     g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
         RenderingHints.VALUE_INTERPOLATION_BILINEAR);
     g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
     g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
- 
+
     return resizedImage;
   }*/
-  
+
   @PostMapping(value = "updateProduct.do")
-  public String updateProductdo(Product product, List<MultipartFile> files, String deleteFile, HttpSession session)
+  public String updateProductdo(Product product,List<MultipartFile> files, String deleteFile, HttpSession session)
       throws Exception {
-    System.out.println(product.getConts());
-    productService.update(product);
-    int result = product.getNo();
+    int check=0;
+    List<ProductFile> filelist = productFileService.listByPtno(product.getNo());
     
-    String[] str = deleteFile.split("&");
-    for(String s:str) {
-      ProductFile profile = new ProductFile();
-      profile.setPfname(s);
-      profile.setPtno(result);
-      productFileService.delete(profile);
+    for(ProductFile pf : filelist) {
+      if( ( pf.getPfname().equals( product.getPhot()) )  ) {
+        check=1;
+      }
     }
-     
+    if( check == 0 ) {
+      product.setPhot("del");
+    }
+    
+    if(deleteFile.length()>1) {
+      String[] str = deleteFile.split("&");
+      for(String s:str) {
+        ProductFile profile = new ProductFile();
+        profile.setPfname(s);
+        profile.setPtno(product.getNo());
+        productFileService.delete(profile);
+      }
+    }
     for (MultipartFile file : files) {
       if (!file.getOriginalFilename().equals("")) {
         String filename = UUID.randomUUID().toString();
         file.transferTo(new File(sc.getRealPath("/upload/img/prdtImg/" + filename + ".png")));
         String fname = "/upload/img/prdtImg/" + filename + ".png";
+        
         ProductFile productFile = new ProductFile();
         productFile.setPfname(fname);
-        productFile.setPtno(result);
+        productFile.setPtno(product.getNo());
 
         productFileService.add(productFile);
+        
       }
+      
+      
     }
-    
-    return "redirect:detail?no=" + result;
+    if(product.getPhot().equals("del")) {
+      List<ProductFile> Afterfilelist = productFileService.listByPtno(product.getNo());
+      product.setPhot(Afterfilelist.get(0).getPfname());
+    }
+    productService.update(product);
+    return "redirect:detail?no=" + product.getNo();
   }
   @GetMapping("updatestat")
   public String updatestat(int no, String stat) {
@@ -397,61 +415,77 @@ public class ProductController {
     productService.updatestat(product);
     return "redirect:prdt";
   }
-  
+
   @GetMapping("prdtSerch")
   public void prdtSerch(String titl,Model model) {
     List<Product> serchList = productService.serchByTitl(1, 10, titl);
-    
+
     model.addAttribute("serchList", serchList);
   }
-  
-  
- @RequestMapping(value = "clslikeins.do", method = {RequestMethod.POST})
+
+
+  @RequestMapping(value = "clslikeins.do", method = {RequestMethod.POST})
   public @ResponseBody String clslikeins(ClassLike classlike) {
-    
+
     classlikeService.likeadd(classlike);
-    
+
     return "redirect:detail?no="+classlike.getCno();
   }
- 
- /*상품장바구니*/
+
+  /*상품장바구니*/
   @RequestMapping(value = "prodBaskt.do", method = {RequestMethod.POST})
   public @ResponseBody String prodBaskt(ProductBakt productBakt) {
-    
+
     productBaktService.add(productBakt);
-    
+
     return "redirect:detail?no="+productBakt.getNo();
   }
-  
+
   @RequestMapping(value = "addProdOrder.do", method = {RequestMethod.POST})
   public @ResponseBody String addOrderdo(String[] arr) {
-    
+
     for(String s : arr) {
       String[] str = s.split("&");
-      
-      ProductBakt productBakt = new ProductBakt();
-      productBakt.setNo(Integer.parseInt(str[0]));
-      productBakt.setPtno(Integer.parseInt(str[1]));
-      productBakt.setMeno(Integer.parseInt(str[2]));
-      productBakt.setCnt(Integer.parseInt(str[3]));
-      productBaktService.delete(productBakt.getNo());
-      
-      Product product = new Product();
-      product = productService.get(productBakt.getPtno());
-      
-      ProductOrder order = new ProductOrder();
-      order.setMeno(productBakt.getMeno());
-      order.setPtno(productBakt.getPtno());
-      order.setCnt(productBakt.getCnt());
-      order.setTot_pric(product.getPric()*order.getCnt());
-      order.setPayopt(str[4]);
-      
-      productOrderService.add(order);
+      System.out.println(str.length);
+      if(str.length == 5) {
+
+        ProductBakt productBakt = new ProductBakt();
+        productBakt.setNo(Integer.parseInt(str[0]));
+        productBakt.setPtno(Integer.parseInt(str[1]));
+        productBakt.setMeno(Integer.parseInt(str[2]));
+        productBakt.setCnt(Integer.parseInt(str[3]));
+        productBaktService.delete(productBakt.getNo());
+
+        Product product = new Product();
+        product = productService.get(productBakt.getPtno());
+
+        ProductOrder order = new ProductOrder();
+        order.setMeno(productBakt.getMeno());
+        order.setPtno(productBakt.getPtno());
+        order.setCnt(productBakt.getCnt());
+        order.setTot_pric(product.getPric()*order.getCnt());
+        order.setPayopt(str[4]);
+
+        productOrderService.add(order);
+      }else {
+        
+        Product product = new Product();
+        product = productService.get(Integer.parseInt(str[0]));
+
+        ProductOrder order = new ProductOrder();
+        order.setMeno(Integer.parseInt(str[1]));
+        order.setPtno(Integer.parseInt(str[0]));
+        order.setCnt(Integer.parseInt(str[2]));
+        order.setTot_pric(product.getPric()*order.getCnt());
+        order.setPayopt(str[3]);
+
+        productOrderService.add(order);
       }
+    }
     return "complete";
   }
-  
-  
+
+
   @RequestMapping(value = "repLoad.do", method = {RequestMethod.GET, RequestMethod.POST})
   public @ResponseBody List<ProductRep> repLoaddo(int ptno,
       @RequestParam(defaultValue = "1") int pageNo,
@@ -459,16 +493,16 @@ public class ProductController {
     List<ProductRep> productRepList = productRepSerivce.listByPtno(pageNo,pageSize,ptno);
     return productRepList;
   }
-  
+
   @RequestMapping(value = "qnaLoad.do", method = {RequestMethod.GET, RequestMethod.POST})
   public @ResponseBody List<ProductQnA> qnaLoaddo(int ptno,
       @RequestParam(defaultValue = "1") int pageNo,
       @RequestParam(defaultValue = "5") int pageSize) {
     List<ProductQnA> productQnaList = productQnAService.listByPtno(pageNo,pageSize,ptno);
-    
+
     return productQnaList; 
   }
-  
-  
+
+
 }
 

@@ -334,6 +334,7 @@ function updaterep(rno){
 
 function updaterepcomplete(rno){
 	var completetext = $('.aftertest').val();
+	alert(completetext);
 	console.log(${product.no});
 	console.log(rno);
 	$.ajax({
@@ -441,51 +442,80 @@ function addqna(no){
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
 <script>
-function npay(){
-    if(${sessionScope.loginUser eq null}){
-        swal({
-            text : "로그인 후 이용가능합니다..",
-            button : "확인",
-          })
-    }else{
-       var IMP = window.IMP; // 생략해도 괜찮습니다.
-       IMP.init("imp40971131"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
-       
-       IMP.request_pay({
-           pg : 'naverco',
-           pay_method : 'card', //연동되지 않습니다. 네이버페이 결제창 내에서 결제수단을 구매자가 직접 선택하게 됩니다.
-           merchant_uid : 'merchant_' + new Date().getTime(), //상점에서 관리하시는 고유 주문번호를 전달
-           name : '${product.titl}',
-           amount : parseInt($('input#totalPric').val()),
-           buyer_email : '${sessionScope.loginUser.email}',
-           buyer_name : '${sessionScope.loginUser.name}',
-           buyer_tel : '${sessionScope.loginUser.phone}',
-           buyer_addr : '${sessionScope.loginUser.bas_addr}',
-           buyer_postcode : '${sessionScope.loginUser.pstno}',
-           naverProducts :
-               {
-                   id : "singleProductId",
-                   name : '${product.titl}',
-                   basePrice : 1000,
-                   taxType : 'TAX_FREE', //TAX or TAX_FREE
-                   quantity : 1,
-                   infoUrl : "http://www.iamport.kr/product/detail",
-                   imageUrl : "http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg",
-                   shipping : {
-                       groupId : "shipping-a",
-                       method : "DELIVERY", //DELIVERY(택배·소포·등기), QUICK_SVC(퀵 서비스), DIRECT_DELIVERY(직접 전달), VISIT_RECEIPT(방문 수령), NOTHING(배송 없음)
-                       baseFee : 2500,
-                       feeRule : {
-                           freeByThreshold : 20000
-                       },
-                       feePayType : "PREPAYED" //PREPAYED(선불), CASH_ON_DELIVERY(착불)
-                   }
-               }
-           
-       });
+function addOrder(payopt){
+        var arr = new Array();
+        var cnt = parseInt($('input#inputCnt').val());
+        arr.push("${product.no}&${sessionScope.loginUser.no}&"+cnt+"&"+payopt+"&"+"detail&detail");
+        
+        $.ajaxSettings.traditional = true;
+        $.ajax({
+            type : "POST",
+            data : { 
+                "arr" : arr,
+            },
+            url : "addProdOrder.do",
+            success : function(result) {
+                if(result == "complete"){
+                    swal({
+                        title: "결제완료", 
+                        text: "주문내역 페이지로 이동하시겠습니까?",
+                        icon: "success",
+                        buttons: true,
+                        dangerMode: true,
+                    }).then((willDelete) => { 
+                        if (willDelete) {
+                            location.href="../mypage/mypage#productbkt";
+                        } else {
+                            location.href="../mainpage/mainpage";
+                        }
+                      });
+                    
+                }
+            },
+            error : function(error, status) {
+            }
+        });
     }
-}
-</script>
+    
+    function orderProduct(){
+        if(${sessionScope.loginUser eq null}){
+            swal({
+                text : "로그인 후 이용가능합니다..",
+                button : "확인",
+              })
+        }else{
+            var saveTitl = "${product.titl}";
+            var saveTotal = parseInt($('input#totalPric').val())
+            var IMP = window.IMP; // 생략해도 괜찮습니다.
+            IMP.init("imp40971131"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
+            
+            IMP.request_pay({
+                pg : 'html5_inicis', //ActiveX 결제창은 inicis를 사용
+                pay_method : 'card', //card(신용카드), trans(실시간계좌이체), vbank(가상계좌), phone(휴대폰소액결제)
+                merchant_uid : 'merchant_' + new Date().getTime(), //상점에서 관리하시는 고유 주문번호를 전달
+                name : saveTitl,
+                amount : saveTotal,
+                buyer_email : '${sessionScope.loginUser.email}',
+                buyer_name : '${sessionScope.loginUser.name}',
+                buyer_tel : '${sessionScope.loginUser.phone}',
+                buyer_addr : '${sessionScope.loginUser.bas_addr}',
+                buyer_postcode : '${sessionScope.loginUser.pstno}',
+            }, function(rsp) {
+                if ( rsp.success ) {
+                    addOrder(rsp.pay_method);
+                    
+                } else {
+                    var msg = '결제에 실패하였습니다.';
+                    msg += '에러내용 : ' + rsp.error_msg;
+                    
+                    alert(msg);
+                }
+            });
+            
+        }
+    }
+    </script>
+
 
 
 <!-- 장바구니 -->
@@ -569,6 +599,8 @@ function update(){
     var title  = "하루 - 상품수정";
     var status = "toolbar=no,directories=no,scrollbars=no,resizable=no,status=no,menubar=no,width=1300, height=750, top=-1000,left=100"; 
     openWin = window.open(url, title,status); 
+    
+    console.log("asdf");
         //window.open(url,title,status); window.open 함수에 url을 앞에와 같이
         //인수로  넣어도 동작에는 지장이 없으나 form.action에서 적용하므로 생략
         //가능합니다.
@@ -770,15 +802,8 @@ function report(){
     console.log(Curpath);
     var url    = "../masterpage/report?url="+Curpath;
     var title  = "하루 - 신고하기";
-    var status = "toolbar=no,directories=no,scrollbars=no,resizable=no,status=no,menubar=no,width=635, height=490, top=-1000,left=100"; 
+    var status = "toolbar=no,directories=no,scrollbars=no,resizable=no,status=no,menubar=no,width=635, height=465, top=-1000,left=100"; 
     openWin = window.open(url, title,status); 
-        //window.open(url,title,status); window.open 함수에 url을 앞에와 같이
-        //인수로  넣어도 동작에는 지장이 없으나 form.action에서 적용하므로 생략
-        //가능합니다.
-    /* frm.target = title;    //form.target 이 부분이 빠지면 form값 전송이 되지 않습니다. 
-    frm.action = url;         //form.action 이 부분이 빠지면 action값을 찾지 못해서 제대로 된 팝업이 뜨질 않습니다. 
-    frm.method = "GET";
-    frm.submit();   */
 }
 
 </script>

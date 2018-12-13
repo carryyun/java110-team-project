@@ -19,10 +19,9 @@ public class ClassOrderServiceImpl implements ClassOrderService{
   public List<ClassOrder> listByMeno(int meno , int pageNo, int pageSize) {
     
     HashMap<String, Object> params = new HashMap<>();
-    params.put("rowNo", pageNo);
+    params.put("rowNo", (pageNo - 1) * pageSize);
     params.put("size", pageSize);
     params.put("meno", meno);
-    
     return classorderDao.findByMeno(params);
   }
   

@@ -67,7 +67,6 @@ div.row.imgDiv {
 </style>
 
 
-
 </head>
 <body>
 
@@ -77,7 +76,7 @@ div.row.imgDiv {
 			<form id="myForm" action="addProduct.do" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="ctno" value='${ctno}'> <input type="hidden" name="meno"
 					value="${sessionScope.loginUser.no}">
-
+                <input type="hidden" id="deleteFile" name="deleteFile" value="">
 
 				<div class="col-lg-12">
 					<div class="row">
@@ -227,21 +226,52 @@ div.row.imgDiv {
         $('#mainNav').css("margin-top", "21");
 
         $("button#submitBtn").click(function() {
-            document.getElementById('myForm').submit();
-        });
-        $('#myForm').submit(function() {
-            closepage();
-        })
+            var frm = document.getElementById('myForm');
+            frm.method = 'POST';
+            frm.enctype = 'multipart/form-data';
+          
+            var fileData = new FormData(frm);
+          
+            // ajax
+            $.ajax({
+                url:'updateProduct.do',
+                type:'POST',
+                data:fileData,
+                async:false,
+                cache:false,
+                contentType:false,
+                processData:false,
+                success : function() {
+                    swal({
+                        text : "상품이 등록되었습니다.",
+                        icon : "success",
+                        button : "확인",
+                    }).then((willDelete) => {
+                        if(willDelete){
+                            window.close();
+                        }
+                      });
+                    
+                }
 
-        /* document.getElementById('submitBtn').click = function(){
-            
-            
-        }; */
+            });
+        });
     });
 </script>
 
 <!-- multiple file input -->
 <script>
+function removeImg(no,str) {
+    
+    event.preventDefault(); /* 스크립트 기본동작 중지 */
+    console.log(no);
+    console.log(str);
+    console.log($("input#deleteFile").val()+str);
+    
+    $("div#imgDiv" + no).remove();
+    $("input#deleteFile").val($("input#deleteFile").val()+str+"&");
+}
+
     function fileCheck(file) {
         console.log(file);
         console.log("asd");

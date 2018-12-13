@@ -151,7 +151,7 @@
              
              
             
-                <div id="colorlib-page" >
+                <div id="colorlib-page">
         <div class="container-wrap">
 			<div class="row" ></div>
 		
@@ -182,7 +182,7 @@
             
           
 
-            <div id="colorlib-main" ">
+            <div id="colorlib-main">
 
  
                 <section class="colorlib-about" data-section="about" >
