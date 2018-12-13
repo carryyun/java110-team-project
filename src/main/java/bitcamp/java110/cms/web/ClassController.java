@@ -98,8 +98,8 @@ public class ClassController {
     /*System.out.println(removefiles);
     System.out.println(days);
     System.out.println(c.getNo());*/
-    System.out.println("cfile = " + c.getCfile());
-    System.out.println((c.getCfile().equals("")));
+//    System.out.println("cfile = " + c.getCfile());
+//    System.out.println((c.getCfile().equals("")));
     /*    System.out.println(c.getTitl());
     System.out.println(c.getPric());
     System.out.println(c.getTime());
@@ -119,7 +119,7 @@ public class ClassController {
           file.transferTo(new File(sc.getRealPath("/upload/img/classImg/" + filename+ ".png")));
           filelist.add("/upload/img/classImg/" + filename+ ".png");
           if("".equals(c.getCfile())) {
-            System.out.println("/upload/img/classImg/" + filename+ ".png");
+//            System.out.println("/upload/img/classImg/" + filename+ ".png");
             String setFileName = "/upload/img/classImg/" + filename+ ".png";
             c.setCfile(setFileName);
           }
@@ -127,37 +127,13 @@ public class ClassController {
       } 
     }
     for(String file : filelist) {
-      System.out.println(file);
+//      System.out.println(file);
     }
     Mentee loginUser = new Mentee();
     loginUser = (Mentee) session.getAttribute("loginUser");
-    System.out.println(loginUser.getNo());
+//    System.out.println(loginUser.getNo());
     classService.classadd(c, filelist, removefiles, days,date, edate,stime,etime,loginUser.getNo(),selmtag);
     return "redirect:../mainpage/mainpage";
-  }
-
-
-  @RequestMapping("classupdate")
-  public void classupdate(Classes c) {
-
-    c.setNo(6);
-    c.setTitl("고정지");
-    c.setConts("안녕하세요 저는 둠칫둠칫");
-    c.setPric(111);
-    //c.setrgdt("now()");
-    c.setTime("고정지");
-    c.setCapa(10);
-    c.setCfile("naver");
-    c.setTinfo("고정지");
-    c.setCinfo("안녕하ㅔ요");
-    c.setPstno("고정지");
-    c.setBasAddr("고정지");
-    c.setDetAddr("고정지");
-    //c.setEdt("고정지");
-    c.setMono(3);
-    c.setMtno(3);
-
-    classService.classupdate(c);
   }
 
   @GetMapping("findBytag")
@@ -167,10 +143,10 @@ public class ClassController {
 
     for(Classes c : clist) {
 
-      System.out.println(c.getMtno());
-      System.out.println(c.getNo());
-      System.out.println(c.getTitl());
-      System.out.println("-------------");
+//      System.out.println(c.getMtno());
+//      System.out.println(c.getNo());
+//      System.out.println(c.getTitl());
+//      System.out.println("-------------");
     }
 
     return null;
@@ -183,10 +159,10 @@ public class ClassController {
 
     for(Classes c : clist) {
  
-      System.out.println(c.getNo());
-      System.out.println(c.getTitl());
-      System.out.println(c.getMtno());
-      System.out.println(c.getBasAddr());
+//      System.out.println(c.getNo());
+//      System.out.println(c.getTitl());
+//      System.out.println(c.getMtno());
+//      System.out.println(c.getBasAddr());
     }
 
     return null;
@@ -198,12 +174,6 @@ public class ClassController {
     return null;
   }
 
-  /*@RequestMapping("cls")
-  public void cls(Model model) {
-    List<Classes> clslist = classService.list();
-    model.addAttribute("clslist", clslist);
-  }
-   */
   @RequestMapping("clsCate")
   public void clsCate(Model model, int no, String type) {
     BigTag bigtag = null;
@@ -238,7 +208,7 @@ public class ClassController {
       System.out.println(e.getMessage());
     }*/
 
-    System.out.println(bigtag.getNo());
+//    System.out.println(bigtag.getNo());
 
     model.addAttribute("clslist", clslist);
 
@@ -340,14 +310,6 @@ public class ClassController {
     List<Timetable> clstimelist = timetableService.findByCno(no);
     int countrep = classrepService.countbycno(no);
     int countqna = classqnaService.countbycno(no);
-    /*double countstar = classrepService.countstar(no);
-    System.out.println(countstar);*/
-    /*List<ClassOrder> clsorderlist = classOrderService.findBycnoFormeno(no);*/
-
-    /*Paging paging = new Paging();
-    paging.setPageNo(reppageNo);
-    paging.setPageSize(reppageSize);
-    paging.setTotalCount(countrep);*/
 
     Mentee loginUser = (Mentee) session.getAttribute("loginUser");
     int likeResult = 0;
@@ -502,8 +464,6 @@ public class ClassController {
   @RequestMapping(value = "clslikeins.do", method = {RequestMethod.POST})
   public @ResponseBody String clslikeins(ClassLike classlike) {
 
-    System.out.println(classlike.getMeno());
-    System.out.println(classlike.getCno());
     classlikeService.likeadd(classlike);
 
     return "redirect:detail?no="+classlike.getCno();
@@ -591,11 +551,11 @@ public class ClassController {
 
     List<ClassBakt> clist = classBaktService.list(3, 5);
 
-    for(ClassBakt c : clist) {
-      System.out.println(c.getNo());
-      System.out.println(c.getMeno());
-      System.out.println(c.getCtno());
-    }
+//    for(ClassBakt c : clist) {
+//      System.out.println(c.getNo());
+//      System.out.println(c.getMeno());
+//      System.out.println(c.getCtno());
+//    }
 
     return null;
   }
@@ -656,13 +616,13 @@ public class ClassController {
   @RequestMapping(value = "addClsOrder.do", method = {RequestMethod.POST})
   public @ResponseBody String addClsOrderdo(String[] arr) {
     for(String text : arr) {
-      System.out.println(text);
+//      System.out.println(text);
     }
     for(String s : arr) {
       String[] str = s.split("&");
-      System.out.println(str.length);
+//      System.out.println(str.length);
       if(str.length == 5) {
-        System.out.println(str[0] + "," + str[1] + "," + str[2] + "," + str[3]);
+//        System.out.println(str[0] + "," + str[1] + "," + str[2] + "," + str[3]);
         int baktNo = Integer.parseInt(str[0]);  //      str[0] = BasketNo
         int ttabNo = Integer.parseInt(str[1]);      //      str[1] = TtabNo
         int meno = Integer.parseInt(str[2]);      //      str[2] = Meno
@@ -686,8 +646,8 @@ public class ClassController {
 
         classOrderService.orderadd(order);
       }else { 
-        System.out.println(str[0] + "," + str[1] + "," + str[2] + "," + str[3]);
-        int baktNo = Integer.parseInt(str[0]);  //      str[0] = BasketNo
+//        System.out.println(str[0] + "," + str[1] + "," + str[2] + "," + str[3]);
+//        int baktNo = Integer.parseInt(str[0]);  //      str[0] = BasketNo
         int ttabNo = Integer.parseInt(str[1]);      //      str[1] = TtabNo
         int meno = Integer.parseInt(str[2]);      //      str[2] = Meno
         int time = Integer.parseInt(str[3]);      //      str[3] = Time

@@ -27,7 +27,7 @@ public class ClassServiceImpl implements ClassService{
   @Override
   public void classadd(Classes classes, List<String> filelist,
       String removefiles, String days,String date,String edate,String stime, String etime,int loginUserNo,String selmtag) {
-    System.out.println(loginUserNo);
+//    System.out.println(loginUserNo);
     if(classes.getDetAddr() == null) {
       classes.setDetAddr(null);
     }else if((classes.getCfile().equals(""))){
@@ -37,7 +37,7 @@ public class ClassServiceImpl implements ClassService{
     }
     classes.setMtno(Integer.parseInt(selmtag));
     classes.setMono(loginUserNo);
-    System.out.println(classes);
+//    System.out.println(classes);
     classDao.classinsert(classes);
     if(classes.getType().equals("단기")) {
       String daylist[] = days.split(",");
@@ -136,13 +136,13 @@ public class ClassServiceImpl implements ClassService{
 
   @Override
   public int statupdate(Classes classes) {
-   System.out.println("서비스 "+classes.getNote());
+//   System.out.println("서비스 "+classes.getNote());
     return classDao.statupdate(classes);
   }
 
   @Override
   public List<Classes> findByMono(int mono) {
-    // TODO Auto-generated method stub
+    // TODO Auto-generated method stub 
     return null;
   }
 
@@ -161,10 +161,8 @@ public class ClassServiceImpl implements ClassService{
     
     if(no == 9999 || no == 1) {
       params.put("no", "%");
-      System.out.println("%");
     }else{
       params.put("no", no);
-      System.out.println(no);
     }
     
     

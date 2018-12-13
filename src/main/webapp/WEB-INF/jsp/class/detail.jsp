@@ -1,3 +1,4 @@
+<%@page import="java.sql.Date"%>
 <%@page import="bitcamp.java110.cms.domain.Classes"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -243,14 +244,26 @@
                                     <!-- col.// -->
 
                                 <dl class="param param-feature">
-                                     <select name="time" id="time" style="">
-                                         <c:forEach items="${clstimelist}" var="t">
+                                     <select name="time" id="time">
+                                         <c:forEach items="${clstimelist}" var="t" varStatus="tstat">
+                                                <c:set var="d1" value="${t.date}" />
+                                                <c:set var="d2" value="${t.edate}" />
+                                                <%
+                                                Date d1 = (Date) pageContext.getAttribute("d1");
+                                                Date d2 = (Date) pageContext.getAttribute("d2");
+                                                System.out.println(d2.compareTo(d1));
+                                                if( (d2.compareTo(d1)) ==0 ){
+                                                  pageContext.setAttribute("DateResult", 0);
+                                                }else{
+                                                  pageContext.setAttribute("DateResult", 1);
+                                                }
+                                                %>
 	                                         <c:choose>
-	                                         	<c:when test="${t.edate eq t.date}}">
-	                                         		<option value="${t.no}" >날짜 : ${t.date} , 시간 : ${t.stime}</option>
+	                                         	<c:when test="${DateResult eq 0}">
+	                                         		<option value="${t.no}" >${tstat.count}.　${t.date}　|　${t.stime}</option>
 	                                         	</c:when>
 	                                         	<c:otherwise>
-	                                         		<option value="${t.no}">${t.date}~${t.edate}시간:${t.stime}</option>
+	                                         		<option value="${t.no}">${t.date}~${t.edate} ${t.stime}</option>
 	                                         	</c:otherwise>
 	                                         </c:choose>
                                          </c:forEach>
@@ -814,7 +827,7 @@ function updateclsstat() {
             url : "updateclsstat.do" , 
             success : function(){
                 swal({
-                    text : "삭제되었습니다.",
+                    text : "삭제되었습니다",
                     button : "확인",
                 }).then((willDelete) => { 
                     if (willDelete) {
@@ -862,14 +875,15 @@ function addqna(no) {
 	        
 	        if(titl == "" || conts == ""  ) {
 	            swal({
-	                title: "필수 입력항목을 입력안하셨습니다.",
+	                title: "필수 항목을 입력해주세요",
+	                icon:"warning", 
 	                button : "확인",
 	              })
 	        } else if(countorder < 1) {
 	            $('#titl').val("");
 	            $('#qnaconts').val("");
 	            swal({
-	                text : "클래스를 수강후 Q&A 등록이 가능합니다.",
+	                text : "클래스를 수강후 Q&A 등록이 가능합니다",
 	                button : "확인",
 	              })
 	        } else {
