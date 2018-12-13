@@ -762,6 +762,25 @@ function qnaCheck(){
           return false;
     }
 }
+
+function report(){
+    var openWin;
+    var Curpath = $(location).attr('href');
+    Curpath = Curpath.replace("http://localhost:8888/app/", '');
+    console.log(Curpath);
+    var url    = "../masterpage/report?url="+Curpath;
+    var title  = "하루 - 신고하기";
+    var status = "toolbar=no,directories=no,scrollbars=no,resizable=no,status=no,menubar=no,width=635, height=490, top=-1000,left=100"; 
+    openWin = window.open(url, title,status); 
+        //window.open(url,title,status); window.open 함수에 url을 앞에와 같이
+        //인수로  넣어도 동작에는 지장이 없으나 form.action에서 적용하므로 생략
+        //가능합니다.
+    /* frm.target = title;    //form.target 이 부분이 빠지면 form값 전송이 되지 않습니다. 
+    frm.action = url;         //form.action 이 부분이 빠지면 action값을 찾지 못해서 제대로 된 팝업이 뜨질 않습니다. 
+    frm.method = "GET";
+    frm.submit();   */
+}
+
 </script>
 </body>
 

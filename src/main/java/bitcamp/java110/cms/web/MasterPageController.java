@@ -328,7 +328,10 @@ public class MasterPageController {
     return csService.update(cs);
   }
   
-  
+  @GetMapping("report")
+  public void report() {
+    
+  }
   @GetMapping("reportFinishList")
   public void reportFinishList(Model model,
       @RequestParam(defaultValue="1") int pageNo, 
@@ -337,9 +340,6 @@ public class MasterPageController {
     for(Report r: ReportList) {
       r.setCnt(reportService.getMeno2Cnt(r.getMeno2()));
       r.setFinishlist(reportService.listByMeno2(pageNo, pageSize, r.getMeno2()));
-      System.out.println(r.getMenteeNick());
-      System.out.println(r.getMentee2Nick());
-      System.out.println("============");
     }
     model.addAttribute("ReportList",ReportList);
   }
@@ -403,11 +403,4 @@ public class MasterPageController {
   }
   
 
-  
-  
-  
-  @GetMapping("report")
-  public void report() {
-    
-  }
 }
