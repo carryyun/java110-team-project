@@ -425,12 +425,13 @@ public class MypageController {
   }
   
   @GetMapping("menu4-1")
-  public void menu4_1(Model model,HttpSession session) {
+  public void menu4_1(Model model,HttpSession session,
+      @RequestParam(defaultValue="1") int pageNo, @RequestParam(defaultValue="10") int pageSize) {
     
     Mentee imentee = (Mentee) session.getAttribute("loginUser");
     int reMeno = imentee.getNo();
     
-    List<Cs> cslist = csService.list(4,10,reMeno);
+    List<Cs> cslist = csService.list(reMeno,pageNo,pageSize);
     
     model.addAttribute("cslist",cslist);
     
@@ -439,41 +440,45 @@ public class MypageController {
   }
   
   @GetMapping("menu4-2")
-  public void menu4_2(Model model,HttpSession session) {
+  public void menu4_2(Model model,HttpSession session,
+      @RequestParam(defaultValue="1") int pageNo, @RequestParam(defaultValue="10") int pageSize) {
     Mentee imentee = (Mentee) session.getAttribute("loginUser");
     int reMeno = imentee.getNo();
     
-    List<ClassQna> cqlist = classQnaService.classqnalist(4,10,reMeno);
+    List<ClassQna> cqlist = classQnaService.classqnalist(reMeno,pageNo,pageSize);
     model.addAttribute("cqlist", cqlist );
     
   }
   
   @GetMapping("menu4-3")
-  public void menu4_3(Model model,HttpSession session) {
+  public void menu4_3(Model model,HttpSession session,
+      @RequestParam(defaultValue="1") int pageNo, @RequestParam(defaultValue="10") int pageSize) {
     Mentee imentee = (Mentee) session.getAttribute("loginUser");
     int reMeno = imentee.getNo();
     
-    List<ClassQna> cqlist2 = classQnaService.classqnalist2(4,10,reMeno);
+    List<ClassQna> cqlist2 = classQnaService.classqnalist2(reMeno,pageNo,pageSize);
     model.addAttribute("cqlist2", cqlist2 );
     
   }
   
   @GetMapping("menu4-4")
-  public void menu4_4(Model model,HttpSession session) {
+  public void menu4_4(Model model,HttpSession session,
+      @RequestParam(defaultValue="1") int pageNo, @RequestParam(defaultValue="10") int pageSize) {
     Mentee imentee = (Mentee) session.getAttribute("loginUser");
     int reMeno = imentee.getNo();
     
-    List<ProductQnA> pqlist = productQnAService.listByMeno(4,10,reMeno);
+    List<ProductQnA> pqlist = productQnAService.listByMeno(reMeno,pageNo,pageSize);
     model.addAttribute("pqlist", pqlist );
     
   }
   
   @GetMapping("menu4-5")
-  public void menu4_5(Model model,HttpSession session) {
+  public void menu4_5(Model model,HttpSession session,
+      @RequestParam(defaultValue="1") int pageNo, @RequestParam(defaultValue="10") int pageSize) {
     Mentee imentee = (Mentee) session.getAttribute("loginUser");
     int reMeno = imentee.getNo();
     
-    List<ProductQnA> pqlist2 = productQnAService.listByMeno2(4,10,reMeno);
+    List<ProductQnA> pqlist2 = productQnAService.listByMeno2(reMeno,pageNo,pageSize);
     model.addAttribute("pqlist2", pqlist2 );
   }
   
@@ -514,11 +519,12 @@ public class MypageController {
   
   
   @GetMapping("menu6")
-  public void menu6(Model model,HttpSession session) {
+  public void menu6(Model model,HttpSession session, 
+      @RequestParam(defaultValue="1") int pageNo, @RequestParam(defaultValue="10") int pageSize) {
     Mentee imentee = (Mentee) session.getAttribute("loginUser");
     int reMeno = imentee.getNo();
     
-    List<Product> pmanage = productService.listBySeller(1,10,reMeno);
+    List<Product> pmanage = productService.listBySeller(reMeno,pageNo,pageSize);
     model.addAttribute("pmanage", pmanage );
     
   }

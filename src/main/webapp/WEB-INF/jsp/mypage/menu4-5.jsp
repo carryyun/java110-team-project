@@ -20,7 +20,28 @@ $(document).ready(function() {
 });
 
 </script>
+<script>
+function ansbtn(ind) {
+    
+    if($("#prod"+ind).css("display") == "none"){
+        $("#prod"+ind).show();
+        $("#allbtn"+ind).hide();
+    }else{
+        $("#prod"+ind).hide();
+        $("#allbtn"+ind).show();
+    }
+}
 
+function ansregi(ind) {
+	var conts = $('#prod'+ind).val();
+	
+	console.log(conts);
+}
+
+function ansmodi(ind) {
+    
+}
+</script>
 
 
 <div class="col-lg-12">
@@ -68,12 +89,40 @@ $(document).ready(function() {
                                     <tbody>
                                         <tr>
                                             <td class="qcontents">답변내용</td>
-                                            <td class="answer${i.index}">${p.anser}</td>
+                                            <c:set var="pans" value="${p.anser}" />
+                                            <%
+                                            String anse = (String)pageContext.getAttribute("pans");
+                                            
+                                            if(anse == null){
+                                            %>
+                                            	<td><label onClick="ansbtn(${i.index})" class="allbtn"
+                                                     id="allbtn${i.index}">답변을 작성하시려면 클릭해주세요!</label>
+                                                     <textarea class="prodans" id="prod${i.index}" rows="5" name="clsanser"
+                                                                    style ="width : 500px; display: none;"></textarea></td>
+                                            <%  
+                                            } else{
+                                            %>
+                                            		<td class="answer${i.index}">${p.anser}</td>
+                                            <%
+                                            }
+                                            %>
                                         </tr>
                                     </tbody>
                                 </table>
- <div style="width:150px; margin-left:auto; margin-right:0;">
- <button type="button" class="btn btn-primary" >수정</button>
+			                                <%
+			                                if(anse == null){
+                                            %>
+                                            	<div style="width:150px; margin-left:auto; margin-right:0;">
+ 													<button type="button" class="btn btn-primary" onClick="ansregi(${i.index})">등록</button>
+                                            <%  
+                                            } else{
+                                            %>
+                                            		 <div style="width:150px; margin-left:auto; margin-right:0;">
+ 													<button type="button" class="btn btn-primary" onClick="ansmodi(${i.index})">수정</button>
+                                            <%
+                                            }
+                                            %>
+
  <!-- 이미 답변한 게시물은 '답변수정' 으로 출력  -->
  <button type="button" class="btn btn-secondary">취소</button> </div>
                             </div>

@@ -36,7 +36,8 @@
        WHERE
             m.meno = #{no}
        order by
-            qno desc;
+            qno desc
+       limit #{rowNo},#{size}
     </select>
     
     <select id="classqnalist2" resultMap="cqnaMap" parameterType="Map">
@@ -58,8 +59,8 @@
        WHERE
             mo.mono = #{no}
        order by
-            qno desc;
-
+            qno desc
+		limit #{rowNo},#{size}
 
     </select>
     
