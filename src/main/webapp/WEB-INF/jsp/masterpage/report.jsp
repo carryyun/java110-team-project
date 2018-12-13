@@ -3,6 +3,8 @@
 <html>
 <head>
 <title>Insert title here</title>
+<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/common.css" rel="stylesheet">
 <style type="text/css">
 *{
     margin:0;
@@ -46,7 +48,7 @@ table.fixed-table td.tableBtn{
 <body>
 
 
-
+<div class="col-12">
 <table class="fixed-table">
 <colgroup>
 <col style="width:20%;">
@@ -54,7 +56,13 @@ table.fixed-table td.tableBtn{
 </colgroup>
 
 <tr>
-<td class="noBorder text-left" colspan="2"><h4>상품명: 상품명 예제1</h4><hr color="red" style="height:2px; border-bottom-right-radius :25%;border-top-right-radius :25%;"/></td>
+<td class="noBorder text-left" colspan="2">
+    <div class="row">
+	    <h3 class="col-lg-2"><strong>신고</strong></h3> 
+	    <h6 class="col-lg-10 px-4" style="margin-top:17px; font-size: 13px; color: #c9c9c9" >불량게시물 · 불량회원을 신고해주세요</h6>
+    </div>
+    <hr class="my-2" color="red" style="height:3px; border-bottom-right-radius :25%;border-top-right-radius :25%;"/>
+</td>
 </tr>
 
 <tr>
@@ -109,35 +117,61 @@ table.fixed-table td.tableBtn{
 </tr>
 <tr>
     <th>신고닉네임</th>
-    <td class="text-left" style="padding-left: 20px"><input type="text" value="징징이" name="nick" class="customWidth" id="usernick" oninput="checknick()" onfocusout="checknick()" style="width: 35%"><br></td>
+    <td class="text-left" style="padding-left: 20px"><input type="text" value="" name="nick" class="customWidth" id="usernick" oninput="checknick()" onfocusout="checknick()" style="width: 35%"><br></td>
 </tr>
 <tr>
     <th>제　　목</th>
-    <td><input type="text" value="테스트 제목입니다" name="titl" class="customWidth" id="titl"><br></td>
+    <td style="padding-left: 20px"><input type="text" value="" name="titl" class="customWidth" id="titl"><br></td>
 </tr>
 <tr>
     <th>내　　용</th>
-    <td><textarea name="conts" rows="5" class="customWidth" id="conts" style="resize: none;">테스트 내용입니다2</textarea></td>
+    <td style="padding-left: 20px"><textarea name="conts" rows="5" class="customWidth" id="conts" style="resize: none;"></textarea></td>
 </tr>
 <tr>
     <th>U R L</th>
-    <td class="noBorderBot"><input type="text" value="테스트 url" name="url" id="url" class="customWidth"><br></td>
+    <%String url = request.getParameter("url");
+    pageContext.setAttribute("url", url);
+    %>
+    <td style="padding-left: 20px" class="noBorderBot">
+    <input type="text" value="${urls}" onclick="test()" name="url" id="url" class="customWidth"><br>
+    </td>
 </tr>
 <tr>
     <td class="tableBtn" colspan="2"><button type="reset">취소</button> <button id="send" onclick="addRept()">보내기</button></td>
+    
 </tr>
 
-
 </table>
+</div>
 
 
-</body>
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
+function test(){
+    console.log('${url}'');
+}
+
+function report(){
+    var openWin;
+    console.log(request.getContextPath());
+    var url    = "../masterpage/report?url=";
+    var title  = "하루 - 신고하기";
+    var status = "toolbar=no,directories=no,scrollbars=no,resizable=no,status=no,menubar=no,width=635, height=490, top=-1000,left=100"; 
+    openWin = window.open(url, title,status); 
+        //window.open(url,title,status); window.open 함수에 url을 앞에와 같이
+        //인수로  넣어도 동작에는 지장이 없으나 form.action에서 적용하므로 생략
+        //가능합니다.
+    /* frm.target = title;    //form.target 이 부분이 빠지면 form값 전송이 되지 않습니다. 
+    frm.action = url;         //form.action 이 부분이 빠지면 action값을 찾지 못해서 제대로 된 팝업이 뜨질 않습니다. 
+    frm.method = "GET";
+    frm.submit();   */
+}
+
 function addRept(){
     var type = $('input:radio:checked.type').val();
     var type_detail = $('input:radio:checked.detail').val();
-    console.log(type);
-    console.log(type_detail);
     var nick = $('input:text#usernick').val();
     var titl = $('input:text#titl').val();
     var conts = $('textarea#conts').val();
@@ -155,11 +189,20 @@ function addRept(){
                 titl : titl,
                 conts : conts,
                 url : url,
-                meno : 1
+                meno : '${sessionScope.loginUser.no}'
             },
             url : "addreport.do",
             success : function() {
-                /* location.href="#"; */
+                swal({
+                    text : "신고가 완료되었습니다. 관리자가 확인 후 처리됩니다.",
+                    icon : "success",
+                    button : "확인",
+                }).then((willDelete) => {
+                    if(willDelete){
+                        window.close();
+                    }
+                  })
+                
             }
             
         });
@@ -192,5 +235,7 @@ function checknick(){
     });
 }
 </script>
+
+</body>
 
 </html>

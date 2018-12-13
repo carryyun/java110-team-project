@@ -183,9 +183,9 @@ ul#RankingUl li:hover{
 							<a href="post.html"></a>
 							<div class="row">
 
-<!-- 								<div class="container"> -->
-									<div class="col-lg-12 px-0">
-										<a class="btn btn-primary float-right mb-3" id="certBtn"
+								<div class="container">
+									<div class="col-lg-12 px-0 text-right">
+										<a class="btn btn-primary mb-3" id="certBtn"
 											data-toggle="modal" href="#"
 											onclick="checkSession('${sessionScope.loginUser.no}',event)">상품 등록
 										</a>
@@ -286,12 +286,14 @@ ul#RankingUl li:hover{
 		</select> -->
 		
 	</div>
+</div>
 		<footer>
 			<div class="col px-0">
 				<jsp:include page="../footer.jsp"></jsp:include>
 			</div>
 		</footer>
 </div>
+
 	<!-- ===============필수포함=============== -->
 	<!-- Bootstrap core JavaScript -->
 	<script src="/vendor/jquery/jquery.min.js"></script>

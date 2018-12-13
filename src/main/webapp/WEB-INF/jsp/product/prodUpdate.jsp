@@ -55,8 +55,6 @@ div.row.imgDiv {
 }
 </style>
 
-
-
 </head>
 <body>
 

@@ -686,12 +686,14 @@ public class ClassController {
 
         classOrderService.orderadd(order);
       }else { 
-        /*//int baktNo = Integer.parseInt(str[0]);  //      str[0] = BasketNo
+        System.out.println(str[0] + "," + str[1] + "," + str[2] + "," + str[3]);
+        int baktNo = Integer.parseInt(str[0]);  //      str[0] = BasketNo
         int ttabNo = Integer.parseInt(str[1]);      //      str[1] = TtabNo
         int meno = Integer.parseInt(str[2]);      //      str[2] = Meno
         int time = Integer.parseInt(str[3]);      //      str[3] = Time
         String payOpt = str[4];      //      str[4] = PayOpt
         //      str[5] = 디테일에서 결제할 경우의 조건 "detail"
+
         Timetable ttab = new Timetable();
         ttab = timetableService.get(ttabNo);
 
@@ -705,8 +707,7 @@ public class ClassController {
         order.setTot_pric(classes.getPric()*time);
         order.setPayopt(payOpt);
 
-        classOrderService.orderadd(order);*/
-        return "complete";
+        classOrderService.orderadd(order);
       }
     }
     return "complete";
