@@ -50,7 +50,7 @@
                         <th width="5%">No.</th>
                         <th width="25%">결제일자<br>(주문번호)</th>
                         <th width="20%">주문자</th>
-                        <th width="35%">결제금액(수량)<br>(결제방법)      </th>
+                        <th width="35%">결제금액[수량]<br>(결제방법)      </th>
                         <th width="15%">상태</th>
 
                     </tr>
@@ -62,10 +62,10 @@
                     <c:forEach items="${pmanage2}" var="p" varStatus="i">
                         <tr id="tb-pay">
                             <td>${i.count}</td>
-                            <td>${p.productOrder.paydt}<br> (<fmt:formatDate value="${p.productOrder.paydt}"
-                                    pattern="yyyyMMdd" />${p.productOrder.no})</td>
+                            <td>${p.productOrder.paydt}<br></td>
                             <td><a data-toggle="modal" data-target="#buyerinfo${p.productOrder.no}" name="${p.productOrder.no}">${p.mentee2.name}</a></td>
-                            <td>${p.productOrder.tot_pric}(${p.productOrder.cnt})개<br>${p.productOrder.payopt}</td>
+                            <td><fmt:formatDate value="${p.productOrder.tot_pric}"
+                                    pattern="#,###" />[${p.productOrder.cnt}개]<br>${p.productOrder.payopt}</td>
 
                             <td>
                                 <span> 입금전/입금완료/발송완료 조건</span>

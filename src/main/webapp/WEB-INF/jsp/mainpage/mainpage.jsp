@@ -44,7 +44,7 @@ ul#RankingUl li:hover{
         </div>
     </div>
 
-    <div class="text-center" id="main-carousel">
+    <div class="text-center" style="max-width: 99%;" id="main-carousel">
         <div class="row">
             <!--Carousel Wrapper-->
             <div id="carousel-banner" class="carousel slide carousel-fade" data-ride="carousel">

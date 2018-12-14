@@ -31,14 +31,14 @@ function ansbtn(ind) {
 
 /* 상품  답변 등록 */
 function ansregi(ind , qno) {
-	var conts = $('#prod'+ind).val();
+	var newconts = $('#prod'+ind).val();
 	
 	var myqnalist = $("#myqnalist");
 	
-	console.log(conts);
+	console.log(newconts);
 	console.log(qno);
 	
-	if(conts == ""){
+	if(newconts == ""){
 	    swal({
             text : "내용이 비어있으면 등록이 안됩니다.",
             button : "확인",
@@ -48,10 +48,11 @@ function ansregi(ind , qno) {
 	    type : "POST" ,
 	    data : ({
 	        no : qno ,
-	        anser : conts
+	        "anser" : newconts
 	    }),
 	       url : "clsansupdate.do" , 
 	       success : function(data){
+	           console.log("dd");
 	           swal({
 	               text : "답변이 등록되었습니다.",
 	               button : "확인",
@@ -65,7 +66,7 @@ function ansregi(ind , qno) {
 	               var anser = data[i].anser;
 	               var rgdt = data[i].rgdt;
 	               var nick = data[i].mentee2.nick;
-	               var no = data[i].no;
+	               var no = data[i].cno;
 	               
 	               rgdt = new Date();
 	               
@@ -210,7 +211,7 @@ function ansmodi(ind,qno) {
 	               var anser = data[i].anser;
 	               var rgdt = data[i].rgdt;
 	               var nick = data[i].mentee2.nick;
-	               var no = data[i].no;
+	               var no = data[i].cno;
 	               
 	               rgdt = new Date();
 	               
@@ -228,8 +229,8 @@ function ansmodi(ind,qno) {
 	        		rgdt = yy+'-'+mm+'-'+dd;
 	        		
 	html +='    <tr data-toggle="collapse" data-target="#demo5-'+i+'" class="accordion-toggle">'
-	html +='    <td>'+(parseInt(i))+'</td>'
-	html +='    <td>'+type+'</td>'
+	html +='    <td>'+(parseInt(i)+1)+'</td>'
+// 	html +='    <td>'+type+'</td>'
 	html +='    <td><a href="../product/detail?no=${p.ptno}">'+prtitl+'</a></td>'
 	html +='    <td>'+titl+'</td>'
 	html +='    <td>'+nick+'</td>'
@@ -387,13 +388,13 @@ function ansmodicansle(indexno) {
 			                                if(anse == null){
                                             %>
                                             	<div style="width:150px; margin-left:auto; margin-right:0;">
- 													<button type="button" class="btn btn-primary" onClick="ansregi(${i.index},${c.no})">등록</button>
+ 													<button type="button" class="btn btn-primary" onClick="ansregi(${i.index},${c.cno})">등록</button>
                                             <%  
                                             } else{
                                             %>		
                                             		 <div style="width:150px; margin-left:auto; margin-right:0; ">
                                             		 <button type="button" id="ansmodibt${i.index}" class="btn btn-primary" onClick="ansmodibtn(${i.index})">수정</button>
- 													<button type="button" id="ansmod${i.index}" class="btn btn-primary" style="display:none; float:left;" onClick="ansmodi(${i.index},${c.no})">완료</button>
+ 													<button type="button" id="ansmod${i.index}" class="btn btn-primary" style="display:none; float:left;" onClick="ansmodi(${i.index},${c.cno})">완료</button>
                                             <%
                                             }
                                             %>

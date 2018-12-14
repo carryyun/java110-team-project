@@ -483,9 +483,11 @@ var prdtlist = $('div#prdtlist');
 var pageNo=parseInt(2);
 
 $(window).scroll(function() {
-    if($(window).scrollTop() == $(document).height() - window.innerHeight+17) {
-        console.log("$(window).scrollTop()=" + $(window).scrollTop());
-        console.log("else = " + ($(document).height() - window.innerHeight+17));
+//     console.log($(window).scrollTop());
+//     console.log($(document).height()-window.innerHeight);
+    if($(window).scrollTop() == $(document).height() - window.innerHeight) {
+//         console.log("$(window).scrollTop()=" + $(window).scrollTop());
+//         console.log("else = " + ($(document).height() - window.innerHeight+17));
         var html = "";
         $.ajax({
             type : "POST" , 
