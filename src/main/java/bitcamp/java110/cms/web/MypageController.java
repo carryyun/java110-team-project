@@ -516,15 +516,29 @@ public class MypageController {
     Mentee imentee = (Mentee) session.getAttribute("loginUser");
     int reMeno = imentee.getNo();
     
+    int countmanage = classService.countmanageByMono(reMeno);
+    
     List<Classes> cmanage = classService.manageByMono(reMeno,pageNo,pageSize);
     model.addAttribute("cmanage",cmanage);
-    
+    model.addAttribute("countmanage",countmanage);
     
  /*   List<Classes> cm = classService.manageByCno(cno);
     
     model.addAttribute("cm", cm);*/
         
   }
+  
+  /*@RequestMapping(value = "menu5page.do", method = {RequestMethod.POST})
+  public @ResponseBody List<Classes> menu5page(HttpSession session, 
+      @RequestParam(defaultValue="2") int pageNo, @RequestParam(defaultValue="5") int pageSize) {
+    
+    Mentee imentee = (Mentee) session.getAttribute("loginUser");
+    int reMeno = imentee.getNo();
+    
+    List<Classes> clsmenu5list = classService.manageByMono(reMeno, pageNo, pageSize);
+    
+    return clsmenu5list;
+  }*/
   
   @RequestMapping(value = "insertCert.do", method = {RequestMethod.POST})
   public @ResponseBody int insertCert(Cert cert) {

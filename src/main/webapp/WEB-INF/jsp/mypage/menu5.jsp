@@ -21,7 +21,7 @@
 						<th width="15%">멘티</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody id ="cmanagelist">
 					 <c:forEach items="${cmanage}" var="c" varStatus="i">
 					<tr id="tb-pay">
 						<td>${i.count}</td>
@@ -39,21 +39,25 @@
 			 </table>
 			 <nav aria-label="Page navigation example" style="margin-left:200px;">
                                 <ul class="pagination" id="page-list" style="display: inline-block;">
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Previous">
-                                            <span aria-hidden="true">«</span>
-                                            <span class="sr-only">Previous</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Next">
-                                            <span aria-hidden="true">»</span>
-                                            <span class="sr-only">Next</span>
-                                        </a>
-                                    </li>
+                                    
+                                    <%-- <c:set var="countma" value="${countmanage}" />
+                                    <%
+                                    int countm = (int)pageContext.getAttribute("countma");
+                                    int countpage = (countm/5);
+                                    
+                                    System.out.println(countpage);
+                                    
+                                    for(int pno = 1; pno<=countpage; pno++){
+	                                %>
+	                                    <li class="page-item"><a class="page-link" 
+	                                    onClick="countpage(<%=pno%>)"><%=pno%></a></li>
+	                                <%
+	                                    }
+	                                %> --%>
+									<li class="page-item"><a class="page-link" 
+	                                    )">1</a></li>
+	                                <li class="page-item"><a class="page-link" 
+	                                    )">2</a></li>
                                 </ul>
                             </nav>
 		</div>
@@ -86,8 +90,6 @@
 
 
   <script>
-  
-
 
 function getMenteeList(ctno){
     var contents="";
@@ -153,9 +155,7 @@ function report(Nick){
 
  function certi(v,cno,meno){
     
-     console.log(v+cno+meno);
      var  textareaVal= $("button[name='btn-certi']:button[value='"+v+"']").text();
-     console.log(textareaVal);
     if(textareaVal=="미수료"){
              
             swal({

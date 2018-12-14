@@ -243,5 +243,11 @@ public class ClassServiceImpl implements ClassService{
   public int countclsreq() {
     return classDao.countclsreq();
   }
+
+  @Override
+  public int countmanageByMono(int mono) {
+    
+    return classDao.countmanageByMono(mono);
+  }
   
 }
