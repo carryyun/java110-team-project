@@ -390,7 +390,7 @@ public class MypageController {
     Mentee imentee = (Mentee) session.getAttribute("loginUser");
     int reMeno = imentee.getNo();
     
-    List<ClassOrder> colist = classOrderService.listByMeno(pageNo,pageSize,reMeno);
+    List<ClassOrder> colist = classOrderService.listByMeno(reMeno,pageNo,pageSize);
     model.addAttribute("colist", colist );
     
   }
@@ -547,7 +547,7 @@ public class MypageController {
   
   @GetMapping("menu6")
   public void menu6(Model model,HttpSession session, 
-      @RequestParam(defaultValue="1") int pageNo, @RequestParam(defaultValue="10") int pageSize) {
+      @RequestParam(defaultValue="1") int pageNo, @RequestParam(defaultValue="5") int pageSize) {
     Mentee imentee = (Mentee) session.getAttribute("loginUser");
     int reMeno = imentee.getNo();
     
