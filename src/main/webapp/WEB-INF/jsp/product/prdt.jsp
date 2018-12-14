@@ -45,6 +45,57 @@ ul#RankingUl li:nth-child(even){
 ul#RankingUl li:hover{
     background-color: #FFB53C;
 }
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background: #e9e9e9;
+  background-image: none;
+}
+select {
+  width: 100%;
+/*   height: 100%; */
+  margin: 0;
+  padding: 0 0 0 .5em;
+  color: #5f5f5f;
+  border: 1px solid #c9c9c9;
+  cursor: pointer;
+}
+.select {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 3em;
+  line-height: 3;
+  background: #2c3e50;
+  overflow: hidden;
+  border-radius: .25em;
+}
+/* Arrow */
+.select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0 1em;
+  background: #FFB53C;
+  pointer-events: none;
+}
+/* Transition */
+.select:hover::after {
+  color: #fff;
+}
+.select::after {
+  -webkit-transition: .25s all ease;
+  -o-transition: .25s all ease;
+  transition: .25s all ease;
+}
 </style>
 <style>
 	.area_hotkeyword.PM_CL_realtimeKeyword_base{
@@ -425,19 +476,20 @@ ul#RankingUl li:hover{
                 
                 html+='<form action="prodRegister" method="post">';
                 html+='<div class="form-group text-center">';
-                
+                html+='<div class="select">';
                 html+='<select name="mtno" id="cert" onclick="getCtno()" >';
                 for(var i=0;i<data.length; i++){
                     html+='<option id="'+ data[i].no +'" value="'+data[i].classes.mtno+'">'+data[i].classes.titl+'</option>';
                 }
                 html+='</select>';
+                html+='</div>';
                 html+='<input type="hidden" name="ctno" id="ctno" value=""';
                 html+='</div><br>';
                 html+='<div class="text-center" style="margin-top:10px">'
 
-                html+='<button type="button" onclick="openPopUp(this.form)" class="btn btn-default" style="margin:5px">등록</button>';
+                html+='<button type="button" onclick="openPopUp(this.form)" class="btn btn-primary" style="background-color:#FFB53C !important;border:none;margin:5px">등록</button>';
 
-                html+='<button type="button" class="btn btn-default" data-dismiss="modal" role="button">취소</button>';
+                html+='<button type="button" class="btn btn-primary" style="background-color:#c9c9c9 !important;border:none;margin:5px" data-dismiss="modal" role="button">취소</button>';
                 html+='</div>';
                 html+=' </form>';
                 var setDiv = document.querySelector("#modal-body");

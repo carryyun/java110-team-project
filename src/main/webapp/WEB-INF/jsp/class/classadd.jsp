@@ -141,6 +141,11 @@
                  </div> 
                  <div id="filetable">
                        <div>
+                       <button class="btn btn-primary inputFile" style="border: none; background-color: #FFB53C;font-weight:bold;">파일 업로드</button>
+                        <input type="file" id="files" name="files" class="1" style="position:absolute; width:100px;height:33px ; top:318px; opacity: 0;"
+                        onChange="fileCheck(this.form.files)" multiple accept="image/*" />
+                       
+                       
                        <input type="file" id="files" name="files" multiple
 						accept="image/*" onChange="fileCheck(this.form.files)"><br />
 	

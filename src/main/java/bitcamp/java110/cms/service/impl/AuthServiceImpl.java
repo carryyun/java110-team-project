@@ -95,14 +95,20 @@ public class AuthServiceImpl implements AuthService {
       fileurl=map.get("profile_image").toString();
 
       Mentee m = new Mentee();
+      m.setEmail(email); //생략가능
+      m = menteeDao.findAllByEmail(email);
+      m.setNick(nickname); //아래는 바뀐정보가 있을시 갱신시키기위해
       m.setName(name);
-      m.setNick(nickname);
-      m.setEmail(email);
       m.setPhot(fileurl);
-
+      menteeDao.updateNaver(m);
+      
+      
       if(menteeDao.checkemail(m) == 0) 
-      menteeDao.fbsignup(m);
-
+        menteeDao.fbsignup(m);
+//      else {
+//        menteeDao.
+//      }
+      
       return m;
 
     } catch (Exception e) {

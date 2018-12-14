@@ -740,8 +740,8 @@ function mentorcheck() {
     <img src="${mentee.phot}">
        
     <div class="infobox">
-        이름&nbsp;&nbsp;: ${mentee.name}<br>
-        닉네임&nbsp;&nbsp;&nbsp;: ${mentee.nick}<br>
+        이름&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: ${mentee.name}<br>
+        닉네임&nbsp;&nbsp;&nbsp;&nbsp;: ${mentee.nick}<br>
         휴대전화 : ${mentee.phone}<br>
         출금은행 : ${mentee.bkname}<br>
         계좌번호 : ${mentee.bkno}<br>
@@ -1134,8 +1134,6 @@ function mentorcheck() {
                             title: "멘토신청은 한번만 가능합니다!",
                             text: "한분야의 전문가, 프로페셔널~ ",
                             icon: "warning",
-                            buttons: true,
-                            dangerMode: true,
                             })
                      } 
                     
