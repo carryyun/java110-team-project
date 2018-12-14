@@ -140,7 +140,7 @@ a.nav-link{
 
                         </ul>
                     </div> 
-                </nav>
+                </nav> 
             </aside>
 
             <div id="colorlib-main">
