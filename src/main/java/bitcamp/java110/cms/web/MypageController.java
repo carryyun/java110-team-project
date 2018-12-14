@@ -390,7 +390,7 @@ public class MypageController {
     Mentee imentee = (Mentee) session.getAttribute("loginUser");
     int reMeno = imentee.getNo();
     
-    List<ClassOrder> colist = classOrderService.listByMeno(pageNo,pageSize,reMeno);
+    List<ClassOrder> colist = classOrderService.listByMeno(reMeno,pageNo,pageSize);
     model.addAttribute("colist", colist );
     
   }

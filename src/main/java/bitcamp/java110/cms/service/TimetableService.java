@@ -11,5 +11,6 @@ public interface TimetableService {
   int add(Timetable timetable);
   int delete(int ctno);
   int update(Timetable timetable);
+  int capaUpdate(int ttno);
   
 }
