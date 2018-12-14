@@ -437,7 +437,7 @@ function removeImg(no,str) {
                 console.log(e); */
                 sumsize += e.loaded;
                 console.log(sumsize);
-                if (e.loaded > 2000000) {
+                if (e.loaded > 2000000) { 
                 } else if (sumsize > 10000000) {
                     $('#imgBind div').remove();
                 } else {
