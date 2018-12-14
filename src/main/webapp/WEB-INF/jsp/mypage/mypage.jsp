@@ -66,7 +66,21 @@
  
     // 마이페이지 멘토 경력 조건
     
+    $(window).scroll(function() {
+             console.log();
+             console.log($(document).height()-window.innerHeight);
+             if($(window).scrollTop() >5000) {
+                 $('aside#colorlib-aside').css("z-index","-1");
+                 
+             }else{
+                 $('aside#colorlib-aside').css("z-index","0");
+             }
+         });
+    
      $(document).ready(function() {
+         
+             
+         
          
          console.log('${mentee.mtstat}');
          
@@ -137,9 +151,9 @@
            <div class="container" >
         <div class="row">
         
-            <div class="col-lg-12" >
-            <jsp:include page="/app/mypage/headerMainMy.jsp"></jsp:include>
-               <jsp:include page="/app/mypage/headerNavMy.jsp"></jsp:include>
+            <div class="col-lg-12" style="padding: 0">
+                <jsp:include page="/app/mypage/headerMainMy.jsp"></jsp:include>
+                <jsp:include page="/app/mypage/headerNavMy.jsp"></jsp:include>
             </div>
              
             
@@ -164,7 +178,7 @@
                   <span id="stathidden"  class="position;" style="display:"> <br></span> 
                 </div>
 
-                <nav id="colorlib-main-menu" role="navigation" class="navbar">
+                <nav id="colorlib-main-menu" role="navigation" class="navbar" style="margin-top: 15px">
                     <div id="navbar" class="collapse">
                         <ul>
                             <li><a href="#" data-nav-section="about">회원정보수정</a></li>
@@ -238,10 +252,10 @@
                           
                         
   <div class="switch-field">
-      <input type="radio" id="classbkt" name="switch_2" value="yes" style="display:block"checked/>
-      <label for="classbkt">클래스</label>
+      <input type="radio" id="classbkt" name="switch_2" value="yes" style="display:block" checked/>
+      <label for="classbkt" style=" width: 120px">클래스</label>
       <input type="radio" id="productbkt" name="switch_2" value="no" style="display:block"/>
-      <label for="productbkt">상품</label>
+      <label for="productbkt" style=" width: 120px">상품</label>
     </div>
                    
                         <div id="menu3-1"> </div>
@@ -385,7 +399,7 @@
     </div><!-- end:colorlib-page -->
 
     <!-- Footer -->
-    	<footer  >
+    	<footer  style="margin-top: 100px">
             <div class="col px-0"  style="z-index:10000;" >
                 <jsp:include page="../footer.jsp"></jsp:include>
             </div>

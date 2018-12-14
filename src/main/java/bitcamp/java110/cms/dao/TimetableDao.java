@@ -9,6 +9,7 @@ public interface TimetableDao {
   List<Timetable> findByCno(int cno);
 
   Timetable findByCtno(int no);
+  int capaUpdate(int ttno);
   
   int insert(Timetable timetable);
   int delete(int ctno);

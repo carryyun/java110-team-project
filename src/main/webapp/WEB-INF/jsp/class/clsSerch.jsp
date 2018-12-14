@@ -251,35 +251,37 @@ div.box label {
 										<c:forEach items="${clslist}" var="cl" varStatus="i">
 											<div class="col-lg-4">
 												<article class="card-wrapper">
-													<div class="image-holder">
-
-														<a href="#" onclick="openInNewTab('detail?no=${cl.no}');"> <c:set var="transFile"
-																value="${cl.cfile}" /> <%
+													<div class="image-holder"> 
+                                                        <a href="#"  onclick="openInNewTab('detail?no=${cl.no}');" class="image-holder__link"></a>
+                                                        <div class="image-liquid image-holder--original">
+                                                            
+                                                            <a href="#" onclick="openInNewTab('detail?no=${cl.no}');">
+                                                                <c:set var="transFile" value="${cl.cfile}" />
+                                                                <%
                                                                     String transFile = (String)pageContext.getAttribute("transFile");
                                                                     if(transFile.endsWith("jpg") || transFile.endsWith("png")){
-                                                                %> <img alt="${i.count}"
-															src="${cl.cfile}" style="width: 100%; height: 100%"> <%
+                                                                %>
+                                                                <img alt="${i.count}" src="${cl.cfile}" style="width: 100%; height: 100%">
+                                                                <%
                                                                     }else{
                                                                       
-                                                                %> <img alt="${i.count}"
-															src="https://i.ytimg.com/vi/${cl.cfile}/mqdefault.jpg"
-															style="width: 100%; height: 100%"> <%
+                                                                %>
+                                                                    <img alt="${i.count}" src="https://i.ytimg.com/vi/${cl.cfile}/mqdefault.jpg" style="width: 100%; height: 100%">
+                                                                <%
                                                                     }
                                                                 %>
-														</a>
-
-														<div class="image-liquid image-holder--original">
-															<a href="#" onclick="openInNewTab('detail?no=${cl.no}');"><img alt="${i.count}"
-																src="${cl.cfile}" style="width: 100%; height: 100%"></a> <img
-																src="${cl.mentee.phot}" class="mentorimg" alt="${cl.mentee.phot}">
-															<div
-																style="padding: 0 5px; top: 75px; width: auto; height: auto; position: absolute; background-color: #f58500; color: white; border-bottom-right-radius: 10px">${cl.mentee.name}
-															</div>
-															<div
-																style="padding: 0 5px; top: 100px; width: auto; height: auto; position: absolute; background-color: #333873; color: white; border-bottom-right-radius: 10px">${cl.mentee.nick}
-																멘토</div>
-														</div>
-													</div>
+                                                            </a>
+                                                                
+                                                            <img src="${cl.mentee.phot}" class="mentorimg"
+                                                                alt="${cl.mentee.phot}">
+                                                            <div
+                                                                style="padding: 0 5px; top: 75px; width: auto; height: auto; position: absolute; background-color: #f58500; color: white; border-bottom-right-radius: 10px">${cl.mentee.name}
+                                                            </div>
+                                                            <div
+                                                                style="padding: 0 5px; top: 100px; width: auto; height: auto; position: absolute; background-color: #333873; color: white; border-bottom-right-radius: 10px">${cl.mentee.nick}
+                                                                멘토</div>
+                                                        </div>
+                                                    </div>
 													<div class="product-description">
 														<!-- 제목 -->
 														<div class="product-description__title">
@@ -376,22 +378,21 @@ div.box label {
 	</div>
 
 	<!-- ===============필수포함=============== -->
-	<!-- Bootstrap core JavaScript -->
-	<script src="/vendor/jquery/jquery.min.js"></script>
-	<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-	<!-- 이거 두줄 일단 추가했음 -->
+    <!-- 이거 두줄 일단 추가했음 -->
 
-	<!-- js 추가 -->
-	<script src="/js/clean-blog.js"></script>
-	<script src="/js/owl.carousel.js"></script>
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- js 추가 -->
+    <script src="/js/clean-blog.js"></script>
+    <script src="/js/owl.carousel.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-	<!-- ===============필수포함=============== -->
+    <!-- ===============필수포함=============== -->
 
-	<script type="text/javascript"
-		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=74d4f74bdd85b5f1c1d2492eaf6b2a88&libraries=services"></script>
-	<script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=74d4f74bdd85b5f1c1d2492eaf6b2a88&libraries=services"></script>
+<script>
 $('#mapModal').on('shown.bs.modal', function (e) {
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
         mapOption = {
@@ -457,8 +458,6 @@ $('#mapModal').on('shown.bs.modal', function (e) {
                 
                 $('#SerchLocBtn').attr('onclick', '').unbind('click');
                 $('#SerchLocBtn').click(function(){
-//                  console.log(mouseEvent.latLng);
-//                  console.log(addrSetter);
                     location.href="clsLoc?no=${bigTag.no}&locs="+addrSetter;
                 });
             }   
@@ -478,74 +477,83 @@ $('#mapModal').on('shown.bs.modal', function (e) {
 
 </script>
 
-	<script>
-	function showClassAdd(mtstat){
-		if("${sessionScope.loginUser}" == ""){
-			swal({
-				title: "로그인후 이용가능합니다.",
-				button: "확인"
-			});
-		}else if('${sessionScope.loginUser.mtstat}' == 'N'){
-			swal({
-				title: "멘토만 이용가능합니다.",
-				button: "확인"
-			});
-		}else if('${sessionScope.loginUser.mtstat}' == 'Y'){
-			location.href='classadd';
-		}else if('${sessionScope.loginUser.mtstat}' == 'I'){
-			swal({
-				title: "아직 멘토 심사 기간이 안끝났습니다.",
-				button: "확인"
-			});
-		}
-	}
-	</script>
-	<script>
+    <script>
+    function showClassAdd(mtstat){
+        if("${sessionScope.loginUser}" == ""){
+            swal({
+                title: "로그인후 이용가능합니다.",
+                button: "확인"
+            });
+        }else if('${sessionScope.loginUser.mtstat}' == 'N'){
+            swal({
+                title: "멘토만 이용가능합니다.",
+                button: "확인"
+            });
+        }else if('${sessionScope.loginUser.mtstat}' == 'Y'){
+            location.href='classadd';
+        }else if('${sessionScope.loginUser.mtstat}' == 'I'){
+            swal({
+                title: "아직 멘토 심사 기간이 안끝났습니다.",
+                button: "확인"
+            });
+        }
+    }
+    </script>
+    <script>
     var clslist = $('div#clslist'); 
     var pageNo=parseInt(2);
     var btno = $('input#getbtno').val();
     $(document).ready(function(){
-        var serchWord = '${word}';
-        $('input#getWord').val(serchWord);
-
+        if('${locs}'.match(/,/)){
+            var splitCode = '${locs}'.split(",");
+            if(splitCode.length > 1){
+                
+                for (var idx in splitCode) {
+                    $("input[name=loc][value=" + splitCode[idx] + "]").attr("checked", true);
+                }
+            }
+        }else if( !('${locs}'.match(/,/)) & !('${locs}'.match(/ /)) ){
+            $("input[name=loc][value=${locs}]").attr("checked", true);
+        }
     });
-		$(window).scroll(function() {
-		    if($(window).scrollTop() == $(document).height() - window.innerHeight) {
-		        var html = "";
-		        $.ajax({
-		            type : "POST" , 
-		            data : {
-		                "pageNo" : pageNo,
-		                "word" : '${word}'
-		            },
-		            url : "clsSerch.do" ,
-		            success : function(data) {
-		                html ="";
-		                
-		                for(var j=0; j<6;j++){
+        $(window).scroll(function() {
+            var loclist = '${locs}';
+            if($(window).scrollTop() == $(document).height() - window.innerHeight) {
+                var html = "";
+                $.ajax({
+                    type : "POST" , 
+                    data : {
+                        "pageNo" : pageNo,
+                        "locs" : '${locs}',
+                        "no" : btno
+                    },
+                    url : "clsLoc.do" ,
+                    success : function(data) {
+                        html ="";
+                        
+                        for(var j=0; j<6;j++){
                             $('div#animateTarget'+j).removeClass('animated fadeInUp');
                             $('div#animateTarget'+j).removeAttr('id')
                         }
-		                
-		                for (var i in data) {
-		        			var cno = data[i].no;
-		        		    var titl = data[i].titl;
-		        		    var pric = data[i].pric;
-		        		    var basAddr = data[i].basAddr;
-		        		    var cfile = data[i].cfile;
-		        		    var star = data[i].star;
-		        		    var name = data[i].mentee.name;
-		        		    var nick = data[i].mentee.nick;
-		        		    var phot = data[i].mentee.phot;
-		        		    var mtname = data[i].middleTag.name;
-		        		    
-		        		    
-		        		    html+= '<div class="col-lg-4 animated fadeInUp" id="animateTarget'+i+'">'
-		    				    html+= '	<article class="card-wrapper">'
-	    				        html+= '      <div class="image-holder" onClick="openInNewTab(\'detail?no='+cno+'\')">'
-		    				    html+= '			<a href="detail?no='+cno+'" class="image-holder__-link"></a>'
-		    				    html+= '			<div class="image-liquid image-holder--original">'
-		    				        html+= '<a href="#" onclick="openInNewTab(\'detail?no='+ cno +'  \');">'
+                        
+                        for (var i in data) {
+                            var cno = data[i].no;
+                            var titl = data[i].titl;
+                            var pric = data[i].pric;
+                            var basAddr = data[i].basAddr;
+                            var cfile = data[i].cfile;
+                            var star = data[i].star;
+                            var name = data[i].mentee.name;
+                            var nick = data[i].mentee.nick;
+                            var phot = data[i].mentee.phot;
+                            var mtname = data[i].middleTag.name;
+                            
+                            html+= '<div class="col-lg-4 animated fadeInUp" id="animateTarget'+i+'">'
+                                html+= '    <article class="card-wrapper">'
+                                    html+= '      <div class="image-holder" onClick="openInNewTab(\'detail?no='+cno+'\')">'
+                                html+= '            <a href="detail?no='+cno+'" class="image-holder__-link"></a>'
+                                html+= '            <div class="image-liquid image-holder--original">'
+                                    html+= '<a href="#" onclick="openInNewTab(\'detail?no='+ cno +'  \');">'
                                     var transFile = cfile;
                                     if(transFile.endsWith("jpg") || transFile.endsWith("png")){
                                         html+= '<img alt="'+ i +'" src="'+ cfile +'" style="width: 100%; height: 100%">'
@@ -555,61 +563,61 @@ $('#mapModal').on('shown.bs.modal', function (e) {
                                     html+= '</a>'
                                     html+= '<img src="'+phot+'"'
                                     html+= '                    class="mentorimg" alt="'+phot+'">'
-		    				    html+= '				<div '
-		    				    html+= '				style="padding: 0 5px; top: 75px; width: auto; height: auto; position: absolute; background-color: #f58500; color: white; border-bottom-right-radius: 10px">'+name+''
-		    				    html+= '				</div>'
-		    				    html+= '				<div'
-		    				    html+= '					style="padding: 0 5px; top: 100px; width: auto; height: auto; position: absolute; background-color: #333873; color: white; border-bottom-right-radius: 10px">'+nick+''
-		    				    html+= '					멘토</div>'
-		    				    html+= '			</div>'
-		    				    html+= '		</div>'
-		    				    html+= '		<div class="product-description">'
-		    				    html+= '			<div class="product-description__title">'
-		    				    html+= '				<div class="row">'
-		    				    html+= '					<div class="col-lg-12 mb-2" id="titlDiv">'
-	    				        if(titl.length>42) titl=titl.substring(0,42) + "...";
-		    				    html+= '						<a href="detail?no='+cno+'">'+titl+'</a>'
-		    				    html+= '					</div>'
-		    				    html+= '				</div>'
-		    				    html+= '				<div class="row">'
-		    				    html+= '					<div class="col-lg-7 product-description__category secondary-text">'
-		    				        								for(var j=0; j<5; j++) {
-		    					                                    if (j<star) {
-		    					html+= '                        <img alt="star-on-big" class="starimg" src="/upload/img/raty/star-on-big.png">'
-		    					                                  } else {
-		    					html+= '                        <img alt="star-off-big" class="starimg" src="/upload/img/raty/star-off-big.png">'
-		    					                                  }
-		    					                              }
-		    				    html+= '					</div>'
-	                            pric = "" + pric; 
+                                html+= '                <div '
+                                html+= '                style="padding: 0 5px; top: 75px; width: auto; height: auto; position: absolute; background-color: #f58500; color: white; border-bottom-right-radius: 10px">'+name+''
+                                html+= '                </div>'
+                                html+= '                <div'
+                                html+= '                    style="padding: 0 5px; top: 100px; width: auto; height: auto; position: absolute; background-color: #333873; color: white; border-bottom-right-radius: 10px">'+nick+''
+                                html+= '                    멘토</div>'
+                                html+= '            </div>'
+                                html+= '        </div>'
+                                html+= '        <div class="product-description">'
+                                html+= '            <div class="product-description__title">'
+                                html+= '                <div class="row">'
+                                html+= '                    <div class="col-lg-12 mb-2" id="titlDiv">'
+                                if(titl.length>42) titl=titl.substring(0,42) + "...";
+                                html+= '                        <a href="detail?no='+cno+'">'+titl+'</a>'
+                                html+= '                    </div>'
+                                html+= '                </div>' 
+                                html+= '                <div class="row">'
+                                html+= '                    <div class="col-lg-7 product-description__category secondary-text">'
+                                                                    for(var j=0; j<5; j++) {
+                                                                    if (j<star) {
+                                html+= '                        <img alt="star-on-big" class="starimg" src="/upload/img/raty/star-on-big.png">'
+                                                                  } else {
+                                html+= '                        <img alt="star-off-big" class="starimg" src="/upload/img/raty/star-off-big.png">'
+                                                                  }
+                                                              }
+                                html+= '                    </div>'
+                                pric = "" + pric;
                                 pric = pric.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,')
-		    				    html+= '					<div class="col-lg-5 product-description__price">'+pric+'원</div>'
-		    				    html+= '				</div>'
-		    				    html+= '				<hr class="NoMarginHr">'
-		    				        html+= '              <div class="color-wrapper">'
-	    				        html+= '                  <b>지역 - '+basAddr.substring(0,6)+'</b>'
-		    				    html+= '				</div>'
-		    				    html+= '			</div>'
-		    				    html+= '		</div>'
-		    				    html+= '	</article>'
-		    				    html+= '</div>'
-		                }
-		                var setDiv = document.querySelector("div#clslist");
-		                setDiv.innerHTML+=html;
-		                
-		            },error : function(error,status){
-		                swal({
-		                    text : "안됨",
-		                    button : "확인",
-		                  })
-		            }
-		        }).done(function(json) {
-		            pageNo++;
-		        });
-		    }
-		});
+                                html+= '                    <div class="col-lg-5 product-description__price">'+pric+'원</div>'
+                                html+= '                </div>'
+                                html+= '                <hr class="NoMarginHr">'
+                                    html+= '              <div class="color-wrapper">'
+                                html+= '                  <b>지역 - '+basAddr.substring(0,6)+'</b>'
+                                html+= '                </div>'
+                                html+= '            </div>'
+                                html+= '        </div>'
+                                html+= '    </article>'
+                                html+= '</div>'
+                        }
+                        var setDiv = document.querySelector("div#clslist");
+                        setDiv.innerHTML+=html;
+                        
+                    },error : function(error,status){
+                        swal({
+                            text : "안됨",
+                            button : "확인",
+                          })
+                    }
+                }).done(function(json) {
+                    pageNo++;
+                });
+            }
+        });
 </script>
-	<script>
+<script>
 function openInNewTab(url) {
     var win = window.open(url, '_blank');
     win.focus();
@@ -620,7 +628,11 @@ function getLocation(){
     var repleLoc = decodeURIComponent(getCheck).replace(/\+/g, '%20');
     repleLoc= replaceAll(repleLoc, "loc=", "");
     repleLoc= replaceAll(repleLoc, "&", ",");
-    location.href="clsLoc?locs="+repleLoc;
+    if(${bigTag ne null}){
+        location.href="clsLoc?no=${bigTag.no}&locs="+repleLoc;
+    }else{
+        location.href="clsLoc?locs="+repleLoc;
+    }
 }
 function replaceAll(str, searchStr, replaceStr) {
     return str.split(searchStr).join(replaceStr);

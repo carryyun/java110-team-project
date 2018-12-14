@@ -258,8 +258,10 @@ margin-bottom: 0.25rem;
 											<div class="col-lg-4">
 												<article class="card-wrapper">
 													<div class="image-holder"> 
-														
-														<a href="#" onclick="openInNewTab('detail?no=${cl.no}');">
+                                                        <a href="#"  onclick="openInNewTab('detail?no=${cl.no}');" class="image-holder__link"></a>
+                                                        <div class="image-liquid image-holder--original">
+                                                            
+                                                            <a href="#" onclick="openInNewTab('detail?no=${cl.no}');">
                                                                 <c:set var="transFile" value="${cl.cfile}" />
                                                                 <%
                                                                     String transFile = (String)pageContext.getAttribute("transFile");
@@ -275,20 +277,17 @@ margin-bottom: 0.25rem;
                                                                     }
                                                                 %>
                                                             </a>
-														
-														<div class="image-liquid image-holder--original">
-															<a href="#" onclick="openInNewTab('detail?no=${cl.no}');"><img alt="${i.count}"
-																src="${cl.cfile}" style="width: 100%; height: 100%"></a>
-															<img src="${cl.mentee.phot}" class="mentorimg"
-																alt="${cl.mentee.phot}">
-															<div
-																style="padding: 0 5px; top: 75px; width: auto; height: auto; position: absolute; background-color: #f58500; color: white; border-bottom-right-radius: 10px">${cl.mentee.name}
-															</div>
-															<div
-																style="padding: 0 5px; top: 100px; width: auto; height: auto; position: absolute; background-color: #333873; color: white; border-bottom-right-radius: 10px">${cl.mentee.nick}
-																멘토</div>
-														</div>
-													</div>
+                                                                
+                                                            <img src="${cl.mentee.phot}" class="mentorimg"
+                                                                alt="${cl.mentee.phot}">
+                                                            <div
+                                                                style="padding: 0 5px; top: 75px; width: auto; height: auto; position: absolute; background-color: #f58500; color: white; border-bottom-right-radius: 10px">${cl.mentee.name}
+                                                            </div>
+                                                            <div
+                                                                style="padding: 0 5px; top: 100px; width: auto; height: auto; position: absolute; background-color: #333873; color: white; border-bottom-right-radius: 10px">${cl.mentee.nick}
+                                                                멘토</div>
+                                                        </div>
+                                                    </div>
 													<div class="product-description">
 														<!-- 제목 -->
 														<div class="product-description__title">

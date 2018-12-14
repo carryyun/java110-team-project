@@ -52,6 +52,12 @@
         <!-- cno에 }의로 값을 3 넣었기 때문에 나중에 변경해 주어야 함  -->
     </insert>
     
+    <update id="capaUpdate">
+    	update p_cls_ttab
+    	   set capa=capa-1
+         where ctno=#{ttno}
+    </update>
+    
     <delete id="delete" parameterType="int">
         delete from p_cls_ttab
         where ctno=#{ctno}

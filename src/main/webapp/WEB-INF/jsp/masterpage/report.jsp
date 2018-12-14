@@ -61,27 +61,27 @@ table.fixed-table td.tableBtn{
 	    <div class="col-2" style="font-size: 1.75rem"><strong>신고</strong></div> 
 	    <div class="col-8 pl-4" style="margin-top:17px; font-size: 13px; color: #c9c9c9">불량게시물 · 불량회원을 신고해주세요</div>
     </div>
-    <hr class="my-2" color="red" style="height:3px; border-bottom-right-radius :25%;border-top-right-radius :25%;"/>
+    <hr class="my-2" color="#FFB53C" style="height:3px; border-bottom-right-radius :25%;border-top-right-radius :25%;"/>
 </td>
 </tr>
 
 <tr>
     <th>분류</th>
     <td class="text-left" style="padding-left: 20px">
-        <input type="radio" name="type" class="type" value="클래스" id="opt1" checked="checked"/>
+        <input type="radio" name="type" class="type" value="클래스" id="opt1" onclick="selOpt(this)" checked="checked"/>
         <label for="opt1">클래스</label>
-        <input type="radio" name="type" class="type" value="상품" id="opt2"/>
+        <input type="radio" name="type" class="type" value="상품" id="opt2" onclick="selOpt(this)"/>
         <label for="opt2">상품</label>
-        <input type="radio" name="type" class="type" value="댓글" id="opt3"/>
+        <input type="radio" name="type" class="type" value="댓글" id="opt3" onclick="selOpt(this)"/>
         <label for="opt3">댓글</label>
-        <input type="radio" name="type" class="type" value="기타" id="opt4"/>
+        <input type="radio" name="type" class="type" value="기타" id="opt4" onclick="selOpt(this)"/>
         <label for="opt4">기타</label>
     </td>
 </tr>
 <tr>
     <th>신고유형</th>
-    <td class="text-left" style="padding-left: 20px;display: none" id="tdetail-cls">
-        <input type="radio" name="type-detail" onselect="" class="detail" value="카테고리" id="opt1" checked="checked"/>
+    <td class="text-left" style="padding-left: 20px;display: table-cell" id="tdetail-cls">
+        <input type="radio" name="type-detail" class="detail" value="카테고리" id="opt1" checked="checked"/>
         <label for="opt1">카테고리</label>
         <input type="radio" name="type-detail" class="detail" value="수업관련" id="opt2"/>
         <label for="opt2">수업관련</label>
@@ -90,7 +90,7 @@ table.fixed-table td.tableBtn{
         <input type="radio" name="type-detail" class="detail" value="기타" id="opt4"/>
         <label for="opt4">기타</label>
     </td>
-    <td class="text-left" style="padding-left: 20px;display: table-cell;" id="tdetail-prdt">
+    <td class="text-left" style="padding-left: 20px;display: none;" id="tdetail-prdt">
         <input type="radio" name="type-detail" class="detail" value="카테고리" id="opt1" checked="checked"/>
         <label for="opt1">카테고리</label>
         <input type="radio" name="type-detail" class="detail" value="상품관련" id="opt2"/>
@@ -117,7 +117,10 @@ table.fixed-table td.tableBtn{
 </tr>
 <tr>
     <th>신고닉네임</th>
-    <td class="text-left" style="padding-left: 20px"><input type="text" value="" name="nick" class="customWidth" id="usernick" oninput="checknick()" onfocusout="checknick()" style="width: 35%"><br></td>
+    <%String nick = request.getParameter("nick");
+    pageContext.setAttribute("nick", nick);
+    %>
+    <td class="text-left" style="padding-left: 20px"><input type="text" value="${nick}" name="nick" class="customWidth" id="usernick" oninput="checknick()" onfocusout="checknick()" style="width: 35%"><br></td>
 </tr>
 <tr>
     <th>제　　목</th>
@@ -137,7 +140,10 @@ table.fixed-table td.tableBtn{
     </td>
 </tr>
 <tr>
-    <td class="tableBtn" colspan="2"><button type="reset">취소</button> <button id="send" onclick="addRept()">보내기</button></td>
+    <td class="tableBtn" colspan="2">
+	    <button class="btn btn-danger" style="width: 70px; border:none;" type="reset" onclick="window.close()">취소</button>
+	    <button id="send" class="btn btn-primary" style="background-color:#FFB53C; border:none; width: 70px" onclick="addRept()">보내기</button>
+    </td>
     
 </tr>
 
@@ -149,6 +155,33 @@ table.fixed-table td.tableBtn{
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
+function selOpt(obj){
+    //    
+    if($(obj)[0].id == "opt1"){
+        $('td#tdetail-cls').css("display","table-cell");
+        $('td#tdetail-prdt').css("display","none");
+        $('td#tdetail-rep').css("display","none");
+        $('td#tdetail-etc').css("display","none");
+    }else if($(obj)[0].id == "opt2"){
+        $('td#tdetail-cls').css("display","none");
+        $('td#tdetail-prdt').css("display","table-cell");
+        $('td#tdetail-rep').css("display","none");
+        $('td#tdetail-etc').css("display","none");
+    }else if($(obj)[0].id == "opt3"){
+        $('td#tdetail-cls').css("display","none");
+        $('td#tdetail-prdt').css("display","none");
+        $('td#tdetail-rep').css("display","table-cell");
+        $('td#tdetail-etc').css("display","none");
+    }else if($(obj)[0].id == "opt4"){
+        $('td#tdetail-cls').css("display","none");
+        $('td#tdetail-prdt').css("display","none");
+        $('td#tdetail-rep').css("display","none");
+        $('td#tdetail-etc').css("display","table-cell");
+    }
+    
+}
+
+
 
 function report(){
     var openWin;

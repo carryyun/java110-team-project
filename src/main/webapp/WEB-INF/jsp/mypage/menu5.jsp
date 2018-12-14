@@ -123,7 +123,7 @@ $.ajax({
        
             
        contents+='</td>';
-       contents+='<td><img src="/upload/img/rpt-before.png" style=" width:50%; height:auto;"></td>';
+       contents+='<td><img src="/upload/img/rpt-before.png" style=" width:50%; height:auto;" onclick="report(\''+ data[i].mentee2.nick +'\')"></td>';
        contents+='</tr>';
        
        
@@ -142,6 +142,14 @@ $.ajax({
     }
 });
 }
+function report(Nick){
+    var openWin;
+    var url    = "../masterpage/report?url="+Nick+"&nick="+Nick;
+    var title  = "하루 - 신고하기";
+    var status = "toolbar=no,directories=no,scrollbars=no,resizable=no,status=no,menubar=no,width=635, height=465, top=-1000,left=100"; 
+    openWin = window.open(url, title,status); 
+}
+
 
  function certi(v,cno,meno){
     
