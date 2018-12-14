@@ -281,7 +281,7 @@ a.nav-link{
                                         <div class="popupHH">
                                             <h2>문의 상세 보기</h2>
                                             <a class="close" href="#">×</a>
-                                            <div class="content">
+                                            <div class="content" style="height: auto">
                                                 <div class="container"
                                                     style="width: 100%;">
                                                     <div class="row">
