@@ -21,6 +21,11 @@ public class TimetableServiceImpl implements TimetableService {
 
     return timetableDao.insert(timetable);
   }
+  
+  @Override
+  public int capaUpdate(int ttno) {
+    return timetableDao.capaUpdate(ttno);
+  }
 
   @Override
   public int update(Timetable timetable) {

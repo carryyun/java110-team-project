@@ -645,6 +645,7 @@ public class ClassController {
         order.setPayopt(payOpt);
 
         classOrderService.orderadd(order);
+        timetableService.capaUpdate(ttabNo);
       }else { 
 //        System.out.println(str[0] + "," + str[1] + "," + str[2] + "," + str[3]);
 //        int baktNo = Integer.parseInt(str[0]);  //      str[0] = BasketNo
@@ -668,6 +669,7 @@ public class ClassController {
         order.setPayopt(payOpt);
 
         classOrderService.orderadd(order);
+        timetableService.capaUpdate(ttabNo);
       }
     }
     return "complete";
