@@ -48,6 +48,7 @@ nav.navbar.navbar-expand-lg:not(#mainNav){
   padding: 8px;
   color: #6e6e6e;
   min-width: 123px;
+  max-width: 123px;
 }
 #categoryNav > .navbar-nav > li.nav-item > a:hover{
   padding: 4px 7px 7px 7px;

@@ -22,7 +22,7 @@
   -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
   -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
-  text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
   -moz-transform-style: preserve-3D;
   -webkit-transform-style: preserve-3D;
   transform-style: preserve-3D;

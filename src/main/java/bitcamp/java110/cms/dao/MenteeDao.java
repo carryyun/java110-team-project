@@ -28,7 +28,7 @@ public interface MenteeDao {
   List<Mentee> findByPhone(Map<String, Object> params); // 핸드폰
   
   Mentee findByEmailPassword(Map<String,Object> params);
-  
+  Mentee findAllByEmail(String email);
   // 멘토신청목록
   List<Mentee> findMentorRequest();
   
@@ -47,5 +47,7 @@ public interface MenteeDao {
   int updatePhone(Mentee mentee);
   int updateAddr(Mentee mentee);
   int updatePhoto(Mentee mentee);
+  
+  int updateNaver(Mentee mentee);
   
 }

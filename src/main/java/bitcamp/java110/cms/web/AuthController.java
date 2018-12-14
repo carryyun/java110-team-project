@@ -138,6 +138,7 @@ public class AuthController {
     public String naver(String accessToken, HttpSession session) {
       Mentee loginUser = authService.getNaverMember(accessToken);
       session.setAttribute("loginUser", loginUser);
+      System.out.println(loginUser);
       return "redirect:../mainpage/mainpage";
     }
     @GetMapping("callback")
