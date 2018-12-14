@@ -160,7 +160,10 @@ div.row.imgDiv {
 				</div>
 
 				<div class="col-lg-12">
-					<input type="file" id="files" name="files" multiple accept="image/*" />
+				    <button class="btn btn-primary inputFile" style="border: none; background-color: #FFB53C">파일 업로드</button>
+                    <input type="file" id="files" name="files" class="1" style="position:absolute; width:91px;height:32px ; top:0;  ; opacity: 0;"
+                        onChange="fileCheck(this.form.files)" multiple accept="image/*" />
+<!-- 					<input type="file" id="files" name="files" multiple accept="image/*" /> -->
 					<div id="selectedFiles"></div>
 				</div>
 				<!-- 등록 취소버튼 -->
@@ -242,6 +245,76 @@ div.row.imgDiv {
 
 <!-- multiple file input -->
 <script>
+function fileCheck(file) {
+    console.log(file);
+    console.log("asd");
+    // 사이즈체크
+    var maxSize = 10000000; //10MB
+    var fileSize = 0;
+    // console.log(file[0].size);
+    // console.log(file[1].size);
+    console.log(file);
+    // console.log(file[0].value.size);
+    // console.log(file[1].value.size);
+    console.log($("#files")[0].files.length);
+
+    // 브라우저 확인
+    var browser = navigator.appName;
+
+    // 익스플로러일 경우
+    if (browser == "Microsoft Internet Explorer") {
+        var oas = new ActiveXObject("Scripting.FileSystemObject");
+        fileSize = oas.getFile(file.value).size;
+
+    }
+    // 익스플로러가 아닐경우
+    else {
+        console.log("익스플로러x 실행");
+        console.log($("#files")[0].files.length);
+
+        for (var x = 0; x < $("#files")[0].files.length; x++) {
+            if ($("#files")[0].files[x].size > 2000000) {
+                swal({
+                    text : "첨부파일 한장당 사이즈는 2MB 이내로 등록 가능합니다. ",
+                    button : "확인"
+                });
+                console.log("2MB 넘는 파일 이름 : " + file.files[x].name);
+                console.log("2MB 넘는 파일 사이즈 : " + file.files[x].size);
+                console.log(x);
+                //              removeImg(x);
+                console.log(file.files[x]);
+                file.files[x].remove;
+                console.log(file.files[x]);
+                //$('#files').html();
+                $("#files").val("");
+                //$("div#imgDiv" + x).remove();
+            } else {
+                fileSize += file.files[x].size;
+                console.log(file.files[x].size);
+            }
+            //console.log($("#files").size); 
+            //console.log("asdzxc"); 
+        }
+        console.log("전체 파일 사이즈 : " + fileSize);
+
+        console.log("???");
+    }
+
+    console.log("asdasdasd");
+    //console.log(fileSize);
+
+    if (fileSize > maxSize) {
+        swal({
+            text : "첨부파일 전체 사이즈는 10MB 이내로 등록 가능합니다. ",
+            button : "확인"
+        });
+        //alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다.    ");
+        $('#myForm input[type="file"]').val('');
+    }
+
+}
+
+
     var selDiv = "";
 
     document.addEventListener("DOMContentLoaded", init, false);
