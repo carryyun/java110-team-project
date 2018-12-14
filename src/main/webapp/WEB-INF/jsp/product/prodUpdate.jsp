@@ -78,7 +78,7 @@ div.row.imgDiv {
 							<p>
 
 								<input name="titl" placeholder="상품명을 입력하세요" value="${product.titl}"
-									style="width: 100%; height: 50px; font-size: 25px; padding-left: 15px; margin-bottom: 30px">
+									style="width: 100%; height: 50px; font-size: 25px; padding-left: 15px; margin-bottom: 30px" autocomplete="off">
 							</p>
 						</div>
 						<!-- </div class="col-lg-12"> -->
@@ -103,7 +103,7 @@ div.row.imgDiv {
 									<div class="row">
 										<div class="col-lg-12">재고</div>
 										<div class="col-lg-12">
-											<input type="text" class="detailInfo" id="stock" name="stock" value="<fmt:formatNumber value="${product.stock}" groupingUsed="true"/>">
+											<input type="text" class="detailInfo" id="stock" name="stock" autocomplete="off" value="<fmt:formatNumber value="${product.stock}" groupingUsed="true"/>">
 										</div>
 									</div>
 								</div>
@@ -111,7 +111,7 @@ div.row.imgDiv {
 									<div class="row">
 										<div class="col-lg-12">가격</div>
 										<div class="col-lg-12">
-											<input type="text" class="detailInfo" name="pric" value="${product.pric}"/>
+											<input type="text" class="detailInfo" name="pric" value="${product.pric}" autocomplete="off"/>
 										</div>
 									</div>
 								</div>
@@ -119,7 +119,7 @@ div.row.imgDiv {
 									<div class="row">
 										<div class="col-lg-12">택배비</div>
 										<div class="col-lg-12">
-											<input type="text" class="inputid detailInfo" name="deli" value="${product.deli}"/>
+											<input type="text" class="inputid detailInfo" name="deli" value="${product.deli}" autocomplete="off"/>
 
 										</div>
 									</div>

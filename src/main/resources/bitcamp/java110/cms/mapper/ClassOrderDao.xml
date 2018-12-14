@@ -15,6 +15,7 @@
         <result column="ctno"      	property="ctno"/>
         
         <result column="ctitl"      property="classes.titl"/>
+        <result column="cfile"      property="classes.cfile"/>
         <result column="mentornick" property="mentornick"/>
         
         <result column="date"  property="timetable.date"/>
@@ -62,6 +63,7 @@
 				pco.ctno,
 				pc.cno as ccno,
 				pc.titl as ctitl,
+                pc.cfile as cfile,
 				pm2.nick as mentornick,
 				pct.date,
 				pct.stime,

@@ -143,7 +143,7 @@ select {
 								style="color: white; background-color: #FFB53C; border: 1px solid #FFB53C; padding: 5px; display: inline; border-radius: 3px;">상품명</div>
 							<p>
 
-								<input name="titl" placeholder="상품명을 입력하세요"
+								<input name="titl" placeholder="상품명을 입력하세요" autocomplete="off"
 									style="width: 100%; height: 50px; font-size: 25px; padding-left: 15px; margin-bottom: 30px">
 							</p>
 						</div>
@@ -156,7 +156,7 @@ select {
 				<div class="col-lg-12 mt-3">
 
 					<div
-						style="color: white; background-color: #FFB53C; padding: 5px; display: inline; border-radius: 3px;">상세보기</div>
+						style="color: white; background-color: #FFB53C; padding: 5px; display: inline; border-radius: 3px;">상세정보</div>
 
 					<div class="col-lg-12"
 						style="border: 1px solid #a9a9a9; margin-top: 5px;">
@@ -170,7 +170,7 @@ select {
 									<div class="row">
 										<div class="col-lg-12">재고</div>
 										<div class="col-lg-12">
-											<input type="text" class="detailInfo" id="stock" name="stock">
+											<input type="text" class="detailInfo" id="stock" name="stock" autocomplete="off">
 										</div>
 									</div>
 								</div>
@@ -178,7 +178,7 @@ select {
 									<div class="row">
 										<div class="col-lg-12">가격</div>
 										<div class="col-lg-12">
-											<input type="text" class="detailInfo" name="pric">
+											<input type="text" class="detailInfo" name="pric" autocomplete="off">
 										</div>
 									</div>
 								</div>
@@ -186,7 +186,7 @@ select {
 									<div class="row">
 										<div class="col-lg-12">택배비</div>
 										<div class="col-lg-12">
-											<input type="text" class="inputid detailInfo" name="deli" />
+											<input type="text" class="inputid detailInfo" name="deli" autocomplete="off" />
 
 										</div>
 									</div>
