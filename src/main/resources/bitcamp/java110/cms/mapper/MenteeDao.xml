@@ -137,9 +137,24 @@
                 m.meno=#{value}
     </select>
     
-    <select id="findAllByEmail" parameterType="String">
+    <select id="findAllByEmail" parameterType="String" resultMap="menteeMap">
         select
-            email
+            meno,
+            name,
+            email,
+            pwd,
+            nick,
+            phone,
+            pstno,
+            bas_addr,
+            det_addr,
+            phot,
+            sell,
+            bkname,
+            bkno,
+            rgdt,
+            stat,
+            note
         from
             p_mete
         where 
@@ -322,8 +337,17 @@
 
         WHERE 
             meno = #{no}
-
     </update>
     
-    
+    <update id="updateNaver" parameterType="Mentee">
+        UPDATE 
+            p_mete
+        <set>
+            <if test="nick != null">nick = #{nick},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="phot != null">phot = #{phot},</if>
+            <if test="name != null">name = #{name}</if>
+        </set>
+         where meno = #{no}
+    </update>
 </mapper>

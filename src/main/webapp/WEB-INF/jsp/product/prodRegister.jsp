@@ -64,6 +64,59 @@ div.row.imgDiv {
 	margin-bottom: 10px;
 	width: 90px;
 }
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background: #e9e9e9;
+  background-image: none;
+}
+select {
+  width: 100%;
+/*   height: 100%; */
+  margin: 0;
+  padding: 0 0 0 .5em;
+  color: #5f5f5f;
+  border: 1px solid #c9c9c9;
+  cursor: pointer;
+}
+.select {
+  position: relative;
+  display: block;
+  width: 60%;
+  height: 2em;
+  line-height: 2;
+  background: #e9e9e9;
+  overflow: hidden;
+  border-radius: .25em;
+  margin-right: 25px;
+}
+/* Arrow */
+.select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0 0.5rem;
+  background: #FFB53C;
+  pointer-events: none;
+}
+/* Transition */
+.select:hover::after {
+  color: #fff;
+}
+.select::after {
+  -webkit-transition: .25s all ease;
+  -o-transition: .25s all ease;
+  transition: .25s all ease;
+}
+
 </style>
 
 
@@ -146,13 +199,15 @@ div.row.imgDiv {
 										<div class="col-lg-12">
 											무료배송<input type='checkbox' data-toggle='inputid' />
 										</div>
-										<div class="col-lg-12">
-
-											소분류 <select name="stno">
-												<c:forEach items="${stagList}" var="sl">
-													<option value="${sl.no}">${sl.name}</option>
-												</c:forEach>
-											</select>
+										<div class="col-lg-11">
+											<span style="line-height: 2">소분류</span>
+										<div class="select" style="float: right">
+                                            <select name="stno">
+                                                <c:forEach items="${stagList}" var="sl">
+                                                    <option value="${sl.no}">${sl.name}</option>
+                                                </c:forEach>
+                                            </select>
+                                            </div>
 										</div>
 									</div>
 								</div>
@@ -174,9 +229,11 @@ div.row.imgDiv {
 				</div>
 
 				<div class="col-lg-12">
-					<input type="file" id="files" name="files"
+				    <button class="btn btn-primary inputFile" style="border: none; background-color: #FFB53C">파일 업로드</button>
+					<input type="file" id="files" name="files" class="1" style="position:absolute; width:91px;height:32px ; top:0;  ; opacity: 0;"
 						onChange="fileCheck(this.form.files)" multiple accept="image/*" />
-					<div id="selectedFiles"></div>
+					<div id="selectedFiles">
+					</div>
 				</div>
 				<!-- 등록 취소버튼 -->
 				<div class="col-lg-12 text-right">
