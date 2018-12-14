@@ -464,7 +464,22 @@
     </select>
 
 
+	<select id="countmanageByMono" resultType="int" parameterType="int">
+    select
+        
+		count(*)
 
+		FROM p_cls c
+		JOIN p_meto mo ON c.mono = mo.mono
+		JOIN p_mete me ON mo.mono = me.meno
+		JOIN p_mtag mtg ON c.mtno = mtg.mtno
+		JOIN p_btag btg ON mtg.btno = btg.btno
+		JOIN p_cls_ttab ct ON c.cno = ct.cno
+	
+		where
+		mo.mono=2 AND c.stat = 'Y'
+    
+    </select>
 
 	<select id="manageByMono" resultMap="classMapMypage"
 		parameterType="map">
