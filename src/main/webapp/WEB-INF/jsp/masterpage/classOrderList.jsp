@@ -139,8 +139,8 @@ a.nav-link{
                                 data-nav-section="9" style="cursor: pointer;color: #2c98f0; font-weight: bold;"> 클래스 신청 내역 </a></li>
 
                         </ul>
-                    </div>
-                </nav>
+                    </div> 
+                </nav> 
             </aside>
 
             <div id="colorlib-main">
