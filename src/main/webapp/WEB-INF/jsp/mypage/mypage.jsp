@@ -67,8 +67,6 @@
     // 마이페이지 멘토 경력 조건
     
     $(window).scroll(function() {
-             console.log();
-             console.log($(document).height()-window.innerHeight);
              if($(window).scrollTop() >5000) {
                  $('aside#colorlib-aside').css("z-index","-1");
                  

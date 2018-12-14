@@ -42,9 +42,9 @@
                                 <ul class="pagination" id="page-list" style="display: inline-block;">
 									<li class="page-item"><a class="page-link" onclick="cmanagelist(this)">1</a></li>
 	                                <li class="page-item"><a class="page-link" onclick="cmanagelist(this)">2</a></li>
-	                                <li class="page-item"><a class="page-link" onclick="cmanagelist(this)">3</a></li>
-	                                <li class="page-item"><a class="page-link" onclick="cmanagelist(this)">4</a></li>
-	                                <li class="page-item"><a class="page-link" onclick="cmanagelist(this)">5</a></li>
+<!-- 	                                <li class="page-item"><a class="page-link" onclick="cmanagelist(this)">3</a></li> -->
+<!-- 	                                <li class="page-item"><a class="page-link" onclick="cmanagelist(this)">4</a></li> -->
+<!-- 	                                <li class="page-item"><a class="page-link" onclick="cmanagelist(this)">5</a></li> -->
                                 </ul>
                             </nav>
 		</div>
@@ -96,16 +96,15 @@ $.ajax({
         for(var i in data) {
             
        contents+='<tr id="tb-pay">';
-       contents+='<td>'+cnt+++'</td>';
+       contents+='<td>'+ cnt++ +'</td>';
        contents+='<td><a href=\'#\'>'+data[i].mentee2.name+'('+data[i].mentee2.nick+')'+'</a></td>';
        contents+='<td>'+data[i].mentee2.phone+'</td>';
        contents+='<td>';
        
      
-        if (data[i].cert == null)  {
+        if (data[i].star == 5)  {
             contents+= '<button class="btn-danger" name="btn-certi" value="'+i+'" onclick="certi(this.value,'+data[i].no+','+data[i].mentee2.no+');"   style="width:70px;" ">미수료</button>';
-        }else  if (data[i].cert != null) {
-           if(data[i].cert.type == "수료증")
+        }else if(data[i].star == 1){
             contents+= '<button class="btn-primary"  style="width:70px;">수료</button>';    
         } 
        
@@ -245,7 +244,7 @@ function cmanagelist(obj){
 //            contents+= transTime + ' (' + data[i].time + ' 시간 )</td>';
            
            contents+='<td>'+ data[i].bigTag.name + '-' + data[i].middleTag.name+'</td>';
-           contents+= '<td><button onclick="getMenteeList( '+ data[i].timetable.no +')"  class="btn-primary"  style="width:100px;">'+data[i].counting +' / '+ data[i].timetable.capa+' 명</button></td>';
+           contents+= '<td><button onclick="getMenteeList( '+ data[i].timetable.no +')"  class="btn-primary"  style="width:100px;">'+data[i].counting +' / '+ data[i].capa+' 명</button></td>';
            
            contents+='</tr>';
            

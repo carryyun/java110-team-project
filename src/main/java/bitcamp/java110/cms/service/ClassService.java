@@ -33,6 +33,8 @@ public interface ClassService {
   int countmanageByMono(int mono);
   //마이페이지 - 클래스 관리 - 멘토 클래스의 멘티들
   List<Classes> manageByCno(int cno);
+  
+  List<Classes> checkForCert(int cno);
 
   //마이페이지 - 클래스 관리
   List<Classes> findByMono(int mono);

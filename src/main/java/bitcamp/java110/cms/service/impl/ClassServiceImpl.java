@@ -249,5 +249,10 @@ public class ClassServiceImpl implements ClassService{
     
     return classDao.countmanageByMono(mono);
   }
+
+  @Override
+  public List<Classes> checkForCert(int cno) {
+    return classDao.checkForCert(cno);
+  }
   
 }

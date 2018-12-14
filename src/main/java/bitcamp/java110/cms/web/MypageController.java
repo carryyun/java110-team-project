@@ -585,9 +585,26 @@ public class MypageController {
   
   @RequestMapping(value = "getMenteeList.do", method = {RequestMethod.POST})
   public @ResponseBody List<Classes> getMenteeList(int no) {
+    List<Classes> alllist = classService.manageByCno(no);
     
+    // cert 발급여부를 체크하기위해 임시로 star사용
+    List<Classes> checklist = classService.checkForCert(alllist.get(0).getNo());
+    for(Classes origin : alllist) {
+      
+      origin.setStar(5);
+      
+      for(Classes c : checklist) {
+        
+        if(c.getMentee2().getNo() == origin.getMentee2().getNo()){
+          origin.setStar(1);
+        }
+        
+      }
+      
+    }
     
-    return classService.manageByCno(no);
+//    return classService.manageByCno(no);
+    return alllist;
   }
   @RequestMapping(value = "deliveryinsert.do", method = {RequestMethod.POST})
   public @ResponseBody int deliveryInsert(String parcname,String parcno, int ono) {
