@@ -258,12 +258,20 @@
                                                   pageContext.setAttribute("DateResult", 1);
                                                 }
                                                 %>
+                                                <c:set var="clscapa" value="${detailclass.capa}"/>
+                                                <c:set var="timecapa" value="${t.capa}"/>
+                                                <%
+                                                int ccapa = (int)pageContext.getAttribute("clscapa");
+                                                int tcapa = (int)pageContext.getAttribute("timecapa");
+                                                
+                                                int leftcapa = (ccapa - tcapa);
+                                                %>
 	                                         <c:choose>
 	                                         	<c:when test="${DateResult eq 0}">
-	                                         		<option value="${t.no}" >${tstat.count}.${t.date} | ${t.stime}(${t.capa}/${detailclass.capa})</option>
+	                                         		<option value="${t.no}" >${tstat.count}.${t.date} | ${t.stime}(${detailclass.capa}/<%=leftcapa%>)</option>
 	                                         	</c:when>
 	                                         	<c:otherwise>
-	                                         		<option value="${t.no}">${t.date}~${t.edate} ${t.stime}</option>
+	                                         		<option value="${t.no}">${t.date}~${t.edate} ${t.stime}(${detailclass.capa}/<%=leftcapa%>)</option>
 	                                         	</c:otherwise>
 	                                         </c:choose>
                                          </c:forEach>
