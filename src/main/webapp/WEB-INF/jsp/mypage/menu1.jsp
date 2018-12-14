@@ -1140,6 +1140,64 @@ function mentorcheck() {
                      } 
                     
                     else{
+                        if($('input#text1').val() ==""){
+                            swal({
+                                text: "개인정보를 모두 입력 후 신청 가능합니다",
+                                icon: "warning",
+                                button: "확인"
+                                });
+                            return false;
+                        }
+                        if($('input#sectext31').val() ==""){
+                            swal({
+                                text: "개인정보를 모두 입력 후 신청 가능합니다",
+                                icon: "warning",
+                                button: "확인"
+                                });
+                            return false;
+                        }
+                        if($('input#text32').val() ==""){
+                            swal({
+                                text: "개인정보를 모두 입력 후 신청 가능합니다",
+                                icon: "warning",
+                                button: "확인"
+                                });
+                            return false;
+                        }
+                        if($('input#text4').val() ==""){
+                            swal({
+                                text: "개인정보를 모두 입력 후 신청 가능합니다",
+                                icon: "warning",
+                                button: "확인"
+                                });
+                            return false;
+                        }
+                        if($('input#sample6_postcode').val() ==""){
+                            swal({
+                                text: "개인정보를 모두 입력 후 신청 가능합니다",
+                                icon: "warning",
+                                button: "확인"
+                                });
+                            return false;
+                        }
+                        if($('input#sample6_address').val() ==""){
+                            swal({
+                                text: "개인정보를 모두 입력 후 신청 가능합니다",
+                                icon: "warning",
+                                button: "확인"
+                                });
+                            return false;
+                        }
+                        if($('input#sample6_address2').val() ==""){
+                            swal({
+                                text: "개인정보를 모두 입력 후 신청 가능합니다",
+                                icon: "warning",
+                                button: "확인"
+                                });
+                            return false;
+                        }
+                        
+                        
                         
                         $(".pop").addClass("hide");
                         

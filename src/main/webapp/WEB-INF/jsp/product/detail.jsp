@@ -480,9 +480,20 @@ function addOrder(payopt){
     function orderProduct(){
         if(${sessionScope.loginUser eq null}){
             swal({
-                text : "로그인 후 이용가능합니다..",
+                text : "로그인 후 이용가능합니다",
+                icon : "warning",
                 button : "확인",
-              })
+              });
+        }else if(${sessionScope.loginUser.bas_addr eq null}){
+            swal({
+                text : "입력된 주소가 없습니다. 마이페이지에서 주소를 입력해주세요",
+                icon : "warning",
+                buttons: true,
+                dangerMode: true,
+              }).then((value) => {
+                  if(value==true)
+                  location.href="../mypage/mypage";
+              });
         }else{
             var saveTitl = "${product.titl}";
             var saveTotal = parseInt($('input#totalPric').val())
