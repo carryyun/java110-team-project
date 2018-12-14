@@ -861,149 +861,122 @@ function addqna(no) {
     var clsmeno = ${detailclass.mentee.no};
 	var qnatablelist = $('#qnatablelist');
     
-	var countorder = 0;
-    		
-	$.ajax({
-	    type : "POST" , 
-	    data : {
-	        "no" : cno
-	    },
-	    url : "countorder.do",
-	    success : function(data) {
-	        countorder = data
-	        console.log(data);
-	        
-	        if(titl == "" || conts == ""  ) {
-	            swal({
-	                title: "필수 항목을 입력해주세요",
-	                icon:"warning", 
-	                button : "확인",
-	              })
-	        } else if(countorder < 1) {
-	            $('#titl').val("");
-	            $('#qnaconts').val("");
-	            swal({
-	                text : "클래스를 수강후 Q&A 등록이 가능합니다",
-	                button : "확인",
-	              })
-	        } else {
-	            $.ajax({
-	                type:"POST",
-	                data : {
-	                    "type" : type,
-	                    "titl" : titl,
-	                    "conts" : conts,
-	                    "cno" : cno,
-	                    "meno" : no
-	                },
-	                url : "qnainsert",
-	                success : function(data) {
-	                    swal({
-	                        title : "Q&A 질문이 등록되었습니다",
-	                        text : "축하드립니다.",
-	                        icon : "success",
-	                        button : "확인",
-	                      })
-	                      var html ="";
-	                    
-	                    for(var i in data) {
-	                        var cqno = data[i].no;
-	    	        		var qnatitl = data[i].titl;
-	    	        		var qnatype = data[i].type;
-	    	        		var qnargdt = data[i].rgdt;
-	    	        		var qnaconts = data[i].conts;
-	    	        		var qnaanser = data[i].anser;
-	    	        		var qnanick = data[i].mentee.nick;
-	    	        		var countqn = ${countqna};
-	    	        		
-	    	        		qnargdt = new Date();
-	    	        		
-	    	        		var dd= qnargdt.getDate();
-	    	        		var mm= qnargdt.getMonth();
-	    	        		var yy= qnargdt.getFullYear();
-	    	        		
-	    	        		if( dd < 10){
-	    	        		    dd = '0' + dd;
-	    	        		}
-	    	        		if( mm < 10){
-	    	        		    mm='0' +mm;
-	    	        		}
-	    	        		
-	    	        		qnargdt = yy+'-'+mm+'-'+dd;
-	    	        		
-	    	        		html +=' <c:set var="qnasi" value="${countqna}" />'
-	    	        		html +='    <tr data-toggle="collapse" '
-	    	        		html +='    data-target="#demo1-'+i+'" class="accordion-toggle row">'
-	    	        		html +='        <td class="col-lg-1" scope="row" id="qna_th">'+(parseInt(i)+1)+'</td>'
-	    	        		html +='        <td class="col-lg-2">'+qnatype+'</td>'
-	    	        				         	if(qnaanser == null){
-	    	        		html +='            <td class="col-lg-2">미완료</td>'
-	    	        						  	}else{
-	    	        		html +='            <td class="col-lg-2">완료</td>'
-	    	        							}
-	                                if(qnatitl.length > 8) {
-	                                var longtitl = qnatitl.substring(0, 7);
-	                        html +=' <td class="col-lg-3">'+longtitl+'..</td>'
-	                                } else {
-	                        html +=' <td class="col-lg-3">'+qnatitl+'</td>'
-	                                }
-	    	        		html +='        <td class="col-lg-2">'+qnanick+'</td>'
-	    	        		html +='        <td class="col-lg-2">'+qnargdt+'</td>'
-	    	        		html +='    </tr>'
-	    	        		html +='    <tr>'
-	    	        		html +='        <td colspan="6" class="hiddenRow">'
-	    	        		html +='             <div class="accordian-body collapse" id="demo1-'+i+'">'
-	    	        		html +='             <div class="adddet col-lg-2" style="text-align: center;'
-	    	        		html +='            vertical-align: middle;'
-	    	        		html +='                        display : block;">질문 내용</div>'
-	    	        		html +='            <div class="acco" id="cont">'+qnaconts+'</div><br>'
-	    			         	 				 if(qnaanser == null){
-	    	        		html +='                      <div class="adddet col-lg-2" style="text-align: center;'
-	    	        		html +='                          vertical-align: middle;'
-	    	        		html +='                         display : block;">질문 답변</div>'
-	    	        		    						if("${sessionScope.loginUser}" == ""){
-	    	        		html +='                              <div class="acco" id="ans'+i+'">답변이 등록되지 않았습니다.</div>'
-	    	        		    						} else if("${sessionScope.loginUser.no}" == clsmeno) {
-	                        html +='                            <form class="ansinss" action="detail?no='+cno+'" method="post">'
-	                        html +='                                <label onClick="ansbtn('+i+')" class="allbtn"'
-	                        html +='                                id="allbtn'+i+'">답변을 작성하시려면 클릭해주세요!</label>'
-	                        html +='                                <textarea class="clsanser" id="cls'+i+'" rows="5" name="clsanser"'
-	                        html +='                                style ="width : 500px; display: none;"></textarea>'
-	                        html +='                                <div class="butmana" style="margin-left:10px;">'
-	                        html +='                                    <button class="btn btn-default"' 
-	                        html +='                                    onClick="answerins(${sessionScope.loginUser.no},cls'+i+','+cqno+')"'
-	                        html +='                                     type="button" >등록</button>'
-	                        html +='                                    <button class="btn btn-default" id="ansstat" type="button"' 
-	                        html +='                                     onClick="answercansle('+i+')">취소</button>'
-	                        html +='                                 </div>'
-	                        html +='                              </form>'
-	    	        		    						} else {
-	                        html +='                            <div class="acco" id="ans'+i+'">답변이 등록되지 않았습니다.</div>'
-	    	        		    						}
-	                                        	}else{
-	                        html +='                    <div class="adddet col-lg-2" style="text-align: center;'
-	                        html +='                    vertical-align: middle;'
-	                        html +='                        display : block;">질문 답변</div>'
-	                        html +='                     <div class="acco" id="ans'+i+'">'+qnaanser+'</div>'
-	                                        }
-	                        html +='            </div>'
-	                        html +='        </td>'
-	                        html +='    </tr>'
-	                    }
-	                    qnatablelist.html(html);
-	                },error : function(error,status){
-	                    console.log(error);
-	                    console.log(status);
-	                }
-	            });
-	        }
-	    },error : function(error,status){
-	        swal({
-	            text : "로그인 후 이용가능합니다..",
-	            button : "확인",
-	          })
-	     }
-	});
+	if(titl == "" || conts == ""  ) {
+        swal({
+            title: "필수 입력항목을 입력안하셨습니다.",
+            button : "확인",
+          })
+    } else {
+        $.ajax({
+            type:"POST",
+            data : {
+                "type" : type,
+                "titl" : titl,
+                "conts" : conts,
+                "cno" : cno,
+                "meno" : no
+            },
+            url : "qnainsert",
+            success : function(data) {
+                swal({
+                    title : "Q&A 질문이 등록되었습니다",
+                    text : "축하드립니다.",
+                    icon : "success",
+                    button : "확인",
+                  })
+                  var html ="";
+                
+                for(var i in data) {
+                    var cqno = data[i].no;
+	        		var qnatitl = data[i].titl;
+	        		var qnatype = data[i].type;
+	        		var qnargdt = data[i].rgdt;
+	        		var qnaconts = data[i].conts;
+	        		var qnaanser = data[i].anser;
+	        		var qnanick = data[i].mentee.nick;
+	        		var countqn = ${countqna};
+	        		
+	        		qnargdt = new Date();
+	        		
+	        		var dd= qnargdt.getDate();
+	        		var mm= qnargdt.getMonth();
+	        		var yy= qnargdt.getFullYear();
+	        		
+	        		if( dd < 10){
+	        		    dd = '0' + dd;
+	        		}
+	        		if( mm < 10){
+	        		    mm='0' +mm;
+	        		}
+	        		
+	        		qnargdt = yy+'-'+mm+'-'+dd;
+	        		
+	        		html +=' <c:set var="qnasi" value="${countqna}" />'
+	        		html +='    <tr data-toggle="collapse" '
+	        		html +='    data-target="#demo1-'+i+'" class="accordion-toggle row">'
+	        		html +='        <td class="col-lg-1" scope="row" id="qna_th">'+(parseInt(i)+1)+'</td>'
+	        		html +='        <td class="col-lg-2">'+qnatype+'</td>'
+	        				         	if(qnaanser == null){
+	        		html +='            <td class="col-lg-2">미완료</td>'
+	        						  	}else{
+	        		html +='            <td class="col-lg-2">완료</td>'
+	        							}
+                            if(qnatitl.length > 8) {
+                            var longtitl = qnatitl.substring(0, 7);
+                    html +=' <td class="col-lg-3">'+longtitl+'..</td>'
+                            } else {
+                    html +=' <td class="col-lg-3">'+qnatitl+'</td>'
+                            }
+	        		html +='        <td class="col-lg-2">'+qnanick+'</td>'
+	        		html +='        <td class="col-lg-2">'+qnargdt+'</td>'
+	        		html +='    </tr>'
+	        		html +='    <tr>'
+	        		html +='        <td colspan="6" class="hiddenRow">'
+	        		html +='             <div class="accordian-body collapse" id="demo1-'+i+'">'
+	        		html +='             <div class="adddet col-lg-2" style="text-align: center;'
+	        		html +='            vertical-align: middle;'
+	        		html +='                        display : block;">질문 내용</div>'
+	        		html +='            <div class="acco" id="cont">'+qnaconts+'</div><br>'
+			         	 				 if(qnaanser == null){
+	        		html +='                      <div class="adddet col-lg-2" style="text-align: center;'
+	        		html +='                          vertical-align: middle;'
+	        		html +='                         display : block;">질문 답변</div>'
+	        		    						if("${sessionScope.loginUser}" == ""){
+	        		html +='                              <div class="acco" id="ans'+i+'">답변이 등록되지 않았습니다.</div>'
+	        		    						} else if("${sessionScope.loginUser.no}" == clsmeno) {
+                    html +='                            <form class="ansinss" action="detail?no='+cno+'" method="post">'
+                    html +='                                <label onClick="ansbtn('+i+')" class="allbtn"'
+                    html +='                                id="allbtn'+i+'">답변을 작성하시려면 클릭해주세요!</label>'
+                    html +='                                <textarea class="clsanser" id="cls'+i+'" rows="5" name="clsanser"'
+                    html +='                                style ="width : 500px; display: none;"></textarea>'
+                    html +='                                <div class="butmana" style="margin-left:10px;">'
+                    html +='                                    <button class="btn btn-default"' 
+                    html +='                                    onClick="answerins(${sessionScope.loginUser.no},cls'+i+','+cqno+')"'
+                    html +='                                     type="button" >등록</button>'
+                    html +='                                    <button class="btn btn-default" id="ansstat" type="button"' 
+                    html +='                                     onClick="answercansle('+i+')">취소</button>'
+                    html +='                                 </div>'
+                    html +='                              </form>'
+	        		    						} else {
+                    html +='                            <div class="acco" id="ans'+i+'">답변이 등록되지 않았습니다.</div>'
+	        		    						}
+                                    	}else{
+                    html +='                    <div class="adddet col-lg-2" style="text-align: center;'
+                    html +='                    vertical-align: middle;'
+                    html +='                        display : block;">질문 답변</div>'
+                    html +='                     <div class="acco" id="ans'+i+'">'+qnaanser+'</div>'
+                                    }
+                    html +='            </div>'
+                    html +='        </td>'
+                    html +='    </tr>'
+                }
+                qnatablelist.html(html);
+            },error : function(error,status){
+                console.log(error);
+                console.log(status);
+            }
+        });
+    }
 }
 
 function answerins(no,clsno,qno) {
