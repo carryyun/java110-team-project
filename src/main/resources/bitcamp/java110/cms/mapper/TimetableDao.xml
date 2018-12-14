@@ -43,7 +43,7 @@
 		where
 			cno =#{cno}
 		order by
-			ctno asc;
+			date 
 	</select>
     
     <insert id="insert" parameterType="Timetable" useGeneratedKeys="true" keyColumn="ctno" keyProperty="no">

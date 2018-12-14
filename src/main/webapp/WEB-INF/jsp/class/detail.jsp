@@ -260,7 +260,7 @@
                                                 %>
 	                                         <c:choose>
 	                                         	<c:when test="${DateResult eq 0}">
-	                                         		<option value="${t.no}" >${tstat.count}.${t.date} | ${t.stime}(${t.capa}/${datailclass.capa})</option>
+	                                         		<option value="${t.no}" >${tstat.count}.${t.date} | ${t.stime}(${t.capa}/${detailclass.capa})</option>
 	                                         	</c:when>
 	                                         	<c:otherwise>
 	                                         		<option value="${t.no}">${t.date}~${t.edate} ${t.stime}</option>
