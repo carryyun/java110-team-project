@@ -16,11 +16,11 @@
                     <tr id="th-pay" >
                        
                          <th width="5%">No.</th>
-                         <th width="15%">사진</th>
-                         <th width="30%">클래스</th>
+                         <th width="15%"></th>
+                         <th width="45%">클래스</th>
                          <th width="10%">멘토</th>
                          <th width="25%">결제금액<br>(결제방법)</th>
-                         <th width="15%">상태</th>
+<!--                          <th width="15%">상태</th> -->
 
                         
                     </tr>
@@ -34,8 +34,11 @@
                         <td><img src="${c.classFile.fname}" width="150px" height="100px"></td>
                         <td><a href="../class/detail?no=${c.classes.no}">${c.classes.titl}</a></td>
                         <td>${c.mentornick}</td>
-                        <td>${c.tot_pric}<br>${c.payopt}</td>
-                        <td>결제완료</td>
+                        <td>${c.tot_pric}원<br>
+                        <c:if test="${c.payopt eq 'card'}">(카드결제)</c:if>
+                        
+                        </td>
+<!--                         <td>결제완료</td> -->
                         
 
                     </tr>

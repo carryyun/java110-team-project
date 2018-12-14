@@ -8,10 +8,10 @@
     <!-- footer -->
     
 <div class="col px-0 text-center " id="footerCss">
-    <div class="footes">        
-            <div class="row ">
+    <div class="footes">
+            <div class="row" style="max-width: 100%">
                 <!-- footer-about -->
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">
+                <div class="col-lg-3">
                     <div class="footer-widget ">
                         <div class="footer-title">COMPANY</div>
                         <ul class="list-unstyled">
@@ -22,7 +22,7 @@
                 </div>
                 <!-- /.footer-about -->
                 <!-- footer-about -->
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">
+                <div class="col-lg-3">
                     <div class="footer-widget ">
                         <div class="footer-title">POLISH</div>
                         <ul class="list-unstyled">
@@ -34,7 +34,7 @@
                 <!-- /.footer-about -->
 
                 <!-- footer-links -->
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">
+                <div class="col-lg-3">
                     <div class="footer-widget ">
                         <div class="footer-title">SUPPORT</div>
                         <ul class="list-unstyled">
@@ -45,7 +45,7 @@
                 </div>
                 <!-- /.footer-links -->
                 <!-- footer-links -->
-                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-6 col-6 ">
+                <div class="col-lg-3 px-0" style="max-width: 375px">
                     <div class="footer-widget ">
                         <div class="footer-title">
                             CONTACT
@@ -60,8 +60,8 @@
                 <!-- /.footer-links -->
                 <!-- tiny-footer -->
             </div>
-            <div class="row ">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center ">
+            <div class="row" style="max-width: 100%">
+                <div class="col-lg-11 text-center mx-auto">
                     <div class="tiny-footer">
                         <p>상호 : (주)하루 | 주소 : 비트캠프 서울시 서초구 서초동 1327-15 비트아카데미빌딩 | 사업자등록번호 : 767-88-00000 | 대표자명 : 오호라 </p>
                         <p>Copyright ⓒ2018 Haru inc, ltd. All rights reserved</p>

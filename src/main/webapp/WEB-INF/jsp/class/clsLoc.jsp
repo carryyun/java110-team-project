@@ -531,7 +531,7 @@ $('#mapModal').on('shown.bs.modal', function (e) {
     });
 		$(window).scroll(function() {
 		    var loclist = '${locs}';
-		    if($(window).scrollTop() == $(document).height() - window.innerHeight+17) {
+		    if($(window).scrollTop() == $(document).height() - window.innerHeight) {
 		        var html = "";
 		        $.ajax({
 		            type : "POST" , 
