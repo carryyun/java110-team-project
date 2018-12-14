@@ -5,7 +5,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-  
+<script src="/js/jquery.datetimepicker.full.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"  type="text/javascript"></script>
    
 <div class="col-lg-12" >
 	<div class="panel panel-default">
@@ -31,7 +32,7 @@
 						<td>${c.bigTag.name}-${c.middleTag.name}</td>
 						<td><button onclick="getMenteeList(${c.timetable.no})"  class="btn-primary"  style="width:100px;"> ${c.counting} / ${c.timetable.capa} 명</button></td>
 					</tr>
-					        </c:forEach>     
+					</c:forEach>     
  
 				</tbody>
 				
@@ -39,25 +40,11 @@
 			 </table>
 			 <nav aria-label="Page navigation example" style="margin-left:200px;">
                                 <ul class="pagination" id="page-list" style="display: inline-block;">
-                                    
-                                    <%-- <c:set var="countma" value="${countmanage}" />
-                                    <%
-                                    int countm = (int)pageContext.getAttribute("countma");
-                                    int countpage = (countm/5);
-                                    
-                                    System.out.println(countpage);
-                                    
-                                    for(int pno = 1; pno<=countpage; pno++){
-	                                %>
-	                                    <li class="page-item"><a class="page-link" 
-	                                    onClick="countpage(<%=pno%>)"><%=pno%></a></li>
-	                                <%
-	                                    }
-	                                %> --%>
-									<li class="page-item"><a class="page-link" 
-	                                    )">1</a></li>
-	                                <li class="page-item"><a class="page-link" 
-	                                    )">2</a></li>
+									<li class="page-item"><a class="page-link" onclick="cmanagelist(this)">1</a></li>
+	                                <li class="page-item"><a class="page-link" onclick="cmanagelist(this)">2</a></li>
+	                                <li class="page-item"><a class="page-link" onclick="cmanagelist(this)">3</a></li>
+	                                <li class="page-item"><a class="page-link" onclick="cmanagelist(this)">4</a></li>
+	                                <li class="page-item"><a class="page-link" onclick="cmanagelist(this)">5</a></li>
                                 </ul>
                             </nav>
 		</div>
@@ -174,9 +161,8 @@ function report(Nick){
                              type: "POST",
                              data: {
                                  "cno": cno,
-                                 "meno" : meno
-                                 
-                                 
+                                 "meno" : meno,
+                                 "type" : "수료증"
                              },
                              url: "insertCert.do",
                              success : function() {
@@ -194,9 +180,96 @@ function report(Nick){
          }
 } 
 
+function cmanagelist(obj){
+    Date.prototype.format = function(f) {
+        if (!this.valueOf()) return " ";
+     
+        var weekName = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
+        var d = this;
+         
+        return f.replace(/(yyyy|yy|MM|dd|E|hh|mm|ss|a\/p)/gi, function($1) {
+            switch ($1) {
+                case "yyyy": return d.getFullYear();
+                case "yy": return (d.getFullYear() % 1000).zf(2);
+                case "MM": return (d.getMonth() + 1).zf(2);
+                case "dd": return d.getDate().zf(2);
+                case "E": return weekName[d.getDay()];
+                case "HH": return d.getHours().zf(2);
+                case "hh": return ((h = d.getHours() % 12) ? h : 12).zf(2);
+                case "mm": return d.getMinutes().zf(2);
+                case "ss": return d.getSeconds().zf(2);
+                case "a/p": return d.getHours() < 12 ? "오전" : "오후";
+                default: return $1;
+            }
+        });
+    };
+    String.prototype.string = function(len){var s = '', i = 0; while (i++ < len) { s += this; } return s;};
+    String.prototype.zf = function(len){return "0".string(len - this.length) + this;};
+    Number.prototype.zf = function(len){return this.toString().zf(len);};
+
+    
+    var pageNo = $(obj).html();
+    $.ajax({
+        type : "POST",
+        data : {
+            "no" : ${sessionScope.loginUser.no},
+            "pageNo" : pageNo
+        },
+        url : "menu5page.do",
+        success : function(data) {
+            
+            $('#cmanagelist').empty();
+            
+            contents = "";
+            for(var i in data) {
+                
+           contents+='<tr id="tb-pay">';
+           contents+='<td>'+i +'</td>';
+           contents+='<td><a href="../class/detail?no='+data[i].no+'">'+ data[i].titl +'</a></td>';
+           
+           var transDate = new Date(data[i].timetable.date).format("yyyy-MM-dd");
+           contents+='<td>'+ transDate +'<br>';
+           
+           var transTime = data[i].timetable.stime;
+           var h = ""+ transTime.substring(0,2);
+           var m = ""+ transTime.substring(3,5);
+           
+           if(parseInt(h)>12){
+               var ap="오후";
+               h= parseInt(h) %12;
+               h= "0"+h;
+           }else{
+               var ap="오전";
+           }
+           contents+= ap+ " "+ h +":"+ m + ' ( ' + data[i].time + ' 시간 )</td>';
+//            contents+= transTime + ' (' + data[i].time + ' 시간 )</td>';
+           
+           contents+='<td>'+ data[i].bigTag.name + '-' + data[i].middleTag.name+'</td>';
+           contents+= '<td><button onclick="getMenteeList( '+ data[i].timetable.no +')"  class="btn-primary"  style="width:100px;">'+data[i].counting +' / '+ data[i].timetable.capa+' 명</button></td>';
+           
+           contents+='</tr>';
+           
+            }
+           var setdiv=document.querySelector("#cmanagelist");
+           setdiv.innerHTML= contents;
+          
+        }
+        ,error : function(error,status){
+            console.log("fail");
+        }
+    });
+}
+
+
 
 </script>
 
 
+    
+    
+    
+    
+    
+    
 
 

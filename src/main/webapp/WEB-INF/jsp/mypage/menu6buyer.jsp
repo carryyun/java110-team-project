@@ -64,8 +64,8 @@
                             <td>${i.count}</td>
                             <td>${p.productOrder.paydt}<br></td>
                             <td><a data-toggle="modal" data-target="#buyerinfo${p.productOrder.no}" name="${p.productOrder.no}">${p.mentee2.name}</a></td>
-                            <td><fmt:formatDate value="${p.productOrder.tot_pric}"
-                                    pattern="#,###" />[${p.productOrder.cnt}개]<br>${p.productOrder.payopt}</td>
+                            <td><fmt:formatNumber value="${p.productOrder.tot_pric}" pattern="#,###" />
+                            [${p.productOrder.cnt}개]<br>${p.productOrder.payopt}</td>
 
                             <td>
                                 <span> 입금전/입금완료/발송완료 조건</span>

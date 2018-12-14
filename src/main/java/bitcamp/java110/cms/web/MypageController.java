@@ -528,7 +528,7 @@ public class MypageController {
         
   }
   
-  /*@RequestMapping(value = "menu5page.do", method = {RequestMethod.POST})
+  @RequestMapping(value = "menu5page.do", method = {RequestMethod.POST})
   public @ResponseBody List<Classes> menu5page(HttpSession session, 
       @RequestParam(defaultValue="2") int pageNo, @RequestParam(defaultValue="5") int pageSize) {
     
@@ -538,11 +538,11 @@ public class MypageController {
     List<Classes> clsmenu5list = classService.manageByMono(reMeno, pageNo, pageSize);
     
     return clsmenu5list;
-  }*/
+  }
   
   @RequestMapping(value = "insertCert.do", method = {RequestMethod.POST})
   public @ResponseBody int insertCert(Cert cert) {
-    
+
     return certService.insertCert(cert);
   }
   

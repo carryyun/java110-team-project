@@ -73,7 +73,7 @@
        INSERT INTO
             p_cert(cno,meno,type,cnt,edt,ctdt)
         VALUES
-            (#{cno},#{meno},"수료증",1,now(),DATE_ADD(NOW(), INTERVAL 1 MONTH))
+            (#{cno},#{meno},#{type},1,now(),DATE_ADD(NOW(), INTERVAL 1 MONTH))
         
     </insert>
 

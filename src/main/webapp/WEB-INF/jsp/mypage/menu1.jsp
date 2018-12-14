@@ -192,6 +192,7 @@ input[type="number"]::-webkit-inner-spin-button {
                      
                       swal({
                             text : "변경 완료",
+                            icon   : "success",
                           button : "확인"
                           }),
                           
@@ -291,13 +292,14 @@ input[type="number"]::-webkit-inner-spin-button {
 		             swal({
 		                   text : "변경 완료",
 		                 button : "확인",
-		                 icon : "error"
+		                 icon   : "success"
 		                 }).then(function(){
 		            		 $('#text2').val('');
                          })
 	            	 }, error:function(request,status,error){
 	            		 swal({
 			                   text : "변경 실패",
+			                   icon : "error",
 			                 button : "확인"
 			                 }).then(function(){
 			                	 $('#sectext31').val('');
