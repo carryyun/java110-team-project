@@ -528,24 +528,7 @@ function mentorcheck() {
     return false;
 
   }
-  
-  
-  else if(!mentorSubmit.fileUpload2.value) {
 
-      swal({
-          text : "자격증 이미지를 선택 해주세요",
-        button : "확인",
-        icon : "warning"
-        });
-
-    mentorSubmit.fileUpload2.focus();
-    
-    return false;
-
-  } 
-
-  
-  
   else return true;
 
 }
