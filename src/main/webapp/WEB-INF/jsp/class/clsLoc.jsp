@@ -530,6 +530,7 @@ $('#mapModal').on('shown.bs.modal', function (e) {
     var clslist = $('div#clslist'); 
     var pageNo=parseInt(2);
     var btno = $('input#getbtno').val();
+    var bool = true;
     $(document).ready(function(){
         if('${locs}'.match(/,/)){
             var splitCode = '${locs}'.split(",");
@@ -545,7 +546,8 @@ $('#mapModal').on('shown.bs.modal', function (e) {
     });
 		$(window).scroll(function() {
 		    var loclist = '${locs}';
-		    if($(window).scrollTop() == $(document).height() - window.innerHeight) {
+		    if($(window).scrollTop() >= ($(document).height() - window.innerHeight) * 0.7 & bool ) {
+			    bool= false;
 		        var html = "";
 		        $.ajax({
 		            type : "POST" , 
@@ -557,7 +559,7 @@ $('#mapModal').on('shown.bs.modal', function (e) {
 		            url : "clsLoc.do" ,
 		            success : function(data) {
 		                html ="";
-		                
+		                bool = false;
 		                for(var j=0; j<6;j++){
                             $('div#animateTarget'+j).removeClass('animated fadeInUp');
                             $('div#animateTarget'+j).removeAttr('id')
@@ -631,7 +633,7 @@ $('#mapModal').on('shown.bs.modal', function (e) {
 		                }
 		                var setDiv = document.querySelector("div#clslist");
 		                setDiv.innerHTML+=html;
-		                
+		                bool = true;
 		            },error : function(error,status){
 		                swal({
 		                    text : "안됨",
