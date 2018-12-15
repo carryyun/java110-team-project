@@ -41,7 +41,7 @@
                         </div>
                         </c:when> 
                         
-                        <c:otherwise>
+                        <c:otherwise> 
                             <div class="dropdown" id="dropdown">
                             <!-- onload="mover()" -->
                                 <img src="${mentee.phot}" alt="userIMG" 
