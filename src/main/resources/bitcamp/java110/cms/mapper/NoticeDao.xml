@@ -49,8 +49,8 @@
 
     <insert id="insert" parameterType="Notice"
         useGeneratedKeys="true" keyColumn="nino" keyProperty="no">
-        insert into p_noti(type, url, meno,stat,urlno,conts,stat)
-        values(#{type},#{url},#{meno},#{stat},#{urlno},#{urlno},"N");
+        insert into p_noti(type, url, meno,stat,urlno,conts)
+        values(#{type},#{url},#{meno},"N",#{urlno},#{conts});
         <!-- meno에 임의로 값을 5로 넣었기 때문에 나중에 변경해 주어야 함 -->
     </insert>
 

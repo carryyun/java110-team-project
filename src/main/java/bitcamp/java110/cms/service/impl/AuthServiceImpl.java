@@ -100,11 +100,13 @@ public class AuthServiceImpl implements AuthService {
       m.setNick(nickname); //아래는 바뀐정보가 있을시 갱신시키기위해
       m.setName(name);
       m.setPhot(fileurl);
-      menteeDao.updateNaver(m);
-      
-      
       if(menteeDao.checkemail(m) == 0) 
         menteeDao.fbsignup(m);
+      else {
+        menteeDao.updateNaver(m);
+      }
+      
+      
 //      else {
 //        menteeDao.
 //      }
