@@ -517,6 +517,7 @@ $('#mapModal').on('shown.bs.modal', function (e) {
     <script>
     var clslist = $('div#clslist'); 
     var pageNo=parseInt(2);
+    var bool = true;
     var btno = $('input#getbtno').val();
     $(document).ready(function(){
         if('${locs}'.match(/,/)){
@@ -533,8 +534,9 @@ $('#mapModal').on('shown.bs.modal', function (e) {
     });
         $(window).scroll(function() {
             var loclist = '${locs}';
-            if($(window).scrollTop() == $(document).height() - window.innerHeight) {
+            if($(window).scrollTop() >= ($(document).height() - window.innerHeight)*0.7 & bool) {
                 var html = "";
+                bool = false;
                 $.ajax({
                     type : "POST" , 
                     data : {
@@ -619,6 +621,7 @@ $('#mapModal').on('shown.bs.modal', function (e) {
                         }
                         var setDiv = document.querySelector("div#clslist");
                         setDiv.innerHTML+=html;
+                        bool=true;
                         
                     },error : function(error,status){
                         swal({
