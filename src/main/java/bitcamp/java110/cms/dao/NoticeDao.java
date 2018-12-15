@@ -13,5 +13,6 @@ public interface NoticeDao {
   
   int delete(int no);
   
+  int countNewNotice(int no);
 
 }

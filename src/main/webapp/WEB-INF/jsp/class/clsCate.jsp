@@ -28,6 +28,12 @@ div.product-description__title > div > div#titlDiv > a{
     width:290px;
     white-space: normal; 
 }
+#SerchLocBtn:hover, #SerchLocBtn:focus{
+    outline: none !important;
+}
+#SerchLocBtn{
+    outline: none !important;
+}
 </style>
 
 <title>하루 - 클래스 검색</title>
@@ -538,15 +544,17 @@ $('#mapModal').on('shown.bs.modal', function (e) {
     var clslist = $('div#clslist'); 
     var pageNo=parseInt(2);
     var btno = $('input#getbtno').val();
+    var bool = true;
     $(document).ready(function(){
     
     });
 		$(window).scroll(function() {
 		    //주석 지울내용
-		    console.log($(window).scrollTop() == $(document).height() - window.innerHeight);
-		    console.log(pageNo);
-		    console.log(btno);
-		    if($(window).scrollTop() == $(document).height() - window.innerHeight) {
+// 		    console.log($(window).scrollTop() == $(document).height() - window.innerHeight);
+// 		    console.log(pageNo);
+// 		    console.log(btno);
+		    if($(window).scrollTop() >= ($(document).height() - window.innerHeight)*0.7 & bool) {
+		        bool=false;
 		        var html = "";
 		        $.ajax({
 		            type : "POST" , 
@@ -634,6 +642,7 @@ $('#mapModal').on('shown.bs.modal', function (e) {
 		                }
 		                var setDiv = document.querySelector("div#clslist");
 		                setDiv.innerHTML+=html;
+		                bool=true;
 		                
 		            },error : function(error,status){
 		                swal({

@@ -8,19 +8,32 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 import bitcamp.java110.cms.dao.BigTagDao;
+import bitcamp.java110.cms.dao.MenteeDao;
 import bitcamp.java110.cms.dao.MiddleTagDao;
+import bitcamp.java110.cms.dao.NoticeDao;
+import bitcamp.java110.cms.domain.Mentee;
 
 @Service
 public class AuthInterceptor implements HandlerInterceptor {
   
   @Autowired BigTagDao bigTagDao;
   @Autowired MiddleTagDao middleTagDao;
+  @Autowired MenteeDao menteeDao;
+  @Autowired NoticeDao noticeDao;
   
   @Override
   public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
     ModelAndView modelAndView) throws Exception {
     modelAndView.addObject("BTlist", bigTagDao.findAll());
     modelAndView.addObject("MTlist", middleTagDao.findAll());
+    HttpSession session = request.getSession();
+    Mentee loginUser = (Mentee) session.getAttribute("loginUser");
+    if(loginUser != null) {
+      System.out.println(loginUser.getNo());
+      int NewNotice = noticeDao.countNewNotice(loginUser.getNo());
+      modelAndView.addObject("NewNotice", NewNotice);
+    }
+    
   }
     
 //    @Override

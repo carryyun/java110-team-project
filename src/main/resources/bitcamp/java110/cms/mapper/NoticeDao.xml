@@ -28,6 +28,15 @@
         from
         p_noti n
     </sql>
+    <select id="countNewNotice" resultType="int" parameterType="int">
+        SELECT
+            count(*)
+        FROM
+            p_noti
+        WHERE
+            meno=#{value} and
+            stat="N"
+    </select>
 
     <select id="findAll" resultMap="notiMap">
         <include refid="select1" />

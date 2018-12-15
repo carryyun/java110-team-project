@@ -29,6 +29,19 @@
 
 
 </script>  -->
+<style type="text/css">
+#newNotice{
+    border-radius: 50%;
+    background-color: #EC5453;
+    width: 22px;
+    height: 22px;
+    text-align: center;
+    font-size: 14px;
+    float: right;
+    color: #fff;
+}
+</style>
+
 </head>
 <nav class="navbar navbar-expand-lg mx-auto fixed-top mb-2" id="mainNav">
 	<a class="navbar-brand" href="/app/mainpage/mainpage">하루</a>
@@ -67,11 +80,25 @@
 						<c:otherwise>
 							<div class="dropdown" id="dropdown">
 							<!-- onload="mover()" -->
+							    <c:if test="${NewNotice > 0}">
+							     <div id="newNotice" style="position:absolute; left: 60px; top: 45px">N</div>
+							    </c:if>
 								<img src="${sessionScope.loginUser.phot}" alt="userIMG" 
 									style="margin: 8px 23px; width: 56px; height: 56px; border-radius: 28px; border: 3px solid #FFB53C"><br>
 								<div class="dropdown-content text-left" id="dropdown-content">
 									<a href="../mypage/mypage"><span><i class="fas fa-user"></i></span><span class="ml-3">마이페이지</span></a>
-									<a href="../masterpage/notice"><span><i class="fas fa-bell"></i></span><span class="ml-3">알림</span></a>
+									<a href="../masterpage/notice">
+										<span><i class="fas fa-bell"></i></span>
+										<c:choose>
+										   <c:when test="${NewNotice > 0}">
+										   <span class="ml-3">알림</span>
+										   <div id="newNotice" class="ml-3" style="position:absolute; left: 65px; top: 45px">${NewNotice}</div>
+										   </c:when>
+										   <c:otherwise>
+										   <span class="ml-3">알림 </span>
+										   </c:otherwise>
+										</c:choose>
+									</a>
 									<hr class="Hhr"/>
 									<a href="../auth/logout"><span><i class="fas fa-sign-out-alt"></i></span><span class="ml-3">로그아웃</span></a>
 								</div>
