@@ -405,7 +405,7 @@ function clsject() {
 //신청 거절 버튼
 function anserclick(no){
     var anserfn = $("#reje").val();
-    var statno = "N";
+    var statno = "F";
     
        $.ajax({
         type: "POST",
@@ -417,7 +417,23 @@ function anserclick(no){
         },
         url: "clsnote.do",
         success : function() {
-            location.href='classreqlist'
+            $.ajax({
+                type: "POST",
+                data: {
+                    "type": "클래스",
+                    "conts" : "클래스 신청이 거절되었습니다. (사유: "+anserfn+")",
+                    "urlno" : no,
+                    "url" : "../mypage/mypage",
+                    "meno" : ${detailclass.mentee.no},
+                    "stat" : "N"
+                },
+                url: "../masterpage/addNotice.do",
+                success : function() {
+                    location.href='classreqlist'
+                    }
+            });
+            
+            
             },error : function(error,status){
                 swal({
                     text : "이미 확인한 클래스 입니다.",
@@ -439,10 +455,27 @@ function clicky(no){
         },
         url: "clsstat.do",
         success : function() {
+            $.ajax({
+                type: "POST",
+                data: {
+                    "type": "클래스",
+                    "conts" : "축하드립니다! 클래스 신청이 승인되었습니다",
+                    "urlno" : no,
+                    "url" : "../class/detail?no="+no,
+                    "meno" : ${detailclass.mentee.no},
+                    "stat" : "N"
+                },
+                url: "../masterpage/addNotice.do",
+                success : function() {
+                    location.href="#"
+                    }
+            });
+            
+            
             location.href='classreqlist'
             },error : function(error,status){
                 swal({
-                    text : "이미 답변한 문의이거나 삭제된 문의입니다.",
+                    text : "이미 처리되었거나 삭제된 신청입니다.",
                     button : "확인",
                   })    
             }

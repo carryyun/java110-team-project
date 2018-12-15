@@ -45,6 +45,7 @@
         <include refid="select1"/>
         where
         meno=#{meno}
+        order by nino desc
     </select>
 
     <insert id="insert" parameterType="Notice"

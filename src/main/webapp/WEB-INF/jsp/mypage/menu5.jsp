@@ -175,7 +175,7 @@ function report(Nick){
                                         "type": "수료증",
                                         "conts" : "클래스의 수료증이 발급되었습니다.",
                                         "urlno" : ctno,
-                                        "url" : "../mypage/menu2",
+                                        "url" : "../mypage/mypage#menu2",
                                         "meno" : meno,
                                         "stat" : "N"
                                     },

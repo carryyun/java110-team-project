@@ -434,7 +434,7 @@ function anserclick(no){
                     "type": "멘토신청거절",
                     "conts" : "멘토신청이 거절되었습니다.",
                     "urlno" : 90000,
-                    "url" : "../mypage/menu1",
+                    "url" : "../mypage/mypage#menu1",
                     "meno" : no,
                     "stat" : "N"
                 },
@@ -522,17 +522,16 @@ function stat(no,name){
                     "type": "멘토신청승인",
                     "conts" : "멘토신청이 승인되었습니다",
                     "urlno" : 90000,
-                    "url" : "../mypage/menu",
+                    "url" : "../mypage/mypage#menu1",
                     "meno" : no,
                     "stat" : "N"
                 },
                 url: "../masterpage/addNotice.do",
                 success : function() {
-                   
+		            location.href="#"
                     }
             });
             
-            location.href="#"
         }
     });
 }

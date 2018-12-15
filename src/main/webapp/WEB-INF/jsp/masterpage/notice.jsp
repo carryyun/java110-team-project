@@ -23,10 +23,10 @@
 .notice:nth-child(n){
     border-left-color: #FFB53C;
 }
-.notice:nth-child(n+2){
+.notice:nth-child(2n+2){
     border-left-color: #B9B9B9;
 }
-.notice:nth-child(n+3){
+.notice:nth-child(3n+3){
     border-left-color: #EC5453;
 }
 
