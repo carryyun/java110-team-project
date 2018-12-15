@@ -152,7 +152,7 @@ $("img.lazy").lazyload({
     $(document).ready(function() {
         $('#star1').raty({
             path : "/upload/img/raty/",
-            start : 1,
+            start : 5,
             starOff : 'star-off-big.png',
             starOn : 'star-on-big.png',
             width : 200

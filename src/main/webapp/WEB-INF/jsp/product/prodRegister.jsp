@@ -238,7 +238,6 @@ select {
 				<!-- 등록 취소버튼 -->
 				<div class="col-lg-12 text-right">
 					<button type="button" id="submitBtn" class="btn btn-primary"
-						onclick="alert()"
 						style="background-color: #FFB53C; border: 1px solid #FFB53C">등록</button>
 					<input type="button" class="btn" onclick="closepage()" value="취소">
 				</div>
@@ -291,7 +290,7 @@ select {
           
             // ajax
             $.ajax({
-                url:'updateProduct.do',
+                url:'addProduct.do',
                 type:'POST',
                 data:fileData,
                 async:false,
@@ -494,19 +493,5 @@ function removeImg(no,str) {
 </script>
 
 <script>
-    function alert() {
-
-        if(데이터가 들어가면){
-           swal({
-               text:"등록되었습니다.",
-               button:"확인"
-           }) 
-        }else{
-            swal({
-                text:"등록이 실패하였습니다.(특수문자 사용 불가)"
-                button:"확인"
-            })
-        }
-    }
 </script>
 </html>

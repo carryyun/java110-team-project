@@ -1137,7 +1137,7 @@ function mentorcheck() {
                             text: "한분야의 전문가, 프로페셔널~ ",
                             icon: "warning",
                             })
-                     } 
+                     }
                     
                     else{
                         if($('input#text1').val() ==""){

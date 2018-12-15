@@ -9,7 +9,6 @@
 <html>
 
 <head>
-
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -381,7 +380,7 @@ margin-bottom: 0.25rem;
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title" id="exampleModalLabel" style="margin-top: 2px;">지역검색</h4>
-        <input id="inputAddr" class="ml-3 mr-2 my-1" type="text" onkeypress="if(event.keyCode==13) {$('#SerchAddr').click(); return false;}" style="height:35px; border-radius: 20px; border: 2px solid #ec5453"> 
+        <input id="inputAddr" class="ml-3 mr-2 my-1" type="text" onkeypress="if(event.keyCode==13) {$('#SerchAddr').click(); return false;}" style="padding:0 15px ;height:35px; border-radius: 20px; border: 2px solid #ec5453"> 
         <i id="SerchAddr" style="color:#ec5453; font-size: 26px;margin-top: 8px" class="fas fa-search"></i>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -445,12 +444,27 @@ $('#mapModal').on('shown.bs.modal', function (e) {
         // 주소로 좌표를 검색합니다
         geocoder.addressSearch(addr, function(r, s) {
             // 정상적으로 검색이 완료됐으면 
+            var detailAddr = !!r[0].road_address ? '<div style="font-size:12px;height:40px;padding:3px;">도로명주소 : ' + r[0].road_address.address_name + '</div>' : '';
+                detailAddr += '<div style="font-size:12px;height:40px;padding:3px;">지번 주소 : ' + r[0].address.address_name + '</div>';
+                
+                var content = '<div class="bAddr">' +
+                                detailAddr + 
+                            '</div>';
+            
              if (s === daum.maps.services.Status.OK) {
                 var coor = new daum.maps.LatLng(r[0].y, r[0].x);
                 // 결과값으로 받은 위치를 마커로 표시합니다
-                /* marker.setPosition(coor);
-                marker.setMap(map); */
+                marker.setPosition(coor);
+                marker.setMap(map);
+                infowindow.setContent(content);
+                infowindow.open(map, marker);
                 map.panTo(coor);
+                
+                var addrSetter = r[0].address.address_name + " , ";
+                $('#SerchLocBtn').attr('onclick', '').unbind('click');
+                $('#SerchLocBtn').click(function(){
+                    location.href="clsLoc?no=${bigTag.no}&locs="+addrSetter;
+                });
              }
         });
     });

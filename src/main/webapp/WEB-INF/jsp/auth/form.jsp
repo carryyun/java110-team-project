@@ -6,14 +6,14 @@
 <%@ page import="java.security.SecureRandom" %>
 <%@ page import="java.math.BigInteger" %>
 
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <!DOCTYPE html>
 <html>
 <head>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
@@ -21,11 +21,29 @@
    <!--Made with love by Mutiullah Samim -->
    
     <!--Bootsrap 4 CDN-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<!--     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
     <!--Fontawesome CDN-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/css/form.css">
     <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+    
+    <style type="text/css">
+    div#bottomBtn {
+	    font-weight: bold;
+	    background-color: rgba(60, 145, 255, 0.8);
+	    padding: 5px 20px;
+	    border-radius: 5px;
+	    max-width: 180px;
+	    min-width: 180px;
+	    margin: 0 auto;
+	    text-align: center;
+	    margin-bottom: 5px;
+    }
+    div#bottomBtn > a{
+        text-decoration: none;
+        color: #f9f9f9;
+    }
+    </style>
 </head>
 <body>
 
@@ -46,6 +64,7 @@
     <div class="d-flex justify-content-center h-100">
         <div class="card">
             <div class="card-header">
+            <img src="/upload/img/fb.png" alt="fbBtn" style="width: 64px; height: 22px; position: absolute; left: 210px; top: -23px">
                 <h3>로그인</h3>
                 <div class="d-flex justify-content-end social_icon">
                         <fb:login-button scope="public_profile,email" 
@@ -69,7 +88,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
-                        <input type="password" name="pwd" id="pwd" class="form-control" placeholder="password">
+                        <input type="password" name="pwd" id="pwd" class="form-control" onkeypress="if(event.keyCode==13) { submitbtnClick();}" placeholder="password">
                     </div>
                     <div class="row align-items-center remember">
                         <input type="checkbox"  id="save" name="save" ${cookie.save.value}>이메일 저장
@@ -90,13 +109,13 @@
                     
             </div>
             <div class="card-footer">
-                <div class="d-flex justify-content-center links">
+                <div id="bottomBtn" class="d-flex justify-content-center links">
                     <a href="/app/mentee/sign">회원 가입</a>
                 </div>
-                <div class="d-flex justify-content-center">
+                <div id="bottomBtn" class="d-flex justify-content-center">
                     <a href="/app/mentee/searchmail">이메일 찾기</a>
                 </div>
-                <div class="d-flex justify-content-center">
+                <div id="bottomBtn" class="d-flex justify-content-center">
                     <a href="/app/mentee/searchpwd">비밀번호 찾기</a>
                 </div>
             </div>

@@ -1,6 +1,10 @@
 @charset "UTF-8";
 /* hr 관련 */
 
+input:focus {
+  outline: none !important;
+}
+
 a.btn.btn-primary{
   background-color: #FFB53C !important;
   border-color: #FFB53C !important;

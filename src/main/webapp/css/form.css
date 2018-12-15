@@ -16,11 +16,15 @@ align-content: center;
 }
 
 .card{
-height: 450px;
+height: 480px;
 margin-top: auto;
 margin-bottom: auto;
 width: 400px;
 background-color: rgba(0,0,0,0.5) !important;
+}
+input.btn{
+ color: #393939;
+ font-weight: bold;
 }
 
 .social_icon span{

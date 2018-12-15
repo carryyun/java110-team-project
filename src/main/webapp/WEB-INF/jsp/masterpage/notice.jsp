@@ -19,18 +19,34 @@
     integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
     crossorigin="anonymous">
 <!-- ===============필수포함=============== -->
+<style type="text/css">
+.notice:nth-child(n){
+    border-left-color: #FFB53C;
+}
+.notice:nth-child(n+2){
+    border-left-color: #B9B9B9;
+}
+.notice:nth-child(n+3){
+    border-left-color: #EC5453;
+}
+
+
+</style>
+
 </head>
 <body>
     <div id="wrap" style="background-color: #fff">
-        <div class="col" style="position: absolute; height: 105px; background-color: white">
+        <div class="col-lg-12 px-0" style="position: absolute; height: 105px; background-color: white">
+            <!-- 헤더 배경색 적용 -->
+        </div>
+        <div class="col-lg-12 px-0" 
+        style="position: absolute; top:106px; height: 41px; background-color: #f3f3f3">
             <!-- 헤더 배경색 적용 -->
         </div>
 
         <div class="container">
             <div class="row">
-                <div class="col" style="position: absolute; height: 105px; background-color: white">
-                    <!-- 헤더 배경색 적용 -->
-                </div>
+                
 
                 <div class="col-lg-12" style="z-index: 100">
                     <jsp:include page="../headerMain.jsp"></jsp:include>
@@ -42,13 +58,29 @@
                 </div>
 
 
-                <div class="container col-lg-10 mt-3">
+                <div class="container col-lg-10 mt-3" style="min-height: 477px; margin-bottom: 50px">
                     <c:forEach items="${noticeList}" var="nl" varStatus="i">
                         
                         <div class="notice notice-lg" id="rmv${nl.no}" onclick="location.href='${nl.url}'">
-                            <span> <img src="${nl.phot}" alt="${nl.phot}" width="100px" height="100px">
-                            </span> <span> <strong>[${nl.type}]${nl.titl}</strong> ${nl.conts}
-                            </span> <span style="float: right; cursor: pointer;" onclick="del(${nl.no})"><i class="fas fa-trash-alt"></i> </span>
+                            <span>
+                                <c:set var="transFile" value="${nl.phot}" />
+	                            <%
+	                                String transFile = (String)pageContext.getAttribute("transFile");
+	                                if(transFile.endsWith("jpg") || transFile.endsWith("png")){
+	                            %>
+	                            <img src="${nl.phot}" alt="${nl.phot}" width="100px" height="100px">
+	                            <%
+	                                }else{
+	                                  
+	                            %>
+	                                <img alt="${i.count}" src="https://i.ytimg.com/vi/${nl.phot}/mqdefault.jpg" style="width: 100px; height: 100px">
+	                            <%
+	                                }
+	                            %>
+                            </span>
+                            
+                            <span> <strong>[${nl.type}]${nl.titl}</strong> ${nl.conts}
+                            </span> <span style="float: right; cursor: pointer;" onclick="del(${nl.no},event)"><i class="fas fa-trash-alt"></i> </span>
                         </div>
 
                     </c:forEach>
@@ -68,8 +100,10 @@
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script>
 var fadeTime = 200;
-function del(no){
-    removeItem(no)
+function del(no,e){
+    e.preventDefault();
+    e.stopPropagation();
+    removeItem(no);
     $.ajax({
         type : 'POST',
         data : {

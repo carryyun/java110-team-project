@@ -7,12 +7,19 @@ public class Notice {
   private int urlno;
   private String url;
   private int meno;
+  private String stat;
   
   
   private String titl;
   private String phot;
   
   
+  public String getStat() {
+    return stat;
+  }
+  public void setStat(String stat) {
+    this.stat = stat;
+  }
   public String getConts() {
     return conts;
   }

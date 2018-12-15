@@ -13,6 +13,7 @@
         <result column="url" property="url" />
         <result column="urlno" property="urlno" />
         <result column="meno" property="meno" />
+        <result column="stat" property="stat" />
     </resultMap>
 
     <sql id="select1">
@@ -22,7 +23,8 @@
         n.conts,
         n.url,
         n.urlno,
-        n.meno
+        n.meno,
+        n.stat
         from
         p_noti n
     </sql>
@@ -47,8 +49,8 @@
 
     <insert id="insert" parameterType="Notice"
         useGeneratedKeys="true" keyColumn="nino" keyProperty="no">
-        insert into p_noti(type, url, meno)
-        values(#{type},#{url},5);
+        insert into p_noti(type, url, meno,stat,urlno,conts,stat)
+        values(#{type},#{url},#{meno},#{stat},#{urlno},#{urlno},"N");
         <!-- meno에 임의로 값을 5로 넣었기 때문에 나중에 변경해 주어야 함 -->
     </insert>
 
@@ -58,6 +60,7 @@
         <set>
             <if test="type!=null">type=#{type},</if>
             <if test="url!=null">url=#{url},</if>
+            <if test="stat!=null">stat=#{stat},</if>
         </set>
 
         where

@@ -138,7 +138,9 @@
          a:visited { color: #6E6E6E; }
          a:hover { color: #00BFFF; }
          
-         
+         nav.navbar.navbar-fixed-top{
+            box-shadow: inset 0px -2px 0px 0px rgba(215,215,215,0.5);
+         }
      </style>
       
      
