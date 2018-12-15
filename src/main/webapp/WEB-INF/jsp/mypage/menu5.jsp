@@ -103,7 +103,7 @@ $.ajax({
        
      
         if (data[i].star == 5)  {
-            contents+= '<button class="btn-danger" name="btn-certi" value="'+i+'" onclick="certi(this.value,'+data[i].no+','+data[i].mentee2.no+');"   style="width:70px;" ">미수료</button>';
+            contents+= '<button class="btn-danger" name="btn-certi" value="'+i+'" onclick="certi(this.value,'+data[i].no+','+data[i].mentee2.no+','+ctno+');"   style="width:70px;" ">미수료</button>';
         }else if(data[i].star == 1){
             contents+= '<button class="btn-primary"  style="width:70px;">수료</button>';    
         } 
@@ -139,7 +139,7 @@ function report(Nick){
 }
 
 
- function certi(v,cno,meno){
+ function certi(v,cno,meno,ctno){
     
      var  textareaVal= $("button[name='btn-certi']:button[value='"+v+"']").text();
     if(textareaVal=="미수료"){
@@ -169,8 +169,25 @@ function report(Nick){
                                 $("button[name='btn-certi']:button[value='"+v+"']").attr('class','btn-primary');
                                 $("button[name='btn-certi']:button[value='"+v+"']").text('수료'); 
                                 
+                                $.ajax({
+                                    type: "POST",
+                                    data: {
+                                        "type": "수료증",
+                                        "conts" : "클래스의 수료증이 발급되었습니다.",
+                                        "urlno" : ctno,
+                                        "url" : "../mypage/menu2",
+                                        "meno" : meno,
+                                        "stat" : "N"
+                                    },
+                                    url: "../masterpage/addNotice.do",
+                                    success : function() {
+                                       
+                                        }
+                                });
+                                
+                                
                                  }
-                         })
+                         });
                          
                          
                      }

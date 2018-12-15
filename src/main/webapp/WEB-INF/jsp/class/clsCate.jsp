@@ -542,6 +542,10 @@ $('#mapModal').on('shown.bs.modal', function (e) {
     
     });
 		$(window).scroll(function() {
+		    //주석 지울내용
+		    console.log($(window).scrollTop() == $(document).height() - window.innerHeight);
+		    console.log(pageNo);
+		    console.log(btno);
 		    if($(window).scrollTop() == $(document).height() - window.innerHeight) {
 		        var html = "";
 		        $.ajax({

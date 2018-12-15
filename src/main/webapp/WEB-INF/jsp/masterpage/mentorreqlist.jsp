@@ -427,7 +427,23 @@ function anserclick(no){
         },
         url: "mtnote.do",
         success: function(){
-            location.href='mentorreqlist'
+            
+            $.ajax({
+                type: "POST",
+                data: {
+                    "type": "멘토신청거절",
+                    "conts" : "멘토신청이 거절되었습니다.",
+                    "urlno" : 90000,
+                    "url" : "../mypage/menu1",
+                    "meno" : no,
+                    "stat" : "N"
+                },
+                url: "../masterpage/addNotice.do",
+                success : function() {
+		            location.href='mentorreqlist';
+                }
+            });
+            
         },error : function(error,status){
             swal({
                 text : "이미 확인한 멘토 입니다.",
@@ -499,7 +515,25 @@ function stat(no,name){
             stat : name
         },
         url : "mtstat.do",
-        success : location.href="#"
+        success : function(){
+            $.ajax({
+                type: "POST",
+                data: {
+                    "type": "멘토신청승인",
+                    "conts" : "멘토신청이 승인되었습니다",
+                    "urlno" : 90000,
+                    "url" : "../mypage/menu",
+                    "meno" : no,
+                    "stat" : "N"
+                },
+                url: "../masterpage/addNotice.do",
+                success : function() {
+                   
+                    }
+            });
+            
+            location.href="#"
+        }
     });
 }
 function removeItem(no) {
@@ -518,7 +552,7 @@ function checkItem(){
     arr=check.split(',');
     for(i in arr){
         stat(arr[i],'N');
-    }
+    } 
     
 }
 </script>
