@@ -1969,7 +1969,7 @@ function addOrder(payopt){
                     msg += '에러내용 : ' + rsp.error_msg;
                     
                     alert(msg);
-                }
+                } 
             });
             
         }
