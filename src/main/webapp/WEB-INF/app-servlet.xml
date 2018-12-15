@@ -105,6 +105,7 @@
 			<mvc:mapping path="/class/basket"/>
 			<mvc:mapping path="/payment/*"/>
 			<mvc:mapping path="/product/basket"/>
+			<mvc:mapping path="/product/removeDate"/>
 			<bean 
 				class="bitcamp.java110.cms.web.interceptor.AuthInterceptor2" />
 		</mvc:interceptor>

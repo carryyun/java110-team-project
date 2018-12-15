@@ -25,13 +25,19 @@ $(document).ready(function () {
             data : {"no": this.value},
             success : function(data){
                 if(data != 0){
-                    alert("삭제되었습니다!");
+                    
                 }else{
-                    alert("fail!");
+                    swal({
+                        text : "실패하였습니다" ,
+                        button : "확인"
+                    })
                 }
             },
             error : function(request, status, error) {
-                alert("에러가 발생했습니다. 관리자에게 문의하시기 바랍니다");
+                swal({
+                    text : "에러가 발생했습니다. 관리자에게 문의하시기 바랍니다" ,
+                    button : "확인"
+                })
             }
         });
     });
