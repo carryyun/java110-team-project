@@ -28,20 +28,21 @@
     <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
     
     <style type="text/css">
-    div#bottomBtn {
-	    font-weight: bold;
-	    background-color: rgba(60, 145, 255, 0.8);
-	    padding: 5px 20px;
-	    border-radius: 5px;
-	    max-width: 180px;
-	    min-width: 180px;
-	    margin: 0 auto;
-	    text-align: center;
-	    margin-bottom: 5px;
-    }
+/*     div#bottomBtn { */
+/* 	    font-weight: bold; */
+/* 	    background-color: rgba(60, 145, 255, 0.8); */
+/* 	    padding: 5px 20px; */
+/* 	    border-radius: 5px; */
+/* 	    max-width: 180px; */
+/* 	    min-width: 180px; */
+/* 	    margin: 0 auto; */
+/* 	    text-align: center; */
+/* 	    margin-bottom: 5px; */
+/*     } */
     div#bottomBtn > a{
         text-decoration: none;
         color: #f9f9f9;
+        font-weight: bold;
     }
     </style>
 </head>

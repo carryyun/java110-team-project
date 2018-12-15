@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import bitcamp.java110.cms.domain.BigTag;
+import bitcamp.java110.cms.domain.Cert;
 import bitcamp.java110.cms.domain.ClassFile;
 import bitcamp.java110.cms.domain.ClassOrder;
 import bitcamp.java110.cms.domain.Classes;
@@ -22,6 +23,7 @@ import bitcamp.java110.cms.domain.ProductOrder;
 import bitcamp.java110.cms.domain.Report;
 import bitcamp.java110.cms.domain.Timetable;
 import bitcamp.java110.cms.service.BigTagService;
+import bitcamp.java110.cms.service.CertService;
 import bitcamp.java110.cms.service.ClassFileService;
 import bitcamp.java110.cms.service.ClassOrderService;
 import bitcamp.java110.cms.service.ClassService;
@@ -56,6 +58,7 @@ public class MasterPageController {
   CsService csService;
   ClassFileService classFileService;
   TimetableService timetableService;
+  CertService certService;
   
 
   public MasterPageController(
@@ -73,7 +76,8 @@ public class MasterPageController {
       NoticeService noticeService,
       CsService csService,
       ClassFileService classFileService,
-      TimetableService timetableService) {
+      TimetableService timetableService,
+      CertService certService) {
     
    this.menteeService = menteeService;
    this.mentorService = mentorService;
@@ -91,6 +95,8 @@ public class MasterPageController {
    
    this.classFileService = classFileService;
    this.timetableService = timetableService;
+   
+   this.certService = certService;
   }
   
   @GetMapping("dashBoard")
@@ -374,7 +380,7 @@ public class MasterPageController {
   @GetMapping("notice")
   public void notice(Model model ,HttpSession session) {
     Mentee loginUser = (Mentee)session.getAttribute("loginUser");
-    List<Notice> noticeList = noticeService.listByMeno(5, 5, loginUser.getNo());
+    List<Notice> noticeList = noticeService.listByMeno(0, 9999, loginUser.getNo());
     for(Notice n : noticeList) {
       if(n.getType().equals("상품")) {
         n.setPhot(productService.get(n.getUrlno()).getPhot());
@@ -382,6 +388,12 @@ public class MasterPageController {
       }else if(n.getType().equals("클래스")) {
         n.setPhot(classService.findBycno(n.getUrlno()).getCfile());
         n.setTitl(classService.findBycno(n.getUrlno()).getTitl());
+      }else if(n.getType().equals("수료증")) {
+        System.out.println(n.getUrlno());
+        Timetable ttab =  timetableService.get(n.getUrlno());
+        System.out.println(ttab);
+        n.setPhot(classService.findBycno(ttab.getCno()).getCfile());
+        n.setTitl(classService.findBycno(ttab.getCno()).getTitl());
       }
     }
     model.addAttribute("noticeList", noticeList);
@@ -389,6 +401,12 @@ public class MasterPageController {
   @RequestMapping(value = "notiRemove.do", method = {RequestMethod.GET, RequestMethod.POST})
   public @ResponseBody int notiRemove(int no) {
     return noticeService.remove(no);
+  }
+  
+  @RequestMapping(value = "addNotice.do", method = {RequestMethod.GET, RequestMethod.POST})
+  public @ResponseBody int addNotice(Notice notice) {
+    
+    return noticeService.add(notice);
   }
   
   

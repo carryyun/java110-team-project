@@ -61,8 +61,8 @@
                 <div class="container col-lg-10 mt-3" style="min-height: 477px; margin-bottom: 50px">
                     <c:forEach items="${noticeList}" var="nl" varStatus="i">
                         
-                        <div class="notice notice-lg" id="rmv${nl.no}" onclick="location.href='${nl.url}'">
-                            <span>
+                        <div class="notice notice-lg col-lg-12 px-0" id="rmv${nl.no}" onclick="location.href='${nl.url}'" style="display: inline-block;">
+                            <div class="col-lg-2" style="float: left">
                                 <c:set var="transFile" value="${nl.phot}" />
 	                            <%
 	                                String transFile = (String)pageContext.getAttribute("transFile");
@@ -77,10 +77,13 @@
 	                            <%
 	                                }
 	                            %>
-                            </span>
+                            </div>
                             
-                            <span> <strong>[${nl.type}]${nl.titl}</strong> ${nl.conts}
-                            </span> <span style="float: right; cursor: pointer;" onclick="del(${nl.no},event)"><i class="fas fa-trash-alt"></i> </span>
+                            <div class="col-lg-9" style="float: left">
+                            <strong>[${nl.type}]${nl.titl}</strong>
+                            <br/>${nl.conts}
+                            </div>
+                            <div class="col-lg-1" style="float: right; cursor: pointer;" onclick="del(${nl.no},event)"><i class="fas fa-trash-alt"></i> </div>
                         </div>
 
                     </c:forEach>
