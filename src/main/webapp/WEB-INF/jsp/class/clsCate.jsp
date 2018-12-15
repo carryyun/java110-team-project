@@ -28,6 +28,12 @@ div.product-description__title > div > div#titlDiv > a{
     width:290px;
     white-space: normal; 
 }
+#SerchLocBtn:hover, #SerchLocBtn:focus{
+    outline: none !important;
+}
+#SerchLocBtn{
+    outline: none !important;
+}
 </style>
 
 <title>하루 - 클래스 검색</title>
