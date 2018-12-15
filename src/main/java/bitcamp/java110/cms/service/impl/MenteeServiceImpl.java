@@ -38,8 +38,8 @@ public class MenteeServiceImpl implements MenteeService {
 
   public void naverMailSend(Mentee m) {
     String host = "smtp.naver.com";
-    String user = "tjgus2932@naver.com";
-    String password = "vmfhwprxm12!";
+    String user = "bityeong@naver.com";
+    String password = "bitcamp1218";
     Properties props = new Properties(); 
     props.put("mail.smtp.host", host);
     props.put("mail.smtp.port", 587);

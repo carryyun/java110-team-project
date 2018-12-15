@@ -386,14 +386,20 @@ public class MasterPageController {
         n.setPhot(productService.get(n.getUrlno()).getPhot());
         n.setTitl(productService.get(n.getUrlno()).getTitl());
       }else if(n.getType().equals("클래스")) {
+        System.out.println(n.getUrlno());
         n.setPhot(classService.findBycno(n.getUrlno()).getCfile());
         n.setTitl(classService.findBycno(n.getUrlno()).getTitl());
       }else if(n.getType().equals("수료증")) {
         System.out.println(n.getUrlno());
         Timetable ttab =  timetableService.get(n.getUrlno());
-        System.out.println(ttab);
         n.setPhot(classService.findBycno(ttab.getCno()).getCfile());
         n.setTitl(classService.findBycno(ttab.getCno()).getTitl());
+      }else if(n.getType().equals("멘토신청거절")) {
+        n.setPhot("/upload/img/logo.png");
+        n.setTitl("멘토신청결과!");
+      }else if(n.getType().equals("멘토신청승인")) {
+        n.setPhot("/upload/img/bob.png");
+        n.setTitl("멘토신청결과!");
       }
     }
     model.addAttribute("noticeList", noticeList);

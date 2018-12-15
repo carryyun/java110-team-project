@@ -1969,7 +1969,7 @@ function addOrder(payopt){
                     msg += '에러내용 : ' + rsp.error_msg;
                     
                     alert(msg);
-                }
+                } 
             });
             
         }
@@ -1983,7 +1983,9 @@ function clsBaskt(no) {
         swal({
             text : "로그인 후 이용가능합니다..",
             button : "확인",
-          })
+          }).then((value) => {
+              location.href="../auth/form";
+          });
     } else{
         $.ajax({
             type : "POST" , 

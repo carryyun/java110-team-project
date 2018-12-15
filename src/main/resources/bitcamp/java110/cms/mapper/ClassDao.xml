@@ -343,7 +343,7 @@
 		inner join p_mtag as ptg
 		on ps.mtno = ptg.mtno
 		where
-		cno = #{no} AND (ps.stat = 'Y' OR ps.stat = 'I')
+		cno = #{no} AND (ps.stat = 'Y' OR ps.stat = 'I' OR ps.stat = 'F')
 	</select>
 
 	<select id="findBytag" resultMap="classMap" parameterType="int">
