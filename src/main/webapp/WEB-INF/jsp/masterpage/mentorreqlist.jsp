@@ -432,7 +432,7 @@ function anserclick(no){
                 type: "POST",
                 data: {
                     "type": "멘토신청거절",
-                    "conts" : "멘토신청이 거절되었습니다.",
+                    "conts" : "멘토신청이 거절되었습니다. (사유: "+anserfn+")",
                     "urlno" : 90000,
                     "url" : "../mypage/mypage#menu1",
                     "meno" : no,
@@ -520,7 +520,7 @@ function stat(no,name){
                 type: "POST",
                 data: {
                     "type": "멘토신청승인",
-                    "conts" : "멘토신청이 승인되었습니다",
+                    "conts" : "축하합니다! 멘토신청이 승인되었습니다",
                     "urlno" : 90000,
                     "url" : "../mypage/mypage#menu1",
                     "meno" : no,

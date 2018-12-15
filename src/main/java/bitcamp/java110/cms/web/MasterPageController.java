@@ -401,6 +401,8 @@ public class MasterPageController {
         n.setPhot("/upload/img/bob.png");
         n.setTitl("멘토신청결과!");
       }
+      n.setStat("R");
+      noticeService.update(n);
     }
     model.addAttribute("noticeList", noticeList);
   }

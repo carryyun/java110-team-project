@@ -237,7 +237,10 @@ a.nav-link{
                                             int clapage = (int)Math.ceil(clad)+1;
                                             
                                             
-                                            for(int clao=1; clao<=clapage; clao++){%>
+//                                             for(int clao=1; clao<=clapage; clao++){
+                                            if(clapage>5) clapage =5;
+                                            for(int clao=1; clao<=clapage ; clao++){
+                                            %>
                                             <li class="page-item"><a
                                                 class="page-link"
                                                 onclick="clapage(<%=clao%>)"><%=clao%></a></li>
