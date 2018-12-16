@@ -147,7 +147,7 @@
                        
                        
                        <input type="file" id="files" name="files" multiple
-						accept="image/*" onChange="fileCheck(this.form.files)"><br />
+						accept="image/*" onChange="fileCheck(this.form.files)" style="display :none;"><br />
 	
 						<div id="selectedFiles" ></div>
                 	 </div>
