@@ -227,8 +227,10 @@ public class ProductController {
     List<ProductFile> productFiles = productFileService.listByPtno(product.getNo());
     System.out.println(product.getNo());
     int FileLength = productFiles.size();
-    List<SmallTag> stagList = smallTagService.listMtno(1, 10, product.getStno());
+    List<SmallTag> stagList = smallTagService.listMtno(1, 10, product.getSmalltag().getMtno());
 
+    System.out.println("중분류:"+product.getSmalltag().getMtno());
+    
     model.addAttribute("FileLength", FileLength);
     model.addAttribute("stagList", stagList);
     model.addAttribute("productFiles", productFiles);
