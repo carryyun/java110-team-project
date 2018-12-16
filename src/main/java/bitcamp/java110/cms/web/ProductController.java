@@ -227,7 +227,7 @@ public class ProductController {
     List<ProductFile> productFiles = productFileService.listByPtno(product.getNo());
     System.out.println(product.getNo());
     int FileLength = productFiles.size();
-    List<SmallTag> stagList = smallTagService.listMtno(1, 10, product.getStno());
+    List<SmallTag> stagList = smallTagService.listMtno(1, 10, product.getMiddletag().getNo());
 
     model.addAttribute("FileLength", FileLength);
     model.addAttribute("stagList", stagList);
