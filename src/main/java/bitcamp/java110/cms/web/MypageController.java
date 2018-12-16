@@ -181,7 +181,8 @@ public class MypageController {
   @RequestMapping(value = "photoupload", method=RequestMethod.POST)
   public String  photoupload(@RequestParam("photoUpdate") List<MultipartFile> photo,
       @RequestParam("meno") int meno,
-       Mentee mentee
+       Mentee mentee,
+       HttpSession session
       ) throws Exception {
     
     
@@ -205,6 +206,8 @@ public class MypageController {
     System.out.println(mentee.getPhot());
     
     menteeService.updatePhoto(mentee);
+    Mentee loginUser = menteeService.get(mentee.getNo());
+    session.setAttribute("loginUser", loginUser);
     
   return "redirect:mypage";
 }
