@@ -120,7 +120,7 @@ table.fixed-table td.tableBtn{
     <%String nick = request.getParameter("nick");
     pageContext.setAttribute("nick", nick);
     %>
-    <td class="text-left" style="padding-left: 20px"><input type="text" value="${nick}" name="nick" class="customWidth" id="usernick" oninput="checknick()" onfocusout="checknick()" style="width: 35%"><br></td>
+    <td class="text-left" style="padding-left: 20px"><input type="text" value="${sessionScope.loginUser.nick}" readonly name="nick" class="customWidth" id="usernick" oninput="checknick()" onfocusout="checknick()" style="width: 35%"><br></td>
 </tr>
 <tr>
     <th>제　　목</th>
