@@ -574,7 +574,7 @@ $('#mapModal').on('shown.bs.modal', function (e) {
 		                for (var i in data) {
 		        			var cno = data[i].no;
 		        		    var titl = data[i].titl;
-		        		    var pric = data[i].pric;
+		        		    var pric = data[i].pric; 
 		        		    var basAddr = data[i].basAddr;
 		        		    var cfile = data[i].cfile;
 		        		    var star = data[i].star;
