@@ -101,7 +101,7 @@ public class AuthServiceImpl implements AuthService {
       Mentee m = new Mentee();
       m.setEmail(email); //생략가능
       
-      if(menteeDao.checkemail(m) == 0) {
+      if(menteeDao.checkemail(m) == 0) { 
         m.setEmail(email); //생략가능
         m.setNick(nickname); //아래는 바뀐정보가 있을시 갱신시키기위해
         m.setName(name);
