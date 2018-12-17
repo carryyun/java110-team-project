@@ -93,7 +93,7 @@ a.nav-link{
                 class="border js-fullheight">
                 <div class="text-center">
                     <div class="author-img"
-                        style="background-image: url(/img/1.jpg);"></div>
+                        style="background-image: url(${sessionScope.loginUser.phot});"></div>
                     <h1 id="colorlib-logo">
                         <a href="index.html">관리자</a>
                     </h1>
@@ -262,7 +262,7 @@ function prapage(prao){
             for(var i in data){
                 var stagname = data[i].smalltag.name;
                 var str = data[i].titl;
-                var titl = str.substring(0,25); 
+                var titl = str.substring(0,15); 
                 var name = data[i].mentee.name;
                 var nick = data[i].mentee.nick;
                 var pric = data[i].pric;

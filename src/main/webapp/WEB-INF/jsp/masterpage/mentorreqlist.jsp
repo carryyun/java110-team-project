@@ -96,7 +96,7 @@ a.nav-link{
                 class="border js-fullheight">
                 <div class="text-center">
                     <div class="author-img"
-                        style="background-image: url(/img/1.jpg);"></div>
+                        style="background-image: url(${sessionScope.loginUser.phot});"></div>
                     <h1 id="colorlib-logo">
                         <a href="index.html">관리자</a>
                     </h1>
