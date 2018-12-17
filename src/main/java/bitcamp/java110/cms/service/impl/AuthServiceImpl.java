@@ -63,7 +63,7 @@ public class AuthServiceImpl implements AuthService {
     String name="";
     String nickname="";
     String email="";
-
+    
     try {
       String apiURL = "https://openapi.naver.com/v1/nid/me";
       URL url = new URL(apiURL);
@@ -72,15 +72,19 @@ public class AuthServiceImpl implements AuthService {
       con.setRequestProperty("Authorization", header);
       int responseCode = con.getResponseCode();
       BufferedReader br;
+      
       if (responseCode == 200) { // 정상 호출
         br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+        
       } else { // 에러 발생
         br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
       }
+      
       String inputLine;
       String str="";
       while ((inputLine = br.readLine()) != null) {
         str+=inputLine;
+        
       }
       br.close();
 
@@ -93,16 +97,22 @@ public class AuthServiceImpl implements AuthService {
       nickname = (String) map.get("nickname");
       email = (String) map.get("email");
       fileurl=map.get("profile_image").toString();
-
+      System.out.println(name);
       Mentee m = new Mentee();
       m.setEmail(email); //생략가능
-      m = menteeDao.findAllByEmail(email);
-      m.setNick(nickname); //아래는 바뀐정보가 있을시 갱신시키기위해
-      m.setName(name);
-      m.setPhot(fileurl);
-      if(menteeDao.checkemail(m) == 0) 
+      
+      if(menteeDao.checkemail(m) == 0) { 
+        m.setEmail(email); //생략가능
+        m.setNick(nickname); //아래는 바뀐정보가 있을시 갱신시키기위해
+        m.setName(name);
+        m.setPhot(fileurl);
         menteeDao.fbsignup(m);
-      else {
+      }else {
+        m = menteeDao.findAllByEmail(email);
+        m.setEmail(email); //생략가능
+        m.setNick(nickname); //아래는 바뀐정보가 있을시 갱신시키기위해
+        m.setName(name);
+        m.setPhot(fileurl);
         menteeDao.updateNaver(m);
       }
       

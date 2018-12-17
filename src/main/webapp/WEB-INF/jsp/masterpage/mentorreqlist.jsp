@@ -62,6 +62,24 @@ a.nav-link{
         margin-bottom: 40px !important;
     }
 </style>
+
+<style type="text/css">
+li.active {
+    position: relative !important;
+    -ms-flex: 0 1 auto !important;
+    flex: 0 1 auto !important;
+    width: 30px !important;
+    height: 3px !important;
+    margin-right: 3px !important;
+    margin-left: 3px !important;
+    text-indent: -999px !important;
+    cursor: pointer !important;
+    background-color: rgba(255,181,60,1) !important;
+    border: 1px solid rgba(255,181,60,1) !important;
+  }
+
+</style>
+
 </head>
 
 <body>
@@ -247,9 +265,18 @@ a.nav-link{
                                        <div class="pic1">
                                            <div id="carousel-Create${i.index}" class="carousel slide" data-ride="carousel">
                                           <ol class="carousel-indicators">
-                                            <li data-target="#carousel-Create${i.index}" data-slide-to="0" class="active"></li>
-                                            <li data-target="#carousel-Create${i.index}" data-slide-to="1"></li>
-                                            <li data-target="#carousel-Create${i.index}" data-slide-to="2"></li>
+                                          <c:forEach items="${ml.mentorFile}" var="mlFile" varStatus="j">
+                                          <c:if test="${j.index == 0}">
+                                          <li data-target="#carousel-Create${i.index}" data-slide-to="${j.index}" class="active"></li>
+                                          </c:if>
+                                          <c:if test="${j.index != 0}">
+                                          <li data-target="#carousel-Create${i.index}" data-slide-to="${j.index}"></li>
+                                          </c:if>
+                                          
+                                            
+<%--                                             <li data-target="#carousel-Create${i.index}" data-slide-to="1"></li> --%>
+<%--                                             <li data-target="#carousel-Create${i.index}" data-slide-to="2"></li> --%>
+                                          </c:forEach>
                                           </ol>
                                           <div class="carousel-inner">
                                           
